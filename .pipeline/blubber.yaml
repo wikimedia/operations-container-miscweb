@@ -1,11 +1,6 @@
 version: v4
 base: docker-registry.wikimedia.org/httpd
-
-runs:
-  # www-data has uid/gid 33
-  uid: 33
-  gid: 33
-  insecurely: true
+runs: { insecurely: true }
 
 variants:
   test:
@@ -15,10 +10,11 @@ variants:
         destination: var/www/html
       - from: local
         source: test/httpd.conf
-        destination: usr/local/apache2/conf/httpd.conf
+        destination: ./apache2.conf
       - from: local
-        source: test/httpd.conf
-        destination: etc/apache2/apache2.conf
+        source: ./entrypoint.sh
+        destination: ./entrypoint.sh
+    entrypoint: [./entrypoint.sh]
   staging:
     copies:
       - from: local
@@ -26,10 +22,11 @@ variants:
         destination: var/www/html
       - from: local
         source: staging/httpd.conf
-        destination: usr/local/apache2/conf/httpd.conf
+        destination: ./apache2.conf
       - from: local
-        source: test/httpd.conf
-        destination: etc/apache2/apache2.conf
+        source: ./entrypoint.sh
+        destination: ./entrypoint.sh
+    entrypoint: [./entrypoint.sh]
   production:
     copies:
       - from: local
@@ -37,7 +34,8 @@ variants:
         destination: var/www/html
       - from: local
         source: production/httpd.conf
-        destination: usr/local/apache2/conf/httpd.conf
+        destination: ./apache2.conf
       - from: local
-        source: test/httpd.conf
-        destination: etc/apache2/apache2.conf
+        source: ./entrypoint.sh
+        destination: ./entrypoint.sh
+    entrypoint: [./entrypoint.sh]

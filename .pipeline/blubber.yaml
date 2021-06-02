@@ -17,6 +17,9 @@ variants:
         source: test/httpd.conf
         destination: ./apache2.conf
       - from: local
+        source: test/static-bugzilla.conf
+        destination: ./static-bugzilla.conf
+      - from: local
         source: ./entrypoint.sh
         destination: ./entrypoint.sh
     entrypoint: [./entrypoint.sh]
@@ -29,6 +32,9 @@ variants:
         source: staging/httpd.conf
         destination: ./apache2.conf
       - from: local
+        source: staging/static-bugzilla.conf
+        destination: ./static-bugzilla.conf
+      - from: local
         source: ./entrypoint.sh
         destination: ./entrypoint.sh
     entrypoint: [./entrypoint.sh]
@@ -40,6 +46,9 @@ variants:
       - from: local
         source: production/httpd.conf
         destination: ./apache2.conf
+      - from: local
+        source: production/static-bugzilla.conf
+        destination: ./static-bugzilla.conf
       - from: local
         source: ./entrypoint.sh
         destination: ./entrypoint.sh

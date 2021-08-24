@@ -1,0 +1,3507 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 57 &ndash; Single login (Unified login) on all wikimedia projects</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=57&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=57">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=57">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=57">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 57 – Single login (Unified login) on all wikimedia projects",  
+                             "show_bug.cgi?id=57" );
+        document.title = "Bug 57 – Single login (Unified login) on all wikimedia projects";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 57 – Single login (Unified login) on all wikimedia projects", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki_extensions bz_component_CentralAuth bz_bug_57 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-01-25 00:29:35 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-01-25 00:29:35">
+  <input type="hidden" name="longdesclength" value="67">
+  <input type="hidden" name="id" value="57">
+  <input type="hidden" name="token" value="1419355903-FPkt0HCXEHLwdbSUgw65wmnozQXieR-uYjyYV_DSyD0">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=57"><b>Bug&nbsp;57</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Single login (Unified login) on all wikimedia projects</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Single login (Unified login) on all wikimedia projects
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Single login (Unified login) on all wikimedia projects', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>CentralAuth
+    
+    (<a href="buglist.cgi?component=CentralAuth&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Highest
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=57">115 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=57#vote_57">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://meta.wikipedia.org/wiki/SUL">http://meta.wikipedia.org/wiki/SUL</a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">crosswiki
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Suggestion regarding usernames"
+   href="show_bug.cgi?id=3200">3200</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Logs you out when on theWikipedia Commons upload page, and says that my &quot;username does not exist&quot;"
+   href="show_bug.cgi?id=8034">8034</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Centralizing user account"
+   href="show_bug.cgi?id=9261">9261</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=3200,8034,9261">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - old users not sysopable"
+   href="show_bug.cgi?id=1180">1180</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Please add cross-wiki talk page notification."
+   href="show_bug.cgi?id=1066">1066</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Cross-wiki watchlists"
+   href="show_bug.cgi?id=3525">3525</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Get OpenID extension to a state where it could be used on Wikimedia projects as a provider (tracking)"
+   href="show_bug.cgi?id=9604">9604</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload to Commons from any Wikimedia website"
+   href="show_bug.cgi?id=1552">1552</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=57&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=57">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-08-15 16:38 UTC by <span class="vcard"><span class="fn">elian</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-01-25 00:29 UTC 
+      (<a href="show_activity.cgi?id=57">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>30 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alex.here">alex.here</option>
+                <option value="alpeterson">alpeterson</option>
+                <option value="anon.hui">anon.hui</option>
+                <option value="ayg">ayg</option>
+                <option value="bugs">bugs</option>
+                <option value="cgranade">cgranade</option>
+                <option value="conrad.irwin">conrad.irwin</option>
+                <option value="danny.b">danny.b</option>
+                <option value="dejan.papez">dejan.papez</option>
+                <option value="dmf88">dmf88</option>
+                <option value="e.wikimedia">e.wikimedia</option>
+                <option value="edwardbetts">edwardbetts</option>
+                <option value="en.ABCD">en.ABCD</option>
+                <option value="EN.WP.ST47">EN.WP.ST47</option>
+                <option value="ezyang">ezyang</option>
+                <option value="fearow00">fearow00</option>
+                <option value="fennec">fennec</option>
+                <option value="gangleri">gangleri</option>
+                <option value="jeluf">jeluf</option>
+                <option value="jimmy.collins">jimmy.collins</option>
+                <option value="kat.sinha">kat.sinha</option>
+                <option value="magnusrk+wiki">magnusrk+wiki</option>
+                <option value="node.ue">node.ue</option>
+                <option value="piotr.wikibugzilla">piotr.wikibugzilla</option>
+                <option value="polzer">polzer</option>
+                <option value="siebrand">siebrand</option>
+                <option value="ui2t5v002">ui2t5v002</option>
+                <option value="wikiagk">wikiagk</option>
+                <option value="wikiwodup">wikiwodup</option>
+                <option value="wmbugs">wmbugs</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=57&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">elian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-15 16:38:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Have a single login on all wikimedia projects.
+
+See <a href="http://meta.wikimedia.org/wiki/Single_login">http://meta.wikimedia.org/wiki/Single_login</a></pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-24 06:05:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that this isn't just a technical problem; duplicate names need to be dealt with in some way.
+</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-27 06:06:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The code is available, now we need a policy how to handle duplicate accounts.
+
+Consider two accounts from different wikis to be merged if the account name is
+the same and either
+* the passwords are identical
+* email address is identical
+* one of the accounts has not been used for &gt;3 months and has no edits
+
+What to do with duplicates that can't be merged? Force both user to get a new nick? </pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">xmlizer</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-27 10:00:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >why not change both or prefixed/suffixed them with the lang code (en, de, fr, etc.)
+
+The sole thing is to convert the new name in the whole database to keep
+modification history</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Peterson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-07 06:52:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I suppose that the way to start this process going, is to make all new accounts,
+create an account in all of the projects / stop the new user from making a
+username that conflicts with other users...
+
+and deal with it case by case,  maybe the person is making the same username in
+a new wiki.. in which case that person should be allowed to enter the password
+for all of the old wiki users, and then that user gets to choose to make a new
+account..
+
+So, I guess what I'm saying is, new accounts are easier to deal with than the
+old accounts, so it should be possible to enable this for new accounts first,
+and then gradually get other users to make all their passwords the same...
+
+This would probably take about a year to get a good portion of the people
+converted.. and then, send email to the people who have inactive accounts?
+
+then have a class of &quot;dichodomy?? &quot; users? and or do the database conversion of
+all the wiki links that contain the user page..  Tons of work for the server...
+and annoying to the users... but hopefully minor
+
+Sysop accounts are the  most important..
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">kissall
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-14 17:28:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c1">comment #1</a>)
+<span class="quote">&gt; Note that this isn't just a technical problem; duplicate names need to be dealt with in some </span >
+way.
+
+Using full email address as an account is a good idea. And people don't need to remember extra 
+names.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jamesday</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-14 18:07:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Proposed approach, based in part on discussion with JeLuF a while ago, is at
+<a href="http://meta.wikimedia.org/wiki/Single_signon_transition">http://meta.wikimedia.org/wiki/Single_signon_transition</a> .
+
+kissall, requiring use of email addresses to sign on and displaying different
+names is a mess. Displaying email addresses unnecessarily is a privacy and spam
+problem, so that's not an option. Personally, I strongly dislike sites which
+want an email address (often for their spam lists) as a login. It doesn't help
+with ID that much - you still have to remember which of your email addresses you
+used.
+
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">kissall
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-14 19:19:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" > I understand your concerns. My bank is even requiring my SSN as login name. :(
+ I guess usually there is no a panacea for any problem. There is
+always tradeoff for any solution.  We can list available solutions and
+their advantages as well as disadvantages.  And let more people to
+express their opinions. Then ,we can reach some kind of agreement and
+do it. Otherwise, there are only worrying and concerns and no progress
+at all.
+ As you can see, I am also aware of the email spam and privacy
+problem so I am using this nickname and gmail account to participate
+in this mailing list. But It does not mean I am not serious for this
+project. :-)
+  By the way, using only one formal email account to handle all things today seems 
+to be a inappropriate choice. I know many persons around me are using several email accounts to 
+handle difference things with different priority or security levels. 
+ In conclusion: For the solution for duplicated email account, we now
+have at least one disadvantage if we use email address as an  account:
+privacy &amp; spam problem when people using their formal email account to register.  However, 
+there may be a workaround: advising users to get a free email account with nickname.
+
+(In reply to <a href="show_bug.cgi?id=57#c6">comment #6</a>)
+<span class="quote">&gt; Proposed approach, based in part on discussion with JeLuF a while ago, is at
+&gt; <a href="http://meta.wikimedia.org/wiki/Single_signon_transition">http://meta.wikimedia.org/wiki/Single_signon_transition</a> .
+&gt; kissall, requiring use of email addresses to sign on and displaying different
+&gt; names is a mess. Displaying email addresses unnecessarily is a privacy and spam
+&gt; problem, so that's not an option. Personally, I strongly dislike sites which
+&gt; want an email address (often for their spam lists) as a login. It doesn't help
+&gt; with ID that much - you still have to remember which of your email addresses you
+&gt; used.</span >
+
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-25 17:36:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note: I've created a new page at <a href="http://meta.wikimedia.org/wiki/Single_login">http://meta.wikimedia.org/wiki/Single_login</a>
+which merges and expands on some of the previous discussions on this topic
+(including that mentioned in <a href="show_bug.cgi?id=57#c6">Comment #6</a>). Please help improve that page and add
+any comments you wish to make.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-11 23:30:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I want to propose to start IMMEDIATELY NOW (crying, yes) with ONE NEW service
+(of all WikiPedias), where users can register NEW names, which they want to
+reserve for ALL WIKIPEDIAS.
+
+Then, these new usernames will immediately be checked against all existing
+Wikipedias and - if free - will be pre-registered.
+
+If you don't like my idea, please post a well-based argument against my proposal.
+
+Thank you.
+Tom</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Fantasy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-06 10:47:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c9">comment #9</a>)
+<span class="quote">&gt; ...where users can register NEW names, which they want to reserve for ALL WIKIPEDIAS.
+&gt; Then, these new usernames will immediately be checked against all existing
+&gt; Wikipedias and - if free - will be pre-registered.</span >
+
+Sounds great, to prevent even more Namen-conflicts coming up. Good Idea!
+I'm just not sure how the &quot;create account&quot; on the second Wikipedia then will work (same password, same 
+email...?) but that is probably possible to be solved in some way.
+
+Thanks a lot, I like this idea as a first step to solve this problem
+Fantasy :-)
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jamesday</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-09 06:13:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When it comes to single login, always reserving a name in all projects isn't
+necessary or the best way to go. Most people just don't use all projects
+Wikimedia has or will ever host, so there's no point in blocking others from
+using the same name in different projects and getting the same lack of decent
+name choices problem AOL Instant Messenger and such have. Can have single login
+(log in once, login applies to every project you visit) without that. Anyone who
+wants to stop others from using the same ID in different projects can visit them
+easily enough (and for those who don want to block others everywhere, in all
+600+ projects) we could make that easy enough. Not many of us really need that,
+though, if only because few of us read a hundred languages - I know I don't
+(I've only used 20 or so projects).</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-09 07:03:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c11">comment #11</a>)
+<span class="quote">&gt; When it comes to single login, always reserving a name in all projects isn't
+&gt; necessary or the best way to go.</span >
+Jamesday:
+
+I am of a totally different opinion.
+
+Good (or bad) names can be like trademarks, they are some part of the
+intellectual property of a contribution.
+
+If I would use for example &quot;Jamesday&quot; somewhere else, for example in a very bad
+vandalism context, pretending that I am you, this would certainly not please you
+and you could not do anything against it. Your fame can be permanently damaged
+and so on.
+
+Single-logon ***must allwow to reserve a name in ALL projects at once***, when
+someone wishes so during his/her first login to a wiki project. The numerous
+single-logon discussions about reserving or non reserving in all projects
+bothers me.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Christopher E. Granade</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-09 08:58:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c12">comment #12</a>)
+<span class="quote">&gt; Good (or bad) names can be like trademarks, they are some part of the
+&gt; intellectual property of a contribution.</span >
+Unfortunately, this fails to take into account that some names are more common
+than others (e. g. jsmith is almost definitely non-unique; even my unusual last
+name, Granade, is not unique on the Web). Thus, in evaluating the validitity of
+a single sign-on solution, the number of currently overlapping IDs should
+somehow be considered. I'd suggest a statistical sample of IDs from WikiPedia:en
+checked against a list from the other 599 projects. Upon a collision, one could
+investigate by hand whether the IDs represent the same user or not. I would help
+with this (not do it by myself), but I don't have access to the appropriate data. 
+<span class="quote">&gt; Single-logon ***must allwow to reserve a name in ALL projects at once***, when
+&gt; someone wishes so during his/her first login to a wiki project. The numerous
+&gt; single-logon discussions about reserving or non reserving in all projects
+&gt; bothers me.</span >
+If you must, make User IDs in the form of something like: cgranade&#64;WikiPedia:en.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-09 18:21:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c13">comment #13</a>)
+<span class="quote">&gt; &gt; Good (or bad) names can be like trademarks, they are some part of the
+&gt; &gt; intellectual property of a contribution.</span >
+
+<span class="quote">&gt; I'd suggest a statistical sample of IDs from WikiPedia:en
+&gt; checked against a list from the other 599 projects. Upon a collision, one could
+&gt; investigate by hand whether the IDs represent the same user or not.</span >
+
+This was already possible by using Kate's Namechecker Tools: you could have
+entered a name and then checked the presences of this name in all other wiki
+projects. In addition, the stored email address was checked for equalness
+between the different wikis, and distinct mail addresses were numered, so I
+could see, where (supposed) I was registered with the same addresses, and
+whereelse my account name was used - because of intentional different own mail
+addresses, or because this was really another person using my log-in name.
+
+
+<span class="quote">&gt; If you must, make User IDs in the form of something like: cgranade&#64;WikiPedia:en</span >
+
+This is ridiculous (sorry, but my patience for single-user login is at the very
+end), when I expressly demanded the **same** name in all projects, where it is
+unused; nobody would like to use such long names as suggested by you.
+
+I cannot accept the lengthy discussions any longer, which hasn't brought any
+movements towards the single-login; nada-zero-rien was achieved in this resprect
+during the last months. I might be too pushy, yes, I admit, I am. Some called my
+already a &quot;locomotive&quot;, this isn't bad at all. But I am not developer and fully
+respect the common-sense in the Mediawiki software development.
+
+Please check also
+<a href="http://meta.wikimedia.org/wiki/SUL">http://meta.wikimedia.org/wiki/SUL</a> and 
+<a href="http://meta.wikimedia.org/wiki/Namecheck">http://meta.wikimedia.org/wiki/Namecheck</a> (the link to neat Kate's Tool is
+broken, because her server doesn't serve any longer)
+</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-21 21:16:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c13">comment #13</a>)
+<span class="quote">&gt; If you must, make User IDs in the form of something like: cgranade&#64;WikiPedia:en.</span >
+
+Possible solution based on this idea:
+
+For instance, my first wiki account is on english Wikipedia as Omegatron.  This
+should then allow me to log onto any other projects using a single login:
+&quot;Omegatron&#64;Wikipedia:en&quot; (or &quot;enpedia:Omegatron&quot; or some other suitable unique
+modifier based on which wiki i registered on).  en wikipedia is now my &quot;home&quot;,
+but i have a single login name valid for all the rest.  If someone else has the
+same login Omegatron on the german wikipedia, there is no conflict; they can
+also log onto any other project with <a href="mailto:Omegatron&#64;Wikipedia.de">Omegatron&#64;Wikipedia.de</a> and are known as
+simply Omegatron on the german pedia.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-21 21:31:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c15">comment #15</a>)
+Sorry to double-post.
+
+With this proposal, I am still free to register the shorter, more personal name
+Omegatron on any other wikis that I use frequently, but if I just want to leave
+a note on de I would use my singlelogin Omegatron&#64;WP:en, or if I got interested
+in wikitravel but there was already someone else named Omegatron registered
+there, I could just use Omegatron&#64;WP:en all the time, keeping us distinct.  Or
+whatever.
+
+If someone clicked on my &quot;- Omegatron&#64;WP:en&quot; signature on a german discussion,
+for instance, it would by default just redirect or link to my en user page,
+since that is my &quot;home&quot;.
+
+Note that the suffix/prefix/modifier whatever doesn't need to be in the form I
+am putting it; just an example of a possibility.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-22 00:23:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; With this proposal, I am still free to register the shorter, more personal name
+&gt; Omegatron on any other wikis that I use frequently, but if I just want to leave</span >
+
+A new single-login scheme must be &quot;KISS&quot; (keep it) short and simple; I fully
+admit, that all contributions so far has their positive and negative sides; but
+basically, we a need like Kate's one, which 
+
+   checks, whether a (new) name is free in all other wikis
+
+Then, I cannot see a single reason, why this new and unique name cannot be
+registered immediately in all wikis and blocked for being used in (probably
+later born) wikis.
+
+This is basically my only request.
+
+Let's start with this, it is the basis for all proposals, see the synopsis on
+the page <a href="http://meta.wikipedia.org/wiki/SUL">http://meta.wikipedia.org/wiki/SUL</a> .
+Tom
+
+
+</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-10 06:13:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why was this filed under &quot;language setup&quot;? Not all Wikimedia 
+projects are simply differently language versions; they are 
+different projects!</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-17 04:17:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There's already too much discussion here but I can't put my comment 
+on Meta because I've been banned.
+
+My comment is that I have not been banned on the English Wikipedia, 
+which would not be good if I was actually intending to vandalise.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-17 20:31:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+I could see that <a href="http://www.wikipage.de/de/index.php?title">http://www.wikipage.de/de/index.php?title</a>= and
+<a href="http://www.wikipage.de/en/index.php?title">http://www.wikipage.de/en/index.php?title</a>= are using single login but this might
+be a configuartion issue. There *only one* user interface can be selected.
+
+My question is what other issues should be considered, what parameters should be
+&quot;single&quot; and what &quot;individual&quot; for each wiki. The question arrives because some
+people would like to use the language interface of the content wiki. There are
+many other parameters but I suppose that they should not be duplicated all.
+
+An optional implementation would be to use somthing similar to the user skin
+pages but I assume that this would *not* be used by / popular for the majority.
+
+Regards Reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-25 12:01:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >addition to <a href="show_bug.cgi?id=57#c20">comment 20</a>
+topic: what comes *after* &quot;Single login on all wikimedia projects&quot;
+
+There is a *half* workaround regarding the language of the user interface at
+<a href="http://www.wikipage.de/de/index.php/Main_Page">http://www.wikipage.de/de/index.php/Main_Page</a> .
+
+At the moment &quot;anonymous users&quot; will use always the &quot;content language&quot;. (Note: I
+remember a feature request to allow setting [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3APreferences">Special:Preferences</a>]] to anonymous
+users). Viewing WikiPage with a seccond browser will allow to see (some parts
+of) the interface in &quot;conten language&quot;.
+
+I would suggest to have the following options for slecting the interface language:
+
+global interface language button: one from the list *including* content language
+local interface language checkbox: one from the list *including* content language
+the &quot;local interface language&quot; should overwrite &quot;global interface language&quot;.
+
+I am not shure if a selector &quot;content language = $...&quot; could be added already to
+the code and if this belongs to this bug or if another bug should be opened.
+
+Regards Reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-19 16:29:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Suggestion regarding usernames"
+   href="show_bug.cgi?id=3200">Bug 3200</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">SV Resolution</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-24 06:29:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Proposed process for migrating old &quot;single-wiki&quot; logins to &quot;multi-
+wiki&quot; login.
+* Disable all single-wiki registration.
+* Preserve single-wiki logins -- they will continue to work just 
+the same as always.
+* Create a DB of *ALL* single-wiki names (with their wikis).
+* Enable every-wiki registration
+** When a new every-wiki login is created, it must be checked 
+against the universe of single-wiki names as well as every-wiki 
+names
+* Migrating single-wiki to every-wiki
+** If a single-wiki user has a unique name that is NOT used in 
+any other wiki, it can be automatically migrated to an every-wiki 
+account.  The user pages will have to be preserved.
+** Allow single-wiki multiple users to create a wiki-logins 
+umbrella
+*** Under the umbrella, they can demonstrate ownership of a long 
+list of single-wiki logins on multiple wikis &quot;these are all me&quot;
+*** If they can demonstrate &quot;total ownership&quot; of a desired login 
+name, they can convert the entire umbrella group of wiki logins 
+to the new every-wiki login under the desired name
+*** Or they can choose a brand new login for converting their 
+umbrella
+*** The single-wiki logins under the umbrella don't have to be 
+the same.  They could be en:wikipedia:john, en:wikibooks:john, 
+fr:wikipedia:jaques.  And as long as the user had every existing 
+john account under his umbrella, he could claim the every-
+wiki:john account. 
+** If an account is removed from the single-wiki space, new 
+registrations no longer need to check it.
+*** If the single-wiki account space becomes empty, so much the 
+better
+*** These &quot;retired&quot; single-wiki names should move to a &quot;retired&quot; 
+list so they are not immediately give out to new multi-wiki 
+users.  It would be confusing on fr:wikipedia if Jaques became 
+John and a newbie Jaques were able to register the retired Jaques 
+login name the very next day!
+* every-wiki logins should also work on bugzilla.
+--[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3ASV%20Resolution">user:SV Resolution</a>]]
+
+
+</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tobias Hahn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-10 12:10:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is this just an academic discussion about what could potentially be done? It
+seems to lead nowhere and this bug has been known for far over a year now. It
+needs urgent action and is annoying as hell!
+
+BTW: Anyone noticed that you need to create an additional bugzilla account to
+access bugzilla?</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-10 13:53:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Implementation for such a feature will require a lot of discussion. Please don't
+mindlessly bump up the priority; this is not an urgent security hole or bug fix.
+
+You need to create a separate account because development work and wiki work are
+different things.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Christopher E. Granade</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-10 19:51:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Two ideas that are kind of complete tangents to current discussions:
+1) Allow for OpenID-based authentication in addition to native user accounts. If
+needed, give OID users a lower permission level.
+  (See: <a href="http://openid.net/">http://openid.net/</a> or <a href="http://en.wikipedia.org/wiki/OpenID">http://en.wikipedia.org/wiki/OpenID</a>)
+2) Allow for GnuPG/PGP based authentication- present a random &quot;salt&quot; and
+challenge the user to sign it, with the server verifying the signature. If
+needed, give GPG users a lower permission level.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-11 00:16:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There has been recent discussion about a patch for OpenID on the wikitech-l
+mailing list:
+
+<a href="http://thread.gmane.org/gmane.science.linguistics.wikipedia.technical/19808">http://thread.gmane.org/gmane.science.linguistics.wikipedia.technical/19808</a></pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Engels</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-11 07:56:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Rob Church:
+<span class="quote">&gt; Implementation for such a feature will require a lot of discussion. Please</span >
+don't mindlessly bump up the priority; this is not an urgent security hole or
+bug fix.
+
+There has already been a lot of discussion. The feature is among the highest
+asked for for two years or so. It should have highest priority by now. The risk
+with discussion is not that someone jumps in without discussion, the risk is
+that noone wants to discuss because they already said their thing several times,
+and besides this is not going to happen anyway. Apparently you want to keep it
+that way, because you want 'a lot of discussion' first. And after that? A lot of
+discussion again? And again? That's the best way to ensure it will really never
+happen. You may be okay with that, I am not.
+</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-25 23:19:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c28">comment #28</a>)
+<span class="quote">&gt; Rob Church:
+&gt; &gt; Implementation for such a feature will require a lot of discussion. Please
+&gt; don't mindlessly bump up the priority; this is not an urgent security hole or
+&gt; bug fix.
+&gt; 
+&gt; There has already been a lot of discussion. The feature is among the highest
+&gt; asked for for two years or so. It should have highest priority by now. The risk
+&gt; with discussion is not that someone jumps in without discussion, the risk is
+&gt; that noone wants to discuss because they already said their thing several times,
+&gt; and besides this is not going to happen anyway. Apparently you want to keep it
+&gt; that way, because you want 'a lot of discussion' first. And after that? A lot of
+&gt; discussion again? And again? That's the best way to ensure it will really never
+&gt; happen. You may be okay with that, I am not.
+&gt; </span >
+
+I find your insinuations offensive. There are practical issues and we need to
+decide what to do about them. You think you can do a better job...get coding.
+Remember; only *one* of our developers is paid; the rest do it purely
+voluntarily. Don't whinge, rather; see what suggestions you can make for
+implementing this, for detecting conflicting users - and resolving those.
+</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Engels</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-26 00:25:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; There are practical issues and we need to decide what to do about them.</span >
+
+Well then, make a decision! There have been proposals, they have been discussed,
+and then new proposals are made. And new proposals. And new discussion. And new
+discussion. And what is your solution to that? MORE DISCUSSION!!!!!
+
+<span class="quote">&gt; You think you can do a better job...get coding.
+&gt; Remember; only *one* of our developers is paid; the rest do it purely voluntarily.</span >
+
+So? That means that noone can decide for them what they should do. Fine. It does
+not mean you can just decide that certain projects need another few centuries of
+discussion before they can happen. You think you can do a better job...get
+coding. Don't stop others from doing so instead.
+
+<span class="quote">&gt;  Don't whinge, rather; see what suggestions you can make for implementing</span >
+this, for detecting conflicting users - and resolving those.
+
+I could make suggestions, but they would just end up the same way as all
+suggestions that already have been made - a bit of discussion, and then tucked
+away again. And next month the next person says that this would be great to
+have, and he makes a new proposal, and the same happens. There is no lack of
+ideas or proposals. There is no lack of discussion. What there is a lack of, is
+decisions.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-26 00:49:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >How about I just throw out the suggestion right now, to help quell what I think
+is going to become a big flamewar. It's not a particularly good suggestion, but
+throwing insults at each other isn't helping.
+
+Enabling the feature will not make anybody suddenly be able to log into other
+wikis without registering. Rather, it will allow a user to &quot;claim&quot; their
+username across all namespaces. All Wikimedia projects must either 1) not have a
+user of their name or 2) have the user be able to log into the account,
+verifying they indeed own the account.
+
+In the event there's no conflict, the user will then have to globalize their
+data, choosing one set of personal information that will be preserved globally.
+There will not be the ability to &quot;tweak&quot; user information per a project basis.
+Monobook.css and .js will be preserved.
+
+In the event there is a conflict, an interlingual dispute resolution process
+kicks in. We notify the passive username holder about the conflict through talk
+page notice and email (if on file), we also compare join dates. If...
+
+1. Passive username holder has no edits - relinquish username automatically in 3
+days
+2. Passive username holder has &lt; 100(?) edits - relinquish username
+automatically  in a week
+3. Passive username has a greater amount - relinquish username automatically
+after 3 months (mainly to prevent deadlocks)
+
+If the user does respond before time runs out, they will bring their cases
+towards the multilingual Naming Committee, which will decide on a case-by-case
+basis which user must get a new username. If a username is automatically
+relinquished, the user data will be held in an archival table. If the user
+decides to try to log in (log in fails with current hash but passes with the
+archival hash), then they are directed to a page that will let them choose a new
+username and rename their user.
+
+On a more technical basis, this would entail...
+
+0. Create a 'old_user' table with exact same structure as regular user table
+1. Add a 'global_id' column to users table, which is set to null
+2. Lock down database
+3. Run a script on all databases that will attempt to automatically globalize
+usernames that exist in only one language. If they are fine, give them a
+global_id and that's it!
+4. Unlock database and enable user globalization
+
+A user requests to globalize themself
+
+1. Query all Wikimedia projects for the conflicting usernames
+2. Have user attempt to log into the projects that have usernames, if he is
+successful, mark those username columns and the current username with the same
+'global_id' identifier.
+3. If, now, all conflicting usernames have the same global_id, you're done.
+
+There were non-user-owned accounts in the Wikimedia domain.
+
+1. Send messages to all the non-user-owned accounts. Hopefully for the dormant
+editors an email was registered
+2. Set cron jobs (or lump in with one big cronjob) that will check for the
+status of all the accounts at the respective times. If all accounts have
+sunsetted, move all conflicting usernames to the archive table and globalize the
+requesting user.
+3. Someone replied, but finish sunsetting, because eventually these will all
+have to resolve
+4. Depending on the number of people who replied, there may be some big
+conflicts. All users present their cases to the Naming Committee, which judge
+which user needs that particular account most. Their decision will cause step 2
+for the winning user.
+
+If the Naming Committee decides that at least two users have legitimate reasons
+to keep their username AND neither will rename, the issue will be shelved for
+half a year, after which both usernames may reapply to the Naming Committee. All
+usernames in the other projects are locked, to prevent exacerbation of the
+situation.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-26 00:53:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It occurs to me that cross-referencing every single Wikimedia project will take
+quite a bit of time. Anyone have any ideas to mitigate this cost?</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-26 08:57:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+Single login should come as &quot;a package&quot;. This request ahs the most votes ever
+made for a feature request. To identify the needs please take a look at
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicities%3A">Wikicities:</a>]] <a href="http://wikicities.com/wiki/Main_Page">http://wikicities.com/wiki/Main_Page</a> still using version 1.4.10
+. See also
+<a href="http://games.wikicities.com/wiki/Special:Listusers">http://games.wikicities.com/wiki/Special:Listusers</a> .
+
+Please log in. And select your user preferences. Then find a wiki in a language
+other then English at 
+<a href="http://wikicities.com/wiki/Category:Languages">http://wikicities.com/wiki/Category:Languages</a> .
+
+Please identify yourself what feature are missing.
+
+Some remarks on previous comments:
+- the criteria that user name, email *and* password should be the same in order
+to identify a *global* user name are not suitable because passwords may differ
+especially for accounts where this user has additional rigths and changes the
+password more often;
+- in my opinion we need to support also *aliases* especially for languages which
+are not written in lattin; see
+<a href="http://sr.wikipedia.org/w/index.php?title=user:Millosh&amp;redirect=no">http://sr.wikipedia.org/w/index.php?title=user:Millosh&amp;redirect=no</a>
+<a href="http://ur.wikipedia.org/w/index.php?title=user:Wisesabre&amp;redirect=no">http://ur.wikipedia.org/w/index.php?title=user:Wisesabre&amp;redirect=no</a>
+
+some bugs are marked depending on this
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Please add cross-wiki talk page notification."
+   href="show_bug.cgi?id=1066">Bug 1066</a>: Please add cross-wiki talk page notification.
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload to Commons from any Wikimedia website"
+   href="show_bug.cgi?id=1552">Bug 1552</a>: Feature request: Upload to commons from Wikipedia, Wikibooks, etc.
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Cross-wiki watchlists"
+   href="show_bug.cgi?id=3525">Bug 3525</a>: Cross-wiki watchlists with option for public viewing
+
+additional feature requests have been opened which are usefull for single login;
+I remember
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Change Special:Listusers to show only accounts with edits"
+   href="show_bug.cgi?id=2474">Bug 2474</a>: (marked WONTFIX) Change Special:Listusers to show only accounts with edits
+- maybe the request should be changed &quot;Add a checkbox to Special:Listusers to
+show only accounts with edits&quot;
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - disallow user pages and user_talk pages starting with lower case on case sensitive wikis"
+   href="show_bug.cgi?id=3904">Bug 3904</a>: disallow user pages and user_talk pages starting with lower case on
+case sensitive wikis
+
+If there are more hundered wiki's in the &quot;project group&quot; as is the case now at
+the Wikimedia foundation projects / wikis users will not be active at all of
+them. This is why the user parameters need to be split in more groups
+*general* parameters as 
+- user name, name, email, alias (?), &quot;prefered&quot; user interface
+individual parameters to each wiki
+- active or not
+- language interface (local, prefered, one of the UI list)
+- rights
+- blocks
+
+It makes sense to enable both
+- email notification on changes of the own user *talk* page (available now,
+configuration issue)
+- email notification on changes of the own *user* page (if possible including
+its subpages)
+-- email notification on chabges of subpages of the own user *talk* page
+(changes in archives, subpages for special topics etc.)
+
+Please note that this requesta has &quot;Product&quot; &quot;Wikimedia web sites&quot;. In fact it
+should be &quot;MediaWiki&quot; &quot;User login/settings&quot; as it is suitable for other
+installations as well. It needs to handle also &quot;restricted&quot; wiki's as
+<a href="http://wikimediafoundation.org/">http://wikimediafoundation.org/</a> and should support also case sensitive wiki's.
+
+Because this feature requires many adminidtrative steps it might be a good idea
+to *provide* an *url* where people interested in single login can query the
+database and see if their user name is used also in other projects. Viewing the
+results they may have time to thing about.
+For projects using languages based on the Latin alphabet these accounts can be
+found with an existing tool (where the search in 50 languages is hardcoded):
+<a href="http://vs.aka-online.de/cgi-bin/globalwpsearch2.pl?project=wiktionary&amp;timeout=120&amp;minor=1&amp;search=user:Angela">http://vs.aka-online.de/cgi-bin/globalwpsearch2.pl?project=wiktionary&amp;timeout=120&amp;minor=1&amp;search=user:Angela</a>
+<a href="http://vs.aka-online.de/cgi-bin/globalwpsearch.pl?timeout=120&amp;minor=1&amp;search=user:Angela">http://vs.aka-online.de/cgi-bin/globalwpsearch.pl?timeout=120&amp;minor=1&amp;search=user:Angela</a>
+
+A more important thing would be to *provide* an *url* where changes to actual
+database model are discussed. This would make it more simple to understand
+restrictions and implications.
+
+Best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-26 18:24:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For the information of whoever it was I was arguing with earlier, I actually
+went and read all the Meta pages related to this, and I personally like one of
+them in particular; entitled &quot;Single login specifications&quot; or similar.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 13:10:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It might be a good idea to distingish between
+- &quot;Sign in&quot; to a particular wiki and &quot;Single sign in&quot; to all wiki's in a group
+which are related to creating an account / accounts
+- globally unique user id (GUID)
+- &quot;Log in&quot; and &quot;Single log in&quot; login after an account has / accounts have been
+created
+
+I assume that the most embarrassing issue is that users have to *log* in after
+each / most software updates. Making a distinction between &quot;Sign in&quot; and &quot;Log
+in&quot; can avoid automatic &quot;Sign in&quot; to *all* projects discussed earlier. The
+distinction can make the process more flexible and MediaWiki could avoid the
+&quot;automatism&quot; &quot;Signing in&quot; / &quot;Logging in&quot; users at wiki's without their will /
+consent.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 15:50:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No, I'd say make it far less complicated. If you log into one Wikimedia wiki,
+you should be logged into all the others. Principle of least surprise and all that.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chris McKenna</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 23:14:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c36">comment #36</a>)
+<span class="quote">&gt; No, I'd say make it far less complicated. If you log into one Wikimedia wiki,
+&gt; you should be logged into all the others. Principle of least surprise and all</span >
+that.
+
+I'd agree with this but if it is not too difficult to code I would prefer a
+radio button selection offering
+*Log into all Wikimedia wikis
+*Log into this wiki only
+
+The first option should be the default and &quot;Wikimedia wikis&quot; should be linked to
+a list of all the wikis that this would log you on to. The log out options would
+be the same.
+
+A possible third option would be
+*Log into custom set of wikis.
+
+This would be the list of Wikimedia wikis that you would be logged into but with
+a checkbox next to each one. (I suspect this might be difficult to code though?). 
+
+All the defaults would ideally be changeable in preferences.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 23:21:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Not necessarily difficult, but damn fiddly, and IMO, pointless. Why would you
+not want to be logged into them all, especially if we take (I think it's Erik's)
+suggested implementation for negotiating conflicting accounts.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 23:58:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c38">comment #38</a>)
+<span class="quote">&gt; ... Why would you
+&gt; not want to be logged into them all, especially if we take (I think it's Erik's)
+&gt; suggested implementation for negotiating conflicting accounts.</span >
+
+There might be different reasons:
+- please take a look at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3ASpecial%3ASiteMatrix">meta:Special:SiteMatrix</a>]]; you probably will see
+projects using fonts which display as question marks, squares etc.;
+- some sites are sending non-Wikimedia foundation cookies; this might irritate
+users;
+- there might be countries where users would have &quot;''difficulties''&quot; if they are
+displayed as users / contributors at sites in certain languages (this sounds
+very strange; I lived many years in a country with a totalitary political system
+and I know what I am talking about)</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-29 14:18:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c31">comment #31</a>)
+<span class="quote">&gt; Enabling the feature will not make anybody suddenly be able to log into other
+&gt; wikis without registering.</span >
+
+Actually, my proposal would allow you to log into other wikis without registering.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-01 20:31:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*minor detail*
+
+A user name as &quot;Patrick (Hannover)&quot; will render as &quot;(Patrick (Hannover&quot; at RTL
+wikies. Similar rendering applies to all user names ending with characters
+having directionality boundary neutral due to the bidirectional algorithm.
+Symmetrical examples can be given also for usernames containing RTL characters: 
+RTL:
+אביב (1973)‏
+LTR:
+אביב (1973)
+I assume that beside the field for the user name MediaWiki will need also three
+radio boxes: a) append &amp;lrm; b) append &amp;rlm; c) unchanged (default).
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-25 10:17:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Logs you out when on theWikipedia Commons upload page, and says that my &quot;username does not exist&quot;"
+   href="show_bug.cgi?id=8034">Bug 8034</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Connor Lee</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-28 02:50:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This feature would be great to have.
+
+<span class="quote">&gt; I assume that beside the field for the user name MediaWiki will need also three
+&gt; radio boxes: a) append &amp;lrm; b) append &amp;rlm; c) unchanged (default).</span >
+
+Would this be that hard to do?</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Connel MacKenzie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-13 17:26:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Two cents: Every month that passes makes the &quot;duplicates&quot; problem worse.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-13 18:09:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c44">comment #44</a>)
+<span class="quote">&gt; Two cents: Every month that passes makes the &quot;duplicates&quot; problem worse.</span >
+
+These sorts of comments are not helpful. At all. Don't make them. &quot;Single user
+login&quot; is being worked on. It's not a simple issue. It's not even a a hard
+issue. It's a very complicated issue, because it's more than one set of changes.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-12 16:23:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Centralizing user account"
+   href="show_bug.cgi?id=9261">Bug 9261</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">phi1ipp
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-23 01:47:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Re Connel McKenzie: Ignore the duplicates problem, just keep all existing
+accounts as is and ask people who want universal logins to open new accounts. So
+the technical challenge then is dealing with two types of accounts: single
+project vs. universal.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yonatan Horan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-23 02:35:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I wonder what part of &quot;&quot;Single user
+login&quot; is being worked on&quot; isn't understood, they aren't gonna keep all existing
+accounts as is since they've already done most of the work (or at least a lot of
+it).</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-17 11:00:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://bugzilla.wikimedia.org/show_bug.cgi?id=9604">http://bugzilla.wikimedia.org/show_bug.cgi?id=9604</a> &lt;-- This would partially
+resolve this #57 bug.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Casey Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-15 14:37:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If anyone hasn't heard yet, and is viewing or watching this bug.  Brion (and some other devs?) have enabled a beta version on <a href="http://test.wikipedia.org/wiki/Special:MergeAccount">http://test.wikipedia.org/wiki/Special:MergeAccount</a> . Check it out! :-)</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 00:45:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I tried the demo and have one suggestion:
+
+I don't know what algorithm is used to determine the &quot;home wiki&quot;, but I got the one I wouldn't prefer. (I know I can change it later, but it's unnecessary step.) I'd suggest to have default home wiki that one on which user registered first, because usually the first registered wiki is the most often used therefore the home.</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 00:57:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The algorithm prefers sysop/bureaucrat/steward accounts to any others.  In the event of a tie (either multiple or no privileged accounts), it chooses the wiki with the highest edit count, probably a better metric than signup date.  You can always change your home wiki if this initial guess is wrong, which it inevitably will be in many cases.
+
+I'm assigning this bug to Brion for clarity, if he doesn't mind, since he's working on it (among many other things, alas).  Code is all in Subversion at <a href="http://svn.wikimedia.org/svnroot/trunk/extensions/CentralAuth">http://svn.wikimedia.org/svnroot/trunk/extensions/CentralAuth</a> .  It can be viewed online at: <a href="http://svn.wikimedia.org/viewvc/trunk/extensions/CentralAuth">http://svn.wikimedia.org/viewvc/trunk/extensions/CentralAuth</a></pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 04:22:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >``You can always change your home wiki if this initial guess is wrong, which it
+inevitably will be in many cases.''
+
+The problem will comes when the initially-guessed home wiki account is owned by another person.
+
+I think the person who register first should own that username on the unified wikimedia sites.
+Imagine, what if the wikimedia sites have been unified ever since the sites are first established long time ago (that their accounts have never been separated),
+the person who register first will own that username on all of the wikimedia sites.
+The person who come after will unable to use the registered username, and have to choose their alternate username.
+This logic should also apply on current wikimedia sites, after it have been unified.
+</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 04:23:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >``You can always change your home wiki if this initial guess is wrong, which it
+inevitably will be in many cases.''
+
+The problem will comes when the initially-guessed home wiki account is owned by another person.
+
+I think the person who register first should own that username on the unified wikimedia sites.
+Imagine, what if the wikimedia sites have been unified ever since the sites are first established long time ago (that their accounts have never been separated),
+the person who register first will own that username on all of the wikimedia sites.
+The person who come after will unable to use the registered username, and have to choose their alternate username.
+This logic should also apply on current wikimedia sites, after it have been unified.</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 04:26:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >``You can always change your home wiki if this initial guess is wrong, which it
+inevitably will be in many cases.''
+
+The problem will comes when the initially-guessed home wiki account is owned by another person.
+
+I think the person who register first should own that username on the unified wikimedia sites.
+Imagine, what if the wikimedia sites have been unified ever since the sites are first established long time ago (that their accounts have never been separated),
+the person who register first will own that username on all of the wikimedia sites.
+The person who come after will unable to use the registered username, and have to choose their alternate username.
+This logic should also apply on current wikimedia sites, after it have been unified.
+</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Casey Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 13:23:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please note that there is a lot of dicussion taking place on Wikitech-l, so please correspond there, if you can, so you get more answers and so that your questions aren't repeated.  Thanks!</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 13:43:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c56">comment #56</a>)
+<span class="quote">&gt; Please note that there is a lot of dicussion taking place on Wikitech-l, so
+&gt; please correspond there, if you can, so you get more answers and so that your
+&gt; questions aren't repeated.  Thanks!
+&gt; </span >
+
+Could you please provide me the links to the discussion about this issues (the conflict resolution)?
+</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Casey Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 13:56:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c57">comment #57</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=57#c56">comment #56</a>)
+&gt; &gt; Please note that there is a lot of dicussion taking place on Wikitech-l, so
+&gt; &gt; please correspond there, if you can, so you get more answers and so that your
+&gt; &gt; questions aren't repeated.  Thanks!
+&gt; &gt; 
+&gt; Could you please provide me the links to the discussion about this issues (the
+&gt; conflict resolution)?</span >
+
+Umm... it's a mailing list... a pretty well-known mailing list. :-) <a href="http://lists.wikimedia.org/mailman/listinfo/wikitech-l">http://lists.wikimedia.org/mailman/listinfo/wikitech-l</a> (and view the archives or subscribe or w/e)</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 14:10:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; 
+&gt; Umm... it's a mailing list... a pretty well-known mailing list. :-)
+&gt; <a href="http://lists.wikimedia.org/mailman/listinfo/wikitech-l">http://lists.wikimedia.org/mailman/listinfo/wikitech-l</a> (and view the archives
+&gt; or subscribe or w/e)
+&gt; </span >
+
+Yes, I've already searched in the archives, but that doesn't help :(
+Is there any discussion about this in the wiki pages?
+</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-16 15:27:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please don't use this bug to ask general questions -- every post here gets e-mailed to the dozen or so people watching the bug.
+
+For docs see
+<a href="http://meta.wikimedia.org/wiki/Help:Unified_login">http://meta.wikimedia.org/wiki/Help:Unified_login</a>
+
+and the code notes:
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/CentralAuth/">http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/CentralAuth/</a></pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">AGK</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-20 11:49:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Pile-on support; a huge functionality.</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-07 08:26:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This feature is now live for sysops only on all Wikimedia projects through [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AMergeAccount">Special:MergeAccount</a>]]. Some details are still missing: rename of global users, one talk page across projects, inheritance of user settings (UI language, watchlist settings, etc.). The details are however not part of this feature request. I guess this issue can be closed as soon as other registered users will also be able to convert their account to a global account.</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anon Sricharoenchai</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-08 07:45:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >According to, <a href="http://lists.wikimedia.org/pipermail/wikitech-l/2008-April/037286.html">http://lists.wikimedia.org/pipermail/wikitech-l/2008-April/037286.html</a>
+Is it possible for this bug to be changed in scope to unify only on individual language?
+
+== Unify by language ==
+
+To merge the user accounts by language.
+
+Example,
+
+* user123 on fr.wikipedia.org, fr.wiktionary.org, fr.wikibooks.org,
+fr.wik*.org will be merged
+* user123 on ja.wikipedia.org, ja.wiktionary.org, ja.wikibooks.org,
+ja.wik*.org will be merged
+* user123 on fr.wikipedia.org and ja.wikipedia.org won't be merged, so
+that user123 at fr.* and user123 at ja.* will be separated.
+
+1. This will make much less conflict than unifying all language.
+1.1 Most conflicts in non-english wiki is the conflicting of user
+between diffenrent language.
+1.2 Even on the first-come-first-serve (FCFS) basis, this still result
+in few conflict.  While it look very unreasonable when the first
+registered user will suddenly gain control for wikis on all languages,
+it is more reansonble when FCFS is used only among the same language,
+since it cover not too much wiki websites.
+
+2. Most users will not be likely to actively edit non-trivial contents
+in more than one or two languages.  And it does not take too much
+energy for one person to maintain their user
+account/preference/watchlist in only two or three languages.
+3. Most users will tend to agree to loss their username (if conflict
+with others) on their non-primary language that they not actively edit
+or contribute only trivial contents.
+
+4. Even the new registered user (after this unify) will only get the
+accounts of the same username on wikis of the same language.  They
+will not get accounts on all languages.  Why let FCFS users to reserve
+the control on wikis of hundred languages that most of them are
+unlikely to edit or taking any attention?  Unifying all languages is
+an overuse.
+
+=== Account in wiki commons ===
+The only problem is that, wiki commons will be merged with which language?
+* commons --&gt; en.*, fr.*, ja.* ?
+* Let the person who own user account on commons to choose the
+language that will be merged with commons?
+* Or the person on the language with most edit-count will get username
+on commons?
+* Or let the users to negotiage for the agreement by themselves?
+</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-08 13:28:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The suggestion breaks down for the multilingual wikis like Commons, Meta, and MediaWiki.org, which many people from a variety of languages use.  That forces accounts on any wiki to be created on wikis like Commons if we want this to work properly.  That, in turn, means all the conflicts will arise anyway.
+
+Simplicity dictates that we want a single system that just works for everyone.  The number of conflicts you're going to avoid is small enough to not be worth the complexity of having to sign up separately for each language and for the multilingual ones.  Conflicts are a one-time thing, the rest is not.
+
+Besides, all of this was decided something like three or four years ago.  You're way, way too late to get any sweeping changes through.  These discussions have all already been had, and they're over.  SUL will unify accounts on all public wikis (at least).</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-28 18:56:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Now enabled for everybody (opt-in).
+
+Big thanks to Tim for doing *lots* of fixups over the last couple months, and Werdna for lots of help with the cross-domain global cookies &amp; global groups additions, and everybody else who's helped with testing and translations and fixes!</pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=57#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-28 19:02:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=57#c65">comment #65</a>)
+<span class="quote">&gt; Now enabled for everybody (opt-in).</span >
+
+Woo!  Thanks everyone!</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=57&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=57">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=57">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=57">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=57&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=57" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=57&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419355903-t4DoI-nrjx2bR8CMH8uVoq-wwBQ7d_nG9hC_yJFGPuI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

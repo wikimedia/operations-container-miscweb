@@ -1,0 +1,4484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 9767 &ndash; Microsoft SQL Server/MSSQL support (tracking)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=9767&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=9767">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=9767">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=9767">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 9767 – Microsoft SQL Server\/MSSQL support (tracking)",  
+                             "show_bug.cgi?id=9767" );
+        document.title = "Bug 9767 – Microsoft SQL Server\/MSSQL support (tracking)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 9767 – Microsoft SQL Server\/MSSQL support (tracking)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_MediaWiki bz_component_Database bz_bug_9767 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-14 11:06:38 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-14 11:06:38">
+  <input type="hidden" name="longdesclength" value="86">
+  <input type="hidden" name="id" value="9767">
+  <input type="hidden" name="token" value="1419371883-07o53B-a6VGtEcmFko93-k4Y7Qe-NTBF63_LCMX1IKw">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=9767"><b>Bug&nbsp;9767</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+        (<span id="alias_nonedit_display">mssql</span>) 
+      <span id="short_desc_nonedit_display">Microsoft SQL Server/MSSQL support (tracking)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">(mssql)
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Microsoft SQL Server/MSSQL support (tracking)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Microsoft SQL Server\/MSSQL support (tracking)', 'mssql');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Database
+    
+    (<a href="buglist.cgi?component=Database&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">PC
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=9767">8 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=9767#vote_9767">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">tracking
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Native Microsoft SQL Server Support"
+   href="show_bug.cgi?id=22093">22093</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MSSQL allows opening connections without $wgDBuser being set"
+   href="show_bug.cgi?id=65808">65808</a> <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - RegExp search and replace doesn't work with MS Sql SERVER"
+   href="show_bug.cgi?id=71027">71027</a> <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - MS SQL Driver doesn't handle escaping for LIKE patterns correctly"
+   href="show_bug.cgi?id=71207">71207</a> <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - Cant replace image when using SQL Server backend: varchar vs. varbinary"
+   href="show_bug.cgi?id=72171">72171</a> <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - When using MS SQL Server, article links remain red after creation."
+   href="show_bug.cgi?id=73390">73390</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - syntax errors with MSSQL"
+   href="show_bug.cgi?id=15493">15493</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Explicitly name check constraints for Microsoft SQL Server schema"
+   href="show_bug.cgi?id=65757">65757</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MSSQL installer broken; updateRowExists returns always false"
+   href="show_bug.cgi?id=65813">65813</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MS Sql Driver has compatibility bugs (see description)"
+   href="show_bug.cgi?id=71024">71024</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tracking bug (tracking)"
+   href="show_bug.cgi?id=2007">tracking</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=9767&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=9767">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2007-05-02 19:00 UTC by <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-14 11:06 UTC 
+      (<a href="show_activity.cgi?id=9767">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>14 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="a-joelpe">a-joelpe</option>
+                <option value="cp8">cp8</option>
+                <option value="cxcxcxcx">cxcxcxcx</option>
+                <option value="GarrettS">GarrettS</option>
+                <option value="kosikfl">kosikfl</option>
+                <option value="mah">mah</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="rstefanov">rstefanov</option>
+                <option value="sam">sam</option>
+                <option value="stokesj">stokesj</option>
+                <option value="Thorncrag">Thorncrag</option>
+                <option value="wikibugs">wikibugs</option>
+                <option value="Wuse1958">Wuse1958</option>
+                <option value="yedidia">yedidia</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3563"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">proposed file for maintenance/sqlserver/tables.sql</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (64.07 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_3563"
+               title="Go to the comment associated with the attachment">2007-05-02 19:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3563&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3564"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">includes/DatabaseMssql.php new PHP file</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (55.35 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_3564"
+               title="Go to the comment associated with the attachment">2007-05-02 19:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3564&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3566"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">includes\DatabaseADODB.php provides support for MS SQL Server</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (37.29 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_3566"
+               title="Go to the comment associated with the attachment">2007-05-02 23:29 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3566&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3576"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">includes\DatabaseADODB.php with tabs -- provides support for MS SQL Server</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (37.62 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_3576"
+               title="Go to the comment associated with the attachment">2007-05-04 03:26 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3576&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=4356"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">This updated SQL script enables case sensitivy on MS SQL Server. </span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (64.51 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_4356"
+               title="Go to the comment associated with the attachment">2007-11-21 00:49 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=4356&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5081"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MS SQL Server script </span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (69.45 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_5081"
+               title="Go to the comment associated with the attachment">2008-07-18 00:22 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5081&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_x-wiki">
+        <td valign="top">
+            <a href="attachment.cgi?id=5082"
+               title="View the content of the attachment">
+          <b>includes\db\DatabaseADODB.php</b></a>
+
+          <span class="bz_attach_extra_info">
+              (44.07 KB,
+                text/x-wiki)
+
+            <br>
+            <a href="#attach_5082"
+               title="Go to the comment associated with the attachment">2008-07-18 00:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5082&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5083"
+               title="View the content of the attachment">
+          <b>Patch for includes/specials/SpecialMostCategories.php</b></a>
+
+          <span class="bz_attach_extra_info">
+              (635 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_5083"
+               title="Go to the comment associated with the attachment">2008-07-18 01:06 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5083&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a9" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5084"
+               title="View the content of the attachment">
+          <b>Trial balloon number 2</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.37 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5084"
+               title="Go to the comment associated with the attachment">2008-07-18 02:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5084&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a10" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5093"
+               title="View the content of the attachment">
+          <b>Adds DatabaseADODB.php to AutoLoader</b></a>
+
+          <span class="bz_attach_extra_info">
+              (545 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_5093"
+               title="Go to the comment associated with the attachment">2008-07-24 02:08 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5093&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a11" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5200"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MS SQL Server script</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (69.90 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_5200"
+               title="Go to the comment associated with the attachment">2008-08-19 18:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5200&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a12" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5348"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MS SQL Server Script</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (70.07 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_5348"
+               title="Go to the comment associated with the attachment">2008-09-19 21:29 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5348&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a13" class="bz_contenttype_application_octet-stream bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5825"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MS SQL Server Script</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (70.25 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_5825"
+               title="Go to the comment associated with the attachment">2009-02-17 23:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5825&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a14" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=6005"
+               title="View the content of the attachment">
+          <b>Patch for MediaWiki 1.1.4.0 to adapt to MS SQL support</b></a>
+
+          <span class="bz_attach_extra_info">
+              (49.02 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6005"
+               title="Go to the comment associated with the attachment">2009-04-08 19:45 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6005&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a15" class="bz_contenttype_application_octet-stream bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=6006"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MS SQL Server Script</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (71.40 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_6006"
+               title="Go to the comment associated with the attachment">2009-04-08 19:49 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6006&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a16" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=6073"
+               title="View the content of the attachment">
+          <b>Patch for the ADODB libarary, version 5.05</b></a>
+
+          <span class="bz_attach_extra_info">
+              (107.04 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6073"
+               title="Go to the comment associated with the attachment">2009-04-30 02:56 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6073&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a17" class="bz_contenttype_application_octet-stream bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=6091"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MS SQL Server Script</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (71.48 KB,
+                application/octet-stream)
+
+            <br>
+            <a href="#attach_6091"
+               title="Go to the comment associated with the attachment">2009-05-05 22:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6091&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a18" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=6092"
+               title="View the content of the attachment">
+          <b>Replacement updaters.inc to dbsource SQL Server script</b></a>
+
+          <span class="bz_attach_extra_info">
+              (63.51 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_6092"
+               title="Go to the comment associated with the attachment">2009-05-05 22:08 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6092&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a19" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=8841"
+               title="View the content of the attachment">
+          <b>MS SQL Server Script for MediaWiki 1.16.5</b></a>
+
+          <span class="bz_attach_extra_info">
+              (72.74 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8841"
+               title="Go to the comment associated with the attachment">2011-07-29 18:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=8841&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a20" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=8842"
+               title="View the content of the attachment">
+          <b>includes\db\DatabaseMSPDO.php</b></a>
+
+          <span class="bz_attach_extra_info">
+              (46.98 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_8842"
+               title="Go to the comment associated with the attachment">2011-07-29 18:46 UTC</a>,
+
+            <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=8842&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (11)
+        </span>
+        <a href="attachment.cgi?bugid=9767&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-02 19:00:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >MediaWiki does not allow support for Microsoft SQL Server 2000. Since I have
+developed such support, I am introducing this bug report as an entry I can
+associate with my anticipated upload of the PHP code to enable this support.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-02 19:31:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3563" name="attach_3563" title="proposed file for maintenance/sqlserver/tables.sql">attachment 3563</a> <a href="attachment.cgi?id=3563&amp;action=edit" title="proposed file for maintenance/sqlserver/tables.sql">[details]</a></span>
+proposed file for maintenance/sqlserver/tables.sql
+
+This attachment contains the SQL to create the MediaWiki tables in Microsoft
+SQL Server 2000.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-02 19:34:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3564" name="attach_3564" title="includes/DatabaseMssql.php new PHP file">attachment 3564</a> <a href="attachment.cgi?id=3564&amp;action=edit" title="includes/DatabaseMssql.php new PHP file">[details]</a></span>
+includes/DatabaseMssql.php new PHP file
+
+This extends the Database class. Requires the ADODB extension to PHP.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-02 20:01:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Offhand, I notice a couple things:
+
+* The tables.sql contains a lot of comments about MySQL-specific features
+
+* The tables.sql seems to be using the MySQL-TIMESTAMP-style char or varchar
+columns for timestamps. I recommend against this if standard date/time columns
+are available; compare with the PostgreSQL support.
+
+* There's a bunch of weird trigger stuff. The heck is that about?
+
+* The class file duplicates a huge amount of code from the parent Database
+class. Cut that stuff out -- you should never duplicate code like that.
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-02 20:30:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c3">comment #3</a>)
+<span class="quote">&gt; Offhand, I notice a couple things:* The tables.sql contains a lot of comments </span >
+about MySQL-specific features* The tables.sql seems to be using the MySQL-
+TIMESTAMP-style char or varcharcolumns for timestamps. I recommend against this 
+if standard date/time columnsare available; compare with the PostgreSQL 
+support.* There's a bunch of weird trigger stuff. The heck is that about?* The 
+class file duplicates a huge amount of code from the parent Databaseclass. Cut 
+that stuff out -- you should never duplicate code like that.
+
+Brion,
+Thanks for your quick feedback.
+ 
+I'll clean up the tables.sql and look to remove duplicates of the Database 
+class (although I thought I'd caught most of that).
+ 
+The &quot;weird trigger stuff&quot; relates primarily to how I had to deal with the issue 
+you identified in the second bullet (the MySQL TIMESTAMP style columns). 
+Initially I tried to use bona fide TIMESTAMP or DATETIME fields, but these 
+don't tend to work well with the PHP code, so I found myself having to make 
+extensive changes throughout the PHP. That seemed like a bad idea, so I instead 
+created base tables with DATETIME columns and views with varchar columns. The 
+trigger stuff is to make the changes to the views do the corresponding updates 
+to the base tables. There's also a little bit of finessing for the tables that 
+have IDENTIFIER columns, since the rules for adding new rows to databases that 
+have those are a bit different between MySQL and SQL Server. Again my solution 
+reflects a desire to have minimum impact on existing PHP. I have not been able 
+to completely achieve that. In particular, any queries that involve &quot;GROUP BY&quot; 
+clauses I have had to modify, albeit in a way that still seems compatible with 
+MySQL. 
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-02 23:29:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3566" name="attach_3566" title="includes\DatabaseADODB.php provides support for MS SQL Server">attachment 3566</a> <a href="attachment.cgi?id=3566&amp;action=edit" title="includes\DatabaseADODB.php provides support for MS SQL Server">[details]</a></span>
+includes\DatabaseADODB.php provides support for MS SQL Server
+
+This is class extends Database and provides support for Microsoft SQL Server
+2000.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-03 13:39:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You really should not be doing that kind of funky timestamp stuff; please use
+DATETIME columns as in the Postgres support. If there are remaining issues in
+the general code not already resolved for Postgres, bring those to our attention.
+
+Class file still appears to contain a lot of duplicated code from the base
+class; try to prune this out.
+
+There are also many lines with strange indentation, making it hard to review the
+code. Be sure that you're using only tabs for indentation, not mixing with spaces.
+
+A quick peek at the insert() function shows what appears to be a logic error;
+when setting up for single- or multi-row inserts a $value array is built, but
+then the originally-passed $a array is always passed downstream instead.
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-04 03:26:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3576" name="attach_3576" title="includes\DatabaseADODB.php with tabs -- provides support for MS SQL Server">attachment 3576</a> <a href="attachment.cgi?id=3576&amp;action=edit" title="includes\DatabaseADODB.php with tabs -- provides support for MS SQL Server">[details]</a></span>
+includes\DatabaseADODB.php with tabs -- provides support for MS SQL Server
+
+Per Brion's advice, start each line with tabs and eliminate the spaces I was
+sometimes using.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jared</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-21 14:18:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Can I inquire as to the status of this bug as I am in need of MSSQL support</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-21 15:51:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is experimental third-party code which may or may not ever be integrated or maintained. It almost certainly does not work completely, and would be AT YOUR OWN RISK.
+
+If you want to run MediaWiki reliably, just install MySQL. It's free and widely supported. Yes, MySQL runs on Microsoft Windows. You do not have to pay for a license.
+
+
+There is no actual requirement ever to _need_ MSSQL. Some people might find it _convenient_ to use the same database that they already have set up, or to more easily integrate with another application, but there is nothing stopping you from installing MySQL if you can install MediaWiki.
+
+If you have organizational issues preventing you from installing the software needed for the software you want to use, that is outside the scope of the support we can provide you.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-12 09:20:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just wanted to add - thanks for your work on this issue. It's going to make a big difference to the adoption of MediaWiki in environments where MS SQL is dominant. It looks like you're well on the way to making this work reliably.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-11-21 00:49:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=4356" name="attach_4356" title="This updated SQL script enables case sensitivy on MS SQL Server.">attachment 4356</a> <a href="attachment.cgi?id=4356&amp;action=edit" title="This updated SQL script enables case sensitivy on MS SQL Server.">[details]</a></span>
+This updated SQL script enables case sensitivy on MS SQL Server. 
+
+Microsoft SQL server is case-insensitive by default. This has caused some minor problems with my MediaWiki installation. This updated database creation script causes columns to be case-sensitive where appropriate -- particularly with article titles.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">chenxing</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-18 07:43:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I just want to subscribe to this bug.
+
+Is adodb only available in Windows?</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-08 20:27:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >ADOdb is available for PHP, so it doesn't really matter what the underlying OS platform is.
+
+BTW here at the Microsoft Open Source Software Lab we're interested in helping this project out. Is there any way I can get access to any changes you've made besides the attached files? You said you've had to change a few queries in the code itself. Also, without diving into the system, did you just add ADOdb support for this patch or is it previously part of the project?</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-15 23:57:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c13">comment #13</a>)
+<span class="quote">&gt; ADOdb is available for PHP, so it doesn't really matter what the underlying OS
+&gt; platform is.
+&gt; 
+&gt; BTW here at the Microsoft Open Source Software Lab we're interested in helping
+&gt; this project out. Is there any way I can get access to any changes you've made
+&gt; besides the attached files? You said you've had to change a few queries in the
+&gt; code itself. Also, without diving into the system, did you just add ADOdb
+&gt; support for this patch or is it previously part of the project?
+&gt; </span >
+
+Yes, I can provide the changes. What I'd like to do is to submit patches to the files that need to change, for example, 8 of the &quot;Special&quot; pages need changes made to the &quot;GROUP BY&quot; clauses in the SQL, since SQL Server doesn't support &quot;GROUP BY 1, 2, 3...&quot;. The files in the includes subdirectory that I've had to change include AutoLoader.php, BagOStuff.php, Defines.php, FileDeleteForm.php, FileRevertForm.php, GlobalFunctions.php, HTMLCacheUpdate.php, ImagePage.php, LinkBatch.php, Math.php, OutputPage.php, Pager.php, Revision.php, SearchEngine.php, WatchlistEditor.php, and Wiki.php. The rest of the include files are unchanged. The text search capability is now working somewhat on my wiki, but it needs a little more work (It's using Lucene.Net in a manner similar to the way Wikipedia is now using it rather than the SQL Server full-text capability). Also, I was trying to get the math rendering working by building it with F# based on the MediaWiki OCaml implementation -- but that wasn't working very well, so the math now works with a direct interface to MikTex and GhostScript from the PHP code.
+
+Since my patch submissions are lagging, let me know if you'd like me to send you a zip of the codebase.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-16 00:26:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just noticed this bug.  There's limited MSSQL support in 1.13, added by nad in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/34602" title="revision 34602 in SVN">r34602</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/34608" title="revision 34608 in SVN">r34608</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/34610" title="revision 34610 in SVN">r34610</a>, but it's evidently very buggy.  If anyone would like to do some work to add proper MSSQL support along the lines of our current pgsql support, please e-mail Tim Starling or Brion Vibber for commit access (contact info readily available on Google).  There should be no problem as long as you're careful when touching non-MSSQL-specific code -- MySQL *must* work flawlessly so that Wikipedia doesn't die, and it can be very finicky about some things, performance-wise.  We'd be happy to have another DB engine properly supported, as long as it doesn't interfere with MySQL.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-16 17:41:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We'll (Microsoft) be contacting Brion and Tim soon. Yeah, read that again, Microsoft is going to commit open source code!</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-17 20:20:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c14">comment #14</a>)
+<span class="quote">&gt; Yes, I can provide the changes. What I'd like to do is to submit patches to the
+&gt; files that need to change, for example, 8 of the &quot;Special&quot; pages need changes
+&gt; made to the &quot;GROUP BY&quot; clauses in the SQL, since SQL Server doesn't support
+&gt; &quot;GROUP BY 1, 2, 3...&quot;. The files in the includes subdirectory that I've had to
+&gt; change include AutoLoader.php, BagOStuff.php, Defines.php, FileDeleteForm.php,
+&gt; FileRevertForm.php, GlobalFunctions.php, HTMLCacheUpdate.php, ImagePage.php,
+&gt; LinkBatch.php, Math.php, OutputPage.php, Pager.php, Revision.php,
+&gt; SearchEngine.php, WatchlistEditor.php, and Wiki.php.</span >
+Changing queries all over the place just to make MSSQL happy sounds a little evil to me. Unless you can rewrite those queries to functionally identical ones with acceptable performance which will still work on MySQL, you shouldn't do it. If there's a simple rewrite algorithm, try to rewrite problematic queries inside the DatabaseMssql class.
+
+As to the timestamp issue: I believe the PostGres code uses the native DATETIME type internally  and rewrites timestamps back and forth using the wfTimestamp() function (in GlobalFunctions.php). It has a TS_POSTGRES type for PostGres DATETIMEs.
+
+<span class="quote">&gt; The rest of the include
+&gt; files are unchanged. The text search capability is now working somewhat on my
+&gt; wiki, but it needs a little more work (It's using Lucene.Net in a manner
+&gt; similar to the way Wikipedia is now using it rather than the SQL Server
+&gt; full-text capability).</span >
+That's not really related to MSSQL, but if you have a clean implementation of this (involving subclassing the SearchEngine class, like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3AExtension%3AMWSearch">mw:Extension:MWSearch</a>]] does) that works, releasing it as an extension should be fine.
+
+<span class="quote">&gt; Since my patch submissions are lagging, let me know if you'd like me to send
+&gt; you a zip of the codebase.</span >
+Just attach patches to this bug. Please don't zip anything.
+</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-17 20:38:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c17">comment #17</a>)
+<span class="quote">&gt; Changing queries all over the place just to make MSSQL happy sounds a little
+&gt; evil to me. Unless you can rewrite those queries to functionally identical ones
+&gt; with acceptable performance which will still work on MySQL, you shouldn't do
+&gt; it. If there's a simple rewrite algorithm, try to rewrite problematic queries
+&gt; inside the DatabaseMssql class.</span >
+
+There's absolutely no problem in rewriting things to be more portable, at the query call time if appropriate.  Where possible, this should be done at the level of the database abstraction layer.  You could add code in the abstraction layer to have it try to figure out what 1, 2, 3, etc. represent, but it seems simpler to just stop using that alternative notation, in the places we currently do.
+
+<span class="quote">&gt; As to the timestamp issue: I believe the PostGres code uses the native DATETIME
+&gt; type internally  and rewrites timestamps back and forth using the wfTimestamp()
+&gt; function (in GlobalFunctions.php). It has a TS_POSTGRES type for PostGres
+&gt; DATETIMEs.</span >
+
+We'd use MySQL's date/time formats too, honestly, except that it would be more effort than it's worth to convert them on Wikipedia.
+
+<span class="quote">&gt; That's not really related to MSSQL, but if you have a clean implementation of
+&gt; this (involving subclassing the SearchEngine class, like
+&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3AExtension%3AMWSearch">mw:Extension:MWSearch</a>]] does) that works, releasing it as an extension should
+&gt; be fine.</span >
+
+We have search in core for MySQL and (I believe) PostgreSQL.  I see no reason why we shouldn't have it for MSSQL too, if it can be made to work out of the box.
+
+<span class="quote">&gt; Just attach patches to this bug. Please don't zip anything.</span >
+
+It's best to have someone with commit access for this, like we have for PostgreSQL.  I doubt many current committers have installs of MSSQL handy, and it's obviously not a great idea for random developers to commit patches they haven't tested.  Anyone who wants to maintain MSSQL support (or Oracle or SQLite or ...) should ask for commit access, not try to submit patches on Bugzilla at all.  Happily, it seems someone is doing just this.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-17 20:45:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c18">comment #18</a>) 
+<span class="quote">&gt; There's absolutely no problem in rewriting things to be more portable, at the
+&gt; query call time if appropriate.  Where possible, this should be done at the
+&gt; level of the database abstraction layer.  You could add code in the abstraction
+&gt; layer to have it try to figure out what 1, 2, 3, etc. represent, but it seems
+&gt; simpler to just stop using that alternative notation, in the places we
+&gt; currently do.</span >
+That's what I meant with my &quot;Unless you can...&quot; sentence: we should do it at query call time *if* the rewritten query if functionally identical and performs similarly.
+
+<span class="quote">&gt; We have search in core for MySQL and (I believe) PostgreSQL.  I see no reason
+&gt; why we shouldn't have it for MSSQL too, if it can be made to work out of the
+&gt; box.</span >
+Of course. What I was referring to, however, was the Lucene.Net thing. We also don't have normal Lucene support in core (although I have no idea why that is).
+<span class="quote">&gt; 
+&gt; &gt; Just attach patches to this bug. Please don't zip anything.
+&gt; 
+&gt; It's best to have someone with commit access for this, like we have for
+&gt; PostgreSQL.  I doubt many current committers have installs of MSSQL handy, and
+&gt; it's obviously not a great idea for random developers to commit patches they
+&gt; haven't tested.  Anyone who wants to maintain MSSQL support (or Oracle or
+&gt; SQLite or ...) should ask for commit access, not try to submit patches on
+&gt; Bugzilla at all.  Happily, it seems someone is doing just this.</span >
+I didn't suggest MSSQL support development happen through patches and BugZilla, of course not. I was just trying to say that we don't like patches to be e-mailed to people (attach them to a bug instead, so everyone can read them) and that we certainly don't like anything in some kind of zipped format.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-17 20:55:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >FYI, we have a class that extends SearchEngine, we created a FixGroupBy123 function, and we use TS_ISO_8601 for dates in our version</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 00:19:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c20">comment #20</a>)
+<span class="quote">&gt; FYI, we have a class that extends SearchEngine, we created a FixGroupBy123
+&gt; function, and we use TS_ISO_8601 for dates in our version
+&gt; </span >
+
+My Microsoft SQL Server code is also using DATETIME columns internally where needed, but is exposing those tables with DATETIME columns only through views that convert to VARCHAR(14). Each of those views also has INSERT and UPDATE triggers to do the reverse conversion from VARCHAR(14) back to DATETIME. Unfortunately, the character format used for dates within MySQL and MediaWiki is not one of the many that SQL Server 2000 would have understood (although sticking a 'T' in the middle of it would have made it one). I am uploading my latest version of the SQL code, which now also replaces the LOGGING table with a view. This lets me avoid having to modify the PHP code that adds logging records so that it can continue to believe that it's updating the log_id IDENTITY column. I also changed the log_params column from TEXT to VARCHAR(8000) so that I can use the column in the UPDATE trigger. I resisted changing it to  VARCHAR(MAX) so that I would maintain backward compatibility with SQL Server 2000. I can't imagine that a log entry would actually ever need more than 8000 characters of parameters.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 00:22:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5081" name="attach_5081" title="MS SQL Server script">attachment 5081</a> <a href="attachment.cgi?id=5081&amp;action=edit" title="MS SQL Server script">[details]</a></span>
+MS SQL Server script 
+
+This replaces the previous version of the SQL script.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 00:31:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5082" name="attach_5082" title="includes\db\DatabaseADODB.php">attachment 5082</a> <a href="attachment.cgi?id=5082&amp;action=edit" title="includes\db\DatabaseADODB.php">[details]</a></span>
+includes\db\DatabaseADODB.php
+
+Updated PHP code for the MS SQL Server MediaWiki version.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 00:46:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c21">comment #21</a>)
+<span class="quote">&gt; My Microsoft SQL Server code is also using DATETIME columns internally where
+&gt; needed, but is exposing those tables with DATETIME columns only through views
+&gt; that convert to VARCHAR(14). Each of those views also has INSERT and UPDATE
+&gt; triggers to do the reverse conversion from VARCHAR(14) back to DATETIME.</span >
+
+This seems unnecessarily elaborate.  You can just override Database::timestamp.
+
+<span class="quote">&gt; I am uploading my
+&gt; latest version of the SQL code, which now also replaces the LOGGING table with
+&gt; a view. This lets me avoid having to modify the PHP code that adds logging
+&gt; records so that it can continue to believe that it's updating the log_id
+&gt; IDENTITY column.</span >
+
+Um, why do you need to do that?</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 01:06:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5083" name="attach_5083" title="Patch for includes/specials/SpecialMostCategories.php">attachment 5083</a> <a href="attachment.cgi?id=5083&amp;action=edit" title="Patch for includes/specials/SpecialMostCategories.php">[details]</a></span>
+Patch for includes/specials/SpecialMostCategories.php
+
+This patch is a trial balloon. It illustrates a fix to the GROUP BY SQL clause. This is what I get from Beyond Compare when I export a difference report in &quot;Unified Diff&quot; format. This most closely resembles in format what I've seen in another MediaWiki bugzilla page. Is this the format expected for a patch? Do I want to remove those first couple of lines, or are they OK as-is?</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 01:34:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Generally the output of the command &quot;svn diff&quot; is preferred.  If you do use an ordinary diff -u command, or something similar, it should be relative to the installation directory of MediaWiki or some subdirectory thereof, not to the filesystem root; otherwise it won't apply cleanly.  I'm also not sure if it's a great idea to use backslashes, since I don't know if GNU patch will accept them.
+
+Anyway, I've switched over all the uses of GROUP BY 1,2,3 and similar that grep found, in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/37805" title="revision 37805 in SVN">r37805</a>.  Should make it into the 1.13 release if it doesn't cause problems.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 01:41:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c24">comment #24</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=9767#c21">comment #21</a>)
+&gt; &gt; My Microsoft SQL Server code is also using DATETIME columns internally where
+&gt; &gt; needed, but is exposing those tables with DATETIME columns only through views
+&gt; &gt; that convert to VARCHAR(14). Each of those views also has INSERT and UPDATE
+&gt; &gt; triggers to do the reverse conversion from VARCHAR(14) back to DATETIME.
+&gt; 
+&gt; This seems unnecessarily elaborate.  You can just override Database::timestamp.
+&gt; </span >
+I sort of took the approach you recommend at first (actually fiddling with wfTimestamp in GlobalFunctions.php) but I couldn't get everything to work that way. In my mind, I wasted quite a bit of time on that approach. The SQL in the views actually seems much less elaborate than the regexes and so forth in the wfTimestamp function. It also has the benefit of actually working for me.
+
+<span class="quote">&gt; &gt; I am uploading my
+&gt; &gt; latest version of the SQL code, which now also replaces the LOGGING table with
+&gt; &gt; a view. This lets me avoid having to modify the PHP code that adds logging
+&gt; &gt; records so that it can continue to believe that it's updating the log_id
+&gt; &gt; IDENTITY column.
+&gt; 
+&gt; Um, why do you need to do that?
+&gt; </span >
+I only made that change today. The only motivation is that I then have to modify one less PHP file. SQL Server, unlike MySQL, will not let you INSERT a value for an IDENTITY (AUTO_INCREMENT) column. By vectoring through the view, the PHP thinks it's inserting that field, but it's stripped out by the INSERT trigger.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 02:04:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c26">comment #26</a>)
+<span class="quote">&gt; Generally the output of the command &quot;svn diff&quot; is preferred.  If you do use an
+&gt; ordinary diff -u command, or something similar, it should be relative to the
+&gt; installation directory of MediaWiki or some subdirectory thereof, not to the
+&gt; filesystem root; otherwise it won't apply cleanly.  I'm also not sure if it's a
+&gt; great idea to use backslashes, since I don't know if GNU patch will accept
+&gt; them.
+&gt; 
+&gt; Anyway, I've switched over all the uses of GROUP BY 1,2,3 and similar that grep
+&gt; found, in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/37805" title="revision 37805 in SVN">r37805</a>.  Should make it into the 1.13 release if it doesn't cause
+&gt; problems.
+&gt; </span >
+Thanks, they (SpecialMostcategories.php, SpecialMostimages.php, SpecialMostlinked.php, SpecialMostlinkedCategories.php, SpecialMostlinkedtemplates.php, SpecialMostrevisions.php, SpecialWantedcategories.php, and SpecialWantedpages.php) look the same in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/37805" title="revision 37805 in SVN">r37805</a> as in my working copy. I had not had a chance to confirm that the semantics is the same between MySQL and SQL Server for those changes, but they look right to me.
+
+I'll have to work on the diff problem. I'm actually using TortoiseSVN with Beyond Compare as my &quot;diff&quot;. Probably means nothing to a Linux person -- but the bottom line is that I don't currently have the &quot;svn diff&quot; command. My trial balloon was just that, to see how close I was with what I'm already using. I'll look for some better exemplars of what the diffs should look like on the bugzilla and mimic those.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 02:09:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c27">comment #27</a>)
+<span class="quote">&gt; I sort of took the approach you recommend at first (actually fiddling with
+&gt; wfTimestamp in GlobalFunctions.php) but I couldn't get everything to work that
+&gt; way. In my mind, I wasted quite a bit of time on that approach. The SQL in the
+&gt; views actually seems much less elaborate than the regexes and so forth in the
+&gt; wfTimestamp function. It also has the benefit of actually working for me.</span >
+
+You really should not need to do any kind of elaborate regex.  You should only need to do something like add two lines to wfTimestamp in GlobalFunctions.php, like case TS_MSSQL: return gmdate( 'Ymd H:i:s', $uts ) . ' UTC'; or whatever format is required, and then have the timestamp function consist of return wfTimestamp(TS_MSSQL,$ts);
+
+<span class="quote">&gt; I only made that change today. The only motivation is that I then have to
+&gt; modify one less PHP file. SQL Server, unlike MySQL, will not let you INSERT a
+&gt; value for an IDENTITY (AUTO_INCREMENT) column. By vectoring through the view,
+&gt; the PHP thinks it's inserting that field, but it's stripped out by the INSERT
+&gt; trigger.</span >
+
+This is what the nextSequenceValue() function is for.  Add an empty class named something like MsSqlSequenceValue, have nextSequenceValue return new MsSqlSequenceValue;, and silently drop any value of that class that's provided in select() or wherever.
+
+Patches like this should not go into the software.  You should not have to hack on views and stuff to reinterpret MySQL input on the database side.  Any incompatibility should be handled by a) improving the abstraction layer and b) fixing queries in the software (but carefully!).  The two cases you have a problem with are already dealt with by PostgreSQL, which uses its own timestamp format and has its own unique way of doing auto-increment, and whoever does the MSSQL support should emulate that approach for these cases and others.  (But in practice I imagine none of the core developers is going to be reviewing that code much, so if anyone gets commit access it's their lookout.)
+
+(In reply to <a href="show_bug.cgi?id=9767#c28">comment #28</a>)
+<span class="quote">&gt; I'll have to work on the diff problem. I'm actually using TortoiseSVN with
+&gt; Beyond Compare as my &quot;diff&quot;. Probably means nothing to a Linux person -- but
+&gt; the bottom line is that I don't currently have the &quot;svn diff&quot; command.</span >
+
+I used to use TortoiseSVN when I still used Windows, actually.  You want to select Create Patch from the appropriate context menu; that basically runs svn diff.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 02:13:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5084" name="attach_5084" title="Trial balloon number 2">attachment 5084</a> <a href="attachment.cgi?id=5084&amp;action=edit" title="Trial balloon number 2">[details]</a></span>
+Trial balloon number 2
+
+Patch for includes/specials/SpecialNewimages created with TortoiseSVN Create Patch command. Is this the desired format?</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 02:17:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, but that patch is completely unacceptable.  Database logic must not be mixed into the code.  That's what the abstraction layer is for.  You need to override makeSelectOptions to output TOP in the right place when the LIMIT option is provided.  Queries like these that use $db-&gt;query() instead of the wrappers like select() should be converted to use the wrappers if it's a problem.  (You could also try to work around raw queries by trying to parse them, but that's really not ideal.)</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 02:43:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c31">comment #31</a>)
+<span class="quote">&gt; Yes, but that patch is completely unacceptable.  Database logic must not be
+&gt; mixed into the code.  That's what the abstraction layer is for.  You need to
+&gt; override makeSelectOptions to output TOP in the right place when the LIMIT
+&gt; option is provided.  Queries like these that use $db-&gt;query() instead of the
+&gt; wrappers like select() should be converted to use the wrappers if it's a
+&gt; problem.  (You could also try to work around raw queries by trying to parse
+&gt; them, but that's really not ideal.)
+&gt; </span >
+Thanks, I was really more concerned about the format of the patch than the patch itself, although it does reflect the way my code looks right now. When that file is &quot;fixed&quot; to use the select wrapper rather than the query method I'll be among the first to breathe a sigh of relief. It seems like less and less of the database logic is embedded in the MediaWiki code since 1.9.3, when I first started my port, and with each release I need to make fewer and fewer changes to make it work with SQL Server. DatabaseADODB.php does override makeSelectOptions, but it currently isn't doing anything useful with the LIMIT option. I'll fix that tomorrow, because I'm done for tonight.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 18:17:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Are you sure you want to continue to work on this?  We do have some MSSQL support in 1.13, and apparently Microsoft is interested in making it good for later versions.  If you do continue work, I suggest you a) base your work on the existing DatabaseMssql.php, and b) submit individual small patches for individual things that are broken about it.
+
+I'm repurposing this to be a tracking bug, since we already have basic support for MSSQL.  New bugs should be filed, blocking this, for any specific issues that arise.  I don't suggest you expect to get patches accepted until we have someone with commit access working on MSSQL, since as I said, not many of us have an MSSQL install to test with.  You could ask for commit access yourself, of course, as Joel is.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 19:11:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c33">comment #33</a>)
+<span class="quote">&gt; Are you sure you want to continue to work on this?  We do have some MSSQL
+&gt; support in 1.13, and apparently Microsoft is interested in making it good for
+&gt; later versions.  If you do continue work, I suggest you a) base your work on
+&gt; the existing DatabaseMssql.php, and b) submit individual small patches for
+&gt; individual things that are broken about it.</span >
+
+I do. Perhaps I have not been clear, but I have everything working already, including quite a few extensions and have a wiki that's in use with about 200,000 articles in it. The main thing I don't have working to my satisfaction, but which does not seem to be related to SQL Server, is the rendering of images that have non-ASCII characters in their file names.
+
+<span class="quote">&gt; I'm repurposing this to be a tracking bug, since we already have basic support
+&gt; for MSSQL.  New bugs should be filed, blocking this, for any specific issues
+&gt; that arise.  I don't suggest you expect to get patches accepted until we have
+&gt; someone with commit access working on MSSQL, since as I said, not many of us
+&gt; have an MSSQL install to test with.  You could ask for commit access yourself,
+&gt; of course, as Joel is.</span >
+
+I suppose if I could get full functionality out of the MSSQL interface, I'd be willing to switch (back) to it. I adopted the ADODB interface, however, because I got stuck when I tried to use MSSQL. It was a dead end back then -- but that was a slightly earlier release of PHP. Perhaps the problems I experienced with it have been corrected since then.
+
+</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 19:15:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c34">comment #34</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=9767#c33">comment #33</a>)
+&gt; &gt; Are you sure you want to continue to work on this?  We do have some MSSQL
+&gt; &gt; support in 1.13, and apparently Microsoft is interested in making it good for
+&gt; &gt; later versions.  If you do continue work, I suggest you a) base your work on
+&gt; &gt; the existing DatabaseMssql.php, and b) submit individual small patches for
+&gt; &gt; individual things that are broken about it.
+&gt; 
+&gt; I do. Perhaps I have not been clear, but I have everything working already,
+&gt; including quite a few extensions and have a wiki that's in use with about
+&gt; 200,000 articles in it. The main thing I don't have working to my satisfaction,
+&gt; but which does not seem to be related to SQL Server, is the rendering of images
+&gt; that have non-ASCII characters in their file names.</span >
+
+Our biggest concern is unicode support since it requires the database to use nvarchar for everything which cuts the storable character size in half and causes indexing problems. We're not sure what the best balance is for that yet.
+
+<span class="quote">&gt; 
+&gt; &gt; I'm repurposing this to be a tracking bug, since we already have basic support
+&gt; &gt; for MSSQL.  New bugs should be filed, blocking this, for any specific issues
+&gt; &gt; that arise.  I don't suggest you expect to get patches accepted until we have
+&gt; &gt; someone with commit access working on MSSQL, since as I said, not many of us
+&gt; &gt; have an MSSQL install to test with.  You could ask for commit access yourself,
+&gt; &gt; of course, as Joel is.
+&gt; 
+&gt; I suppose if I could get full functionality out of the MSSQL interface, I'd be
+&gt; willing to switch (back) to it. I adopted the ADODB interface, however, because
+&gt; I got stuck when I tried to use MSSQL. It was a dead end back then -- but that
+&gt; was a slightly earlier release of PHP. Perhaps the problems I experienced with
+&gt; it have been corrected since then.
+&gt; </span >
+
+Our patch uses the new sqlsrv driver recently released at: <a href="http://www.microsoft.com/sql/technologies/php/default.mspx">http://www.microsoft.com/sql/technologies/php/default.mspx</a></pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 19:21:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c34">comment #34</a>)
+
+As I say, I suggest you e-mail Tim Starling or Brion Vibber and ask for commit access if you want to get this committed to the software.  Almost no one who currently has commit access is likely to be able to review your patches.  When someone does get commit access, or multiple someones, it's up to them to decide how they want it to work, I guess, since we appear to have three separate implementations at this point.  (But it can't stick $wgDBType in the core code or anything like that.)
+
+(In reply to <a href="show_bug.cgi?id=9767#c35">comment #35</a>)
+<span class="quote">&gt; Our biggest concern is unicode support since it requires the database to use
+&gt; nvarchar for everything which cuts the storable character size in half and
+&gt; causes indexing problems. We're not sure what the best balance is for that yet.</span >
+
+The default MySQL schema just has all of the text columns set to binary, and stores raw UTF-8 bytes in them.  This works very nicely: there's no wasted space, you can deal with all code points (even outside the BMP, which MySQL utf8 can't, at least historically), and it's not like any string operations are done on the database side that really need to use characters instead of bytes.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-18 19:29:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c36">comment #36</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=9767#c34">comment #34</a>)
+&gt; 
+&gt; As I say, I suggest you e-mail Tim Starling or Brion Vibber and ask for commit
+&gt; access if you want to get this committed to the software.  Almost no one who
+&gt; currently has commit access is likely to be able to review your patches.  When
+&gt; someone does get commit access, or multiple someones, it's up to them to decide
+&gt; how they want it to work, I guess, since we appear to have three separate
+&gt; implementations at this point.  (But it can't stick $wgDBType in the core code
+&gt; or anything like that.)</span >
+
+We're using a separate namespace (mssqlnative) so these two can be in the code base concurrently since they use different drivers anyway. I don't know if you want to add the ADOdb dependency just for one driver though, but they can exist separately.
+
+<span class="quote">&gt; 
+&gt; (In reply to <a href="show_bug.cgi?id=9767#c35">comment #35</a>)
+&gt; &gt; Our biggest concern is unicode support since it requires the database to use
+&gt; &gt; nvarchar for everything which cuts the storable character size in half and
+&gt; &gt; causes indexing problems. We're not sure what the best balance is for that yet.
+&gt; 
+&gt; The default MySQL schema just has all of the text columns set to binary, and
+&gt; stores raw UTF-8 bytes in them.  This works very nicely: there's no wasted
+&gt; space, you can deal with all code points (even outside the BMP, which MySQL
+&gt; utf8 can't, at least historically), and it's not like any string operations are
+&gt; done on the database side that really need to use characters instead of bytes.
+&gt; </span >
+
+There is a problem with making the fields binary, you can't index binary fields, so that idea was one of the first to go sadly.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-24 02:08:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5093" name="attach_5093" title="Adds DatabaseADODB.php to AutoLoader">attachment 5093</a> <a href="attachment.cgi?id=5093&amp;action=edit" title="Adds DatabaseADODB.php to AutoLoader">[details]</a></span>
+Adds DatabaseADODB.php to AutoLoader
+
+One-line addition to AutoLoader adds recognition of DatabaseADODB. I am continuing with ADODB for now because the new Microsoft connector for PHP is a Community Technology Preview (CTP) and not authorized for production use and the ADODB connector is working fine.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-24 17:26:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c38">comment #38</a>)
+<span class="quote">&gt; Created an attachment (id=5093) [details]
+&gt; Adds DatabaseADODB.php to AutoLoader
+&gt; 
+&gt; One-line addition to AutoLoader adds recognition of DatabaseADODB. I am
+&gt; continuing with ADODB for now because the new Microsoft connector for PHP is a
+&gt; Community Technology Preview (CTP) and not authorized for production use and
+&gt; the ADODB connector is working fine.
+&gt; </span >
+
+RTM is closer than you think  =]
+
+I'm working on final bugs as we speak as well in my driver using the new sqlsrv driver</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 18:53:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We're proud to announce the release of the sqlsrv PHP driver, you can learn more about the release here:
+<a href="http://blogs.msdn.com/sqlphp/archive/2008/07/28/microsoft-sql-server-2005-driver-for-php-v1-0-has-released.aspx">http://blogs.msdn.com/sqlphp/archive/2008/07/28/microsoft-sql-server-2005-driver-for-php-v1-0-has-released.aspx</a>
+
+Who should be our contact for submitting our patch? You may have heard about our contribution to ADOdb:
+<a href="http://www.theregister.co.uk/2008/07/25/microsoft_gpl/">http://www.theregister.co.uk/2008/07/25/microsoft_gpl/</a>
+
+You may not have known that our submission is through email. Who can I talk to about our patch?</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 19:32:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c40">comment #40</a>)
+<span class="quote">&gt; Who should be our contact for submitting our patch? You may have heard about
+&gt; our contribution to ADOdb:
+&gt; <a href="http://www.theregister.co.uk/2008/07/25/microsoft_gpl/">http://www.theregister.co.uk/2008/07/25/microsoft_gpl/</a>
+&gt; 
+&gt; You may not have known that our submission is through email. Who can I talk to
+&gt; about our patch?</span >
+
+As I said in <a href="show_bug.cgi?id=9767#c15">comment #15</a>, you should talk to Tim Starling (<a href="mailto:tstarling&#64;wikimedia.org">tstarling&#64;wikimedia.org</a>) or Brion Vibber (<a href="mailto:brion&#64;wikimedia.org">brion&#64;wikimedia.org</a>).  I would suggest again that you ask for commit access instead of just asking that the patch be submitted.  That way you can maintain the patch yourself when it inevitably breaks due to some MySQL-centrism that someone adds.
+
+If you don't have commit access, you'll have to repeatedly bug people to commit your patches if you want to maintain the support.  This is not only slow and annoying, it's also pointless, since you probably aren't going to be able to find anyone who has an MSSQL installation to test the patch on.  If everyone is just going to blindly submit your patches without providing independent testing and scrutiny, you may as well be able to do so without the middleman.
+
+As far as submitting patches without commit access, they're generally submitted on Bugzilla, e.g., here.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Garrett Serack</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 20:03:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; As I said in <a href="show_bug.cgi?id=9767#c15">comment #15</a>, you should talk to Tim Starling
+&gt; (<a href="mailto:tstarling&#64;wikimedia.org">tstarling&#64;wikimedia.org</a>) or Brion Vibber (<a href="mailto:brion&#64;wikimedia.org">brion&#64;wikimedia.org</a>).  I would
+&gt; suggest again that you ask for commit access instead of just asking that the
+&gt; patch be submitted.  That way you can maintain the patch yourself when it
+&gt; inevitably breaks due to some MySQL-centrism that someone adds.
+&gt; 
+&gt; If you don't have commit access, you'll have to repeatedly bug people to commit
+&gt; your patches if you want to maintain the support.  This is not only slow and
+&gt; annoying, it's also pointless, since you probably aren't going to be able to
+&gt; find anyone who has an MSSQL installation to test the patch on.  If everyone is
+&gt; just going to blindly submit your patches without providing independent testing
+&gt; and scrutiny, you may as well be able to do so without the middleman.
+&gt; 
+&gt; As far as submitting patches without commit access, they're generally submitted
+&gt; on Bugzilla, e.g., here.
+&gt; </span >
+
+Howdy Simetrical,
+
+I'm Garrett Serack, I'm the Open Source Community Developer here at Microsoft. (Joel works for me)
+
+We've been talking this thru a lot, and I completely agree with you, I think we're better off submitting the patches via subversion, rather than email, posting or ... whatever.  The 'email' patches has up until now, been what was 'convenient', but by no means a requirement :D
+
+I'll be dropping Tim and/or Brion a mail today on this, and requesting access.
+
+thanks,
+
+Garrett Serack
+</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 22:39:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c42">comment #42</a>)
+
+I've also requested commit access from Brion, so I expect to hear something real soon now. I've downloaded the SQL Server 2005 driver from Microsoft and started trying to get the AdventureWorks sample from the documentation going. So far, it hasn't worked for me -- but the error messages I'm seeing  look like:
+SQLSTATE: IM002
+Code: 0
+Message: [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified
+The SQL Server driver isn't sitting on top of ODBC is it?</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 22:48:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think I'd prefer it if we have *one* MSSQL driver rather than two. :)
+
+Would it be possible to compare codebases and combine if necessary to a single version?</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 22:52:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think for the time being that keeping them separate would be wise. The new driver isn't part of the default php installation yet and requires PHP 5+ as well as being hosted on windows. As time passes and adoption grows we can merge them, but for now we should keep things separated</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-29 23:07:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c44">comment #44</a>)
+<span class="quote">&gt; I think I'd prefer it if we have *one* MSSQL driver rather than two. :)
+&gt; 
+&gt; Would it be possible to compare codebases and combine if necessary to a single
+&gt; version?
+&gt; </span >
+I'd be willing to work on keeping things as simple as possible. There are a few things that I would imagine would have to be fairly common to both versions anyway, like the database schema. I'm anxious to share my code, and I'm in the process of looking at the new ADODB library that was released on 11 July 2008. I'm also looking at the new SQL Server driver from Microsoft. I would also like, at some point, to contribute back my Lucene.Net version of the full text search service.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Garrett Serack</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-30 17:10:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c43">comment #43</a>)
+<span class="quote">&gt; The SQL Server driver isn't sitting on top of ODBC is it?</span >
+
+It does sit on top of the ODBC driver; this was the most efficient and flexible way to build the driver.  The SQL Server team assures me it's not a performance problem. :D 
+
+We can certainly work together; Joel is about to disappear for 10 days on Vacation, when he gets back, we can see where we can sync our efforts.
+
+Garrett</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-30 23:56:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This week I downloaded the new ADODB driver from SourceForge
+(<a href="http://adodb.sourceforge.net/">http://adodb.sourceforge.net/</a>). Some minor tweaks to the library are required
+in order to make it work with MediaWiki. Only a few changes are required, as
+discussed on my blog at 
+<a href="http://mediawikiworker.blogspot.com/2008/07/mediawiki-113-and-adodb-505.html">http://mediawikiworker.blogspot.com/2008/07/mediawiki-113-and-adodb-505.html</a>
+While I was working on that today, I see that the mssqlnative driver showed up on
+sourceforge. I'll see how that one goes...</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rocco</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-13 20:38:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello,
+
+I tried to connect my instance to mssql using ADODB. As I can see mediawiki 1.13.0rc2 contains the DatabaseMssql.php layer. However I wasn’t able to find DatabaseADODB.php? I installed the adodb layer in my root Mediawiki/adodb but it doesn’t seem to be working properly. Are there any instructions of how to integrate ADODB with mediawiki? 
+
+Many Thanks
+Rocco
+</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-13 20:52:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c49">comment #49</a>)
+<span class="quote">&gt; Hello,
+&gt; I tried to connect my instance to mssql using ADODB. As I can see mediawiki
+&gt; 1.13.0rc2 contains the DatabaseMssql.php layer. However I wasn’t able to find
+&gt; DatabaseADODB.php? I installed the adodb layer in my root Mediawiki/adodb but
+&gt; it doesn’t seem to be working properly. Are there any instructions of how to
+&gt; integrate ADODB with mediawiki? </span >
+MSSQL support is experimental, and will probably be broken in some situations. ADODB doesn't seem to be supported at all at the moment, and DatabaseADODB.php was abandoned.</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-19 18:51:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >ADODB isn't supported, but it works fine. It isn't broken, and DatabaseADODB.php has not been abandoned by me, I just don't have any permission to get it included.</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-19 18:53:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5200" name="attach_5200" title="MS SQL Server script">attachment 5200</a> <a href="attachment.cgi?id=5200&amp;action=edit" title="MS SQL Server script">[details]</a></span>
+MS SQL Server script
+
+Updated the MS SQL server script (tables.sql) to fix problems uncovered when testing with a new MediaWiki installation. Supports the tables needed for MediaWiki 1.13.</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-19 21:29:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5348" name="attach_5348" title="MS SQL Server Script">attachment 5348</a> <a href="attachment.cgi?id=5348&amp;action=edit" title="MS SQL Server Script">[details]</a></span>
+MS SQL Server Script
+
+This update to tables.sql fixes a problem that sometimes occurs when deleting a page from the wiki. The logging table view now trims the comment to 255 characters. Sometimes the comment was longer than 255 due to escaped quotes (counted by PHP as single characters, I suppose, but by SQL Server as two characters).</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">CP</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-22 14:33:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Anybody progressing on this bug? My understanding is that for any of the 2 alternatives described changes in config/index.php and/or includes/db/DatabaseMssql.php are required. Any ideas how this is progressing? Thanks!</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-22 18:20:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c54">comment #54</a>)
+<span class="quote">&gt; Anybody progressing on this bug? My understanding is that for any of the 2
+&gt; alternatives described changes in config/index.php and/or
+&gt; includes/db/DatabaseMssql.php are required. Any ideas how this is progressing?
+&gt; Thanks!
+&gt; </span >
+
+Yes, we're nearing the end of our dev cycle for releasing support for the new sqlsrv driver</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-22 18:27:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes. Mediawiki is fully functional on Microsoft Windows with SQL Server and IIS. I do not have the ability to check in any of my changes to the Subversion repository or I'd have done so by now. There are not enormous changes to be made, but I expect that most of what I've done is applicable whether using the new Microsoft sqlsrv driver or (as I've done) the AdoDB library.</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-17 23:21:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5825" name="attach_5825" title="MS SQL Server Script">attachment 5825</a> <a href="attachment.cgi?id=5825&amp;action=edit" title="MS SQL Server Script">[details]</a></span>
+MS SQL Server Script
+
+Includes a change for the category table. cat_title must use COLLATE SQL_Latin1_General</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-08 19:45:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=6005" name="attach_6005" title="Patch for MediaWiki 1.1.4.0 to adapt to MS SQL support">attachment 6005</a> <a href="attachment.cgi?id=6005&amp;action=edit" title="Patch for MediaWiki 1.1.4.0 to adapt to MS SQL support">[details]</a></span>
+Patch for MediaWiki 1.1.4.0 to adapt to MS SQL support
+
+This patch contains the changes to be applied to the 1.14.0 release to adapt the release to run on Windows with Microsoft SQL Server 2000 or SQL Server 2005. I've made it to simplify the installation for other users based on the experiences I gained going through the installation with another user. Yes, there is at least one other user that I'm aware of. I had been tracking changes against the trunk rather than against the releases -- but since the trunk is always changing it was easier to have him install the 1.14.0 release and then patch in the changes.</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-08 19:49:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=6006" name="attach_6006" title="MS SQL Server Script">attachment 6006</a> <a href="attachment.cgi?id=6006&amp;action=edit" title="MS SQL Server Script">[details]</a></span>
+MS SQL Server Script
+
+Updated MS SQL script (./maintenance/sqlserver/tables.sql) to be used in conjunction with 1.14.0 patch. This script also creates the new tables (change_tag, tag_summary, valid_tag) introduced since 1.14.0.</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Emsenhuber [IAlex]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-08 20:15:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The patch (id 6005) seems to contains some strange modifications:
+* AutoLoader.php: where's the file?
+* Defines.php: this has nothing to do in core
+* Revision.php: don't comment that out, it's needed for PostgreSQL
+* SpecialShortpages.php, SpecialWantedcategories.php, SpecialWantedpages.php: why commenting out the link existence batch?
+* SpecialWantedtemplates.php: already fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/47618" title="revision 47618 in SVN">r47618</a>
+* SpecialListfiles.php: already fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/48350" title="revision 48350 in SVN">r48350</a></pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-09 03:09:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c60">comment #60</a>)
+<span class="quote">&gt; The patch (id 6005) seems to contains some strange modifications:
+&gt; * AutoLoader.php: where's the file?
+&gt; * Defines.php: this has nothing to do in core
+&gt; * Revision.php: don't comment that out, it's needed for PostgreSQL
+&gt; * SpecialShortpages.php, SpecialWantedcategories.php, SpecialWantedpages.php:
+&gt; why commenting out the link existence batch?
+&gt; * SpecialWantedtemplates.php: already fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/47618" title="revision 47618 in SVN">r47618</a>
+&gt; * SpecialListfiles.php: already fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/48350" title="revision 48350 in SVN">r48350</a>
+&gt; </span >
+Yes, the modifications are strange in that they are not necessarily intended to replace the MySQL/PostgreSQL code in the trunk. They're only useful to someone trying to run on SQL Server. The file missing from autoloader.php is an attachment to the bug report (DatabaseADODB.php). It doesn't get picked up when I make the diff because it didn't exist before. The extra lines from my defines.php are for my extra namespaces and are optional. I'm assuming the commented out line you're referring to is the attempt to insert an ID in the text table. It won't work in my text table because the column is an auto-number column. I could make a view to eliminate this issue if necessary. The link existence batches don't work with the ADODB database adapter and not doing them didn't change the desired outcome. I may alter the ADODB database adapter to allow them to work at some time, but I don't own that code or have commit access on that project. Those last two already fixed issues were actually ones that I asked for but couldn't make myself (see <a href="show_bug.cgi?id=9767#c13">comment #13</a> to this bug), since I don't have commit access. If I remember correctly, Tim Starling made the fixes back then.
+In addition to the patch file, you would need the tables.sql attachment above, the databaseadodb.php attachment above, and a patch to the ADODB library (which I could place here too, I suppose).</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-13 00:29:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I guess you should re-request commit access.  I don't think you were denied because anyone wanted to deny you -- probably the request just got lost at some point, because granting commit access is one facet of the MediaWiki development process that seems to be particularly dysfunctional right now.  If you still want it, I'd remind Brion and/or Tim every month or two if we don't get a saner system in place soon.</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yedidia Klein</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-26 09:59:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >OS: win2003, MSSQL 2000 (8.0)
+first thanks for the patch,
+I've troubles w/ installation
+patched 1.14.0 w/ your patch, updated tables.sql , created db and user on mssql side then got nice installation page.
+
+but after filling all info - got back the installation page w/o any error.
+
+no tables were created..
+
+any way to debug ? what can be done ?
+
+</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-30 02:53:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c63">comment #63</a>)
+<span class="quote">&gt; OS: win2003, MSSQL 2000 (8.0)
+&gt; first thanks for the patch,
+&gt; I've troubles w/ installation
+&gt; patched 1.14.0 w/ your patch, updated tables.sql , created db and user on mssql
+&gt; side then got nice installation page.
+&gt; 
+&gt; but after filling all info - got back the installation page w/o any error.
+&gt; 
+&gt; no tables were created..
+&gt; 
+&gt; any way to debug ? what can be done ?
+&gt; </span >
+
+The ADODB library needs patches to three files. I am uploading the necessary patch for ADODB 5.05 to this bug report right now, since that is the version I am currently using with my wiki. The current release of adodb is 5.08, so I will download and build a patch for that one too. In the mean time, if you get adodb505 from sourceforge and apply the patch, hopefully you will get past this point and the tables will be created.</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-30 02:56:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=6073" name="attach_6073" title="Patch for the ADODB libarary, version 5.05">attachment 6073</a> <a href="attachment.cgi?id=6073&amp;action=edit" title="Patch for the ADODB libarary, version 5.05">[details]</a></span>
+Patch for the ADODB libarary, version 5.05
+
+Minor patches to the ADODB library for PHP, version 5.05 so that it supports the MS SQL connection for MediaWiki.</pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yedidia Klein</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 09:02:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >After some fixes on php.ini (most important is to set a file for error log for not getting 500 errors), my installation is moving.
+first I found that tables.sql has to be in maintenance/sqlserver (and not in mssql dir). then after creating some tables it stops.
+
+
+ refreshing the installation give this info:
+ There are already MediaWiki tables in this database. Checking if updates are needed... 
+ ...ipblocks table does not exist, skipping new field patch
+ ...ipblocks table does not exist, skipping new field patch
+ Creating interwiki table: 
+
+then it stop...
+
+could be that tables.sql that is provided here is broken ?
+
+</pre>
+    </div><div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c67">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 09:05:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c66">comment #66</a>)
+<span class="quote">&gt; After some fixes on php.ini (most important is to set a file for error log for
+&gt; not getting 500 errors), my installation is moving.
+&gt; first I found that tables.sql has to be in maintenance/sqlserver (and not in
+&gt; mssql dir). then after creating some tables it stops.
+&gt; 
+&gt; 
+&gt;  refreshing the installation give this info:
+&gt;  There are already MediaWiki tables in this database. Checking if updates are
+&gt; needed... 
+&gt;  ...ipblocks table does not exist, skipping new field patch
+&gt;  ...ipblocks table does not exist, skipping new field patch
+&gt;  Creating interwiki table: 
+&gt; 
+&gt; then it stop...
+&gt; 
+&gt; could be that tables.sql that is provided here is broken ?
+&gt; </span >
+
+There is no maintenance/sqlserver directory, and maintenance/mssql/tables.sql has an entry for ipblocks.</pre>
+    </div><div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c68">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yedidia Klein</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 10:15:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c67">comment #67</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=9767#c66">comment #66</a>)
+&gt; &gt; After some fixes on php.ini (most important is to set a file for error log for
+&gt; &gt; not getting 500 errors), my installation is moving.
+&gt; &gt; first I found that tables.sql has to be in maintenance/sqlserver (and not in
+&gt; &gt; mssql dir). then after creating some tables it stops.
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt;  refreshing the installation give this info:
+&gt; &gt;  There are already MediaWiki tables in this database. Checking if updates are
+&gt; &gt; needed... 
+&gt; &gt;  ...ipblocks table does not exist, skipping new field patch
+&gt; &gt;  ...ipblocks table does not exist, skipping new field patch
+&gt; &gt;  Creating interwiki table: 
+&gt; &gt; 
+&gt; &gt; then it stop...
+&gt; &gt; 
+&gt; &gt; could be that tables.sql that is provided here is broken ?
+&gt; &gt; 
+&gt; 
+&gt; There is no maintenance/sqlserver directory, and maintenance/mssql/tables.sql
+&gt; has an entry for ipblocks.
+&gt; </span >
+but DatabaseADODB.php has this on line 1360:
+ dbsource( &quot;../maintenance/sqlserver/tables.sql&quot;, $this);
+
+And for some reason the table creation fail at the middle, these table were created:
+* user2
+* user_newtalk
+* user_groups
+* text
+* templatelinks
+* revision2
+* pagelinks
+* page2
+* imagelinks
+* categorylinks
+* archive
+
+And these views were created:
+* page
+* revision
+* user
+
+There are missing about 20-30 other tables...
+
+
+</pre>
+    </div><div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c69">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 18:56:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c68">comment #68</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=9767#c67">comment #67</a>)
+&gt; &gt; (In reply to <a href="show_bug.cgi?id=9767#c66">comment #66</a>)
+&gt; &gt; &gt; After some fixes on php.ini (most important is to set a file for error log for
+&gt; &gt; &gt; not getting 500 errors), my installation is moving.
+&gt; &gt; &gt; first I found that tables.sql has to be in maintenance/sqlserver (and not in
+&gt; &gt; &gt; mssql dir). then after creating some tables it stops.
+&gt; &gt; &gt; 
+&gt; &gt; &gt; 
+&gt; &gt; &gt;  refreshing the installation give this info:
+&gt; &gt; &gt;  There are already MediaWiki tables in this database. Checking if updates are
+&gt; &gt; &gt; needed... 
+&gt; &gt; &gt;  ...ipblocks table does not exist, skipping new field patch
+&gt; &gt; &gt;  ...ipblocks table does not exist, skipping new field patch
+&gt; &gt; &gt;  Creating interwiki table: 
+&gt; &gt; &gt; 
+&gt; &gt; &gt; then it stop...
+&gt; &gt; &gt; 
+&gt; &gt; &gt; could be that tables.sql that is provided here is broken ?
+&gt; &gt; &gt; 
+&gt; &gt; 
+&gt; &gt; There is no maintenance/sqlserver directory, and maintenance/mssql/tables.sql
+&gt; &gt; has an entry for ipblocks.
+&gt; &gt; 
+&gt; but DatabaseADODB.php has this on line 1360:
+&gt;  dbsource( &quot;../maintenance/sqlserver/tables.sql&quot;, $this);
+&gt; 
+&gt; And for some reason the table creation fail at the middle, these table were
+&gt; created:
+&gt; * user2
+&gt; * user_newtalk
+&gt; * user_groups
+&gt; * text
+&gt; * templatelinks
+&gt; * revision2
+&gt; * pagelinks
+&gt; * page2
+&gt; * imagelinks
+&gt; * categorylinks
+&gt; * archive
+&gt; 
+&gt; And these views were created:
+&gt; * page
+&gt; * revision
+&gt; * user
+&gt; 
+&gt; There are missing about 20-30 other tables...
+&gt; </span >
+
+I am starting to fix this. The problem is that the way the tables are initially created has changed since I created my wiki. I'll have to update ./maintenance/updaters.php and add a SQL Server case to the function archive($name) so that it looks in &quot;$IP/maintenance/archives/sqlserver&quot;. Right now it is trying to use the MySQL archives (since the only other option currently is postgress. I'll have to populate that directory under maintenance. If you just run the SQL in ./maintenance/sqlserver/tables.sql, you should get all the current tables.</pre>
+    </div><div id="c70" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c70">Comment 70</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 22:04:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=6091" name="attach_6091" title="MS SQL Server Script">attachment 6091</a> <a href="attachment.cgi?id=6091&amp;action=edit" title="MS SQL Server Script">[details]</a></span>
+MS SQL Server Script
+
+There were a couple of mistakes in the SQL Server script, but that wasn't the root of the problem, since the install was attempting to run a bunch of patch SQL scripts from the MySQL directory. Replace the tables.sql with this updated one. The root of the problem is addressed by a change to updaters.inc, which I'll upload next.</pre>
+    </div><div id="c71" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c71">Comment 71</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 22:08:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=6092" name="attach_6092" title="Replacement updaters.inc to dbsource SQL Server script">attachment 6092</a> <a href="attachment.cgi?id=6092&amp;action=edit" title="Replacement updaters.inc to dbsource SQL Server script">[details]</a></span>
+Replacement updaters.inc to dbsource SQL Server script
+
+Replace ./maintenance/updaters.inc with this modestly changed one. If the database type is 'adodb' it will dbsource the MS SQL Server Script rather than try to run the patch scripts from ./maintenance/archives. No patching is necessary anyway, since there won't be an exisiting SQL Server wiki database. I just tested this and the MS SQL Server Script on a fresh box, and it's working for me.</pre>
+    </div><div id="c72" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c72">Comment 72</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-05 22:12:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c66">comment #66</a>)
+<span class="quote">&gt; After some fixes on php.ini (most important is to set a file for error log for
+&gt; not getting 500 errors), my installation is moving.
+&gt; first I found that tables.sql has to be in maintenance/sqlserver (and not in
+&gt; mssql dir). then after creating some tables it stops.
+&gt; 
+&gt; 
+&gt;  refreshing the installation give this info:
+&gt;  There are already MediaWiki tables in this database. Checking if updates are
+&gt; needed... 
+&gt;  ...ipblocks table does not exist, skipping new field patch
+&gt;  ...ipblocks table does not exist, skipping new field patch
+&gt;  Creating interwiki table: 
+&gt; 
+&gt; then it stop...
+&gt; 
+&gt; could be that tables.sql that is provided here is broken ?
+&gt; </span >
+This problem is fixed in the updated tables.sql I just uploaded. You are right, there was an error in the SQL for creating the interwiki table. I stumbled on this because it was a type-conversion error rather than a syntax error. A couple of columns had to be varchar rather than varbinary.
+</pre>
+    </div><div id="c73" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c73">Comment 73</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yedidia Klein</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-06 10:04:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c72">comment #72</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=9767#c66">comment #66</a>)
+&gt; &gt; After some fixes on php.ini (most important is to set a file for error log for
+&gt; &gt; not getting 500 errors), my installation is moving.
+&gt; &gt; first I found that tables.sql has to be in maintenance/sqlserver (and not in
+&gt; &gt; mssql dir). then after creating some tables it stops.
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt;  refreshing the installation give this info:
+&gt; &gt;  There are already MediaWiki tables in this database. Checking if updates are
+&gt; &gt; needed... 
+&gt; &gt;  ...ipblocks table does not exist, skipping new field patch
+&gt; &gt;  ...ipblocks table does not exist, skipping new field patch
+&gt; &gt;  Creating interwiki table: 
+&gt; &gt; 
+&gt; &gt; then it stop...
+&gt; &gt; 
+&gt; &gt; could be that tables.sql that is provided here is broken ?
+&gt; &gt; 
+&gt; This problem is fixed in the updated tables.sql I just uploaded. You are right,
+&gt; there was an error in the SQL for creating the interwiki table. I stumbled on
+&gt; this because it was a type-conversion error rather than a syntax error. A
+&gt; couple of columns had to be varchar rather than varbinary.
+&gt; </span >
+Wonderful! the installation was smooth and all the tables were created.
+LocalSettings.php exist also.
+
+now after moving LocalSettings.php to the right place I get  a timeout on main page, changed max_execution_time on php.ini to 300 sec (!) and still it get a timeout.
+this is what I get on the error_log:
+[06-May-2009 12:46:00] PHP Notice:  Undefined index:  REQUEST_METHOD in C:\Inetpub\wiki\mediawiki-1.14.0.patched\includes\WebRequest.php on line 410
+[06-May-2009 12:46:00] PHP Notice:  Undefined index:  SERVER_PROTOCOL in C:\Inetpub\wiki\mediawiki-1.14.0.patched\includes\OutputHandler.php on line 117
+[06-May-2009 12:46:09] PHP Notice:  Undefined index:  REQUEST_METHOD in C:\Inetpub\wiki\mediawiki-1.14.0.patched\includes\WebRequest.php on line 410
+[06-May-2009 12:51:09] PHP Fatal error:  Maximum execution time of 300 seconds exceeded in C:\php\adodb5\adodb.inc.php on line 3593
+
+
+
+</pre>
+    </div><div id="c74" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c74">Comment 74</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrew Garrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-29 16:38:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding 'tracking' keyword.</pre>
+    </div><div id="c75" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c75">Comment 75</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">p858snake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-30 00:10:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*Bulk BZ Change: +Patch to open bugs with patches attached that are missing the keyword*</pre>
+    </div><div id="c76" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c76">Comment 76</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-29 18:34:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=8841" name="attach_8841" title="MS SQL Server Script for MediaWiki 1.16.5">attachment 8841</a> <a href="attachment.cgi?id=8841&amp;action=edit" title="MS SQL Server Script for MediaWiki 1.16.5">[details]</a></span>
+MS SQL Server Script for MediaWiki 1.16.5
+
+At the Microsoft SQL Server JumpIn Camp, I updated the script to support MediaWiki 1.16.5. I tested on SQL Server 2008, SQL Server Denali, and SQL Server Azure. It also still works on SQL Server 2005. The code now uses Microsoft's PDO driver for SQL Server rather than ADODB, but the SQL script is not affected by that.</pre>
+    </div><div id="c77" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c77">Comment 77</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-29 18:46:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=8842" name="attach_8842" title="includes\db\DatabaseMSPDO.php">attachment 8842</a> <a href="attachment.cgi?id=8842&amp;action=edit" title="includes\db\DatabaseMSPDO.php">[details]</a></span>
+includes\db\DatabaseMSPDO.php
+
+Database subclass for use with Microsoft SQL Server PDO driver. This class works with both traditional SQL Server connections as well as with SQL Server Azure. It doesn't exactly obsolete DatabaseADODB.php, although I suppose that practically, it does.</pre>
+    </div><div id="c78" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c78">Comment 78</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Max Semenik</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-29 22:06:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So that &quot;MSSQL native&quot; thing is obsolete and everybody should use PDO? Should we throw away our current MSSQL backend that bitrots for a year now? A few quick comments on attached code:
+1) We don't accept patches with new functionality against released versions. Only trunk. And for such complex things, we don't accept patches at all. Instead, we give commit access to people interested in continuously maintaining these.
+2) Database class is a legacy alias for DatabaseMysql, inherit from DatabaseBase.
+3) Code duplication in constructor and newFromParams().
+4) wfProfileIn(&quot;dbconnect-$server&quot;) is superfuluous, no heavy operations between it and parent wfProfileIn(__METHOD__).
+5) Due to (2), you have to resort to overloading query() and performing messy manual SQL rewrites, don't do that. Change SQL abstraction functions instead.
+6) Same thing for copy-paste inheritance of virtually every function.
+7) Manual magic quotes fighting in strencode() and qstr() is not needed, magic_quotes_gpc is handled in WebRequest while installer refuses to install with magic_quotes_runtime on.
+8) Lots of commented-out code.
+9) Code doesn't follow our coding conventions outlined at <a href="http://www.mediawiki.org/wiki/Manual:Coding_conventions">http://www.mediawiki.org/wiki/Manual:Coding_conventions</a></pre>
+    </div><div id="c79" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c79">Comment 79</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-29 22:35:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=9767#c78">comment #78</a>)
+<span class="quote">&gt; So that &quot;MSSQL native&quot; thing is obsolete and everybody should use PDO? Should
+&gt; we throw away our current MSSQL backend that bitrots for a year now? A few
+&gt; quick comments on attached code:
+&gt; 1) We don't accept patches with new functionality against released versions.
+&gt; Only trunk. And for such complex things, we don't accept patches at all.
+&gt; Instead, we give commit access to people interested in continuously maintaining
+&gt; these.
+&gt; 2) Database class is a legacy alias for DatabaseMysql, inherit from
+&gt; DatabaseBase.
+&gt; 3) Code duplication in constructor and newFromParams().
+&gt; 4) wfProfileIn(&quot;dbconnect-$server&quot;) is superfuluous, no heavy operations
+&gt; between it and parent wfProfileIn(__METHOD__).
+&gt; 5) Due to (2), you have to resort to overloading query() and performing messy
+&gt; manual SQL rewrites, don't do that. Change SQL abstraction functions instead.
+&gt; 6) Same thing for copy-paste inheritance of virtually every function.
+&gt; 7) Manual magic quotes fighting in strencode() and qstr() is not needed,
+&gt; magic_quotes_gpc is handled in WebRequest while installer refuses to install
+&gt; with magic_quotes_runtime on.
+&gt; 8) Lots of commented-out code.
+&gt; 9) Code doesn't follow our coding conventions outlined at
+&gt; <a href="http://www.mediawiki.org/wiki/Manual:Coding_conventions">http://www.mediawiki.org/wiki/Manual:Coding_conventions</a></span >
+
+Thanks for those comments. I'll endeavor to fix those issues. As to MSSQL native, I never have used that. I haven't had any luck getting that or PDO for SQL Server working on Windows XP, so I used the ADODB library in the past. I started on the PDO driver by making a copy of my old ADODB driver code, so that explains some of the legacy stuff that now needs to be cleaned up. MSSQL native and PDO work fine for me on Windows 7 and on Windows Azure, and with SQL Azure. ADODB doesn't do as well with SQL Azure, so right now I either use ADODB on XP with SQL Server 2005 or 2008 or I use PDO on Windows 7 or Azure with SQL Server 2005, 2008, Denali, or Azure</pre>
+    </div><div id="c80" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c80">Comment 80</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Max Semenik</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-04-19 17:15:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >-need-review, already reviewed.</pre>
+    </div><div id="c81" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c81">Comment 81</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-08-17 10:41:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >DJ, did you have time to work on these issues?</pre>
+    </div><div id="c82" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c82">Comment 82</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-24 14:48:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >DJ Bauch, would you have time to work on aforementioned issues with your patches?</pre>
+    </div><div id="c83" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c83">Comment 83</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-15 19:04:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >WONTFIX per reason I outlined 22093 <a href="show_bug.cgi?id=9767#c30">comment 30</a></pre>
+    </div><div id="c84" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c84">Comment 84</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-16 02:21:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reopening per <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Native Microsoft SQL Server Support"
+   href="show_bug.cgi?id=22093#c31">bug 22093 comment 31</a></pre>
+    </div><div id="c85" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=9767#c85">Comment 85</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-16 02:26:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I did some work to support SQL Server access from Linux this summer (<a href="https://bugs.php.net/bug.php?id=64338">https://bugs.php.net/bug.php?id=64338</a>), so you don't have to have a Windows box to implement support for SQL Server.  Azure access should work just fine.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=9767&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=9767">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=9767">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=9767">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=9767&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=9767" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=9767&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419371883-NQOP4Tyr8o8SuKa3ZrnvbEn7ElfgqmD6cSwEVE4nZcI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

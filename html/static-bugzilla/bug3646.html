@@ -1,0 +1,1483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3646 &ndash; RSS, Atom, XML syndication feeds (tracking)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3646&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3646">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3646">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3646">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3646 – RSS, Atom, XML syndication feeds (tracking)",  
+                             "show_bug.cgi?id=3646" );
+        document.title = "Bug 3646 – RSS, Atom, XML syndication feeds (tracking)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3646 – RSS, Atom, XML syndication feeds (tracking)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_General_Unknown bz_bug_3646 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 09:21:15 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 09:21:15">
+  <input type="hidden" name="longdesclength" value="13">
+  <input type="hidden" name="id" value="3646">
+  <input type="hidden" name="token" value="1419362330-s8qwQ4GyLt_3CrZAvuZoSDQR6Vehi0JoOM5S_2ry86g">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3646"><b>Bug&nbsp;3646</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+        (<span id="alias_nonedit_display">feeds</span>) 
+      <span id="short_desc_nonedit_display">RSS, Atom, XML syndication feeds (tracking)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">(feeds)
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>RSS, Atom, XML syndication feeds (tracking)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('RSS, Atom, XML syndication feeds (tracking)', 'feeds');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3646">11 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3646#vote_3646">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">tracking
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RSS feeds should create separate feeds for changes to separate headings of a page"
+   href="show_bug.cgi?id=7594">7594</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RSS feed creator with user-selected items"
+   href="show_bug.cgi?id=8857">8857</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Provide RSS feeds for Special:Log"
+   href="show_bug.cgi?id=10094">10094</a> <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Watchlist RSS feed should include diffs"
+   href="show_bug.cgi?id=10268">10268</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Recentchanges rss feed should display user name"
+   href="show_bug.cgi?id=13045">13045</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Provide all URL parameters for all RSS/Atom feeds consistently"
+   href="show_bug.cgi?id=13951">13951</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Include HTML meta tags for pages' Atom/RSS feeds in article view mode"
+   href="show_bug.cgi?id=13955">13955</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - In Atom/RSS feeds a changed content sometimes is not displayed red"
+   href="show_bug.cgi?id=13956">13956</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &lt;dc:creator&gt; has wrong value"
+   href="show_bug.cgi?id=15915">15915</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RecentChanges rss feed should indicate change type or log action &lt;title&gt;s"
+   href="show_bug.cgi?id=17869">17869</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Add RSS feed as full-blown format to the API"
+   href="show_bug.cgi?id=17872">17872</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Render new wiki pages to HTML in RSS Recent Changes feed"
+   href="show_bug.cgi?id=19011">19011</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - split $wgDefaultUserOptions['rcdays'] into two variables"
+   href="show_bug.cgi?id=19056">19056</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - RSS feed for recent changes should have its result limit applied after filtering not before"
+   href="show_bug.cgi?id=19330">19330</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - No RSS/Atom feed for Special:AbuseLog"
+   href="show_bug.cgi?id=24795">24795</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wrong &lt;link&gt; content in Special:RecentChangesLinked feeds."
+   href="show_bug.cgi?id=24801">24801</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Dump RSS feeds should report dump failures as well as successes"
+   href="show_bug.cgi?id=27941">27941</a> <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - User contributions feed should match index.php feed format (diff etc.)"
+   href="show_bug.cgi?id=41085">41085</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - application/atom+xml should point at specific page's history, not entire wiki, unless looking at the front page"
+   href="show_bug.cgi?id=61342">61342</a> <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Special:NewPages feed shows newest revision (inconsistent with special page)"
+   href="show_bug.cgi?id=67026">67026</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Basic XML Feed support for watchlist (implementation idea: token)"
+   href="show_bug.cgi?id=471">471</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RSS feed for Recentchangeslinked"
+   href="show_bug.cgi?id=943">943</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - QueryPage::doFeed SELECT 'Newpages' as type ..."
+   href="show_bug.cgi?id=1481">1481</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RSS feed link should have silly orange icon"
+   href="show_bug.cgi?id=3043">3043</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - support change-centric in addition to page-centric behavior mode for Recent Changes Atom feed"
+   href="show_bug.cgi?id=3998">3998</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - RSS feed for logs"
+   href="show_bug.cgi?id=4182">4182</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Add RSS feed to Wikinews"
+   href="show_bug.cgi?id=4372">4372</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - RSS feed for [[Template:Did you know]]"
+   href="show_bug.cgi?id=4818">4818</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Bad CSS path in RSS feeds due to wgServer"
+   href="show_bug.cgi?id=5262">5262</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Add RSS/Atom tag's to head section on all pages"
+   href="show_bug.cgi?id=5412">5412</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Provide syndicated feeds of a user's page creations"
+   href="show_bug.cgi?id=6369">6369</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - rss feed item should contain a guid element"
+   href="show_bug.cgi?id=7346">7346</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RSS feed for Special:NewPages shows improper raw HTML"
+   href="show_bug.cgi?id=13952">13952</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redundant Atom/RSS feeds on Special:RecentChanges"
+   href="show_bug.cgi?id=14500">14500</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - problem of HTML rendering in RSS feed"
+   href="show_bug.cgi?id=14646">14646</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Spurious RSS updates for non-existent pages"
+   href="show_bug.cgi?id=15853">15853</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - RSS/Atom feeds use fully-qualified URIs rather than relative ones"
+   href="show_bug.cgi?id=16357">16357</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - RSS should put edit summaries, not just pagenames, into &lt;title&gt;s"
+   href="show_bug.cgi?id=16646">16646</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Feeds ignore additional parameters in URL for Special:Recentchangeslinked"
+   href="show_bug.cgi?id=16883">16883</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Feed links in sidebar should comply to the parameters of displayed page"
+   href="show_bug.cgi?id=16884">16884</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Enable Atom feed on blog.wikimedia.org"
+   href="show_bug.cgi?id=16901">16901</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - RSS so bloated with CSS repeated every line"
+   href="show_bug.cgi?id=17058">17058</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Feed item title contains doubly-escaped ampersand, displaying &amp;#32;"
+   href="show_bug.cgi?id=17521">17521</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Web source &lt;link&gt; in user contributions feeds is missing parameters"
+   href="show_bug.cgi?id=17556">17556</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Atom/RSS feeds for user contributions should only contain the diffs"
+   href="show_bug.cgi?id=17565">17565</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Consider using CDATA for RSS/Atom feeds or type=&quot;xhtml&quot; for Atom feeds instead of escaping special characters"
+   href="show_bug.cgi?id=17566">17566</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - feed=rss ignores uselang="
+   href="show_bug.cgi?id=17868">17868</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Don't make me choose between Atom and RSS"
+   href="show_bug.cgi?id=18801">18801</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - rebuildrecentchanges.php must purge RSS and Atom feeds"
+   href="show_bug.cgi?id=19055">19055</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - The feed on Special:RecentChanges is cached in random language"
+   href="show_bug.cgi?id=19391">19391</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Feeds format dates in content language and other messages in user language"
+   href="show_bug.cgi?id=19393">19393</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Recent changes feed items corresponding to some log entries are broken"
+   href="show_bug.cgi?id=19394">19394</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - in feeds mention more than just &quot;that page is now protected&quot;"
+   href="show_bug.cgi?id=19812">19812</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Do not put &quot;diff generator&quot; comments into feeds"
+   href="show_bug.cgi?id=20601">20601</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - 'New Page' forever in feed?"
+   href="show_bug.cgi?id=22264">22264</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RSS/Atom feeds occasionally incorrectly link to secure.wikimedia.org and vice versa"
+   href="show_bug.cgi?id=22918">22918</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Syndicated feeds of Watchlists include non-existent edits"
+   href="show_bug.cgi?id=51427">51427</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tracking bug (tracking)"
+   href="show_bug.cgi?id=2007">tracking</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3646&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3646">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-10-08 00:20 UTC by <span class="vcard"><span class="fn">Ilyanep</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 09:21 UTC 
+      (<a href="show_activity.cgi?id=3646">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>7 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="chtitux">chtitux</option>
+                <option value="danny.b">danny.b</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="garbage5">garbage5</option>
+                <option value="koorosh2delboro">koorosh2delboro</option>
+                <option value="robinp.1273">robinp.1273</option>
+                <option value="rowan">rowan</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement support for sharing protocols (tracking)"
+   href="show_bug.cgi?id=54829">54829</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=3646&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ilyanep</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-08 00:20:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >At the moment, as far as I know, mediawiki doesn't allow many options for RSS.
+Many people have had to write scripts. I think that MediaWiki should incorporate
+an RSS maker that has options such as where to divide different items, what to
+put in the summary, etc. I realize this would be a ginormic project to
+undertake, which is why I'm setting the priority to low, so if one of the
+developers is bored, feel free to do somethihng like this.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marcus Gilroy-Ware</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-25 13:02:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I agree that MediaWiki should be more XML friendly. The current xml output of,
+say, Wikipedia is quite strange, and requires a lot of further string parsing.
+You should be able to get an RSS feed of all articles in a particular category,
+of all subcategories in a category, using the same parsing classes that are
+already in MediaWiki, in combination with an XML serializer. It is a big
+project, but a very important one, because open content models like Wikipedia
+should make it as easy as possible to use and process the content as possible.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Duncan Shannon</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-08 04:31:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think having RSS feeds of any/every/most content pages would be great. I could
+certainly use the feature for mediawiki when used as a docu tool... 
+
+I found this tonite, worth mentioning... not sure if it works or not:
+
+
+<a href="http://wiki.case.edu/CaseWiki:RSS_Feeds">http://wiki.case.edu/CaseWiki:RSS_Feeds</a>
+
+It is a page about generating rss feeds for almost any page (at least category
+pages). Check it out.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-08 16:36:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See also: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Basic XML Feed support for history"
+   href="show_bug.cgi?id=472">bug 472</a>, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RSS feed for Recentchangeslinked"
+   href="show_bug.cgi?id=943">bug 943</a>, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - RSS feed for logs"
+   href="show_bug.cgi?id=4182">bug 4182</a>
+[Perhaps we could do with a &quot;component&quot; or a tracking bug for Feed (RSS/Atom)
+issues?]</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-08 16:44:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3646#c0">comment #0</a>)
+<span class="quote">&gt; At the moment, as far as I know, mediawiki doesn't allow many options for RSS.
+&gt; Many people have had to write scripts. I think that MediaWiki should incorporate
+&gt; an RSS maker that has options such as where to divide different items, what to
+&gt; put in the summary, etc. I realize this would be a ginormic project to
+&gt; undertake, which is why I'm setting the priority to low, so if one of the
+&gt; developers is bored, feel free to do somethihng like this.</span >
+
+Could you elaborate on how this is supposed to work?</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ilyanep</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-08 21:30:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm saying that when you're [most likely the webmaster/dev] making a feed...you 
+have an interface where you can tell it:
+
+--What page the feed should be coming from [let's say WP:Reference Desk]
+--How to seperate the 'articles' [A few preset options, such as headlines are 
+titles and text is the articles, and then maybe a regexp field to add your own] 
+(so let's say in the RD we want headlines [==...==] to be titles and a snippet of 
+the text to be a summary)
+--How to date the fields [I'm sure it wouldn't be hard to find the first timestamp 
+to make a date field, and the last timestamp to make an updated fields, but 
+perhaps give the user an option on which timestamp they want]
+
+Then the software would take this and update the feed [once every hour, day, 
+month?].
+
+Also, a feature could be added to support 'pages in x category' or 'pages with x 
+template' (the latter could be useful for wikinews).
+
+And since this could be locked down to only the webmaster/developer it wouldn't 
+consume server resources if the webmaster is bandwidth conscious enough. I'd help 
+out with this project, but every day I find that i know less and less about PHP :\
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-09 08:06:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If it's the case that the developers would be doing it, it would probably be
+less effort for them to code a specific extension to provide the required feed.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ilyanep</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-09 21:02:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >But then the end user (non-wmf) would have no access to this feature because they'
+d have to code it themselves as well
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-03 23:59:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Turning this into a tracking bug.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Johnson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-15 15:32:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Would it be possible to include the categories of a page within the RSS Feed for
+recent changes?  I've seen most people just create multiple rss category nodes
+within each item.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Rodrik van der Molen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-22 02:51:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that most of what you say can already be done with Semantic MediaWiki: <a href="http://semantic-mediawiki.org/">http://semantic-mediawiki.org/</a></pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-01 00:16:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are plenty of matched for RSS in bugzilla that are not linked here. I would create a separate component 
+( <a href="https://bugzilla.wikimedia.org/describecomponents.cgi?product=MediaWiki">https://bugzilla.wikimedia.org/describecomponents.cgi?product=MediaWiki</a> ) called RSS/Atom/Feeds or something...
+just feeds? RSS?</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3646#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrew Garrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-29 16:39:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding 'tracking' keyword.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3646&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3646">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3646">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3646">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3646&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3646" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3646&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419362330-6gQ4nhC0CacgilmIH8uRe0SriPUj2nqHwQR3g22AOZ0">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

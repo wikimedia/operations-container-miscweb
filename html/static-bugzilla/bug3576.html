@@ -1,0 +1,3642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3576 &ndash; Implement rev_deleted (deletion of single article revisions)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3576&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3576">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3576">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3576">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3576 – Implement rev_deleted (deletion of single article revisions)",  
+                             "show_bug.cgi?id=3576" );
+        document.title = "Bug 3576 – Implement rev_deleted (deletion of single article revisions)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3576 – Implement rev_deleted (deletion of single article revisions)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_History_Diffs bz_bug_3576 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-01-25 01:27:13 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-01-25 01:27:13">
+  <input type="hidden" name="longdesclength" value="70">
+  <input type="hidden" name="id" value="3576">
+  <input type="hidden" name="token" value="1419362223-Ux2QyudyVTG9hTw-_RJ4ckNlxbFB5h7_sSD_m-nNeHo">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3576"><b>Bug&nbsp;3576</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Implement rev_deleted (deletion of single article revisions)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Implement rev_deleted (deletion of single article revisions)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Implement rev_deleted (deletion of single article revisions)', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>History/Diffs
+    
+    (<a href="buglist.cgi?component=History%2FDiffs&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3576">52 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3576#vote_3576">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Add a way to delete only one revision"
+   href="show_bug.cgi?id=3098">3098</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Deletion of single article revisions"
+   href="show_bug.cgi?id=4569">4569</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Request the ability to delete one specific version from history"
+   href="show_bug.cgi?id=4771">4771</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow for deletion of individual revisions"
+   href="show_bug.cgi?id=5901">5901</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Selective deletion of revisions for sysops"
+   href="show_bug.cgi?id=9160">9160</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow deletion of single revisions"
+   href="show_bug.cgi?id=9290">9290</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Ability to delete individual diffs"
+   href="show_bug.cgi?id=13557">13557</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=3098,4569,4771,5901,9160,9290,13557">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - page diff still shows hidden wikitext after deletion by Special:Revisiondelete"
+   href="show_bug.cgi?id=9432">9432</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow permanent deletion of revisions (when dealing with copyright infringement, etc.)"
+   href="show_bug.cgi?id=997">997</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3576&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3576">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-09-30 13:53 UTC by <span class="vcard"><span class="fn">Tietew</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-01-25 01:27 UTC 
+      (<a href="show_activity.cgi?id=3576">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>20 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="Aphaia">Aphaia</option>
+                <option value="aschulz4587">aschulz4587</option>
+                <option value="brovvnout+bugzilla">brovvnout+bugzilla</option>
+                <option value="gmaxwell">gmaxwell</option>
+                <option value="jhsoby">jhsoby</option>
+                <option value="kal.clarkel">kal.clarkel</option>
+                <option value="MediaWiki">MediaWiki</option>
+                <option value="michael.frey">michael.frey</option>
+                <option value="nykevin.norris">nykevin.norris</option>
+                <option value="plugwash">plugwash</option>
+                <option value="powerpdn">powerpdn</option>
+                <option value="p_simoons">p_simoons</option>
+                <option value="Ryanpostlethwaite">Ryanpostlethwaite</option>
+                <option value="skizzerz">skizzerz</option>
+                <option value="snoutwood">snoutwood</option>
+                <option value="stanley">stanley</option>
+                <option value="to.aru.shiroi.neko">to.aru.shiroi.neko</option>
+                <option value="Wiki.Melancholie">Wiki.Melancholie</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+                <option value="wikipede">wikipede</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=929"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implementing rev_deleted feature</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (14.91 KB,
+                patch)
+
+            <br>
+            <a href="#attach_929"
+               title="Go to the comment associated with the attachment">2005-09-30 13:55 UTC</a>,
+
+            <span class="vcard"><span class="fn">Tietew</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=929&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=934"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implementing rev_deleted feature</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (14.72 KB,
+                patch)
+
+            <br>
+            <a href="#attach_934"
+               title="Go to the comment associated with the attachment">2005-10-04 06:39 UTC</a>,
+
+            <span class="vcard"><span class="fn">Tietew</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=934&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=995"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implementing rev_deleted feature</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (25.80 KB,
+                patch)
+
+            <br>
+            <a href="#attach_995"
+               title="Go to the comment associated with the attachment">2005-10-14 08:06 UTC</a>,
+
+            <span class="vcard"><span class="fn">Tietew</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=995&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=999"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implementing rev_deleted feature</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (22.95 KB,
+                patch)
+
+            <br>
+            <a href="#attach_999"
+               title="Go to the comment associated with the attachment">2005-10-16 16:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">Tietew</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=999&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1134"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implementing rev_deleted feature</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (22.50 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1134"
+               title="Go to the comment associated with the attachment">2005-12-05 05:38 UTC</a>,
+
+            <span class="vcard"><span class="fn">Tietew</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1134&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3000"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">PageHistory.php - better handling of deleted usernames</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.09 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3000"
+               title="Go to the comment associated with the attachment">2007-01-01 22:59 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3000&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3010"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">DiffEng - better handling of diffs with deleted text</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.48 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3010"
+               title="Go to the comment associated with the attachment">2007-01-03 22:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3010&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3204"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Completion patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (104.53 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3204"
+               title="Go to the comment associated with the attachment">2007-02-11 06:50 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3204&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a9" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3205"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Completion patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (107.42 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3205"
+               title="Go to the comment associated with the attachment">2007-02-11 09:09 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3205&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a10" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3207"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Completion patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (107.41 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3207"
+               title="Go to the comment associated with the attachment">2007-02-11 16:58 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3207&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a11" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3212"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Completion patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (104.68 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3212"
+               title="Go to the comment associated with the attachment">2007-02-12 21:30 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3212&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a12" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3223"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Fix some warning errors</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (106.10 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3223"
+               title="Go to the comment associated with the attachment">2007-02-14 18:24 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3223&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a13" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3233"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Add user block hiding</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (132.12 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3233"
+               title="Go to the comment associated with the attachment">2007-02-16 16:01 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3233&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a14" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3234"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Fix sql cond grouping</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (132.13 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3234"
+               title="Go to the comment associated with the attachment">2007-02-16 16:14 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3234&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a15" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3253"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Add fa_deleted for archived images and some UI cleanup</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (161.82 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3253"
+               title="Go to the comment associated with the attachment">2007-02-21 15:38 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3253&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a16" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3256"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enforce for RSS feed data</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (163.13 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3256"
+               title="Go to the comment associated with the attachment">2007-02-23 00:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3256&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a17" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3272"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Resolve merge conflict with listusers</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (163.38 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3272"
+               title="Go to the comment associated with the attachment">2007-02-26 05:18 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3272&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (17)
+        </span>
+        <a href="attachment.cgi?bugid=3576&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-30 13:53:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I created a patch to implement revision deletion (rev_deleted) via
+Special:Revisiondelete.
+
+Japanese Wikipedia needs this feature very very much.
+
+* Article.php
+  - If the revision is deleted, returns 'deletedrevisiontext'
+    instead of its content.
+* DifferenceEngine.php
+  - If one of or both revisions are deleted, hide differences.
+* LogPage.php
+  - Added new action 'delete/revdelete' and 'delete/revrestore'
+* PageHistory.php
+  - Added a link to Special:Revisiondelete at the bottom of the page.
+* SpecialExport.php
+  - Put &lt;deleted/&gt; element if the revision is deleted.
+* SpecialImport.php
+  - Handle &lt;deleted/&gt; element.
+* SpecialPage.php
+  - Added Special:Revisiondelete.
+* SpecialRevisiondelete.php
+  - New. Implements revision deletion and restoration.
+* Language.php
+  - Added 6 new messages used by this patch.
+
+tested at  <a href="http://test.wikipedia.jp/history/Revision_deletion">http://test.wikipedia.jp/history/Revision_deletion</a></pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-30 13:55:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=929" name="attach_929" title="Implementing rev_deleted feature">attachment 929</a> <a href="attachment.cgi?id=929&amp;action=edit" title="Implementing rev_deleted feature">[details]</a></span>
+Implementing rev_deleted feature</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-04 06:39:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=934" name="attach_934" title="Implementing rev_deleted feature">attachment 934</a> <a href="attachment.cgi?id=934&amp;action=edit" title="Implementing rev_deleted feature">[details]</a></span>
+Implementing rev_deleted feature
+
+regenerated patch; fixed some mistakes, etc.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-07 18:34:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Seems to be working without fatal errors, but needs some polishing.
+
+For example:
+Notice: Undefined offset: 3324 in
+/services/www/mediawiki15c/includes/SpecialRevisiondelete.php on line 165
+
+Notice: Undefined variable: header in
+/services/www/mediawiki15c/includes/SpecialRevisiondelete.php on line 99
+
+Notice: Undefined property: rev_timestamp in
+/services/www/mediawiki15c/includes/SpecialUndelete.php on line 186</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-09 21:22:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c2">comment #2</a>)
+<span class="quote">&gt; Created an attachment (id=934) [edit]
+&gt; Implementing rev_deleted feature
+&gt; 
+&gt; regenerated patch; fixed some mistakes, etc.</span >
+
+Some problems with it:
+* $wgOut-&gt;addHTML( $header . $s ); : omit $header, the variable is undefined
+* When I delete revisions is spews warnings, the code in question is:
+** if( $revisions[ (int)$row-&gt;rev_id ] ) { (line 165)
+* I think displaying ''This revision is deleted.'' in the textbox is bad form,
+there's no way to tell if the revision is really deleted or if somebody just
+wrote that and saved a revision without looking at the history, I think that
+&quot;This revision is deleted.&quot; should be displayed on rendering but now when you go
+into the source to avoid the ambiguity.
+* Use wfMsgHtml not htmlspecialchars( wfMsg( ..
+* You changed the export format, then you have to updated the export format,
+make a new docs/export-0.4.xsd based on docs/export-0.3.xsd and define &lt;deleted/&gt;
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-09 21:23:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c4">comment #4</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=3576#c2">comment #2</a>)
+&gt; &quot;This revision is deleted.&quot; should be displayed on rendering but now when you go</span >
+* but not..
+
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-14 08:06:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=995" name="attach_995" title="Implementing rev_deleted feature">attachment 995</a> <a href="attachment.cgi?id=995&amp;action=edit" title="Implementing rev_deleted feature">[details]</a></span>
+Implementing rev_deleted feature
+
+Patch renewed.
+
+(In reply to <a href="show_bug.cgi?id=3576#c4">comment #4</a>)
+<span class="quote">&gt; * $wgOut-&gt;addHTML( $header . $s ); : omit $header, the variable is undefined</span >
+fixed.
+
+<span class="quote">&gt; * When I delete revisions is spews warnings, the code in question is:
+&gt; ** if( $revisions[ (int)$row-&gt;rev_id ] ) { (line 165)</span >
+may be fixed.
+
+<span class="quote">&gt; * I think displaying ''This revision is deleted.'' in the textbox is bad</span >
+form,
+<span class="quote">&gt; there's no way to tell if the revision is really deleted or if somebody just
+&gt; wrote that and saved a revision without looking at the history, I think that
+&gt; &quot;This revision is deleted.&quot; should be displayed on rendering but now when you</span >
+go
+<span class="quote">&gt; into the source to avoid the ambiguity.</span >
+action=edit just shows &quot;This revision isdeleted.&quot; and omit form.
+action=raw returns empty.
+# oops, title=Foo&amp;oldid=xxx&amp;direction=prev links to
+# title=Foo&amp;action=edit&amp;oldid=xxx instead of oldid=(prev of xxx)
+--&gt; <a href="http://test.wikipedia.jp/edit/Revision_deletion_DEMO_page?oldid=2609">http://test.wikipedia.jp/edit/Revision_deletion_DEMO_page?oldid=2609</a>
+
+<span class="quote">&gt; * You changed the export format, then you have to updated the export format,
+&gt; make a new docs/export-0.4.xsd based on docs/export-0.3.xsd and define</span >
+&lt;deleted/&gt;
+docs/export-0.4.xsd added.
+
+(In reply to <a href="show_bug.cgi?id=3576#c3">comment #3</a>)
+<span class="quote">&gt; Notice: Undefined property: rev_timestamp in
+&gt; /services/www/mediawiki15c/includes/SpecialUndelete.php on line 186</span >
+This patch does not include SpecialUndelete.php.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-14 08:47:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c6">comment #6</a>)
+<span class="quote">&gt; Created an attachment (id=995) [edit]
+&gt; Implementing rev_deleted feature
+&gt; &gt; * When I delete revisions is spews warnings, the code in question is:
+&gt; &gt; ** if( $revisions[ (int)$row-&gt;rev_id ] ) { (line 165)
+&gt; may be fixed.</span >
+
+It's not fixed, please run PHP with &quot;error_reporting = E_ALL&quot; in your php.ini,
+in your solution you made a typo which caused revision deletion to not work at
+all, it should be:
+
+    166                         $rev_id = (int)$row-&gt;rev_id;
+    167                         if( &#64;$revisions[ $rev_id ] ) {
+not
+    166                         $rev_id = (int)$row-&gt;rev_id;
+    167                         if( $revisions[ $rev ] ) {
+
+Please exclude whitespace fixes and fixes to the code not directly related to
+this patch, examples include adding whitespace and changing htmlspecialchars(
+wfMsg() ) to wfMsgHtml(), please send seperate cleanup patches instead.
+
+
+I like how you handled the &quot;This revision is deleted.&quot; problem, nice work.
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-16 16:34:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=999" name="attach_999" title="Implementing rev_deleted feature">attachment 999</a> <a href="attachment.cgi?id=999&amp;action=edit" title="Implementing rev_deleted feature">[details]</a></span>
+Implementing rev_deleted feature
+
+Patch renewed, cleaned up.
+No warnings found with error_reporting = E_ALL</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-03 03:09:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c8">comment #8</a>)
+<span class="quote">&gt; Created an attachment (id=999) [edit]
+&gt; Implementing rev_deleted feature
+&gt; 
+&gt; Patch renewed, cleaned up.
+&gt; No warnings found with error_reporting = E_ALL</span >
+
+The patch fails to apply to CVS HEAD</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-03 03:09:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Removing need-review and patch keywords, reviewed and the patch fails to apply.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-05 05:38:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1134" name="attach_1134" title="Implementing rev_deleted feature">attachment 1134</a> <a href="attachment.cgi?id=1134&amp;action=edit" title="Implementing rev_deleted feature">[details]</a></span>
+Implementing rev_deleted feature
+
+Patch renewed for current HEAD.
+
+Conflicts are fixed in following files (no feature changes):
+* DifferenceEngine.php
+* EditPage.php
+* Export.php
+
+Modified:
+* Language.php, SpecialRevisiondelete.php
+--- add new message 'revisiondeletebutton' for submit button</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-05 05:40:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding need-review and patch keywords; patch renewed for current HEAD.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-05 21:46:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Made some tests at:
+<a href="http://test.wikipedia.jp/Test:Bugzilla/03576">http://test.wikipedia.jp/Test:Bugzilla/03576</a>
+
+To be able to test yourself please ask Tietew for sysop status at:
+<a href="irc://irc.freenode.net/wikipedia-ja">irc://irc.freenode.net/wikipedia-ja</a> or
+<a href="http://test.wikipedia.jp/Test:Administrators#requests_for_additional_user_rights">http://test.wikipedia.jp/Test:Administrators#requests_for_additional_user_rights</a>
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-08 10:23:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Assigning the bug to myself, working on cleaning up the patch to make it sutable
+for inclusion.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-12 10:02:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Deletion of single article revisions"
+   href="show_bug.cgi?id=4569">Bug 4569</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-21 02:11:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c14">comment #14</a>)
+<span class="quote">&gt; Assigning the bug to myself, working on cleaning up the patch to make it sutable
+&gt; for inclusion.</span >
+
+Stopped working on this some time ago, the patch attached here needs to be
+improved in a lot of ways
+
+* Having delete/undelete in the page history view would be much simpler, easier
+to implement and would use the current paging code, one isn't likely to need to
+mass-delete individual revisions
+* It should act correctly if the latest revision or all revisions are deleted</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-27 13:34:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Request the ability to delete one specific version from history"
+   href="show_bug.cgi?id=4771">Bug 4771</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-09 16:27:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Add a way to delete only one revision"
+   href="show_bug.cgi?id=3098">Bug 3098</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-22 23:05:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Revert changes of a single edit without removing subsequent changes"
+   href="show_bug.cgi?id=4730">Bug 4730</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-24 05:27:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >see also:
+<a href="http://mail.wikipedia.org/pipermail/wikitech-l/2006-February/034170.html">http://mail.wikipedia.org/pipermail/wikitech-l/2006-February/034170.html</a>
+[Wikitech-l] Updating rev_deleted as a bitfield</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kelly Martin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 19:37:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This functionality, or something similar to it, is desparately needed on the
+English Wikipedia.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-10 20:29:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow for deletion of individual revisions"
+   href="show_bug.cgi?id=5901">Bug 5901</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Larry Pieniazek</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-11 01:05:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Agree with Kelly, there's a good reason this bug/feature fix would come in
+REALLY handy right now. Cleaning out a few edits from the history of a 5000 edit
+article is very difficult to do reliably and efficiently by all reports. So any
+enhancements would be greatly appreciated. ++Lar</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">emddudley</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-14 05:13:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Desperately needed, ASAP. 5000? Bah, try the en:AN or en:AN/I. Over 20000 and 30000!</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 04:01:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I second the above. This should probably be one of the top priorities.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kyle Barbour</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 04:08:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I concur entirely with Voice of All, Mdd4696, and Kelly Martin. I can't think of
+anything else I'd consider a higher priority (although <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Blocks on anonymous users only"
+   href="show_bug.cgi?id=550">Bug 550</a> regarding blocks
+for anons only comes close).</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 04:20:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please do not make posts that do not have to do with the patch's development. 
+They send people unnecessary e-mails and clog up the thread so that devs have a
+harder time finding relevant info.  If you would like to express your support,
+just vote for the bug.
+
+This functionality exists for users with oversight anyway, what's the issue? 
+(Note that replying to that question is relevant, since it clarifies the desired
+featureset.  ;) )</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kyle Barbour</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 05:50:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In response to <a href="show_bug.cgi?id=3576#c27">comment #27</a>)
+
+<span class="quote">&gt;Please do not make posts that do not have to do with the patch's development.</span >
+
+Understood, sorry, I won't do it again.
+
+<span class="quote">&gt;This functionality exists for users with oversight anyway, what's the issue?</span >
+
+Seventeen users with the permission isn't enough to deal with the number of
+cases in which this comes up. It would be an extremely handy feature for
+postings of personal information and copyvios, and there's no reason that this
+should be restricted to so few users as those assigned oversight and not all
+admins, who can due this now anyway, albeit with significant drawbacks.
+
+The importance of this feature is that there are often times when deletion of a
+single edit, or only a few edits, is required. Currently, the only way to do
+that is to delete the entire page and restore all of the other edits, which has
+the following problems: 1) while the page is deleted it is inaccessible to other
+users, 2) it is very difficult on large pages (I nearly crashed my computer
+trying to delete [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=WP%3AAN%2FI">WP:AN/I</a>]] to remove some edits containing personal
+information), 3) one cannot use diffs once the page is deleted to check that the
+edit they're trying to delete is in fact the correct one, which can emerge as a
+problem on long pages, and 4) one has to click on a MESS of boxes to undelete
+large pages, depending (sometimes one can shift-select of use javascript
+workarounds, but it's still a pain).</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 05:59:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In that case, what you want is for oversight permission to be granted to all
+bureaucrats, perhaps, or all sysops, or whatever.  This can be done with current
+software, it's a policy issue and should be discussed on VPP or wheverever.
+
+If you want the edits to be recoverable, though, that I can understand and agree
+with as an eventual goal.  I've changed the summary to clarify what the current
+situation is.
+
+(Removed needs-review, patch: patch is close to a year out of date and will have
+to be rewritten.  Changed priority from High back to Normal: this is noncritical
+with the oversight feature available in the code.)</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kyle Barbour</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 06:49:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, the idea is *definitely* for the edits to be recoverable (I think that all
+sysops having oversight is a majorly bad idea).</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">wiki_tomos
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 11:20:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This feature was developed by Tietew in the context of problems experienced by
+Japanese Wikipedia. I believe that ja community would still prefer edits to be
+recoverable - just like deleted pages, deleted revisions should be recoverable
+and be subject to inspections when in doubt. (Besides, for some reason, oversight 
+permission is granted on en wikipedia, not elsewhere, according to the page on
+meta. <a href="http://meta.wikimedia.org/wiki/Hiding_revisions">http://meta.wikimedia.org/wiki/Hiding_revisions</a> ). 
+
+But the more important reason why this feature is needed is that it will hide
+the content of the revision, while keeping the history visible to the public.
+Oversight permission as I understand does not do that. And keeping history
+information (who contributed to the page and when) is a simple way to comply
+with GFDL. 
+
+Imagine that you find an infringing material in a past revision of an article,
+and that infringing part is inhereted by subsequent revisions down to 
+the very current one. In the meantime, many valuable contributions are made to
+the article. What you can do with this feature is to edit out all the infringing
+parts so that the current one becomes clean, and suppress the text of all the
+revisions containing the infringement, but keeping the revision history intact,
+so that we have on the record who contributed to the current revision of the
+article. In contrast, if without this feature, their names will be deleted along
+with the revisions they contributed, and reflecting their contributions to the
+current revision without proper attribution to them in the revision history is a
+violation of GFDL (4I). 
+
+If my explanation is not clear, please let me know (in person or here), I am
+more than happy to explain it to defend the value of this feature. 
+
+In a nutshell, this feature enables us to do things oversight permission cannot
+do. It is a simple way to preserve some past contributions that are mixed with
+past infringement. Some Japanese Wikipedians like me have been discussing about
+this feature from time to time, waiting for the implementation for a long time.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 11:36:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Resetting summary. This bug is still quite valid. The HideRevisions extension is
+not part of the core code, and this problem needs to be addressed.
+
+To those trumpeting &quot;oversight&quot;, please be aware of this. To those attempting to
+defend, don't panic. &quot;Oversight&quot; is a short-term solution at present.
+
+Please could people refrain from commenting or altering fields on this bug
+unless you are a developer or acting under the instructions of one.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 19:33:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c32">comment #32</a>)
+<span class="quote">&gt; Resetting summary. This bug is still quite valid. The HideRevisions extension is
+&gt; not part of the core code, and this problem needs to be addressed.
+&gt; 
+&gt; To those trumpeting &quot;oversight&quot;, please be aware of this. To those attempting to
+&gt; defend, don't panic. &quot;Oversight&quot; is a short-term solution at present.
+&gt; 
+&gt; Please could people refrain from commenting or altering fields on this bug
+&gt; unless you are a developer or acting under the instructions of one.</span >
+
+Sorry, will do.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tietew</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-26 18:15:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Increasing priority.
+ja.wikipedia needs this feature strongly.
+</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 02:10:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Priority is determined by developers, not the users.  It's a way of them telling
+you what they plan to do, not you telling them what you want them to do.  If you
+believe this is an important feature, vote for it and/or submit a patch.  This
+may or may not speed things along, because MediaWiki is a volunteer project: it
+will get done when a dev feels like doing it.  Setting the priority field
+certainly won't help anything (it's basically not used here anyway).
+
+Rob Church, by the way, *is* a developer.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">treauth
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-17 10:30:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow permanent deletion of revisions (when dealing with copyright infringement, etc.)"
+   href="show_bug.cgi?id=997">Bug 997</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-01 22:59:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3000" name="attach_3000" title="PageHistory.php - better handling of deleted usernames">attachment 3000</a> <a href="attachment.cgi?id=3000&amp;action=edit" title="PageHistory.php - better handling of deleted usernames">[details]</a></span>
+PageHistory.php - better handling of deleted usernames</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-03 22:35:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3010" name="attach_3010" title="DiffEng - better handling of diffs with deleted text">attachment 3010</a> <a href="attachment.cgi?id=3010&amp;action=edit" title="DiffEng - better handling of diffs with deleted text">[details]</a></span>
+DiffEng - better handling of diffs with deleted text</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-04 21:50:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=3000" name="attach_3000" title="PageHistory.php - better handling of deleted usernames">attachment 3000</a> <a href="attachment.cgi?id=3000&amp;action=edit" title="PageHistory.php - better handling of deleted usernames">[details]</a></span>
+PageHistory.php - better handling of deleted usernames
+
+Visual improvements done in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/19763" title="revision 19763 in SVN">r19763</a> and <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/19765" title="revision 19765 in SVN">r19765</a></pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-11 06:50:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3204" name="attach_3204" title="Completion patch">attachment 3204</a> <a href="attachment.cgi?id=3204&amp;action=edit" title="Completion patch">[details]</a></span>
+Completion patch
+
+First draft
+
+Schema:
+-Adds ar_deleted, log_deleted, rc_deleted, rc_logid
+-Also adds log_type and log_action to recentchanges for later use (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Logs about watched pages should appear in the watchlist and recentchanges"
+   href="show_bug.cgi?id=5546">bug 5546</a>)
+
+Code changes:
+-Changelists - permission checks added
+-SpecialLog - permission checks added
+-Linker - some log functions and public/private function arguments added
+-DiffEng - cleaner behavoir
+-Article - rev_deleted -&gt; ar_delete on archival and some minor stuff
+-Revisiondelete - support for log and archive delete, no more duplicate logs,
+and proper message/param use.
+-Undelete - permission checks
+-Defaultsettings, specialpages &amp; specialspecialpages - new log restriction
+system. Used for oversight log.
+-Other stuff scattered here and there...</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-11 09:09:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3205" name="attach_3205" title="Completion patch">attachment 3205</a> <a href="attachment.cgi?id=3205&amp;action=edit" title="Completion patch">[details]</a></span>
+Completion patch
+
+Cleaned some things up. Made logs more user friendly.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-11 16:58:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3207" name="attach_3207" title="Completion patch">attachment 3207</a> <a href="attachment.cgi?id=3207&amp;action=edit" title="Completion patch">[details]</a></span>
+Completion patch
+
+Clean up event deletion logging</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-12 21:30:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3212" name="attach_3212" title="Completion patch">attachment 3212</a> <a href="attachment.cgi?id=3212&amp;action=edit" title="Completion patch">[details]</a></span>
+Completion patch
+
+Clean up some things</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-14 18:24:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3223" name="attach_3223" title="Fix some warning errors">attachment 3223</a> <a href="attachment.cgi?id=3223&amp;action=edit" title="Fix some warning errors">[details]</a></span>
+Fix some warning errors</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-16 16:01:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3233" name="attach_3233" title="Add user block hiding">attachment 3233</a> <a href="attachment.cgi?id=3233&amp;action=edit" title="Add user block hiding">[details]</a></span>
+Add user block hiding
+
+-Add uption to blockip to hide name from block log, ipblocklist, and listusers.
+The block entry goes to the oversight log and users with 'hiderevision' can see
+the ipblocklist items.
+-Allow for quick, clean, total page suppression. Oversights can do the opposite
+by checking an option at special:undelete.
+-More cleanup: recentchanges styling, revisiondelete checkboxes, ect...</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-16 16:14:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3234" name="attach_3234" title="Fix sql cond grouping">attachment 3234</a> <a href="attachment.cgi?id=3234&amp;action=edit" title="Fix sql cond grouping">[details]</a></span>
+Fix sql cond grouping
+
+Also note:
+-Instead of rc_log_action I have rc_actiontext to separate log action text from
+log comments to better carry over log hiding.
+-The rc_log_type is now used and some slight watchlist sql query changes now
+allow for watchlist to show log events (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Logs about watched pages should appear in the watchlist and recentchanges"
+   href="show_bug.cgi?id=5546">bug 5546</a>).</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-21 15:38:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3253" name="attach_3253" title="Add fa_deleted for archived images and some UI cleanup">attachment 3253</a> <a href="attachment.cgi?id=3253&amp;action=edit" title="Add fa_deleted for archived images and some UI cleanup">[details]</a></span>
+Add fa_deleted for archived images and some UI cleanup</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-23 00:31:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3256" name="attach_3256" title="Enforce for RSS feed data">attachment 3256</a> <a href="attachment.cgi?id=3256&amp;action=edit" title="Enforce for RSS feed data">[details]</a></span>
+Enforce for RSS feed data</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-26 05:18:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3272" name="attach_3272" title="Resolve merge conflict with listusers">attachment 3272</a> <a href="attachment.cgi?id=3272&amp;action=edit" title="Resolve merge conflict with listusers">[details]</a></span>
+Resolve merge conflict with listusers
+
+I may just make this a branch soon...</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-26 08:04:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c49">comment #49</a>)
+<span class="quote">&gt; I may just make this a branch soon...</span >
+
+Please do so; the sooner the better. BugZilla isn't good for version control. ;)
+
+</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-02 20:35:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=3272" name="attach_3272" title="Resolve merge conflict with listusers">attachment 3272</a> <a href="attachment.cgi?id=3272&amp;action=edit" title="Resolve merge conflict with listusers">[details]</a></span>
+Resolve merge conflict with listusers
+
+(In reply to <a href="show_bug.cgi?id=3576#c50">comment #50</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=3576#c49">comment #49</a>)
+&gt; &gt; I may just make this a branch soon...
+&gt; 
+&gt; Please do so; the sooner the better. BugZilla isn't good for version control. ;)
+&gt; 
+&gt; </span >
+
+Indeed, I have taken over the old rev_delete branch here:
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/branches/phase3_rev_deleted/?sortby=d">http://svn.wikimedia.org/viewvc/mediawiki/branches/phase3_rev_deleted/?sortby=d</a>
+ate</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-04 00:33:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Selective deletion of revisions for sysops"
+   href="show_bug.cgi?id=9160">Bug 9160</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-14 15:57:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Done in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/20446" title="revision 20446 in SVN">r20446</a>.</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-16 12:46:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow deletion of single revisions"
+   href="show_bug.cgi?id=9290">Bug 9290</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Makoto Imaizumi [Suisui]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-26 17:27:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >why $wgGroupPermissions['sysop']['deleterevision'] = true;
+still keeps comment out on DefaultSettings.php?
+something problems yet?</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-26 17:29:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It was reverted in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/20525" title="revision 20525 in SVN">r20525</a>.</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-27 00:07:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c55">comment #55</a>)
+<span class="quote">&gt; why $wgGroupPermissions['sysop']['deleterevision'] = true;
+&gt; still keeps comment out on DefaultSettings.php?
+&gt; something problems yet?</span >
+
+
+Note really, I should probably uncomment that when this goes in MW 1.11.</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ryan Postlethwaite</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-17 04:41:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Given the recent problems en.wiki has been having, we would really like to have this ASAP. We're aware that the extension is a little buggy at the minute, but is there any way to hurry it up?</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-17 04:56:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c58">comment #58</a>)
+<span class="quote">&gt; Given the recent problems en.wiki has been having, we would really like to have
+&gt; this ASAP. We're aware that the extension is a little buggy at the minute, but
+&gt; is there any way to hurry it up?
+&gt; </span >
+
+It is not complete at all now. I'd have to commit a lot of code. All of this has been held up in code review for months, as no one will have the time to look it over.</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Raimond Spekking</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-29 18:37:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Ability to delete individual diffs"
+   href="show_bug.cgi?id=13557">Bug 13557</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-02 05:52:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Done in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/32685" title="revision 32685 in SVN">r32685</a>.</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Pietrodn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-07 11:28:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why can't sysops use this on Wikimedia projects? I get a permission error when I go on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ARevisiondelete">Special:Revisiondelete</a>]]. Isn't it ready?</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Voyagerfan5761 / dgw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-07 13:48:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have a feeling that it's limited to bureaucrats. I haven't had a chance to see any documentation yet, but IIRC the default (commented-out) settings in DefaultSettings.php of MW 1.11.1 had the right assigned to bureaucrats.
+
+(In reply to <a href="show_bug.cgi?id=3576#c62">comment #62</a>)
+<span class="quote">&gt; Why can't sysops use this on Wikimedia projects? I get a permission error when
+&gt; I go on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ARevisiondelete">Special:Revisiondelete</a>]]. Isn't it ready?</span >
+&gt;</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aphaia</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-07 14:29:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Either bureaucrats seems not to be allowed. I tried it on jawikinews where I am a b'crat but said &quot;You are not allowed to execute the action you have requested.&quot; </pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Voyagerfan5761 / dgw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-07 14:33:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It could also be that the new core code simply hasn't been synchronized with the WMF servers yet. I keep hoping someone more knowledgeable will notice this thread and answer your questions, Aphaia and Pietrodn...</pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-07 15:43:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3576#c65">comment #65</a>)
+<span class="quote">&gt; It could also be that the new core code simply hasn't been synchronized with
+&gt; the WMF servers yet. I keep hoping someone more knowledgeable will notice this
+&gt; thread and answer your questions, Aphaia and Pietrodn...
+&gt; </span >
+
+Both. It is not synced, a schema change is pending. Also, it will be tested and reviewed more before being turned on.</pre>
+    </div><div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c67">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gregory Maxwell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-16 02:04:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looks like this got turned on shortly on EnWP because there are now revisions with non-zero rev-deleted and no clear way to get them out of this state: <a href="http://en.wikipedia.org/w/index.php?title=User:FT2/pdr&amp;action=history">http://en.wikipedia.org/w/index.php?title=User:FT2/pdr&amp;action=history</a>
+
+It was the intention that these revisions ultimately end up oversighted, but as it stands now oversight users have no way of viewing them. :)
+
+</pre>
+    </div><div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c68">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kevin Norris</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-24 03:34:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I can't find RevisionDelete at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AVersion">Special:Version</a>]], but the above links show it's working... am I blind?</pre>
+    </div><div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3576#c69">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ryan Schmidt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-24 03:40:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >you wouldn't find it at Special:Version because it is core functionality, not an extension. Only extensions are listed on that page</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3576&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3576">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3576">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3576">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3576&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3576" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3576&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419362223-kXkibd7F7h9WgUqs4UZaRnBgScDTrO3OmC-PSUUNwnw">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

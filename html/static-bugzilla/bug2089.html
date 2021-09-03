@@ -1,0 +1,2691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 2089 &ndash; Whitelist OASIS OpenDocument file format</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=2089&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=2089">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=2089">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=2089">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 2089 – Whitelist OASIS OpenDocument file format",  
+                             "show_bug.cgi?id=2089" );
+        document.title = "Bug 2089 – Whitelist OASIS OpenDocument file format";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 2089 – Whitelist OASIS OpenDocument file format", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_Wikimedia bz_component_General_Unknown bz_bug_2089 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-10-11 14:34:12 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-10-11 14:34:12">
+  <input type="hidden" name="longdesclength" value="52">
+  <input type="hidden" name="id" value="2089">
+  <input type="hidden" name="token" value="1419359958-11SbGnyWAHVi84kWfx9jRddYqGxR5TdH36epUUqv0bk">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=2089"><b>Bug&nbsp;2089</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Whitelist OASIS OpenDocument file format</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Whitelist OASIS OpenDocument file format
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Whitelist OASIS OpenDocument file format', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=2089">23 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=2089#vote_2089">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="https://commons.wikimedia.org/wiki/Commons_talk:File_types/Archive_1"><span title="https://commons.wikimedia.org/wiki/Commons_talk:File_types/Archive_1">https://commons.wikimedia.org/wiki/Co...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Enable OpenDocument formats upload for German Wikiversity"
+   href="show_bug.cgi?id=46977">46977</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=46977">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Implement JAR detection"
+   href="show_bug.cgi?id=24230">24230</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Add oasis opendocument and oo.o legacy document to mime.types"
+   href="show_bug.cgi?id=17497">17497</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Multimedia support (tracking)"
+   href="show_bug.cgi?id=42725">multimedia</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Commons uploads: Support automatic conversion of Microsoft Office to LibreOffice/OpenOffice.org formats"
+   href="show_bug.cgi?id=43154">43154</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Doc support (tracking)"
+   href="show_bug.cgi?id=43153">43153</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=2089&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=2089">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-05-06 11:00 UTC by <span class="vcard"><span class="fn">Guttorm Flatabø</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-10-11 14:34 UTC 
+      (<a href="show_activity.cgi?id=2089">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>28 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="adrienne.alix">adrienne.alix</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="Bryan.TongMinh">Bryan.TongMinh</option>
+                <option value="christof.hahn">christof.hahn</option>
+                <option value="cormaggio">cormaggio</option>
+                <option value="csteipp">csteipp</option>
+                <option value="dacuetu">dacuetu</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="ingo.thies">ingo.thies</option>
+                <option value="jayvdb">jayvdb</option>
+                <option value="jeanfrederic.wiki">jeanfrederic.wiki</option>
+                <option value="jeroenvrp">jeroenvrp</option>
+                <option value="juergen.fenn">juergen.fenn</option>
+                <option value="kelson">kelson</option>
+                <option value="lars">lars</option>
+                <option value="mail">mail</option>
+                <option value="mandavi">mandavi</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="michael.frey">michael.frey</option>
+                <option value="Platonides">Platonides</option>
+                <option value="qgil">qgil</option>
+                <option value="reschke.michael">reschke.michael</option>
+                <option value="rmh">rmh</option>
+                <option value="robert">robert</option>
+                <option value="sjekjr">sjekjr</option>
+                <option value="steinsplitter">steinsplitter</option>
+                <option value="ThomasBleher">ThomasBleher</option>
+                <option value="Ulf.Lunde">Ulf.Lunde</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Commons uploads: Support spreadsheet data format ODS"
+   href="show_bug.cgi?id=43151">43151</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - can't upload scribus file (.sla)"
+   href="show_bug.cgi?id=40504">40504</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PDF with OpenDocument embedded causes bad-zip"
+   href="show_bug.cgi?id=71954">71954</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=2089&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Guttorm Flatabø</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-06 11:00:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Currently (as far as I'm aware) you can upload OpenOffice.org 1.x files, at
+least with the extension &quot;.sxw&quot;. OpenOffice.org 2.x uses the new OASIS file
+format (see link). 
+
+The file upload whitelist should be extended to also include at least &quot;.odt&quot;
+(writer), and possibly also &quot;.odp&quot;, &quot;.odg&quot;, &quot;.odb&quot;.
+
+OpenOffice-documents are useful for providing presentations and promotions.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-07 13:49:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The trouble with file formats is MSIE. It tries to autodetect the file format of
+a file that it downloads. If it *looks* like HTML, MSIE will display it -
+executing the JavaScript that is in the file.
+
+To add a file format, there must be a way to check that the file really is using
+that format.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Iztok Jeras</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-03 15:38:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I am using OpenOffice.org to create figures on Wikibooks and there are many
+figures for a single book. I would like to upload .odg source files for those
+images, so that contributors could modify them.
+
+About the MSIE problem, OpenDocument files are compressed (they do not look like
+HTML), just unzip them and if there are no errors the file should be OK. If you
+are still concerned about the achieve content, they can be scanned for viruses...</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Raimond Spekking</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 20:05:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would be great to enable OASIS-fileformats for Commons at least. Storing all
+kind of documents that can be updated later would be a great benefit.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-09 13:54:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would suggest to *not* allow *any* styled text or presenation files on
+commons. text on wmf projects should generally be wikitext. That being said,
+having presentations and promotional material in those formats may make sense
+for meta, wikimediafoundation.org, wikimania sites, etc.
+
+just my 2p </pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Raimond Spekking</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-28 08:17:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Whitelist 7-zip files"
+   href="show_bug.cgi?id=9127">Bug 9127</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Christof Hahn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-28 08:23:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm a Author form Wikibooks Germany. In the last two months I start a project
+for schoolbooks. So the intent for this Project is to develop materials for
+teachers and pupils. So what we need is the support of the ODF-Format and a
+place where we can upload every raw material in every format where teacher can
+spend her existing learn materials. And of the other side we need the
+possibility to upload 7-Zip to bundle learning material. </pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">jeroenvrp</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-21 22:47:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think it's a good idea to disallow it on commons, but enable those file-formats by default and let the e.g. the wikipedia-projects by themselves decide if they want to allow those formats on their projects.
+
+Also don't forget the .ods-files (spreadsheets). 
+
+Jeroenvrp</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Patrick</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-03 01:52:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In includes/mime.types the line
+
+application/zip zip jar xpi  sxc stc  sxd std   sxi sti   sxm stm   sxw stw
+
+must be changed to
+
+application/zip zip jar xpi  sxc stc  sxd std   sxi sti   sxm stm   sxw stw  odt ods odp odg odf
+
+
+This really should be the default MediaWiki configuration. Not being able to upload the only standardised Office file format to the most common Wiki software is kind of strange...</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 00:14:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just a note -- the old StarOffice formats were disabled some time ago. OpenOffice (ODF) formats are enabled on our private/internal wikis, but not on the general wikis or in the MediaWiki default configuration.
+
+An additional note is we have no current way to validate uploaded files as being ODF.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Millan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 12:28:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c9">comment #9</a>)
+<span class="quote">&gt; Just a note -- the old StarOffice formats were disabled some time ago.
+&gt; OpenOffice (ODF) formats are [...]</span >
+
+Note that the division is not really StarOffice/OpenOffice.  Both were using the old formats before, and use OpenDocument now (along with a lot of other apps, since that was the point of standarising it).
+
+<span class="quote">&gt; An additional note is we have no current way to validate uploaded files as
+&gt; being ODF.</span >
+
+As long as the check is filename-based, this problem isn't introduced by adding &quot;odt ods odp odg odf&quot; to the list, since you can pass any kind of ZIP file as *.zip already.
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 19:24:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We don't allow .zip files. :)</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 22:38:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c9">comment #9</a>)
+<span class="quote">&gt; An additional note is we have no current way to validate uploaded files as
+&gt; being ODF.</span >
+
+
+That's not a reason for not enabling odf, we don't really validate many types (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - We do not reject mismatched file types on upload for many extensions. Ogg, pdf, mid, sx*, svg, xcf."
+   href="show_bug.cgi?id=10823">bug 10823</a>) 
+&lt;spam&gt;I am independently validating commons uploads at #commons-image-uploads2 (it isn't 
+so hard)&lt;/spam&gt; and by allowing odf (at big projects), it wouldn't be that hard, 
+just like pdfs: you need to manually review all of them and delete almost everyone.
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 23:02:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Currently allowed formats on Commons are:
+
+png, gif, jpg, jpeg, xcf, pdf, mid, ogg, svg, djvu
+
+I'm fairly certain we do at least magic-number signature validation on all of those now. PNG, GIF, and JPEG are run through a simple header sanity check. SVG is checked for XML well-formedness. DJVU is I believe checked for metadata validity, though I don't recall the details.
+</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Reschke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 23:52:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, at the German Wikiversity we would need OASIS-files to upload editable documents and presentations. OASIS-Files at Commons would make our work much easier.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Millan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-29 10:33:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >
+You can use odt2txt (<a href="http://stosberg.net/odt2txt/">http://stosberg.net/odt2txt/</a>) for validation:
+
+$ odt2txt hello.odt
+
+  Hello
+
+$ echo $?
+0
+$ zip test.zip hello.odt
+updating: hello.odt (deflated 19%)
+$ odt2txt test.zip
+Can't read from test.zip: Is it an OpenDocument Text?
+$ echo $?
+1
+
+
+It appears to work with the other types as well:
+
+$ odt2txt hello.odp
+
+  Hello
+
+  This is a text
+
+HTH
+</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Frey</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-29 10:54:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c15">comment #15</a>)
+<span class="quote">&gt; You can use odt2txt (<a href="http://stosberg.net/odt2txt/">http://stosberg.net/odt2txt/</a>) for validation:</span >
+
+That does only verify that there is text, but it doesn't warn for macros or other files that are included but not relate in the odt file.
+
+(Else some could have the genius idea to upload the odt file that contain a macro virus or contain pictures with forbidden content and use the WMF servers to share them. Users that know the hidden content can simply rename and extract the file and get so the hidden content, other users don't see it and think it's a normall text, but also get the pictures withforbidden content.)
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Millan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-29 11:30:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c16">comment #16</a>)
+
+Or someone could use a program featuring steganography techniques (<a href="http://en.wikipedia.org/wiki/Steganography#Implementations">http://en.wikipedia.org/wiki/Steganography#Implementations</a>) to embed forbidden content in a PNG.
+
+As for the macro virus, proper sandboxing is expected to be present.  If it isn't, that's an implementation bug.
+</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ingo Thies</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-02 13:37:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c4">comment #4</a>)
+<span class="quote">&gt; I would suggest to *not* allow *any* styled text or presenation files on
+&gt; commons. text on wmf projects should generally be wikitext. That being said,
+&gt; having presentations and promotional material in those formats may make sense
+&gt; for meta, wikimediafoundation.org, wikimania sites, etc.</span >
+
+Please keep in mind that OpenOffice.org file types also include spreadsheets (*.ods) that can be used not only for presentation but also as an interactive calculation tool. The author defines a &quot;user area&quot; within a sheet where the user can enter parameters based on which calculations on a scientific topic is done. For example, you can write a sheet that calculates, tabulates and/or plots the pressure, temperature and density of the atmosphere in a user-defined altitude for the standard atmosphere, or orbital parameters of satellites or any other kind of scientific or technical stuff. In contrast to most other file types (and as far as I know all file types currently allowed on Commons) spreadsheets can be used *interactively*, which can be a great improvement for many science-related Wikipedia articles. Furthermore, I do not really see a reason for *not* allowing any styled context. The existence of wikitext IMHO does not strictly imply all other text formats being invalid. Please also remember that ODF is now an ISO standard.
+
+Therefore I would strongly suggest to allow Open Dodument Format in general, but at least Open Document Sheets (*.ods).
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Millan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-02 18:38:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c18">comment #18</a>)
+<span class="quote">&gt; 
+&gt; Please keep in mind that OpenOffice.org file types [...]</span >
+
+Please, try to avoid confusing ODF with OpenOffice.org.  There are many applications supporting ODF independently, and OpenOffice.org is just one of them (see <a href="http://boycottnovell.com/2008/01/20/odf-is-not-openoffice-org/">http://boycottnovell.com/2008/01/20/odf-is-not-openoffice-org/</a>).
+
+<span class="quote">&gt; [...]. Please also
+&gt; remember that ODF is now an ISO standard.</span >
+
+which unfortunately doesn't mean much anymore.  Even OOXML which not even Microsoft themselves (<a href="http://www.fanaticattack.com/2008/ooxml-questions-microsoft-cannot-answer-in-geneva.html#comment-220">http://www.fanaticattack.com/2008/ooxml-questions-microsoft-cannot-answer-in-geneva.html#comment-220</a>) have implemented can get its own ISO stamp.
+
+IMHO, what's important is that any vendor can implement ODF, and the wide availability of ODF support in applications:
+
+<a href="http://en.wikipedia.org/wiki/OpenDocument_software#Current_support">http://en.wikipedia.org/wiki/OpenDocument_software#Current_support</a>
+</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ingo Thies</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-29 13:20:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c19">comment #19</a>)
+
+<span class="quote">&gt; Please, try to avoid confusing ODF with OpenOffice.org.  There are many
+&gt; applications supporting ODF independently, and OpenOffice.org is just one of
+&gt; them (see <a href="http://boycottnovell.com/2008/01/20/odf-is-not-openoffice-org/">http://boycottnovell.com/2008/01/20/odf-is-not-openoffice-org/</a>).</span >
+
+You are right, I sometimes mix them up, because I am using ODF mainly via OpenOffice.org.
+
+<span class="quote">&gt; IMHO, what's important is that any vendor can implement ODF, and the wide
+&gt; availability of ODF support in applications:
+&gt; 
+&gt; <a href="http://en.wikipedia.org/wiki/OpenDocument_software#Current_support">http://en.wikipedia.org/wiki/OpenDocument_software#Current_support</a></span >
+
+That's fully true. But as mentioned above, the major benefit for Wikipedia (where formatted content seems to be frowned upon unless the format is Wikitext and Wikitable etc.) would be the ability of interactive use at least for Open Document Spreadsheets (ODS). Allowing the upload of self-written source codes in common programming languages would also have the effect of allowing interactivity, but ODS allows interactivity in a very transparent and easy-to-use way. The following example (a zipped Excel spreadsheet, however) might explain what I mean:
+
+<a href="http://nuclearweaponarchive.org/Library/Nukexls.zip">http://nuclearweaponarchive.org/Library/Nukexls.zip</a>
+
+Such sheets, also including graphs, could be used for an interactive illustration of (not only) many physical and techical topics without forcing the user to type the formulas by him/herself.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Cormac Lawler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-29 21:48:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As mentioned above, having greater possibility for interactivity in files would greatly benefit Wikiversity. Particularly for presentations, but also for image files, spreadsheets (data), and others. On opposition to this proposal, are there fears around certain formats on certain sites? If so, perhaps projects could draw up a list of filetypes which would be useful, and provide a rationale for them to be (selectively) whitelisted.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Leverington</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-01 15:33:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c21">comment #21</a>)
+<span class="quote">&gt; As mentioned above, having greater possibility for interactivity in files would
+&gt; greatly benefit Wikiversity. Particularly for presentations, but also for image
+&gt; files, spreadsheets (data), and others. On opposition to this proposal, are
+&gt; there fears around certain formats on certain sites? If so, perhaps projects
+&gt; could draw up a list of filetypes which would be useful, and provide a
+&gt; rationale for them to be (selectively) whitelisted.
+&gt; </span >
+
+The main issue is that OASIS files can contains malicious content. Letting these be uploaded without validation would be undesirable, and as of yet (AFAIK) there is no OASIS validation interface for MediaWiki.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-01 21:45:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Can you elaborate what malicious content do you refer? Zip files being uploaded as odf? Documents with embedded macros?</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Leverington</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-01 21:47:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c23">comment #23</a>)
+<span class="quote">&gt; Can you elaborate what malicious content do you refer? Zip files being uploaded
+&gt; as odf? Documents with embedded macros?
+&gt; </span >
+
+Macros are the main issue, they are XML so running it through a basic XML parser would eliminate any Zip issue.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Leverington</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-01 21:49:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c24">comment #24</a>)
+<span class="quote">&gt; Macros are the main issue, they are XML so running it through a basic XML
+&gt; parser would eliminate any Zip issue.
+&gt; </span >
+
+Ignore the zip bit, they can be compressed -- as I have just found out.
+</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-01 22:13:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Seems macros are at &lt;script&gt; elements (&lt;text:script&gt;, &lt;office:script&gt;...) so doesn't look too hard.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mandavi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-11-06 17:16:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sun published the ODF Validator. It &quot;is a tool that validates OpenDocument files and checks them for certain conformance criteria.&quot; That sounds like the tool we need.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Millan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-11-06 17:34:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Unfortunately, with ISO's downfall in the IT sector, being an ISO standard is become less and less meaningful.  I'm removing the &quot;ISO&quot; bits from bug title (which IIRC I added myself a while ago).</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Lars Aronsson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-11-19 13:12:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In a posting to wikitech-l, Brion Vibber elaborated on what's needed in an ODF validator,
+<a href="http://lists.wikimedia.org/pipermail/wikitech-l/2008-November/040246.html">http://lists.wikimedia.org/pipermail/wikitech-l/2008-November/040246.html</a>
+
+Brion said:
+
+we have a basic file type check to confirm
+that the file really thinks its an ODF of the appropriate extension, but
+not yet checks to confirm there's not evil Java classes also sitting in
+the ZIP etc.) [...]
+
+There's an optional zip extension for PHP which should include support
+for listing out the ZIP file directory; however since this isn't
+included in PHP by default it might be nice to be able to read the
+directory independently without the extension for general MediaWiki
+installs. (It shouldn't be necessary to actually decompress anything for
+our purposes here -- we're mainly looking for subfiles not expected in
+an ODF, particularly Java classes that could be used for a session attack.)
+
+</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jan Kucera (Kozuch)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-30 09:15:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Related reading: <a href="http://strategy.wikimedia.org/wiki/Proposal:Endorse_OpenDocument_format_or_XWiki_OfficeImporter">http://strategy.wikimedia.org/wiki/Proposal:Endorse_OpenDocument_format_or_XWiki_OfficeImporter</a></pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">SJ</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-09 18:03:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, please.  
+
+Asking people to use a secondary file-hosting system for materials they are uploading for use with wikiversity or wikibooks projects is embarrassing, and gets moreso every year.
+
+People who are trying to use Commons (for classes or other collaborative-knowledge projects) commonly work with these standard formats; asking them to convert things to/from PDF is quite difficult considering the scarcity of freely-licensed PDF-editing tools.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-11-19 21:27:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug may have been fixed in the mean time (In particular, I had the impression that Tim did work on allowing zip based formats to be uploaded safely). Tagging testme. [Note <a href="show_bug.cgi?id=2089#c31">comment 31</a>: Fixing this bug, and enabling on Wikimedia are two different things].
+
+Then again <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki incorrectly detects OOXML types of files saved by OpenOffice"
+   href="show_bug.cgi?id=35607">bug 35607</a> appears to suggest our support for open doc is broken (?).</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex Monk</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-07 00:23:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Enable OpenDocument formats upload for German Wikiversity"
+   href="show_bug.cgi?id=46977">Bug 46977</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Juergen Fenn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-07 00:43:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks for including my request for enabling ODF upload for German Wikiversity. 
+
+Could you please indicate whether we are running any chance to have ODF upload implemented in the near future? 
+
+I would like to hand on the message to the German Wikiversity community ASAP. 
+
+Thx!</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-07 01:07:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c34">comment #34</a>)
+<span class="quote">&gt; Could you please indicate whether we are running any chance to have ODF
+&gt; upload
+&gt; implemented in the near future? </span >
+
+No. (Although I'd like to say the contrary.)</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jean-Fred</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-28 09:55:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See the links from &lt;<a href="http://lists.wikimedia.org/pipermail/wikitech-l/2012-April/059837.html">http://lists.wikimedia.org/pipermail/wikitech-l/2012-April/059837.html</a>&gt;
+
+And the discussion at &lt;<a href="https://commons.wikimedia.org/wiki/Commons:Village_pump/Archive/2012/03#Enabling_upload_of_ZIP_types.2C_such_as_MS_Office_or_OpenOffice">https://commons.wikimedia.org/wiki/Commons:Village_pump/Archive/2012/03#Enabling_upload_of_ZIP_types.2C_such_as_MS_Office_or_OpenOffice</a>&gt;
+
+It was stated that, with the resolution of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Implement JAR detection"
+   href="show_bug.cgi?id=24230">bug 24230</a>, « Uploads of ZIP types, such as MS Office or OpenOffice can now be safely enabled. A ZIP file reader was added which can scan a ZIP file for potentially dangerous Java applets. This allows applets to be blocked specifically, rather than all ZIP files being blocked. »
+
+I have asked the question in several places and answers are both unclear and sometimes contradictory. Some have pointed out that concerns lie still with:
+* Potential embedded macros
+* Validation that it is actually ODF
+
+Are these concerns valid? If not, what is missing to allow ODF upload on projects?</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-28 10:46:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If nobody comes up with concrete concerns, would it be a valid proposal to just try and see how it goes, fixing problems as they come up?
+
+PDF files are not exempt from problems either, we often have some with viruses; but most of them are deleted quickly and the others we found thanks to your.org running antivirus software on their copy.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-28 16:19:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c36">comment #36</a>)
+<span class="quote">&gt; See the links from
+&gt; &lt;<a href="http://lists.wikimedia.org/pipermail/wikitech-l/2012-April/059837.html">http://lists.wikimedia.org/pipermail/wikitech-l/2012-April/059837.html</a>&gt;
+&gt; 
+&gt; And the discussion at
+&gt; &lt;<a href="https://commons.wikimedia.org/wiki/Commons:Village_pump/Archive/2012/">https://commons.wikimedia.org/wiki/Commons:Village_pump/Archive/2012/</a>
+&gt; 03#Enabling_upload_of_ZIP_types.2C_such_as_MS_Office_or_OpenOffice&gt;
+&gt; 
+&gt; It was stated that, with the resolution of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Implement JAR detection"
+   href="show_bug.cgi?id=24230">bug 24230</a>, « Uploads of ZIP types,
+&gt; such as MS Office or OpenOffice can now be safely enabled. A ZIP file reader
+&gt; was added which can scan a ZIP file for potentially dangerous Java applets.
+&gt; This allows applets to be blocked specifically, rather than all ZIP files
+&gt; being
+&gt; blocked. »
+&gt; 
+&gt; I have asked the question in several places and answers are both unclear and
+&gt; sometimes contradictory. Some have pointed out that concerns lie still with:
+&gt; * Potential embedded macros
+&gt; * Validation that it is actually ODF
+&gt; 
+&gt; Are these concerns valid? If not, what is missing to allow ODF upload on
+&gt; projects?</span >
+
+The zip reader prevents someone from uploading an ODF file that's really a java archive, which was a pretty big security vulnrability. (It also would prevent those hacks where people make combined ODF/PDF files).
+
+It does not prevent embedded macros, nor does it validate the file is an ODF file (beyond some very superficial checks. It would prevent someone from accidentally uploading another format. It would not prevent someone intentionally uploading a non-odf format that they've tweaked to slightly look like an ODF file)
+
+Whether or not this is an acceptable situation (I consider the macro virus possibility a little scary. Platonides suggestion in <a href="show_bug.cgi?id=2089#c26">comment 26</a> may be something we should look into) is probably a matter that's up to debate. I've cc'd Chris Steipp, as he probably has some thoughts on this, and would probably have the final word on if ODF upload is acceptable.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chris Steipp</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-29 00:11:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The major threats I'm most concerned with are these attachments opening up and xss by causing the browser to think it's html, java applet, swf, etc.
+
+So if it correctly unzips to something that validates as an odf, and the binary is checked to make sure sniffing wont think it's html, or another mime type, then we can probably enable this. Bawolff, could you confirm that's what it does?
+
+The macro / embedded virus threat is definitely a danger to our users, but we currently do not scan incoming binaries (as Nemo pointed out, we have plenty of pdfs with hostile code already).</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-08-29 03:46:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c39">comment #39</a>)
+<span class="quote">&gt; The major threats I'm most concerned with are these attachments opening up
+&gt; and
+&gt; xss by causing the browser to think it's html, java applet, swf, etc.
+&gt; 
+&gt; So if it correctly unzips to something that validates as an odf, and the
+&gt; binary
+&gt; is checked to make sure sniffing wont think it's html, or another mime type,
+&gt; then we can probably enable this. Bawolff, could you confirm that's what it
+&gt; does?</span >
+
+I believe that is correct.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-10 07:32:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >OSM added odp a minute ago: <a href="https://trac.openstreetmap.org/ticket/3323#comment:2">https://trac.openstreetmap.org/ticket/3323#comment:2</a>
+So, there are no blockers left here AFAICS, but we also have a guinea pig.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jean-Fred</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-21 17:30:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So per Chris &amp; Brian comments, there are no security concerns blocking this?
+
+If so, the &quot;editorial&quot; question is left on whether we want this on Wikimedia Commons or on Meta. I am more than willing to open a discussion over there, if that’s the last thing missing.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steinsplitter</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-05 15:30:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Community consensus?</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-05 17:01:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >At a MediaWiki community level this looks like a consensus, yes. This report is at a point where no technical/legal obstacles are left.
+
+Now, about deployment in Wikimedia... This is a Commons discussion. There is the right place to decide whether OpenDocument files belong to their domain (just like PDFs) or not. If they agree, then the related file extension can be enabled there. If they disagree... we can meet here again to discuss the next step.
+
+Does this make sense? If so, can someone familiar with the Commons project share the news there, please?</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-05 17:19:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c42">comment #42</a>)
+<span class="quote">&gt; I am more than willing to open a discussion over there,
+&gt; if
+&gt; that’s the last thing missing.</span >
+
+Jean-Fred, per Quim it is, so please go ahead, yes.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jean-Fred</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-05 17:23:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2089#c45">comment #45</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=2089#c42">comment #42</a>)
+&gt; &gt; I am more than willing to open a discussion over there,
+&gt; &gt; if
+&gt; &gt; that’s the last thing missing.
+&gt; 
+&gt; Jean-Fred, per Quim it is, so please go ahead, yes.</span >
+
+Good. I’ll open a community consultation soonish.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dacuetu
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-19 07:46:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >What was the result of this? It might affect this rfc
+<a href="https://meta.wikimedia.org/wiki/Requests_for_comment/How_to_deal_with_open_datasets">https://meta.wikimedia.org/wiki/Requests_for_comment/How_to_deal_with_open_datasets</a></pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-26 07:43:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >What's concretely the configuration setting needed here?
+
+(In reply to Jean-Fred from <a href="show_bug.cgi?id=2089#c46">comment #46</a>)
+<span class="quote">&gt; Good. I’ll open a community consultation soonish.</span >
+
+Ping.
+
+(In reply to dacuetu from <a href="show_bug.cgi?id=2089#c47">comment #47</a>)
+<span class="quote">&gt; What was the result of this? </span >
+
+Consensus for OpenDocument has always been given for granted: in the innumerable discussions about it I don't recall ever finding an opposer. There are for instance a dozen supporters just in <a href="https://commons.wikimedia.org/wiki/Commons_talk:File_types/Archive_1">https://commons.wikimedia.org/wiki/Commons_talk:File_types/Archive_1</a> (several sections; nobody bothered +1 what was obvious).</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-26 07:45:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Also, <a href="https://commons.wikimedia.org/wiki/Commons:Project_scope/Allowable_file_types">https://commons.wikimedia.org/wiki/Commons:Project_scope/Allowable_file_types</a> is apolicy and states the formats are allowed by policy, just blocked on technical reasons. «SXW, SWC, SXD, and SXI (OpenOffice.org 1.x), as well as ODT, ODS, ODG, and ODP (OpenDocument) are theoretically permissible. Marking this shell; more discussion is always possible but not necessary.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jean-Fred</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-06 14:09:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Nemo from <a href="show_bug.cgi?id=2089#c48">comment #48</a>)
+<span class="quote">&gt; What's concretely the configuration setting needed here?
+&gt; 
+&gt; (In reply to Jean-Fred from <a href="show_bug.cgi?id=2089#c46">comment #46</a>)
+&gt; &gt; Good. I’ll open a community consultation soonish.
+&gt; 
+&gt; Ping.</span >
+
+Thanks for the ping, I completely forgot about this. This is now opened at <a href="https://commons.wikimedia.org/wiki/Commons:Village_pump/Proposals#Support_for_OpenDocument_file_format_upload">https://commons.wikimedia.org/wiki/Commons:Village_pump/Proposals#Support_for_OpenDocument_file_format_upload</a>
+
+<span class="quote">&gt; 
+&gt; (In reply to dacuetu from <a href="show_bug.cgi?id=2089#c47">comment #47</a>)
+&gt; &gt; What was the result of this? 
+&gt; 
+&gt; Consensus for OpenDocument has always been given for granted: in the
+&gt; innumerable discussions about it I don't recall ever finding an opposer.
+&gt; There are for instance a dozen supporters just in
+&gt; <a href="https://commons.wikimedia.org/wiki/Commons_talk:File_types/Archive_1">https://commons.wikimedia.org/wiki/Commons_talk:File_types/Archive_1</a>
+&gt; (several sections; nobody bothered +1 what was obvious).</span >
+
+Hmmmm, indeed. Well, let's make it super clear :)</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2089#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Mark Vandenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-11 14:34:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So the result was 'interested, but no consensus' due to the need to have media preview for this format and concerns that these uploaded documents may contain
+* macros/scripts, which may be malicious
+* embedded typefaces, which may be non-free
+
+<a href="https://commons.wikimedia.org/wiki/Commons:Village_pump/Proposals/Archive/2014/07#Support_for_OpenDocument_file_format_upload">https://commons.wikimedia.org/wiki/Commons:Village_pump/Proposals/Archive/2014/07#Support_for_OpenDocument_file_format_upload</a>
+
+In that discussion, PDF with OpenDocument embedded was raised as a bug and possible way forward, as we already have PDF preview support, so I have created <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PDF with OpenDocument embedded causes bad-zip"
+   href="show_bug.cgi?id=71954">bug 71954</a> for that.
+
+We will also need bugs for detecting macros/scripts and embedded typefaces, and <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Add oasis opendocument and oo.o legacy document to mime.types"
+   href="show_bug.cgi?id=17497">bug 17497</a> probably needs to be solved first.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=2089&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=2089">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=2089">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=2089">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=2089&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=2089" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=2089&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419359959-CC64_931mUeY9zPtckKAXHsTU6uzn04t-7B6juXSqYU">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

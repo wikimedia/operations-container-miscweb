@@ -1,0 +1,1486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1933 &ndash; ugly urls don't work (title &amp; action parameters ignored) [IIS]</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1933&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1933">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1933">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1933">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1933 – ugly urls don\'t work (title & action parameters ignored) [IIS]",  
+                             "show_bug.cgi?id=1933" );
+        document.title = "Bug 1933 – ugly urls don\'t work (title & action parameters ignored) [IIS]";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1933 – ugly urls don\'t work (title & action parameters ignored) [IIS]", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Interface bz_bug_1933 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 15:33:26 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 15:33:26">
+  <input type="hidden" name="longdesclength" value="7">
+  <input type="hidden" name="id" value="1933">
+  <input type="hidden" name="token" value="1419359717-1rNO_svUiSpFzKf5pFOq6vmbgExeC0X8vsLnuq4XNkk">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1933"><b>Bug&nbsp;1933</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">ugly urls don't work (title &amp; action parameters ignored) [IIS]</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>ugly urls don't work (title &amp; action parameters ignored) [IIS]
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('ugly urls don\'t work (title & action parameters ignored) [IIS]', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Interface
+    
+    (<a href="buglist.cgi?component=Interface&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.4.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">PC
+       Windows Server 2003
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       major<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1933#vote_1933">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1933&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1933">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-04-20 10:02 UTC by <span class="vcard"><span class="fn">Daniel Fabian</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 15:33 UTC 
+      (<a href="show_activity.cgi?id=1933">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>0 
+          users
+        <div id="cc_edit_area">
+          <br>
+        </div>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=1933&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Fabian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:02:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello!
+
+I have troubles with getting MediaWiki to work: The installation worked like a
+charm, but using it is not possible, as ugly urls (with title and action as GET
+parameters) are simply ignored. New URLS (index.php/Main_Page) are fine, but I
+can't log in, as the login link
+(/index.php?title=Special:Userlogin&amp;returnto=Main_Page) simple goes to the Main
+page. The problem seems to be that the title argument is not correctly read from
+the URL (as is the action argument).
+
+I use the following setup:
+- MediaWiki 1.4.1
+- PHP 4.3.11
+- IIS 6
+- MySQL 4.1.7-nt
+
+Thanks for any pointers,
+Daniel</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:05:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is PHP installed as FastCGI or an ISAPI module?
+
+Can you provide phpinfo() output?</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Fabian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:15:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sure! Here you are:
+
+
+PHP Version 4.3.11
+
+System 	Windows NT CompanySERVER 5.2 build 3790
+Build Date 	Mar 30 2005 17:32:35
+Server API 	ISAPI
+Virtual Directory Support 	enabled
+Configuration File (php.ini) Path 	C:\Programme\Services\php-4.3.11-Win32\php.ini
+PHP API 	<a href="https://gerrit.wikimedia.org/r/#q,20020918,n,z" title="Git commit 20020918">20020918</a>
+PHP Extension 	<a href="https://gerrit.wikimedia.org/r/#q,20020429,n,z" title="Git commit 20020429">20020429</a>
+Zend Extension 	<a href="https://gerrit.wikimedia.org/r/#q,20021010,n,z" title="Git commit 20021010">20021010</a>
+Debug Build 	no
+Thread Safety 	enabled
+Registered PHP Streams 	php, http, ftp, compress.zlib
+
+Zend logo This program makes use of the Zend Scripting Language Engine:
+Zend Engine v1.3.0, Copyright (c) 1998-2004 Zend Technologies
+
+PHP Credits
+Configuration
+PHP Core
+Directive	Local Value	Master Value
+allow_call_time_pass_reference	On	On
+allow_url_fopen	On	On
+always_populate_raw_post_data	Off	Off
+arg_separator.input	&amp;	&amp;
+arg_separator.output	&amp;	&amp;
+asp_tags	Off	Off
+auto_append_file	no value	no value
+auto_prepend_file	no value	no value
+browscap	no value	no value
+default_charset	no value	no value
+default_mimetype	text/html	text/html
+define_syslog_variables	Off	Off
+disable_classes	no value	no value
+disable_functions	no value	no value
+display_errors	On	On
+display_startup_errors	Off	Off
+doc_root	no value	no value
+docref_ext	no value	no value
+docref_root	no value	no value
+enable_dl	On	On
+error_append_string	no value	no value
+error_log	no value	no value
+error_prepend_string	no value	no value
+error_reporting	2047	2047
+expose_php	On	On
+extension_dir	./	./
+file_uploads	On	On
+gpc_order	GPC	GPC
+highlight.bg	#FFFFFF	#FFFFFF
+highlight.comment	#FF8000	#FF8000
+highlight.default	#0000BB	#0000BB
+highlight.html	#000000	#000000
+highlight.keyword	#007700	#007700
+highlight.string	#DD0000	#DD0000
+html_errors	On	On
+ignore_repeated_errors	Off	Off
+ignore_repeated_source	Off	Off
+ignore_user_abort	Off	Off
+implicit_flush	Off	Off
+include_path	.;c:\php4\pear	.;c:\php4\pear
+log_errors	Off	Off
+log_errors_max_len	1024	1024
+magic_quotes_gpc	On	On
+magic_quotes_runtime	Off	Off
+magic_quotes_sybase	Off	Off
+max_execution_time	30	30
+max_input_time	60	60
+open_basedir	no value	no value
+output_buffering	no value	no value
+output_handler	no value	no value
+post_max_size	8M	8M
+precision	12	12
+register_argc_argv	On	On
+register_globals	On	On
+report_memleaks	On	On
+safe_mode	Off	Off
+safe_mode_exec_dir	no value	no value
+safe_mode_gid	Off	Off
+safe_mode_include_dir	no value	no value
+sendmail_from	no value	no value
+sendmail_path	no value	no value
+serialize_precision	100	100
+short_open_tag	On	On
+SMTP	localhost	localhost
+smtp_port	25	25
+sql.safe_mode	Off	Off
+track_errors	Off	Off
+unserialize_callback_func	no value	no value
+upload_max_filesize	2M	2M
+upload_tmp_dir	no value	no value
+user_dir	no value	no value
+variables_order	EGPCS	EGPCS
+xmlrpc_error_number	0	0
+xmlrpc_errors	Off	Off
+y2k_compliance	On	On
+
+ISAPI
+Server Variable	Value
+CONTENT_LENGTH 	0
+PATH_TRANSLATED 	C:\Inetpub\intranet\info.php
+REMOTE_ADDR 	192.168.105.86
+REMOTE_HOST 	192.168.105.86
+REQUEST_METHOD 	GET
+SERVER_NAME 	intranet
+SERVER_PORT 	80
+SERVER_PROTOCOL 	HTTP/1.1
+SERVER_SOFTWARE 	Microsoft-IIS/6.0
+APPL_MD_PATH 	/LM/W3SVC/599050834/Root
+APPL_PHYSICAL_PATH 	C:\Inetpub\intranet\
+INSTANCE_ID 	<a href="https://gerrit.wikimedia.org/r/#q,599050834,n,z" title="Git commit 599050834">599050834</a>
+INSTANCE_META_PATH 	/LM/W3SVC/599050834
+URL 	/info.php
+ALL_HTTP 	HTTP_CONNECTION:keep-alive HTTP_KEEP_ALIVE:300
+HTTP_ACCEPT:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+HTTP_ACCEPT_CHARSET:ISO-8859-1,utf-8;q=0.7,*;q=0.7
+HTTP_ACCEPT_ENCODING:gzip,deflate HTTP_ACCEPT_LANGUAGE:en-us,en;q=0.5
+HTTP_COOKIE:last_loginid=dfa; last_domain=default HTTP_HOST:intranet
+HTTP_USER_AGENT:Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.7)
+Gecko/20050414 Firefox/1.0.3
+HTTPS 	off
+SCRIPT_NAME 	/info.php
+SERVER_PORT_SECURE 	0
+
+bcmath
+BCMath support 	enabled
+
+calendar
+Calendar support 	enabled
+
+com
+Directive	Local Value	Master Value
+com.allow_dcom	Off	Off
+com.autoregister_casesensitive	On	On
+com.autoregister_typelib	Off	Off
+com.autoregister_verbose	Off	Off
+com.typelib_file	no value	no value
+
+ctype
+ctype functions 	enabled
+
+ftp
+FTP support 	enabled
+
+mysql
+MySQL Support	enabled
+Active Persistent Links 	1
+Active Links 	1
+Client API version 	3.23.49
+
+Directive	Local Value	Master Value
+mysql.allow_persistent	On	On
+mysql.connect_timeout	60	60
+mysql.default_host	no value	no value
+mysql.default_password	no value	no value
+mysql.default_port	no value	no value
+mysql.default_socket	no value	no value
+mysql.default_user	no value	no value
+mysql.max_links	Unlimited	Unlimited
+mysql.max_persistent	Unlimited	Unlimited
+mysql.trace_mode	Off	Off
+
+odbc
+ODBC Support	enabled
+Active Persistent Links 	0
+Active Links 	0
+ODBC library 	Win32
+
+Directive	Local Value	Master Value
+odbc.allow_persistent	On	On
+odbc.check_persistent	On	On
+odbc.default_db	no value	no value
+odbc.default_pw	no value	no value
+odbc.default_user	no value	no value
+odbc.defaultbinmode	return as is	return as is
+odbc.defaultlrl	return up to 4096 bytes	return up to 4096 bytes
+odbc.max_links	Unlimited	Unlimited
+odbc.max_persistent	Unlimited	Unlimited
+
+overload
+User-Space Object Overloading Support 	enabled
+
+pcre
+PCRE (Perl Compatible Regular Expressions) Support 	enabled
+PCRE Library Version 	4.5 01-December-2003
+
+session
+Session Support 	enabled
+Registered save handlers 	files user
+
+Directive	Local Value	Master Value
+session.auto_start	Off	Off
+session.bug_compat_42	On	On
+session.bug_compat_warn	On	On
+session.cache_expire	180	180
+session.cache_limiter	nocache	nocache
+session.cookie_domain	no value	no value
+session.cookie_lifetime	0	0
+session.cookie_path	/	/
+session.cookie_secure	Off	Off
+session.entropy_file	no value	no value
+session.entropy_length	0	0
+session.gc_divisor	100	100
+session.gc_maxlifetime	1440	1440
+session.gc_probability	1	1
+session.name	PHPSESSID	PHPSESSID
+session.referer_check	no value	no value
+session.save_handler	files	files
+session.save_path	no value	no value
+session.serialize_handler	php	php
+session.use_cookies	On	On
+session.use_only_cookies	Off	Off
+session.use_trans_sid	Off	Off
+
+standard
+Regex Library 	Bundled library enabled
+Dynamic Library Support 	enabled
+Internal Sendmail Support for Windows 	enabled
+
+Directive	Local Value	Master Value
+assert.active	1	1
+assert.bail	0	0
+assert.callback	no value	no value
+assert.quiet_eval	0	0
+assert.warning	1	1
+auto_detect_line_endings	0	0
+default_socket_timeout	60	60
+safe_mode_allowed_env_vars	PHP_	PHP_
+safe_mode_protected_env_vars	LD_LIBRARY_PATH	LD_LIBRARY_PATH
+url_rewriter.tags	a=href,area=href,frame=src,input=src,form=,fieldset=
+a=href,area=href,frame=src,input=src,form=,fieldset=
+user_agent	no value	no value
+
+tokenizer
+Tokenizer Support 	enabled
+
+wddx
+WDDX Support	enabled
+WDDX Session Serializer 	enabled
+
+xml
+XML Support 	active
+XML Namespace Support 	active
+EXPAT Version 	1.95.6
+
+zlib
+ZLib Support 	enabled
+Compiled Version 	1.1.4
+Linked Version 	1.1.4
+
+Directive	Local Value	Master Value
+zlib.output_compression	Off	Off
+zlib.output_compression_level	-1	-1
+zlib.output_handler	no value	no value
+
+Additional Modules
+Module Name
+
+Environment
+Variable	Value
+ALLUSERSPROFILE 	C:\Dokumente und Einstellungen\All Users
+ClusterLog 	C:\WINDOWS\Cluster\cluster.log
+CommonProgramFiles 	C:\Programme\Gemeinsame Dateien
+COMPUTERNAME 	CompanySERVER
+ComSpec 	C:\WINDOWS\system32\cmd.exe
+NUMBER_OF_PROCESSORS 	2
+OS 	Windows_NT
+Path 	C:\Programme\Windows Resource
+Kits\Tools\;C:\Programme\Perl\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Programme\Microsoft
+SQL Server\80\Tools\Binn\;C:\Programme\Sonic\MyDVD;c:\programme\services\mysql\bin
+PATHEXT 	.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH
+PROCESSOR_ARCHITECTURE 	x86
+PROCESSOR_IDENTIFIER 	x86 Family 15 Model 2 Stepping 9, GenuineIntel
+PROCESSOR_LEVEL 	15
+PROCESSOR_REVISION 	0209
+ProgramFiles 	C:\Programme
+SBSProgramDir 	C:\Programme\Microsoft Windows Small Business Server
+SystemDrive 	C:
+SystemRoot 	C:\WINDOWS
+TEMP 	C:\WINDOWS\TEMP
+TMP 	C:\WINDOWS\TEMP
+USERPROFILE 	C:\Dokumente und Einstellungen\NetworkService
+windir 	C:\WINDOWS
+winsbprogramdir 	C:\Programme\Windows for Small Business Server
+
+PHP Variables
+Variable	Value
+PHP_SELF 	/info.php
+_REQUEST[&quot;last_loginid&quot;]	user
+_REQUEST[&quot;last_domain&quot;]	default
+_COOKIE[&quot;last_loginid&quot;]	user
+_COOKIE[&quot;last_domain&quot;]	default
+_SERVER[&quot;ALL_HTTP&quot;]	HTTP_CONNECTION:keep-alive HTTP_KEEP_ALIVE:300
+HTTP_ACCEPT:text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+HTTP_ACCEPT_CHARSET:ISO-8859-1,utf-8;q=0.7,*;q=0.7
+HTTP_ACCEPT_ENCODING:gzip,deflate HTTP_ACCEPT_LANGUAGE:en-us,en;q=0.5
+HTTP_COOKIE:last_loginid=user; last_domain=default HTTP_HOST:intranet
+HTTP_USER_AGENT:Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.7)
+Gecko/20050414 Firefox/1.0.3
+_SERVER[&quot;HTTPS&quot;]	off
+_SERVER[&quot;SCRIPT_NAME&quot;]	/info.php
+_SERVER[&quot;HTTP_COOKIE&quot;]	last_loginid=user; last_domain=default
+_SERVER[&quot;AUTH_PASSWORD&quot;]	no value
+_SERVER[&quot;AUTH_TYPE&quot;]	no value
+_SERVER[&quot;AUTH_USER&quot;]	no value
+_SERVER[&quot;CONTENT_LENGTH&quot;]	0
+_SERVER[&quot;CONTENT_TYPE&quot;]	no value
+_SERVER[&quot;PATH_TRANSLATED&quot;]	C:\\Inetpub\\intranet
+_SERVER[&quot;QUERY_STRING&quot;]	no value
+_SERVER[&quot;REMOTE_ADDR&quot;]	192.168.xxx.xx
+_SERVER[&quot;REMOTE_HOST&quot;]	192.168.xxx.xx
+_SERVER[&quot;REMOTE_USER&quot;]	no value
+_SERVER[&quot;REQUEST_METHOD&quot;]	GET
+_SERVER[&quot;SERVER_NAME&quot;]	intranet
+_SERVER[&quot;SERVER_PORT&quot;]	80
+_SERVER[&quot;SERVER_PROTOCOL&quot;]	HTTP/1.1
+_SERVER[&quot;SERVER_SOFTWARE&quot;]	Microsoft-IIS/6.0
+_SERVER[&quot;APPL_MD_PATH&quot;]	/LM/W3SVC/599050834/Root
+_SERVER[&quot;APPL_PHYSICAL_PATH&quot;]	C:\\Inetpub\\intranet\\
+_SERVER[&quot;INSTANCE_ID&quot;]	<a href="https://gerrit.wikimedia.org/r/#q,599050834,n,z" title="Git commit 599050834">599050834</a>
+_SERVER[&quot;INSTANCE_META_PATH&quot;]	/LM/W3SVC/599050834
+_SERVER[&quot;LOGON_USER&quot;]	no value
+_SERVER[&quot;REQUEST_URI&quot;]	/info.php
+_SERVER[&quot;URL&quot;]	/info.php
+_SERVER[&quot;SCRIPT_FILENAME&quot;]	C:\\Inetpub\\intranet\\info.php
+_SERVER[&quot;ORIG_PATH_INFO&quot;]	/info.php
+_SERVER[&quot;PATH_INFO&quot;]	no value
+_SERVER[&quot;ORIG_PATH_TRANSLATED&quot;]	C:\\Inetpub\\intranet\\info.php
+_SERVER[&quot;DOCUMENT_ROOT&quot;]	C:\\Inetpub\\intranet
+_SERVER[&quot;PHP_SELF&quot;]	/info.php
+_SERVER[&quot;HTTP_CONNECTION&quot;]	keep-alive
+_SERVER[&quot;HTTP_KEEP_ALIVE&quot;]	300
+_SERVER[&quot;HTTP_ACCEPT&quot;]
+text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+_SERVER[&quot;HTTP_ACCEPT_CHARSET&quot;]	ISO-8859-1,utf-8;q=0.7,*;q=0.7
+_SERVER[&quot;HTTP_ACCEPT_ENCODING&quot;]	gzip,deflate
+_SERVER[&quot;HTTP_ACCEPT_LANGUAGE&quot;]	en-us,en;q=0.5
+_SERVER[&quot;HTTP_HOST&quot;]	intranet
+_SERVER[&quot;HTTP_USER_AGENT&quot;]	Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US;
+rv:1.7.7) Gecko/20050414 Firefox/1.0.3
+_SERVER[&quot;argv&quot;]	
+
+Array
+(
+)
+
+_SERVER[&quot;argc&quot;]	0
+_ENV[&quot;ALLUSERSPROFILE&quot;]	C:\\Dokumente und Einstellungen\\All Users
+_ENV[&quot;ClusterLog&quot;]	C:\\WINDOWS\\Cluster\\cluster.log
+_ENV[&quot;CommonProgramFiles&quot;]	C:\\Programme\\Gemeinsame Dateien
+_ENV[&quot;COMPUTERNAME&quot;]	SECSERVER01
+_ENV[&quot;ComSpec&quot;]	C:\\WINDOWS\\system32\\cmd.exe
+_ENV[&quot;NUMBER_OF_PROCESSORS&quot;]	2
+_ENV[&quot;OS&quot;]	Windows_NT
+_ENV[&quot;Path&quot;]	C:\\Programme\\Windows Resource
+Kits\\Tools\\;C:\\Programme\\Perl\\bin\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;c:\\programme\\services\\mysql\\bin
+_ENV[&quot;PATHEXT&quot;]	.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH
+_ENV[&quot;PROCESSOR_ARCHITECTURE&quot;]	x86
+_ENV[&quot;PROCESSOR_IDENTIFIER&quot;]	x86 Family 15 Model 2 Stepping 9, GenuineIntel
+_ENV[&quot;PROCESSOR_LEVEL&quot;]	15
+_ENV[&quot;PROCESSOR_REVISION&quot;]	0209
+_ENV[&quot;ProgramFiles&quot;]	C:\\Programme
+_ENV[&quot;SBSProgramDir&quot;]	C:\\Programme\\Microsoft Windows Small Business Server
+_ENV[&quot;SystemDrive&quot;]	C:
+_ENV[&quot;SystemRoot&quot;]	C:\\WINDOWS
+_ENV[&quot;TEMP&quot;]	C:\\WINDOWS\\TEMP
+_ENV[&quot;TMP&quot;]	C:\\WINDOWS\\TEMP
+_ENV[&quot;USERPROFILE&quot;]	C:\\Dokumente und Einstellungen\\NetworkService
+_ENV[&quot;windir&quot;]	C:\\WINDOWS
+_ENV[&quot;winsbprogramdir&quot;]	C:\\Programme\\Windows for Small Business Server
+
+PHP License
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the PHP License as published by the PHP Group and included in the
+distribution in the file: LICENSE
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+If you did not receive a copy of the PHP license, or have any questions about
+PHP licensing, please contact <a href="mailto:license&#64;php.net">license&#64;php.net</a>.
+
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Fabian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:17:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry, I forgot to answer your second question: It's installed as ISAPI. At
+first I used PHP5. I thought the problem might be connected with PHP5, so I
+downgraded to PHP4. It did not work though. The problem is still the same.
+
+greetings,
+daniel</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:26:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Can you run this test script and paste the output?
+&lt;?php var_dump( $_SERVER['PATH_INFO'] ); ?&gt;
+
+
+And if I'm making the right guess, try changing this bit of includes/WebRequest.php...
+		if( isset( $_SERVER['PATH_INFO'] ) &amp;&amp; $wgUsePathInfo ) {
+to:
+		if( isset( $_SERVER['PATH_INFO'] ) &amp;&amp; ($_SERVER['PATH_INFO'] != '') &amp;&amp; $wgUsePathInfo ) {
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Fabian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:35:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wow! You made the right guess :) Everything works perfectly now.
+
+Here's the output anyway: string(0) &quot;&quot;
+
+Thanks a lot for the FAST help!!
+
+I'm not sure if I should close this bug, as somebody might want to change that
+line in the distribution, so I'll leave it open for now. Feel free to close the
+bug if this is the normal procedure.
+
+Kind greetings,
+Daniel</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1933#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-20 10:42:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Woo-hoo!
+
+Fix checked into CVS HEAD and REL1_4. Will appear in 1.4.2 release.
+</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1933&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1933">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1933">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1933">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1933&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1933" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1933&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419359717-wYcf8vm6mUwWUoH36IiZgbCbf1_TVwC8bv9mqUQ3Kxc">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

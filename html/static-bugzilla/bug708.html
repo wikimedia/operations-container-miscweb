@@ -1,0 +1,3147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 708 &ndash; Interproject links</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=708&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=708">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=708">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=708">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 708 – Interproject links",  
+                             "show_bug.cgi?id=708" );
+        document.title = "Bug 708 – Interproject links";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 708 – Interproject links", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_Wikimedia bz_component_General_Unknown bz_bug_708 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 10:34:49 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 10:34:49">
+  <input type="hidden" name="longdesclength" value="66">
+  <input type="hidden" name="id" value="708">
+  <input type="hidden" name="token" value="1419357728-g9imBRmRIo49_kf9ZGXe9B4l2IDRe5EIwbXAl8P1aF8">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=708"><b>Bug&nbsp;708</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Interproject links</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Interproject links
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Interproject links', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=708">91 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=708#vote_708">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">crosswiki
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - links between Wikimedia-sites"
+   href="show_bug.cgi?id=195">195</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Wikipedia vs Wiktionary and Commons"
+   href="show_bug.cgi?id=4208">4208</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Interproject links in pt:Wikipedia"
+   href="show_bug.cgi?id=5396">5396</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - commons and wiktionary cross-link"
+   href="show_bug.cgi?id=6347">6347</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Interwiki links in sidebar"
+   href="show_bug.cgi?id=6501">6501</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow interlanguage links to Commons"
+   href="show_bug.cgi?id=7323">7323</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - interwiki links in the left pane to &quot;other sites&quot;, not just to &quot;other languages&quot;"
+   href="show_bug.cgi?id=7428">7428</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=195,4208,5396,6347,6501,7323,7428">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Support for sister project links section in the sidebar"
+   href="show_bug.cgi?id=54374">54374</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make crosswiki bits and pieces truly global (tracking)"
+   href="show_bug.cgi?id=64475">64475</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=708&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=708">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-10-13 23:03 UTC by <span class="vcard"><span class="fn">Anthere</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 10:34 UTC 
+      (<a href="show_activity.cgi?id=708">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>46 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="aaron.adrignola">aaron.adrignola</option>
+                <option value="ansumang">ansumang</option>
+                <option value="audreyt">audreyt</option>
+                <option value="carlb613">carlb613</option>
+                <option value="dacuetu">dacuetu</option>
+                <option value="danny.b">danny.b</option>
+                <option value="desquil.pub">desquil.pub</option>
+                <option value="e_veersma">e_veersma</option>
+                <option value="fdevouard">fdevouard</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="fristu">fristu</option>
+                <option value="gangleri">gangleri</option>
+                <option value="gerardm">gerardm</option>
+                <option value="h.v.deelen">h.v.deelen</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="kasper.souren">kasper.souren</option>
+                <option value="Kersti_">Kersti_</option>
+                <option value="kooliamdabest">kooliamdabest</option>
+                <option value="lcarsdata">lcarsdata</option>
+                <option value="lugusto">lugusto</option>
+                <option value="lydia.pintscher">lydia.pintscher</option>
+                <option value="mediawiki-bugs">mediawiki-bugs</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="moyogo">moyogo</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="p858snake">p858snake</option>
+                <option value="pandiculation">pandiculation</option>
+                <option value="patrikekengren">patrikekengren</option>
+                <option value="pirsquared17">pirsquared17</option>
+                <option value="qgil">qgil</option>
+                <option value="ricordisamoa">ricordisamoa</option>
+                <option value="robinp.1273">robinp.1273</option>
+                <option value="RSYQFIOJGWZA">RSYQFIOJGWZA</option>
+                <option value="sjekjr">sjekjr</option>
+                <option value="thomaspt">thomaspt</option>
+                <option value="Tivedshambo">Tivedshambo</option>
+                <option value="vasilvv">vasilvv</option>
+                <option value="waerth">waerth</option>
+                <option value="waldir">waldir</option>
+                <option value="webmaster">webmaster</option>
+                <option value="whym">whym</option>
+                <option value="Wiki.Melancholie">Wiki.Melancholie</option>
+                <option value="William.Allen.Simpson">William.Allen.Simpson</option>
+                <option value="wmf.amgine3691">wmf.amgine3691</option>
+                <option value="yyairrand">yyairrand</option>
+                <option value="zhuyifei1999">zhuyifei1999</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Interproject interwikilinks -same option e.g. for Wiktionary-Wikipedia"
+   href="show_bug.cgi?id=55070">55070</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=124"
+               title="View the content of the attachment">
+          <b>GUI mock-up of interproject (sister project) links</b></a>
+
+          <span class="bz_attach_extra_info">
+              (115.46 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_124"
+               title="Go to the comment associated with the attachment">2004-11-06 23:22 UTC</a>,
+
+            <span class="vcard"><span class="fn">Erik Moeller</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=124&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=8783"
+               title="View the content of the attachment">
+          <b>Possible implementation of interproject links</b></a>
+
+          <span class="bz_attach_extra_info">
+              (8.78 KB,
+                patch)
+
+            <br>
+            <a href="#attach_8783"
+               title="Go to the comment associated with the attachment">2011-07-14 13:41 UTC</a>,
+
+            <span class="vcard"><span class="fn">Robin Pepermans (SPQRobin)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=8783&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=708&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anthere</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 23:03:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We need interproject links badly. I explained what I was thinking about here :
+<a href="http://en.wikipedia.org/wiki/Wikipedia%3ARecipes_proposal#.5BWikitech-l.5D_Projects_linking">http://en.wikipedia.org/wiki/Wikipedia%3ARecipes_proposal#.5BWikitech-l.5D_Projects_linking</a>
+
+Any time, a tool bar of interproject should be found, possibly some icons. When
+one clicks, he goes to the same page in another project. For example, I
+mentionned the Fugu, with a short description in wiktionary; the biological and
+social description in Wikipedia, the recipe in wikibooks, and possibly a whole
+set of images/sounds... in wikisources.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yann Forget</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-18 10:56:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think this feature is a must for all projects. </pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Engels</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-22 18:54:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please get this done as soon as possible! It seems to be the only compromise
+able to stop the largest fight we've had on Dutch Wikipedia since... Well, I
+don't think we had any larger one in fact.
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Erik Moeller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-06 23:22:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=124" name="attach_124" title="GUI mock-up of interproject (sister project) links">attachment 124</a> <a href="attachment.cgi?id=124&amp;action=edit" title="GUI mock-up of interproject (sister project) links">[details]</a></span>
+GUI mock-up of interproject (sister project) links
+
+This is a simple GUI mock-up of how I intend to implement this.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-06 23:24:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please don't change the bug assignment without adding wikibugs-l to the CC list, as that 
+screws up the automated reporting tools (mailing list, IRC notification).</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerard Meijsssen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 19:09:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >One sensible comment on nl:wikipedia was about the positioning of the
+interproject links. As the interlanguage links can number potentially more than
+20/30 it would be sensible to have the interproject links above the
+interlanguage links. 
+Thanks,
+    GerardM</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-13 08:53:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The sidebar gets crowded, esp. for pages with many interlanguage links.
+The likelihood that someone uses an interproject link is higher than that someone 
+uses an interlanguage link. So put interproject links below the article instead
+of in the sidebar.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-17 20:08:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >One problem that needs considering is how the syntax for these would work: the
+obvious choice would be to have [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wiktionary%3AFoo">Wiktionary:Foo</a>]] behave &quot;out of line&quot;
+analagously to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fr%3AFoo">fr:Foo</a>]], with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3AWiktionary%3AFoo">:Wiktionary:Foo</a>]] to over-ride. Unfortunately,
+that messes with the existing ability to create *inline* inter-project links,
+and doing the leading colon thing the other way round would be confusing.
+
+One alternative to a completely new syntax would be to put this off until we've
+split &quot;metadata&quot; (such as the existing out-of-line language and category links)
+into a seperate store. We don't need to actually be doing anything different
+with the text (although it's the first step toward things like centralising
+inter-language links), just automatically moving inter-language and category
+links from the article text at the &quot;pre-save transform&quot; stage. The point being,
+that we could then have a &quot;metadata&quot; box (not necesarily called that) that
+displays these, and any inter-project links entered there would be unambiguously
+&quot;out of line&quot;.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">KirbyMeister</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-17 20:22:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You could have the software automatically put the interproject links to the same
+article on the bar, and the article. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3AWikiBooks%3AC">:WikiBooks:C</a>]], for example, would take
+it off the article. (We're going to have to do this if we dont wanna break a lot
+of pages.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-17 20:33:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c8">comment #8</a>)
+<span class="quote">&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3AWikiBooks%3AC">:WikiBooks:C</a>]], for example, would take it off the article. </span >
+
+I'm not 100% sure what you mean, but my thinking is that using the &quot;leading
+colon escape&quot; won't be enough:
+* doing it the same as we do now for languages and categories (&quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikt%3AFoo">Wikt:Foo</a>]]&quot;
+goes to the sidebar/wherever, but &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3AWikt%3AFoo">:Wikt:Foo</a>]]&quot; displays 'in situ') will break
+existing usage.
+* doing it the other way round (&quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikt%3AFoo">Wikt:Foo</a>]]&quot; stays 'in situ', but
+&quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3AWikt%3AFoo">:Wikt:Foo</a>]]&quot; goes to the sidebar/wherever) would break the generality of &quot;add
+a leading colon to stop the link behaving specially&quot; - it would be especially
+confusing with complex links like &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Aen%3AFoo">wikt:en:Foo</a>]]&quot;, where someone might well
+think they needed to put &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Awikt%3Aen%3AFoo">:wikt:en:Foo</a>]]&quot; (they don't need to, but it is logical).
+
+So, in my opinion, we need some completely new way of specifying &quot;this article
+has an equivalent on a sister project, called...&quot;</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">KirbyMeister</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-17 20:46:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yeah. We're either going to have to break a pattern or all of the links
+suddently dissapear. We should not piggyback this on the current link system,
+i.e. use something like {:wikt:foo:} for transproject sidebar links or something.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-17 21:19:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There would of course be no need for an explicit link syntax. We require them for interlanguage links 
+because the pages have different titles. Interproject SisterSites-style links would be automagic if 
+implemented.
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">kelvSYC</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-23 21:22:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We might need an explicit link syntax for several things.  For example, we would
+want to link [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3AC%20plus%20plus">w:C plus plus</a>]] to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3AProgramming%3AC%20plus%20plus">b:Programming:C plus plus</a>]].  Else, how
+could we link the two together?</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dori</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-03 00:18:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think we should keep the convention of no colon goes in the bar, colon means
+in-place link. To fix current links, a script will have to be run at the
+software conversion time that updates all the links to use the colon notation.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">bdk</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 09:48:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Wikipedia vs Wiktionary and Commons"
+   href="show_bug.cgi?id=4208">Bug 4208</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Erik Moeller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 16:53:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Brion: Besides pages with different titles in the same language, we will also
+have situation where interproject links point to a different language,
+particularly in Commons, which is very English-centric. It may also be that we
+have a project in a minor language but a sister project only exists in English
+(for example, Wikinews exists in far fewer languages than other Wikimedia
+projects). Sometimes, it may be desirable to link between them, especially if
+the minor and the major language are related.
+
+Because language does play a role, I think this should probably go hand in hand
+with a redesign of the interlanguage link tables, which could be moved to a
+central database that can be edited from each wiki. See
+<a href="http://meta.wikimedia.org/wiki/A_new_look_at_the_interwiki_link">http://meta.wikimedia.org/wiki/A_new_look_at_the_interwiki_link</a> on Meta, and the
+associated talk page, for some thoughts. This would be a more flexible system,
+where we could show interlanguage and interproject links based on the user's
+language preferences.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-22 03:44:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just for your information: On the German Wiktionary we are using a JavaScript
+workaround now!
+Have a look on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3AMediaWiki%3AMonobook.js">wikt:de:MediaWiki:Monobook.js</a>]] and
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3AWiktionary%3ASchwesterprojekte">wikt:de:Wiktionary:Schwesterprojekte</a>]] to see how it works.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-30 03:15:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Interproject links in pt:Wikipedia"
+   href="show_bug.cgi?id=5396">Bug 5396</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Leonardo Gregianin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-15 02:35:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Portuguese Wikipedia too implementation sister projects in Javascript based on
+German Wiktionary. See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3Apt%3ATemplate%3ACorrelatos">w:pt:Template:Correlatos</a>]].</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-17 22:09:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c18">comment #18</a>)
+<span class="quote">&gt; Portuguese Wikipedia too implementation sister projects in Javascript based on
+&gt; German Wiktionary. See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3Apt%3ATemplate%3ACorrelatos">w:pt:Template:Correlatos</a>]].</span >
+
+should read [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pt%3ATemplate%3ACorrelatos">pt:Template:Correlatos</a>]]</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">555</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-17 22:47:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c19">comment #19</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=708#c18">comment #18</a>)
+&gt; &gt; Portuguese Wikipedia too implementation sister projects in Javascript based on
+&gt; &gt; German Wiktionary. See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3Apt%3ATemplate%3ACorrelatos">w:pt:Template:Correlatos</a>]].
+&gt; 
+&gt; should read [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pt%3ATemplate%3ACorrelatos">pt:Template:Correlatos</a>]]</span >
+
+
+Correct page is [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pt%3AWikipedia%3AV%C3%A1rios%20projectos%20correlatos">pt:Wikipedia:Vários projectos correlatos</a>]]</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-17 20:02:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - commons and wiktionary cross-link"
+   href="show_bug.cgi?id=6347">Bug 6347</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 16:32:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Interwiki links in sidebar"
+   href="show_bug.cgi?id=6501">Bug 6501</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-15 07:36:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow interlanguage links to Commons"
+   href="show_bug.cgi?id=7323">Bug 7323</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">e_veersma
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-18 20:11:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Get it done quickly. This bug is here now for 2 years and we 
+still use this worthles system. </pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-28 01:03:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - interwiki links in the left pane to &quot;other sites&quot;, not just to &quot;other languages&quot;"
+   href="show_bug.cgi?id=7428">Bug 7428</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jamie Hari</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-13 04:20:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c15">comment #15</a>)
+<span class="quote">&gt; Brion: Besides pages with different titles in the same language, we will also
+&gt; have situation where interproject links point to a different language,
+&gt; particularly in Commons, which is very English-centric. It may also be that we
+&gt; have a project in a minor language but a sister project only exists in English
+&gt; (for example, Wikinews exists in far fewer languages than other Wikimedia
+&gt; projects). Sometimes, it may be desirable to link between them, especially if
+&gt; the minor and the major language are related.
+&gt; 
+&gt; Because language does play a role, I think this should probably go hand in hand
+&gt; with a redesign of the interlanguage link tables, which could be moved to a
+&gt; central database that can be edited from each wiki. See
+&gt; <a href="http://meta.wikimedia.org/wiki/A_new_look_at_the_interwiki_link">http://meta.wikimedia.org/wiki/A_new_look_at_the_interwiki_link</a> on Meta, and the
+&gt; associated talk page, for some thoughts. This would be a more flexible system,
+&gt; where we could show interlanguage and interproject links based on the user's
+&gt; language preferences.</span >
+
+
+Has changes to the interlanguage code made this more reasonable/feasible since this comment was posted?</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-13 14:01:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No significant change has been made to the system.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-18 10:38:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - links between Wikimedia-sites"
+   href="show_bug.cgi?id=195">Bug 195</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">SJ</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-30 06:46:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm getting excited just thinking about the /possibility/ of this bug being addressed.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-31 02:26:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear boys and girls,
+instead of *ignoring* this feature request *for years*/forever, you could do this very *quick* and *easy* fix:
+
+1. Add ~apparent *interlang links* [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt_iw%3A">wikt_iw:</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b_iw%3A">b_iw:</a>]] etc. either with destination to the appropriate project or to enwiki (if it should not be possible to link to an other domain)!
+2. Give those links the appropriate project names in *Names.php*!
+
+Interproject links will work like this then, without any further changes:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt_iw%3Awikt%3A%20Isn%27t%20that%20easy%3F">wikt_iw:wikt: Isn't that easy?</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%20iw%3Ab%3A%20Yes%2C%20I%20think%20so%21">b iw:b: Yes, I think so!</a>]] &lt;!-- note: additional &quot;wikt:&quot;, &quot;b:&quot; etc. only necessary then if linking to other domain not possible --&gt;
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=n_iw%3An%3Aen%3A%20Hmm%20%3B-%29">n_iw:n:en: Hmm ;-)</a>]] &lt;!-- n:fr: --&gt;
+
+If you do not want to create another interlang links for this, misuse *existing ones of closed langs* like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tokipona%3A">tokipona:</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tlh%3A">tlh:</a>]]! Just change names in Names.php.
+
+And SysOps can change content of *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AOtherlanguages">MediaWiki:Otherlanguages</a>]]* from &quot;(Other) Languages&quot; to &quot;(Sister/Other) Projects / (Other) Languages&quot; then!</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-12 08:03:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c30">comment #30</a>)
+<span class="quote">&gt; 2. Give those links the appropriate project names in *Names.php*!</span >
+
+Those don't belong there.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vik</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-08 01:50:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why can't we just do [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=q%3Asimple%3AFoo">q:simple:Foo</a>]]?</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-07 07:53:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Btw I like the way this in done in English Wikipedia, where more information about the target is given than just a project name.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jeff G.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-08 04:34:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Niklas Laxström &lt;<a href="mailto:niklas.laxstrom&#64;gmail.com">niklas.laxstrom&#64;gmail.com</a>&gt; changed:
+<span class="quote">&gt;            What    |Removed                     |Added
+&gt; ----------------------------------------------------------------------------
+&gt;            Priority|Highest                     |Low</span >
+
+I have reverted the above change in priority.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-08 08:24:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; I have reverted the above change in priority.</span >
+Unless you are a developer, don't touch them. This is not a wiki.
+
+</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">James Sully</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-11-17 08:48:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I agree, i think that this merits a spot above the language box.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-08-12 14:13:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c33">comment #33</a>)
+<span class="quote">&gt; Btw I like the way this in done in English Wikipedia, where more information
+&gt; about the target is given than just a project name.</span >
+
+it.wiki's [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Ait%3ATemplate%3AInterprogetto">:it:Template:Interprogetto</a>]] offers lots of features to add links, titles and descriptions. Way more than in en.wiki (which is quite crappy). It's used in 170,000 pages, plus every Italian language sisterproject.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yair Rand</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-21 16:11:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >About the prefix to be used, wouldn't it be simpler to just prefix the project interwiki with the language code ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3Awikt%3ATargetpage">en:wikt:Targetpage</a>]] to add an interwiki from English Wikipedia to English Wiktionary), rather than set up new types of prefixes or breaking the colon-means-in-place-link convention? Currently a different_language_code:project_interwiki:target creates an interlanguage link that actually leads to a different project, and same_language_code:project_interwiki:target doesn't create a link at all. Note: English Wiktionary, which uses a javascript workaround for interproject links, has many entries with interproject links to other languages. If interproject links are going to be possible, they should really allow linking to other projects in other languages, too.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robin Pepermans (SPQRobin)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 13:41:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=8783" name="attach_8783" title="Possible implementation of interproject links">attachment 8783</a> <a href="attachment.cgi?id=8783&amp;action=edit" title="Possible implementation of interproject links">[details]</a></span>
+Possible implementation of interproject links
+
+Apparently this bug is waiting for years and no-one implemented it yet (it is not that difficult). This bug has even the highest number of votes.
+
+Anyway, I made a patch that adds a configuration variable $wgInterProjectLinks with 'prefix' =&gt; 'Project name'. Links with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=prefix%3ATitle">prefix:Title</a>|Text]] will show up in the sidebar as &quot;Text&quot; and links with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=prefix%3ATitle">prefix:Title</a>]] will show up as &quot;Project name&quot;. The links are still shown inline in the wikitext (so it doesn't break everything). Links with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aprefix%3ATitle">:prefix:Title</a>]] (extra colon) are not shown in the sidebar.
+The position in the sidebar can be changed with * OTHERPROJECTS
+
+This patch implements it for vector and monobook. If it's OK, I can add it to the other skins as well (and possibly commit it to SVN).</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 13:56:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*clap clap*
+
+This obviously covers only &quot;local&quot; interwikis, doesn't it?
+
+(In reply to <a href="show_bug.cgi?id=708#c39">comment #39</a>)
+<span class="quote">&gt; Links with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=prefix%3ATitle">prefix:Title</a>|Text]] will show up
+&gt; in the sidebar as &quot;Text&quot; and links with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=prefix%3ATitle">prefix:Title</a>]] will show up as
+&gt; &quot;Project name&quot;. The links are still shown inline in the wikitext (so it doesn't
+&gt; break everything). Links with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aprefix%3ATitle">:prefix:Title</a>]] (extra colon) are not shown in
+&gt; the sidebar.</span >
+
+What happens if there are multiple links to the same project?
+I'm not sure it's wise to show &quot;Text&quot; in the sidebar, it could be half a sentence.
+For both points, it's probably better to adopt the usual implementation of interproject templates, which AFAIK show only the first link to each project and show only the name of the project in the sidebar, leaving the details to the page body.
+
+In any case, this will probably require some fixing of links which will need the extra colon, which will acquire a new meaning (although consistent with its current one). This shouldn't be a disaster, though, because inline interwikis to random pages (no directly equivalent to the page they're in) are deprecated on most projects, AFAIK; probably, it would be useful to ignore interwikis in references, which could be dozens on a single page and are usually considered the right way to link whatever page on another project (like any website).</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">aaron.adrignola
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 14:11:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >At Wikibooks there are interproject links to Wikipedia galore.  While it's true
+that we discourage them in order to have all content defined in-text, they are
+still extensively used.  And there are many [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3A">w:</a>|Wikipedia]] links simply to
+link to Wikipedia.  And Wikibooks is not a dictionary, so words may be linked
+to Wiktionary.  Wikiversity was split off, so some concepts may be linked to
+there.
+
+Interproject links are not used at Wikibooks in a one-to-one ratio with the
+pages and do not match local page content to the equivalent at the other
+project. The suggested implementation would be a disaster at Wikibooks.  Only
+Wikipedia takes the hardcore stance that &quot;outside&quot; links must all be in an
+external links section and isolates itself from the other projects.
+
+Unless you run a bot to replace [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3Ablah">w:blah</a>|blah]] with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aw%3Ablah">:w:blah</a>|blah]] on every
+page of every wiki, the sidebar links would be completely incorrect.  At least
+the suggested implementation wouldn't make them disappear like current
+interlanguage links, but that's of little consolation.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 14:41:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c41">comment #41</a>)
+<span class="quote">&gt; Interproject links are not used at Wikibooks in a one-to-one ratio with the
+&gt; pages and do not match local page content to the equivalent at the other
+&gt; project. The suggested implementation would be a disaster at Wikibooks.  Only
+&gt; Wikipedia takes the hardcore stance that &quot;outside&quot; links must all be in an
+&gt; external links section and isolates itself from the other projects.</span >
+
+This doesn't apply to all languages. For instance, the same rule is quite consistently applied on all projects in Italian since 2005-2006 AFAIK (and it's the same in several other languages). I agree that the problem must be considered, though. Could we have some statistics on how many sisterproject interwikis we have on pages?</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">aaron.adrignola
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 15:34:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c42">comment #42</a>)
+<span class="quote">&gt; This doesn't apply to all languages. For instance, the same rule is quite
+&gt; consistently applied on all projects in Italian since 2005-2006 AFAIK (and it's
+&gt; the same in several other languages). I agree that the problem must be
+&gt; considered, though. Could we have some statistics on how many sisterproject
+&gt; interwikis we have on pages?</span >
+
+Maybe what you're looking for:
+
+Wikipedia: <a href="http://stats.wikimedia.org/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/EN/TablesDatabaseWikiLinks.htm</a>
+
+Wikibooks: <a href="http://stats.wikimedia.org/wikibooks/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/wikibooks/EN/TablesDatabaseWikiLinks.htm</a>
+
+Wikinews: <a href="http://stats.wikimedia.org/wikinews/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/wikinews/EN/TablesDatabaseWikiLinks.htm</a>
+
+Wikiquote: <a href="http://stats.wikimedia.org/wikiquote/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/wikiquote/EN/TablesDatabaseWikiLinks.htm</a>
+
+Wikisource: <a href="http://stats.wikimedia.org/wikisource/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/wikisource/EN/TablesDatabaseWikiLinks.htm</a>
+
+Wikiversity: <a href="http://stats.wikimedia.org/wikiversity/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/wikiversity/EN/TablesDatabaseWikiLinks.htm</a>
+
+Wiktionary: <a href="http://stats.wikimedia.org/wiktionary/EN/TablesDatabaseWikiLinks.htm">http://stats.wikimedia.org/wiktionary/EN/TablesDatabaseWikiLinks.htm</a></pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 17:59:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c43">comment #43</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=708#c42">comment #42</a>)
+&gt; &gt; Could we have some statistics on how many sisterproject
+&gt; &gt; interwikis we have on pages?
+&gt; 
+&gt; Maybe what you're looking for</span >
+
+No. I know those statistics, they're only interlanguage wikilinks (&quot;regular&quot; interwikis); and anyway, they just show the total, while we'd rather need the number of pages with interwikis to sisterprojects, average and standard deviation of the number of them on those pages. This way we could see how many projects and how many pages on them would experience the problem you described.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">aaron.adrignola
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-14 18:23:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c44">comment #44</a>)
+<span class="quote">&gt; No. I know those statistics, they're only interlanguage wikilinks (&quot;regular&quot;
+&gt; interwikis); and anyway, they just show the total, while we'd rather need the
+&gt; number of pages with interwikis to sisterprojects, average and standard
+&gt; deviation of the number of them on those pages. This way we could see how many
+&gt; projects and how many pages on them would experience the problem you described.</span >
+
+I'll get right on that in order to prove my concern is valid.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robin Pepermans (SPQRobin)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-17 01:48:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c40">comment #40</a>)
+<span class="quote">&gt; This obviously covers only &quot;local&quot; interwikis, doesn't it?</span >
+
+It covers interwikis in $wgInterProjectLinks, no matter if they are local or global (although I'm not sure what you mean by &quot;local&quot;).
+
+<span class="quote">&gt; What happens if there are multiple links to the same project?</span >
+They are all shown.
+
+<span class="quote">&gt; I'm not sure it's wise to show &quot;Text&quot; in the sidebar, it could be half a</span >
+sentence.
+I thought it would be useful to specify a text other than the default project name, e.g. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=n%3ATitle">n:Title</a>|View news reports about this event]]
+But it's easy to remove this feature from the proposed patch.
+
+(In reply to <a href="show_bug.cgi?id=708#c41">comment #41</a>)
+<span class="quote">&gt; The suggested implementation would be a disaster at Wikibooks.</span >
+If my implementation is chosen, it can be specified opt-in per-project through $wgInterProjectLinks.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-17 08:43:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c46">comment #46</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=708#c40">comment #40</a>)
+&gt; &gt; This obviously covers only &quot;local&quot; interwikis, doesn't it?
+&gt; 
+&gt; It covers interwikis in $wgInterProjectLinks, no matter if they are local or
+&gt; global (although I'm not sure what you mean by &quot;local&quot;).</span >
+
+iw_local <a href="http://www.mediawiki.org/wiki/Manual:Interwiki#Field_documentation">http://www.mediawiki.org/wiki/Manual:Interwiki#Field_documentation</a>
+To see it in action: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MeatBall%3A">MeatBall:</a>]] doesn't work ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3A">mw:</a>]] neither but it's probably an error), you surely don't want to add such links to sidebar.
+
+<span class="quote">&gt; &gt; What happens if there are multiple links to the same project?
+&gt; They are all shown.
+&gt; 
+&gt; &gt; I'm not sure it's wise to show &quot;Text&quot; in the sidebar, it could be half a
+&gt; sentence.
+&gt; I thought it would be useful to specify a text other than the default project
+&gt; name, e.g. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=n%3ATitle">n:Title</a>|View news reports about this event]]
+&gt; But it's easy to remove this feature from the proposed patch.</span >
+
+Probably better.
+
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=708#c41">comment #41</a>)
+&gt; &gt; The suggested implementation would be a disaster at Wikibooks.
+&gt; If my implementation is chosen, it can be specified opt-in per-project through
+&gt; $wgInterProjectLinks.</span >
+
+That would be another bug but I'd hope this to be at most opt-out for Wikimedia wikis; in other words, we should find a solution which works for most people. More realistically, though, shouldn't the configuration be true by default in MediaWiki? You still can control it by defining which interwikis are local, if my proposal above is adopted.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-17 08:58:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c47">comment #47</a>)
+<span class="quote">&gt; iw_local <a href="http://www.mediawiki.org/wiki/Manual:Interwiki#Field_documentation">http://www.mediawiki.org/wiki/Manual:Interwiki#Field_documentation</a>
+&gt; To see it in action: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MeatBall%3A">MeatBall:</a>]] doesn't work ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3A">mw:</a>]] neither but it's
+&gt; probably an error), you surely don't want to add such links to sidebar.</span >
+
+Uh, looks like bugzilla got smarter. I meant <a href="http://en.wikipedia.org/wiki/MeatBall">http://en.wikipedia.org/wiki/MeatBall</a>: , let's say [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MeatBall%3AWhatever">MeatBall:Whatever</a>]].</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Patrik Ekengren</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-08 20:27:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Take a look at Swedish Wikipedia, <a href="http://sv.wikipedia.org/wiki/Portal:Huvudsida">http://sv.wikipedia.org/wiki/Portal:Huvudsida</a>, in the left panel under the heading &quot;På andra projekt&quot;. Or an individual article: <a href="http://sv.wikipedia.org/wiki/Ivar_Kreuger">http://sv.wikipedia.org/wiki/Ivar_Kreuger</a>.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tivedshambo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-29 10:18:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I raised a request for this at <a href="https://en.wikipedia.org/w/index.php?title=Wikipedia:Village_pump_%28proposals%29&amp;oldid=468244763#Allow_interlanguage_links_to_Commons_for_non-article_space_pages">https://en.wikipedia.org/w/index.php?title=Wikipedia:Village_pump_%28proposals%29&amp;oldid=468244763#Allow_interlanguage_links_to_Commons_for_non-article_space_pages</a>, which has gained support from two other users (so far). Optimist on the run (formerly Tivedshambo)</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TED</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-28 22:43:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For the moment, both interproject links [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3A%E2%80%A6">wikt:…</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Awikt%3A%E2%80%A6">:wikt:…</a>]] are in-place-links. But for interlanguage links, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3A%E2%80%A6">en:…</a>]] is an interwiki and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aen%3A%E2%80%A6">:en:…</a>]] is an in-place-linkt. 
+
+It should be easier if it was the same for the interproject links as for the interlanguage links.
+
+Does it helps if bots change all the in-place-links from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wkt%3A%E2%80%A6">wkt:…</a>]] to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Awkt%3A%E2%80%A6">:wkt:…</a>]] (and for all the interproject links) ? 
+
+Then, the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wkt%3A%E2%80%A6">wkt:…</a>]] links could be used for interproject links in the left panel (like the interlanguage links). 
+
+Shall I make a request for bots on each wikipedia project ? Or can it be done by a bot on all the projects ?</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robin Pepermans (SPQRobin)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-28 22:55:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c51">comment #51</a>)
+<span class="quote">&gt; Shall I make a request for bots on each wikipedia project ? Or can it be done
+&gt; by a bot on all the projects ?</span >
+
+I'd wait until the feature is in fact part of MediaWiki. Changing links when it's not (yet) needed seems a bit useless.</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TED</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-28 23:08:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c52">comment #52</a>)
+<span class="quote">&gt; I'd wait until the feature is in fact part of MediaWiki. Changing links when
+&gt; it's not (yet) needed seems a bit useless.</span >
+
+Is it ready now ? When will it be in fact part of Mediawiki ? 
+
+I think that changes can be done before, to prevent misuses of the syntax. If we change the in-place-links before, users can adapt to the new in-place-links and will not be surprised by the new interproject links (when ready and part of Mediawiki), and I think this is not a bit useless.</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">au</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-16 10:55:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi Robin, thank you for the patch!
+
+As you may already know, MediaWiki is currently revamping its PHP-based parser into a Node.js-based &quot;Parsoid&quot; component, to support the rich-text Visual Editor project:
+
+    <a href="https://www.mediawiki.org/wiki/Parsoid">https://www.mediawiki.org/wiki/Parsoid</a>
+    <a href="https://www.mediawiki.org/wiki/Visual_editor">https://www.mediawiki.org/wiki/Visual_editor</a>
+
+Folks interested in enhancing the parser's capabilities are very much welcome to join the Parsoid project, and contribute patches in form of Git branches:
+
+    <a href="https://www.mediawiki.org/wiki/Git/Tutorial#How_to_submit_a_patch">https://www.mediawiki.org/wiki/Git/Tutorial#How_to_submit_a_patch</a>
+
+Compared to .diff attachments in Bugzilla tickets, Git branches makes it much easier for us to review, refine and merge features.
+
+Each change set has a distinct URL generated by the &quot;git review&quot; tool, which can be referenced by pasting its gerrit.wikimedia.org URL as a Bugzilla comment.
+
+Please feel free to ask on irc.freenode.net #wikimedia-dev if you run into any issues with the patch process. Thank you!</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Waldir</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-18 10:30:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c54">comment #54</a>)
+I just thought I'd let you know that your message might have come across as slightly patronizing. Robin is an experienced MediaWiki developer, but even if he wasn't, such boilerplate(-like?) messages are seldom a useful way to communicate with volunteers anyway. Please take this as constructive criticism only :)</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">au</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-18 11:09:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks Waldir!
+
+No offense taken, and apologies for the incongruous tone -- English is definitely not my forte, and I'm still striving to improve my use of this language. :-)
+
+For context, I've only recently joined the Parsoid/VE projects as a volunteer, and this boilerplate text was sent to all parser bugs with patches attached, at the behest of Sumana, in an effort to encourage people signing up to Gerrit, and hopefully bring their patches to Parsoid where it makes sense.
+
+I've tried to triage them and respond only to bugs that seems pertinent, but as a newcomer to this community, there's bound to be some false positives as well as needless duplication.
+
+Again, my sincere apologies for the (semi-)spamming -- it won't happen again anytime soon.</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-18 15:12:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c56">comment #56</a>)
+
+Au: I'm pleased people are looking at these bugs with patches. One thing you might look at is how long the patch has been awaiting review: this one, for example, was written for MW 1.17; the current version is 1.20.alpha.
+
+Thank you, and welcome to Bugzilla!</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robin Pepermans (SPQRobin)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-18 15:20:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=708#c57">comment #57</a>)
+<span class="quote">&gt; Au: I'm pleased people are looking at these bugs with patches. One thing you
+&gt; might look at is how long the patch has been awaiting review: this one, for
+&gt; example, was written for MW 1.17; the current version is 1.20.alpha.</span >
+
+I would like to point out that the problem here is not reviewing the patch; I can update it to trunk and submit it to gerrit right away, but the problem is deciding how exactly this feature should be implemented. See for example <a href="show_bug.cgi?id=708#c46">comment 46</a> and related comments.</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Anthere</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-18 19:06:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is no way I can decipher <a href="show_bug.cgi?id=708#c46">comment 46</a> but I am glad to see that this bug (feature) is still being considered :)</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kersti Nebelsiek</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-25 09:21:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe Wikidata will give a solution to this problem?
+<a href="http://meta.wikimedia.org/wiki/Talk:Wikidata#Interwikis_for_Wikisource_and_Wikiquote_for_example">http://meta.wikimedia.org/wiki/Talk:Wikidata#Interwikis_for_Wikisource_and_Wikiquote_for_example</a></pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Austin Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-10 20:58:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3Aextension%3ARelatedSites">mw:extension:RelatedSites</a>]] in Wikivoyage which puts links to siblings in the sidebar; it's just not active on any other WMF wikis.</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">PiRSquared17</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-24 16:56:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="https://meta.wikimedia.org/wiki/Requests_for_comment/Interproject_links_interface">https://meta.wikimedia.org/wiki/Requests_for_comment/Interproject_links_interface</a></pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dacuetu
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-06-12 17:07:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="https://blog.wikimedia.org/2013/06/11/update-wikisource-vision-may/">https://blog.wikimedia.org/2013/06/11/update-wikisource-vision-may/</a></pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Lydia Pintscher</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-12 10:47:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This seems covered now with <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Support for sister project links section in the sidebar"
+   href="show_bug.cgi?id=54374">bug 54374</a> closed. Good to close?</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=708#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-12 10:56:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Lydia Pintscher from <a href="show_bug.cgi?id=708#c64">comment #64</a>)
+<span class="quote">&gt; This seems covered now with <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Support for sister project links section in the sidebar"
+   href="show_bug.cgi?id=54374">bug 54374</a> closed. Good to close?</span >
+
+I don't think so (otherwise that bug would have been duped to this long ago I suppose?).
+I've posted my proposal on how to identify next steps, and requirements for this bug to be considered fixed, in <a href="http://lists.wikimedia.org/pipermail/wikidata-l/2014-April/003698.html">http://lists.wikimedia.org/pipermail/wikidata-l/2014-April/003698.html</a></pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=708&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=708">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=708">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=708">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=708&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=708" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=708&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357728-C-EZ31xNsPnZUvO6znmeiQWkIyoKvMTKKOOE4GhhgPU">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

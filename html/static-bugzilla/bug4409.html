@@ -1,0 +1,2060 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4409 &ndash; Move mo to mo-cyr, set up new Latin-based mo</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4409&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4409">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4409">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4409">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4409 – Move mo to mo-cyr, set up new Latin-based mo",  
+                             "show_bug.cgi?id=4409" );
+        document.title = "Bug 4409 – Move mo to mo-cyr, set up new Latin-based mo";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4409 – Move mo to mo-cyr, set up new Latin-based mo", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_Wikimedia bz_component_Language_setup bz_bug_4409 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2012-03-17 22:54:39 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-03-17 22:54:39">
+  <input type="hidden" name="longdesclength" value="28">
+  <input type="hidden" name="id" value="4409">
+  <input type="hidden" name="token" value="1419363545-LidVuLpl4lxSy_CtLgIbDouAHgSEP8h_mGti89mAFzE">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4409"><b>Bug&nbsp;4409</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Move mo to mo-cyr, set up new Latin-based mo</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Move mo to mo-cyr, set up new Latin-based mo
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Move mo to mo-cyr, set up new Latin-based mo', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          INVALID
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Language setup
+    
+    (<a href="buglist.cgi?component=Language%20setup&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=4409">1 
+            vote</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4409#vote_4409">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://mo.wikipedia.org/wiki/Talk:Паӂина_принчипалэ_-_кирилик"><span title="http://mo.wikipedia.org/wiki/Talk:Паӂина_принчипалэ_-_кирилик">http://mo.wikipedia.org/wiki/Talk:Паӂ...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4409&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4409">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-12-28 10:21 UTC by <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-03-17 22:54 UTC 
+      (<a href="show_activity.cgi?id=4409">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>3 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="EN.WP.ST47">EN.WP.ST47</option>
+                <option value="gangleri">gangleri</option>
+                <option value="wmbugs">wmbugs</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=4409&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-28 10:21:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >as per mailing list discussion:
+<a href="http://mail.wikipedia.org/pipermail/wikipedia-l/2005-December/043215.html">http://mail.wikipedia.org/pipermail/wikipedia-l/2005-December/043215.html</a></pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-03 22:20:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This has not been universally agreed-upon. Input of current mo.wikipedians has
+not been requested. Myself (acc't currently set to &quot;moderated&quot; on wikipedia-l),
+Russ, and other less-active mo.wikipedians so far oppose this action, as do
+other Wikipedians as they have expressed (Djordje, Slavik Ivanov).
+
+We favour keeping the status quo, where the mainpage of mo.wiki is a portal, and
+cyrillic content is hosted on mo.wiki.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nicolae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 00:16:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We have discussed about this issue in beginning of December-2005
+<a href="http://mail.wikimedia.org/pipermail/wikipedia-l/2005-December/">http://mail.wikimedia.org/pipermail/wikipedia-l/2005-December/</a>
+Moldovans all over the world have agreed with with us, here's one Oleg
+Alexandrov aoleg at math.ucla.edu
+<a href="http://mail.wikimedia.org/pipermail/wikipedia-l/2005-December/042954.html">http://mail.wikimedia.org/pipermail/wikipedia-l/2005-December/042954.html</a> (i
+have been impressed by Oleg, I'm happy what he don't forgot about his mother
+country).
+
+Thank you wikipedia volunteers for doing great job !
+Hope you'll fix this mistake soon, have a great new year !</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 02:13:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;Moldovans around the world&quot;... including you, 
+Oleg, and Liviu Androni... that's a grand total 
+of 3 people.
+
+Compared to me, Russ, Vertaler, Dmitriid, and 
+co., that's a minority.
+
+Yes, you discussed it on the mailing list. 
+Well, I can't post to the ML right now (my 
+account is set to status &quot;moderated&quot; even 
+though Anthere promised to change it),and Russ, 
+Vertaler, Dmitriid, and Elnoel are not signed 
+up for Wikipedia-l. In addition to those 
+Moldovan users, there are additional users who 
+support existance of Cyrillic at mo.wiki: 
+Gabix, Djordje Bozovic, Monedula, Miaow Miaow, 
+OldakQuill.
+
+So please stop trying to enforce the false 
+impression that everybody agrees with you.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nicolae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 02:19:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I call to administrators to get the real facts. And read the threads from
+<a href="http://mail.wikimedia.org/">http://mail.wikimedia.org/</a></pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 03:34:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The &quot;real facts&quot; are that thousands of 
+Transdnistrians use Cyrillic on a daily basis.
+
+Your bias against Santisti is not 
+constructive and based on political motives. 
+Just because they use Cyrillic doesn't mean 
+they're not people.
+
+Now, even though Transnistria's independence 
+is only recognised by Armenia indirectly 
+(because Armenia recognises Nagorno-Karabakh, 
+which recognises Transnistria; Armenia is the 
+only universally-recognised country to 
+recognise Nagorno-Karabakh though), 
+nonetheless it is undeniable that Cyrillic is 
+indeed used there, and is still imparted to 
+young Santisti by educators there.
+
+It seems important to me to emphasise that 
+even currently, the Main Page of mo.wiki uses 
+Latin, first, and Cyrillic, second. Every 
+official part of the site gives priority to 
+Latin script, because it is used by more 
+people.
+
+Now, Constanteanu and you both ahve said that 
+we can't call it &quot;Moldovan&quot; because &quot;Moldovan 
+is not written in Cyrillic&quot;. Well, that's 
+bull. The publications pre-1989 in RSSM were 
+in which language then? They were in 
+_Moldovan_ even though they used Cyrillic.
+
+PMR issues official documents in which 3 
+languages? Russian, Ukrainian, and 
+_Moldovan_, even though they use Cyrillic.
+
+So quit your whining. And quit pretending 
+that everybody agrees with you, because they 
+don't.
+
+Just because none of the supporters of 
+Cyrillic mowiki have come to wikipedia-l, 
+doesn't mean they don't exist. You can see 
+their existance at mo.wiki (especially Russ 
+and Gabix, who both have lots of 
+contributions).</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nicolae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 08:36:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;Transdnistrians use Cyrillic on a daily basis.&quot;
+Create your own(trans.) subdomain if you don't respect Moldovan law, don't use
+our initials. Moldovans in Moldova what respect the law and write using latin
+script are far more than in Transnitrian what are forced to write using
+cyrillic(your government have no rules, &quot;In the summer of 2004, the
+Transnistrian authorities forcibly closed six schools that taught Moldovan
+language using the Latin script.&quot; -&gt;
+<a href="http://en.wikipedia.org/wiki/Transnistria#2004_crisis">http://en.wikipedia.org/wiki/Transnistria#2004_crisis</a> )
+
+Transnistrian 2004 census:
+    * Total population (including Tighina): 555.500
+    * Moldovans: 31.9%
+
+That's 177,204 of Moldovans in Transnitria forced to write using cyrillic.
+According to the 2004 census Moldovans: 76.1% from 3,388,071 ppl. That's
+2,578,322 of Moldovans what use latin script in write.
+
+So why must must 2,578,322 of people must see cyrillic on mo. just because of
+177,204(these 177,204 is even lower because many still trying to write using
+latin) ?
+
+(i already have write this on the list, hope admins will take the right decision).</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 09:54:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >mo.wiki is not for &quot;Republica Moldova&quot;, it is for the &quot;Moldovan language&quot;  which
+is also the official language of Transnistria, and was at one time the official
+language of RSSM.
+
+It's a bit strange to assume that every last one of those 177 thousand people
+absolutely hate writing in Cyrillic and are &quot;forced&quot; to do it
+
+And even though I use Latin to write English, I certainly wouldn't care much if
+en.wp used Cyrillic. There is nothing wrong with &quot;seeing Cyrillic&quot;. mo.wiki
+splits evenly. It's not as if it has ONLY Cyrillic.
+
+It has both.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nicolae</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 10:03:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;mo.wiki is not for &quot;Republica Moldova&quot;, it is for the &quot;Moldovan language&quot; which
+is also the official language of Transnistria,&quot;
+I also have give you the number of Moldavians in each country(or whatever
+Transnistria are), if you notice that ;p
+I call to respect the rule of majority.
+
+I stop posting here until some admin will come and say smth..</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 10:59:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This isn't the place to be having this discussion. Resolving LATER for now.
+Please go and get consensus for this change on the affected project, make sure
+it's clear and obvious to us, then re-open this bug _with a URL to the page I
+mentioned._</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-04 11:15:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4409#c9">comment #9</a>)
+<span class="quote">&gt; This isn't the place to be having this discussion. Resolving LATER for now.
+&gt; Please go and get consensus for this change on the affected project, make sure
+&gt; it's clear and obvious to us, then re-open this bug _with a URL to the page I
+&gt; mentioned._</span >
+
+Believe me, that'll never happen.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Field Theory</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-06 14:48:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >#3 Node_ue tries to hide the facts. Counting from _wikipedia-l_ (since october), people who are 
+for the move mo-&gt;mo-cyr:
+1. Oleg Alexandrov (Moldova)
+2. Ronline
+3. Adrenalin (Moldova)
+4. Field Nothing (Moldova)
+5. Arbeo M
+6. Liviu Andronic (Moldova)
+7. V. Ivanov 
+Opposition:
+1. Node_ue
+
+I tried contacting user Russ, no reply from him at all (he is a korean, claims to know ru-1, 
+doesn't even claim to know romanian/moldovan). User Vertaler and Dmitriid are inactive.
+Have a look also at: <a href="http://mo.wikipedia.org/wiki/Talk:Паӂина_принчипалэ_-_кирилик">http://mo.wikipedia.org/wiki/Talk:Паӂина_принчипалэ_-_кирилик</a> . User Node_
+ue claims that the opinion only of the contributors should be considered, but why should we be 
+forced to write something in an alphabet we don't use just to get mo.wikipedia moved to mo-cyr.
+wikipedia ? I urge you to take a look at the page mentioned and at the archives of wikipedia-l 
+(though I understand that it takes a lot of time...). Just think of the current situation, only 
+node_ue and russ are active, russ doesn't know romanian/moldovan and just transliterates by hand 
+(with a lot of mistakes) the text from the ro.wikipedia, Node_ue doesn't romanian/moldovan well 
+enough, can probably read some of it but when it comes to writing makes a lot of inadmissible 
+mistakes. So how come ? Two users copying with the introduction of mistakes (from the 
+tranlisteration)the ro.wikipedia, one doesn't know romanian/moldovan at all, the other one 
+barely knows it and they represent Moldova on wikipedia ? Let them edit mo-cyr.
+
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 07:43:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Whether or not Vertaler or Dmitriid are &quot;active&quot; on mo.wiki is entirely
+irrelevant, as not a single one of the users you cited as supporting you is active.
+
+Also, Slavik Ivanov seems to oppose rather than support a move.
+
+Also supporting that Wikipedia are Djorje Vozovic and KIT.
+
+So let's re-evaluate:
+
+1. Oleg Alexandrov (USA)
+2. Ronline (Romania)
+3. Adrenalin (Moldova)
+4. Field Nothing (Moldova)
+5. Arbeo M (Germany)
+6. Liviu Andronic (France)
+
+Opposition:
+1. Node_ue (USA)
+2. Slavik Ivanov (Russia)
+3. Djordje Vozovic (Zlatibor)
+4. Russ (Russia/Korea)
+5. Dmitriid (Moldova)
+6. Vertaler (Moldova)
+7. Elnoel (Moldova)
+8. Monedula (Russia)
+9. Miaow Miaow (Czech Republic)
+10. OldakQuill (UK?)
+11. Nechtanc (USA)
+12. KIT (Russia)
+13. Gabix (Belarus)
+
+And Field, remember that this is a Wiki. If there is an error, either tell us
+what it is, correct it, or don't complain.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 07:45:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Oh, and while I may not know all of the errors myself,,, I know a great deal of
+them, for example &quot;aceasta&quot; is sometimes spelt wrong, &quot;regiune&quot; is often spelt
+wrong... most misspellings relate to 3 vowels in a row, or to &quot;iu&quot;, &quot;io&quot;, or
+&quot;ia&quot; (Russ only recently understood the basic rules for those). Other than that,
+misspellings seem in general to be related to the use of &quot;soft sign&quot;, which is a
+difficult issue still, hopefully soon I can get ahold of the orthographic
+dictionary.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 07:46:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Whether or not Vertaler or Dmitriid are &quot;active&quot; on mo.wiki is entirely
+irrelevant, as not a single one of the users you cited as supporting you is active.
+
+Also, Slavik Ivanov seems to oppose rather than support a move.
+
+Also supporting that Wikipedia are Djorje Vozovic and KIT.
+
+So let's re-evaluate:
+
+1. Oleg Alexandrov (USA)
+2. Ronline (Romania)
+3. Adrenalin (Moldova)
+4. Field Nothing (Moldova)
+5. Arbeo M (Germany)
+6. Liviu Andronic (France)
+
+Opposition:
+1. Node_ue (USA)
+2. Slavik Ivanov (Russia)
+3. Djordje Vozovic (Zlatibor)
+4. Russ (Russia/Korea)
+5. Dmitriid (Moldova)
+6. Vertaler (Moldova)
+7. Elnoel (Moldova)
+8. Monedula (Russia)
+9. Miaow Miaow (Czech Republic)
+10. OldakQuill (UK?)
+11. Nechtanc (USA)
+12. KIT (Russia)
+13. Gabix (Belarus)
+
+And Field, remember that this is a Wiki. If there is an error, either tell us
+what it is, correct it, or don't complain.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Field Theory</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 11:52:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >#14, I'm sorry but that's BS. V.Ivanov - <a href="http://mail.wikipedia.org/">http://mail.wikipedia.org/</a>
+pipermail/wikipedia-l/2005-December/042947.html . And where exactly did he 
+oppose the move ?
+
+And OK, let's relist it if you want to take into account Wikipedia users
+1. Oleg Alexandrov
+2. Ronline
+3. Andrenalin
+4. AndersonN
+5. Liviu
+6. Arbeo
+7. Ivanov V.
+8. Mihaitza
+9. EvilAlex
+10. Bonaparte
+11. Vasile
+12. AdiJapan
+13. Constantzeanu
+14. Alex007
+15. Bogdangiusca
+16. Dptop
+17. Dl.Goie
+18. Duca
+19. Just a tag
+
+What are we talking about here ? Supporting THE wikipedia ? Or not 
+approving A MOVE ? Do you see the difference ? 
+
+Anyway, should I list more ? And don't tell me your crap, those users that 
+YOU listed did not say a SINGLE word on wikipedia-l, you were the ONLY 
+user against the decision to move. Oleg Alexandrov and Liviu Andronic are 
+both citizens of Republic of Moldova, and nobody knows where Dmitriid, 
+Veraler or Elnoel are from, I really would like to speak to them, but I'm 
+sure they will support a move mo-&gt;mo-cyr, remember this is wikipedia and 
+not uncyclopedia, what YOU make out of wikipedia is something that 
+resembles uncyclopedia very closely.
+</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-10 21:07:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe latin1 - cyrilic and cyrilic - latin conversions can be handled
+automaticly ?</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Liviu Andronic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-13 16:26:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, it feels good to be Moldovan again. And probably 
+Oleg will feel similarly when he finds it out. Thanks 
+Field Theory. 
+</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dpotop</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-20 09:22:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Ok, let's review the &quot;moldovans&quot; that Mark (en:User:Node_ue) cites as supporters:
+- Dmitriid (mo:User:Dmitriid):
+  * all edits in moldovan language text are figure corrections or categorizing. 
+  * politically active, but in english, which is weird on a non-english wiki for
+which native speakers are available.
+  * native russian (not that I have a personal problem with this, but this
+discussion puts great emphasis on &quot;moldovan ethnicity&quot;)
+- Vertaler :
+  * contributed one article. In addition, some 20 minor edits (corrections).
+- Elnoel :
+  * no edit, nothing, nada
+Let's not forget this is a &quot;moldovan language&quot; wikipedia, and not a wikipedia
+for people living in Moldova. So, let's judge people by their ability to contribute.
+
+In conclusion:  I see no moldovan-speaking editor supporting Mark (a.k.a.
+en:Node_ue).
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Amo%3AUser%3ADpotop">:mo:User:Dpotop</a>]]</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-20 22:03:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The next step in this dispute / farce would be about WIKT:MO: a project with
+actual 11 registered users ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wiktionary%3Amo%3Aspecial%3AStatistics">wiktionary:mo:special:Statistics</a>]]) and about 4200
+id's (only some dozens *not* made by
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wiktionary%3Amo%3Aspecial%3AContributions%2FMediaWiki_default">wiktionary:mo:special:Contributions/MediaWiki_default</a>]].
+
+The &quot;quilified&quot; voters who disliked a Cyrillic WP:MO: also should not hesitate
+to close / change this project as well.
+
+&quot;qualified&quot;
+Toţi participanţii trebuie să fie cunoscători ai limbii moldoveneşti/române, ei
+fiind potenţialii contribuitori (fiecare utilizator va fi contactat în mod
+individual ca să-i fie verificată identitatea şi cunoaşterea limbii). Fiecare
+participant trebuie să aibă la activ minimum 25 editări pe mo.wikipedia.org sau
+ro.wikipedia.org.
+
+All participants (to the vote) must know the Moldovan/Romanian language being
+the potencial contributors (every user will be contacted individualy in order to
+verify the identity and the knowledge of the language. All participants (to the
+vote) must have a minimum of 25 edits at mo.wikipedia.org sau ro.wikipedia.org.
+
+Please do not hesitate to open another Mozilla request.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Liviu Andronic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-27 16:30:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As requested in <a href="show_bug.cgi?id=4409#c9">comment #9</a>, consensus was reached (<a href="http://mo.wikipedia.org/wiki/">http://mo.wikipedia.org/wiki/</a>
+Wikipedia:Alegeri). The Romanian/Moldovan speaking community participated in the 
+vote. The eligibility conditions are laied down in <a href="show_bug.cgi?id=4409#c19">comment #19</a>. The results are as 
+follows: 
+
+The existance of a Moldovan language Wikipedia:
+0 for
+35 against
+2 neutral
+
+In case of the maintainance of a Wikipedia in such a language written in Cyrillic, 
+would mo-cyr.wiki or ro-cyr.wiki, instead of mo.wiki, be a proper name for it:
+15 for
+0 against
+2 neutral
+
+Note: Please take into account that this vote was contested on Wikipedia-I by Node_
+ue [&quot;fairness in voting&quot; discussion]. 
+
+Thus, I would like to know whether it is possible through this bug report to 
+definitely shutdown the Moldovan Wikipedia, instead of just &quot;Move mo to mo-cyr, set 
+up new Latin-based mo&quot;? Or is it necessary to re-open this discussion on Wikipedia-
+I (this topic was several times discussed on Wikipedia-I)? Or is there any other 
+way of liberating the mo.wikipedia.org domain?
+</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-27 21:28:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4409#c20">comment #20</a>)
+the url is
+<a href="http://mo.wikipedia.org/wiki/Wikipedia:Alegeri">http://mo.wikipedia.org/wiki/Wikipedia:Alegeri</a>
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mo%3AWikipedia%3AAlegeri">mo:Wikipedia:Alegeri</a>]] with comments on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mo%3AWikipedia_talk%3AAlegeri">mo:Wikipedia_talk:Alegeri</a>]]
+
+<span class="quote">&gt; Note: Please take into account that this vote was contested on Wikipedia-I by</span >
+Node_
+<span class="quote">&gt; ue [&quot;fairness in voting&quot; discussion]. </span >
+
+BTW: I also contested the validity of this voting (especially the shutdown) at
+[[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mo%3AWikipedia_talk%3AAlegeri%23Valabilitatea_acestor_%22alegeri%22">mo:Wikipedia_talk:Alegeri#Valabilitatea_acestor_&quot;alegeri&quot;</a>]].
+
+This topic is very emotional. The poeple living in the historical region of
+Moldova (now split between more countries) are very proud and many of them feel
+no antagonism being Moldovans (from regional perspective) and also being
+Romanians. As far as I know it was never disputed that the great majority are
+writing in Latin script and that writing in Cyrillic was (re-)introduced in the
+Stalin era based mainly on political objectives and on obscure linguistic
+theories promoted during this time in the USSR.
+Beside main languages Wikipedia Foundation operates projects in dialects
+especially where writing in this variants has a great historical tradition. 'mo'
+/ 'mo-lat' and 'mo-cyr' could ilustrate the local countryside / regional
+treasures without being a 100% translation of the Romanian projects. Such a
+compromise would neither close all doors to the minority writing still in /
+reading only Cyrillic nor should it be regarded as an offense to the voters of
+the poll.
+
+No more ideas about this. Best wishes in a 'wiki' spirit to the contributors of
+both sides
+reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Liviu Andronic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-28 10:13:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;BTW: I also contested the validity of this voting (especially the shutdown) at
+&gt;[[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mo%3AWikipedia_talk%3AAlegeri%23Valabilitatea_acestor_%22alegeri%22">mo:Wikipedia_talk:Alegeri#Valabilitatea_acestor_&quot;alegeri&quot;</a>]].</span >
+I ommitted it. My excuses. 
+
+I cannot not agree with your arguments, except the mo-lat. Moldovan dialect was 
+never written in Latin script (to my knowledge). This is why mo.wiki is so 
+contested. Mo-cyr - as I said on Wikipedia-I - should well be *the* compromise and 
+the neutral solution. Everything will calm down if this happens. 
+
+Still, the Romanian/Moldovan language community desires a change: 
+Either a complete shutdown, either a move and *no* setting up of a new  Latin-based 
+mo. At least I do and I am quite tired that nothing happens for already so much 
+time. This Wikipedia domain shouldn't exist. 
+
+What concerns mo.wiktionary, this definitely has to be shutdown. It is absurd. I 
+will open a Wikipedia-I discussion sometime later.
+
+Liviu [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Alandroni">user:landroni</a>]]
+</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dpotop</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-01 11:05:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry, Liviu Andronic, but why do you claim that &quot;Moldovan dialect was never
+written in Latin script&quot;? Do you think that inter-bellum Romania (which included
+Bessarabia and Bukovine) used some form of Cyrillic script? No way!
+What you might say is that Moldovans remained in the USSR (in Ukraine, Russia,
+etc.) kept on writing using Cyrillic. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ADpotop">User:Dpotop</a>]]</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Liviu Andronic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-01 12:41:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, Dpotop, as far as I am aware, inter-bellum Romania used Romanian as a state 
+language. And I do not think there was any problem of Moldovan as a separate 
+language at that time (not in Romania). So, Bessarabia and Bukovine both used 
+Romanian language in writing. As for the Moldovan *dialect*, it was most probably 
+spoken at that time, as it is now in Moldova. A dialect is &quot;not necessarily written
+&quot; ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Dialect">Dialect</a>]]), and I can hardly imagine myself anyone seriously writing the 
+phrase: &quot;Nu tak şi faşim amu?&quot; instead of &quot;Păi ce facem acum?&quot;. What concerns the 
+Moldovan language as known during the communist era, it was an artificial language 
+and specifically a slightly modified version of Romanian written with a Cyrillic 
+alphabet (different from that used before 1860s). We didn't use &quot;ШЫ ШИ&quot; in actual 
+writing, but &quot;ШИ ЧЕ&quot;. Thus, even in the communist era the Moldovan dialect wasn't 
+written. I might be wrong. Please correct me if so. 
+
+Liviu [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Alandroni">user:landroni</a>]]
+</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jesse (Pathoschild)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-11-30 20:12:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The Moldovan Wikipedia has since been closed, so this is no longer relevant. Further, this would now need to go through the standard process for opening a new subdomain at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ARequests_for_new_languages">m:Requests_for_new_languages</a>]].</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-02 01:09:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4409#c25">comment #25</a>)
+<span class="quote">&gt; The Moldovan Wikipedia has since been closed, so this is no longer relevant.</span >
+
+I strongly disagree with the « WONTFIX » resolution for this request. Since discussion started about the topic no significant contributors of that wiki disagread with the subject of this request
+« Move mo to mo-cyr, set up new Latin-based mo » .
+The subject was never ever changes, see
+<a href="http://bugzilla.wikimedia.org/show_activity.cgi?id=4409">http://bugzilla.wikimedia.org/show_activity.cgi?id=4409</a>
+
+<span class="quote">&gt; Further, this would now need to go through the standard process for opening a
+&gt; new subdomain at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ARequests_for_new_languages">m:Requests_for_new_languages</a>]].</span >
+
+This is a very strange argumentation regarding projects of the Wikimedia Foundation which are created according to the spirit of the 
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License">http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License</a>
+
+It is not fair to the people who build that wiki to find again and again other arguments to camuflate the « delaying tactics » they are practicing because they have a strong repulsion ( <a href="http://www.dict.cc/deutsch-englisch/Abneigung.html">http://www.dict.cc/deutsch-englisch/Abneigung.html</a> ) against a certain topic.
+
+As far as I understand Wikimedia Foundation is a place a place of tolerance where people are meeting willing to collaborate on certein topics and is neither a place where people are obstructed from topics they want to contribute nor is it a place where people are kept in leading-strings ( <a href="http://www.dict.cc/englisch-deutsch/leading-strings.html">http://www.dict.cc/englisch-deutsch/leading-strings.html</a> ) .
+
+Refering to the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ARequests_for_new_languages">m:Requests_for_new_languages</a>]] Jesse Martin should know that is neither the case here that « mo » is a new language (in the sence of a new project) nor that this rule is applicable because it was introduced later. Such practice is used in jurisdiction as well.
+
+
+Best regards Reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3AGangleri">user:Gangleri</a>]]</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4409#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jesse (Pathoschild)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-02 03:16:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Gangleri,
+
+Issues of &quot;fairness&quot; don't apply. The language subcommittee was set up to manage new wikis to prevent many known problems, including political repression by out-voting, attempts to falsify votes by creating many accounts per person, empty wikis that even today attract vandalism, spam, and bias, takeover of a small wiki by another language or political group or a group of friends, widespread personal attacks or political bias, and so forth. Thus far, no approved wiki has had such issues. If you're concerned about fairness, it would also be unfair to those who did go through the process for approval if we made an exception for Moldovan.
+
+The subcommittee's scope does not exclude wikis that were discussed before its creation ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ALangcom%23Scope">m:Langcom#Scope</a>]]). It does not make sense to allow some wikis to develop these problems simply because they were discussed earlier. This is not a delaying tactic nor a case of intolerance, and the subcommittee at least is not part of an anti-Moldovan conspiracy. In fact, the process has remained essentially unchanged since its implementation in 2006, other than fine-tuning. Despite intermittent complaints about slowness, requests are processed faster now than ever before (an average of 1 per week since December 2006). 
+
+You draw a comparison to retrospective law, but that is not a valid comparison. Applying the new rules to all new wikis does not violate anyone's rights or freedoms. 
+
+If you want to discuss this further, please do so on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3Atalk%3Alangcom">m:talk:langcom</a>]].</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4409&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4409">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4409">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4409">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4409&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4409" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4409&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419363545-sojCHS8upBTj1rb0xwQ4XYZ-65d49tnlKGL4YgtxsMc">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

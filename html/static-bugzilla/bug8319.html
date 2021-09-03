@@ -1,0 +1,2027 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 8319 &ndash; Medium-trust mode for Special:Import using uploading user's credentials and current timestamp</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=8319&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=8319">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=8319">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=8319">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 8319 – Medium-trust mode for Special:Import using uploading user\'s credentials and current timestamp",  
+                             "show_bug.cgi?id=8319" );
+        document.title = "Bug 8319 – Medium-trust mode for Special:Import using uploading user\'s credentials and current timestamp";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 8319 – Medium-trust mode for Special:Import using uploading user\'s credentials and current timestamp", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Page_editing bz_bug_8319 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2012-11-03 09:52:01 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-11-03 09:52:01">
+  <input type="hidden" name="longdesclength" value="30">
+  <input type="hidden" name="id" value="8319">
+  <input type="hidden" name="token" value="1419369719-ekBge9oi3_hfbZ5q7ApZSa6J7n5AboYBkrc_vLG1zVI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=8319"><b>Bug&nbsp;8319</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Medium-trust mode for Special:Import using uploading user's credentials and current timestamp</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="Medium-trust mode for Special:Import using uploading user's credentials and current timestamp">Medium-trust mode for Special:Import using uploading user's credentials and c...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Medium-trust mode for Special:Import using uploading user\'s credentials and current timestamp', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Page editing
+    
+    (<a href="buglist.cgi?component=Page%20editing&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.11.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=8319#vote_8319">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=8319&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=8319">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-12-19 13:10 UTC by <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-11-03 09:52 UTC 
+      (<a href="show_activity.cgi?id=8319">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>4 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="clamengh">clamengh</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="mike.lifeguard+bugs">mike.lifeguard+bugs</option>
+                <option value="river">river</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=8319&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-19 13:10:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello, I am admin at lmo.wikipedia.org. I would like the 'Import pages' feature
+to be enabled, in such a way that we could upload multiple pages. At present the
+error message while opening <a href="http://lmo.wikipedia.org/wiki/special:import">http://lmo.wikipedia.org/wiki/special:import</a> is:
+'No transwiki import sources have been defined and direct history uploads are
+disabled.'
+We would like to import pages exported (by the 'special:export' feature) from:
+<a href="http://ca.wikipedia.org/wiki/special:export">http://ca.wikipedia.org/wiki/special:export</a>
+<a href="http://en.wikipedia.org/wiki/special:export">http://en.wikipedia.org/wiki/special:export</a>
+<a href="http://fr.wikipedia.org/wiki/special:export">http://fr.wikipedia.org/wiki/special:export</a>.
+Many thanks.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-06 22:37:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Site updated. Thanks for your patience.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 01:14:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't understand why Ashar is changing the summaries back - purely enabling
+Special:Import is totally useless; one has to configure the allowed import
+sources as well.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 10:17:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi all, many thanks.
+Unfortunately this is not exactly what I had asked: we would like to import XML 
+pages to Lombard wikipedia. i.e. we would like to make the reverse operation of the 
+special:export feature.
+Summing up: we are preparing multiple pages (with titles, contributors, etc) in XML 
+format (the same in which they are generally exported) and we would like to upload 
+them with one oparation only: someone from wikitech list suggested to do so, rather 
+than using a robot. 
+I raise a bit the priority of this byg, since a user recently manually uploaded 
+about 1000 pages.
+I am afraid I have to reopen this bug: this does not mean that I do not appreciate 
+your work, of course. Many thanks.
+A happy new year to you all!
+Claudi</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 10:51:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I add an example:
+1) I go to <a href="http://ca.wikipedia.org/wiki/special:export">http://ca.wikipedia.org/wiki/special:export</a>
+2)  I type A,B,C
+3) I click 'export'
+4) I get this XML file:
+- &lt;mediawiki xmlns=&quot;<a href="http://www.mediawiki.org/xml/export-0.3/">http://www.mediawiki.org/xml/export-0.3/</a>&quot; 
+xmlns:xsi=&quot;<a href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a>&quot; 
+xsi:schemaLocation=&quot;<a href="http://www.mediawiki.org/xml/export-0.3/">http://www.mediawiki.org/xml/export-0.3/</a> 
+<a href="http://www.mediawiki.org/xml/export-0.3.xsd">http://www.mediawiki.org/xml/export-0.3.xsd</a>&quot; version=&quot;0.3&quot; xml:lang=&quot;ca&quot;&gt;
+- &lt;siteinfo&gt;
+  &lt;sitename&gt;Viquipèdia&lt;/sitename&gt; 
+  &lt;base&gt;<a href="http://ca.wikipedia.org/wiki/Portada">http://ca.wikipedia.org/wiki/Portada</a>&lt;/base&gt; 
+  &lt;generator&gt;MediaWiki 1.9alpha&lt;/generator&gt; 
+  &lt;case&gt;first-letter&lt;/case&gt; 
+- &lt;namespaces&gt;
+  &lt;namespace key=&quot;-2&quot;&gt;Media&lt;/namespace&gt; 
+  &lt;namespace key=&quot;-1&quot;&gt;Especial&lt;/namespace&gt; 
+  &lt;namespace key=&quot;0&quot; /&gt; 
+  &lt;namespace key=&quot;1&quot;&gt;Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;2&quot;&gt;Usuari&lt;/namespace&gt; 
+  &lt;namespace key=&quot;3&quot;&gt;Usuari Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;4&quot;&gt;Viquipèdia&lt;/namespace&gt; 
+  &lt;namespace key=&quot;5&quot;&gt;Viquipèdia Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;6&quot;&gt;Imatge&lt;/namespace&gt; 
+  &lt;namespace key=&quot;7&quot;&gt;Imatge Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;8&quot;&gt;MediaWiki&lt;/namespace&gt; 
+  &lt;namespace key=&quot;9&quot;&gt;MediaWiki Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;10&quot;&gt;Plantilla&lt;/namespace&gt; 
+  &lt;namespace key=&quot;11&quot;&gt;Plantilla Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;12&quot;&gt;Ajuda&lt;/namespace&gt; 
+  &lt;namespace key=&quot;13&quot;&gt;Ajuda Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;14&quot;&gt;Categoria&lt;/namespace&gt; 
+  &lt;namespace key=&quot;15&quot;&gt;Categoria Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;100&quot;&gt;Portal&lt;/namespace&gt; 
+  &lt;namespace key=&quot;101&quot;&gt;Portal Discussió&lt;/namespace&gt; 
+  &lt;namespace key=&quot;102&quot;&gt;Viquiprojecte&lt;/namespace&gt; 
+  &lt;namespace key=&quot;103&quot;&gt;Viquiprojecte Discussió&lt;/namespace&gt; 
+  &lt;/namespaces&gt;
+  &lt;/siteinfo&gt;
+- &lt;page&gt;
+  &lt;title&gt;A&lt;/title&gt; 
+  &lt;id&gt;53&lt;/id&gt; 
+- &lt;revision&gt;
+  &lt;id&gt;782992&lt;/id&gt; 
+  &lt;timestamp&gt;2006-12-22T13:58:32Z&lt;/timestamp&gt; 
+- &lt;contributor&gt;
+  &lt;username&gt;Thijs!bot&lt;/username&gt; 
+  &lt;id&gt;3429&lt;/id&gt; 
+  &lt;/contributor&gt;
+  &lt;minor /&gt; 
+  &lt;comment&gt;Robot afegeix: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=th%3AA">th:A</a>]] esborra: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sq%3AA">sq:A</a>]]&lt;/comment&gt; 
+  &lt;text xml:space=&quot;preserve&quot;&gt;{{Alfabet llatí}} '''A''' és la primera lletra de 
+l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20catal%C3%A0">alfabet català</a>]] i de la majoria dels llatins. Té el seu origen en l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20%0Allat%C3%AD">alfabet 
+llatí</a>]] el qual la pren de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfa">alfa</a>]] de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20grec">alfabet grec</a>]] que la pren de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alef">alef</a>]] 
+de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20fenici">alfabet fenici</a>]], símbol que derivava del jerogrífic egipci d'un cap de bou. 
+===Evolució=== {| align=&quot;center&quot; cellspacing=&quot;10&quot; |- align=&quot;center&quot; |
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Imatge%3AEgyptianA-01.png">Imatge:EgyptianA-01.png</a>|Cap de bou egipci]]&lt;br /&gt;Jerogrífic egipci&lt;br /&gt;cap de bou |
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Imatge%3AProto-semiticA-01.png">Imatge:Proto-semiticA-01.png</a>|Cap de bou proto-semític]]&lt;br /&gt;Proto-semític&lt;br /&gt;cap 
+de bou |[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Imatge%3APhoenicianA-01.png">Imatge:PhoenicianA-01.png</a>|Alef fenici]]&lt;br /&gt;''Alef'' fenici |
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Imatge%3AAlpha%20uc%20lc.svg">Imatge:Alpha uc lc.svg</a>|65px|Alfa grega]]&lt;br /&gt;''alfa'' grega |[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Imatge%3AEtruscanA-%0A01.png">Imatge:EtruscanA-
+01.png</a>|A etrusca]]&lt;br /&gt;A estrusca |[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Imatge%3ARomanA-01.png">Imatge:RomanA-01.png</a>|A romana]]&lt;br /&gt;a romana 
+|} ===Diversitat de grafismes=== {| align=&quot;center&quot; cellspacing=&quot;10&quot; |- align=&quot;center&quot; 
+|[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3ABlackletterA-01.png">Image:BlackletterA-01.png</a>|Blackletter A]]&lt;br /&gt;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Blackletter">Blackletter</a>]] A |[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AUncialA-%0A01.png">Image:UncialA-
+01.png</a>|Uncial A]]&lt;br /&gt;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Uncial">Uncial</a>]] A |[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AAcap.png">Image:Acap.png</a>|Another Capital A]] |- 
+align=&quot;center&quot; |[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AModernRomanA-01.png">Image:ModernRomanA-01.png</a>|Modern Roman A]]&lt;br /&gt;Modern Roman A |
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AModernItalicA-01.png">Image:ModernItalicA-01.png</a>|Modern Italic A]]&lt;br /&gt;Modern Italic A |
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AModernScriptA-01.png">Image:ModernScriptA-01.png</a>|Modern Script A]]&lt;br /&gt;Modern Script A |} 
+===Representacions alternatives=== {{Lletra |NATO=Alpha |Morse=·– |Character=A1 
+|Braille=&amp;#x2801; }} ===Símbols derivats=== *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C2%AA">ª</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%80">À</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%81">Á</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%82">Â</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%83">Ã</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%84">Ä</a>]] 
+*[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%85">Å</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%86">Æ</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%26%23258%3B">&amp;#258;</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%26%23260%3B">&amp;#260;</a>]] *[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%E2%88%80">∀</a>]] ==Fonètica== En català es pronuncia com 
+a /a/ (la [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vocal%20oberta%20anterior%20no%20arrodonida">vocal oberta anterior no arrodonida</a>]] de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=AFI">AFI</a>]]) menys en els 
+dialectes orientals on en posició àtona es pronuncia com a ''vocal neutra'' o 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=schwa">schwa</a>]] /ə/ (excepte a l'Alguer). Quan es troba en posició tònica i compleix les 
+regles d'accentuació s'escriu de les formes À, à.
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3ALatin_alphabet_Aa.png">Image:Latin_alphabet_Aa.png</a>|right|A]] ==Significats de la A== *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Bioqu%C3%ADmica">Bioquímica</a>]]'': 
+Abreviatura de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Adenina">Adenina</a>]] i de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Alanina">Alanina</a>]] o de la '''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Vitamina%20A">Vitamina A</a>]]''' 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Educaci%C3%B3">Educació</a>]]'': En els països anglosaxons representa la màxima qualificació, 
+equivalent a l'excel·lent *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Electr%C3%B2nica">Electrònica</a>]]'': Abreviatura de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Amper">Amper</a>]]. 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Entreteniment">Entreteniment</a>]]'': *Representa l'as en la baralla de cartes francesa 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=F%C3%ADsica">Física</a>]]'': Abreviatura habitual de l'àrea. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Ling%C3%BC%C3%ADstica">Lingüística</a>]]'': És un 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=prefix">prefix</a>]] de privació o negació en la majoria de llengües amb influències 
+grecollatines (com per exemple a &quot;anormal&quot;) *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Matem%C3%A0tiques">Matemàtiques</a>]]'' i ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=l%C3%B2gica">lògica</a>]]'': 
+La A invertida (∀) és el [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=quantificador%20universal">quantificador universal</a>]]. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Medicina">Medicina</a>]]'': Designa un 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=grup%20sanguini">grup sanguini</a>]]. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=M%C3%BAsica">Música</a>]]'': Per als anglesos i els alemanys simbolitza la 
+nota musical [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=la">la</a>]]. En aquest sentit és molt poc utilitzat pels catalanoparlants. La 
+Cara A és la cara més important d'una cassette o un vinil, contenint usualment els 
+temes més populars *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Pol%C3%ADtica">Política</a>]]'': Envoltada d'un cercle és el símbol de 
+l'anarquisme *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Preposici%C3%B3">Preposició</a>]]'': Introduint un complement de lloc, expressa 
+relacions que denoten la direcció del moviment. També indica lloc puntual en repòs: 
+M'he fet mal '''a''' la mà. M'he trobat un gos '''al''' carrer. S'usa davant de 
+topònims quan no van precedits per l'article determinat: Xavier viu '''a''' Alacant. 
+Tanmateix es prefereix '''en''' davant de locatius precedits per un indeterminat o 
+indefinit: He sentit això '''en''' una conferència. Podeu seure '''en''' aquella 
+cadira. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Qu%C3%ADmica">Química</a>]]'': Abreviatura habitual del [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nombre%20m%C3%A0ssic">nombre màssic</a>]], el total de 
+neutrons i protons que conté un nucli atòmic. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=SI">SI</a>]]'': en minúscula símbol de 
+l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=atto">atto</a>]]. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Unitat%20de%20longitud">Unitat de longitud</a>]]'': En majúscula i amb un cercle al damunt (Å) 
+és el símbol de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%C3%A0ngstrom">àngstrom</a>]].És la lletra d'un tipus de paper internacional ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=din%20%0AA4">din 
+A4</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=din%20A5">din A5</a>|A5]]) *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Vehicle">Vehicle</a>]]s'': Indica procedència d'Àustria. A [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Fran%C3%A7a">França</a>]] es 
+col·loca als cotxes dels conductors novells, com un equivalent de la [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=L">L</a>]] 
+internacional {{commons|A}} [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Categoria%3AAlfabet%20llat%C3%AD">Categoria:Alfabet llatí</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=als%3AA">als:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ar%3AA">ar:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=arc%3AA">arc:A</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bs%3AA">bs:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=cs%3AA">cs:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=da%3AA">da:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=de%3AA">de:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=el%3AA">el:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AA">en:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AA">eo:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=es%3AA">es:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=et%3AA">et:A</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eu%3AA">eu:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fi%3AA">fi:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fr%3AA%20%28lettre%29">fr:A (lettre)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fur%3AA">fur:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gd%3AA">gd:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gl%3AA">gl:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3AA">he:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hr%3AA">hr:A</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hu%3AA">hu:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ia%3AA">ia:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=id%3AA">id:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ilo%3AA">ilo:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=io%3AA">io:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=is%3AA">is:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=it%3AA">it:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ja%3AA">ja:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ko%3AA">ko:A</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ku%3AA%20%28herf%29">ku:A (herf)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=kw%3AA">kw:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=la%3AA">la:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=lt%3AA">lt:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nl%3AA%20%28letter%29">nl:A (letter)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nn%3AA">nn:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=no%3AA">no:A</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nrm%3AA">nrm:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pl%3AA">pl:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pt%3AA">pt:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ro%3AA">ro:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ru%3AA%20%28%D0%BB%D0%B0%D1%82%D0%B8%D0%BD%D0%B8%D1%86%D0%B0%29">ru:A (латиница)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=scn%3AA">scn:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=simple%3AA">simple:A</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sk%3AA">sk:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sl%3AA">sl:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sr%3AA%20%28%D0%BB%D0%B0%D1%82%D0%B8%D0%BD%D0%B8%D1%87%D0%BA%D0%BE%29">sr:A (латиничко)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sv%3AA">sv:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=th%3AA">th:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tl%3AA">tl:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tr%3AA">tr:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=uk%3A%D0%90%20%0A%28%D0%BB%D1%96%D1%82%D0%B5%D1%80%D0%B0%29">uk:А 
+(літера)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vi%3AA">vi:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yo%3AA">yo:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=zh%3AA">zh:A</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=zh-yue%3AA">zh-yue:A</a>]]&lt;/text&gt; 
+  &lt;/revision&gt;
+  &lt;/page&gt;
+- &lt;page&gt;
+  &lt;title&gt;B&lt;/title&gt; 
+  &lt;id&gt;389&lt;/id&gt; 
+- &lt;revision&gt;
+  &lt;id&gt;767223&lt;/id&gt; 
+  &lt;timestamp&gt;2006-12-13T20:54:38Z&lt;/timestamp&gt; 
+- &lt;contributor&gt;
+  &lt;username&gt;Robbot&lt;/username&gt; 
+  &lt;id&gt;57&lt;/id&gt; 
+  &lt;/contributor&gt;
+  &lt;minor /&gt; 
+  &lt;comment&gt;Robot afegeix: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AB">eo:B</a>]]&lt;/comment&gt; 
+  &lt;text xml:space=&quot;preserve&quot;&gt;{{alfabet llatí}}La '''B''' és la segona lletra de 
+l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20catal%C3%A0">alfabet català</a>]] i primera de les [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=consonant">consonant</a>|consonants]]. Ve de l'alfabet llatí 
+i evoluciona de la segona lletra de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20fenici">alfabet fenici</a>]]: beth (casa).
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3ALatin_alphabet_Bb.png">Image:Latin_alphabet_Bb.png</a>|right|B]] A l'antigor representava [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Barcelona">Barcelona</a>]] i es 
+cosia en els draps cosits en aquesta ciutat. ==Fonètica== En català epresenta 
+l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=oclusiva%20bilabial%20sonora">oclusiva bilabial sonora</a>]], representada com a /b/ en l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=AFI">AFI</a>]]. Si es troba 
+entre dues vocals, però, sona de manera menys explosiva del que és habitual /&amp;beta;/. 
+En canvi a final de síl·laba i no seguit d'una consonant sonora s'ensordeix i es 
+pronuncia /p/ (àrab). El seu nom és ''be''. Abans d'una '''l''' i després d'una 
+síl·laba tònica es pronuncia doble (/bb/): moble, poble... ==Significats de la B== 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Astrologia">Astrologia</a>]]'': Representa el símbol dels bessons. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Biologia">Biologia</a>]]'': Un dels 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Grup%20Sanguini">Grup Sanguini</a>|grups sanguinis]] del sistema A0B. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Cronologia">Cronologia</a>]]'': En el 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=calendari">calendari</a>]] és la segona lletra que representa el [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=dilluns">dilluns</a>]]. 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Educaci%C3%B3">Educació</a>]]:''Usada com a sistema de qualificació escolar, als països anglosaxons 
+equival al notable i a l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=educaci%C3%B3%20prim%C3%A0ria">educació primària</a>]] espanyola s'identifica com una feina 
+que &quot;està bé&quot; *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=F%C3%ADsica">Física</a>]]'': En majúscula represente el [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Nombre%20Qu%C3%A0ntic">Nombre Quàntic</a>|nombre 
+bariònic]].És la lletra del color [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=blau">blau</a>]] en el sistema de codificació RGB 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Inform%C3%A0tica">Informàtica</a>]]'': En minúscula, '''b''' és el símbol del [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bit">bit</a>]]. En 
+majúscula , '''B''' és el símbol del [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=byte">byte</a>]]. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Matem%C3%A0tiques">Matemàtiques</a>]]'': Els romans 
+utilitzaven aquest símbol amb el valor de tres-cents i amb una ratlla horitzontal al 
+damunt equivalia a tresmil. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=M%C3%BAsica">Música</a>]]'': En la música antiga representava la nota 
+musical ''si''. Avui dia els alemanys l'utilitzen per representar el ''si bemoll''. 
+La cara B de les cassettes i vinils contenia versions de temes populars 
+*''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Qu%C3%ADmica">Química</a>]]'': Símbol del [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bor">bor</a>]]. També designa una vitamina *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Vehicle">Vehicle</a>]]''s: 
+Identifica els ciutadans de [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=B%C3%A8lgica">Bèlgica</a>]] {{commons|B}} [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Categoria%3AAlfabet%20llat%C3%AD">Categoria:Alfabet llatí</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=als%3AB">als:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ar%3AB">ar:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=arc%3AB">arc:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bs%3AB">bs:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=cs%3AB">cs:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=cy%3AB">cy:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=da%3AB">da:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=de%3AB">de:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=el%3AB">el:B</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AB">en:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AB">eo:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=es%3AB">es:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=et%3AB">et:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eu%3AB">eu:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fi%3AB">fi:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fr%3AB%20%28lettre%29">fr:B (lettre)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gd%3AB">gd:B</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gl%3AB">gl:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3AB">he:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hr%3AB">hr:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hu%3AB">hu:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=id%3AB">id:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ilo%3AB">ilo:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=io%3AB">io:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=it%3AB">it:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ja%3AB">ja:B</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ko%3AB">ko:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=kw%3AB">kw:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=la%3AB">la:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nl%3AB%20%28letter%29">nl:B (letter)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nn%3AB">nn:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=no%3AB">no:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pl%3AB">pl:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pt%3AB">pt:B</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ro%3AB">ro:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ru%3AB%20%28%D0%BB%D0%B0%D1%82%D0%B8%D0%BD%D0%B8%D1%86%D0%B0%29">ru:B (латиница)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=simple%3AB">simple:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sl%3AB">sl:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sv%3AB">sv:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tl%3AB">tl:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tr%3AB">tr:B</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vi%3AB">vi:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yo%3AB">yo:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=zh%3AB">zh:B</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=zh-yue%3AB">zh-yue:B</a>]]&lt;/text&gt; 
+  &lt;/revision&gt;
+  &lt;/page&gt;
+- &lt;page&gt;
+  &lt;title&gt;C&lt;/title&gt; 
+  &lt;id&gt;549&lt;/id&gt; 
+- &lt;revision&gt;
+  &lt;id&gt;769753&lt;/id&gt; 
+  &lt;timestamp&gt;2006-12-15T19:48:56Z&lt;/timestamp&gt; 
+- &lt;contributor&gt;
+  &lt;username&gt;TXiKiBoT&lt;/username&gt; 
+  &lt;id&gt;3050&lt;/id&gt; 
+  &lt;/contributor&gt;
+  &lt;minor /&gt; 
+  &lt;comment&gt;Robot modifica: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=el%3AC">el:C</a>]]&lt;/comment&gt; 
+  &lt;text xml:space=&quot;preserve&quot;&gt;{{vegeu|la lletra C|Llenguatge C}} {{alfabet llatí}}
+La '''C''' és la tercera lletra de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20catal%C3%A0">alfabet català</a>]] provinent del [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=alfabet%20%0Allat%C3%AD">alfabet 
+llatí</a>|llatí]]. El seu orígen gràfic està en símbols [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fenici">fenici</a>]]s per representar un 
+arma que es llençava. Al llatí es va arrodonir i es va diferenciar de la G. 
+==Fonètica== En català representa l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=oclusiva%20velar%20sorda">oclusiva velar sorda</a>]] /k/ de l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=AFI">AFI</a>]] davant 
+de les [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vocal">vocal</a>|vocals]] ''a'' (''casa''), ''o'' (''cosa''), ''u'' (''cullera''), i 
+les [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=consonant">consonant</a>|consonants]] ''r'' (''creu'') i ''l'' (''clau'') i en posició de 
+tancament de [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=s%C3%ADl%C2%B7laba">síl·laba</a>]] (''acte'', ''sac''), i el fonema de la [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fricativa%20alveolar%20%0Asorda">fricativa alveolar 
+sorda</a>]] /s/ davant ''e'' (''cera''), ''i'' (''ciri''). Cal recalcar que si el 
+foenma /k/ va seguit d'una lletra ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=u">u</a>]]'' que representa el fonema /w/, aleshores 
+el primer d'aquests [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fonema">fonema</a>|fonemes]] no es representa per la lletra ''c'' sinó per 
+la lletra [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=q">q</a>]] (per això ''cua'' va amb ''c'' i ''quadre'' s'escriu amb ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=q">q</a>]]''). 
+També forma part de dos [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=d%C3%ADgraf">dígraf</a>|dígrafs]] fonètics: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=d%C3%ADgraf%20nc">dígraf nc</a>|nc]] i [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=d%C3%ADgraf%20%0Ang">dígraf 
+ng</a>|ng]]. En l'[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=escriptura">escriptura</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=catal%C3%A0">català</a>|catalana]] prenormativa també formava part del 
+dígraf [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=d%C3%ADgraf%20ch">dígraf ch</a>|ch]]. ==Significats de C== * ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Bioqu%C3%ADmica">Bioquímica</a>]]'': en majúscula, 
+símbol de la [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=citosina">citosina</a>]] i de la [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ciste%C3%AFna">cisteïna</a>]][[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3ALatin_alphabet_Cc.png">Image:Latin_alphabet_Cc.png</a>|right|C]]
+* ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Economia">Economia</a>]]'': Es posen dues C per designar compte corrent i abreuja els 
+cèntims.* ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=F%C3%ADsica">Física</a>]]'': en minúscula, una de les constants absolutes, es igual a la 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=velocitat%20de%20la%20llum">velocitat de la llum</a>]]. *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Educaci%C3%B3">Educació</a>]]'': Als països anglosaxons, representa 
+l'aprovat en les qualificacions escolars * ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Inform%C3%A0tica">Informàtica</a>]]'': el [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=llenguatge%20C">llenguatge C</a>]] 
+es un [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=llenguatge%20de%20programaci%C3%B3">llenguatge de programació</a>]] *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Ling%C3%BC%C3%ADstica">Lingüística</a>]]'': En [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gram%C3%A0tica">gramàtica</a>]] designa 
+habitualment un complement sintàctic. En alguns manuscrits llatins és una abreviatura 
+de &quot;cum&quot; * ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Matem%C3%A0tiques">Matemàtiques</a>]]'': En el [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sistema%20de%20numeraci%C3%B3">sistema de numeració</a>]] romà, signe que el 
+número [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=cent">cent</a>|100]]; amb una ratlla al damunt representa el ''cent mil''. A més és la 
+abreviatura de &quot;centi-&quot; en les unitats de mesura * ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=M%C3%BAsica">Música</a>]]'': en la notació 
+germànica, nota [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=do">do</a>]]. *En els països anglosaxons, és el símbol de l'aprovat en les 
+qualificacions escolars * ''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Qu%C3%ADmica">Química</a>]]'': en [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=maj%C3%BAscula">majúscula</a>]], símbol del [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=carboni">carboni</a>]]. 
+Designa també una [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vitamina">vitamina</a>]] molt present als cítrics *''[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=S%C3%ADmbol">Símbol</a>]]s'': Amb un º al 
+davat designa els graus Celsius de [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=temperatura">temperatura</a>]]. Si en canvi està dins del 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=cercle">cercle</a>]], significa &quot;copyright&quot;, és a dir, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=propietat%20intel%C2%B7lectual">propietat intel·lectual</a>]] registrada 
+{{commons|C}} [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Categoria%3AAlfabet%20llat%C3%AD">Categoria:Alfabet llatí</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=af%3AC">af:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=als%3AC">als:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ar%3AC">ar:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=arc%3AC">arc:C</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bs%3AC">bs:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=co%3AC">co:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=cs%3AC">cs:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=da%3AC">da:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=de%3AC">de:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=el%3AC">el:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AC">en:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AC">eo:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=es%3AC">es:C</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eu%3AC">eu:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fi%3AC">fi:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=fr%3AC%20%28lettre%29">fr:C (lettre)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gd%3AC">gd:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=gl%3AC">gl:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3AC">he:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hr%3AC">hr:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hu%3AC">hu:C</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=id%3AC">id:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ilo%3AC">ilo:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=io%3AC">io:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=it%3AC">it:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ja%3AC">ja:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ko%3AC">ko:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=kw%3AC">kw:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=la%3AC%20%28littera%29">la:C (littera)</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nl%3AC%20%28letter%29">nl:C (letter)</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=nn%3AC">nn:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=no%3AC">no:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pl%3AC">pl:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pt%3AC">pt:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ro%3AC">ro:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ru%3AC%20%28%D0%BB%D0%B0%D1%82%D0%B8%D0%BD%D0%B8%D1%86%D0%B0%29">ru:C (латиница)</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=simple%3AC">simple:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sk%3AC">sk:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sl%3AC">sl:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sv%3AC">sv:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=th%3AC">th:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tl%3AC">tl:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=tr%3AC">tr:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vi%3AC">vi:C</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yo%3AC">yo:C</a>]] 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=zh%3AC">zh:C</a>]]&lt;/text&gt; 
+  &lt;/revision&gt;
+  &lt;/page&gt;
+  &lt;/mediawiki&gt;
+5) I translate Catalan into Lombard, getting a new file, say LMOimportABC.xml
+6) Then I would like to upload LMOimportABC.xml to Lombard wikipedia, turning it into 
+the three pages A,B,C.(Of course we are dealing with much more massive actions, say 
+1000 pages with one upload)
+Thank you once more,
+Claudi
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 16:08:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I allowed the sources so it should work in Special:Import :)
+
+What's wrong when you are doing it ?</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 16:54:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The user wants to import from XML, but we don't allow that on Wikimedia wikis.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 16:55:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Er, that should have been &quot;...import from XML via upload...&quot;</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 16:57:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Try it with Special:Import , not with Special:Upload !</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 19:35:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Uploading such XML files is not allowed on Wikimedia wikis, because it allows
+you to entirely forge authorship with no trace.
+
+Ashar, different issue, never mind.  :)</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-07 21:50:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Occasionally we've set up the XML-file-upload import for wikis moving content
+from an external site, but that's not really needed for the internal sites. The
+transwiki source setup should already work effectively for those.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-09 16:03:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi all, many thanks. I was wandering about authorship as well, indeed. However,
+let us narrow a bit the problem: in about a months I will have about 3000
+articles to upload, and I will have written them by myself, so this case could
+be included in the 'occasionaly we've set the XML-file-upload...' stated by
+Brion. There probably should hold the restriction that the formal author should
+be the user who uploaded the XML file via special:import (no &lt;user&gt; tags
+allowed). The 'site' is de facto external, since once the articles have been
+translated or transformed, they no longer belong to an internal site. 
+So I guess I should use a robot instead, isn't it? Or, otherwise, could someone
+(e.g. Brion) upload the XML file for me, please? This should happen about thrice
+a year for the next two years. It remains to deal with the same job when made by
+users who are not admin, though. Many thanks. Cheers,
+Claudi</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-09 17:54:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reopening for Brion to consider.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-19 15:43:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi all, it looks like that 'pagefromfile' robot should work for uploading
+multiple pages. However, I would like to pose you another question, please: does
+the device Ashar made up allow importing more than one page with one operation
+(in this case images)? If so (or if it can be adapted to do so), it would be
+very useful, since we have a number of paper about Catalan municipalities yet
+without images; this is almost surely because those articles had been the first
+ones made up at Catalan wikipedia, so they didn't upoload the images to Commons
+(as they currently do, as far as I know): so this is a sort of 'transitional
+device' to solve a problem which in the future will diminish in importance, but
+is still impèortant enough.
+Thank you.
+Cheers,
+Claudi</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-19 16:12:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry, I forgot: could you please add en: to the sources anyway? Many thanks.
+Cheers,
+Claudi</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">River Tarnell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-07 06:20:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >someone seems to have added en to lmowiki import sources already...</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-10 16:33:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thank you! Now it would be very fine if some way to import articles by
+administrators could be configured.
+I suggest something like this:
+A START TAG
+   THE WIKI CODE OF THE ARTICLE
+AN END TAG
+
+Some kind of comment tag would be also welcome: for instance it would allow to
+credit the author if different form the administrator who uploaded the articles.
+Thank you,  
+Claudi</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-10 16:46:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We've already discussed this; it's not typically done for the reasons cited above.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-10 16:59:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, the XML -it is clear- shouldn't be activated for the reasons above. But,
+maybe the device: START TAG+
+THE WIKI CODE OF THE ARTICLE + the END TAG and, at this point: AUTHOR=WHO
+UPLOADED THE PAGES, should be fine: indeed the same goal is achieved by the
+pagefromfile pyhthon robot, but by using much more time. Thank you,
+Claudi</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-10 17:28:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Accepting an XML file which asserts authorship that can't be confirmed is not at
+all the same as allowing users to upload via a robot, where authorship is
+confirmed in the same manner as a normal edit.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-15 12:35:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, I do agree. Thus, if it is technically feasible, we could enable import
+from text file with the only &lt;page&gt; and &lt;/page&gt; tags allowed.
+All in all, I am the author of most articles to be imported, so I would import
+them as the author, which is correct. Another user has written so many articles
+in the same fashion that he/she could be made admin and import pages.
+The key question is: &quot;is import-pages faster than python&quot;? If the answer is yes,
+then we should go on discussing, since this feature looks like to be very
+important for a project in an endangered language as Lombard is; if the answer
+is no, then, in fact, the python &quot;pagefromfile&quot; robot should be used instead,
+and we could close this bug.
+Thank you, Claudi</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">River Tarnell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-21 19:15:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >changing summary, this feature can't be enabled until someone would write the code.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-22 12:45:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, that's correct. I am ready to help, but I am afraid I do not have know how enough: anyway, please let me know if I can do anything. However, couldn't we adapt the code already operating at EN.WP? Would this adaptation be difficult? Thank you. Bests,
+Claudi</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-22 14:15:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Changing summary to something that doesn't make me totally confused. :)
+
+A medium-trust mode for Special:Import was planned but not yet implemented, using the uploader's account information and present timestamp, thus visibly marked as an import with no possibility of past-credential-forging.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-22 16:18:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wonderful! So, please let me know if I can help anyway. Bye, Claudi</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-29 01:12:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8319#c23">comment #23</a>)
+<span class="quote">&gt; A medium-trust mode for Special:Import was planned but not yet implemented,
+&gt; using the uploader's account information and present timestamp, thus visibly
+&gt; marked as an import with no possibility of past-credential-forging.</span >
+
+I've got an implementation of this hanging around, but I thought I'd better document the main concern with it, which is the &quot;use of present timestamp(s)&quot;.
+
+This implies that the imported revisions should all assume the current time, however discussion with Brion led to the conclusion that this caused an undesirable pile-up of revisions all with the current date/time. So some clever decision needs to be made about how to treat this.
+
+I'll dig up the actual patch file and attach it to this bug.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-10 15:09:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello, thank you!
+Provided it's technically feasible, I propose the following:
+During each import session
+1) The file with multiple uploads is acquired by the server and put in some kind of &quot;buffer&quot;
+2) The articles are created, say, at a time interval of 1 minute each one from the following.
+
+Best regards,
+Claudi</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-10 21:47:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8319#c26">comment #26</a>)
+<span class="quote">&gt; Provided it's technically feasible, I propose the following:</span >
+
+It's not particularly, no.
+
+<span class="quote">&gt; 2) The articles are created, say, at a time interval of 1 minute each one from
+&gt; the following.</span >
+
+What happens if someone edits the page in between? If we accept the request, how do we notify the uploading user of the problem? This could theoretically lead to a denial of service vector, whereby somebody uploads a multiple-revision file which then effectively blocks editing of a page for a period of time due to pending revisions.
+
+I don't like the idea of delaying anything at all; we should probably think of some clever way of merging multiple revisions together.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Claudi Meneghin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-10-23 13:58:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello, thank you.
+So far, I cannot imagine anything else. I'll go on thinking. Perhaps, if the trouble is about the pile-up of revisions all with the current date/time, we could provide the following:
+1) the first article should be dated at current date/time;
+2) the second at 1 minute before
+...
+n) the n-th at (n-1) minutes before
+
+etc.
+The main concern with this is that it wouldn't be -strictly speaking- true. Yet it would be &quot;almost&quot; true and the articles could be immediately edited by everybody. Also, &quot;minutes&quot; could be replaced by &quot;seconds&quot;, and this fact could be automatically made explicit by an edit comment like &quot;this article has been predated of X minutes/seconds due to technical reasons.&quot;
+Thank you.
+Bye,
+Claudi </pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8319#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-11-03 09:52:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >importupload has existed for a while; open new bugs if you have issues with it.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=8319&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=8319">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=8319">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=8319">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=8319&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=8319" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=8319&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419369720-I5_r28hzBEb7KmC_-KMq6WtbMGn5yZI-mXpx81vyJdQ">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

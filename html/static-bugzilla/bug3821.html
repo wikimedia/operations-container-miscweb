@@ -1,0 +1,1966 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3821 &ndash; CharInsert cannot insert combining diacritics on their own</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3821&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3821">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3821">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3821">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3821 – CharInsert cannot insert combining diacritics on their own",  
+                             "show_bug.cgi?id=3821" );
+        document.title = "Bug 3821 – CharInsert cannot insert combining diacritics on their own";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3821 – CharInsert cannot insert combining diacritics on their own", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_MediaWiki_extensions bz_component_CharInsert bz_bug_3821 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-09-23 22:36:36 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-09-23 22:36:36">
+  <input type="hidden" name="longdesclength" value="21">
+  <input type="hidden" name="id" value="3821">
+  <input type="hidden" name="token" value="1419362595-Mb_6sC-LO8SyIUnaRB3cpnADVzS7vlI0pN-k-OBJ3Hc">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3821"><b>Bug&nbsp;3821</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">CharInsert cannot insert combining diacritics on their own</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>CharInsert cannot insert combining diacritics on their own
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('CharInsert cannot insert combining diacritics on their own', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>CharInsert
+    
+    (<a href="buglist.cgi?component=CharInsert&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3821">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3821#vote_3821">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://test.leuksman.com/index.php?title=MediaWiki:Edittools&amp;oldid=10632"><span title="http://test.leuksman.com/index.php?title=MediaWiki:Edittools&amp;oldid=10632">http://test.leuksman.com/index.php?ti...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">i18n
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - feature request: provide a way of inserting UTF-characters by specifying them as HTML entities or in &amp;#nnnn; or in &amp;#xnnnn; or in %nn%nn%nn notation"
+   href="show_bug.cgi?id=4175">4175</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=4175">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3821&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3821">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-10-28 22:27 UTC by <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-09-23 22:36 UTC 
+      (<a href="show_activity.cgi?id=3821">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>7 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bugzilla.wikimedia">bugzilla.wikimedia</option>
+                <option value="gangleri">gangleri</option>
+                <option value="gtisza">gtisza</option>
+                <option value="hippytrail">hippytrail</option>
+                <option value="moyogo">moyogo</option>
+                <option value="v85.wikipedia">v85.wikipedia</option>
+                <option value="verdy_p">verdy_p</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_jpeg">
+        <td valign="top">
+            <a href="attachment.cgi?id=1188"
+               title="View the content of the attachment">
+          <b>screen dump for bug 03821 MediaWiki:Edittools seen with FireFox</b></a>
+
+          <span class="bz_attach_extra_info">
+              (128.02 KB,
+                image/jpeg)
+
+            <br>
+            <a href="#attach_1188"
+               title="Go to the comment associated with the attachment">2005-12-14 22:48 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1188&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_image_jpeg">
+        <td valign="top">
+            <a href="attachment.cgi?id=1189"
+               title="View the content of the attachment">
+          <b>screen dump for bug 03821 MediaWiki:Edittools seen with IE and Lucida Sans Unicode</b></a>
+
+          <span class="bz_attach_extra_info">
+              (126.33 KB,
+                image/jpeg)
+
+            <br>
+            <a href="#attach_1189"
+               title="Go to the comment associated with the attachment">2005-12-14 22:50 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1189&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=3821&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-28 22:27:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >IPA and some languages need glyphs that do not exist in precomposed forms in
+Unicode. The only way to compose them is with combining diacritics.
+For languages using those it's not a major issue since the alphabet is not too
+large, we can use &lt;charinsert&gt;ɛ̀ ɛ́ ɛ̌ ɛ̂&lt;/charinsert&gt; for example(that's U+025B
+with diacritics U+0300, U+0301, U+0302 and U+030C).
+For IPA, it would be necessary.
+
+Currently adding a combining diacritic (any of U+0300-U+036B) between
+&lt;charinsert&gt; tags does not work.
+* &lt;charinsert&gt; ̀ &lt;charinsert&gt; is useless since the diacritcs is attached to the
+preceding character, but we want to insert only the diacritics not the previous
+character with the diacritic. Besides, it's not displayed at all.
+* &lt;charinsert&gt;&amp;#x302;&lt;/charinsert&gt; is not displayed either.
+
+This isn't  major bugs since any serious IPAer should have an input method
+(there's close to none: one for Mac from SIL and uncomplete or buggy ones for
+Linux). But it would be nice if it worked.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-28 22:29:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >btw, this could be used to reduce the number of char to insert
+Instead of having é á ó ú í ń ŕ ś ź etc, we could simply have ́ that would follow
+the character to be combined with. But people aren't used to or aware of this.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-28 22:48:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are some other bugs related to this:
+compare <a href="http://www.fileformat.info/info/unicode/char/30b/index.htm">http://www.fileformat.info/info/unicode/char/30b/index.htm</a>
+see <a href="http://en.wikipedia.org/wiki/%CC%8B">http://en.wikipedia.org/wiki/%CC%8B</a> and
+<a href="http://en.wikipedia.org/w/index.php?title=%CC%8B&amp;action=edit">http://en.wikipedia.org/w/index.php?title=%CC%8B&amp;action=edit</a>
+
+bugs requiring more or less restrictions:
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - strip phantom general punctuation characters from page titles"
+   href="show_bug.cgi?id=3819">bug 3819</a>: strip phantom general punctuation characters from page titles
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Usernames should use unicode whitelist"
+   href="show_bug.cgi?id=1524">bug 1524</a>: usernames should use unicode whitelist</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-05 13:19:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See also
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - feature request: provide a way of inserting UTF-characters by specifying them as HTML entities or in &amp;#nnnn; or in &amp;#xnnnn; or in %nn%nn%nn notation"
+   href="show_bug.cgi?id=4175#c1">Bug 4175 comment 1</a>
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - feature request: provide a way of inserting UTF-characters by specifying them as HTML entities or in &amp;#nnnn; or in &amp;#xnnnn; or in %nn%nn%nn notation"
+   href="show_bug.cgi?id=4175">Bug 4175</a>: feature request: provide a way of inserting UTF-characters by 
+specifying them as HTML entities or in &amp;#nnnn; or &amp;#xnnnn; notation
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-05 13:41:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3821#c2">comment #2</a>)
+<span class="quote">&gt; There are some other bugs related to this:
+&gt; compare <a href="http://www.fileformat.info/info/unicode/char/30b/index.htm">http://www.fileformat.info/info/unicode/char/30b/index.htm</a>
+&gt; see <a href="http://en.wikipedia.org/wiki/%CC%8B">http://en.wikipedia.org/wiki/%CC%8B</a> and
+&gt; <a href="http://en.wikipedia.org/w/index.php?title=%CC%8B&amp;action=edit">http://en.wikipedia.org/w/index.php?title=%CC%8B&amp;action=edit</a>
+&gt; 
+&gt; bugs requiring more or less restrictions:
+&gt; <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - strip phantom general punctuation characters from page titles"
+   href="show_bug.cgi?id=3819">bug 3819</a>: strip phantom general punctuation characters from page titles
+&gt; <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Usernames should use unicode whitelist"
+   href="show_bug.cgi?id=1524">bug 1524</a>: usernames should use unicode whitelist</span >
+
+Not related to this at all. They're asking for different things altogether.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-05 19:29:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3821#c4">comment #4</a>)
+
+<span class="quote">&gt; Not related to this at all. They're asking for different things altogether.</span >
+
+The &quot;relation&quot; should point to what does the community *want* to be implemented
+first. Everey feature is both used by contributors and &quot;vandals&quot;. The question
+is if we provide first features to make it &quot;easier&quot; for &quot;vandals&quot; to keep sysops
+busy or if we should agree first
+- on having a &quot;unicode whitelist for usernames&quot; (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Usernames should use unicode whitelist"
+   href="show_bug.cgi?id=1524">bug 1524</a>)
+- on &quot;restricting Unicode Control Characters in titles&quot; (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Unicode Control Characters should be restricted in title text (RLM, LRM, RLO, LRO, . . .)"
+   href="show_bug.cgi?id=3696">bug 3696</a>)
+- on disalowing the use of &quot;various whitespace characters in titles&quot; (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Unicode whitespaces allowed in article title"
+   href="show_bug.cgi?id=1414">bug 1414</a>).
+
+These three are &quot;restrictive requirements&quot; <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - CharInsert cannot insert combining diacritics on their own"
+   href="show_bug.cgi?id=3821">bug 3821</a> requires more functionality.
+In order to push that discussion I made:
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - feature request: provide a notification for irregular Unicode characters"
+   href="show_bug.cgi?id=4185">Bug 4185</a>: feature request: provide a notification for irregular links</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-06 12:33:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's incorrect. The bugs you added have nothing to do with this one, which is
+asking for a way for certain unicode character entities to be preserved during
+editing and saved and &quot;acknowledged&quot; in the wiki markup in the database, when
+parsing, etc.
+
+Please keep all your &quot;maybe related&quot; and &quot;(not actually) related to&quot; and
+&quot;somehow related to&quot; comments out of the way unless they _ARE_.
+
+Finally, this is a discussion thread used by those who develop and are
+interested in developing the MediaWiki software; community issues aren't
+discussed here. So the following assumption on &quot;what the question is&quot;...
+
+&quot;The question is if we provide first features to make it &quot;easier&quot; for &quot;vandals&quot;
+to keep sysops
+busy or if we should agree first&quot;
+
+...is completely inappropriate for this bug and feature request tracker.
+
+
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-13 21:36:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+changed subject from &quot;diacritic cannot be used on their own&quot; to
+&quot;Define and implement a markup syntax for CharInsert&quot;
+added url
+<a href="http://test.leuksman.com/index.php?title=MediaWiki:Edittools&amp;oldid=10632">http://test.leuksman.com/index.php?title=MediaWiki:Edittools&amp;oldid=10632</a>
+
+Denis please reference to your tests with urls. I could not find any of your
+contribution in relevant MediaWiki messages at various wiki's.
+
+Please tray to use different browsers when looking at the various versions of
+FiverAlpha's MediaWiki:Edittools. There are some links with browser tests.
+Don't be surprised when you can see nothing usefull at
+<a href="http://www.fileformat.info/info/unicode/block/combining_diacritical_marks/utf8test.htm">http://www.fileformat.info/info/unicode/block/combining_diacritical_marks/utf8test.htm</a>
+. It seems that these characters can not be used together with space. This is
+the problem mentioned by Denis.
+
+To see the tests you should verify if your computer is configured properly for
+combined characters in ar:, he:, hi: . Read at relevant WP:EN pages.
+
+I could not find a syntax description. This is why I made various tests.
+- I used many variations: unicode characters, &amp;#xnnn; notation and %nn%nn%nn
+notation. While unicode characters can be concatenated the characters in &amp;#nnnn;
+and &amp;#xnnnn; notation *must* use the &quot;+&quot; character to &quot;get somthing usefull&quot;. 
+- Because I did not spend time to identify characters which can follow &quot;space&quot;
+and generate a visible link with CharInsert I used *underscore* to make the /
+some tests. Tray to see yourself which of the 26 version generate the result
+from 17 ::  _̯  ::.
+
+The real problem with Charinsert is that there is no way / I could find no way
+that Characters
+- inserts foo
+- renders the link with bar
+
+This would be required for a whole group of characters: IPA diacritics,
+whitespace, general punctuation but could also used to label longer sequences of
+characters.
+
+wiki markup syntax can not be used here. one could use
+::foo:::bar::
+or
+//foo///bar//
+because &quot;//&quot; would break Apaches however (?)
+see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Consecutive /s merged in PATH_INFO URLs on Apache 2"
+   href="show_bug.cgi?id=2088">bug  2088</a>: Consecutive /s merged in PATH_INFO URLs on Apache 2.
+
+The markup syntax will allow to include in the name of the link both the unicode
+character itself and a description. This will prevent from inserting homoglyphs.
+I am not shure if there are punctuation characters which are added before the
+character and others after the character. Naming could look like bar=foobar+ or
+bar=+foobar. The url contains RTL characters and RTL punctuation characters.
+
+The workaround offered with example 17 is that users will need only to remove
+the underscore after inserting a character from the Unicode block &quot;Combining
+Diacritical Marks&quot;. There are 112 such characters and the number of combinations
+can be reduced considerably.
+
+A question about the implementation is what formats are allowed: Unicode
+characters, HTML entities (named, decimal, hex) and also (?) %nn%nn%nn notation?
+How CharInsert would interfear with normalisation. I understand that
+normalisation is performed when a page is submitted as a preview or as a save
+(but not with action=purge).
+
+Once characters are added you may see them *only* when editing as the ::  _̯  ::
+which shows in the editbox ::   ̯  :: but disapears when saved. Other characters
+as general punctuation characters and / or zero width space you will not see at
+all. This relates to <a href="show_bug.cgi?id=3821#c3">comment 3</a> and <a href="show_bug.cgi?id=3821#c5">comment 5</a> above.
+
+I noticed that CharInsert conflicts (does not render well) with # lists. Please
+look in the history of the url for appropriate examples.
+
+The CVS url is
+<a href="http://cvs.sourceforge.net/viewcvs.py/wikipedia/extensions/CharInsert">http://cvs.sourceforge.net/viewcvs.py/wikipedia/extensions/CharInsert</a> .
+
+Please contact Brion to become a sysop if you would like to test some issues
+related to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Devan%C4%81gar%C4%AB">Devanāgarī</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Niqqud">Niqqud</a>]] (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Unicode normalization &quot;sorts&quot; Hebrew/Arabic/Myanmar vowels wrongly"
+   href="show_bug.cgi?id=2399">bug 2399</a>) issues or others. CharInsert
+should work properly with all these characters.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-13 22:57:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - feature request: provide a way of inserting UTF-characters by specifying them as HTML entities or in &amp;#nnnn; or in &amp;#xnnnn; or in %nn%nn%nn notation"
+   href="show_bug.cgi?id=4175">Bug 4175</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 18:24:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There's a test on <a href="http://fr.wiktionary.org/wiki/MediaWiki:Edittools">http://fr.wiktionary.org/wiki/MediaWiki:Edittools</a>
+using &lt;charinsert&gt; ː ‿ ́ ̀ ̌ ̂ &lt;/charinsert&gt; for IPA (API in French)
+
+None of the combining diacritics are avalaible. Yet they are in the wikitext.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 21:33:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3821#c7">comment #7</a>)
+<span class="quote">&gt; wiki markup syntax can not be used here. one could use
+&gt; ::foo:::bar::
+&gt; or
+&gt; //foo///bar//</span >
+
+maybe
+:::foo::bar:::
+or
+///foo//bar///
+is better to parce
+
+(In reply to <a href="show_bug.cgi?id=3821#c9">comment #9</a>)
+<span class="quote">&gt; There's a test on <a href="http://fr.wiktionary.org/wiki/MediaWiki:Edittools">http://fr.wiktionary.org/wiki/MediaWiki:Edittools</a>
+&gt; using &lt;charinsert&gt; ː ‿ ́ ̀ ̌ ̂ &lt;/charinsert&gt; for IPA (API in French)
+&gt; 
+&gt; None of the combining diacritics are avalaible. Yet they are in the wikitext.</span >
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wiktionary%3Afr%3AMediaWiki%3AEdittools">wiktionary:fr:MediaWiki:Edittools</a>]] is changed now.
+I made a successfull test at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wiktionary%3Afr%3AMediaWiki%3AEdittools">wiktionary:fr:MediaWiki:Edittools</a>]].
+
+Items discussed at # <a href="irc://irc.freenode.net/#wiktionary">irc://irc.freenode.net/#wiktionary</a> .
+- What you see depends also on the installed / available fonts.
+- It might be that <a href="http://fr.wiktionary.org/wiki/MediaWiki:Edittools">http://fr.wiktionary.org/wiki/MediaWiki:Edittools</a> works in FF
+because of an FF bug !?
+
+*questions*
+a) Is there a way to make a Monobook.css configuration that characters from one
+range as from the Unicode Block &quot;Combining Diacritical Marks&quot; and Unicode Block
+&quot;IPA Extensions&quot; should have as prefered *font* FONT_A and the other another
+prefered font?
+Why this question? [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AEdittools">MediaWiki:Edittools</a>]] should be available when editing
+*any* page (especially in WIKT projects). However the best font for the content
+language might differ from the best font suitable for IPA. How this could be solved.
+b) Is there a way to make a Monobook.css configuration that characters from one
+range as from the  Unicode Block &quot;Hebrew&quot; should have one *size* and the others
+*another* size?
+You can see that I the Hebrew character at
+<a href="http://test.leuksman.com/view/MediaWiki:Edittools">http://test.leuksman.com/view/MediaWiki:Edittools</a> *not* embeded in &lt;small&gt;
+&lt;/small&gt; in order to keep them ligible.
+
+*note*
+It seems that CharInsert conflicts with &lt;div ...&gt; &lt;/div&gt;.
+See
+<a href="http://test.leuksman.com/index.php?title=MediaWiki:Edittools&amp;diff=10651&amp;oldid=10639">http://test.leuksman.com/index.php?title=MediaWiki:Edittools&amp;diff=10651&amp;oldid=10639</a> </pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 22:48:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1188" name="attach_1188" title="screen dump for bug 03821 MediaWiki:Edittools seen with FireFox">attachment 1188</a> <a href="attachment.cgi?id=1188&amp;action=edit" title="screen dump for bug 03821 MediaWiki:Edittools seen with FireFox">[details]</a></span>
+screen dump for <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - CharInsert cannot insert combining diacritics on their own"
+   href="show_bug.cgi?id=3821">bug 03821</a> MediaWiki:Edittools seen with FireFox
+
+as discussed  / agreed at IRC</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 22:50:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1189" name="attach_1189" title="screen dump for bug 03821 MediaWiki:Edittools seen with IE and Lucida Sans Unicode">attachment 1189</a> <a href="attachment.cgi?id=1189&amp;action=edit" title="screen dump for bug 03821 MediaWiki:Edittools seen with IE and Lucida Sans Unicode">[details]</a></span>
+screen dump for <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - CharInsert cannot insert combining diacritics on their own"
+   href="show_bug.cgi?id=3821">bug 03821</a> MediaWiki:Edittools seen with IE and Lucida Sans Unicode
+
+as discussed  / agreed at IRC</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-14 23:20:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3821#c10">comment #10</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=3821#c7">comment #7</a>)
+&gt; &gt; wiki markup syntax can not be used here. one could use
+&gt; &gt; ::foo:::bar::
+&gt; &gt; or
+&gt; &gt; //foo///bar//
+&gt; 
+&gt; maybe
+&gt; :::foo::bar:::
+&gt; or
+&gt; ///foo//bar///
+&gt; is better to parce</span >
+
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Character insertion box should have titles for the characters"
+   href="show_bug.cgi?id=3550">bug 3550</a>: Character insertion box should have titles for the characters
+is about a &quot;hint&quot; for mouseover
+
+a syntax could be
+:::foo::bar::hint::: or :::foo::bar::: then hint==bar 
+or
+///foo//bar//hint/// or ///foo//bar/// then hint==bar 
+
+*note* use only one or use another character then &quot;:&quot; or &quot;/&quot;</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-15 19:43:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Since this is a specialized extension, making yet another piece of base markup for it doesn't 
+make any sense. Resolving WONTFIX.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 06:55:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >reopening the bug.
+it is still not possible to insert combining diacritics on their own.
+this bug is still relevant.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tisza Gergő</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-27 11:48:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Putting the base character before the charinsert block (such as: a&lt;charinsert&gt;'&lt;/charinsert&gt;) sort of works, but it looks rather ugly. See the Hebrew (&quot;Héber&quot;) charset un the Hungarian Wikipedia edittools for example: <a href="http://hu.wikipedia.org/w/index.php?title=Wikip%C3%A9dia:Homokoz%C3%B3&amp;action=edit">http://hu.wikipedia.org/w/index.php?title=Wikip%C3%A9dia:Homokoz%C3%B3&amp;action=edit</a> (leads to sandbox)
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tisza Gergő</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-27 11:58:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Proposed syntax: &lt;charinsert title=&quot;hacek&quot; display=&quot;č&quot;&gt;ˇ&lt;/charinsert&gt; (in case of multiple characters in the charinsert block, all but the first are thrown away), which would result in something like &lt;a title=&quot;hacek&quot; href=&quot;javascript:insertTag('ˇ');return false;&quot;&gt;č&lt;/a&gt;. This also takes care of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Character insertion box should have titles for the characters"
+   href="show_bug.cgi?id=3550">bug 3550</a> (important since some diacritics are hard to differentiate visually).</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-19 16:17:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Ref #1è (Tisza Gergő): you write:
+''in case of multiple characters in the charinsert block, all but the first are
+thrown away''
+
+Certainly not, this would be exactly against the purpose of the initial bug, as we really need the possibility of inserting a sequence of '''several''' characters when they do not exist as precomposed characters.
+
+My proposal would be similar to yours, but the text element content of the charinsert tag would be '''fully''' inserted.
+
+But given the fact that the text content of charinsert is a list of characters, the best that we can do is to allow separating them by spaces (including the possibility of using an initial space to avoid the collision and possible precomposition with the trailing &quot;&gt;&quot; character that terminates the charinsert start tag). Then split this text by spaces, ignore leading and traling spaces.
+Each remaining sequence becomes a candidate for insertion in the list.
+
+Note that the characters in the text content may also be inserted using numeric character references (to their unicode code point value in decimal or hexadecimal). For full XML conformance (and easier editing in edit tools featuring characters not found in the native script and language of the host wiki), these numeric character references '''must''' still be interpreted equivalently.
+
+But I would favor another syntax where the text content of the charinsert tag would always be the displayed string, using an attribute only to qualify some spans and limit the characters that will be actually inserted. For example:
+&lt;charinsert&gt;č Č š Š ž Ž &lt;char title=&quot;hacek&quot; insert=&quot;ˇ&quot;&gt;&amp;#x25cc;ˇ&lt;/char&gt;&lt;/charinsert&gt;
+
+Note that for isolated diacritics (combining characters), the character to display before it in the selector (and only needed there and that should not present) should probably be implied. Above I use U+25CC(◌) DOTTED CIRCLE which is the recommanded one (and supported in many fonts), to avoid the confusion with the actual precomposed letters which should be clickable directly and should be visibly distinct. In that case the insert attribute used above (which specifies which string will be actually inserted in the edited text when the displayed character is selected), could be avoided completely:
+&lt;charinsert&gt;č Č š Š ž Ž &lt;comb title=&quot;hacek&quot;&gt;ˇ&lt;/comb&gt;&lt;/charinsert&gt;
+
+If some diacritics cannot be used with the default dotted circle, an &quot;ignorable&quot; (but displayed) quotted substring could be specified:
+&lt;charinsert&gt;č Č š Š ž Ž &lt;comb title=&quot;hacek&quot;&gt;&lt;q&gt;&amp;#x25cc;&lt;/q&gt;ˇ&lt;/comb&gt;&lt;/charinsert&gt;
+
+Note that the separate &lt;comb&gt; element is not really different from the &lt;char&gt; element above. If the intent is to insert a single Unicode character, the fact that the referenced character is combining can be infered directly from the Unicode character properties (there are not so many combining characters in Unicode, so they could easily be detected in Javascript from a small preinitialized array of booleans indexed by character, for fast lookups; note also that some Unicode combining characters are also decomposable, so the actual characters can also be any string that starts with a combining character). In that case, this reduces the code to just:
+
+&lt;charinsert&gt;č Č š Š ž Ž &lt;span title=&quot;hacek&quot;&gt;&lt;q&gt;&amp;#x25cc;&lt;/q&gt;ˇ&lt;/span&gt;&lt;/charinsert&gt;
+
+when specifiying the base character explicitly (U+25CC here, even if this is the default), or
+
+&lt;charinsert&gt;č Č š Š ž Ž &lt;span title=&quot;hacek&quot;&gt;ˇ&lt;/span&gt;&lt;/charinsert&gt;
+
+when using the default (the string to insert will just ignore the substrings between &lt;q&gt;, and if the resulting string still starts by a combining character, it will display a leading U+25CC DOTTED CIRCLE implicitly.
+
+However, I still think that using a separate &lt;comb&gt; element will be more explicit (and will allow a different presentation that can be customized (for example the display tool could display the diacritic after a non-breaking space U+00A0, instead of a dotted circle, and will use a distinctive background color or could display it within a table cell with a thin dotted border, according to site's stylesheet or user's preference).
+
+So I militate for:
+
+&lt;charinsert&gt;č Č š Š ž Ž &lt;comb&gt;ˇ&lt;/comb&gt;&lt;/charinsert&gt;
+
+(the simplest form), with the following optional extensions:
+
+&lt;charinsert&gt;č Č š &lt;char title=&quot;S with caron&quot;&gt;Š&lt;/char&gt; ž Ž &lt;comb title=&quot;hacek&quot;&gt;&lt;q&gt;&amp;nbsp;&lt;/q&gt;ˇ&lt;/comb&gt;&lt;/charinsert&gt;
+
+The content of charinsert will be a free list of text elements or &lt;char&gt; elements or &lt;comb&gt; elements. Here is the DTD:
+
+&lt;!ELEMENT charinsert ((#PCDATA | char | comb)*) &gt;
+&lt;!ELEMENT char (#PCDATA) ((#PCDATA | q)*) &gt;&lt;!-- force the normal presentation --&gt;
+&lt;!ELEMENT comb (#PCDATA) ((#PCDATA | q)*) &gt;&lt;!-- force the alternate presentation for combining characters or strings starting by one --&gt;
+&lt;!ELEMENT q (#PCDATA) &gt;
+&lt;!ATTRIB comb
+   title #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+&gt;
+&lt;!ATTRIB char
+   title #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+&gt;
+
+Note also that ***not all*** diacritics are combining in Unicode: this is true for Thaï which is encoded in visual order without using combining characters for leading diacritics, but that will often still not display correctly if they are used before any random characer (with which they may create ligatures, or could simply be displayed with an undesired trailing dotted circle generated by the text renderere or by the font).
+
+There is also the need to support the insertion of other &quot;invisible&quot; characters, notably format controls, and to render, in the diaply tool, various spaces and make them easily distinguished (for example in clickable table cells).
+In those cases, it may even be desirable to not display at all the character that will be inserted when the table cell will be clicked (for example, &quot;ZWJ&quot;, &quot;ZWNJ&quot;, &quot;NBSP&quot;...). Generally, in those cases, there will be a separate label that will be used instead of the character itself and this label should probably be displayed with a smaller font within the table cell.
+
+The &quot;title&quot; attribute is not made for this, as its role is give an hint helper which may be much longer than what is displayed in the clickable table cell (and too large to fit there cleanly). Such hint will be displayed and made accessible elsewhere (for example in a &quot;bubble&quot;, or on the browser's status bar, or on any other more convenient single element within the HTML page and whose content will be refreshed to display this hint string, when the table cell is active or hovered by the mouse; it may also be vocalized, or directed (out of flow) to the contextual helper line of a Braille reader, according to its local user preferences, who can reserve a part of the display pad for displaying HTML &quot;title&quot; hints or image descriptions). The title attribute is then descriptive and can be arbitrarily long (it could be several sentences) and is not intended for containing visual abbreviations like &quot;NBSP&quot;.
+
+To support an alternate representation of the character using abbreviations (which will replace the actual rendering of the character within the table cell, we can use another optional attribute. It may even be preferable to make visual distinctions for format controls:
+
+&lt;!ELEMENT charinsert ((#PCDATA | char | comb | ctrl)*) &gt;&lt;!-- new definition here: adding ctrl --&gt;
+&lt;!ELEMENT ctrl (#PCDATA) ((#PCDATA | q)*) &gt;&lt;!-- force the alternate presentation for controls or strings starting by one --&gt;
+&lt;!ATTRIB  ctrl
+   title #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+   alt #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+&gt;
+&lt;!ATTRIB  comb
+   title #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+   alt #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+&gt;
+&lt;!ATTRIB  char
+   title #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+   alt #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+&gt;
+
+For example:
+
+&lt;charinsert&gt;&lt;char title=&quot;non-breaking space&quot; alt=&quot;NBSP&quot;&gt;&amp;nbsp;&lt;/char&gt;&lt;/charinsert&gt;
+&lt;charinsert&gt;&lt;comb title=&quot;acute accent&quot; alt=&quot;ʹ&quot;&gt;&amp;#x301;&lt;/comb&gt;&lt;/charinsert&gt;
+&lt;charinsert&gt;&lt;comb title=&quot;dotted circle&quot;&gt;&amp;#x25CC;&lt;/comb&gt;&lt;/charinsert&gt;
+&lt;charinsert&gt;&lt;ctrl title=&quot;zero-width space&quot; alt=&quot;ZWSP&quot;&gt;&amp;#x200B;&lt;/ctrl&gt;&lt;/charinsert&gt;&lt;!-- this is not a format control --&gt;
+&lt;charinsert&gt;&lt;ctrl title=&quot;zero-width non-joiner&quot; alt=&quot;ZWNJ&quot;&gt;&amp;#x200C;&lt;/ctrl&gt;&lt;/charinsert&gt;&lt;!-- this is a format control --&gt;
+&lt;charinsert&gt;&lt;ctrl title=&quot;left-to-right override&quot; alt=&quot;»&quot;&gt;&amp;#x202A;&lt;/ctrl&gt;&lt;/charinsert&gt;
+&lt;charinsert&gt;&lt;ctrl title=&quot;right-to-left override&quot; alt=&quot;«&quot;&gt;&amp;#x202B;&lt;/ctrl&gt;&lt;/charinsert&gt;
+&lt;charinsert&gt;&lt;char title=&quot;narrow non-breaking space&quot; alt=&quot;NNBSP&quot;&gt;&amp;#x203F;&lt;/char&gt;&lt;/charinsert&gt;&lt;!-- this is not a control, it is visible ! --&gt;
+
+Separating the &lt;char&gt;, &lt;comb&gt;, and &lt;ctrl&gt; elements allow distinct presentations when needed (such as distinct table cell background colors in a characters selector). The &lt;q&gt; element will only be usable when there's not &quot;alt=&quot; attribute to remove the display of the actual character within the rendered table cell.
+
+The U+25CC default base character (DOTTED CIRCLE) for sequences starting by a combining character will be implied and generated automatically by default, if:
+* the text content within the &lt;comb&gt; or &lt;ctrl&gt; or &lt;char&gt; (including the text within &lt;q&gt; elements which are also rendered by simple concatenation, but discarded from the actually inserted text) starts by a combining character (even if its &quot;combining class&quot; is 0, which just means that it can just never be precomposed with a prior base character, and never be reordered through normalization).
+* and there's no alt attribute in the &lt;comb&gt; or &lt;ctrl&gt; or &lt;char&gt; element start tag.
+It will also be used implicitly if the characters within &lt;charinsert&gt; are packed in a space-separated string without surrounding &lt;comb&gt; or &lt;ctrl&gt; or &lt;char&gt; to subqualify them (meaning that by default they are treated as if each space separated sequence was within a &lt;char&gt; element with unspecified &quot;alt=&quot; and &quot;title=&quot; attributes.
+
+It will be also illegal to use &lt;q&gt; within the content of &lt;charinsert&gt;, except within the content of &lt;char&gt; or &lt;ctrl&gt; or &lt;comb&gt; as it would not be clear where to associate them with surrounding space separated char sequences. They must be delimited, at least within a &lt;char&gt; without attributes.
+
+The text content of a single &lt;char&gt; or &lt;comb&gt; or &lt;ctrl&gt; element can contain any text, it is not restricted to a single Unicode character. And it can also include spaces (however the spaces are implicitly packed, with leading and trailing spaces discarded; if one still wants to be able to include a litteral space within the text to insert and that must not be discarded complely, I propose adding the &lt;space&gt; element:
+
+&lt;!ELEMENT space #EMPTY&gt;
+&lt;!ATTRIB space
+   title #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+   alt #PCDATA IMPLIED &lt;!-- default is empty --&gt;
+&gt;
+
+And allow it within the content of &lt;charinsert&gt;, &lt;ctrl&gt;, &lt;comb&gt; and &lt;char&gt; :
+
+&lt;!ELEMENT charinsert ((#PCDATA | space | char | comb | ctrl)*) &gt;&lt;!-- new definition here: adding space --&gt;
+&lt;!ELEMENT ctrl (#PCDATA) ((#PCDATA | space | q)*) &gt;&lt;!-- force the alternate presentation for controls or strings starting by one --&gt;
+&lt;!ELEMENT char (#PCDATA) ((#PCDATA | space | q)*) &gt;&lt;!-- force the normal presentation --&gt;
+&lt;!ELEMENT comb (#PCDATA) ((#PCDATA | space | q)*) &gt;&lt;!-- force the alternate presentation for combining characters or strings starting by one --&gt;
+
+All these definitions are easy to parse through XML DOM in the Wiki parser. I hope they are precise enough. Comments are welcome.
+
+Philippe.
+
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-19 16:20:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that I prefer using a XML/DOM syntax, instead of a Wiki-like syntax, because parsing wiki is already very tricky, and &lt;charinsert&gt; has a very limited usage and is not intended to be used within normal wiki pages, but only within the &quot;Mediawiki:&quot; configuration and localization namespace. I think it's best to use existing (and strong) DOM parsers here.
+</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3821#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-19 17:42:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As an alternative, if space separation is not an option to separate sequences, because character lists within &lt;charinsert&gt; are preferably packed as much as possible like:
+&lt;charinsert&gt;a-zA-Z àÀâÂäÄ çÇ éÉèÈêÊëË îÎïÎ ôÔöÖ ùÙûÛüÜ ÿŸ&lt;/charinsert&gt;
+where the extensions (&lt;char&gt;, &lt;ctrl&gt;, &lt;comb&gt;, &lt;q&gt; elements above) are just present when needed, then text elements contained (separately from the &lt;char&gt;, &lt;ctrl&gt; and &lt;comb&gt;) will be parsed specially: spaces will be ignored there, unless they are specified as a content-less &lt;space&gt; element.
+
+The only way to separate elements that must contain several characters (including spaces) that must be inserted as whole will be to separate them by embedding them within &lt;char&gt;, &lt;ctrl&gt; or &lt;comb&gt; subelements as above. So when parsing the text child elements of &lt;charinsert&gt;, what we get is a list of isolated Unicode characters (which are implicitly converted as if they were each within a &lt;char&gt; child element, unless they are combining or controls according to their Unicode properties, in which case they are converted into the relevant &lt;comb&gt; or &lt;ctrl&gt;), and of &lt;char&gt; elements (or &lt;ctrl&gt; or &lt;comb&gt; elements) or &lt;space&gt;. The list is explicitly ordered for the default display order (but the user interface may allow this list to be sorted differently, without having to edit it).
+
+An interesting option, for speciying ranges of characters is to support the A-Z syntax, in the text child elements of &lt;charinsert&gt; only (but not within the child elements of &lt;char&gt;, &lt;ctrl&gt; or &lt;comb&gt; which can only be used for a single unbreakable sequence, and not in &lt;space&gt; which is empty or in &lt;q&gt; which is used for displaying ignorable characters, and not in the &quot;alt=&quot; and &quot;title=&quot; attributes above). In that case the MINUS-HYPHEN (-) is a syntaxic character whcih is only valid between two isolated Unicode characters. To specify a literal minus-hyphen as an insert string, use a &lt;char&gt;-&lt;/char&gt;.
+
+To specify a litteral string to insert (for example a wikitable), use also &lt;char&gt; as in:
+&lt;charinsert&gt;
+&lt;char title=&quot;insert a wikitable&quot; alt=&quot;Table&quot;&gt;{|class=&quot;wikitable&quot;
+|-
+! Head1 !! Head2
+|-
+| Cell1 || Cell2
+|}
+&lt;/char&gt;
+&lt;/charinsert&gt;
+
+It may also be interesting to use an image/icon instead of a &quot;alt&quot; text (rendered in a small font within the selector table cell). Instead of using &lt;char&gt; or &lt;ctrl&gt; or &lt;comb&gt;, use an &lt;icon&gt; element instead, whose child text element will be the text to insert in the wiki editor:
+
+&lt;!ELEMENT charinsert ((#PCDATA | space | char | comb | ctrl | icon)*) &gt;&lt;!-- new
+definition here: adding space --&gt;
+...
+&lt;!ELEMENT icon ((#PCDATA | space)*) &gt;
+&lt;!ATTRIB  icon
+  title #PCDATA IMPLIED &lt;!-- default is empty: the descriptive hint --&gt;
+  alt #PCDATA IMPLIED &lt;!-- default is empty: a small alternative text if the image can't be loaded --&gt;
+  src #PCDATA IMPLIED &lt;!-- URI : a page name URN
+  ...
+&gt;
+
+As the default rendering of &lt;charinsert&gt; would probably generate a list of table cells, it may need other things such as the maximum number of cells to render in each row, and row breaks, or row (unselectable) headers for subgroups of characters or strings.
+
+Adding headers will be tricky, becauser it can be any kind of visual content in the GUI, so it may be any mix of HTML and or Wiki... but may be it can be restricted to only basic group titles (and the Wiki parser will generate the appropriate interface for the characters selector). Groups could be for example the name of a script, or the name of a language or orthography or notation which needs those characters or strings to insert.
+
+Generally, we'll have a list of groups (possibly rendered as a combo box within a &lt;select&gt; form input element). But it may contain optional subgroups (for example in the larget sets of ideograms or Hangul syllables, or within the Latin script group for romanized languages). The purpose of the &lt;charinsert&gt; is of course to be able to generate a form with clickable buttons. It should be able to generate arbitrary list of buttons and allow them to be structured and possibly not all displayed at the same time: if a group is selected, it will replace the other list of subgroups currently displayed for another group currently selected at the same level. Comboboxes are not necessarily the best option (for usability), as they can also be replaced by a horizontal &quot;ribbon&quot; that can list either a list of individual buttons (instances of &lt;char&gt;, &lt;ctrl&gt;, &lt;comb&gt;, &lt;space&gt;), or other subgroups, all listed inline within it: pressing a subgroup will just activate another ribbon at the lower level, and ribbons can be stacked vertically.
+
+In that case we'll have recursively:
+
+&lt;!ELEMENT charinsert ((charinsert | #PCDATA | space | char | comb | ctrl | icon)*) &gt;&lt;!-- new --&gt;
+
+And to name each group, all that is required is that the &lt;charinsert&gt; element itself also has the &quot;title=&quot; attribute for the description hint (which should then be required), and the &quot;alt=&quot; for the text rendered for the group header itself (optional, default will be the same as the title).
+
+Will it need an icon rendered instead of this title text ? Would it need more HTML/CSS rendering, we could then allow the &lt;charinsert&gt; to contain a &lt;caption&gt; element as its first child, and whose content will be rendered instead of the title, and that will contain arbitrary HTML/CSS code including images. If that &quot;rich&quot; caption cannot be rendered, the title should still be present and used (for example when rendering a &lt;charinsert&gt; that represents a group (without any subgroup), as a named item within a combo-box generated from a higher-level &lt;charinsert&gt; container allowing to select within a list of groups). Comboboxes are precious to save screen space, but their rendering is more limited than general ribbons (toolbars, or blocks of inlineelements) as they can only show short strings of text with limited formatting.
+
+It may also be interesting to allow other dynamic actions, when the table cell or button or span is clicked: by default it uses a Javascript charsinsert() event, but why not allowing something else such as calling custom Javascript? In that case, &lt;charinsert&gt; could use an optional attribute containing the default javascript event to call, which would be inherited by all elements in its parsed list of characters or strings, and the same attribute could be overriden by specifying it within &lt;char&gt;, or &lt;ctrl&gt;, or &lt;comb&gt; or &lt;space&gt;. This optional attribute should be onclick=&quot;&quot;, (and there may optionally be onmousehover=&quot;&quot; and so on).
+
+We could also have CSS attributes, for the &lt;charinsert&gt; element (specifying the default CSS attributes of each generated button) or specifically for each of &lt;char&gt;, &lt;ctrl&gt;, &lt;comb&gt; and &lt;space&gt; children elements (if we assume that each of them will visually generate a table cell (i.e. a rectangular inline span, containing one or more visual blocks). But I don't think that the &lt;charinsert should contain any CSS element for the whole container (it will probably generate an inline span, and if needed it can be formatted by including it within a usual HTML &lt;span&gt; or &lt;div&gt; element.
+ </pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3821&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3821">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3821">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3821">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3821&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3821" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3821&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419362595-V4drw4VtWf9hdIHSjiHYlqDTnHDbqy6-NHTZuXBHVxE">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

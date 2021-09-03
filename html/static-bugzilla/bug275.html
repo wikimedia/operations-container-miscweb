@@ -1,0 +1,1816 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 275 &ndash; page or section content duplication on edit conflict with self</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=275&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=275">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=275">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=275">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 275 – page or section content duplication on edit conflict with self",  
+                             "show_bug.cgi?id=275" );
+        document.title = "Bug 275 – page or section content duplication on edit conflict with self";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 275 – page or section content duplication on edit conflict with self", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Page_editing bz_bug_275 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 14:36:21 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 14:36:21">
+  <input type="hidden" name="longdesclength" value="19">
+  <input type="hidden" name="id" value="275">
+  <input type="hidden" name="token" value="1419356884-ee5JCJyqK5lzaTwhKIzqWERm9a5KV-GBRDhglHKDEr4">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=275"><b>Bug&nbsp;275</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">page or section content duplication on edit conflict with self</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>page or section content duplication on edit conflict with self
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('page or section content duplication on edit conflict with self', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Page editing
+    
+    (<a href="buglist.cgi?component=Page%20editing&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       major<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=275">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=275#vote_275">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Edit conflicts cause page duplication"
+   href="show_bug.cgi?id=552">552</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=552">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=275&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=275">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-02 22:52 UTC by <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 14:36 UTC 
+      (<a href="show_activity.cgi?id=275">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>4 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="qleah">qleah</option>
+                <option value="richholton">richholton</option>
+                <option value="rickblock">rickblock</option>
+                <option value="timwi">timwi</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_html">
+        <td valign="top">
+            <a href="attachment.cgi?id=735"
+               title="View the content of the attachment">
+          <b>Example of doubling bug edit conflict</b></a>
+
+          <span class="bz_attach_extra_info">
+              (65.36 KB,
+                text/html)
+
+            <br>
+            <a href="#attach_735"
+               title="Go to the comment associated with the attachment">2005-07-21 16:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=735&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=275&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-02 22:52:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >BUG MIGRATED FROM SOURCEFORGE
+<a href="http://sourceforge.net/tracker/?func=detail&amp;aid=949323&amp;group_id=34373&amp;atid=411192">http://sourceforge.net/tracker/?func=detail&amp;aid=949323&amp;group_id=34373&amp;atid=411192</a>
+Originally submitted by IMSoP 2004-05-06 17:37
+
+
+
+There have been numerous instances that I know of on
+the English Wikipedia of the entire contents of a page
+becoming duplicated - i.e. an additional copy of all
+text being appended to itself. This is especially
+problematic if it happens on large and busy utility or
+discussion pages, since it is often not spotted
+immediately and therefore leads to each discussion on
+the page being forked without anyone realising, and
+having to be carefully merged later.
+
+This appears to be caused by users attempting to submit
+more than one edit in competition with themselves, and
+specifically submitting the same change twice. Since
+large pages are likely to load rather slowly after
+editing, people *will* think their changes haven't gone
+through, and so click the submit button again - forum
+software often includes specific filters to overcome
+such multiple submissions. It possibly also interacts
+with section editing, since this presumably entails
+&quot;construction&quot; of the new page content from the form
+data and the existing version.
+
+When this was mentioned on the mailing list, Brion
+stated: &quot;There is explicitly no edit conflict
+resolution between submissions by the same user.&quot;
+Clearly, the edit created in such circumstances is
+inappropriate, somehow concatenating two (probably
+identical) versions, rather than over-writing one with
+the other. The software needs to do at least one of:
+
+* Treat multiple submissions from the same user as a
+normal edit conflict (creating potential confusion if
+they just hit the same button twice)
+
+* detect multiple submissions which contain identical
+data, and silently accept one or the other
+
+* detect submissions in very quick succession, and
+flatten them into one edit (if they are by the same user)
+
+* at the very least, ignore such situations, as now,
+but in a sane way - i.e. use the content from one and
+only one edit submission, even if the edit was to a
+particular section
+
+Related mailing list posts:
+<a href="http://mail.wikipedia.org/pipermail/wikitech-l/2004-April/009752.html">http://mail.wikipedia.org/pipermail/wikitech-l/2004-April/009752.html</a>
+<a href="http://mail.wikipedia.org/pipermail/wikitech-l/2004-April/009750.html">http://mail.wikipedia.org/pipermail/wikitech-l/2004-April/009750.html</a>
+
+-- 
+IMSoP
+[<a href="http://en.wikipedia.org/wiki/User:IMSoP">http://en.wikipedia.org/wiki/User:IMSoP</a>]
+
+
+---- Additional comments (in reverse order) ----
+
+
+Date: 2004-06-28 22:06
+Sender: robert_dodier
+Logged In: YES 
+user_id=501686
+
+Hello, another bit that might help track down this bug --
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vfd">vfd</a>]] got duplicated sometime today (June 28 2004). Maybe
+by checking the editing history, it could be determined
+which edit yielded the duplication. Hope this helps.
+
+-------------------------------------------------
+
+Date: 2004-06-22 00:18
+Sender: wfmcwalter
+Logged In: YES 
+user_id=1036616
+
+It seems only to be with section editing.  It's not confined
+to edits of new sections (although it may be _caused_ by the
+unrelated addition of another section).  The duplicated
+section certainly isn't always the new one.
+
+It seems to happen more often when the system is slow,
+leading me to believe it relates to a user resubmitting an
+edit believing it to  be &quot;stuck&quot;.  But that alone isn't
+sufficient to cause it.
+
+It happens occasionally (but frequently enough to be a
+problem) on heavily edited pages.  Before it returned to a
+transclusion-based scheme, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AWikipedia%3AVotes%20for%0Adeletion">en:Wikipedia:Votes for
+deletion</a>]] would exhibit this behaviour several times per day.
+
+It's going to be nearly impossible to obtain a reasonable
+idea what users did to precipitate matters, I'm afraid, because:
+1. it seems to require interaction of two (or more)
+simultaneous editors
+2. at the time it happens, neither is aware (both writes
+seem to succeed without an error)
+3. by the time the error is discovered (often hours later)
+it's unlikely either submitter will be able to recall
+sufficient detail
+4. clearly the window in which this occurs is tiny, making
+the chances of a manual attempt at reproducing it
+diminishingly small
+
+I figure the only way to be able to reliably reproduce it
+will be to set two (or more) bots on the same page, making
+section edits.
+
+-------------------------------------------------
+
+Date: 2004-06-21 23:53
+Sender: vibber
+Logged In: YES 
+user_id=446709
+
+Is this only in section editing?
+
+Is this only when adding new sections? [This has long been known
+to
+duplicate the added section on double submission, since it simply
+adds a
+new section to the end of whatever is there.]
+
+Is this when editing existing sections? [This is virtually guaranteed
+trouble as sections are numbered in a fashion that is liable
+to change.]
+
+Is this when editing whole pages?
+
+Can you reliably reproduce the problem?
+
+When you see it happen, please record *everything* you can. When
+the
+edit occured, whether it was by section or whole page, whether
+any edit
+conflicts were involved, how many times submitted, etc.
+
+-------------------------------------------------
+
+Date: 2004-06-16 17:06
+Sender: imsop
+Logged In: YES 
+user_id=1053535
+
+The introduction of edit conflict merging in 1.3 seems to
+have made this problem worse:
+
+Firstly, pages like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AVfD">en:VfD</a>]] have gone back to being one
+large page, and in general slowness has been rearing its
+ugly head a lot. Since if something's going that slowly,
+people will be more likely to click save twice, this is
+triggering more instances of the bug.
+
+Secondly, some people are reporting problems with section
+editing, where sections seem to overwrite each other - see
+<a href="http://meta.wikipedia.org/wiki/MediaWiki_1.3_comments_and_bug_rep">http://meta.wikipedia.org/wiki/MediaWiki_1.3_comments_and_bug_rep</a>
+orts#edit_conflict_management_problem
+- which may or may not be due to the new code. Since, from
+Brion's comment, the behaviour in these conditions appears
+to be essentially &quot;undefined&quot;, it seems to me that the new
+code could be interfering somehow and making the results
+even more confusing.
+
+Either way, this seems to be causing major problems, and
+needs to be fixed ASAP.
+
+-- 
+IMSoP
+[<a href="http://en.wikipedia.org/wiki/User:IMSoP">http://en.wikipedia.org/wiki/User:IMSoP</a>]
+
+-------------------------------------------------
+
+Date: 2004-05-06 18:28
+Sender: wfmcwalter
+Logged In: YES 
+user_id=1036616
+
+Here's one instance on en.wikipedia.org's [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Reference%20desk">Reference desk</a>]]
+earlier today:
+
+Change log:
+Of these two transactions, the latter seemed to cause the
+duplication:
+
+m 15:20, 6 May 2004 .. Bodnotbod (=Wikipedia Talk and
+Google= how is suppression of Google indexing of VfD done?)
+m 15:26, 6 May 2004 .. Bodnotbod (=Wikipedia Talk and
+Google= how is suppression of Google indexing of VfD done?)
+
+URL for the problematic change:
+<a href="http://en.wikipedia.org/w/wiki.phtml?title=Wikipedia:Reference_de">http://en.wikipedia.org/w/wiki.phtml?title=Wikipedia:Reference_de</a>
+sk&amp;diff=3472769&amp;oldid=3472734</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-02 23:09:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - section edits sometimes wrongly merged in edit conflicts"
+   href="show_bug.cgi?id=56">bug 56</a> may or may not be related to or the same as this - that report
+suggests similar-sounding behaviour with two users editing different sections.
+It may be that there's just interaction between two bugs, or one may be a
+misinterpretation.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Leah</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-22 01:37:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Edit conflicts cause page duplication"
+   href="show_bug.cgi?id=552">Bug 552</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-02 21:45:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Another bug that may or may not be related: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Bizarre page blankings"
+   href="show_bug.cgi?id=317">bug 317</a>, where users report page
+*blanking*, but which it seems to me may also include getting into a conflict
+with oneself.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Angela</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-17 02:42:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A self-edit conflict, or section blanking when there is no conflict are
+frequently reported on Wikicities when users have &quot;Show preview on first edit&quot;
+option selected in their preferences.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Richard J. Holton</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-25 20:39:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As I believe Brion remarked once in a wikitech-l conversation, there is code in
+the software to explicitly ignore any conflict with yourself. By ignore, I mean
+that it treats it as a non-conflict. The later submitted change will just drop
+itself on top of what was there.
+
+Can anyone think of a reason for this behavior? The only thing I can imagine is
+if a user has two windows open editting the same page. The user submits from one
+window, then realizes that the other window has better changes, and submits that.
+
+_If_ this is the only reason to have the code, I'd suggest forcing a normal edit
+conflict resolution. Perhaps in the process we'll fix this bug.
+
+-Rich Holton
+en.Wikipedia:User:Rholton</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-26 00:26:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The purpose is so that someone who saves an edit, clicks &quot;back&quot;, makes another change, and clicks &quot;save&quot; again 
+won't receive an edit conflict message. We got a lot of complaints about that back in the day.
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rick Block</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-22 17:21:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Perhaps not exactly the same issue, but there have been instances where I think entire articles are duplicated by users inappropriately 
+responding to an edit conflict for a section edit by copying and pasting the entire article's content (shown in the &quot;your changes&quot; box) 
+and submitting this as the new contents for the section they were editing.  Yes, this is user error - BUT, it's happened enough times 
+that I think the software should be changed so that when an edit conflict occurs for a section edit, only the section is shown.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rick Block</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-25 13:33:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=275#c7">comment #7</a>)
+<span class="quote">&gt; Perhaps not exactly the same issue, but there have been instances where I think entire articles are duplicated by users </span >
+inappropriately 
+<span class="quote">&gt; responding to an edit conflict for a section edit by copying and pasting the entire article's content (shown in the &quot;your changes&quot; box) 
+&gt; and submitting this as the new contents for the section they were editing.  Yes, this is user error - BUT, it's happened enough times 
+&gt; that I think the software should be changed so that when an edit conflict occurs for a section edit, only the section is shown.</span >
+
+A user has confirmed the above sequence as a mechanism resulting in duplicated content, please see <a href="http://en.wikipedia.org/wiki/">http://en.wikipedia.org/wiki/</a>
+User_talk:Rick_Block#How_to_duplicate .   Is there any particular reason the edit conflict page shows the entire article rather than just 
+the section being edited?  Seems like this should be a fairly simple fix.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-25 18:03:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=275#c8">comment #8</a>)
+<span class="quote">&gt; Is there any particular reason the edit conflict page shows the entire article</span >
+rather than just 
+<span class="quote">&gt; the section being edited?  Seems like this should be a fairly simple fix.</span >
+
+The problem with only showing one section in an edit conflict screen is that
+changes to other parts of the article could make the original section edit not
+make sense - for instance, the section might no longer exist, or have been
+moved, or the information one user was about to add to it has been added to
+another section by another user. All these situations require the user presented
+with the edit conflict to be able to see and manipulate the entire article, not
+just the section they originally elected to edit.
+
+I'm also unable to reproduce your analysis of the screen's behaviour - as far as
+I can see, an edit conflict screen presented when editting a section correctly
+displays the entire article in both boxes (for the reason explained above), and
+the resulting save correctly replaces the entire article text with just the text
+in the top box. So, unfortunately, the bug is not as simple as you are
+suggesting (i.e. it's a genuine bug, not a bad UI)
+
+The factors that all the examples I've seen have in common appear to be:
+* large pages - if anyone has an example that rules this out as a factor, it
+would be worth knowing about
+* edit conflict with self - with or without seeing the warning screen, which
+*should* be suppressed in this situation
+* editting a particular section, rather than the whole page - I'm still not 100%
+clear that this is always the case, but it seems a reasonable assumption
+
+It thus occurs to me that the following sequence of events would describe the
+behaviour of the bug:
+1) user edits a section of a large page; the editted section is merged into the
+rest of the page and saved
+2) same user edits same page in a way that would trigger an edit conflict;
+again, the section is merged in to create the page to save
+3) when it overrides the edit conflict (because this is the same user), the
+software &quot;forgets&quot; that is has already merged the section, and mistakenly treats
+the new version of the page as the contents of a single section
+
+I have yet to come up with the exact circumstances under which this happens (and
+therefore can't reproduce the bug on demand for testing) - for all I know, it
+may involve very subtle coincidences of timing and/or some specific size of
+page, etc - but I think it's the most thorough hypothesis so far that fits the
+facts.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">sjorford</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-20 16:11:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://en.wikipedia.org/wiki/Wikipedia:Vandalism_in_progress">http://en.wikipedia.org/wiki/Wikipedia:Vandalism_in_progress</a> seems to suffer
+from this kind of duplication very badly, partly because the highly compact
+style of writing means it's difficult to spot when it happens. I've twice in the
+last month fixed almost complete duplication of the page, in both cases after a
+whole week had passed.
+
+Duplication edits:
+<a href="http://en.wikipedia.org/w/index.php?title=Wikipedia:Vandalism_in_progress&amp;diff=14316926&amp;oldid=14315993">http://en.wikipedia.org/w/index.php?title=Wikipedia:Vandalism_in_progress&amp;diff=14316926&amp;oldid=14315993</a>
+<a href="http://en.wikipedia.org/w/index.php?title=Wikipedia:Vandalism_in_progress&amp;diff=next&amp;oldid=15115600">http://en.wikipedia.org/w/index.php?title=Wikipedia:Vandalism_in_progress&amp;diff=next&amp;oldid=15115600</a></pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-06 00:24:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I hate this bug.  I hate it so much, that I sacrificed part of my life staring at the Mediawiki source to 
+try to figure out what is causing it, and I think I have figured it out.
+
+In EditPage.php, function editForm, section &quot;if ( 'save' == $formtype )&quot;:
+
+I believe it is possible to get through this branch with both $isConflict = True and $this-&gt;section != ''.  
+If this occurs, then the edit conflict screen will place the full page's text in textbox1, but still have a 
+hidden field stating that all of this text belongs as a replacement of only a single section.  Hence, if 
+someone then saves from this screen the entire page's content would be dumped into that single section, 
+effectively doubling the content of the page.
+
+I believe the event that allows this to happen is a return of false from the call to $this-&gt;mArticle-
+<span class="quote">&gt;updateArticle(...), which can occur if there is a late edit conflict such that the database is updated </span >
+BETWEEN when editForm calls $this-&gt;mArticle-&gt;getTimestamp() and when Article.php::updateArticle 
+calls &quot;$this-&gt;updateRevisionOn&quot;.  Since updateArticle will fail even in self-conflicts (unlike editForm), 
+the easiest way to trigger this would be to get in a race with onesself by trying to submit multiple times, 
+though it is not neccesary that this be a self-conflict.
+
+Once updateArticle returns false for any reason, the only response is to set $isConflict = True.  Unlike 
+the earlier part of editForm, there is no code to ensure that $this-&gt;section is reset to '' before 
+proceeding to the Edit Conflict screen.
+
+Hence, if one is A) performing a section edit, B) does not trigger an edit conflict in editForm, &amp; C) does 
+trigger a conflict in the slightly later updateArticle, then one arrives at the Edit Conflict screen with 
+the section identifier still set and the possibility to save from this screen and dump the entire page's 
+content into a single section of that page.
+
+The quick resolution is simple, if updateArticle return false, make sure $this-&gt;section = ''.  (Though 
+ideally, such late edit conflicts should loop back to the beginning to see if they can be resolved through 
+merging or something similar).
+
+
+So, please fix this.
+
+-DF</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-06 18:00:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=275#c11">comment #11</a>)
+<span class="quote">&gt; I hate this bug.  I hate it so much, that I sacrificed part of my life staring</span >
+at the Mediawiki source to 
+<span class="quote">&gt; try to figure out what is causing it, and I think I have figured it out.</span >
+
+Wow! I think you win the prize - at least for the most thoroughly analysed
+hypothesis! If you're right about the specific race condition, would it be
+possible to artificially simulate it - i.e. put huge pauses in the code at the
+point the second edit has to come. Would be great to replicate the bug on
+demand, and then be confident that it was in fact fixed.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Allan Crossman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-07 20:32:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please fix this as a matter of urgency. This has made my life hell for the last
+9 hours or so as I've tried to keep the page
+<a href="http://en.wikipedia.org/wiki/7_July_2005_London_bombings">http://en.wikipedia.org/wiki/7_July_2005_London_bombings</a> sane. I've had this bug
+about 20 or 30 times or so in that space of time, the only sensible solution
+being to revert to the last un-duplicated revision, sometimes wiping out dozens
+of edits.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jitse Niesen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 14:08:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think I saw this bug just happen with my own edits at
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Templates_for_deletion">http://en.wikipedia.org/wiki/Wikipedia:Templates_for_deletion</a> . I wanted to vote
+delete for two templates, so I right-clicked on both the edit links for the
+corresponding sections in quick succession. I'm using Firefox and right-clicking
+opens the link in a new tab. Then I went to the first tab, added my vote, and
+saved:
+<a href="http://en.wikipedia.org/w/index.php?title=Wikipedia:Templates_for_deletion&amp;diff=prev&amp;oldid=19299850">http://en.wikipedia.org/w/index.php?title=Wikipedia:Templates_for_deletion&amp;diff=prev&amp;oldid=19299850</a>.
+Then I went to the second tab, added my vote, and pressed save. This was
+apparently also saved, see
+<a href="http://en.wikipedia.org/w/index.php?title=Wikipedia:Templates_for_deletion&amp;diff=prev&amp;oldid=19299862">http://en.wikipedia.org/w/index.php?title=Wikipedia:Templates_for_deletion&amp;diff=prev&amp;oldid=19299862</a>,
+but I did get an edit conflict screen, with the complete page in the top edit
+box and only the section I was editing in the bottom edit box. I then copied the
+text in the bottom edit box to the top edit box and saved:
+<a href="http://en.wikipedia.org/w/index.php?title=Wikipedia:Templates_for_deletion&amp;diff=prev&amp;oldid=19300028">http://en.wikipedia.org/w/index.php?title=Wikipedia:Templates_for_deletion&amp;diff=prev&amp;oldid=19300028</a>.
+I think that, if I hadn't copied the text, but just edited the top edit box, the
+text in the top edit would have been substituted for the section and the page
+would effectively be duplicated.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 16:11:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=735" name="attach_735" title="Example of doubling bug edit conflict">attachment 735</a> <a href="attachment.cgi?id=735&amp;action=edit" title="Example of doubling bug edit conflict">[details]</a></span>
+Example of doubling bug edit conflict
+
+By accidentally double clicking the save button, I believe I have managed to
+capture an image of an edit conflict page that leads to the doubling bug.
+
+This is attached.  If you look at the source, you will note that even though
+this in an edit conflict, it includes: &quot;&lt;input type='hidden' value=&quot;9&quot;
+name=&quot;wpSection&quot; /&gt;&quot; indicating that section editting is still turned on,
+consistent with my hypothesis for how an entire copy of a page gets dumped into
+a single section's spot.
+
+Curiously, &quot;my text&quot; is also represented as only the material in the section
+being editted, rather than a new version of the whole page as is customary for
+edit conflicts.
+
+Hope this helps.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 18:57:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug should now be fixed per the analysis in <a href="show_bug.cgi?id=275#c11">comment 11</a>.
+
+That fix was committed and synchronized around 15:20 UTC. Can 
+you confirm that this happened afterwards and that it still happens?
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 20:01:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=275#c16">comment #16</a>)
+<span class="quote">&gt; This bug should now be fixed per the analysis in <a href="show_bug.cgi?id=275#c11">comment 11</a>.
+&gt; That fix was committed and synchronized around 15:20 UTC. Can 
+&gt; you confirm that this happened afterwards and that it still happens?</span >
+
+The file I uploaded showing the edit conflict dates from several days ago.  I saved it at 
+that time, but didn't get around to posting it till today.  So, hopefully the fix you have 
+now applied will have settled the issue.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=275#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 20:12:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Great. :)
+
+Marking this tentatively FIXED, for both the duplication and the diff display.
+</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=275&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=275">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=275">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=275">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=275&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=275" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=275&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419356884-tBNqOmVqwiUpLYVSl3wklPfZEORCfm0ffctcHNbD8fE">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

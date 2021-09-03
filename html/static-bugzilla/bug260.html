@@ -1,0 +1,2321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 260 &ndash; Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=260&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=260">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=260">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=260">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 260 – Vector: Handle \x3cpre\x3e overflow with a scrollbar or wrapping",  
+                             "show_bug.cgi?id=260" );
+        document.title = "Bug 260 – Vector: Handle \x3cpre\x3e overflow with a scrollbar or wrapping";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 260 – Vector: Handle \x3cpre\x3e overflow with a scrollbar or wrapping", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_MediaWiki_skins bz_component_Vector bz_bug_260 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-09-01 15:43:19 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-09-01 15:43:19">
+  <input type="hidden" name="longdesclength" value="36">
+  <input type="hidden" name="id" value="260">
+  <input type="hidden" name="token" value="1419356857-WVK1rXSt-hDRr67s78n1C82uf4WShDuIvmEiGBp6_kQ">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=260"><b>Bug&nbsp;260</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Vector: Handle \x3cpre\x3e overflow with a scrollbar or wrapping', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki skins</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20skins">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Vector
+    
+    (<a href="buglist.cgi?component=Vector&product=MediaWiki%20skins&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Krinkle</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &lt;pre&gt; should have scroll bars in Firefox"
+   href="show_bug.cgi?id=414">414</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Use pre { overflow:auto } to avoid overprinting"
+   href="show_bug.cgi?id=22060">22060</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - pre tag not wrapping, creates long horizontal scroll"
+   href="show_bug.cgi?id=32045">32045</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Long lines in &lt;pre&gt; blocks don't cause page formatting to extend right. The html page is extended massively further than needed"
+   href="show_bug.cgi?id=51831">51831</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=414,22060,32045,51831">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=260&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=260">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-08-31 03:34 UTC by <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-09-01 15:43 UTC 
+      (<a href="show_activity.cgi?id=260">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>22 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alpeterson">alpeterson</option>
+                <option value="b">b</option>
+                <option value="cmckenna">cmckenna</option>
+                <option value="danny.b">danny.b</option>
+                <option value="dasch">dasch</option>
+                <option value="gangleri">gangleri</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="krinklemail">krinklemail</option>
+                <option value="listenleser">listenleser</option>
+                <option value="mah">mah</option>
+                <option value="matanya">matanya</option>
+                <option value="matma.rex">matma.rex</option>
+                <option value="onny">onny</option>
+                <option value="Platonides">Platonides</option>
+                <option value="qgil">qgil</option>
+                <option value="rkaldari">rkaldari</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="steefy389">steefy389</option>
+                <option value="timwi">timwi</option>
+                <option value="tparscal">tparscal</option>
+                <option value="waldir">waldir</option>
+                <option value="zhorishna">zhorishna</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Long lines in preformatted paragraphs should not wrap in VE"
+   href="show_bug.cgi?id=54381">54381</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=21"
+               title="View the content of the attachment">
+          <b>crude examples of firefox and IE</b></a>
+
+          <span class="bz_attach_extra_info">
+              (25.87 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_21"
+               title="Go to the comment associated with the attachment">2004-08-31 03:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=21&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=10781"
+               title="View the content of the attachment">
+          <b>Screenshot of a &lt;pre&gt; overflow running over other floated items due to lack of overflow control</b></a>
+
+          <span class="bz_attach_extra_info">
+              (138.61 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_10781"
+               title="Go to the comment associated with the attachment">2012-06-22 04:28 UTC</a>,
+
+            <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=10781&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=16336"
+               title="View the content of the attachment">
+          <b>screenshot of m:User:AaronPeterson/pre_play Firefox 30/monobook/Linux</b></a>
+
+          <span class="bz_attach_extra_info">
+              (74.71 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_16336"
+               title="Go to the comment associated with the attachment">2014-09-01 15:43 UTC</a>,
+
+            <span class="vcard"><span class="fn">Chris McKenna</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=16336&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=260&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-31 03:34:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The fact that a pre section overflows its little blue dotted box is a bug.  It
+happens in Firefox, but not in IE.
+
+Wanting it to have auto overflow is a feature request but also the only solution
+I know of.  Adding 
+
+pre { overflow: auto; }
+
+to the css file fixes it under firefox, but not IE.  adding width information to
+the pre section in conjuction with the above does mostly fix it in IE, though it
+adds a vertical scrollbar too, for some reason.
+
+This page:
+
+<a href="http://www.magpiebrain.com/archives/2004/04/19/ie_and_overflow_auto">http://www.magpiebrain.com/archives/2004/04/19/ie_and_overflow_auto</a>
+
+explains how to make it even better in IE.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-31 03:34:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=21" name="attach_21" title="crude examples of firefox and IE">attachment 21</a> <a href="attachment.cgi?id=21&amp;action=edit" title="crude examples of firefox and IE">[details]</a></span>
+crude examples of firefox and IE</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Peterson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-07 10:35:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think this is a pretty common problem for people.
+
+I am looking for:
+
+width=&quot;80&quot;;
+to be added to the stylesheet defaults for pre...
+
+it can be over ridden by those who know what they are doing, but it will keep
+problems from happening, say as in this example page:
+
+<a href="http://meta.wikimedia.org/wiki/User:AaronPeterson/pre_play">http://meta.wikimedia.org/wiki/User:AaronPeterson/pre_play</a>
+
+and in this page where it was causing problems
+
+<a href="http://meta.wikimedia.org/wiki/Apache_config">http://meta.wikimedia.org/wiki/Apache_config</a>
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gabriel Wicke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-07 10:53:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The scrollbars are buggy as well, because they often cover the last row of the
+pre. Additional, for long pre areas you'll have to scroll down the page to get
+to the pre scrollbar, scroll up again to see the text, scroll down to scroll
+horizontally again... A global page scrollbar that's always at the bottom is
+much better in that case.
+
+The text flowing out of the box might look a bit weird, but imo it's still the
+best you can get. A fixed width on the pre is certainly no option, imagine that
+on a wide screen or on a mobile..</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gabriel Wicke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-07 19:15:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &lt;pre&gt; should have scroll bars in Firefox"
+   href="show_bug.cgi?id=414">Bug 414</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-19 15:24:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=260#c2">comment #2</a>)
+<span class="quote">&gt; I am looking for:
+&gt; 
+&gt; width=&quot;80&quot;;
+&gt; to be added to the stylesheet defaults for pre...</span >
+
+I think this would be a problem if 80 is a definite number of characters width.
+ something like width=&quot;80%&quot; would be better, though if that is 80% of the total
+browser width, and the sidebar is a fixed width, no percentage would work for
+all screen sizes, unless it could be set as the percentage of the text &quot;frame&quot;.
+ In other words, the sidebar to the left is fixed width A, and the content area
+to the right is changeable width b based on browser size, then you could say the
+pre area is 90% of the width b of the content area, and doesn't care about the
+existence of area A.  I'm not sure how the code for this would work.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Peterson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-20 10:29:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is no &quot;80%&quot; option... 
+ 
+the width of the pre section is in characters... only :( </pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-21 05:54:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=260#c6">comment #6</a>)
+<span class="quote">&gt; There is no &quot;80%&quot; option... 
+&gt;  
+&gt; the width of the pre section is in characters... only :( </span >
+
+is there a way to have the browser supply the required number based on screen
+size?  :-\  i guess it would need to know font size as well...
+
+still, i don't know why this can't just be added and make it nicer for firefox
+users and do nothing in IE.  it's not like it would break IE...</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-14 17:26:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >referencing original url with 'oldid='</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-22 02:43:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Use pre { overflow:auto } to avoid overprinting"
+   href="show_bug.cgi?id=22060">Bug 22060</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-22 02:46:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &lt;pre&gt; should have scroll bars in Firefox"
+   href="show_bug.cgi?id=414">Bug 414</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-22 03:27:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wow, I ran into this today and can't believe it has been open since 2004.
+
+Running through some stuff:
+
+(Cite <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &lt;pre&gt; should have scroll bars in Firefox"
+   href="show_bug.cgi?id=414#c21">bug 414 comment #21</a>)
+<span class="quote">&gt; One difficulty with forcing line wrapping in the display when dealing with code
+&gt; or configuration examples is that frequently line breaks are semantically
+&gt; important.
+&gt; 
+&gt; [..]
+&gt; 
+&gt; A wrap to 80 columns would display as:
+&gt; 
+&gt; $wgScriptPath = '/w';         # Path to the actual files. This should already
+&gt; be there
+&gt; $wgArticlePath = '/wiki/$1';  # Virtual path. This directory MUST be different
+&gt; from the one used in $wgScriptPath
+&gt; $wgUsePathInfo = true;
+&gt; 
+&gt; which, if typed as it looks into an Apache config file would result in a big
+&gt; fat syntax error.
+&gt; </span >
+
+Indeed, which is why wrapping it for real (no matter after how many characters) is an issue, and we shouldn't implement something like that. However any of these are not problematic:
+
+* Handeling overflow automatically with a scrollbar (only show a scrollbar if there is overflow). This can be done by setting overflow: auto;, which browsers evaluate on the fly and stays up to date when the page changes as well as when the window is resized.
+
+* Applying word-wrap. Afaik these do not affect the content being put in the clipboard. e.g. setting `word-wrap: word-break.` and copying a very long line that is wrapped, keeps it in tact (just tried in Chrome and Firefox).
+
+
+(Cite <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &lt;pre&gt; should have scroll bars in Firefox"
+   href="show_bug.cgi?id=414#c12">bug 414 comment #12</a>)
+<span class="quote">&gt; Mozilla Firefox doesn't  have scroll bars for the &lt;pre&gt; tags...  if you can</span >
+
+Afaik no browser has scrollbars on any element (except for &lt;html&gt;/&lt;body&gt;). &lt;pre&gt; tags (or any element for that matter) do not and should not have scrollbars unless a site's stylesheet explicitly sets it.
+
+I've changed the summary to be no longer Firefox oriented, this bug happens in all browsers (which is the correct default behavior).
+
+
+(Cite <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &lt;pre&gt; should have scroll bars in Firefox"
+   href="show_bug.cgi?id=414#c16">bug 414 comment #16</a>)
+<span class="quote">&gt; Firefox supports scroll bars for pre text, as mentioned in <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping"
+   href="show_bug.cgi?id=260">bug 260</a>.  I thought
+&gt; internet explorer was the problem.  I added pre { overflow: auto; } to my user
+&gt; stylesheet and it works delightfully in Firefox, automatically putting a
+&gt; horizontal scrollbar for pre sections when they overflow the screen, and not
+&gt; putting one when they don't.  I suggested adding this to the site css but then
+&gt; it was pointed out that it doesn't work in IE.</span >
+
+overflow: auto; is indeed the best solution.
+
+Note (from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Use pre { overflow:auto } to avoid overprinting"
+   href="show_bug.cgi?id=22060#c4">bug 22060 comment 4</a> and on):
+* IE6 doesn't support it (falls back so default behavior (&quot;overflow: visible&quot;) which is fine)
+* IE7 and IE8 show the scrollbar inside the element (potentially overlapping the last 1 or 2 lines)
+
+That can be fixed by increasing the padding a bit in IE (as pointed out later in that discussion). However it is slightly more complicated then that. The bug is quite odd in IE7. The scrollbar overlaps the content, but it is still &quot;smart&quot; enough to then provide a vertical scrollbar to get to that. So adding bottom-padding will make the last line visible, but it will still force the vertical scrollbar, even if its just to allow the user scroll to the reserved padding we created. So we'll have to set overflow-y:  hidden. Which is fine as long as there is no fixed height on the &lt;pre&gt;.
+
+Tested on a Mac and on BrowserStack in Windows:
+* Chrome 19 (Mac): OK
+* Chrome 18: OK
+* Opera 11.1: OK
+* Firefox 3.0: OK
+* Firefox 3.6: OK
+* Firefox 12: OK
+* Safari 4: OK
+* Safari 5.1: OK
+* IE6: (defaults to old behavior, property &quot;overflow&quot; ignored (so no scrollbar). does have padding since *hack applies to IE&lt;7.[1])
+* IE7: OK (scrollbar issue, fixed with *overflow-y: hidden; and *padding-bottom: 21px)
+* IE8: OK
+* IE9: OK
+* IE10.0: OK
+
+- OK: No scroll bar for small pres, show does scroll bar for big pres.
+- Source code: <a href="http://jsbin.com/apezup">http://jsbin.com/apezup</a>
+
+  .pre-fixed {
+    overflow: auto;
+    /* IE&lt;7: */
+    *padding-bottom: 21px;
+    *overflow-y: hidden;
+  }
+
+
+[1] I confirmed *hack applying to IE6+IE7 myself. More ie hacks are documented here: <a href="http://www.webdevout.net/css-hacks">http://www.webdevout.net/css-hacks</a></pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-22 04:28:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=10781" name="attach_10781" title="Screenshot of a &lt;pre&gt; overflow running over other floated items due to lack of overflow control">attachment 10781</a> <a href="attachment.cgi?id=10781&amp;action=edit" title="Screenshot of a &lt;pre&gt; overflow running over other floated items due to lack of overflow control">[details]</a></span>
+Screenshot of a &lt;pre&gt; overflow running over other floated items due to lack of overflow control
+
+The text exceeding the overflow is actually causing many things:
+
+* Causes long text to go off-page, causing a scrollbar on the entire window for the entire duration of the page view. (e.g. if somewhere half way a page there is a &lt;pre&gt; with overflow, when reading the intro you get this scrollbar for no apparent reason)
+* When scrolling to that off-page content, you no longer see the actual article, navigation, and most importantly: context (e.g. instructions, pointers). Causing usability issues (i.e. having to scroll back and forth to understand something is very unfriendly.
+* The lack of overflow control is also causing text to run *over* over floated elements. Such as image thumbnails, infoboxes, tables, citations and what not. That made the text completely unreadable, and looks like a broken page (see attached screenshot for a simple example, there are worse examples). This is especially hard to avoid because the layout is fluid, so the position where the text will overlap the image is completely variable and dependent on the font-size and window size / orientation.
+* When having reached the position in the page where the overflow-&lt;pre&gt; is, it is not always obvious to the user how to get to the extra content because there is no scrollbar to see. (there is one on the entire page, but that's afaik very rarely used on the web, and when it is, it is usually a bug).
+
+All of that is fixed by simply controlling the overflow.
+
+Tim Starling brought up an interesting  result of this. If you're in an environment (device, os and or browser related) where you can't scroll without manually dragging the scrollbar (e.g. no laptop touchpad, desktop mouse scrollwheel or mobile touch gesture) then one has to go to the scrollbar in order to scroll. For most short &lt;pre&gt; sections this isn't an issue, but if the code is taller than the view port then one has to navigate down to find the vertical scroll bar which is quite inconvenient.
+
+I don't think that problem weighs against the aforementioned usability, accessibility and layout issues. But it is something we can improve. I'd recommend we open another bug for that and (hopefully) fix it in less than 8 years (which is how long this bug survived - having 4 (in) direct duplicates and many on-wiki complaints).</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-22 04:30:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=260#c11">comment #11</a>)
+<span class="quote">&gt; Tested on a Mac and on BrowserStack in Windows:
+&gt; [..]
+&gt; 
+&gt;   .pre-fixed {
+&gt;     overflow: auto;
+&gt;     /* IE&lt;7: */
+&gt;     *padding-bottom: 21px;
+&gt;     *overflow-y: hidden;
+&gt;   }</span >
+
+Landed in <a href="https://gerrit.wikimedia.org/r/#q,I2e0494603af9e3a8351a8c61e9b814f0093e422b,n,z" title="Gerrit Change-Id: I2e0494603af9e3a8351a8c61e9b814f0093e422b">I2e0494603af9e3a8351a8c61e9b814f0093e422b</a>.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-22 09:44:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note: Fixed padding-bottom size is only to usual user schemes, but people can have bigger scrollbars using different user scheme.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steef</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-26 20:04:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reopening.
+
+This change was discussed on dewiki two years ago and got already implemented in Common.css for a short time. But it got reverted because of two reasons:
+1. padding issue in IE
+2. source codes
+
+The first problem can be fixed with IE-rules, but the second one is something that shouldn't get ignored silently.
+Long pre's get a scrollbar at the end of the content. This is especially a problem with long codes like in mediawiki-namespace or userscripts. Of course there are possibilities to scroll, for example via mousewheel. But additional to the above mentioned problems with mobile devices and touchpads I think that only a few users know about the possibility of clicking with the mouse wheel and the rest starts scrolling to the end of each longer pre which is much better in terms of usability than the current behaviour.
+
+Contrary to Krinkle, I think this problems should be fixed before implementing this change.
+
+A much better alternative would be white-space: pre-wrap;. It's still bad for sourcecodes, but at least it is a decent alternative for the usual user and for mobile devices.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael M.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-29 08:24:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=260#c15">comment #15</a>)
+<span class="quote">&gt; Long pre's get a scrollbar at the end of the content. This is especially a
+&gt; problem with long codes like in mediawiki-namespace or userscripts. Of course
+&gt; there are possibilities to scroll, for example via mousewheel. But additional
+&gt; to the above mentioned problems with mobile devices and touchpads I think that
+&gt; only a few users know about the possibility of clicking with the mouse wheel
+&gt; and the rest starts scrolling to the end of each longer pre which is much
+&gt; better in terms of usability than the current behaviour.</span >
+
+I had opened <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - &lt;pre&gt; with overflow: auto; causes usability problems for long blocks"
+   href="show_bug.cgi?id=37864">bug 37864</a> for this issue. Please look at the screenshot there and especially test usability on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=commons%3AMediaWiki%3AGadget-HotCat.js">commons:MediaWiki:Gadget-HotCat.js</a>]] before re-enabling anything with overflow: auto;</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-17 15:56:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Although <a href="https://gerrit.wikimedia.org/r/12720" title="Gerrit change #12720">Gerrit change #12720</a>| Change-Id: <a href="https://gerrit.wikimedia.org/r/#q,Ica40812ae221cdc7926dcbe7f82e1cb1591ea1e2,n,z" title="Gerrit Change-Id: Ica40812ae221cdc7926dcbe7f82e1cb1591ea1e2">Ica40812ae221cdc7926dcbe7f82e1cb1591ea1e2</a> fixes a lot of issues, it introduces one (in my opinion, minor) potential UI regression. I'll try to summarize the exact case here:
+
+When:
+* The user is someone who doesn't (know how to) use scroll wheels (but rely getting to the inline-scrollbar and drag that)
+* On a page that has a &lt;pre&gt; that is not just for pre-formatting a few lines but is actually very tall (taller than the view port / browser window)
+Then (combining these two factors):
+* They'd have to scroll down the page to get to the inline scrollbar whereas they previously could re-use the main window scrollbar (because the &lt;pre&gt; used to just burst out of the page layout and widen the page itself).
+
+However, one can argue whether the previous state was better, I think it was not obvious that the main window scrollbar can be used for this, so the fact that it can be no longer used for that is only a regression if that was actually obvious to the user. Either way, it could be something to take into consideration right now if we want to block on it.
+
+One possible solution could be to implement a maximum height on the &lt;pre&gt; and as such force a vertical scrollbar as well for taller &lt;pre&gt;-areas. That way the entire &lt;pre&gt; will be both vertically and horizontally without &quot;leakage&quot; outside the view port. But requiring the use to scroll twice is also annoying.
+
+Another solution that might work is to combine the patch set (<a href="https://gerrit.wikimedia.org/r/12720" title="Gerrit change #12720">Gerrit change #12720</a>), with the above max-height idea + a  :hover state that undoes. So you'd hover over the &lt;pre&gt; and then it expands in both directions (if there is something to expand, that is). That would be nice for most users (scrolling would be done through the main-window-scrollbar), but for the category described above it may still be an issue since moving the mouse away to the window-scrollbar means the cursor no longer hovers the &lt;pre&gt; and as such collapses the element again..</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Trevor Parscal</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-20 21:19:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think using word-wrap is superior solution because it makes the view more similar to the editing mode. If a long page of code with very long lines is written in an editor with word-wrap, it seems that not using word-wrap to view it would be an unwelcome disconnect.
+
+See details about using break-word together with pre-wrap to target all browsers.
+<a href="https://developer.mozilla.org/en/CSS/word-wrap">https://developer.mozilla.org/en/CSS/word-wrap</a></pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-20 21:21:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=260#c18">comment #18</a>)
+<span class="quote">&gt; I think using word-wrap is superior [than using scrollbar overflow]</span >
+
+I agree, and that would fix both this <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping"
+   href="show_bug.cgi?id=260">bug 260</a> as well as the usability concern from the solution I proposed in gerrit.
+
+Note that on Wikimedia Commons they are already using word-break: break-word;
+<a href="https://commons.wikimedia.org/wiki/MediaWiki:Common.js">https://commons.wikimedia.org/wiki/MediaWiki:Common.js</a></pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-21 21:14:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When talking about this with Trevor we both had the same idea, but came up with different implementations that seemed the same at first.
+
+Trevor suggested &quot;white-space: pre-wrap;&quot; and I suggested &quot;word-wrap: break-word;&quot;. Both appear to do the same thing when used in a &lt;pre&gt; (when not used on a &lt;pre&gt;, but on a &lt;p&gt; the difference is much more obvious).
+
+When used on a &lt;pre&gt; there is a sudle difference.
+
+* &quot;white-space: pre-wrap;&quot;
+
+This causes the browser to naturally wrap by displaying words on the next line if they don't fit on the same line within the box (does not cut off words). At first sight this appears to be a nice solution, however long urls or JSON strings will often still break out of the box and cause the page layout to look broken.
+
+* &quot;word-wrap: break-word:&quot;
+
+This forces the browser to wrap anywhere (even within when the spot is not a word boundry) when the line becomes too long.
+
+
+The latter doesn't have the problem with long urls and JSON strings, but... it always breaks the word, even a short word such as &quot;the&quot; will be wrapped on 2 lines if it happens to be at the cut-off point of the &lt;pre&gt; box dimensions.
+
+The best solution appears to combine the two. That way the browser will first naturally wrap the lines in a natural way (if a word doesn't fit it puts the entire word on the next line), and then break-word will only step in if necessary. Browser support for both of these are very good. I'll do some testing and come up with a patch on monday.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">matanya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-25 21:54:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >krinkle, what is the status here?</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-25 21:59:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Test report:
+
+* Chrome 20: OK
+* Firefox 3.0: OK
+* Firefox 3.6: OK
+* Firefox 13: OK
+* Firefox 14b: OK
+* Safari 5.1: OK
+* IE6: OK
+* IE7: OK
+* IE8: OK
+* IE9: OK
+* IE10: OK
+* Opera 11.6: OK
+* Opera 12: OK
+
+
+Test case:
+<a href="http://commons.wikimedia.org/w/index.php?title=Commons:Sandbox&amp;oldid=74719563">http://commons.wikimedia.org/w/index.php?title=Commons:Sandbox&amp;oldid=74719563</a>
+
+Change: <a href="https://gerrit.wikimedia.org/r/#q,I7eec3ffeaa,n,z" title="Gerrit Change-Id: I7eec3ffeaa">I7eec3ffeaa</a> | <a href="https://gerrit.wikimedia.org/r/16677">https://gerrit.wikimedia.org/r/16677</a></pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-29 17:04:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - pre tag not wrapping, creates long horizontal scroll"
+   href="show_bug.cgi?id=32045">Bug 32045</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bartosz Dziewoński</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-29 17:29:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm afraid you have broken the rendering of &lt;source&gt; tags now :( See e.g. <a href="https://en.wikibooks.org/wiki/C_Programming/Variables">https://en.wikibooks.org/wiki/C_Programming/Variables</a> - huge margins are added to the top and bottom of codes.
+
+The trouble is caused by &quot;white-space: pre-wrap;&quot; applied to .mw-code in <a href="https://bits.wikimedia.org/en.wikibooks.org/load.php?debug=true&amp;lang=pl&amp;modules=skins.vector&amp;only=styles&amp;skin=vector">https://bits.wikimedia.org/en.wikibooks.org/load.php?debug=true&amp;lang=pl&amp;modules=skins.vector&amp;only=styles&amp;skin=vector</a>&amp;* This enforces the rendering of a couple of newlines appearing in HTML source.
+
+The minimal fix is to add &quot;.mw-code { white-space: inherit }&quot;. But I don't get this code at all, why apply the rules to both pre and .mw-code when the second always has the first inside?</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-29 20:39:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've seen that, but that is a separate bug entirely. Please create a new bug for that.
+
+Setting &quot;.mw-code { white-space: inherit }&quot; would be pointless as there is already a white-space rule - which has been set for a reason: to preserve whitespace. If the white-space property should be changed (which I don't think it should) then it should be unset, to set twice.
+
+
+I've filed <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tidy should not create (additional) white space between elements"
+   href="show_bug.cgi?id=38800">bug 38800</a> for the bug that causes that. Again, <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping"
+   href="show_bug.cgi?id=260">bug 260</a> is fixed and looks fine. Wikis that have Tidy enabled (by default Tidy is not enabled, Wikipedia, however, has it enabled) suffer from this bug, but that has been the case for a while. The fix for <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping"
+   href="show_bug.cgi?id=260">bug 260</a> made that more visible in some areas, but it has been happening for a long while on some pages.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bartosz Dziewoński</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-29 20:58:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >My point is that .mw-code should *not* have this rule (or, in fact, these rules). .mw-code elements always have another div, then a pre inside – and only this pre should have the white-space and no-wrap rules set. Then we don't have to care about newlines being inserted or removed or whatnot.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-29 21:14:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=260#c26">comment #26</a>)
+<span class="quote">&gt; My point is that .mw-code should *not* have this rule (or, in fact, these
+&gt; rules). .mw-code elements always have another div, then a pre inside – and only
+&gt; this pre should have the white-space and no-wrap rules set. Then we don't have
+&gt; to care about newlines being inserted or removed or whatnot.</span >
+
+I understand your point, but that doesn't solve the problem. Let me elaborate. &quot;.mw-code&quot; does need these rules. The elements have no space between them, so that works perfectly fine (if Tidy is disabled - or if <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tidy should not create (additional) white space between elements"
+   href="show_bug.cgi?id=38800">bug 38800</a> is fixed). 
+
+The mw-code class is not DIV-specific, it is for any element that can contain code. It can be applied to a DIV, PRE or any other (block-)level element for that matter.
+
+In the specific case of the Geshi syntaxhighlighter extension the reason it wraps in a DIV (instead of applying the class to the &lt;pre&gt; directly, which would also solve your problem) - is because the &lt;pre&gt; element is outputted as part of the third-party geshi lib itself. It is not controllable (the extension doesn't output &lt;div class=&quot;mw-code&quot;&gt;&lt;pre&gt; + code + &lt;/pre&gt;&lt;/div&gt; but  &lt;div class=&quot;mw-code&quot;&gt;+ (geshi output) + &lt;/div&gt;. 
+
+The third-party output in the case of the geshi extension is a &lt;pre&gt; element, however other extensions may output code in other ways. Aside from that, even within geshi, the wrapper element itself is variable (it can be a &lt;div&gt; too, so in that case there wouldn't even be a &lt;pre&gt; *anywhere*).
+
+And to go even further, the geshi-lib contains hardcoded css rules that basically overrules any and all css on elements that it &quot;owns&quot;. So setting css rules on &quot;.mw-code &gt; pre.geshi-internal&quot; is (aside from being horribly specific and not belonging in MediaWiki core) wouldn't even work because Geshi has an inline reset on elements it &quot;owns&quot; (which makes sense to some degree). Therefore the only reliable way to style the outline of a code is to use a stand-alone class (&quot;mw-code&quot; in this case). And let it be applied to whatever it be applied to. This can be applied to a &lt;pre&gt; directly, or to a wrapper. Works either way.
+
+But due to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tidy should not create (additional) white space between elements"
+   href="show_bug.cgi?id=38800">bug 38800</a> it causes vertical lines to be prepended when used in Geshi with Tidy enabled (when not using Geshi or not configuring Tidy to do this, it works fine)</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bartosz Dziewoński</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-29 21:30:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All right, this makes sense, thanks. I though .mw-code is &lt;source&gt;-specific.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-08-02 06:50:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This fix is a good middle ground for all issues involved and was merged in master (<a href="https://gerrit.wikimedia.org/r/#q,I7eec3ffeaa,n,z" title="Gerrit Change-Id: I7eec3ffeaa">I7eec3ffeaa</a>) and deployed as part of 1.20wmf8. However it turns out that due to some stupid feature in Tidy it manages to get screwed up in production (most non-wmf wikis  - that is MediaWiki default and my personal test wikis) don't have Tidy enabled and thus we (Trevor and I) didn't see this.
+
+The CSS rule works fine in and works as expected on a &quot;normal&quot; install. But due to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tidy should not create (additional) white space between elements"
+   href="show_bug.cgi?id=38800">bug 38800</a>, Tidy inserts *additional* new lines causing stuff to look messed up.
+
+I'm re-opening this since the display issues are now back again (Tim thankfully reverted it in <a href="https://gerrit.wikimedia.org/r/#q,I1977f09356,n,z" title="Gerrit Change-Id: I1977f09356">I1977f09356</a> due to the issues with Tidy). However assuming we can fix <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tidy should not create (additional) white space between elements"
+   href="show_bug.cgi?id=38800">bug 38800</a>, this <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Vector: Handle &lt;pre&gt; overflow with a scrollbar or wrapping"
+   href="show_bug.cgi?id=260">bug 260</a> doesn't need another interim solution.
+
+Lets leave this bug open until <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tidy should not create (additional) white space between elements"
+   href="show_bug.cgi?id=38800">bug 38800</a> is fixed, and then simply re-apply <a href="https://gerrit.wikimedia.org/r/#q,I7eec3ffeaa,n,z" title="Gerrit Change-Id: I7eec3ffeaa">I7eec3ffeaa</a> to master.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Isarra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-03-05 08:00:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Are there any updates on these? I would like to see this fixed as well.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bartosz Dziewoński</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-22 20:59:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Long lines in &lt;pre&gt; blocks don't cause page formatting to extend right. The html page is extended massively further than needed"
+   href="show_bug.cgi?id=51831">Bug 51831</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ryan Kaldari</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-27 20:17:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Would there be any downside to using:
+
+pre:not(.javascript) {
+    overflow-x: auto;
+}
+
+The primary objection to Krinkle's original solution was that it wouldn't be good for MediaWiki javascript pages. If we simply exclude those pages, it seems like it would be a good solution for most cases.
+
+Apparently ':not' is supported in all major browsers except for IE 8 and earlier.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ryan Kaldari</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-27 23:04:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Apprently the 'javascript' class is added by the SyntaxHighlight extension, not by core :(</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chris McKenna</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-01 15:41:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why has this been moved to Vector as this is not a problem restricted to any one skin?
+
+See attachment showing a screenshot of <a href="https://meta.wikimedia.org/wiki/User:AaronPeterson/pre_play">https://meta.wikimedia.org/wiki/User:AaronPeterson/pre_play</a> in monobook (Firefox 30, Linux)</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=260#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chris McKenna</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-09-01 15:43:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=16336" name="attach_16336" title="screenshot of m:User:AaronPeterson/pre_play Firefox 30/monobook/Linux">attachment 16336</a> <a href="attachment.cgi?id=16336&amp;action=edit" title="screenshot of m:User:AaronPeterson/pre_play Firefox 30/monobook/Linux">[details]</a></span>
+screenshot of m:User:AaronPeterson/pre_play Firefox 30/monobook/Linux
+
+screenshot referred to in previous comment</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=260&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=260">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=260">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=260">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=260&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=260" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=260&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419356858-g70TbkZLw0Cl7GKm8fYLS_Yswxi36TQz7CVCvKBT654">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

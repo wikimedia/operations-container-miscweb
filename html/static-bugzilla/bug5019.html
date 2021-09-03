@@ -1,0 +1,1934 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5019 &ndash; Fix fragment identifiers in links to sections</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5019&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5019">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5019">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5019">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5019 – Fix fragment identifiers in links to sections",  
+                             "show_bug.cgi?id=5019" );
+        document.title = "Bug 5019 – Fix fragment identifiers in links to sections";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5019 – Fix fragment identifiers in links to sections", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_Page_editing bz_bug_5019 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-18 18:07:31 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-18 18:07:31">
+  <input type="hidden" name="longdesclength" value="22">
+  <input type="hidden" name="id" value="5019">
+  <input type="hidden" name="token" value="1419364784-rA-2r5GiE2ZvHy8Ix6TUeqyzsWC6v9DDLBXOhkEFnGQ">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5019"><b>Bug&nbsp;5019</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Fix fragment identifiers in links to sections</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Fix fragment identifiers in links to sections
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Fix fragment identifiers in links to sections', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Page editing
+    
+    (<a href="buglist.cgi?component=Page%20editing&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       minor<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5019">9 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5019#vote_5019">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://test.wikipedia.org/w/index.php?title=User:Gangleri/tests/bugzilla/section_links/wiki_syntax&amp;action=history"><span title="http://test.wikipedia.org/w/index.php?title=User:Gangleri/tests/bugzilla/section_links/wiki_syntax&amp;action=history">http://test.wikipedia.org/w/index.php...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-reviewed
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - The &quot;autocomment&quot; link differs from the TOC link if &lt;font ... /&gt; or &lt;font ...&gt; ... &lt;/font&gt; is used."
+   href="show_bug.cgi?id=4987">4987</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Templates in section headers"
+   href="show_bug.cgi?id=12414">12414</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Templates and links in summaries should be rendered on editing"
+   href="show_bug.cgi?id=17786">17786</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Cannot guess correct section title if templates are used"
+   href="show_bug.cgi?id=24262">24262</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=4987,12414,17786,24262">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Return to page after edit of section when section name occurs multiple times may point to wrong section"
+   href="show_bug.cgi?id=111">111</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Links in autogenerated summary in page histories may point to wrong section or to nowhere"
+   href="show_bug.cgi?id=2831">2831</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Special characters break section links in page history"
+   href="show_bug.cgi?id=2346">2346</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Link to section does not work in edit summaries in case of multiple sections with the same name"
+   href="show_bug.cgi?id=18700">18700</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Warn on edit summaries containing redlinks"
+   href="show_bug.cgi?id=13108">13108</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5019&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5019">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-02-17 03:14 UTC by <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-18 18:07 UTC 
+      (<a href="show_activity.cgi?id=5019">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>11 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="craig.wenger">craig.wenger</option>
+                <option value="dhwl09">dhwl09</option>
+                <option value="gangleri">gangleri</option>
+                <option value="gtisza">gtisza</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="jokes_free4me">jokes_free4me</option>
+                <option value="liangent">liangent</option>
+                <option value="perhelion1">perhelion1</option>
+                <option value="qgil">qgil</option>
+                <option value="rene.kijewski">rene.kijewski</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2093"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Proposed patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (13.85 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2093"
+               title="Go to the comment associated with the attachment">2006-07-16 05:58 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2093&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=2094"
+               title="View the content of the attachment">
+          <b>Test cases and output for proposed patch</b></a>
+
+          <span class="bz_attach_extra_info">
+              (8.49 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2094"
+               title="Go to the comment associated with the attachment">2006-07-16 06:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2094&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2151"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch with no debugging code</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (13.74 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2151"
+               title="Go to the comment associated with the attachment">2006-07-25 23:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2151&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=2171"
+               title="View the content of the attachment">
+          <b>Patch against r15884</b></a>
+
+          <span class="bz_attach_extra_info">
+              (13.74 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2171"
+               title="Go to the comment associated with the attachment">2006-07-30 06:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2171&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (2)
+        </span>
+        <a href="attachment.cgi?bugid=5019&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-17 03:14:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+<a href="http://test.wikipedia.org/wiki/User:Gangleri/tests/bugzilla/section_links/wiki_syntax">http://test.wikipedia.org/wiki/User:Gangleri/tests/bugzilla/section_links/wiki_syntax</a>
+provides a wide range of various sections generated using wiki syntax.
+
+The scope of this report is to identify which cases where &quot;return to section&quot;
+does not work properly *and* wrong autocomment links are generated could be
+improved.
+
+The set of characters which are not allowed in page titles *differs* from the
+set of characters which don't make sense in sections (as &quot;#&quot;). Beside this there
+is a range of characters which require *escaping* when used in anchors (as &quot;&amp;&quot;).
+
+However the page provides many examples where the the &quot;text&quot; rendered /
+displayed in the TOC contains only characters which can be used in &quot;return&quot;
+anchors and in &quot;autocomment&quot; links. This is mainly
+<a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Links in autogenerated summary in page histories may point to wrong section or to nowhere"
+   href="show_bug.cgi?id=2831">Bug 2831</a>: Return after edit sections using headings with wikilinks returns to
+other anchors then the ones used in TOC
+but there are many examples using wiki syntax, TeX etc. where the TOC-text is
+more suitable as return-to anchor and autocomment as what is generated now. <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - The &quot;autocomment&quot; link differs from the TOC link if &lt;font ... /&gt; or &lt;font ...&gt; ... &lt;/font&gt; is used."
+   href="show_bug.cgi?id=4987">Bug
+4987</a> is only one of them.
+
+Another &quot;discrepancy&quot; I want to address is the multiple identical TOC-texts. A
+sollution which would make sense is to render the TOC-text *same* as the anchors
+*automatically*. This will make the problem more visible while editing and they
+users could easy fix such sections immediately. This is
+<a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Return to page after edit of section when section name occurs multiple times may point to wrong section"
+   href="show_bug.cgi?id=111">Bug 111</a>: Return to page after edit of section (where section name occurs
+multiple times)
+The algorithm should work also for insertion of new sections inserted &quot;out of
+sequence&quot; by &quot;first in&quot; -&gt; &quot;first number&quot;; &quot;next in&quot; -&gt; &quot;last number++&quot; (because
+of posible gaps). This will not generate duplicate TOC-texts any more. Existing
+pages should render according to this algorithm at the next change or while purged.
+The algorithm would require (sorry Brion) identical handling of spaces and
+underscores as addressed in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - As in titles spaces and underscores should be handeled the same way both in TOC and generated anchor links"
+   href="show_bug.cgi?id=2339">bug 2339</a>.
+
+The examples from the url shows many complications or section headers about
+known bugs or implementation dependent issues:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo">foo</a>|]] does not render to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo">foo</a>]] today - <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [[Piped links|]] to the main namespace produce unformatted text instead of functioning links"
+   href="show_bug.cgi?id=1034">bug 1034</a>
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo%20bar%23foobar">foo bar#foobar</a>|]] does not generate a valid link today but it might generate
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo%20bar%23foobar">foo bar#foobar</a>|foobar]] in the future - <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [[#foo|]], [[/bar|]] should be equivalent to [[#foo|foo]], [[/bar|bar]] (new use of &quot;pipe trick&quot;)"
+   href="show_bug.cgi?id=845">bug 845</a>
+
+The main / primary focus should not be on mentioned or documented complications
+or other curiosities but on *efficiency* and unifying user interface functionality.
+
+There will still be situations (conflicts) where characters used inside the TOC
+are not valid in anchors. These characters need to be escaped anyway.
+
+Wikies live. After &quot;changing the rules&quot; it will be possible to &quot;simplify&quot; the
+stored autocomments in existing summary fields. This will not be a manipulation
+but a improuvement / usefull fix for users.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-17 03:40:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5019#c0">comment #0</a>)
+<span class="quote">&gt; ... *differs* from the
+&gt; set of characters which don't make sense in sections (as &quot;#&quot;).</span >
+
+A &quot;#&quot;-section generetes
+<a href="http://test.wikipedia.org/wiki/User:Gangleri/tests/bugzilla/section_links/wiki_syntax#.23">http://test.wikipedia.org/wiki/User:Gangleri/tests/bugzilla/section_links/wiki_syntax#.23</a>
+
+&quot; &quot; generates the return link
+<a href="http://test.wikipedia.org/wiki/User:Gangleri/tests/bugzilla/section_links/wiki_syntax">http://test.wikipedia.org/wiki/User:Gangleri/tests/bugzilla/section_links/wiki_syntax</a>#
+This is equivalent to an anchor the start / top of the page</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-23 21:45:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why is this request nontrivial to implement?  The TOC works perfectly for every
+case I've seen, so why can't that code be plugged in to the post-edit section
+link-generator and the page history link-generator in an hour or whatever?</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-23 21:58:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's nontrivial because the multipass parser is nontrivial.
+The set of text that is present at some stage partway through
+parsing isn't necessarily the same as you have at some other
+time.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-26 03:32:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmm.  Generating the section-edit link could be rather simpler than it is, since
+it doesn't actually have to accord *that* closely with the markup used.  It
+could potentially be arbitrary, in fact, although we don't really want that.  An
+algorithm like:
+
+* Identify internal links and replace with their display text.
+* Identify external links and replace with their display text.
+* Strip the contents of &lt;ref&gt;s, if Cite.php is installed (ideally; this may not
+be reasonable for an extension, but I did once see someone included a very
+lengthy ref in a header).
+* Strip all SGML-style tags (but not their contents).
+* Replace all template parameters with their defaults, if they have any.
+* Replace all accented Latin characters with their unaccented versions.
+* Strip all apostrophes.
+* For all sequences of nonalphabetic symbols that aren't printable in URLs:
+** If the sequence has a printable punctuation mark (e.g., _ or -) to one side,
+delete the sequence.
+** Otherwise, replace the sequence with an underscore.
+* See if the array passed to the function contains a string that's identical to
+the current string.  If it does, append an appropriate number.
+* Return the string.
+
+could be implemented as an Article method.  Anything that wanted to know what
+the title should be for a given heading would request the section heading from
+the Article object.  This general algorithm would probably be simpler and
+cheaper to implement than what I believe is being generated now, because it
+doesn't transclude templates or generally rely on anything recursive or
+otherwise tiresome.  Furthermore, the id wouldn't change if an included template
+changed, or in fact if anything whatsoever changed other than the actual text of
+the header.  And finally, on Latin-alphabet wikis it will provide entirely
+readable section ids, because all reserved characters are just dropped.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-16 05:58:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2093" name="attach_2093" title="Proposed patch">attachment 2093</a> <a href="attachment.cgi?id=2093&amp;action=edit" title="Proposed patch">[details]</a></span>
+Proposed patch
+
+* Creates basically consistent anchors no matter where you come from (TOC,
+Linker.php, EditPage.php).
+* Certain things in headers, such as variables and seemingly extension hooks
+(at least &lt;ref&gt;), will remain inconsistent.  No regression, they'll still work
+from TOC, but they will not work from history or return on edit.
+* Duplicate header names will still work from TOC, but can't conceivably work
+from elsewhere with the current setup.	Still no regression.
+* Legacy anchors are preserved, so old links don't break.
+* Anchors are more readable and more easily typed where possible(e.g., &quot;One
+(Two), Three&quot; -&gt; &quot;One_Two_Three&quot; not &quot;One_.28Two.29.2C_Three&quot;, &quot;spéçïål
+çhärâçtêrs&quot; -&gt; &quot;special_characters&quot; not
+&quot;sp.C3.A9.C3.A7.C3.AF.C3.A5l_.C3.A7h.C3.A4r.C3.A2.C3.A7t.C3.AArs&quot;).
+* I noticed no performance hit in some quick benchmarking.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-16 06:00:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2094" name="attach_2094" title="Test cases and output for proposed patch">attachment 2094</a> <a href="attachment.cgi?id=2094&amp;action=edit" title="Test cases and output for proposed patch">[details]</a></span>
+Test cases and output for proposed patch
+
+Thanks mainly to Gangleri.  Note: Cite.php is enabled, but Inputbox and math
+(among other things) are not.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-25 23:11:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2151" name="attach_2151" title="Patch with no debugging code">attachment 2151</a> <a href="attachment.cgi?id=2151&amp;action=edit" title="Patch with no debugging code">[details]</a></span>
+Patch with no debugging code
+
+The patch isn't great, so I hope to improve upon it, but in case someone *does*
+want to use this one, I'd better remove the debugging code.  :D</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-30 06:00:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2171" name="attach_2171" title="Patch against r15884">attachment 2171</a> <a href="attachment.cgi?id=2171&amp;action=edit" title="Patch against r15884">[details]</a></span>
+Patch against <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/15884" title="revision 15884 in SVN">r15884</a>
+
+It finally occurred to me that templates don't work with this either; I didn't
+think to add that as a test case, stupidly enough.  This isn't a great
+solution, then, although still no regression, and it should be
+forward-compatible, so this is really more &quot;incomplete&quot; than &quot;bad&quot;.  Might
+still be useful to commit the patch in its current form; to handle templates
+and variables correctly would require fairly intricate changes to
+Parser::replaceVariables or Parser::replace_callback, as far as I can see,
+albeit probably a lot simpler if you're familiar with such things.  I can't
+figure out how to do it, sadly.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-30 06:05:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - The &quot;autocomment&quot; link differs from the TOC link if &lt;font ... /&gt; or &lt;font ...&gt; ... &lt;/font&gt; is used."
+   href="show_bug.cgi?id=4987">Bug 4987</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-26 18:59:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks for making the patch. Here are some comments:
+
+* As described, the patch introduces a new mapping
+of section names to anchors. The old name is kept as
+a &quot;legacy&quot; name, but why make this change at all? To
+me it seems orthogonal to the bug. The anchor names
+are not arbitrary; they are supposed to be ASCII-only,
+human-readable when possible, and stable enough for
+use in URLs. Both the existing method or the new
+one will be unreadable at times, but at least the
+old one was established and unambiguous.
+* I noticed that you add an 'x' before anchor names that
+don't begin with a letter. Technically you are correct
+in that standards require this, but is there any
+practical reason for it? Section links like
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Example%231990s">Example#1990s</a>]] already work fine, and changing the
+anchor to &quot;x1990s&quot; seems ugly and arbitrary.
+* The base64_encode() / base64_decode() process seems
+unnecessary; why not just save the section titles in
+an array and store an index into the array in the
+placeholder instead of the encoded string? To be fair,
+this isn't specific to your patch.
+* Why make wfCreateAnchor a global function?
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 02:27:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5019#c10">comment #10</a>)
+<span class="quote">&gt; * As described, the patch introduces a new mapping
+&gt; of section names to anchors. The old name is kept as
+&gt; a &quot;legacy&quot; name, but why make this change at all?</span >
+
+I couldn't use the mapping currently used by the parser, because that's based
+off rendered HTML, not wikitext, and parsing each fragment on a history page is
+unacceptable.  I could have used the one used by EditPage and Linker (which I
+suspect are slightly different), but that would break past links anyway, because
+everyone makes links that point to the parser output, not the EditPage/Linker
+output.  So I figured I might as well make the output more readable while I was
+at it.  Note that the system I used accords with the &quot;legacy&quot; system much more
+often than the EditPage/Linker system does, too.
+
+<span class="quote">&gt; * I noticed that you add an 'x' before anchor names that
+&gt; don't begin with a letter. Technically you are correct
+&gt; in that standards require this, but is there any
+&gt; practical reason for it?</span >
+
+No, but MediaWiki likes to maintain XHTML compliance, all things being equal.
+
+<span class="quote">&gt; * The base64_encode() / base64_decode() process seems
+&gt; unnecessary; why not just save the section titles in
+&gt; an array and store an index into the array in the
+&gt; placeholder instead of the encoded string? </span >
+
+Good question.  I'm kind of new at programming, and the Base64 idea seemed more
+obvious at the time to me.  Of course, everything else that I saw in the parser
+is done the way you say, and in retrospect I should have done it that way.
+
+<span class="quote">&gt; * Why make wfCreateAnchor a global function?</span >
+
+Because it needs to be accessible to Parser, EditPage, and Linker, which don't
+all talk to each other, and I didn't know about static methods at the time.  :P
+
+(Tim pointed out to me on IRC, by the way, that EditPage would be very simple to
+fix: just have Parser pass on the correctly-formatted anchor to EditPage.  This
+tactic wouldn't solve the history-page problem, but it's better than nothing.)</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 06:46:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5019#c11">comment #11</a>)
+
+<span class="quote">&gt; I couldn't use the mapping currently used by the parser, because that's based
+&gt; off rendered HTML, not wikitext, and parsing each fragment on a history page is
+&gt; unacceptable.</span >
+
+But would it really be that expensive, considering that we
+already parse wikilinks on history pages? The rendered HTML is
+stripped out when making anchors, so you wouldn't need to
+generate it on history pages or for section edits. I wonder how
+much it would slow things down to replace wikilinks by their text,
+remove all single-quote (bold/italic) formatting, and maybe
+replace bracketed external links with their descriptions. Is
+here something I missed?
+
+I see now why you chose to create a new format, and maybe that
+is indeed the way to go. I like your idea of unifying the three
+different places that generate anchor/fragment names.
+
+<span class="quote">&gt; (Tim pointed out to me on IRC, by the way, that EditPage would be very simple to
+&gt; fix: just have Parser pass on the correctly-formatted anchor to EditPage.  This
+&gt; tactic wouldn't solve the history-page problem, but it's better than nothing.)</span >
+
+I believe we have to do that anyway if we want to fix <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Return to page after edit of section when section name occurs multiple times may point to wrong section"
+   href="show_bug.cgi?id=111">bug 111</a>.
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 07:12:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5019#c12">comment #12</a>)
+<span class="quote">&gt; But would it really be that expensive, considering that we
+&gt; already parse wikilinks on history pages?</span >
+
+Well, not if you wrote a mini-parser, but that would be quite complicated (the
+parser is rather intricate) and almost certainly not worth the effort.  Even if
+it's somewhat faster, there can be a maximum of 5000 items on a history page. 
+The current parser takes about 800 ms to render a typical page, which obviously
+is totally unacceptable when multiplied by even ten, let alone a thousand.
+
+<span class="quote">&gt; Is here something I missed?</span >
+
+Templates.  Which require database queries, not infrequently multiple database
+queries.  Parser extensions can also potentially be expensive, because they can
+do absolutely anything.  Tim confirmed what I suspected when I chatted with him
+about this on IRC: running the parser for every section edit link would cause
+the WMF servers to die.  That's why I tried to make a wikitext-based format in
+preference to a rendered text-based format in the first place.
+
+<span class="quote">&gt; I believe we have to do that anyway if we want to fix <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Return to page after edit of section when section name occurs multiple times may point to wrong section"
+   href="show_bug.cgi?id=111">bug 111</a>.</span >
+
+Correct.
+
+. . . hmm.  I just had an idea.  What if we took the finished anchor from the
+parser, stuck it onto something, used it for the return value of EditPage, *and
+then put it into the history entry*?  Nobody said the history entry's link
+target *has* to be determined on loading the history page, right?  It can be
+determined when adding it to the edit history in the first place.
+
+Of course, this would likely require database schema changes (store the actual
+fragment separately from the text displayed to the right of the arrow), but it
+seems like a flawless solution.  Everything is inherently centralized, and we
+don't have to deal with the headache of adding anchor stuff into the template pass.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 18:04:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5019#c13">comment #13</a>)
+<span class="quote">&gt; 
+&gt; Well, not if you wrote a mini-parser, but that would be quite complicated (the
+&gt; parser is rather intricate) and almost certainly not worth the effort.  Even if</span >
+
+My point was that I don't see anything intricate or complicated about
+converting wikitext into plain text for the important cases: one regular
+expression search-and-replace to remove wikilinks, one to remove quotes,
+and one to remove external links. This doesn't have to happen for every
+history entry, only those corresponding to section edits, and even then
+the replacement only takes place on section headings, not the whole edit
+summary.
+
+The problem with templates is that they are expanded in the parser before
+headings are parsed, and as you say expanding templates on history pages
+is not feasible. Your patch doesn't fix templates-within-headings either,
+and I'm not convinced it's worth supporting anyway.
+
+<span class="quote">&gt; . . . hmm.  I just had an idea.  What if we took the finished anchor from the
+&gt; parser, stuck it onto something, used it for the return value of EditPage, *and
+&gt; then put it into the history entry*?</span >
+
+Not a bad idea; the only objection I can think of is that it seems
+like overkill to change the schema for what's ultimately a minor
+annoyance.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rensualk Sakul</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-01 13:10:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Does this bug cover the problems with linking to sections which include
+apostrophes for bolding and italicising? See Talk:€2 commemorative coins at
+en.wikipedia.org.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-06 11:49:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Many of these issues have been fixed by TimLaqua in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/25445" title="revision 25445 in SVN">r25445</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/25446" title="revision 25446 in SVN">r25446</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/25450" title="revision 25450 in SVN">r25450</a> and <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/25573" title="revision 25573 in SVN">r25573</a> (see also <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Links in autogenerated summary in page histories may point to wrong section or to nowhere"
+   href="show_bug.cgi?id=2831">bug 2831</a> and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Change the summary on creating of new section"
+   href="show_bug.cgi?id=10836">bug 10836</a>). This should reduce the list of problematic section headers significantly.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Conrad Irwin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-21 17:57:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Templates and links in summaries should be rendered on editing"
+   href="show_bug.cgi?id=17786">Bug 17786</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Conrad Irwin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-03 22:58:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Templates in section headers"
+   href="show_bug.cgi?id=12414">Bug 12414</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Conrad Irwin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-03 22:59:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Cannot guess correct section title if templates are used"
+   href="show_bug.cgi?id=24262">Bug 24262</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">p858snake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-30 00:10:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*Bulk BZ Change: +Patch to open bugs with patches attached that are missing the keyword*</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5019#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-09 23:45:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >+reviewed since <a href="show_bug.cgi?id=5019#c16">comment 16</a> implies some obsoletion of Aryeh's patches</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5019&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5019">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5019">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5019">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5019&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5019" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5019&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419364784-P2bVqB8-DLAUyWJbY-qnuK4gprVKxzpZLRwf_xl7e8k">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

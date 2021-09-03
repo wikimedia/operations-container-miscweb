@@ -1,0 +1,2033 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 6702 &ndash; Default system messages should be improved.</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=6702&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=6702">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=6702">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=6702">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 6702 – Default system messages should be improved.",  
+                             "show_bug.cgi?id=6702" );
+        document.title = "Bug 6702 – Default system messages should be improved.";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 6702 – Default system messages should be improved.", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Interface bz_bug_6702 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2009-02-05 18:27:41 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2009-02-05 18:27:41">
+  <input type="hidden" name="longdesclength" value="16">
+  <input type="hidden" name="id" value="6702">
+  <input type="hidden" name="token" value="1419367301-gFUCo0XzTRyXeRyA7b4l5T3lubF2XCQta-YoRoND_TI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=6702"><b>Bug&nbsp;6702</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Default system messages should be improved.</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Default system messages should be improved.
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Default system messages should be improved.', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Interface
+    
+    (<a href="buglist.cgi?component=Interface&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.8.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=6702">1 
+            vote</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=6702#vote_6702">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=6702&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=6702">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-07-16 12:59 UTC by <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2009-02-05 18:27 UTC 
+      (<a href="show_activity.cgi?id=6702">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>3 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ayg">ayg</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="siebrand">siebrand</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2095"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">patch of Messages.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (48.65 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2095"
+               title="Go to the comment associated with the attachment">2006-07-16 13:02 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2095&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2099"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">patch of Messages.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (48.76 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2099"
+               title="Go to the comment associated with the attachment">2006-07-16 20:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2099&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=2103"
+               title="View the content of the attachment">
+          <b>diff containing changes made between first patch and second patch</b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.66 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2103"
+               title="Go to the comment associated with the attachment">2006-07-16 20:14 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2103&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2129"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">updated patch which uses Project: instead of {{ns:project}}</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (49.71 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2129"
+               title="Go to the comment associated with the attachment">2006-07-20 18:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2129&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5289"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">new version of the patch against latest SVN version of mediawiki</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (16.99 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5289"
+               title="Go to the comment associated with the attachment">2008-09-04 05:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5289&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5305"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Updated patch against today's mediawiki / revision 40616.</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.78 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5305"
+               title="Go to the comment associated with the attachment">2008-09-08 21:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5305&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5327"
+               title="View the content of the attachment">
+          <b>This is the latest remaining unmerged changes.  Only seven.  </b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.74 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5327"
+               title="Go to the comment associated with the attachment">2008-09-13 12:08 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5327&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5328"
+               title="View the content of the attachment">
+          <b>get rid of &lt;strong&gt; and &lt;b&gt; and use ''' instead - English messages only for now.  </b></a>
+
+          <span class="bz_attach_extra_info">
+              (15.45 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5328"
+               title="Go to the comment associated with the attachment">2008-09-13 12:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5328&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (5)
+        </span>
+        <a href="attachment.cgi?bugid=6702&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-16 12:59:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The default system messages (in English) should be improved to increase
+usability.  Attached is a patch against the trunk version of Messages.php which
+proposes to do this.  
+
+There are several sources for the improvements.  A) reading through the messages
+used on Wikipedia and deciding if they offer a valuable improvement B)
+suggestions from people the IRC channels C) my own experience
+
+* update of messages with more explanations from Wikipedia
+* consistent use of namespace macros (only project is done as {{ns:project}}
+* consistent change of article to page.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-16 13:02:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2095" name="attach_2095" title="patch of Messages.php">attachment 2095</a> <a href="attachment.cgi?id=2095&amp;action=edit" title="patch of Messages.php">[details]</a></span>
+patch of Messages.php
+
+A patch of Messages.php (to be applied from inside languages subdirectory)</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-16 20:13:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2099" name="attach_2099" title="patch of Messages.php">attachment 2099</a> <a href="attachment.cgi?id=2099&amp;action=edit" title="patch of Messages.php">[details]</a></span>
+patch of Messages.php
+
+This version incorporates more comments from IRC discussions.  Includes removal
+of some Wikipedia specific parts of messages and generalisation of messages
+which were too specific.  A delta diff will follow for easier verification.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-16 20:14:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2103" name="attach_2103" title="diff containing changes made between first patch and second patch">attachment 2103</a> <a href="attachment.cgi?id=2103&amp;action=edit" title="diff containing changes made between first patch and second patch">[details]</a></span>
+diff containing changes made between first patch and second patch
+
+diff between my first patch and second patch.  For easy reviewing rather than
+applying to Messages.php.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-20 18:19:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2129" name="attach_2129" title="updated patch which uses Project: instead of {{ns:project}}">attachment 2129</a> <a href="attachment.cgi?id=2129&amp;action=edit" title="updated patch which uses Project: instead of {{ns:project}}">[details]</a></span>
+updated patch which uses Project: instead of {{ns:project}}
+
+TimStarling said that in all cases Project: should be used instead of
+{{ns:project}}.  This version of the patch changes over in that way.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-24 05:50:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'd be interested in committing this in whole or in part if a new version were provided that applied cleanly to trunk.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-04 05:31:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5289" name="attach_5289" title="new version of the patch against latest SVN version of mediawiki">attachment 5289</a> <a href="attachment.cgi?id=5289&amp;action=edit" title="new version of the patch against latest SVN version of mediawiki">[details]</a></span>
+new version of the patch against latest SVN version of mediawiki
+
+Quite a number of my suggested changes seem to have been accepted.  I've gone through and selected only those which still seem to make sense and rewritten them against the latest version of the messages file.  If anyone has comments soon, I'll try to be around for at leas a little while to fix up the patch and take them into account.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-05 22:14:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;-'nosuchactiontext'  =&gt; 'The action specified by the URL is not recognized by the wiki',
+&gt;+'nosuchactiontext'  =&gt;  '{{SITENAME}} does not recognize the action specified by the URL.',</span >
+
+I'm not sure this one is any better.
+
+<span class="quote">&gt;-'loginproblem'               =&gt; '&lt;b&gt;There has been a problem with your login.&lt;/b&gt;&lt;br /&gt;Try again!',
+&gt;+'loginproblem'               =&gt; '&lt;strong&gt;There has been a problem with your login.&lt;/strong&gt;&lt;br /&gt;Try again!',</span >
+
+Do we want to blanket-replace &lt;b&gt; with &lt;strong&gt; here (where appropriate)?  I'm pretty sure this has been discussed before.
+
+<span class="quote">&gt; 'nosuchuser'                 =&gt; 'There is no user by the name &quot;$1&quot;.
+&gt;-Check your spelling, or create a new account.',
+&gt;+Check your spelling, or create a new account using the link below.',</span >
+
+Wouldn't it be better to just turn &quot;create a new account&quot; into a link?
+
+<span class="quote">&gt; 'acct_creation_throttle_hit' =&gt; 'Sorry, you have already created $1 accounts.
+&gt;-You cannot make any more.',
+&gt;+You cannot make any more.  If this is in error, please try again later or contact us.',</span >
+
+That proviso could be added to practically any error message.  Any reason why it was added here particularly?
+
+<span class="quote">&gt;-'whitelistedittext'                =&gt; 'You have to $1 to edit pages.',
+&gt;+'whitelistedittext'                =&gt; 'You have to '''$1''' to edit pages.',</span >
+
+Is this message ever actually used anymore?  I can't seem to get it, I only get 'permissionserrorstext-withaction' or something like that.
+
+<span class="quote">&gt;-'accmailtext'                      =&gt; 'The password for &quot;$1&quot; has been sent to $2.',
+&gt;+'accmailtext'                      =&gt; 'The password for '$1' has been sent to $2.',</span >
+
+This is a syntax error, first of all.  If you're just making changes to message files, try running the message files through php -l to ensure you didn't break them.
+
+Second of all, double quotes are more usual, at least in America.  Why the change?
+
+<span class="quote">&gt;-'usercsspreview'                   =&gt; &quot;'''Remember that you are only previewing your user CSS, it has not yet been saved!'''&quot;,
+&gt;+'usercsspreview'                   =&gt; &quot;'''Remember that you are only previewing your user CSS; it has not yet been saved!'''&quot;,</span >
+
+A period would be even better here.
+
+<span class="quote">&gt; 'searchdisabled'            =&gt; '{{SITENAME}} search is disabled.
+&gt;-You can search via Google in the meantime.
+&gt;+You may be able to search via a search engine such as Google in the meantime.
+&gt; Note that their indexes of {{SITENAME}} content may be out of date.',</span >
+
+This seems kind of inappropriate given that by default, only Google search is *offered*.  If we want to make the wording vendor-agnostic, we should offer forms for other search engines . . .
+
+<span class="quote">&gt;-'rows'                     =&gt; 'Rows:',
+&gt;+'rows'                     =&gt; 'Editbox dimensions (rows):',
+&gt; 'columns'                  =&gt; 'Columns:',</span >
+
+Shouldn't you be changing 'columns' so that it matches?  With this change it would look like
+
+Editbox dimensions (rows): ____ Columns: ____
+
+&quot;Rows&quot; is parenthesized by &quot;Columns&quot; is not.  On the other hand, the way enwiki has it is also not great:
+
+Editbox dimensions: Rows: ____ Columns: ____
+
+Two consecutive colons there seems wrong to me.  Also I think the term &quot;editbox&quot; could be improved upon, at least broken into two words.
+
+<span class="quote">&gt; 'uploadlogpagetext'           =&gt; 'Below is a list of the most recent file uploads.
+&gt;-See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview.',
+&gt;+See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview. 
+&gt;+User filters must have the same capitalization as the userid.',</span >
+
+Except for the first letter.  And the &quot;userid&quot; is a number, to be precise.  Better wording here would be good.
+
+<span class="quote">&gt; 'fileexists-forbidden'        =&gt; 'A file with this name exists already;
+&gt;-please go back and upload this file under a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',
+&gt;+if you still want to upload, please go back use a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',
+&gt; 'fileexists-shared-forbidden' =&gt; 'A file with this name exists already in the shared file repository;
+&gt;-please go back and upload this file under a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',
+&gt;+if you still want to upload, please go back use a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',</span >
+
+You must mean &quot;... please go back and use a new name&quot; or similar.  I'll also break that off into a new sentence, drop the semicolon.
+
+<span class="quote">&gt;-'imagelinks'                     =&gt; 'Links',
+&gt;+'imagelinks'                     =&gt; 'File links',</span >
+
+Not sure if this is useful.  It's a file, of course these are file links.
+
+<span class="quote">&gt;-'noimage'                        =&gt; 'No file by this name exists, you can $1.',
+&gt;+'noimage'                        =&gt; 'No file by this name exists; you can $1.',</span >
+
+Again, new sentences are probably better than changing commas to semicolons.  Or in this case, adding the word &quot;but&quot; sounds good.
+
+<span class="quote">&gt;-You can narrow down the view by selecting a log type, the user name, or the affected page.',
+&gt;+You can narrow down the view by selecting a log type, the user name (case sensitve), or the affected page.',</span >
+
+&quot;sensitive&quot;, not &quot;sensitve&quot;.  :)
+
+<span class="quote">&gt;-'watchlist-details'    =&gt; '{{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages.',
+&gt;+'watchlist-details'    =&gt; '{{PLURAL:$1|$1 page|$1 pages}} on your watchlist not counting talk pages.',</span >
+
+Why this change?
+
+
+I committed anything I didn't comment on, and some of the things I did, in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40508" title="revision 40508 in SVN">r40508</a>.  I forgot to add &quot;Based on a patch by Michael De La Rue&quot; in the commit message, but I added you to CREDITS, so people should get the hint, I guess.  I'll leave this open for further discussion on the parts I didn't commit, and anything else you might want to suggest.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-08 21:05:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is long since I decided it's better to quote all the things you
+asked. 
+
+<span class="quote">&gt;&gt;-'nosuchactiontext'  =&gt; 'The action specified by the URL is not recognized by the wiki',
+&gt;&gt;+'nosuchactiontext'  =&gt;  '{{SITENAME}} does not recognize the action specified by the URL.',</span >
+&gt;
+<span class="quote">&gt;I'm not sure this one is any better.</span >
+&gt;
+
+This is better because 
+* the user doesn't always know what a wiki is.
+* it makes it clear which wiki isn't recognising the URL; there may be
+several wikis involved
+* the site name is normally obvious on the every page so easily understood
+
+Remember that these are the default messages so to be used mostly in
+newer wikis and / or by people new to wikis.  
+
+&gt;
+<span class="quote">&gt;&gt;-'loginproblem'               =&gt; '&lt;b&gt;There has been a problem with your login.&lt;/b&gt;&lt;br /&gt;Try again!',
+&gt;&gt;+'loginproblem'               =&gt; '&lt;strong&gt;There has been a problem with your login.&lt;/strong&gt;&lt;br /&gt;Try again!',</span >
+&gt;
+<span class="quote">&gt;Do we want to blanket-replace &lt;b&gt; with &lt;strong&gt; here (where appropriate)?  I'm
+&gt;pretty sure this has been discussed before.</span >
+
+&lt;strong&gt; is semantic markup meaning &quot;this is important&quot;.  &lt;b&gt; is
+visual formating meaning &quot;this should be displayed in bold font&quot;,
+which mapps to several differnt meanings (emphasised text / important
+text / variable names) and so should mostly be avoided.  Using strong
+makes it clear for a screen reader (for the visually impaired or
+blind) what it should do wheras &lt;b&gt; doesn't so much.
+
+<span class="quote">&gt;&gt; 'nosuchuser'                 =&gt; 'There is no user by the name &quot;$1&quot;.
+&gt;&gt;-Check your spelling, or create a new account.',
+&gt;&gt;+Check your spelling, or create a new account using the link below.',</span >
+&gt;
+<span class="quote">&gt;Wouldn't it be better to just turn &quot;create a new account&quot; into a link?</span >
+
+probably.  the link is 
+	   <a href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;type=signup&amp;returnto=Main_Page">http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;type=signup&amp;returnto=Main_Page</a>
+but I'm not sure what would be the correct way to embed it? 
+
+Check your spelling, or [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AUserlogin%26type%3Dsignup">Special:Userlogin&amp;type=signup</a>|create a new account]]
+
+doesn't seem to work for example?
+
+<span class="quote">&gt;&gt; 'acct_creation_throttle_hit' =&gt; 'Sorry, you have already created $1 accounts.
+&gt;&gt;-You cannot make any more.',
+&gt;&gt;+You cannot make any more.  If this is in error, please try again later or contact us.',</span >
+&gt;
+<span class="quote">&gt;That proviso could be added to practically any error message.  Any reason why
+&gt;it was added here particularly?</span >
+
+This message happens due to a specific time limit.  If we were trying
+to communiucate clearly then we would say &quot;'Sorry, your IP address has
+created $1 accounts within $2 minutes. You cannot make any more until
+$3 minutes have passed'&quot;.   I think the reason we don't say that is
+that it gives the spamming user the hint to get some more IP addresses
+and try again.  
+
+So, I wanted to give people who are unlucky in their timing and behind
+a proxy with many others a hint to try again later, but without
+breaking the obscurity (for &quot;security&quot;) of the original message.  
+
+&gt;
+<span class="quote">&gt;&gt;-'whitelistedittext'                =&gt; 'You have to $1 to edit pages.',
+&gt;&gt;+'whitelistedittext'                =&gt; 'You have to '''$1''' to edit pages.',</span >
+&gt;
+<span class="quote">&gt;Is this message ever actually used anymore?  I can't seem to get it, I only get
+&gt;'permissionserrorstext-withaction' or something like that.</span >
+
+I get this error when I have a wiki which doesn't allow editing except
+for logged in users.  for example
+
+    you have to login to edit pages
+
+at least I think this is the string which generates it.  This is using
+the LDAP authentication module 
+    <a href="http://www.mediawiki.org/wiki/Extension:LDAP_Authentication">http://www.mediawiki.org/wiki/Extension:LDAP_Authentication</a>
+
+&gt;
+<span class="quote">&gt;&gt;-'accmailtext'                      =&gt; 'The password for &quot;$1&quot; has been sent to $2.',
+&gt;&gt;+'accmailtext'                      =&gt; 'The password for '$1' has been sent to $2.',</span >
+&gt;
+<span class="quote">&gt;This is a syntax error, first of all.  If you're just making changes to message
+&gt;files, try running the message files through php -l to ensure you didn't break
+&gt;them.</span >
+&gt;
+<span class="quote">&gt;Second of all, double quotes are more usual, at least in America.  Why the
+&gt;change?</span >
+
+The single quotes were meant to make emphasis rather than quotes.  
+
+<span class="quote">&gt;&gt;-'usercsspreview'                   =&gt; &quot;'''Remember that you are only previewing your user CSS, it has not yet been saved!'''&quot;,
+&gt;&gt;+'usercsspreview'                   =&gt; &quot;'''Remember that you are only previewing your user CSS; it has not yet been saved!'''&quot;,</span >
+&gt;
+<span class="quote">&gt;A period would be even better here.</span >
+&gt;
+<span class="quote">&gt;&gt; 'searchdisabled'            =&gt; '{{SITENAME}} search is disabled.
+&gt;&gt;-You can search via Google in the meantime.
+&gt;&gt;+You may be able to search via a search engine such as Google in the meantime.
+&gt;&gt; Note that their indexes of {{SITENAME}} content may be out of date.',</span >
+&gt;
+<span class="quote">&gt;This seems kind of inappropriate given that by default, only Google search is
+&gt;*offered*.  If we want to make the wording vendor-agnostic, we should offer
+&gt;forms for other search engines . . .</span >
+
+Yes.  The problem is that in an intranet setting Google probably
+doesn't work and you have to use the company search engine.
+Suggesting searching by google can be confusing.  Probably an option
+to change the search engine and the message has to be provided.  
+
+<span class="quote">&gt;&gt; [row/column issue I'm not sure how to handle deleted for now]</span >
+
+&gt;
+<span class="quote">&gt;&gt; 'uploadlogpagetext'           =&gt; 'Below is a list of the most recent file uploads.
+&gt;&gt;-See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview.',
+&gt;&gt;+See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview. 
+&gt;&gt;+User filters must have the same capitalization as the userid.',</span >
+&gt;
+<span class="quote">&gt;Except for the first letter.  And the &quot;userid&quot; is a number, to be precise. 
+&gt;Better wording here would be good.</span >
+
+well, it doesn't do any harm if they get the first letter right :-)  I changed
+to username
+
+<span class="quote">&gt;&gt; 'fileexists-forbidden'        =&gt; 'A file with this name exists already;
+&gt;&gt;-please go back and upload this file under a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',
+&gt;&gt;+if you still want to upload, please go back use a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',
+&gt;&gt; 'fileexists-shared-forbidden' =&gt; 'A file with this name exists already in the shared file repository;
+&gt;&gt;-please go back and upload this file under a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',
+&gt;&gt;+if you still want to upload, please go back use a new name. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%241">Image:$1</a>|thumb|center|$1]]',</span >
+&gt;
+<span class="quote">&gt;You must mean &quot;... please go back and use a new name&quot; or similar.  I'll also
+&gt;break that off into a new sentence, drop the semicolon.</span >
+
+agreed
+
+<span class="quote">&gt;&gt;-'imagelinks'                     =&gt; 'Links',
+&gt;&gt;+'imagelinks'                     =&gt; 'File links',</span >
+&gt;
+<span class="quote">&gt;Not sure if this is useful.  It's a file, of course these are file links.</span >
+
+agree
+
+<span class="quote">&gt;&gt;-'noimage'                        =&gt; 'No file by this name exists, you can $1.',
+&gt;&gt;+'noimage'                        =&gt; 'No file by this name exists; you can $1.',</span >
+&gt;
+<span class="quote">&gt;Again, new sentences are probably better than changing commas to semicolons. 
+&gt;Or in this case, adding the word &quot;but&quot; sounds good.</span >
+
+seems to have already been implemented as you suggested.  
+
+<span class="quote">&gt;&gt;-You can narrow down the view by selecting a log type, the user name, or the affected page.',
+&gt;&gt;+You can narrow down the view by selecting a log type, the user name (case sensitve), or the affected page.',</span >
+&gt;
+<span class="quote">&gt;&quot;sensitive&quot;, not &quot;sensitve&quot;.  :)</span >
+&gt;
+<span class="quote">&gt;&gt;-'watchlist-details'    =&gt; '{{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages.',
+&gt;&gt;+'watchlist-details'    =&gt; '{{PLURAL:$1|$1 page|$1 pages}} on your watchlist not counting talk pages.',</span >
+&gt;
+<span class="quote">&gt;Why this change?</span >
+&gt;
+
+I find it more clear.  Watched seems a bit ambiguous.  It doesn't seem
+such an important change however.  
+
+<span class="quote">&gt;I committed anything I didn't comment on, and some of the things I did, in
+&gt;<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40508" title="revision 40508 in SVN">r40508</a>.  I forgot to add &quot;Based on a patch by Michael De La Rue&quot; in the commit
+&gt;message, but I added you to CREDITS, so people should get the hint, I guess. 
+&gt;I'll leave this open for further discussion on the parts I didn't commit, and
+&gt;anything else you might want to suggest.</span >
+&gt;
+
+No problem.  Thanks for being willing to get this stuff committed
+quickly.  It makes it much easier to help.  
+</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-08 21:19:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5305" name="attach_5305" title="Updated patch against today's mediawiki / revision 40616.">attachment 5305</a> <a href="attachment.cgi?id=5305&amp;action=edit" title="Updated patch against today's mediawiki / revision 40616.">[details]</a></span>
+Updated patch against today's mediawiki / revision 40616.
+
+This patch has most of the unapplied patches; I dropped ones I decided were pointless.  
+
+I'm not sure how to handle the &quot;create new account&quot; link e.g. and I dropped that change for right now.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-12 21:08:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6702#c8">comment #8</a>)
+<span class="quote">&gt; This is better because 
+&gt; * the user doesn't always know what a wiki is.
+&gt; * it makes it clear which wiki isn't recognising the URL; there may be
+&gt; several wikis involved
+&gt; * the site name is normally obvious on the every page so easily understood
+&gt; 
+&gt; Remember that these are the default messages so to be used mostly in
+&gt; newer wikis and / or by people new to wikis.  </span >
+
+The message is completely incomprehensible anyway, unless you're a MediaWiki expert.  And nobody should ever be seeing it unless they manually type in a broken URL.  Maybe something like:
+
+&quot;The action specified by the URL is invalid.  You might have mistyped the URL, or followed an incorrect link.  This might also indicate a bug.&quot;
+
+<span class="quote">&gt; &lt;strong&gt; is semantic markup meaning &quot;this is important&quot;.  &lt;b&gt; is
+&gt; visual formating meaning &quot;this should be displayed in bold font&quot;,
+&gt; which mapps to several differnt meanings (emphasised text / important
+&gt; text / variable names) and so should mostly be avoided.  Using strong
+&gt; makes it clear for a screen reader (for the visually impaired or
+&gt; blind) what it should do wheras &lt;b&gt; doesn't so much.</span >
+
+Yes, I realize that this is nice in theory, but in practice the sysops who maintain system message customizations aren't HTML gurus and can't tell the difference.  Using &lt;strong&gt; in articles instead of ''' is usually not encouraged, because it makes the wikitext harder to read, so should we do it in messages?  I'd prefer broader discussion before changing these around en masse.  Also, this would require changing all other languages too, if we're to do it properly.  Let's keep this bug focused more on wording improvements specific to the English localization.
+
+<span class="quote">&gt; probably.  the link is 
+&gt;           
+&gt; <a href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;type=signup&amp;returnto=Main_Page">http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;type=signup&amp;returnto=Main_Page</a>
+&gt; but I'm not sure what would be the correct way to embed it? 
+&gt; 
+&gt; Check your spelling, or [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AUserlogin%26type%3Dsignup">Special:Userlogin&amp;type=signup</a>|create a new account]]
+&gt; 
+&gt; doesn't seem to work for example?</span >
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AUserlogin%2Fsignup">Special:Userlogin/signup</a>]]
+
+<span class="quote">&gt; This message happens due to a specific time limit.  If we were trying
+&gt; to communiucate clearly then we would say &quot;'Sorry, your IP address has
+&gt; created $1 accounts within $2 minutes. You cannot make any more until
+&gt; $3 minutes have passed'&quot;.   I think the reason we don't say that is
+&gt; that it gives the spamming user the hint to get some more IP addresses
+&gt; and try again.  </span >
+&gt;
+<span class="quote">&gt; So, I wanted to give people who are unlucky in their timing and behind
+&gt; a proxy with many others a hint to try again later, but without
+&gt; breaking the obscurity (for &quot;security&quot;) of the original message.  </span >
+
+So the point is that here, it might not be the user's fault at all, because it might be a shared IP address.  Then I think a better way to communicate that would be replacing &quot;you&quot; with &quot;you (or someone using the same IP address)&quot;.  I'm not too worried about encouraging people to switch IPs -- anyone who knows how to do that on a reasonably large scale is probably going to immediately realize that that's what the restriction is based on anyway.  Security through obscurity and all that.
+
+<span class="quote">&gt; &gt;&gt;-'whitelistedittext'                =&gt; 'You have to $1 to edit pages.',
+&gt; &gt;&gt;+'whitelistedittext'                =&gt; 'You have to '''$1''' to edit pages.',
+&gt; &gt;
+&gt; &gt;Is this message ever actually used anymore?  I can't seem to get it, I only get
+&gt; &gt;'permissionserrorstext-withaction' or something like that.
+&gt; 
+&gt; I get this error when I have a wiki which doesn't allow editing except
+&gt; for logged in users.  for example
+&gt; 
+&gt;     you have to login to edit pages
+&gt; 
+&gt; at least I think this is the string which generates it.  This is using
+&gt; the LDAP authentication module 
+&gt;     <a href="http://www.mediawiki.org/wiki/Extension:LDAP_Authentication">http://www.mediawiki.org/wiki/Extension:LDAP_Authentication</a></span >
+
+Yeah, it does crop up, apparently.  Okay, so now why do we want to boldface this?
+
+<span class="quote">&gt; The single quotes were meant to make emphasis rather than quotes.  </span >
+
+Single quotes aren't used for emphasis in any dialect of standard English I'm familiar with.
+
+<span class="quote">&gt; Yes.  The problem is that in an intranet setting Google probably
+&gt; doesn't work and you have to use the company search engine.
+&gt; Suggesting searching by google can be confusing.  Probably an option
+&gt; to change the search engine and the message has to be provided.  </span >
+
+Sure, but no point trying to do one without the other.
+
+<span class="quote">&gt;-'clearyourcache'                   =&gt; &quot;'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);'''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''&quot;,
+&gt;+'clearyourcache'                   =&gt; &quot;'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''&quot;,</span >
+
+Is this just adding the space after the semicolon?  I can't tell reliably, the line is too long.  If so, fixed that in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40760" title="revision 40760 in SVN">r40760</a>.  Also broke it up into more lines, so that diffs actually make sense.
+
+<span class="quote">&gt; 'uploadlogpagetext'           =&gt; 'Below is a list of the most recent file uploads.
+&gt;-See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview.',
+&gt;+See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview. 
+&gt;+Filters need correct capitalization of the user name.',</span >
+
+This seems too jargon-ish too me.  &quot;Filters&quot; isn't going to be a term that most of our users understand.
+
+<span class="quote">&gt;-'watchlist-details'    =&gt; '{{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages.',
+&gt;+'watchlist-details'    =&gt; '{{PLURAL:$1|$1 page|$1 pages}} on your watchlist not counting talk pages.',</span >
+
+Okay, added this too.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-13 12:08:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5327" name="attach_5327" title="This is the latest remaining unmerged changes.  Only seven.">attachment 5327</a> <a href="attachment.cgi?id=5327&amp;action=edit" title="This is the latest remaining unmerged changes.  Only seven.">[details]</a></span>
+This is the latest remaining unmerged changes.  Only seven.  
+
+<span class="quote">&gt; The message is completely incomprehensible anyway, unless you're a MediaWiki
+&gt; expert. </span >
+
+Agreed.  I tried a rewrite.  See if you like it better now.
+
+<span class="quote">&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AUserlogin%2Fsignup">Special:Userlogin/signup</a>]]</span >
+
+I changed this.
+
+<span class="quote">&gt; So the point is that here, it might not be the user's fault at all, because it
+&gt; might be a shared IP address.  Then I think a better way to communicate that
+&gt; would be replacing &quot;you&quot; with &quot;you (or someone using the same IP address)&quot;. 
+&gt; I'm not too worried about encouraging people to switch IPs -- anyone who knows
+&gt; how to do that on a reasonably large scale is probably going to immediately
+&gt; realize that that's what the restriction is based on anyway.  Security through
+&gt; obscurity and all that.</span >
+
+Okay, I made a clear and open version of the messge.  That's actually
+my preference too.  
+
+<span class="quote">&gt; &gt; &gt;&gt;-'whitelistedittext'                =&gt; 'You have to $1 to edit pages.',
+&gt; &gt; &gt;&gt;+'whitelistedittext'                =&gt; 'You have to '''$1''' to edit pages.',
+&gt; &gt; [...]
+&gt; Yeah, it does crop up, apparently.  Okay, so now why do we want to boldface
+&gt; this?</span >
+
+This actually turns up as a working link for logging in.  Making it
+bold brings it to the users attention and then they can simply click
+it and solve their problem.  
+
+<span class="quote">&gt; Single quotes aren't used for emphasis in any dialect of standard English I'm
+&gt; familiar with.</span >
+
+changed to double single quotes cos that's what I meant.
+
+<span class="quote">&gt; Is this just adding the space after the semicolon?  </span >
+
+Yes; thus irrelevant after your change
+
+<span class="quote">&gt; &gt; 'uploadlogpagetext'           =&gt; 'Below is a list of the most recent file uploads.
+&gt; &gt;-See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview.',
+&gt; &gt;+See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview. 
+&gt; &gt;+Filters need correct capitalization of the user name.',
+&gt; 
+&gt; This seems too jargon-ish too me.  &quot;Filters&quot; isn't going to be a term that most
+&gt; of our users understand.</span >
+
+Jargon eliminated.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael De La Rue</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-13 12:13:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5328" name="attach_5328" title="get rid of &lt;strong&gt; and &lt;b&gt; and use ''' instead - English messages only for now.">attachment 5328</a> <a href="attachment.cgi?id=5328&amp;action=edit" title="get rid of &lt;strong&gt; and &lt;b&gt; and use ''' instead - English messages only for now.">[details]</a></span>
+get rid of &lt;strong&gt; and &lt;b&gt; and use ''' instead - English messages only for now.  
+
+<span class="quote">&gt; [...] Using &lt;strong&gt; in articles instead of ''' is usually not
+&gt; encouraged, because it makes the wikitext harder to read, so should we do it in
+&gt; messages?  I'd prefer broader discussion before changing these around en masse.
+&gt;  Also, this would require changing all other languages too, if we're to do it
+&gt; properly.  Let's keep this bug focused more on wording improvements specific to
+&gt; the English localization.
+&gt; </span >
+
+I totally agree about changing all the messages to match.  I didn't
+find an instance of &lt;b&gt; in the messages which didn't really mean
+&lt;strong&gt; so there is no reason they shouldn't all be consistent.  I also agree
+that the proper wiki way is ''' rather than &lt;strong&gt;.  
+
+Here's a patch which converts the English messages to use '''.  Have a
+look if you like it.  If so I'll think about doing a patch for all
+languages at once.  
+
+That's a big change.  Should I do a new bug for it?</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-14 19:43:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;-'nosuchactiontext'  =&gt; 'The action specified by the URL is not recognized by the wiki',
+&gt;+'nosuchactiontext'  =&gt;  &quot;''Broken Link''; you seem to have followed a broken link or mistyped a URL.  
+&gt;+It is also possible there is a bug in {{SITENAME}}.  Please fix the link if you can.  
+&gt;+Please contact the administrator if you think this is an error in {{SITENAME}}.&quot;,</span >
+
+Hmm, I would prefer something more like my version from above, for a couple of reasons:
+
+* It includes the sentence &quot;The action specified by the URL is invalid.&quot;  This is meaningless to most users, but invaluable if it's reported to sufficiently tech-y people (who could look at the URL and notice the odd &quot;action=&quot;).
+* It doesn't emphasize the terminology &quot;broken link&quot;.  I don't know if that will be the most likely case.
+* It's more concise.
+
+I do think mentioning {{SITENAME}} at least once isn't a bad idea, though.  So maybe something like:
+
+'The action specified by the URL is invalid.  You might have mistyped the URL, or followed an incorrect link. This might also indicate a bug in {{SITENAME}}.'
+
+Do you like that?
+
+<span class="quote">&gt; 'nosuchuser'                 =&gt; 'There is no user by the name &quot;$1&quot;.
+&gt;-Check your spelling, or create a new account.',
+&gt;+Check your spelling, or [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AUserlogin%26type%3Dsignup">Special:Userlogin&amp;type=signup</a>|create a new account]].',</span >
+
+You used the wrong page name here.  I commited the correct one in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40829" title="revision 40829 in SVN">r40829</a>.
+
+<span class="quote">&gt;-'acct_creation_throttle_hit' =&gt; 'Sorry, you have already created {{PLURAL:$1|1 account|$1 accounts}}.
+&gt;-You cannot make any more.',
+&gt;+'acct_creation_throttle_hit' =&gt; 'Sorry, $1 accounts. have already been created from your IP address
+&gt;+You cannot make any more.  It is possible this is because of other users on your address
+&gt;+or shared proxy in which case, please try again later or contact us.',</span >
+
+This is too verbose.  I would just change &quot;you have&quot; to &quot;you (or someone with your IP address) has&quot;, and tweak the second sentence so it doesn't sound like you can never make any more ever, just not for some time period.  I don't think there's a need to double the length of the message.
+
+<span class="quote">&gt;-'whitelistedittext'                =&gt; 'You have to $1 to edit pages.',
+&gt;+'whitelistedittext'                =&gt; &quot;You have to '''$1''' to edit pages.&quot;,</span >
+
+From above: why do we want to boldface this?
+
+<span class="quote">&gt;-'accmailtext'                      =&gt; 'The password for &quot;$1&quot; has been sent to $2.',
+&gt;+'accmailtext'                      =&gt; &quot;The password for ''$1'' has been sent to $2.&quot;,</span >
+
+Similarly, why do we want to emphasize the username here instead of quoting it?  Quoting it seems more natural to me.
+
+<span class="quote">&gt; 'uploadlogpagetext'           =&gt; 'Below is a list of the most recent file uploads.
+&gt;-See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview.',
+&gt;+See the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ANewImages">Special:NewImages</a>|gallery of new files]] for a more visual overview. 
+&gt;+If you choose a user name you need capitalize it correctly.',</span >
+
+Why don't we use the same formula here as for alllogstext?  For that matter, what about newuserlogpagetext, deletelogpagetext, etc.?
+
+<span class="quote">&gt;-'unusedcategoriestext'            =&gt; 'The following category pages exist, although no other page or category makes use of them.',
+&gt;+'unusedcategoriestext'            =&gt; 'The following category pages exist although no other page or category make use of them.',</span >
+
+I prefer it with the comma, personally.
+
+(In reply to <a href="show_bug.cgi?id=6702#c12">comment #12</a>)
+<span class="quote">&gt; That's a big change.  Should I do a new bug for it?  </span >
+
+Yeah, I think so.  I'd want the opinion of the localizers on it, too.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-31 22:04:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Can someone finish this bug off?</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6702#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-05 18:27:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Applied patches (with some changes) in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/46871" title="revision 46871 in SVN">r46871</a>. Release notes updated in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/46872" title="revision 46872 in SVN">r46872</a>.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=6702&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=6702">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=6702">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=6702">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=6702&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=6702" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=6702&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419367301-crJApZtJ2m7des3wyKI4NAFPd8xOJDwJvYcbg0vdkI8">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

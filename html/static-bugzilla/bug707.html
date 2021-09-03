@@ -1,0 +1,2035 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 707 &ndash; Google search with [[Google:search term]]</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=707&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=707">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=707">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=707">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 707 – Google search with [[Google:search term]]",  
+                             "show_bug.cgi?id=707" );
+        document.title = "Bug 707 – Google search with [[Google:search term]]";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 707 – Google search with [[Google:search term]]", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_707 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-03-13 18:05:08 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-03-13 18:05:08">
+  <input type="hidden" name="longdesclength" value="30">
+  <input type="hidden" name="id" value="707">
+  <input type="hidden" name="token" value="1419357726-2365XPXDCkVBVBun1W_W54LuzzBc3XuFYBXpHE10AKY">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=707"><b>Bug&nbsp;707</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Google search with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asearch%20term">Google:search term</a>]]</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Google search with [[Google:search term]]
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Google search with [[Google:search term]]', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          WONTFIX
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=707">8 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=707#vote_707">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Space characters in InterWiki links are spuriously converted to underscores"
+   href="show_bug.cgi?id=3014">3014</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=3014">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=707&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=707">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-10-13 14:34 UTC by <span class="vcard"><span class="fn">Duncan Harris</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-03-13 18:05 UTC 
+      (<a href="show_activity.cgi?id=707">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>4 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bugzillas+padREMOVETHISdu">bugzillas+padREMOVETHISdu</option>
+                <option value="gangleri">gangleri</option>
+                <option value="langec">langec</option>
+                <option value="rowan.collins">rowan.collins</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=118"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch to make interwiki links use spaces instead of underscore</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (620 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_118"
+               title="Go to the comment associated with the attachment">2004-10-31 10:17 UTC</a>,
+
+            <span class="vcard"><span class="fn">Neil Barsema</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=118&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (1)
+        </span>
+        <a href="attachment.cgi?bugid=707&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Duncan Harris</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 14:35:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A google search is possible using [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asearchterm">Google:searchterm</a>]]
+
+1. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3ASearch%20term">Google:Search term</a>]] searches for Search_term not search+term i.e. the space is 
+replaced with an underscore.
+2. the link is dark blue when as an exty it should be light blue
+3. open searches should be possible, e.g. Yahoo searches, or open searches (I'm sure 
+they're possible somewhere)</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 14:56:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Afoo">Google:foo</a>]] is actually a clever use of the &quot;interwiki&quot; system (see
+<a href="http://meta.wikimedia.org/wiki/Help:Interwiki_linking">http://meta.wikimedia.org/wiki/Help:Interwiki_linking</a> and
+<a href="http://meta.wikimedia.org/wiki/Interwiki_map">http://meta.wikimedia.org/wiki/Interwiki_map</a>); as you can see from the second of
+those links, it operates by simply adding the search term provided to the end of
+&quot;<a href="http://www.google.com/search?q">http://www.google.com/search?q</a>=&quot;
+
+1) This is an unfortunate side-effect of the way the interwiki links are
+implemented: because they are created as 'normal' Title objects, they have to
+conform to the rules of MediaWiki article titles: no &quot;+&quot;, &quot; &quot; becomes &quot;_&quot;, etc.
+This differs from some other wiki engines, which use a simple substitution of
+whatever's in the link, leaving it to the destination site to decide what
+validity/conversion rules to apply. We could solve this by either: not creating
+a Title object for interwiki links (might lead to complex special case code all
+over the place); or special-casing Interwiki Title objects so that they don't
+have to adhere to internal validity/canonicalisation constraints (would mean
+rearranging Title creation code to spot interwiki prefixes before even checking
+for &quot;validity&quot;; there may also be checks for validity outside Title.php to worry
+about).
+
+2) It shows up as light-blue to me; it doesn't get a little ext.link icon
+because it's an &quot;interwiki link&quot; rather than an &quot;external link&quot;; to be honest,
+I'm not sure that's a very sensible distinction to make, but it's definitely not
+showing up as an *internal* link, anyway.
+
+3) I'm not sure what you mean by &quot;open searches&quot; here; as for searching other
+search engines, that's just a case of adding a new Intermap entry such as
+&quot;Yahoo:&quot; with the appropriate URL to add the terms to; not much use unless/until
+(1) is fixed, though, because with neither &quot; &quot; nor &quot;+&quot; available, you can only
+search for single words.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Duncan Harris</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-14 08:16:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've found a way to get round this.  You need to use nowiki tags within the to double brackets to 
+allow a + sign, e.g.
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Afoo%2Bbar">Google:foo+bar</a>]]
+
+I still think there are issues with this though and it needs some attention paid to trying to 
+develop it further.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Duncan Harris</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-14 08:16:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry, I meant [[Google:foo&lt;nowiki&gt;+&lt;/nowiki&gt;bar]]</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-14 15:31:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmmm. I wouldn't have expected that to work, to be honest. And on the test
+server, it doesn't - in fact, it looks like there's a bug in the development
+version of the software. As you can see on
+<a href="http://test.wikipedia.org/wiki/Bug707">http://test.wikipedia.org/wiki/Bug707</a>, the result is kind of ugly - those
+random-looking strings are placeholders inserted by the software instead of the
+&quot;nowiki&quot; section. This has bearings on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - inconsistent treatment of character entities and invalid chararcters in titles/links"
+   href="show_bug.cgi?id=337">bug 337</a>, since we should decide how such
+links *should* behave; in short, don't bet on this behaviour remaining available
+forever.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Neil Barsema</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-31 10:17:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=118" name="attach_118" title="Patch to make interwiki links use spaces instead of underscore">attachment 118</a> <a href="attachment.cgi?id=118&amp;action=edit" title="Patch to make interwiki links use spaces instead of underscore">[details]</a></span>
+Patch to make interwiki links use spaces instead of underscore
+
+Ofcourse the best solution would be to use the literal text from the user
+supplied link but that is a bit above my understanding of the source at the
+moment. 
+
+But how about using the $mTextform variable of the title in case of interwiki
+links, that is a minor change. This the version of the Title with the spaces
+instead of the underscores. That way you can let the target of the interwiki
+link take  care of the parsing. This will be no problem if it is an other
+mediawiki. And it will fix the Google example.
+
+The only problem is if you actualy *need* the underscores because this way the
+underscores are changed into spaces.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-31 23:51:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Underscores are necessary for links to UseMod-based wikis with free links, 
+for instance. If this is going to be done, it has to be a per-interwiki option. 
+One might add a field to the interwiki table listing it, or perhaps some 
+funky alternate replacement: currently the interwiki URLs contain $1 as a 
+placeholder for the link with underscores; another placeholder for spaces 
+perhaps?</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 05:28:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear friends,
+I am happy about the enthusiasm to improuve [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asearch%20term">Google:search term</a>]]. During 
+last years I searched a lot and want to point out some other aspects:
+
+- &quot;search term&quot; could be a string of high complexity with special 
+characters used in iso8859-1, utf-8, Unicode;
+-- simple example: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3AEspa%C3%B1ol">Google:Español</a>]] translates to 
+<a href="http://www.google.com/search?q=Espa%F1ol">http://www.google.com/search?q=Espa%F1ol</a> and not to 
+<a href="http://www.google.com/search?q=Espa%C3%B1ol">http://www.google.com/search?q=Espa%C3%B1ol</a> as used by Google;
+
+- as much more precise a serch, is as better / more usefull it is; what I 
+want to say is the necessity of support for parameters '''without''' 
+manipulation in a format as [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asearch%20term">Google:search term</a>|parameters]] where it 
+should be decided if parameters starts with &quot;?&quot; (or &quot;&amp;&quot; if some parameters 
+are inserted already by default);
+-- Example [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3APug">Google:Pug</a>]] works but 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3APug%26num%3D100%26as_sitesearch%3Den.wikipedia.org">Google:Pug&amp;num=100&amp;as_sitesearch=en.wikipedia.org</a>]] is (at the moment) 
+translated to somthing useless <a href="http://www.google.com/search?q=Pug%26num">http://www.google.com/search?q=Pug%26num</a>%
+3D100%26as_sitesearch%3Den.wikipedia.org ;
+
+I would spend much time on testing, if required also on finding out how it 
+should work. Please do not hesitate to contact me if you think I should do 
+a part of the (specidication) work.
+
+Regards Reinhardt</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 05:34:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If you need something really fancy, just copy and paste the URL -- it's not that hard, and it 
+keeps from bloating the syntax with hard to maintain extra variants.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 05:49:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would not call it fancy. In a project group every person has some skills. One knows how 
+to write articles, another knows where and how to search material and others may have the 
+painfull time to make the wikisation of hundered of articles, to reformat them, add links 
+or url's. And this group here knows how to develop a good software.
+The idea below the maintenance list where this issue also arrised, is not to copy links or 
+to teach others how to search, it is just providing usefull links with high potential.
+
+Regards Reinhardt</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 17:24:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c8">comment #8</a>)
+<span class="quote">&gt; If you need something really fancy, just copy and paste the URL -- it's not</span >
+that hard, and it 
+<span class="quote">&gt; keeps from bloating the syntax with hard to maintain extra variants.</span >
+
+I believe Reinhardt's intention was that this could then be used with templates,
+as an alternative to substituting the search term into the URL with an
+as-yet-nonexistent {{URLESCAPE|arbitrary text}} type syntax. However, I would
+tend to agree that creating an extra piece of syntax for this might be unwise.
+
+I was thinking maybe we could just leave &quot;&amp;&quot; unescaped, but then something like
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3ABill%20%26%20Ben">Google:Bill &amp; Ben</a>]] would break. And now I think about it, you can build just
+about all the options for a search engine into the query itself, so if we had
+special treatment for [some] interwiki links, you could just construct things
+like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asome%20terms%20%22a%20phrase%22%20site%3Aen.wikipedia.org">Google:some terms &quot;a phrase&quot; site:en.wikipedia.org</a>]] and the link would
+become
+<a href="http://www.google.com/search?q=some%20terms%20%22a%20phrase%22%20site:en.wikipedia.org">http://www.google.com/search?q=some%20terms%20%22a%20phrase%22%20site:en.wikipedia.org</a>
+(or &quot;+&quot; instead of &quot;%20&quot;, makes no odds as far as Google is concerned), which
+does the exact same search as
+<a href="http://www.google.com/search?as_q=some+terms&amp;as_epq=a+phrase&amp;as_sitesearch=en.wikipedia.org">http://www.google.com/search?as_q=some+terms&amp;as_epq=a+phrase&amp;as_sitesearch=en.wikipedia.org</a></pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 22:15:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c10">comment #10</a>)
+additional notes to:
+you could just construct things
+like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asome%20terms%20%22a%20phrase%22%20site%3Aen.wikipedia.org">Google:some terms &quot;a phrase&quot; site:en.wikipedia.org</a>]] and the link 
+would
+become
+<a href="http://www.google.com/search?q=some%20terms%20%22a%20phrase%22">http://www.google.com/search?q=some%20terms%20%22a%20phrase%22</a>%
+20site:en.wikipedia.org
+(or &quot;+&quot; instead of &quot;%20&quot;, makes no odds as far as Google is concerned), 
+which
+does the exact same search as
+<a href="http://www.google.com/search">http://www.google.com/search</a>?
+as_q=some+terms&amp;as_epq=a+phrase&amp;as_sitesearch=en.wikipedia.org
+----
+
+I would be happy having the parameters. It will work for all English 
+characters. Unfortunatelly some character transliteration (for non english 
+characters) suitable to meet those from major search engins is required. 
+Example:
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Gerhard%20Schr%C3%B6der">Gerhard Schröder</a>]] translates to 
+<a href="http://en.wikipedia.org/wiki/Gerhard_Schr%F6der">http://en.wikipedia.org/wiki/Gerhard_Schr%F6der</a> 
+
+Please note the different character code used for &quot;ö&quot; in google:
+<a href="http://www.google.com/search?num=100&amp;q=%22Gerhard+Schr%C3%B6der%22+site">http://www.google.com/search?num=100&amp;q=%22Gerhard+Schr%C3%B6der%22+site</a>%
+3Aen.wikipedia.org
+If ''we'' use the same character translation as for the url's in 
+en.wikipedia the link will fail:
+<a href="http://www.google.com/search?num=100&amp;q=%22Gerhard+Schr%F6der%22+site">http://www.google.com/search?num=100&amp;q=%22Gerhard+Schr%F6der%22+site</a>%
+3Aen.wikipedia.org
+
+Regards Reinhardt</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-10 00:39:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c10">comment #10</a>)
+What do you think about the following solution:
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asome%20terms%20%22a%20phrase%22%20site%3Axx.yy">Google:some terms &quot;a phrase&quot; site:xx.yy</a>]] xx a subdomain (as &quot;fr&quot;) and yy a 
+domain (as wikipedia.org) would simply open the fallback search page when 
+internal search is disabeled searching for &gt;&gt;some terms &quot;a phrase&quot;&lt;&lt; with the 
+site:parameter as specified inside [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%20"> </a>]].
+
+This is still and improuvement because [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Afoo">Google:foo</a>]] would always search 
+only for pages in the actual project.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-10 17:29:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c12">comment #12</a>)
+<span class="quote">&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asome%20terms%20%22a%20phrase%22%20site%3Axx.yy">Google:some terms &quot;a phrase&quot; site:xx.yy</a>]] xx a subdomain (as &quot;fr&quot;) and yy a 
+&gt; domain (as wikipedia.org) would simply open the fallback search page when 
+&gt; internal search is disabeled searching for &gt;&gt;some terms &quot;a phrase&quot;&lt;&lt; with the 
+&gt; site:parameter as specified inside [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%20"> </a>]].</span >
+
+I think you may have misunderstood my earlier comments: there is no need for us
+to do anything special with the &quot;site:foo&quot;, that is something you can type into
+the Search box on Google, and it will work. I was just demonstrating that we
+don't need to be able to stuff things into extra parts of the Google URL, we can
+just use Google's (and, I believe, most other search engine's) ability to have
+all the extra information specified in the search query itself.
+ 
+<span class="quote">&gt; This is still and improuvement because [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Afoo">Google:foo</a>]] would always search 
+&gt; only for pages in the actual project.</span >
+
+Are you saying that [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Afoo">Google:foo</a>]] should act as though it was actually a search
+for &quot;foo site:en.wikipedia.org&quot;, and not just &quot;foo&quot;? I'm not sure that's
+generally what people will be wanting: if they're linking to a Google search,
+it's probably intended to be a search of the whole of Google. We could have an
+extra InterWiki prefix, say &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Search%3A%20...%20">Search: ... </a>]]&quot;, which linked to the internal
+search (and when that's down, you'd be directed to a choice of Google and
+Yahoo!, as normal), but that's essentially another issue.
+
+</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-16 11:27:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear friends!
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AUser%3AGangleri%2Ftests%2Fgoogle%20bugzilla%3A707">en:User:Gangleri/tests/google bugzilla:707</a>]] provides an analysis of the
+differences depending if [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=google%3Afoo">google:foo</a>]] is used at a [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Latin-1">Latin-1</a>]] or a [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=UTF-8">UTF-8</a>]]
+wiki, depending if foo is only ascii, Latin-1 or UTF-8.
+a) To my opinion [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=google%3Afoo">google:foo</a>]] should give the same result regardless of the wiki
+b) There are examples about various parametrisations.
+b1) One showing that &quot;-&quot; would be the most suitable in order to get an exact match.
+b2) Another showing varios parametrisations made (manly as external links).
+
+Please feel free to contact me if this is one of your areas of interest.
+
+Best regards Reinhardt.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-16 14:54:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As far as I can see, there are several problems here which need different kinds
+of solution:
+
+1) characters that are illegal in MediaWiki titles, but not elsewhere (&quot;, +, &amp;, etc)
+--&gt; *external* interwiki links (i.e. not inter-project ones, like &quot;meta&quot;) should
+only have to match the legal characters for a URL, not a title
+--&gt; of course, they'd still have to exclude '|' and ']', but if the string
+wasn't interfered with too much, you could use '%7c' and '%5d' directly
+
+2) URLs with parameters, particularly useful for search engines
+--&gt; this is irrelevant if (1) is dealt with, because you could use
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%3ABar%3Farg1%3Dbaz%26arg2%3Dquux">Foo:Bar?arg1=baz&amp;arg2=quux</a>]], which is no more complex than
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%3ABar">Foo:Bar</a>|arg1=baz|arg2=quux]] (and less so in that what would that second link
+*display* as, if we reuse the '|' to mean something different? Compare
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%3ABar%3Farg%3Dbaz">Foo:Bar?arg=baz</a>|This = displayed text]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%3ABar">Foo:Bar</a>|arg=baz|Does this =
+displayed text or another param?]])
+--&gt; similarly, if (3) is [also] dealt with, you could take advantage of the
+ability offered by most search engines to specify all your parameters in one
+query string (e.g. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Aword%20%22a%20phrase%22%20site%3Aexample.com%20allinurl%3Afoo">Google:word &quot;a phrase&quot; site:example.com allinurl:foo</a>]] and
+so on)
+
+3) how to translate spaces
+--&gt; as Brion says, some sites do require words to be seperated by underscores,
+so this needs to be choosable per prefix
+--&gt; perhaps the most flexible way would be to have a field in the database
+representing which character should be substituted for a space (so things like
+&quot;Google:&quot; would have the substitution '+' or '%20', while other wikis could
+retain the substitution '_'). This leaves open the possibility for yet other
+representations, such as '-' (which some sites use as it is apparently more
+search-engine friendly). It's also a bit more obvious to users how to use this
+than a magic &quot;$2&quot; or whatever.
+
+4) character encoding
+--&gt; the simplest solution is to always use UTF-8, which is what the majority of
+the Wikimedia wikis now use internally anyway
+--&gt; however, as with spaces, there may be different sites that expect their URLs
+in different character encodings. If so, I think again a char_encoding field, or
+maybe just use_utf8 (where 'false' would mean to use ISO 8859-1 or -15 instead)
+would be more transparent than something like &quot;$2&quot;.
+
+Of these, (1) is actually the most complex, as it requires changes to code other
+than the Title class where the interwiki links are &quot;brought to life&quot; (since
+links with illegal characters in are just rejected by the parser right now). (3)
+and (4) make the database structure a little more complex, but not much, and (4)
+in particular would make things more consistent than they are now. I'm actually
+tempted to break this into 2 or 3 bugs for the different issues, because I
+suspect they will have to tackled seperately.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-01 17:31:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You can do this now with templates, make on with these contents:
+
+&quot;[<a href="http://www.google.com/search?q={{{1">http://www.google.com/search?q={{{1</a>}}} Google Search for {{{1}}}]&quot;
+
+and use {{Template|searchword}}, what won't help if you're looking for &quot;+&quot; though.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-17 05:00:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think this should be marked as WONTFIX, if it's to be done at all it should be
+done as an extension like:
+
+&lt;google&gt;term&lt;/google&gt;</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-18 17:45:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c17">comment #17</a>)
+<span class="quote">&gt; I think this should be marked as WONTFIX, if it's to be done at all it should be
+&gt; done as an extension like:
+&gt; 
+&gt; &lt;google&gt;term&lt;/google&gt;</span >
+
+I disagree - interwiki links (in the broad sense, as opp. &quot;inter-project&quot; ones)
+are simply shortcuts for linking to often-referenced external sites which have
+easy to guess URLs. [I know it was originally intended specifically to link
+wikis, but why discriminate? For sites like Wikipedia, that distinction is
+generally irrelevant] Search engines have such URLs, and are very often
+referenced. The assumption in the MediaWiki code that targets of interwiki links
+will behave like MediaWiki page titles is a bad one anyway, and a search query
+is just on the extreme end of the variation.
+
+Besides which, it's a link, so marking it up as a link makes more sense than
+anything else. And as soon as Google is possible, all sorts of other interwiki
+prefixes can be defined similarly with basically no extra effort (unlike with an
+extension, which would require recoding and installation of multiple variants).</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-18 17:58:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A valid point, in fact we already use [[cache: to link to the google cache.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-21 00:58:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c16">comment #16</a>)
+<span class="quote">&gt; You can do this now with templates, make on with these contents:
+&gt; &quot;[<a href="http://www.google.com/search?q={{{1">http://www.google.com/search?q={{{1</a>}}} Google Search for {{{1}}}]&quot;
+&gt; and use {{Template|searchword}}, what won't help if you're looking for &quot;+&quot; though.</span >
+
+This works only with ONE word. Tray the template with &quot;Ævar Arnfjörð Bjarmason&quot;
+and you will have as result <a href="http://www.google.com/search?q=Ævar">http://www.google.com/search?q=Ævar</a> Arnfjörð
+Bjarmason . I assume you would like to search for
+<a href="http://www.google.com/search?q=%C3%86var%2BArnfj%C3%B6r%C3%B0%2BBjarmason">http://www.google.com/search?q=%C3%86var%2BArnfj%C3%B6r%C3%B0%2BBjarmason</a>.
+Please note that
+1) this is not <a href="http://www.google.com/search?q=Ævar+Arnfjörð+Bjarmason">http://www.google.com/search?q=Ævar+Arnfjörð+Bjarmason</a>
+2) translation deiifers between [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Latin-1">Latin-1</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=UTF-8">UTF-8</a>]] wikis
+
+Regards Reinhardt</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-02 21:00:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Space characters in InterWiki links are spuriously converted to underscores"
+   href="show_bug.cgi?id=3014">Bug 3014</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-11 19:42:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >severity =&gt; enhancement</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-17 15:40:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - method to URL-escape arbitrary text (e.g. the name of some other page)"
+   href="show_bug.cgi?id=839">bug 839</a>, which is resolved not: {{urlencode}} can be used to encode text as
+of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14273" title="revision 14273 in SVN">r14273</a>.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tristan Miller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-21 00:47:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Couldn't this feature be implemented using templates rather than hard-coding the
+MediaWiki source?</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrew Garrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-27 09:51:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, why not have {{google|search phrase}}?</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Muke Tever</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-27 12:22:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=707#c25">comment #25</a>)
+<span class="quote">&gt; Yes, why not have {{google|search phrase}}?</span >
+
+That's only possible now, with a template using {{urlencode}}.  
+It didn't used to be possible at all (cf. <a href="show_bug.cgi?id=707#c20">comment #20</a>).  
+
+You still can't do [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asearch%20term">Google:search term</a>]], but you can now do 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Google%3Asearch%2Bterm">Google:search+term</a>]] (which was not a possible workaround earlier, 
+according to <a href="show_bug.cgi?id=707#c1">comment #1</a>) so this bug is correctly now only an 
+enhancement, unless somebody develops a burning need to make 
+interwiki links to a site where the space &quot; &quot; cannot be substituted 
+with either the underscore &quot;_&quot; or the plus &quot;+&quot;.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-02 21:30:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We have templates, and we have {{urlencode}}. This can be implied to be fixed,
+surely.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-03 02:49:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >{{urlencode}} works... as long as you don't put any non-ASCII characters in the
+query: compare [[Google:{{urlencode:moment magnitude}}]] with
+[[Google:{{urlencode:với moment magnitude}}]].</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=707#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-09 23:16:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I concur with those above who consider this is adequately addressed through means like templates without having to stretch interwiki links' meanings.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=707&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=707">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=707">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=707">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=707&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=707" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=707&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357726-ZVXyhCMvhIG-sFD7WHPnan_dlpM_FZjDKZML5SIoRaw">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

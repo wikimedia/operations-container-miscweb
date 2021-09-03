@@ -1,0 +1,1875 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5948 &ndash; Bangla letter Nukta Problem</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5948&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5948">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5948">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5948">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5948 – Bangla letter Nukta Problem",  
+                             "show_bug.cgi?id=5948" );
+        document.title = "Bug 5948 – Bangla letter Nukta Problem";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5948 – Bangla letter Nukta Problem", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_5948 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2012-10-04 09:53:04 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-10-04 09:53:04">
+  <input type="hidden" name="longdesclength" value="23">
+  <input type="hidden" name="id" value="5948">
+  <input type="hidden" name="token" value="1419366170-dOTwbDIcUJVjSpGaeijcdWvgqf_LzY_O-QM3unYu36I">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5948"><b>Bug&nbsp;5948</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Bangla letter Nukta Problem</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Bangla letter Nukta Problem
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Bangla letter Nukta Problem', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       critical<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5948">2 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5948#vote_5948">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://bn.wikipedia.org">http://bn.wikipedia.org</a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - character conversion (tracking)"
+   href="show_bug.cgi?id=3985">3985</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Bengali Wiki projects (tracking)"
+   href="show_bug.cgi?id=40760">40760</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5948&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5948">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-05-14 15:22 UTC by <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-10-04 09:53 UTC 
+      (<a href="show_activity.cgi?id=5948">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>4 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="dvanliere">dvanliere</option>
+                <option value="gangleri">gangleri</option>
+                <option value="gerardm">gerardm</option>
+                <option value="ragibhasan">ragibhasan</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=5948&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-14 15:22:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are 4 Bangla (AKA Bengali) letters who comes with a NUKTA (U+09BC) and
+stands as a different meaning or pronunciation. They are Ra (U+09B0), Rra
+(U+09DC), Rha (U+09DD) and Yya (U+09DF).
+
+Ra 09B0 came from 09AC + 09BC
+Rra 09DC came from 09A1 + 09BC
+Rha 09DD came from 09A2 + 09BC
+Yya 09DF came from 09AF + 09BC
+
+This is what Unicode consortium says, because they didn't do any research on
+Bangla and followed ISCII. Any ways, let's come to the point.
+
+Wikipedia pages are behaving strangely after the correct input. If I write 09DC,
+it becomes 09A1 + 09BC automatically after saving the data. Like that if I write
+09DD, it becomes 09A2 + 09BC and 09DF becomes 09AF + 09BC. Fortunately 09B0 is
+ok from this problem. 09B0 has no problem.
+
+Now you have to sort the issue by reversing the rendering. If I type 09B0, it
+should stay as it is and if I type 09AC + 09BC, it should become 09B0
+automatically. As I told you that 09B0 has no problem, but you also need to
+define 09AC + 09BC = 09B0. Like that 09DC will stay as it is and if anyone puts
+09A1 + 09BC, it will become 09DC after saving. 09DD will stay as it is and if
+anyone puts 09A2 + 09BC, it will become 09DD after saving and 09DF will stay as
+it is and if anyone puts 09AF + 09BC, it will become 09DF after saving.
+
+So please sort the issue ASAP.
+
+-- 
+Omi Azad
+Contributor
+Bangla Computing and Localization Projects:
+Ankur: <a href="http://www.ankurbangla.org">http://www.ankurbangla.org</a>
+Ekushey: <a href="http://www.ekushey.org">http://www.ekushey.org</a></pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ragib Hasan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-14 15:34:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is a serious issue and would effect searches for articles, as the articles
+are automatically mistitled ... instead of one unicode character, the
+aforementioned characters are divided into two characters. So, anyone searching
+for an article title involving the above characters are not able to find them
+... using either the bn-wiki's built-in search, or the google search.
+
+
+--
+
+Ragib
+Administrator, bn-wiki
+</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 00:00:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Unicode normalization is applied to all input, including both 
+edits and search text, so this should work consistently in that 
+respect.
+
+If there's a bug in the Unicode definitions, I'm afraid you'll 
+need to take it up with Unicode to get it fixed consistently...</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 04:54:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, I told you that UTC is full of Indic illiterate people and 
+that is why they have too many problems. Still if I raise a 
+legal issue to them, they don't understand what to do. :)
+
+Sir it's absolutely your problem. We are using thousands of 
+software with UTF-8 encoding from both open and closed source 
+field. None of them has this problem. If I write 09DD in Open 
+Office, it never becomes 09A2 + 09BC, same for MS Office, even 
+in Gedit or notepad. So what should I think?
+
+UTC made mistake by writing definition of these characters in 
+<a href="http://www.unicode.org/charts/PDF/U0980.pdf">http://www.unicode.org/charts/PDF/U0980.pdf</a> and you followed 
+that. Can you show me any reference from UTC site, which makes 
+you think that the current rendering is Okey?</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ragib Hasan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 05:36:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The rendering is a serious problem.  Almost all other websites are rendering the
+above two unicode characters correctly. For example, please check the following
+page from BBC Bengali service's  webpage (written using unicode Bangla).
+
+
+<a href="http://www.bbc.co.uk/bengali/news/story/2005/08/050831_mknizami.shtml">http://www.bbc.co.uk/bengali/news/story/2005/08/050831_mknizami.shtml</a>
+
+
+Find the following word:
+
+রয়েছে 
+
+Now, here is the same word when I write it in Wikipedia (English or Bangla)
+
+রয়েছে
+
+More specifically, look at the following character:
+
+য় : from BBC Bengali's site
+য় : from Wikipedia
+
+Now, you can check that the 2nd example is not the intendend letter yya, rather
+it is the juxtaposition of two letters, ja and nukta. (য + ় )
+
+This normalization is totally incorrect, and is messing up with searches for the
+appropriate texts. Also, the correct unicode is used by almost all Bangla
+websites (I gave the example from BBC's Bengali service), so I don't see why
+wikipedia sould render it incorrectly, and thus make the articles unreachable
+from search engines. This bug is a serious one and needs to be fixed immediately.
+
+Thanks
+
+Ragib
+
+Admin, Bangla wikipedia
+
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ragib Hasan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 06:03:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'd also like to draw your attention to Google's Bangla language localized page
+at <a href="http://www.google.com.bd">http://www.google.com.bd</a> . Look at the text:
+
+ভাষা সম্পর্কিত হাতিয়ারসমূহ
+
+Specifically: in the word হাতিয়ারসমূহ
+
+you will find the character য়
+
+This is correctly rendered. Google is using the correct unicode symbol for yya,
+and NOT the incorrect juxtaposition of ja and nukta.
+
+I can give a lot of other examples, but I guess you'd understand the issue now.
+The Bangla typing systems, documents, everything else have already corrected
+this issue, and so has Firefox/mozilla in their localized version of
+Firefox/mozilla browsers. I don't see any reason to continue the incorrect
+rendering in Media wiki. This would hurt the Bangla wikipedia a lot as the
+articles will become unreachable from search engines ... because people looking
+for a page will not type the incorrect code, nor will google or anything else do
+the redundant mapping to the incorrect code pairs.
+
+Thanks
+
+Ragib
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 06:29:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Since 2000 I'm working with Unicode, Microsoft and other orgs regarding Bangla
+issues. So I know what I'm saying. I asked Brion Vibber to show me any ref he
+has. I bet he cannot and this is a WiKi's problem indeed.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 09:59:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are exactly two possibilities:
+1) Our implementation of Unicode normalization is correct to specs.
+2) Our implementation of Unicode normalization is incorrect and does 
+not follow spec.
+
+If you can show that 2) is true, it's my problem and I'll be happy to 
+fix it.
+
+However you indicate that 1) is the case. In this case you'll need to 
+take it up with the Unicode Consortium to either get the UCD 
+corrected or new characters added which have more appropriate 
+normalization characteristics. Similar breakage will occur in all 
+other applications that follow W3C recommendations to normalize input 
+to form C, making it very much Unicode's problem if it's wrong.
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 15:47:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Brion Brother,
+You didn't get me clearly. You said in #1 that &quot;Our implementation of Unicode
+normalization is correct to specs&quot; but I asked you to show me any document
+referring your correct specifications. If you cannot show that, then it
+automatically goes to #2 and you have to fix it.
+
+Bro, it's not a UTC problem. It's your problem. As Ragib provided some links of
+Bangla texts above, you can check them out.
+
+I can understand that you followed <a href="http://www.unicode.org/charts/PDF/U0980.pdf">http://www.unicode.org/charts/PDF/U0980.pdf</a>
+'s Additional Consonant section. They didn't tell you to make your normalization
+like the given reference. The reference is there to show you how the thing is.
+So please try to sort it asap.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-15 23:53:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://www.unicode.org/reports/tr15/">http://www.unicode.org/reports/tr15/</a>
+<a href="http://www.unicode.org/ucd/">http://www.unicode.org/ucd/</a>
+</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-16 11:03:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bro,
+You didn't get me actually or may be I completely missed the track. You are
+doing as UTC said in <a href="http://www.unicode.org/reports/tr15/">http://www.unicode.org/reports/tr15/</a> Section: &quot;Table 2:
+String Concatenation.&quot; That is only for the case if you type 09AC + 09BC or 09A1
++ 09BC or 09A2 + 09BC or 09AF + 09BC They didn't tell you to follow the same
+rule if you directly type 09B0, 09DC, 09DD or 09DF, you don't need to re-encode
+them according to any rule. That is not a rule indeed.
+
+Let me try to tell you the whole thing once again. If I type 09B0, 09DC, 09DD or
+09DF. You don't need to apply any rule to them. But if I type 09AC + 09BC or
+09A1 + 09BC or 09A2 + 09BC or 09AF + 09BC, you can apply any normalization rule
+to them and that is what UTC is saying. But in your case, when I type 09DC, it
+becomes 09A1 + 09BC, which is very wrong. Please double check your reference
+documents, they didn't ask you to do anything like that. I hope you understand
+now...</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-16 19:25:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Marking as:
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Bangla letter Nukta Problem"
+   href="show_bug.cgi?id=5948">Bug 5948</a> blocks: <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - character conversion (tracking)"
+   href="show_bug.cgi?id=3985">Bug 3985</a>: character conversion (tracking)</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-16 23:41:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Let's see, the Unicode character database is:
+<a href="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt">http://www.unicode.org/Public/UNIDATA/UnicodeData.txt</a>
+
+The entry for 09DC is:
+09DC;BENGALI LETTER RRA;Lo;0;L;09A1 09BC;;;;N;;;;;
+
+That shows a canonical decomposition to 09A1 (BENGALI LETTER DDA) followed 
+by 09BC (BENGALI SIGN NUKTA).
+
+We then check the composition exclusion table:
+<a href="http://www.unicode.org/Public/UNIDATA/CompositionExclusions.txt">http://www.unicode.org/Public/UNIDATA/CompositionExclusions.txt</a>
+
+Here we find an entry excluding it from being produced by canonical 
+composition:
+09DC    #  BENGALI LETTER RRA
+
+Thus the normalized canonical composition (NFC) will remain decomposed, as 
+09A1 09BC.
+
+Further we can check the entry for this character in the normalization 
+test suite:
+<a href="http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt">http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt</a>
+
+Here we can see that 09DC normalizes the same way in all four forms:
+09DC;09A1 09BC;09A1 09BC;09A1 09BC;09A1 09BC; # (ড়; ড◌়; ড◌়; ড◌়; 
+ড◌়; ) BENGALI LETTER RRA
+
+I can confirm also that Python's Unicode normalization implementation 
+produces the same output:
+<span class="quote">&gt;&gt;&gt; import unicodedata
+&gt;&gt;&gt; unicodedata.normalize(&quot;NFC&quot;, u&quot;\u09dc&quot;)</span >
+u'\u09a1\u09bc'
+
+Case closed.
+
+If you don't like the normalization rules, talk to Unicode.
+
+If you find browsers with incorrect search systems, file a bug with them.
+
+If you find search engines with incorrect search systems, file a bug with 
+them.
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-17 06:03:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;Let's see, the Unicode character database is:
+&gt;<a href="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt">http://www.unicode.org/Public/UNIDATA/UnicodeData.txt</a></span >
+&gt;
+<span class="quote">&gt;The entry for 09DC is:
+&gt;09DC;BENGALI LETTER RRA;Lo;0;L;09A1 09BC;;;;N;;;;;</span >
+
+
+So leave 09DC as it is. Why you are moving to normalize it?
+
+&gt;
+<span class="quote">&gt;That shows a canonical decomposition to 09A1 (BENGALI LETTER DDA) followed
+&gt;by 09BC (BENGALI SIGN NUKTA).</span >
+&gt;
+<span class="quote">&gt;We then check the composition exclusion table:
+&gt;<a href="http://www.unicode.org/Public/UNIDATA/CompositionExclusions.txt">http://www.unicode.org/Public/UNIDATA/CompositionExclusions.txt</a></span >
+&gt;
+<span class="quote">&gt;Here we find an entry excluding it from being produced by canonical
+&gt;composition:
+&gt;09DC # BENGALI LETTER RRA</span >
+&gt;
+<span class="quote">&gt;Thus the normalized canonical composition (NFC) will remain decomposed, as
+&gt;09A1 09BC.</span >
+
+Normalize is only require when I type ড followed by ় and if I type ড় it will
+remain same.
+
+&gt;
+<span class="quote">&gt;Further we can check the entry for this character in the normalization
+&gt;test suite:
+&gt;<a href="http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt">http://www.unicode.org/Public/UNIDATA/NormalizationTest.txt</a></span >
+&gt;
+<span class="quote">&gt;Here we can see that 09DC normalizes the same way in all four forms:
+&gt;09DC;09A1 09BC;09A1 09BC;09A1 09BC;09A1 09BC; # (ড়; ড◌়; ড◌়; ড◌়;
+&gt;ড◌়; ) BENGALI LETTER RRA</span >
+
+Again I say the same thing. You need to use the normalization ting only for some
+sequences like ড ়, ঢ ়, য ় and ব ় (this one is not mentioned by them) but you
+applied the rule to all cases.
+
+&gt;
+<span class="quote">&gt;I can confirm also that Python's Unicode normalization implementation
+&gt;produces the same output:
+&gt;&gt;&gt; import unicodedata
+&gt;&gt;&gt; unicodedata.normalize(&quot;NFC&quot;, u&quot;\u09dc&quot;)
+&gt;u'\u09a1\u09bc'</span >
+&gt;
+<span class="quote">&gt;Case closed.</span >
+
+UTC is not doing wrong by any mean. Why you are up to change a independent
+character to a character sequence? Check the documents carefully, UTC didn't
+tell you the *change it* anywhere and understand the issue.
+
+&gt;
+<span class="quote">&gt;If you don't like the normalization rules, talk to Unicode.</span >
+&gt;
+<span class="quote">&gt;If you find browsers with incorrect search systems, file a bug with them.</span >
+&gt;
+<span class="quote">&gt;If you find search engines with incorrect search systems, file a bug with
+&gt;them.</span >
+
+Very silly answer.
+So you think that *only* you are moving with perfection and whole wold is wrong?
+Unicode is wrong, Browser is wrong, search engine is wrong, Microsoft is wrong,
+Sun is wrong, IBM is wrong, Mozilla is wrong? :)
+
+You are arguing by showing unnecessary points and trying not to understand the
+whole thing. Thousands of software are working fine except you. If you behave
+like this or don't try to understand the fact, WiKi will become Week-i to Bangla
+speaking community. If you are not satisfied with my points, try consulting with
+UTC. By this time I'll show this bug to my UTC contacts and I'll hope they'll
+give some light in this issue.
+
+Finally, you are mis-understanding the whole point alone with UTC's documentation.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerard Meijsssen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-20 08:51:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When Brion's defence is based on &quot;this is how it is done in Python&quot;, it is in
+Python where this bug needs fixing.
+
+It is similar to an issue in the Dutch language, there the ij is invariable
+written as an &quot;i&quot; and a &quot;j&quot;. However the glyph kids learn in school is not this
+combination. I know that Me
+MediaWiki does not have this behaviour ĳ is not changed in it's two &quot;parts&quot;; it
+stays like it is.
+
+Thanks,
+   GerardM</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerard Meijsssen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-20 08:53:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When Brion's defence is based on &quot;this is how it is done in Python&quot;, it is in
+Python where this bug needs fixing. If this is so, this bug can be closed again
+
+It is similar to an issue in the Dutch language, there the ij is invariable
+written as an &quot;i&quot; and a &quot;j&quot;. However the glyph kids learn in school is not this
+combination. I know that Me
+MediaWiki does not have this behaviour ĳ is not changed in it's two &quot;parts&quot;; it
+stays like it is.
+
+Thanks,
+   GerardM</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-20 09:02:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The python example is just showing that python correctly
+implement the unicode recommandation.
+
+Please reread <a href="show_bug.cgi?id=5948#c12">comment 12</a> which explain why MediaWiki
+respect the normalization rule.
+
+Retagging as LATER. Fill a bug at unicode.org .</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-22 19:09:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've slapped up some notes at
+<a href="http://www.mediawiki.org/wiki/Unicode_normalization_considerations">http://www.mediawiki.org/wiki/Unicode_normalization_considerations</a></pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-23 06:07:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[Qouting from <a href="http://www.mediawiki.org/wiki/Unicode_normalization_considerations">http://www.mediawiki.org/wiki/Unicode_normalization_considerations</a> ]
+    * a surprising composition exclusion in Bangla
+          o The result doesn't render right with some tools, probably again a
+platform-specific bug
+          o Some third-party search tools apparently don't know how to normalize
+and fail to locate texts so normalized.
+
+The rendering and third-party search problems are annoying, though if we stay on
+our high horse we can try to ignore it and let the other parties fix their
+broken software over time.
+
+The canonical ordering problems are a harder issue; you simply can't get these
+right by following the current specs. Unicode won't change the ordering
+definitions because it would break their compatibility rules, so unless they
+introduce *new* characters with the correct values... Well, it's not clear this
+is going to happen. [/quote]
+
+I think I fail to make you understand about the problem. Also I'm not getting
+one thing, that why you are applying normalization rules in your software. There
+are thousands of web sites and millions of web pages currently in Bangla and the
+web page itself never apply any rule for rendering the character. The character
+always remain as it is. The wikimedia software is changing the character to a
+sequence, saying it's normalization.
+
+Let me give you a sort example, so that you can understand more clearly. If you
+type Â, it remains like that. It never becomes like A^, but about Bangla when
+I'm typing য়, it's becoming like য়
+
+As I said before, it's not our end's problem, it's your problem. Whenever I save
+my text, it should remain same as it is. If any rendering needed, the rendering
+engine should be responsible for this. Like Uniscribe Engine in Windows,
+Pango/QT on Linux etc. So it would be better if you remove all the normalization
+rules from your end and leave it on Application end.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-23 06:34:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Omi, do you have difficulty reading the things I've written?
+
+I ask this not to be rude, but because your responses don't appear to 
+display any comprehension of any of the following:
+* The reasons given for why normalization is done
+* The reasons given for why the result is 100% correct implementation 
+of specs (though the specs might not be to your liking)
+* The fact that I understand the problems with third party software 
+that this causes
+* The fact that I am willing to accommodate the issue and made some 
+recommendations on how to do this
+
+I'm not going to waste any more time discussing this issue with you 
+if you're this incapable of following the discussion. If you still 
+care about this issue, please ask someone who is able to follow an 
+argument, read and understand documentation, and reason with others 
+to continue instead of you.
+</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omi Azad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-15 08:15:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >After doing a huge R&amp;D we found we just need to fix the fonts. Then everything
+will be sorted. Microsoft has came up with their solution and soon we'll fix the
+same on other fonts for Linux and OSX. The issue is sorted. Update your fonts
+and you'll find everything perfect. </pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-03-13 17:46:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Changing all WONTFIX high priority bugs to lowest priority (no mail should be generated since I turned it off for this.)</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5948#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Diederik van Liere</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-29 21:52:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If I understand this report correctly, it turned out to be a font issue. So I am marking this as FIXED. If this is inaccurate then please REOPEN it.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5948&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5948">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5948">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5948">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5948&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5948" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5948&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419366170-HSbZ_OtUi76JZ-nw5e9PjctS-PsuHhXfAG8JpQ6nijA">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

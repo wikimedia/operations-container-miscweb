@@ -1,0 +1,1920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 675 &ndash; protecting single article to allow only logged-in contributors to edit it</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=675&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=675">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=675">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=675">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 675 – protecting single article to allow only logged-in contributors to edit it",  
+                             "show_bug.cgi?id=675" );
+        document.title = "Bug 675 – protecting single article to allow only logged-in contributors to edit it";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 675 – protecting single article to allow only logged-in contributors to edit it", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Page_editing bz_bug_675 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2013-01-30 23:01:25 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2013-01-30 23:01:25">
+  <input type="hidden" name="longdesclength" value="28">
+  <input type="hidden" name="id" value="675">
+  <input type="hidden" name="token" value="1419357677-wXS_xyyhZ6MwJASW6u9VoAJuvcKjZNOG27EpLWQMoSQ">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=675"><b>Bug&nbsp;675</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">protecting single article to allow only logged-in contributors to edit it</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>protecting single article to allow only logged-in contributors to edit it
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('protecting single article to allow only logged-in contributors to edit it', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Page editing
+    
+    (<a href="buglist.cgi?component=Page%20editing&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=675">12 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=675#vote_675">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Request semi-protection admin option for highly vandalized pages"
+   href="show_bug.cgi?id=2909">2909</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=2909">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Clarified user interface needed for pages that are protected from moving"
+   href="show_bug.cgi?id=1735">1735</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=675&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=675">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-10-10 18:29 UTC by <span class="vcard"><span class="fn">elian</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2013-01-30 23:01 UTC 
+      (<a href="show_activity.cgi?id=675">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>6 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="b">b</option>
+                <option value="chris.mckenna">chris.mckenna</option>
+                <option value="gangleri">gangleri</option>
+                <option value="kdavis2600">kdavis2600</option>
+                <option value="ropers">ropers</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=675&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">elian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 18:29:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Add an option in the protection dialog to protect an article from being edited
+by IPs so only logged-in user can edit it further.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jens Ropers</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 20:17:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm staunchly opposed to this and I think this BugZilla is the wrong medium to have a discussion about thus (thus this bug should probably be 
+closed). 
+
+Preventing anon edits has been discussed at length and there are many aspects to the issue of preserving quality prose. This feature request will not 
+singlehandedly fix these issues and IMHO it's in itself counterproductive, because: 
+
+* It would eventually lead to anon editing getting disallowed with EVERY contested article. Yet anon editing has brought many good new contributors 
+to our site.
+* POV pushers know how to create accounts. Granted, [<a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=674">http://bugzilla.wikipedia.org/show_bug.cgi?id=674</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Allow users to be blocked from editing a specific article"
+   href="show_bug.cgi?id=674">bug 674</a>] would at first sight ''seem'' to 
+take care of this, but in reality it doesn't because you're merely developing a race condition in implementing the two, whereby POV pushers would 
+frequently create new accounts. This would likely lead up to an (equally bad) suggestion to only allow editing on selected articles after a certain 
+contribution threshhold has been met, which will make it yet easier for a few bad POV pushers to ring things for scores of good new and casual 
+editors. 
+
+And this is why--forgive me for the strong words--I regard this proposition as a myopic solution attempt to a very complex problem.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jens Ropers</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 20:22:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >s/to have a discussion about thus/to have a discussion about this/
+s/suggestion to only allow/suggestion of only allowing/
+s/to ring things for/to ruin things for/
+
+sorry bout the ''misunderspellings''.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">elian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 20:59:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=675#c1">comment #1</a>)
+<span class="quote">&gt; I'm staunchly opposed to this and I think this BugZilla is the wrong medium to</span >
+have a discussion about thus (thus this bug should probably be 
+<span class="quote">&gt; closed). </span >
+
+I know that's a highly controversial issue and I'm not entirely glad. Feel free
+to take the discussion to the mailinglist (I announced this request in
+<a href="http://mail.wikimedia.org/pipermail/wikien-l/2004-October/031055.html">http://mail.wikimedia.org/pipermail/wikien-l/2004-October/031055.html</a>)
+
+<span class="quote">&gt; Preventing anon edits has been discussed at length and there are many aspects</span >
+to the issue of preserving quality prose. This feature request will not 
+<span class="quote">&gt; singlehandedly fix these issues and IMHO it's in itself counterproductive,</span >
+because: 
+<span class="quote">&gt; 
+&gt; * It would eventually lead to anon editing getting disallowed with EVERY</span >
+contested article. Yet anon editing has brought many good new contributors 
+<span class="quote">&gt; to our site.</span >
+
+I'm strongly opposed to disallowing anon access to wikipedia in general for
+exactly the reason you mention. However, in this limited form it's one possible
+measure to ascertain the quality of contested articles once a consensus version
+has been established.
+
+<span class="quote">&gt; * POV pushers know how to create accounts. Granted,</span >
+[<a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=674">http://bugzilla.wikipedia.org/show_bug.cgi?id=674</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Allow users to be blocked from editing a specific article"
+   href="show_bug.cgi?id=674">bug 674</a>] would at first sight
+''seem'' to 
+<span class="quote">&gt; take care of this, but in reality it doesn't because you're merely developing</span >
+a race condition in implementing the two, whereby POV pushers would 
+<span class="quote">&gt; frequently create new accounts. This would likely lead up to an (equally bad)</span >
+suggestion to only allow editing on selected articles after a certain 
+<span class="quote">&gt; contribution threshhold has been met, which will make it yet easier for a few</span >
+bad POV pushers to ring things for scores of good new and casual 
+<span class="quote">&gt; editors. </span >
+
+That's the common argument against user bans, too. But in reality we've seen
+user bans to work - not perfectly, sure, but to a reasonable degree.
+
+<span class="quote">&gt; And this is why--forgive me for the strong words--I regard this proposition as</span >
+a myopic solution attempt to a very complex problem.
+
+Feel free to propose better solutions. I'm open to any suggestions which help
+solving our current problems with good contributors running away because they
+see their work lost due to anonymous propaganda edits.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Erik Moeller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 21:29:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A generic, wiki-like solution is being worked on at 
+
+<a href="http://meta.wikimedia.org/wiki/Wikiflow">http://meta.wikimedia.org/wiki/Wikiflow</a></pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-06 14:17:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Closing this feature request as it's not clearly established
+by the community. It needs more discussion in the various
+mailing lists :)</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-19 23:33:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Request semi-protection admin option for highly vandalized pages"
+   href="show_bug.cgi?id=2909">Bug 2909</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-19 23:34:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=675#c6">comment #6</a>)
+From <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Request semi-protection admin option for highly vandalized pages"
+   href="show_bug.cgi?id=2909">bug 2909</a> : discussion at
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Village_pump_%28proposals%29#Semiprotected_status">http://en.wikipedia.org/wiki/Wikipedia:Village_pump_%28proposals%29#Semiprotected_status</a>
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kevin Baas</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-22 01:40:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Contrary to what has been suggested, this feature would allow _more_ editing of
+pages rather than less.  This would happen because articles that would otherwise
+be protected, such that nobody can edit them, would be semi-protected, such that
+most people can edit them.   And yes, this feature would only be used in those
+cases.  The feature was suggested as a solution to highly-vandalized pages being
+almost always protected - a solution that would allow them to be unprotected,
+not as a means of preventing people from editing pages, but as a means of
+allowing people to edit pages, and that's what it would do.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MONGO</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-22 13:18:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In about 2 to 5 percent of the articles, it oftentimes takes numerous attempts to get new 
+information edited in. The reason for this is vandalism which is almost universally by anon 
+posters. The registered user actually enjoys a somewhat more private experience if they so 
+desire due to the fact of course that their IP is &quot;hidden&quot; from the majority of the other 
+editors so I see no reason why, since it requires so little personal information to do so, 
+that we can't politely expect users editing the most severely vandalized pages to register a 
+username. Naturally sockpuppeting would be expected and this would not eliminate the 
+vandalism, but I believe that it would make a tremendous difference, both for the true 
+contributor and the passive reader.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kizzle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-22 13:53:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I agree with Kevin Baas in that while it might be nice to say that more editing will take place on 
+pages such as GWB, in reality editing is extremely hampered.  It is nearly impossible to see the 
+progress of content on that page, as one check to the history reveals so much vandalism, many 
+legitimate edits from both anon and users simply get lost.  In addition, quality edits by anons, 
+due to the high amount of vandalism, are almost knee-jerk deleted at this point due to the 
+extremity of the problem, thus it wouldn't change much about legitimate ips.  And remember folks, 
+we're talking about 2-5% of all of Wikipedia.  We shouldn't simply hold to the dogma of anon 
+editing everywhere if it doesn't make sense.  
+
+And while people might think its unfair to legitimate ip users, its also very unfair to make 
+editors revert a single page over 30 times a day.
+
+*That means, on any given day, the GWB article for at least an hour per day is a vandalized 
+version.  Do we really want to take the chance that an anon who has no idea how to use the history 
+will come to a page like GWB within this hour per day and see a messed up version with no idea how 
+to view the correct one?*
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tony Sidaway</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-27 18:26:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This proposed new feature wouldn't be much use because insofar as it stopped
+vandalism by anon-IPs it would also stop good edits by anon-IPs.  This is a wiki
+and we don't like to put an artificial barrier between the editor and the content.
+
+It has been argued that the selective blocking of anon IPs would result in
+enabling more edits, because blocking IPs could solve the vandalism problem
+without blocking logged-in users.  But this obviously isn't the case.  Vandals
+tend to be more highly motivated than the average editor so they'll simply
+register for an account, which takes ten seconds or so, and carry on vandalizing.
+
+Also page protection of any kind for frequently vandalized edits really isn't
+the preferred solution in any case.  For instance, one of the most frequently
+vandalized pages on English Wikipedia is George W. Bush
+(<a href="http://en.wikipedia.org/wiki/George_W._Bush">http://en.wikipedia.org/wiki/George_W._Bush</a>), which is vandalized very
+frequently but seldom needs to be protected.  The solution: a lot of people have
+the page on their watch lists and vandalism is usually reverted very quickly. 
+Vandals are warned, and persistent vandals are blocked, by name or IP as
+appropriate.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kizzle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-27 21:26:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=675#c11">comment #11</a>)
+<span class="quote">&gt; This proposed new feature wouldn't be much use because insofar as it stopped
+&gt; vandalism by anon-IPs it would also stop good edits by anon-IPs.  This is a wiki
+&gt; and we don't like to put an artificial barrier between the editor and the content.
+&gt; It has been argued that the selective blocking of anon IPs would result in
+&gt; enabling more edits, because blocking IPs could solve the vandalism problem
+&gt; without blocking logged-in users.  But this obviously isn't the case.  Vandals
+&gt; tend to be more highly motivated than the average editor so they'll simply
+&gt; register for an account, which takes ten seconds or so, and carry on vandalizing.
+&gt; Also page protection of any kind for frequently vandalized edits really isn't
+&gt; the preferred solution in any case.  For instance, one of the most frequently
+&gt; vandalized pages on English Wikipedia is George W. Bush
+&gt; (<a href="http://en.wikipedia.org/wiki/George_W._Bush">http://en.wikipedia.org/wiki/George_W._Bush</a>), which is vandalized very
+&gt; frequently but seldom needs to be protected.  The solution: a lot of people have
+&gt; the page on their watch lists and vandalism is usually reverted very quickly. 
+&gt; Vandals are warned, and persistent vandals are blocked, by name or IP as
+&gt; appropriate.</span >
+
+
+Holding to the dogma of allowing anon-ips no matter what the consequence is wrong.  I don't think its fair 
+to ask editors to revert a page 30+ times a day.  In addition, it would take care of roving ip vandalism.  
+And I absolutely guarantee you that forcing people to login *only* on highly vandalized pages would reduce 
+vandalism by about 75%.  Drive-by vandalism is probably the most common (if a developer wants to step in 
+and say the difference between vandalism done by first-time registered ips as opposed to frequent ips).  
+If they make an account, fine, its easier to track it.
+
+Like I stated above, my central argument is, when people visit a page like GWB, do we really want to have 
+one of the most popular pages on Wikipedia show a vandalized version for at least an hour a day?  What if 
+they are a WP newbie who doesn't know how to check the history?  We have to balance the needs of anonymous 
+editors, frequent contributors, and most importantly, the reader rather than hold on to some dogma if it 
+doesn't make sense.  Favoring the anonymous editor in this case severely hurts the other two, most 
+importantly it hurts the reader, which should be favored above all else.
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">yelyos
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-30 09:19:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Leaving aside George W. Bush for a moment here, I believe this has application
+for pages like <a href="http://en.wikipedia.org/wiki/Alprazolam">http://en.wikipedia.org/wiki/Alprazolam</a>, where, over the ninety
+edits made over June and July to date, only eight of them haven't either been to
+place linkspam (always from an anonymous, changing IP) or to revert it. A few
+other pages have this problem as well, and, having just reverted
+<a href="http://en.wikipedia.org/wiki/Anxiety">http://en.wikipedia.org/wiki/Anxiety</a> away from an linkspam attack, I must say
+that I see a use for this feature. Also, perhaps we could build an editcount
+into it, to address some of the &quot;Vandals will just create accounts&quot; concerns. Of
+course, this would be more restrictive, but it would be better than having to
+protect a page entirely, due to vandalism.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">RN</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-05 22:35:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >
+<span class="quote">&gt; 
+&gt; Holding to the dogma of allowing anon-ips no matter what the consequence is wrong.  I don't think its fair 
+&gt; to ask editors to revert a page 30+ times a day. </span >
+
+You're talking about hundreds, maybe thousands of people who watch pages like GWB and revert it at the 
+first sign.  Heck - most of the time it's a competition to see who can revert it first!  It gives non-admins 
+creditability and so forth and admins have rollback so its even easier for them.
+
+<span class="quote">&gt; In addition, it would take care of roving ip vandalism.  </span >
+
+Nah, with a site like WP if you allow just users then they'll use scripts or something to automate the process 
+and after a while it will become a problem again - not in the short term but in the long term it will. I've seen 
+this on many wikies like MeatBall...
+
+<span class="quote">&gt; And I absolutely guarantee you that forcing people to login *only* on highly vandalized pages would </span >
+reduce 
+<span class="quote">&gt; vandalism by about 75%.</span >
+
+Short term - yes.  Long term - no.
+
+<span class="quote">&gt;  Drive-by vandalism is probably the most common (if a developer wants to step in 
+&gt; and say the difference between vandalism done by first-time registered ips as opposed to frequent ips).  
+&gt; If they make an account, fine, its easier to track it.</span >
+
+That and people with usernames like &quot;Dickius&quot; :)
+
+<span class="quote">&gt; 
+&gt; Like I stated above, my central argument is, when people visit a page like GWB, do we really want to have 
+&gt; one of the most popular pages on Wikipedia show a vandalized version for at least an hour a day?  </span >
+
+Its usually about 20 minutes, and even then its sporadic due to load times and reverts.
+
+<span class="quote">&gt; What if 
+&gt; they are a WP newbie who doesn't know how to check the history?  </span >
+
+That would be a problem with any wiki and a problem even if you blocked ip-only logins.
+
+<span class="quote">&gt; We have to balance the needs of anonymous 
+&gt; editors, frequent contributors, and most importantly, the reader rather than hold on to some dogma if it 
+&gt; doesn't make sense.  Favoring the anonymous editor in this case severely hurts the other two, most 
+&gt; importantly it hurts the reader, which should be favored above all else.</span >
+
+As I mentioned, you're assuming vandels will log in - they won't  - they'll use some kind of script or 
+something and it will be less of a pain for them and more of a pain for you guys.
+
+</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Parvati</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-29 23:33:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are articles where IPs do only destructive work and prevent others from doing more useful 
+things things than reverting their nonsense all the time. And I am sure this kind of vandalism 
+could be reduced by this feature.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-30 11:07:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=675#c1">comment #1</a>)
+
+Spot on. Couldn't have said it better myself. Not all vandals are anons, and not
+all anons are vandals. Willy on Wheels (and his ilk) create accounts and
+mass-vandalise at high speed. <a href="show_bug.cgi?id=675#c1">Comment #1</a> sums up my views nicely.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hanumandaz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-01 00:03:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=675#c8">comment #8</a>)
+It would definitely allow serious editors to edit more articles, as only those
+who do vandalism would be excluded, and not all. In a way you are already doing
+it, in allowing only admins to edit all pages, also those protected. Certain
+articles seem to attract vanadalism, as #15 pointed out. These articles could be
+semi-protected. Beginners would still have a lot of other articles to test. -- ~~~~</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chris M</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-04 16:58:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that blocking anon-users only (as discussed in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bug%3A550">bug:550</a>]]) would be the
+better way around this as it would allow vandalising anons to be blocked without
+penalising good logged-in users who happen to share the same ISP.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">elian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-08 11:41:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >adjusting priority: I think we need this feature now</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kizzle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 18:42:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We just completed a lengthy discussion at 
+<a href="http://en.wikipedia.org/wiki/Wikipedia_talk:Semi-protection_policy#Semi">http://en.wikipedia.org/wiki/Wikipedia_talk:Semi-protection_policy#Semi</a>-
+protection_proposal_v.02_straw_poll where we received over 100 people's 
+signatures for support for semi-protection (one of the few times 100 people on 
+Wikipedia ever voted support on something, see: 
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Times_that_100_Wikipedians_actually_agreed_">http://en.wikipedia.org/wiki/Wikipedia:Times_that_100_Wikipedians_actually_agreed_</a>
+and_voted_to_support_something ) as compared to only 4 oppose votes.  This was 
+advertised in both the mailing list, on IRC, on various article and user talk 
+pages, and has had the input of various developers on what is feasible to 
+accomplish.  It's time to implement this according to what was developed and 
+agreed to by an extensive amount of people within Wikipedia.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 03:23:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is an *enhancement* - those tools are there for *us* to prioritise *our* work.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MONGO</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 05:11:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The enhancement known as Semi-Protection has passed  
+<a href="http://en.wikipedia.org/wiki/WP:SEMI">http://en.wikipedia.org/wiki/WP:SEMI</a> with a final vote of 104 support, 4 oppose 
+and 2 neutral. Two developers gave comments (Avar and Brion), while one Steward, 
+Anthere offered  questions, and another Steward, Datrio offered support. It is now 
+an Official Policy on Wikipedia. Semi-Protection has the endorsement of Jimmy 
+Wales <a href="http://en.wikipedia.org/w/index.php">http://en.wikipedia.org/w/index.php</a>?
+title=User_talk:Jimbo_Wales&amp;diff=prev&amp;oldid=31670664 as well. Implementation when 
+developers can get to it.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MONGO</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 05:22:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=675#c22">comment #22</a>)
+<span class="quote">&gt; Fix link to my last comment</span >
+<a href="http://en.wikipedia.org/w/index.php">http://en.wikipedia.org/w/index.php</a>?
+title=User_talk:Jimbo_Wales&amp;oldid=31670664#Semi-protection_policy_needs_your_input
+
+</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-18 07:41:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Switching dependencies; this doesn't actually require a separate
+protection table (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Page restrictions should be moved to their own table"
+   href="show_bug.cgi?id=4145">bug 4145</a>), but will require changes to the
+protection UI (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Clarified user interface needed for pages that are protected from moving"
+   href="show_bug.cgi?id=1735">bug 1735</a>).
+</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-21 12:22:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In-progress patch is on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Clarified user interface needed for pages that are protected from moving"
+   href="show_bug.cgi?id=1735">bug 1735</a>, live on <a href="http://test.leuksman.com/">http://test.leuksman.com/</a> for testing.
+</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-22 07:00:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Applied to HEAD, available on en.wikipedia.org.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=675#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kizzle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-23 03:15:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks Brion for your work on getting this implemented so quickly... i'd buy you a 
+beer :)</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=675&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=675">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=675">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=675">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=675&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=675" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=675&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357677-VcZUswDefX1_tNi0ov71y05fJ4ini2UC0X0lbHhDo-k">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

@@ -1,0 +1,1820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5382 &ndash; refreshLinks jobs not queued on template deletion</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5382&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5382">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5382">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5382">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5382 – refreshLinks jobs not queued on template deletion",  
+                             "show_bug.cgi?id=5382" );
+        document.title = "Bug 5382 – refreshLinks jobs not queued on template deletion";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5382 – refreshLinks jobs not queued on template deletion", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Categories bz_bug_5382 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2013-11-06 18:43:55 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2013-11-06 18:43:55">
+  <input type="hidden" name="longdesclength" value="25">
+  <input type="hidden" name="id" value="5382">
+  <input type="hidden" name="token" value="1419365319-kCzNsSq4JYLUSsCXzXELU9StmOP5IoBeAYG-mM80GTI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5382"><b>Bug&nbsp;5382</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">refreshLinks jobs not queued on template deletion</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>refreshLinks jobs not queued on template deletion
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('refreshLinks jobs not queued on template deletion', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Categories
+    
+    (<a href="buglist.cgi?component=Categories&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.18.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       major<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5382">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5382#vote_5382">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://en.wikibooks.org/wiki/Category:Candidates_for_speedy_deletion"><span title="http://en.wikibooks.org/wiki/Category:Candidates_for_speedy_deletion">http://en.wikibooks.org/wiki/Category...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - categories that should be populated by templates using parser functions remain empty more often than not"
+   href="show_bug.cgi?id=12004">12004</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Deleting transcluded pages doesn't remove transcluding pages from categories"
+   href="show_bug.cgi?id=13053">13053</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Module doc page name localized and works, although shown unlocalized in some places"
+   href="show_bug.cgi?id=46281">46281</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=12004,13053,46281">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Maintenance categories (e.g. Pages_with_missing_files) continuously grow outdated"
+   href="show_bug.cgi?id=31577">31577</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Updated page properties from transcluded items take a long time to show up"
+   href="show_bug.cgi?id=50372">50372</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5382&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5382">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-03-29 05:17 UTC by <span class="vcard">xkernigh
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2013-11-06 18:43 UTC 
+      (<a href="show_activity.cgi?id=5382">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>20 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="aaron.adrignola">aaron.adrignola</option>
+                <option value="aschulz4587">aschulz4587</option>
+                <option value="b">b</option>
+                <option value="bjorsch">bjorsch</option>
+                <option value="esprit15d">esprit15d</option>
+                <option value="falkeli">falkeli</option>
+                <option value="greg">greg</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="jayvdb">jayvdb</option>
+                <option value="krinklemail">krinklemail</option>
+                <option value="legoktm.wikipedia">legoktm.wikipedia</option>
+                <option value="liangent">liangent</option>
+                <option value="marcin.cieslak">marcin.cieslak</option>
+                <option value="mashiah.davidson">mashiah.davidson</option>
+                <option value="matma.rex">matma.rex</option>
+                <option value="mike.lifeguard+bugs">mike.lifeguard+bugs</option>
+                <option value="p.selitskas">p.selitskas</option>
+                <option value="sumanah">sumanah</option>
+                <option value="tim">tim</option>
+                <option value="tstarling">tstarling</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=5382&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">xkernigh
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-29 05:17:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Suppose page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=A">A</a>]] transcludes page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=B">B</a>]] (for example, with {{:B}}). In    
+turn, page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=B">B</a>]] contains [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AC">Category:C</a>]]. Thus both A and B are in    
+category C, and the page for category C lists both A and B. That is    
+normal. Now (as a sysop user) delete page B. This removes the    
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AC">Category:C</a>]] link from A. However, the category C page continues to    
+list page A as being in that category, even though page A itself is not    
+in the category. The workaround is to edit page A. 
+    
+Steps to reproduce the bug at en.wikibooks.org:    
+   
+(1) I create a page at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AUser%3AKernigh%2Fdelete%20me">b:en:User:Kernigh/delete me</a>]]. I categorise the   
+page into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3ACategory%3ACandidates%20for%20speedy%20deletion">b:en:Category:Candidates for speedy deletion</a>]], the SD   
+category.   
+(2) On the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AUser%3AKernigh%2Fsandbox">b:en:User:Kernigh/sandbox</a>]] page, I write    
+{{User:Kernigh/delete me}}. Because the sandbox transcludes the &quot;delete   
+me&quot;, and the &quot;delete me&quot; is in the SD category, the sandbox is now also   
+in the SD category.   
+(3) As sysop, delete [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AUser%3AKernigh%2Fdelete%20me">b:en:User:Kernigh/delete me</a>]]. This removes the   
+&quot;delete me&quot; page from the SD category. Also, a visit to   
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AUser%3AKernigh%2Fsandbox">b:en:User:Kernigh/sandbox</a>]] shows that the sandbox is not in the SD   
+category.   
+   
+Bug: At this point, when I look in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3ACategory%3ACandidates%20for%20speedy%20%20%20%0Adeletion">b:en:Category:Candidates for speedy   
+deletion</a>]], the page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AUser%3AKernigh%2Fsandbox">b:en:User:Kernigh/sandbox</a>]] is in the list. The   
+bug appears even if I open the SD category in Firefox instead of   
+Konqueror; the bug is at the server, not my browser cache.   
+   
+Expected result: the sandbox should not be listed in the SD category,   
+because the sandbox itself is not in the category and contains no   
+category tag.   
+   
+Workaround: Using action=purge does not work. However, if I edit the   
+sandbox, MediaWiki notices that the new version does not contain an SD   
+category tag, and removes the sandbox from the SD category.  
+  
+(This problem appeared at en.wikibooks.org because of a reorganisation 
+in our C++ book. We are moving the book and all of its subpages from  
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AProgramming%3AC%20plus%20plus">b:en:Programming:C plus plus</a>]] to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AC%2B%2B%20Programming">b:en:C++ Programming</a>]]. We are  
+also trying a new GUI version of the book. Each &quot;C++ Programming/GUI&quot;  
+page, for example [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AC%2B%2B%20Programming%2FGUI%2FAbout%20this%20book%2FForeword">b:en:C++ Programming/GUI/About this book/Foreword</a>]],  
+transcludes another page, like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3AC%2B%2B%20Programming%2FForeword">b:en:C++ Programming/Foreword</a>]], and  
+adds some extra navigation links to other parts of the book.) 
+ 
+(We accidentally copied some pages from the old &quot;C plus plus&quot; names to  
+the new &quot;C++&quot; names instead of moving them. We then decided to mark the  
+new copies for speedy deletion, to make room for page moves. Some of us  
+are not sysops, so we tagged the pages with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3ACategory%3ACandidates%20%20%0Afor%20speedy%20deletion">b:en:Category:Candidates  
+for speedy deletion</a>]]. (Actually, we used [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3ATemplate%3ADelete">b:en:Template:Delete</a>]],  
+which contains the category tag, but the effect is the same.) This  
+marked the new copies for deletion. It also accidentally marked some GUI  
+pages for deletion, because the GUI pages transclude the new copies and  
+thus the marks.) 
+ 
+(When we deleted the new copies, the GUI pages remained in the list at  
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aen%3ACategory%3ACandidates%20for%20speedy%20deletion">b:en:Category:Candidates for speedy deletion</a>]], even though the GUI  
+pages are not in the category; they do not contain the category tag  
+anywhere. This is a minor bug, because other than having 20-30 pages  
+wrongly listed on a category page, there appears to be no problem.)</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hesperian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-27 04:23:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The same problem manifests itself when a template's category is changed: pages
+that transclude the template are listed as belonging to the new category, but
+actually remain listed on the category page of the old category.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-27 06:28:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >They should change category eventually, once the job queue is finished running.
+ If I'm wrong, reopen.
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Changing a template's cats won't change transcluders' cats until edit"
+   href="show_bug.cgi?id=6389">6389</a> ***</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hesperian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-27 07:14:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wikipedia's job queue length is currently
+[<a href="http://en.wikipedia.org/wiki/Special:Statistics">http://en.wikipedia.org/wiki/Special:Statistics</a> zero], yet I'm still seeing
+this problem. The template that tags articles into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3ARedirects%20from%0Aalternate%20languages">:Category:Redirects from
+alternate languages</a>]] was changed to tag articles into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3ARedirects%0Afrom%20alternative%20languages">:Category:Redirects
+from alternative languages</a>]] more than 5 days ago, but the articles are still
+listed in the former category.
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Morten Barklund</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-27 07:26:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The problem has further complications. The old template was moved from
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3ATemplate%3AR%20from%20alternate%20language">en:Template:R from alternate language</a>]] to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3ATemplate%3AR%20from%20alternative%0Alanguage">en:Template:R from alternative
+language</a>]]. And then the moved template was updated. Thus, there might be a
+problem, where the job queue is not added pages, that transcludes redirects to
+templates, that are updated. I believe this is the core issue here.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">cypsy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-10-23 05:11:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Rob: couldn't FormattableDate() take $wgLanguageCode and $wgAmericanDates into consideration when selecting a &quot;default&quot; format?
+i.e. 
+  default: 
+       if ($wgLanguageCode !== 'En' || $wgAmericanDates == false) {
+           if ($wgLanguageCode == 'Jp' || $wgLanguageCode == 'Kr')
+               return 'Y F j';
+           return 'F j, Y';
+       }
+       return 'Y-m-d';
+
+or some such? That would at least take care of the &quot;unpretty&quot; issue for all the non-en wikis.
+
+
+
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">cypsy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-10-23 05:25:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >whoops. sorry. wrong bug (also apologies for not being able to figure out how to strike my last comment in place)</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Charlie Huggard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-18 06:34:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Deleting transcluded pages doesn't remove transcluding pages from categories"
+   href="show_bug.cgi?id=13053">Bug 13053</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-11 17:29:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - categories that should be populated by templates using parser functions remain empty more often than not"
+   href="show_bug.cgi?id=12004">Bug 12004</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mashiah Davidson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-13 22:26:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I see pretty similar things with links originated from transcluded something. Once transcluded page got links modified, old links do exist for some time then. But interesting, got gone during a while (weeks for :ru). It does depend on job queue as well, means we do not have it above zero during weeks. </pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mashiah Davidson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-13 22:36:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry, I meant to say It DOES NOT depend on job queue.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike.lifeguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-14 17:56:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Possibly noted already above, but this error occurs when a parserfunction in a template changes the category for a page transcluding it. Purging the cache of the page, the template, or the category; nor waiting for the job queue to empty will update the category page properly, though the correct category appears in the bar at the bottom of the page.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marcin Cieślak</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-11 18:09:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have the same problem now. 
+
+Templates:
+
+<a href="http://pl.wikipedia.org/wiki/Szablon:Lx">http://pl.wikipedia.org/wiki/Szablon:Lx</a>
+<a href="http://pl.wikipedia.org/wiki/Szablon:La">http://pl.wikipedia.org/wiki/Szablon:La</a>
+<a href="http://pl.wikipedia.org/wiki/Szablon:Lw">http://pl.wikipedia.org/wiki/Szablon:Lw</a>
+
+should have a category
+
+<a href="http://pl.wikipedia.org/wiki/Kategoria:Szablony_tworz%C4%85ce_zbi%C3%B3r_link%C3%B3w_do_obs%C5%82ugi_strony">http://pl.wikipedia.org/wiki/Kategoria:Szablony_tworz%C4%85ce_zbi%C3%B3r_link%C3%B3w_do_obs%C5%82ugi_strony</a>
+
+transcluded by the means of using the documentation template:
+
+<a href="http://pl.wikipedia.org/wiki/Szablon:Dokumentacja">http://pl.wikipedia.org/wiki/Szablon:Dokumentacja</a> (documentation)
+
+Same with templates:
+
+<a href="http://pl.wikipedia.org/wiki/Szablon:Koordynaty/URL">http://pl.wikipedia.org/wiki/Szablon:Koordynaty/URL</a>
+<a href="http://pl.wikipedia.org/wiki/Szablon:Koordynaty/Linkuj">http://pl.wikipedia.org/wiki/Szablon:Koordynaty/Linkuj</a>
+
+do not get listed in the category
+
+<a href="http://pl.wikipedia.org/wiki/Kategoria:Szablony_robocze_koordynat%C3%B3w">http://pl.wikipedia.org/wiki/Kategoria:Szablony_robocze_koordynat%C3%B3w</a>
+
+by the means of the documentation template.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike.lifeguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-11 18:12:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5382#c11">comment #11</a>)
+<span class="quote">&gt; the correct category appears in
+&gt; the bar at the bottom of the page.
+&gt; </span >
+
+This bit is the confusing part. The proper category in the category bar is shown, but the page isn't displayed on the category page! Does anyone have any idea why that would happen? I could understand if the category simply didn't get updated, but this is strangeness.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marcin Cieślak</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-11 18:31:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, same with me. The category is on the page, the page is not on the category.
+
+I have just did a nulledit (edit, no changes, comment &quot;nulledit&quot;, Save button) on
+
+<a href="http://pl.wikipedia.org/wiki/Szablon:Koordynaty/Linkuj">http://pl.wikipedia.org/wiki/Szablon:Koordynaty/Linkuj</a>
+
+and it appeared in this category: 
+
+<a href="http://pl.wikipedia.org/wiki/Kategoria:Szablony_robocze_koordynat%C3%B3w">http://pl.wikipedia.org/wiki/Kategoria:Szablony_robocze_koordynat%C3%B3w</a>
+
+
+
+Secondly, I did a similar nulledit on
+
+<a href="http://pl.wikipedia.org/wiki/Szablon:Lt">http://pl.wikipedia.org/wiki/Szablon:Lt</a>
+
+and two templates:
+
+<a href="http://pl.wikipedia.org/wiki/Szablon:Lt">http://pl.wikipedia.org/wiki/Szablon:Lt</a>
+<a href="http://pl.wikipedia.org/wiki/Szablon:Lx">http://pl.wikipedia.org/wiki/Szablon:Lx</a>
+
+appeared in the category:
+
+<a href="http://pl.wikipedia.org/wiki/Kategoria:Szablony_tworz%C4%85ce_zbi%C3%B3r_link%C3%B3w_do_obs%C5%82ugi_strony">http://pl.wikipedia.org/wiki/Kategoria:Szablony_tworz%C4%85ce_zbi%C3%B3r_link%C3%B3w_do_obs%C5%82ugi_strony</a>
+
+Probably because {{Lt}} uses {{Lx}}.
+</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-01 02:46:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I just tested this on a wiki running MediaWiki 1.18.0 and can still reproduce the undesired behavior via the instructions in xkernigh's original description.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-09 03:26:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Same thing happens with links, image links, and template transclusions (all shown by Special:WhatLinksHere). I haven't tested external links,
+interwiki links, or language links, but probably them too.
+
+I think the underlying cause is that the page is properly queued for purge when the template is edited, but the purge doesn't update any of the links tables.
+
+Probably <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Categories conditionally switched from one category to another inside a template based on time, do not update, *ever*, until an article is null-edited. Purge doesn't work"
+   href="show_bug.cgi?id=37001">bug 37001</a>, <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Maintenance categories (e.g. Pages_with_missing_files) continuously grow outdated"
+   href="show_bug.cgi?id=31577">bug 31577</a>, <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - When #ifexists target page is created/deleted, does not update links tables"
+   href="show_bug.cgi?id=31628">bug 31628</a>, and <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Time-dependent conditionals (#ifeq, #switch, etc.) can leave link tables inconsistent"
+   href="show_bug.cgi?id=18478">bug 18478</a> are all the same issue.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-03-18 17:56:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Module doc page name localized and works, although shown unlocalized in some places"
+   href="show_bug.cgi?id=46281">Bug 46281</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-02 21:15:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So, welcome 2006. This is the future speaking.
+
+Still in 2013 when a page is purged, we don't perform the same updates as when actually re-saving the page (at least a null edit).
+
+These are currently known as &quot;secondary updates&quot; and include updates to link tables (image links, categories, page links, interwiki links) and page properties (hidden cat, displaytitle, templatedata).
+
+Which means whenever an edit is made to a page that will result in a change in secondary data (links and/or page properties) to a trascluding page, the update doesn't happen.
+
+Note I'm not saying the update is deferred, it doesn't happen at all. We already defer our primary updates trough the job queue (which is working mostly fine).</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-02 21:45:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >To add more:
+
+The community has (rightfully) decided some years ago that the absence of secondary updates is unacceptable and wrote a bot that does a forced link update to a long list of pages that are known to manifest this bug in a more visible matter.
+
+So the argument for performance can't really stand much in my opinion because the updates are happening either way, the choice is whether we want to do it in core and automatically or wait for a bot to come by and do it in a less efficient way.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-02 22:22:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >From looking at the code base we currently run the secondary data updates immediately for the edited page and recursively schedule jobs for all pages transcluding the edited page (e.g. Template:Foo transcluding Template:Foo/doc, where the latter is being edited).
+
+It doesn't have a parameter to skip some updates either, they always run all secondary data updates (page properties, the various link tables etc.).
+
+So then what causes page properties like templatedata to not be updated (<a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Updated page properties from transcluded items take a long time to show up"
+   href="show_bug.cgi?id=50372">bug 50372</a>)?</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-07-03 04:58:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The original report is pretty clear, and does indeed reflect what is in the code, now and historically, so I've changed the bug summary accordingly: &quot;refreshLinks jobs not queued on template deletion&quot;.
+
+WikiPage::doDeleteUpdates() ensures referential integrity in the links tables, but does not trigger re-parsing for pages that use the deleted page as a template.
+
+(In reply to <a href="show_bug.cgi?id=5382#c1">comment #1</a>)
+<span class="quote">&gt; The same problem manifests itself when a template's category is changed</span >
+
+This is unrelated. It was probably just job queue lag.
+
+(In reply to <a href="show_bug.cgi?id=5382#c18">comment #18</a>)
+<span class="quote">&gt; Still in 2013 when a page is purged, we don't perform the same updates as
+&gt; when actually re-saving the page (at least a null edit).</span >
+
+This is unrelated.
+
+<span class="quote">&gt; Which means whenever an edit is made to a page that will result in a change
+&gt; in secondary data (links and/or page properties) to a trascluding page, the
+&gt; update doesn't happen.</span >
+
+By analysing the test case which gave rise to this complaint, this was confirmed to be just job queue lag.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-06 17:59:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 93980 had a related patch set uploaded by Anomie:
+Add a RefreshLinks job when a template is deleted
+
+<a href="https://gerrit.wikimedia.org/r/93980">https://gerrit.wikimedia.org/r/93980</a></pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-06 18:36:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 93980 merged by jenkins-bot:
+Add a RefreshLinks job when a template is deleted
+
+<a href="https://gerrit.wikimedia.org/r/93980">https://gerrit.wikimedia.org/r/93980</a></pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5382#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-11-06 18:43:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This particular bug is fixed. Other similar bugs, such as <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Time-dependent conditionals (#ifeq, #switch, etc.) can leave link tables inconsistent"
+   href="show_bug.cgi?id=18478">bug 18478</a>, are not necessarily fixed.
+
+The change should be deployed to WMF wikis with 1.23wmf3, see <a href="https://www.mediawiki.org/wiki/MediaWiki_1.23/Roadmap">https://www.mediawiki.org/wiki/MediaWiki_1.23/Roadmap</a> for the schedule.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5382&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5382">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5382">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5382">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5382&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5382" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5382&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419365319-Vhlcw-C_eqKTJP37nAFWbwy0cnhpute-Cik6ku7Qw4I">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

@@ -1,0 +1,3439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1211 &ndash; Subcategory paging is not separate from article or image paging</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1211&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1211">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1211">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1211">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1211 – Subcategory paging is not separate from article or image paging",  
+                             "show_bug.cgi?id=1211" );
+        document.title = "Bug 1211 – Subcategory paging is not separate from article or image paging";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1211 – Subcategory paging is not separate from article or image paging", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Categories bz_bug_1211 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-18 18:07:23 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-18 18:07:23">
+  <input type="hidden" name="longdesclength" value="71">
+  <input type="hidden" name="id" value="1211">
+  <input type="hidden" name="token" value="1419358603-9kmL7fhT0hMi6jP7WH69NP_5BTLIegrsDQO9r4T5JgI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1211"><b>Bug&nbsp;1211</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Subcategory paging is not separate from article or image paging</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Subcategory paging is not separate from article or image paging
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Subcategory paging is not separate from article or image paging', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Categories
+    
+    (<a href="buglist.cgi?component=Categories&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.12.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=1211">48 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1211#vote_1211">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://en.wikipedia.org/wiki/Category:Business"><span title="http://en.wikipedia.org/wiki/Category:Business">http://en.wikipedia.org/wiki/Category...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - subcategories don't show up if not in the alphabetization range of articles listed"
+   href="show_bug.cgi?id=1990">1990</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - A category with many articles can split subcategories onto separate pages"
+   href="show_bug.cgi?id=4910">4910</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sub category doesn't appear at the beginning of parent category"
+   href="show_bug.cgi?id=10488">10488</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sub-Category Ordering Counter-Intuitive"
+   href="show_bug.cgi?id=11696">11696</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Images in categories - bad counting and navigation"
+   href="show_bug.cgi?id=16249">16249</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Split $articles in CategoryPage.php"
+   href="show_bug.cgi?id=17359">17359</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Subcategories should be listed on the start page of the category"
+   href="show_bug.cgi?id=24271">24271</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=1990,4910,10488,11696,16249,17359,24271">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">450</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - CategoryTree is inefficient"
+   href="show_bug.cgi?id=23682">23682</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1211&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1211">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-12-27 17:03 UTC by <span class="vcard"><span class="fn">David Gerard</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-18 18:07 UTC 
+      (<a href="show_activity.cgi?id=1211">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>35 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="andreas.vilen">andreas.vilen</option>
+                <option value="angus">angus</option>
+                <option value="ayg">ayg</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="benno79">benno79</option>
+                <option value="billclark">billclark</option>
+                <option value="brian">brian</option>
+                <option value="bud0011">bud0011</option>
+                <option value="bugs">bugs</option>
+                <option value="danny.b">danny.b</option>
+                <option value="dsp13">dsp13</option>
+                <option value="felsodaniel">felsodaniel</option>
+                <option value="fuchaoqun">fuchaoqun</option>
+                <option value="gangleri">gangleri</option>
+                <option value="gtisza">gtisza</option>
+                <option value="hartman.wiki">hartman.wiki</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="johnblumel">johnblumel</option>
+                <option value="johnnymrninja">johnnymrninja</option>
+                <option value="magnusrk+wiki">magnusrk+wiki</option>
+                <option value="martineznovo">martineznovo</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="old_school_junkie">old_school_junkie</option>
+                <option value="pandiculation">pandiculation</option>
+                <option value="qleah">qleah</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="sean">sean</option>
+                <option value="shaww">shaww</option>
+                <option value="siebrand">siebrand</option>
+                <option value="ssd.wiki">ssd.wiki</option>
+                <option value="subfader">subfader</option>
+                <option value="t.laqua">t.laqua</option>
+                <option value="tstarling">tstarling</option>
+                <option value="wiki">wiki</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1096"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Proposed patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (9.85 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1096"
+               title="Go to the comment associated with the attachment">2005-11-24 03:36 UTC</a>,
+
+            <span class="vcard"><span class="fn">Joel Nothman</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1096&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2163"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">alternate category page</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (17.23 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2163"
+               title="Go to the comment associated with the attachment">2006-07-28 17:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Jim Hu</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2163&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=4083"
+               title="View the content of the attachment">
+          <b>Patch to always show all subcategories</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.63 KB,
+                patch)
+
+            <br>
+            <a href="#attach_4083"
+               title="Go to the comment associated with the attachment">2007-09-06 19:05 UTC</a>,
+
+            <span class="vcard"><span class="fn">Peter Schlömer</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=4083&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (2)
+        </span>
+        <a href="attachment.cgi?bugid=1211&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">David Gerard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-27 17:03:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Category:Business is large, so the list of articles pages, as it should - there
+are 200 articles on a page. The first page is all up to F.
+
+However, the subcategories are also paged and only go up to F, even though there
+are only 17 on the first page. This is not optimal for usability - I was
+actually going to the page to check which subcat was right for an article, but
+have to page unnecessarily.
+
+Expected result: That subcats would not be paged, or would also page at 200.
+
+Actual result: Subcats page alphabetically in step with articles, though this
+reduces the usability of the subcat listing.
+
+Test case: category:business</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Clements (HappyDog)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-26 20:10:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Had a similar problem with Category:Computer_stubs.  I added a sub=category
+(Category:Software stubs) but it wasn't showing up in the list.  Spent a while
+trying to get it to show up, until I stumbled across it if I looked atarticles
+from 'S' onwards.  Sub-Categories should be completely separate from articles. 
+I understand that mediawiki is getting top 200 matches and then sorting them
+into separate arrays, but unless this is sorted it makes sub-categories in
+well-populated categories redundant.
+
+The list of sub-categories should be completely separate from the list of articles.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-26 21:35:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Halló!
+
+To my opinion (hopefully all) subcategories should be listed whenever a
+categgory page is generated. A problem can occur if there are more then 200
+subcategories the maximal number of items displayed.
+
+Some &quot;turn arounds&quot; for the actual implementation are discussed in English at:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=sr%3A%D0%92%D0%B8%D0%BA%D0%B8%D0%BF%D0%B5%D0%B4%D0%B8%D1%98%D0%B0%3ATests%20for%20%D0%9A%D0%BE%D1%80%D0%B8%D1%81%D0%BD%D0%B8%D0%BA%3ABonzo">sr:Википедија:Tests for Корисник:Bonzo</a>]] .
+One sugestion is to add a space in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Acategory%3AXXXX">:category:XXXX</a>| YYYY]] or a &quot;!&quot;
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Acategory%3AXXXX">:category:XXXX</a>|!YYYY]] depending on what consensus you have in your wiki, if
+you are using a navigation template etc.
+
+Regards Reinhardt</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-26 21:58:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >here the direct link
+<a href="http://sr.wikipedia.org/wiki/Wikipedia:Tests_for_%D0%9A%D0%BE%D1%80%D0%B8%D1%81%D0%BD%D0%B8%D0%BA:Bonzo">http://sr.wikipedia.org/wiki/Wikipedia:Tests_for_%D0%9A%D0%BE%D1%80%D0%B8%D1%81%D0%BD%D0%B8%D0%BA:Bonzo</a></pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-10 19:11:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3ACategory%3AStub%20categories">en:Category:Stub categories</a>]] is a category having more than 200 subcategories.
+Regards Reinhardt</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 00:22:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - subcategories don't show up if not in the alphabetization range of articles listed"
+   href="show_bug.cgi?id=1990">Bug 1990</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-08 12:22:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is this really only an enhancement? It seems a loss of function to me.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">David Gerard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-08 22:58:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Indeed. The subcats not appearing *at all* until the second page if they're out of
+luck in the alpha sorting is a definite bug. Marking &quot;minor&quot; rather than
+&quot;enhancement&quot;.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">R. S. Shaw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-26 19:01:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This needs fixing. All subcats should come before any articles.  This bug is forcing burdensome workarounds, like setting the sort keys of Category tags on each of 40 subcategory pages done for <a href="http://en.wikipedia.org/wiki/Category:Computing">http://en.wikipedia.org/wiki/Category:Computing</a> </pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">elian</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-09 00:15:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is definitely a usability bug. If someone fixes this, please care for
+<a href="http://bugzilla.wikimedia.org/show_bug.cgi?id=3095">http://bugzilla.wikimedia.org/show_bug.cgi?id=3095</a> as well. </pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel Nothman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-24 03:33:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[Note that #3095 was a duplicate of #1212]
+
+I see two solutions to this problem (together with #1212):
+(1) get ALL entries under the category and sort them out
+(2) make additional SQL queries
+
+I have also proposed a synthesis of these two approaches, whereby (1) is used 
+for categories containing less than a certain threshold number of entries and 
+(2) is used for large categories. I don't know if this is more efficient at all.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joel Nothman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-24 03:36:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1096" name="attach_1096" title="Proposed patch">attachment 1096</a> <a href="attachment.cgi?id=1096&amp;action=edit" title="Proposed patch">[details]</a></span>
+Proposed patch
+
+Using two-pronged approach with options (1) and (2) given in most recent
+comment. May be useless =)</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-15 02:53:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - A category with many articles can split subcategories onto separate pages"
+   href="show_bug.cgi?id=4910">Bug 4910</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jim Hu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-25 16:15:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It seems to me that both subcategories and articles for large categories should
+be displayed in a way similar to how Special:Allpages displays links to ranges
+of pages once the size exceeds some threshold.
+
+This is a severe problem for me, since I am running a wiki on biology/genomics,
+where the category pages reflect the taxonomy tree, and there are articles for
+every gene in the organisms I'm covering.  This means that sometimes the
+subcategories are buried under TENS OF THOUSANDS of other pages! :(
+
+So, I'll try to take this on if no one else is working in this direction...</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jim Hu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-28 17:19:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2163" name="attach_2163" title="alternate category page">attachment 2163</a> <a href="attachment.cgi?id=2163&amp;action=edit" title="alternate category page">[details]</a></span>
+alternate category page
+
+This alternative Category Page is similar to the earlier patch, but has some
+significant differences.  If the number of items in either subcategories or
+articles is larger than $limit = $wgCategoryPagingLimit different things
+happen:
+*If the number of items is &lt; 5*$limit, the user gets pages of with $limit items
+with the usual previous and next links
+*If the number of items is larger than that, the user gets &quot;Show $limit pages
+starting with...&quot; and a list of links to chunks.  The script divides the total
+number of items so that there will be &lt;= 20 total chunks, which means that the
+number of clicks it will take to get to a particular item will vary.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jim Hu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-28 17:26:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >p.s.  
+1) The alternate category page can be seen in action at:
+<a href="http://dimer.tamu.edu/GO/wiki/index.php/Category:cellular_organisms">http://dimer.tamu.edu/GO/wiki/index.php/Category:cellular_organisms</a>
+
+2) I am not entirely happy with speed or the cleanliness of the code, but I
+posted in the hope that others will build on it and share their versions.  This
+can take a couple of minutes on my server for a really large category.  The link
+is to one with 95,320 articles, and it just took about a minute to load.  
+
+3) Whether or not you like the other aspects, I think the Category page should
+give the correct number of subcategories and articles in the Category, instead
+of just giving the size of the subset retrieved by the SELECT statement. This
+alternate does so by doing select count(*) for both subcategories and articles.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-07 04:54:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No progress on this? This is awful for usability - I thought a certain category just didn't exist at all, because it didn't show up on the list of subcategories. It's incredibly counterintuitive when you see something like this:
+
+Subcategories:
+Aardvark
+
+Pages in category &quot;blah&quot;
+A
+[lots of pages]
+B
+[lots of pages]
+(previous 200) (next 200)
+
+
+There's no reason to think that there are more subcategories that you can't see.
+
+Would an easier fix be to simply repeat the link to the more pages, something like:
+
+Subcategories:
+Aardvark
+(previous) (next)
+
+Pages in category &quot;blah&quot;
+A
+[lots of pages]
+B
+[lots of pages]
+(previous 200) (next 200)
+
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-08 01:53:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sub category doesn't appear at the beginning of parent category"
+   href="show_bug.cgi?id=10488">Bug 10488</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-08 03:36:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This really should not be difficult, I don't think.  A committer just has to review those patches, or spend maybe half an hour writing their own.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-27 03:20:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Ah, I see why it was done this way.  It's more efficient.  Otherwise you have to add a WHERE page_namespace != NS_CATEGORY and muck up the efficiency.  Actually, I think that might require that all the rows of the category be read regardless of the LIMIT, depending on how MySQL does joins, but even if not, you could still easily read ten times as many rows as strictly needed this way.  A schema change to add a boolean &quot;cl_subcategory&quot; to categorylinks, along with appropriate indexing, would fix the inefficiency and possibly be useful for other things too.  Alternatively we could ignore the deficiency and scan a bunch of extra rows on certain category views, which is what I would provisionally be inclined to do.
+
+Proposed patch #1 deliberately scans five times as many rows as necessary, not really acceptable.  Proposed patch #2 isn't in diff format and so I can't easily review it.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Peter Schlömer</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-06 19:05:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=4083" name="attach_4083" title="Patch to always show all subcategories">attachment 4083</a> <a href="attachment.cgi?id=4083&amp;action=edit" title="Patch to always show all subcategories">[details]</a></span>
+Patch to always show all subcategories
+
+This is my take on this. I just always show all subcategories; they are no longer paged. This could of course lead to problems if a category has a lot of subcategories; and it requires an additional database query (although I think that's unavoidable if you don't want to read through all rows using PHP).
+
+I've also moved the top &quot;previous&quot;/&quot;next&quot; links below the subcategories; after this change, leaving them at the very top makes no sense.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-10-18 14:30:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sub-Category Ordering Counter-Intuitive"
+   href="show_bug.cgi?id=11696">Bug 11696</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dashiva</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 01:26:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No paging at all on subcategories would need to be configurable, but that's simple enough. Full-fledged subcategory paging would probably require changes that affect extensions that extend CategoryPage/Viewer as well. I could only find CategoryTree (and DPL using some static methods), so this might not be such a big problem.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 01:49:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c20">comment #20</a>)
+<span class="quote">&gt; Created an attachment (id=4083) [details]
+&gt; Patch to always show all subcategories
+&gt; 
+&gt; This is my take on this. I just always show all subcategories; they are no
+&gt; longer paged. This could of course lead to problems if a category has a lot of
+&gt; subcategories; and it requires an additional database query (although I think
+&gt; that's unavoidable if you don't want to read through all rows using PHP).
+&gt; 
+&gt; I've also moved the top &quot;previous&quot;/&quot;next&quot; links below the subcategories; after
+&gt; this change, leaving them at the very top makes no sense.</span >
+
+After some consideration: this patch is unacceptable, given that I believe it requires scanning the entire set of category links for a page.  This can be hundreds of thousands of rows, and take seconds, on the English Wikipedia.  Some kind of schema change is almost certainly necessary for this to be done efficiently.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Laqua</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 02:25:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c23">comment #23</a>)
+<span class="quote">&gt; After some consideration: this patch is unacceptable, given that I believe it
+&gt; requires scanning the entire set of category links for a page.  This can be
+&gt; hundreds of thousands of rows, and take seconds, on the English Wikipedia. 
+&gt; Some kind of schema change is almost certainly necessary for this to be done
+&gt; efficiently.</span >
+
+What do you mean?  The patch specifies 'page_namespace' =&gt; NS_CATEGORY as part of the WHERE clause in the additional sub-category query.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Laqua</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 05:27:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c24">comment #24</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=1211#c23">comment #23</a>)
+&gt; &gt; After some consideration: this patch is unacceptable, given that I believe it
+&gt; &gt; requires scanning the entire set of category links for a page.  This can be
+&gt; &gt; hundreds of thousands of rows, and take seconds, on the English Wikipedia. 
+&gt; &gt; Some kind of schema change is almost certainly necessary for this to be done
+&gt; &gt; efficiently.
+&gt; What do you mean?  The patch specifies 'page_namespace' =&gt; NS_CATEGORY as part
+&gt; of the WHERE clause in the additional sub-category query.</span >
+
+I ran an explain on the two queries (trimmed output):
+explain select page_title, page_len, page_is_redirect, cl_sortkey from page, categorylinks use index (cl_sortkey) where cl_from=page_id AND cl_to='Departments' AND page_namespace=14 order by cl_sortkey;
+
+table         | type   | possible_keys      | Extra                    |
+categorylinks | ref    | cl_sortkey         | Using where; Using index |
+page          | eq_ref | PRIMARY,name_title | Using where              |
+
+
+explain select page_title, page_len, page_is_redirect, cl_sortkey from page, categorylinks use index (cl_sortkey) where cl_from=page_id AND cl_to='Departments' order by cl_sortkey;
+
+table         | type   | possible_keys | Extra                    |
+categorylinks | ref    | cl_sortkey    | Using where; Using index |
+page          | eq_ref | PRIMARY       |                          |
+
+
+As far as I understand, the page_namespace addition to the WHERE clause brings in the name_title index f/ the page table, but the type is still eq_ref and unless i'm misinterpreting, I can't see where we'd be taking a huge performance hit.
+
+I haven't worked too much w/ query optimization, especially on the scale of the wikipedia DB - but I'd certainly like to know how significant of a performance hit there is bringing in the name_title index (assuming that really is the only significant difference here).</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Laqua</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 13:13:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I talked to Domas about it, the name_title key wouldn't be used, so as Simetrical said - it could indeed lead to scanning a pile of rows that wouldn't be needed w/o page_namespace in the WHERE clause.
+
+So ignore the last two comments.  ;-)</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 17:32:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The difference, AFAIK, is not in the queries themselves, but in how they behave with LIMIT (which EXPLAIN ignores).  The query with no condition will scan a maximum of 200 rows, because it scans until it gets 200 rows that satisfy the condition.  The query with condition page_namespace=14 will have to scan every single row, and will not be able to omit rows that don't match that condition, because page_namespace is not in (and cannot be in) the cl_sortkey index it's using to retrieve the rows for the first table.  It has to retrieve a row from categorylinks and join to page before it can decide whether to keep it.  Compare the two queries' performance on a large category (this is the toolserver, so much slower than it would be on the live server, but you can tell the difference anyway):
+
+mysql&gt; SELECT page_namespace, page_title FROM categorylinks USE INDEX (cl_sortkey) JOIN page ON cl_from=page_id WHERE cl_to='Living_people' ORDER BY cl_sortkey LIMIT 200;
++----------------+--------------------------------+
+| page_namespace | page_title                     |
++----------------+--------------------------------+
+|              4 | Biographies_of_living_persons  | 
+|              0 | 20Bello                        | 
+|              0 | 40_Cal.                        | 
+|              0 | 50/50_Twin                     | 
+|              0 | 6025_(musician)                | 
+. . .
+|              0 | Hisham_Abbas                   | 
+|              0 | Imran_Abbas                    | 
++----------------+--------------------------------+
+200 rows in set (3.63 sec)
+
+mysql&gt; SELECT page_namespace, page_title FROM categorylinks USE INDEX (cl_sortkey) JOIN page ON cl_from=page_id WHERE cl_to='Living_people' AND page_namespace=14 ORDER BY cl_sortkey LIMIT 200;
++----------------+----------------+
+| page_namespace | page_title     |
++----------------+----------------+
+|             14 | Pete_Rock      | 
+|             14 | Royal_children | 
+|             14 | Mar_Roxas      | 
++----------------+----------------+
+3 rows in set (12 min 49.22 sec)
+
+Now note that the latter is probably more like three seconds on the real servers (cf. &lt;<a href="http://en.wikipedia.org/wiki/Special:Categories?offset=Living_peopl">http://en.wikipedia.org/wiki/Special:Categories?offset=Living_peopl</a>&gt;, which evidently no one has killed yet).  But the point remains, the latter is O(N) in the whole category size and the former is O(N) (maybe O(N log N), I don't know) in just the result set.  The difference here was a factor of over 200, the difference on the real servers is probably over 300 (figuring 3 s for the latter, &lt;10 ms for the former), and it will only increase as categories get bigger.  A scalable solution is needed if this is to be put in core.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 01:22:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The sane solution here is probably to just have a distinct table for &quot;subcategories&quot; from other pages.
+
+Alternatively, an additional column could be added to categorylinks which indicates which set of categorization it belongs in, with an appropriate index.
+
+A separate table would be a quicker and more backwards-compatible upgrade, as it wouldn't require a complete rebuild of the (large) categorylinks table. The upgrade would go like this:
+
+1) create the new subcategorylinks table
+2) copy categorylinks data for page_namespace=14 into subcategorylinks
+3) delete categorylinks data for page_namespace=14
+4) profit!
+
+The two sets of data would then be trivial to page separately.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 02:52:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >And it's even safe, since it's impossible to move non-categories to categories or vice versa (a point that didn't occur to me when similar ideas were mentioned elsewhere).</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 03:03:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >. . . Of course, any such change will probably break anything else that deals with categorylinks, to some extent.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Blumel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 03:31:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c28">comment #28</a>)
+<span class="quote">&gt; The sane solution here is probably to just have a distinct table for
+&gt; &quot;subcategories&quot; from other pages...</span >
+
+I'm a submitter of a duplicate of this issue (although I didn't notice it referenced here, but may have just overlooked it) and I'm afraid I'm utterly unfamiliar with the MediaWiki schema or the code that deals with this, but I just wanted to raise the question of how this would work with subcategories that also have subcategories and categories/subcategories that are subcategories of multiple categories which may also be subcategories.
+
+In our wiki,
+
+<a href="http://wiki.hmssurprise.org">http://wiki.hmssurprise.org</a>
+
+every category but one,
+
+<a href="http://wiki.hmssurprise.org/index.php/Category:WikiPOBia">http://wiki.hmssurprise.org/index.php/Category:WikiPOBia</a>
+
+is (or will be) a subcategory of some other category, and in many instances is a subcategory of multiple categories. Examples of this can be found particularly under the following two categories (all the entries under these categories, subcategories and articles, were generated and botted to the site, and this is probably quite atypical):
+
+<a href="http://wiki.hmssurprise.org/index.php/Category:Guide_for_the_Perplexed">http://wiki.hmssurprise.org/index.php/Category:Guide_for_the_Perplexed</a>
+<a href="http://wiki.hmssurprise.org/index.php/Category:Maturin%27s_Medicine">http://wiki.hmssurprise.org/index.php/Category:Maturin%27s_Medicine</a>
+
+The whole categorization scheme here was organized with this particular issue in mind, and we currently are not plagued by this problem, but I wouldn't want to see the fix cause it's own set of problems, or wreak havic with our existing categorization scheme.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 03:42:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c31">comment #31</a>)
+<span class="quote">&gt; I'm a submitter of a duplicate of this issue (although I didn't notice it
+&gt; referenced here, but may have just overlooked it) and I'm afraid I'm utterly
+&gt; unfamiliar with the MediaWiki schema or the code that deals with this, but I
+&gt; just wanted to raise the question of how this would work with subcategories
+&gt; that also have subcategories and categories/subcategories that are
+&gt; subcategories of multiple categories which may also be subcategories.</span >
+
+There would be no difference to the current way things work.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">R. S. Shaw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 21:49:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Above it was suggested that a new subcategorylinks table be added.  There may be a simpler solution which is also potentially less disruptive.  This wouldn't involve a complete rebuild of categorylinks, but would require a upgrade phase.  It would go like this:
+
+1) Add a column, say specialref, to categorylinks, default NULL, indexed if value not NULL.
+2) Make a pass over categorylinks where namespace=14, updating specialref to a nonnull value, say 14.
+
+The normal subcat display would use the index, the page member display would not but would skip records which have a non-NULL specialref.  Accessors ignorant of the change would continue to work as now.  Add of a new subcat of course sets specialref.
+
+(The page list retrieval has to skip the subcat entries, but that can be expected to be a small percentage.)
+
+
+
+</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 22:05:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That requires an ALTER TABLE, which is much more of a pain than adding a table.  Copying millions of rows from categorylinks to subcategorylinks: easy, just run some queries.  Altering categorylinks: locks the table to writes while you're doing it, so you have to take slave out of rotation, apply alteration, re-add to rotation, repeat for each slave, switch the master, repeat for master.  It's more disruptive for the sysadmins, not less.
+
+Besides, as I say, there are indexing issues.  For this to be effective here, you would need to change the cl_sortkey index from (cl_to, cl_sortkey, cl_from) to (cl_to, cl_sortkey, cl_subcat, cl_from).  This would break the use of the index for ordering by cl_from, unless you were retrieving by cl_subcat.  Unmodified apps would still work, they'd just take forever on large categories, as it filesorted the entire set of pages in the given category.  This is as far as I can see, without testing, but I'm fairly confident this is correct for MySQL.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 22:06:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Of course, your solution would *not* disrupt uses of categorylinks that don't use the cl_sortkey index, which is quite possibly most of them.  It does have that in its favor.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-13 13:16:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixing <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Support collation by a certain locale (sorting order of characters)"
+   href="show_bug.cgi?id=164">bug 164</a> requires changing the cl_sortkey index anyway. So if a fix were within reach for the two of them, the categorylinks rebuild could be combined and we could stay with a single table. </pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-13 14:16:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why does it require changing the cl_sortkey index?  It just requires rebuilding the contents of the cl_sortkey column, which can be done live (sorting on category pages may or may not be a bit odd in the interim, depending on how different the new collation algorithm is).</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-04 23:37:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">Bug 450</a> related.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Túrelio</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-03 08:42:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm asking to step up the Severity of this bug at least to Normal (better to Major) as it really restricts everyday usability of categories on Commons. As another user in the current discussion on Commons put it, we set up a system with currently &gt;2.7 mio files and our category system has problems when there are &gt;200 files in a category. [<a href="http://commons.wikimedia.org/wiki/Commons:Village_pump#How_to_show_first_all_sub-cats_of_a_cat.3F">http://commons.wikimedia.org/wiki/Commons:Village_pump#How_to_show_first_all_sub-cats_of_a_cat.3F</a>]</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">billclark
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-19 21:59:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I suggest that we add a cl_namespace column to the table and also add that column to the cl_sortkey index.  This will allow efficient independent selection (and thus paging) of a category's members based on the namespace, which would not only resolve this bug but would help with #450 as well.  It's really not feasible to resolve #450 unless the different namespaces can be paged independently.
+
+I'll be happy to provide a software patch for both of these bugs (I'm almost done with the one for #450) but want to be sure that the proposed schema change is acceptable, first.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-20 23:13:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c40">comment #40</a>)
+<span class="quote">&gt; I suggest that we add a cl_namespace column to the table and also add that
+&gt; column to the cl_sortkey index.  This will allow efficient independent
+&gt; selection (and thus paging) of a category's members based on the namespace,
+&gt; which would not only resolve this bug but would help with #450 as well.  It's
+&gt; really not feasible to resolve #450 unless the different namespaces can be
+&gt; paged independently.</span >
+&gt;
+<span class="quote">&gt; I'll be happy to provide a software patch for both of these bugs (I'm almost
+&gt; done with the one for #450) but want to be sure that the proposed schema change
+&gt; is acceptable, first.</span >
+
+First of all, this implementation of a fix would depend on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">bug 16012</a>.  All schema changes to large tables are suspended until there's a reasonable way of executing them, apparently, and categorylinks is certainly a large table.
+
+Second of all, you're (further) denormalizing the database here.  This might be justifiable -- certainly it seems like the only reasonable way to fix <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> -- but it's a cost.  You'd have to make sure that anything that moves pages also updates cl_namespace.  This is not currently a cost we have anywhere else, AFAIK: either things are associated with the page_id and don't have to be updated, or are associated with the namespace/title combination rather than the page itself (e.g., pl_namespace and pl_title) and therefore still don't have to be updated.  We can expect that bugs will occur here as cl_namespace sometimes isn't updated on moves, for whatever reason.
+
+Thirdly, this would probably *require* <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> to be fixed to be reasonably efficient.  In the current setup, we'd need something like 'SELECT ... WHERE cl_from=xxx AND cl_namespace NOT IN (' . NS_FILE . ',' . NS_CATEGORY . ') ORDER BY cl_sortkey', which MySQL (at least older versions like 4.0) is too stupid to execute efficiently: it can't use the index for ordering if there's a range condition like IN in the WHERE clause.  (I think it would be smart enough in 5.0, or at least 5.1.)
+
+And as for the proposal in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a>, I see two issues.  First of all, you'd surely need one query per namespace on each category view, which could be a couple dozen on a lot of wikis.  That seems kind of excessive, if it's avoidable.  Second of all, the current structure of the category table reflects the pages/subcats/files breakdown.  If counts are given separately for all namespaces, you'd need to store all the counts in the category table.  This would either require an ALTER TABLE for every namespace added or removed (not happening), or else breaking off a new categorycount table like (cc_cat, cc_namespace, cc_count) to store the counts and deleting the cat_pages, cat_subcats, cat_files from the category table.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-21 00:06:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c41">comment #41</a>)
+<span class="quote">&gt; And as for the proposal in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a>, I see two issues.  First of all, you'd
+&gt; surely need one query per namespace on each category view, which could be a
+&gt; couple dozen on a lot of wikis.  That seems kind of excessive, if it's
+&gt; avoidable.  Second of all, the current structure of the category table reflects
+&gt; the pages/subcats/files breakdown.  If counts are given separately for all
+&gt; namespaces, you'd need to store all the counts in the category table.  This
+&gt; would either require an ALTER TABLE for every namespace added or removed (not
+&gt; happening), or else breaking off a new categorycount table like (cc_cat,
+&gt; cc_namespace, cc_count) to store the counts and deleting the cat_pages,
+&gt; cat_subcats, cat_files from the category table.
+&gt; </span >
+
+If we throw the separate paging thing out the window citing performance concerns, we could page by (ns, sortkey), which should be feasible given the right index (especially since the range condition is now also the first field of the ORDER BY). Of course that would page the main namespace first, then Talk, then User, etc., but that's the price we'd have to pay for not liking burned database servers. Jump-ahead links to a certain namespace would still be possible as well.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sean Colombo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-24 17:07:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Would it be rocking the boat too much to suggest that this bug gets upgraded to a severity above normal? I know it doesn't matter toooooo too much, but it might make us more likely to solve it ;)
+
+It's just that most reasonably sized wikis tend to have categories with &gt;200 articles and categories that large will quite often have subcategories and it's really not obvious to a user what's going on when they see only SOME of the subcategories on the first page.</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-02 15:59:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >+patch, +need-review</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-02 17:38:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >-patch, -need-review.  Patch was reviewed and rejected, see <a href="show_bug.cgi?id=1211#c23">comment 23</a>.  Also removing schema-change until it's clear that we need one (we could just adjust the sortkeys in-place, perhaps).
+
+The most straightforward solution to this seems to be to reserve the first character of the cl_sortkey column for a namespace designator.  So just make it &quot;c&quot; for subcategories, &quot;a&quot; for articles, &quot;f&quot; for files.  Then the three could be paged separately.  This would require some interface work too, of course.  A script would then have to be run before the change goes live, updating the categorylinks table; until this is done, category pagination would be kind of wonky, but there would be no other ill effects (at least if it works ;) ).</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-28 14:52:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Split $articles in CategoryPage.php"
+   href="show_bug.cgi?id=17359">Bug 17359</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Subfader</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-28 15:01:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Images in categories - bad counting and navigation"
+   href="show_bug.cgi?id=16249">Bug 16249</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Subfader</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-01 16:18:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >What's the problem about solving this? 
+I'm thinking about manipulating CategoryPage.php myself but my php skills suck and it would take me ages of trial &amp; error.
+I want to:
+
+sort articles desc, subcats asc
+
+subcats in 3 cols, articles in 2 cols
+
+different default navigation ammount for all 3 sections (subcats: e.g. all, articles: 200, files: 20)
+
+split navigation logically: the 3 sections have their own navigation: going NEXT to articles 200-400 will still list subcats and images 0-X</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Subfader</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-04 13:41:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Can anyone at provide a patch that sorts articles Articles in the recerve order?
+
+Changing function finaliseCategoryState() to array_reserve only sorts batch per page (200) but not the whole set.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-26 06:05:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If we can't fix this quickly (and it looks like we can't), can we at least add a message to each category page explaining this issue? I can't even find it documented anywhere except in bug reports.
+
+I skimmed through the above comments and couldn't find an explanation of how the subcategories are split between pages at, say, <a href="http://commons.wikimedia.org/wiki/Category:Girls">http://commons.wikimedia.org/wiki/Category:Girls</a>. The subcategories go from A-D, then from G-T, even though the media goes from A-L, then L-Z. Also, if you were viewing the first 200 category items, you'd never guess that the page &quot;Super Girl (contest)&quot; was in that category as well.</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-02 01:35:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c41">comment #41</a>)
+<span class="quote">&gt; First of all, this implementation of a fix would depend on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">bug 16012</a>.  All
+&gt; schema changes to large tables are suspended until there's a reasonable way of
+&gt; executing them, apparently, and categorylinks is certainly a large table.</span >
+
+Schema changes are in no way blocked by <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">bug 16012</a>, that was a misconception. I did a couple of schema changes during the deployment of 1.16wmf4, and I'm happy to do more in the next deployment. There are some conditions which need to be met for easy migration, but those won't change when <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">bug 16012</a> is implemented. The table can be any size, as long as it fits into the free disk space, since MySQL needs to make a copy when it does an ALTER TABLE.
+
+[...]
+<span class="quote">&gt; Thirdly, this would probably *require* <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> to be fixed to be reasonably
+&gt; efficient.  In the current setup, we'd need something like 'SELECT ... WHERE
+&gt; cl_from=xxx AND cl_namespace NOT IN (' . NS_FILE . ',' . NS_CATEGORY . ') ORDER
+&gt; BY cl_sortkey', which MySQL (at least older versions like 4.0) is too stupid to
+&gt; execute efficiently: it can't use the index for ordering if there's a range
+&gt; condition like IN in the WHERE clause.  (I think it would be smart enough in
+&gt; 5.0, or at least 5.1.)</span >
+
+Do you mean the category page query? Presumably that would be cl_to=xxx not cl_from=xxx.
+
+You don't need <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> to be fixed. You can keep the current (cl_to, cl_sortkey, cl_from) index and add an additional (cl_to, cl_namespace, cl_sortkey, cl_from) index. Then we can support both UIs.
+
+When namespace breakdowns are enabled, there would be some complexity involved in making the main category page query skip subcategories and files, but I think it would be possible to do it efficiently, even in MySQL 4.0, by using ranges and unions.
+
+For instance, we could have a union with the first subquery having a condition like (cl_sortkey &gt; $offset AND cl_namespace &lt; NS_CATEGORY), and the second subquery having a condition like (cl_namespace &gt; NS_CATEGORY). 
+
+<span class="quote">&gt; And as for the proposal in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a>, I see two issues.  First of all, you'd
+&gt; surely need one query per namespace on each category view, which could be a
+&gt; couple dozen on a lot of wikis.  That seems kind of excessive, if it's
+&gt; avoidable.  </span >
+
+The category page view with the namespace breakdown would have to page through the results one namespace at a time, it wouldn't display, say, pages in all namespaces that start with the letter &quot;L&quot;. As in the current scheme, the UI has to reflect the indexes. The query would have ORDER BY cl_namespace, cl_sortkey.
+
+<span class="quote">&gt; Second of all, the current structure of the category table reflects
+&gt; the pages/subcats/files breakdown.  If counts are given separately for all
+&gt; namespaces, you'd need to store all the counts in the category table.  This
+&gt; would either require an ALTER TABLE for every namespace added or removed (not
+&gt; happening), or else breaking off a new categorycount table like (cc_cat,
+&gt; cc_namespace, cc_count) to store the counts and deleting the cat_pages,
+&gt; cat_subcats, cat_files from the category table.</span >
+
+Breaking namespaces out into a new table would be the only decent solution, assuming we need that feature.</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-02 01:40:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c51">comment #51</a>)
+<span class="quote">&gt; You don't need <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> to be fixed. You can keep the current (cl_to,
+&gt; cl_sortkey, cl_from) index and add an additional (cl_to, cl_namespace,
+&gt; cl_sortkey, cl_from) index. Then we can support both UIs.</span >
+
+Although of course that means not fixing the current bug. My mistake.
+
+To fix the current bug and not include namespaces in the sorting order would require a boolean cl_is_subcat field, defined to be the same as cl_namespace=NS_CATEGORY. Then the index would be (cl_to, cl_is_subcat, cl_sortkey, cl_from).</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-02 18:02:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c51">comment #51</a>)
+<span class="quote">&gt; Schema changes are in no way blocked by <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">bug 16012</a>, that was a misconception. I
+&gt; did a couple of schema changes during the deployment of 1.16wmf4, and I'm happy
+&gt; to do more in the next deployment. There are some conditions which need to be
+&gt; met for easy migration, but those won't change when <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">bug 16012</a> is implemented.
+&gt; The table can be any size, as long as it fits into the free disk space, since
+&gt; MySQL needs to make a copy when it does an ALTER TABLE.</span >
+
+Okay.
+
+<span class="quote">&gt; Do you mean the category page query? Presumably that would be cl_to=xxx not
+&gt; cl_from=xxx.</span >
+
+Yes, right.  I always get them confused.  cl_page and cl_category would have made much more sense as column names.  Although less consistent with pagelinks.
+
+<span class="quote">&gt; You don't need <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> to be fixed. You can keep the current (cl_to,
+&gt; cl_sortkey, cl_from) index and add an additional (cl_to, cl_namespace,
+&gt; cl_sortkey, cl_from) index. Then we can support both UIs.</span >
+
+I think that by &quot;fixing <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a>&quot; I meant that you'd need to store the namespace in the categorylinks table somehow.
+
+<span class="quote">&gt; When namespace breakdowns are enabled, there would be some complexity involved
+&gt; in making the main category page query skip subcategories and files, but I
+&gt; think it would be possible to do it efficiently, even in MySQL 4.0, by using
+&gt; ranges and unions.
+&gt; 
+&gt; For instance, we could have a union with the first subquery having a condition
+&gt; like (cl_sortkey &gt; $offset AND cl_namespace &lt; NS_CATEGORY), and the second
+&gt; subquery having a condition like (cl_namespace &gt; NS_CATEGORY). </span >
+
+Yes, this is true.  Maybe I hadn't seen that hack yet in 2008.
+
+<span class="quote">&gt; The category page view with the namespace breakdown would have to page through
+&gt; the results one namespace at a time, it wouldn't display, say, pages in all
+&gt; namespaces that start with the letter &quot;L&quot;. As in the current scheme, the UI has
+&gt; to reflect the indexes. The query would have ORDER BY cl_namespace, cl_sortkey.</span >
+
+Do you mean it would have WHERE cl_to='X' AND cl_namespace=Y ORDER BY cl_sortkey?  It wouldn't make sense in any UI to display the first 200 results from the main namespace only, so you'd have to go through fifty pages to get to the files.  You could cut it down to one query by doing a UNION, with different WHERE clauses in each part of the union.
+
+<span class="quote">&gt; Breaking namespaces out into a new table would be the only decent solution,
+&gt; assuming we need that feature.</span >
+
+If we're displaying different namespaces under different headings as <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a> suggests, we'd presumably want to keep the total count for each namespace present in the UI.  It could be dropped, but it doesn't seem like there's any point.
+
+(In reply to <a href="show_bug.cgi?id=1211#c52">comment #52</a>)
+<span class="quote">&gt; To fix the current bug and not include namespaces in the sorting order would
+&gt; require a boolean cl_is_subcat field, defined to be the same as
+&gt; cl_namespace=NS_CATEGORY. Then the index would be (cl_to, cl_is_subcat,
+&gt; cl_sortkey, cl_from).</span >
+
+I don't see why this is necessary or advantageous.  You could just do several queries, maybe UNIONed together, one for each namespace, and that will work with a (cl_to, cl_namespace, cl_sortkey, cl_from) index.  The only advantage would be that pages can't get moved between the category namespace and other namespaces, so if we only stored subcategory-ness, we wouldn't have to update anything extra on page moves, and there'd be little to no risk of errors creeping in.  This is an advantage of sticking to the current subcats/pages/files approach, but we can't have that if we want to fix <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Categories need to be structured by namespace"
+   href="show_bug.cgi?id=450">bug 450</a>.  (Not sure if we need to or not.)</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Lejonel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-05 18:06:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Subcategories should be listed on the start page of the category"
+   href="show_bug.cgi?id=24271">Bug 24271</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jan Ainali</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-05 20:18:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c50">comment #50</a>)
+<span class="quote">&gt; If we can't fix this quickly (and it looks like we can't), can we at least add
+&gt; a message to each category page explaining this issue?</span >
+
+This would be a reasonable interrim solution. Just knowing that there are more subcategories is a huge usability benefit.</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-21 21:04:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'll be working on this bug.  I hope to have a solution coded up within a couple of weeks.  I wrote a post to wikitech-l about it, and encourage people to respond there rather than here (since this involves several bugs):
+
+<a href="http://lists.wikimedia.org/pipermail/wikitech-l/2010-July/048399.html">http://lists.wikimedia.org/pipermail/wikitech-l/2010-July/048399.html</a></pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-08-13 21:16:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This was fixed in trunk as of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/70415" title="revision 70415 in SVN">r70415</a>.  Subcategories, files, and other pages sort in three separate sections.</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Deni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 12:58:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't think this is fixed, just see: <a href="http://en.wikipedia.org/wiki/Category:Computer_stubs">http://en.wikipedia.org/wiki/Category:Computer_stubs</a>
+It says &quot;This category has the following 8 subcategories, out of 16 total.&quot;</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 13:28:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bugs are marked as fixed right away when the code is fixed. It then takes time before end users see the fix, until entities like Wikimedia update their code to newer version. When that happens, bugs can be marked as verified or closed, but that doesn't seem the actual practice here.</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Deni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 13:52:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I checked the version of the English Wikipedia (<a href="http://en.wikipedia.org/wiki/Special:Version">http://en.wikipedia.org/wiki/Special:Version</a>), it's <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/72153" title="revision 72153 in SVN">r72153</a>, so it should be &quot;fixed&quot;.</pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Derk-Jan Hartman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 13:53:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That is a different branch of the software. Don't rely on those numbers.</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 18:18:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wikimedia is way behind on code updates.  There's no guarantee on when Wikipedia will see the features, but they're fixed in trunk -- which means there's no more development work to do, so there's no purpose for the bug to remain open.  The fix is done, it just has to be deployed, which will happen along with all the other tens of thousands of revisions that aren't live yet.
+
+It might not go live for months to come, who knows.  The last full scap was around <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/64689" title="revision 64689 in SVN">r64689</a>, and that was based on REL1_16, which was based on <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/62818" title="revision 62818 in SVN">r62818</a> of trunk.  That was in February.  The revision numbers don't tell you what's live, as Derk-Jan points out, since Wikimedia is using the wmf branch of the code, not trunk.  I only gave the revision number so it would produce a commit link.</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">David Gerard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 19:33:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So do we file a new bug that asks to implement the fixed bug?</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-09-06 19:45:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If anyone is going to be interested in deploying this out of schedule, they won't need a bug to remind them to do so.  Plus, I doubt it will happen till <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Support collation by a certain locale (sorting order of characters)"
+   href="show_bug.cgi?id=164">bug 164</a> is fixed.</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">johnnymrninja
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-09 07:09:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The patch is included in release 1.17. See <a href="http://svn.wikimedia.org/viewvc/mediawiki/branches/REL1_17/phase3/RELEASE-NOTES?view=co">http://svn.wikimedia.org/viewvc/mediawiki/branches/REL1_17/phase3/RELEASE-NOTES?view=co</a></pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-09 23:57:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c65">comment #65</a>)
+<span class="quote">&gt; The patch is included in release 1.17. See
+&gt; <a href="http://svn.wikimedia.org/viewvc/mediawiki/branches/REL1_17/phase3/RELEASE-NOTES?view=co">http://svn.wikimedia.org/viewvc/mediawiki/branches/REL1_17/phase3/RELEASE-NOTES?view=co</a></span >
+
+As an aside, last i heard the category stuff was going to be deployed slightly later then the rest of 1.17 (On Wikimedia).</pre>
+    </div><div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c67">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Subfader</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-12 23:58:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If someone can link an example category, pls do so.
+
+Also, please let us know when this was included in a stable MW release.</pre>
+    </div><div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c68">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-13 18:33:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is in 1.17, as <a href="show_bug.cgi?id=1211#c65">comment 65</a> says.  It will be in a stable release when 1.17 is released.  It will be enabled on Wikimedia at some time in the relatively near future.  Please be patient.</pre>
+    </div><div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c69">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">johnnymrninja
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-03-08 09:25:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >1.17 is live, though I have not been able to confirm that this is fixed. I've edited categories and they do not move to the front. It could be some sort of category lag... Can someone confirm that this is now working properly on WP?</pre>
+    </div><div id="c70" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1211#c70">Comment 70</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-03-08 10:20:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1211#c69">comment #69</a>)
+<span class="quote">&gt; 1.17 is live, though I have not been able to confirm that this is fixed. I've
+&gt; edited categories and they do not move to the front. It could be some sort of
+&gt; category lag... Can someone confirm that this is now working properly on WP?</span >
+1.17 was deployed with the category changes stripped out. Tim has been working on doing the required database schema changes yesterday and today, and I guess we'll roll out the related software changes in the next few days.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1211&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1211">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1211">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1211">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1211&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1211" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1211&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419358603-0ZVa202U54aVZE3KTxZtTBGa7I4dZT2JgoRG5aLH754">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

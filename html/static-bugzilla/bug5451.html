@@ -1,0 +1,1773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5451 &ndash; Moving category description pages</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5451&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5451">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5451">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5451">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5451 – Moving category description pages",  
+                             "show_bug.cgi?id=5451" );
+        document.title = "Bug 5451 – Moving category description pages";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5451 – Moving category description pages", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Categories bz_bug_5451 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-09-04 20:31:55 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-09-04 20:31:55">
+  <input type="hidden" name="longdesclength" value="25">
+  <input type="hidden" name="id" value="5451">
+  <input type="hidden" name="token" value="1419365424-rbQIik9J52Xss2D9u1DIRUGwoINlOZ76kM0KALqdNtw">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5451"><b>Bug&nbsp;5451</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Moving category description pages</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Moving category description pages
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Moving category description pages', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Categories
+    
+    (<a href="buglist.cgi?component=Categories&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5451">9 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5451#vote_5451">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>1.24.0 release
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Jackmcbarn</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow moving the content and history of category pages to a new page title"
+   href="show_bug.cgi?id=15805">15805</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Moving of category not possible"
+   href="show_bug.cgi?id=34682">34682</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=15805,34682">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - When adding a redirected category to a page, put the page in both the redirect cat and its target"
+   href="show_bug.cgi?id=17571">17571</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Wikimedia Hackathon Zürich 2014"
+   href="show_bug.cgi?id=65005">hackathon2014</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5451&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5451">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-04-04 18:24 UTC by <span class="vcard"><span class="fn">Marco</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-09-04 20:31 UTC 
+      (<a href="show_activity.cgi?id=5451">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>17 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="b">b</option>
+                <option value="bugzilla.wikimedia">bugzilla.wikimedia</option>
+                <option value="egil">egil</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="hartman.wiki">hartman.wiki</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="jackmcbarn+wmbz">jackmcbarn+wmbz</option>
+                <option value="jayvdb">jayvdb</option>
+                <option value="jforrester">jforrester</option>
+                <option value="kaikkd">kaikkd</option>
+                <option value="matma.rex">matma.rex</option>
+                <option value="ricordisamoa">ricordisamoa</option>
+                <option value="strigiwm">strigiwm</option>
+                <option value="test5555">test5555</option>
+                <option value="verdy_p">verdy_p</option>
+                <option value="wikimedia">wikimedia</option>
+                <option value="wikipedia.create">wikipedia.create</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Create a userright allowing to move pages in category namespace (without moving category members)"
+   href="show_bug.cgi?id=28569">28569</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - If the &quot;move&quot; permission is removed from a group of WMF wikis, remove &quot;move-categorypages&quot; too"
+   href="show_bug.cgi?id=70403">70403</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=5451&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marco</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-04 18:24:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Normally, it is not possible to move a category page, such as
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=de%3ACategory%3AComic">de:Category:Comic</a>]] (only example, doesn't need to be moved!), only the talk
+page, e.g. [[de:Category talk:Comic]. This is a bad behaviour in categories
+which description pages have been edited multiple; because you have to CnP it
+and give authors, quite messy system.
+
+Would it be possible to move the categories pages(No need for re-categorizing,
+we have multiple bots who can do this)?</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">J JIH</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-08 16:23:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I totally support enabling the possibility to move a category page. This is
+especially needed at Chinese Wiki sites where starting a page in either
+traditional or simplified Chinese will prevent the creation of the other even if
+intended to make a redirect.
+
+Would any available developers please enable the possibility to move a category
+page? Chinese Wikipedia, Chinese Wiktionary, and Chinese Wikisource urgently
+need this new function to work well.
+
+Best wish,
+
+User:Jusjih as an admin at Chinese Wikipedia, Chinese Wiktionary, and Chinese
+Wikisource</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jimmy Collins</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-08 19:43:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >MediaWiki does not support renaming of category description. Changing from
+&quot;Wikimedia&quot; to &quot;MediaWiki&quot;.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-09 00:06:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is currently intended behavior, although not necessarily desired.  It's not
+a bug, it's a missing feature.  Major &gt; enhancement.
+
+As for when this has arrived, <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Cannot rename/move images and other media files."
+   href="show_bug.cgi?id=709">bug 709</a> is similar but much more important, and
+it's gone unfixed for over two years.  Be patient; someone will undoubtedly get
+to it sooner or later.  For now, there are workarounds via bot that you could
+use (see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Template%3ACategory%20redirect">Template:Category redirect</a>]] on enwiki, currently dealt with by a bot
+run by [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ARobertG">User:RobertG</a>]]).</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Clements (HappyDog)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-21 00:53:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Currently, if a category is badly named the process is to recat the articles, copy the text of the current revision to the new location and delete the old (now empty) category.  This violates the GFDL, but is fairly common practice I think.  <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Cannot rename/move images and other media files."
+   href="show_bug.cgi?id=709">Bug 709</a> is basically the same as this, except for images, but I think people are more hesitant to do this for images, because of all the extra faffing required to transfer the physical file, so it may be that this bug is more important, and also a lot easier to implement I expect.  Just my opinion though, and of course a fix for both would be great.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark Clements (HappyDog)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-21 01:00:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Actually, what's stopping us just enabling the move operation for this namespace?  I assume it's there for a reason, but the only issue I can think of is that it requires an update to the cat link cache, which I would have thought would be a fairly simple thing to refresh (either at move time, or via the job queue).</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-21 01:03:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I doubt there's any impediment.  It was probably disabled due to concerns about confusion.  Ask Brion or Tim or someone about it.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-16 06:07:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow moving the content and history of category pages to a new page title"
+   href="show_bug.cgi?id=15805">Bug 15805</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Derk-Jan Hartman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-21 23:40:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Primary reason is because category redirects don't work as most people expect. It is already better than a couple years ago, but still not perfect. Depends on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - When adding a redirected category to a page, put the page in both the redirect cat and its target"
+   href="show_bug.cgi?id=17571">Bug 17571</a>.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">User:Docu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-16 07:52:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Related: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Create a userright allowing to move pages in category namespace (without moving category members)"
+   href="show_bug.cgi?id=28569">bug 28569</a> titled &quot;Create a userright allowing to move pages in category namespace (without moving category members)&quot;</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Helder</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-03 20:59:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I just noticed a instance of this problem on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikibooks%3Apt">wikibooks:pt</a>]]: An user created [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikibooks%3Apt%3ACategory%3APat%C3%AAs%20e%20pastas">wikibooks:pt:Category:Patês e pastas</a>]] explaining a how to do a recipe, but such content should have been added to a page of our Cookbook (in the &quot;Main&quot; namespace), such as [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Livro%20de%20receitas%2FPat%C3%AA%20de%20frango">Livro de receitas/Patê de frango</a>]].
+
+In order to fix that, another user copied the text from one page to the other, but forgot to indicate the original author of the recipe. Usually, this second error could be easily fixed by merging the histories of both pages, but the procedure requires the ability to move the source page to the target, as explained on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=WP%3AHISTMERGE">WP:HISTMERGE</a>]]. Since we can't move a page to outside &quot;Category&quot; namespace, such solution doesn't apply.
+
+We could just delete the new page and recreate it making sure to indicate the author properly in the edit summary, but this is not the ideal solution: authors cited in this way are not properly cited in the PDF files generated by collection extension (see <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Collection extension needs some way to credit original authors of a work"
+   href="show_bug.cgi?id=28064">bug 28064</a>). So, we ended up in a situation where, involuntarily, we are infringing the terms of the CC-BY-SA license.
+
+Having both bugs unsolved makes it difficult to guarantee that the authors are properly  credited when they contribute to Wikimedia wikis if their first edit happens to be made in the wrong place.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Helder</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-03 21:02:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5451#c10">comment #10</a>)
+<span class="quote">&gt; namespace), such as [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Livro%20de%20receitas%2FPat%C3%AA%20de%20frango">Livro de receitas/Patê de frango</a>]].</span >
+I meant [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikibooks%3Apt%3ALivro%20de%20receitas%2FPat%C3%AA%20de%20frango">wikibooks:pt:Livro de receitas/Patê de frango</a>]]. See also the history of both pages
+<a href="http://pt.wikibooks.org/w/index.php?title=Categoria:Pat%C3%AAs_e_pastas&amp;action=history&amp;uselang=en">http://pt.wikibooks.org/w/index.php?title=Categoria:Pat%C3%AAs_e_pastas&amp;action=history&amp;uselang=en</a>
+<a href="http://pt.wikibooks.org/w/index.php?title=Livro_de_receitas/Patê_de_frango&amp;action=history&amp;uselang=en">http://pt.wikibooks.org/w/index.php?title=Livro_de_receitas/Patê_de_frango&amp;action=history&amp;uselang=en</a></pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-04 07:09:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5451#c10">comment #10</a>)
+<span class="quote">&gt; We could just delete the new page and recreate it making sure to indicate the
+&gt; author properly in the edit summary, but this is not the ideal solution:
+&gt; authors cited in this way are not properly cited in the PDF files generated by
+&gt; collection extension</span >
+
+This is not relevant. The terms of use say that it's fair to add a link to the original page. Otherwise, it would be impossible to translate pages or move text from a page to another one.
+In theory, you probably could transwiki the category in some other wiki on a random namespace and transwiki it back to you destination page, but it's definitely not worth the effort.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sam Reed (reedy)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-02-24 15:04:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Moving of category not possible"
+   href="show_bug.cgi?id=34682">Bug 34682</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MA</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-25 22:34:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that this might get done using the same system that the Translate Extension uses: a FuzzyBot for categories. An admin moves the page and then the extension account, which depends from the JobQueue, updates the pages where the old category was present to the new name. That'd automate the process and we'll be able to move the page and the history.
+
+Another possibility would be to reinvent how categories are added to the articles. If we didn't had to write [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AFoo">:Category:Foo</a>]] on each article we want to categorize, but if it were a special page or something similar, category changes and category additions, removals and renames would be quick and automatic.
+
+Hope that it helps. Regards.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-03 23:02:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 111096 had a related patch set uploaded by Jackmcbarn:
+Allow moving category pages
+
+<a href="https://gerrit.wikimedia.org/r/111096">https://gerrit.wikimedia.org/r/111096</a></pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-09 17:22:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 111096 merged by jenkins-bot:
+Allow moving category pages
+
+<a href="https://gerrit.wikimedia.org/r/111096">https://gerrit.wikimedia.org/r/111096</a></pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">James Forrester</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-09 18:04:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Woohoo.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-09 22:58:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When moving a category descrition page, it cannot leave a simple #redirect[[]] there (of course this should be avoided because there will still be pages in the category that the hard redirect will not let us see easily.
+
+So after moving a category there should remain a *soft* redirect.
+
+One good soludion would be that #REDIRECT link, left in a category page after the ove, could become a *soft* redirect too, and tht it could be rendered automatically using the templates configurable on the wiki.
+
+This way, it would no longer be necessary to edit the old category page to insert the soft redirction banner the basic #REDIRECT could remain there and would be fully enough.
+
+Note that in many wikis, the category soft redirect banner templates do more than just display ing the link to the new category: they also list the soft-redirected in a maintenance category containing all redirected categories, and also look at the number of pages in listed in the redirected category to see if it is empty. As long as the redirected category is not empty, the soft redirected category also becomes a subcategory of the target category (and there it appears with an index key like a backward arrow, and that non-emty category is also listed in another maintenance category).
+
+Once the redirected category becomes empty, the redirected category would no longer be listed in the new category, and would be removed from the maintenance category for non-empty redirected categories this check should be done by MediaWiki when savng pages (MEdiaWiki should compare the list of categories in the existing version and in the new version to see how to update the categories) without forcing us to use a null-edit in the redirected category because it is now empty (this would save time to those that maintain categories).
+
+In summary, Mdiawiki should then :
+
+- use #REDIRECT links like other renamed pages (no need to insert a banner template) - note that some bots will need to be updated to detect the suggested target to use (they know that the category is redirected as it is listed in a maintenance category for that, but to know the target, they need to parse the category page to detected the banner template: this parsing would be simplified a lot if using onky #REDIRECT).
+
+- no longer go to to the new category automaticaly when following an existing wikilink (???)
+
+- propose automatically to rename the category used when editing pages using the old category, when saving the page.
+
+- MEdiaWiki would render #REDIRECT links in soft-redirected category pages with a configurable banner template (possibly stored now in the MediaWiki: namespace instead of the existing Template: namespace; with variable names).
+
+- MediaWiki would also make the necessary arrangement for category maintenance (or this could be done in the code used in the configurable banner template, ike it is done today).</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bartosz Dziewoński</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-09 23:00:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Philippe Verdy from <a href="show_bug.cgi?id=5451#c18">comment #18</a>)
+<span class="quote">&gt; When moving a category descrition page, it cannot leave a simple
+&gt; #redirect[[]] there (of course this should be avoided because there will
+&gt; still be pages in the category that the hard redirect will not let us see
+&gt; easily.</span >
+
+Of course it can.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-09 23:39:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Bartosz Dziewoński from <a href="show_bug.cgi?id=5451#c19">comment #19</a>)
+<span class="quote">&gt; (In reply to Philippe Verdy from <a href="show_bug.cgi?id=5451#c18">comment #18</a>)
+&gt; &gt; When moving a category descrition page, it cannot leave a simple
+&gt; &gt; #redirect[[]] there (of course this should be avoided because there will
+&gt; &gt; still be pages in the category that the hard redirect will not let us see
+&gt; &gt; easily.
+&gt; 
+&gt; Of course it can.</span >
+
+Of course NO. May be currently yes, but obvisously what is done is wrong because whn you follow a category link at the botto, of an article, you won't find that article in the displayed category, because the #REDIRECT is a **hard** redirect. This puzzles lot of people and that's why we have used doft redirects instead.
+
+All this topic means nothing if we can rename categories just as today, while leaving a #REDIRECT than performs hard redirects without takeing care of pages and subcategories listed there.
+
+All my comment is about making #REDIRECT in a categpry page to rendered as a soft redirect.
+
+If this confuses scripts, we could use another keyword such as #SOFTREDIRECT and renaming a category would use it for the created new page replacing the old category page that has been moved.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Mark Vandenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-10 00:02:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Philippe Verdy from <a href="show_bug.cgi?id=5451#c18">comment #18</a>)
+<span class="quote">&gt; When moving a category descrition page, it cannot leave a simple
+&gt; #redirect[[]] there</span >
+
+It can and it should!
+
+However, if you look at the commit message on <a href="https://gerrit.wikimedia.org/r/#/c/111096/">https://gerrit.wikimedia.org/r/#/c/111096/</a>, the author has very kindly provided 'category-move-redirect-override', which allows the default behaviour to be overriden.
+
+Rather than alter how a #REDIRECT works, I think the focus should be on improving other real issues that now appear because categories can be moved.
+
+<span class="quote">&gt; there will
+&gt; still be pages in the category that the hard redirect will not let us see
+&gt; easily.</span >
+
+<a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Automatic category redirects"
+   href="show_bug.cgi?id=3311">bug 3311</a>
+
+Another way to improve the situation is for the output of the target (reached via a redirect) to say more than 'redirected from [category:old category]'.  If automatic category member moving is not implemented, it could say 'redirected from [category:old category] which has 10 members', which alerts the reader to the fact that they should visit the old category.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-10 00:20:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to John Mark Vandenberg from <a href="show_bug.cgi?id=5451#c21">comment #21</a>)
+<span class="quote">&gt; Another way to improve the situation is for the output of the target
+&gt; (reached via a redirect) to say more than 'redirected from [category:old
+&gt; category]'.  If automatic category member moving is not implemented, it
+&gt; could say 'redirected from [category:old category] which has 10 members',
+&gt; which alerts the reader to the fact that they should visit the old category.</span >
+
+That's clearly not needed ! We don't have to use any template in the target category, only the soft-redirected category uses a template that will automatically recategorize as a subcategory of the target category, using a sort key listing it with an index character like a backward arrow.
+
+I don't see any rationale for modifying the target category (i.e. the former category page that has been moved). Listing the older category as a subcategory, as long as it is not empty, is enough !!! (and this works well in Commons, Meta-Wiki, Wikipedia... except that sometime we need to null-edit the empty soft-redirected category to unlist it from the target category and remove if from the maintenance category listing non-empty soft-redirected categories)</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Mark Vandenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-10 00:52:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Philippe Verdy from <a href="show_bug.cgi?id=5451#c22">comment #22</a>)
+<span class="quote">&gt; (In reply to John Mark Vandenberg from <a href="show_bug.cgi?id=5451#c21">comment #21</a>)
+&gt; &gt; Another way to improve the situation is for the output of the target
+&gt; &gt; (reached via a redirect) to say more than 'redirected from [category:old
+&gt; &gt; category]'.  If automatic category member moving is not implemented, it
+&gt; &gt; could say 'redirected from [category:old category] which has 10 members',
+&gt; &gt; which alerts the reader to the fact that they should visit the old category.
+&gt; 
+&gt; That's clearly not needed ! We don't have to use any template in the target
+&gt; category, only the soft-redirected category uses a template that will
+&gt; automatically recategorize as a subcategory of the target category, using a
+&gt; sort key listing it with an index character like a backward arrow.
+&gt; 
+&gt; I don't see any rationale for modifying the target category (i.e. the former
+&gt; category page that has been moved).</span >
+
+I only suggested a possible improvement to the *automated* 'redirected from' message.
+
+<span class="quote">&gt; Listing the older category as a
+&gt; subcategory, as long as it is not empty, is enough !!! (and this works well
+&gt; in Commons, Meta-Wiki, Wikipedia... except that sometime we need to
+&gt; null-edit the empty soft-redirected category to unlist it from the target
+&gt; category and remove if from the maintenance category listing non-empty
+&gt; soft-redirected categories)</span >
+
+This is a solution which will continue to work.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5451#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-15 06:18:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Added to <a href="https://www.mediawiki.org/wiki/MediaWiki_1.24">https://www.mediawiki.org/wiki/MediaWiki_1.24</a></pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5451&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5451">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5451">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5451">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5451&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5451" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5451&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419365424-9eSP-AGcv2FzGEcjHCWxOq4mIdfkdEdNPjxBhmoOr50">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

@@ -1,0 +1,1846 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5724 &ndash; Add direction marks to stop some annoying problems</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5724&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5724">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5724">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5724">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5724 – Add direction marks to stop some annoying problems",  
+                             "show_bug.cgi?id=5724" );
+        document.title = "Bug 5724 – Add direction marks to stop some annoying problems";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5724 – Add direction marks to stop some annoying problems", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Special_pages bz_bug_5724 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2006-07-05 20:00:41 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2006-07-05 20:00:41">
+  <input type="hidden" name="longdesclength" value="22">
+  <input type="hidden" name="id" value="5724">
+  <input type="hidden" name="token" value="1419365834-3camXIDNtPfWOpk04OpbHjuiJhiPEzPOtUDTY_n1aO4">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5724"><b>Bug&nbsp;5724</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Add direction marks to stop some annoying problems</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Add direction marks to stop some annoying problems
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Add direction marks to stop some annoying problems', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Special pages
+    
+    (<a href="buglist.cgi?component=Special%20pages&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       trivial<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5724">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5724#vote_5724">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Editing RTL article confuses RC"
+   href="show_bug.cgi?id=3016">3016</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=3016">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RTL/bidirectional issues (tracking)"
+   href="show_bug.cgi?id=745">rtl</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5724&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5724">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-04-26 12:28 UTC by <span class="vcard"><span class="fn">Nadav Perez</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2006-07-05 20:00 UTC 
+      (<a href="show_activity.cgi?id=5724">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>3 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="gangleri">gangleri</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="tietew-mediazilla">tietew-mediazilla</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1646"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch (trunk)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (795 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_1646"
+               title="Go to the comment associated with the attachment">2006-05-03 08:18 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1646&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1709"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch v2 (trunk)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.44 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1709"
+               title="Go to the comment associated with the attachment">2006-05-11 17:08 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1709&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1713"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch v3 (trunk)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.68 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1713"
+               title="Go to the comment associated with the attachment">2006-05-12 15:32 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1713&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1793"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch if Bug 6100 is not fixed</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.40 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1793"
+               title="Go to the comment associated with the attachment">2006-05-19 19:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1793&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1866"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch if Bug 6100 is fixed</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.01 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1866"
+               title="Go to the comment associated with the attachment">2006-05-31 19:23 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1866&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=1937"
+               title="View the content of the attachment">
+          <b>Patch (trunk)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.42 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1937"
+               title="Go to the comment associated with the attachment">2006-06-11 17:28 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1937&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (5)
+        </span>
+        <a href="attachment.cgi?bugid=5724&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nadav Perez</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-26 12:28:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When displaying a latin article name AND a latin user name, the editor's
+username apears to the right of the article name (between namspace and article
+name), breaking normal reading order and making the username unclickable.
+a simple rtl mark after the article name should solve this.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-26 14:38:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I suggest to add a RTL/LTR mark (depending on the site direction, see the use of
+the arrows in the double redirects special page) in such places. RLM is between
+the following A and B: A‏B; LRM is between the following A and B: A‎B. You can
+also use the entities &amp;rlm; and &amp;lrm;.
+
+A patch may come soon. Please fix it also in REL1_6.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-26 15:11:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+Please see also
+<a href="http://www.anubite.co.uk/mediawiki/head-rtl/index.php/Mw16:Special_pages/%21list">http://www.anubite.co.uk/mediawiki/head-rtl/index.php/Mw16:Special_pages/%21list</a>
+<a href="http://www.anubite.co.uk/mediawiki/head-rtl/index.php/template:Listspecial">http://www.anubite.co.uk/mediawiki/head-rtl/index.php/template:Listspecial</a>
+<a href="http://epov.org/wd-gemet/index.php?title=Template:listspecial&amp;action=edit">http://epov.org/wd-gemet/index.php?title=Template:listspecial&amp;action=edit</a>
+
+The method is quite stable regarding the position of list items with variable /
+unpredictable LTR / RTL / bidi content in lists
+
+a) Please start with the lines with &amp;lrm;|rlm;
+b) In order to place unknown (translated / untranslated) MediaWiki messages in a
+certain list place you can / should embed them in 
+&lt;span dir=&quot;ltr|rtl&quot; &gt;message or field&lt;/span&gt;&amp;lrm;&amp;rlm;
+c) Please define the directionality of character sequences which have bidi
+neutral directionality as space, &quot;(&quot;, &quot;|&quot;, &quot;)&quot;, &quot;[&quot;, &quot;]&quot; etc. with a ending
+&amp;lrm;|&amp;rlm;
+d) so far I have seen only timestamps using LTR numbers but thing about
+requirements from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Timestamps not rendering in Bangla numerals in bn-wiki"
+   href="show_bug.cgi?id=5679">Bug 5679</a>: Timestamps not rendering in Bangla numerals in bn-wiki
+
+Good luck!
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-03 08:18:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1646" name="attach_1646" title="Patch (trunk)">attachment 1646</a> <a href="attachment.cgi?id=1646&amp;action=edit" title="Patch (trunk)">[details]</a></span>
+Patch (trunk)
+
+It's a very small patch, but it works on Recentchanges, Watchlist and
+Recentchangeslinked. Please check it in.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-03 08:21:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The patch is based on a work of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14011" title="revision 14011 in SVN">r14011</a> which was done only in trunk, so there
+won't be a patch for REL1_6.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-03 09:47:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5724#c4">comment #4</a>)
+<span class="quote">&gt; The patch is based on a work of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14011" title="revision 14011 in SVN">r14011</a> which was done only in trunk, so there
+&gt; won't be a patch for REL1_6.</span >
+
+Thanks Rotem Liss!
+Unfortunately <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14011" title="revision 14011 in SVN">r14011</a> does not cover all cases. See
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Improper list alignment with Unicode Character 'ARABIC DAMMA' (U+064F)"
+   href="show_bug.cgi?id=5807">Bug 5807</a>: Improper list alignment with Unicode Character 'ARABIC DAMMA' (U+064F)</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-03 09:58:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5724#c5">comment #5</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=5724#c4">comment #4</a>)
+&gt; &gt; The patch is based on a work of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14011" title="revision 14011 in SVN">r14011</a> which was done only in trunk, so there
+&gt; &gt; won't be a patch for REL1_6.
+&gt; 
+&gt; Thanks Rotem Liss!
+&gt; Unfortunately <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14011" title="revision 14011 in SVN">r14011</a> does not cover all cases. See
+&gt; <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Improper list alignment with Unicode Character 'ARABIC DAMMA' (U+064F)"
+   href="show_bug.cgi?id=5807">Bug 5807</a>: Improper list alignment with Unicode Character 'ARABIC DAMMA' (U+064F)</span >
+
+I think it's not related.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-04 16:38:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please check in the patch, for this bug is very annoying in the RTL projects,
+but its fix is very small and cannot cause problems.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-04 17:25:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5724#c7">comment #7</a>)
+<span class="quote">&gt; Please check in the patch, for this bug is very annoying in the RTL projects,
+&gt; but its fix is very small and cannot cause problems.</span >
+
+Niklas works at Recentchanges.php .
+I proposed the changes from
+<a href="http://nike.users.idler.fi/dev/index.php?title=user:Gangleri/BiDi/sandbox&amp;diff=20065&amp;oldid=20061">http://nike.users.idler.fi/dev/index.php?title=user:Gangleri/BiDi/sandbox&amp;diff=20065&amp;oldid=20061</a>
+to fix
+<a href="http://nike.users.idler.fi/dev/index.php?title=Toiminnot:Recentchanges&amp;uselang=fa">http://nike.users.idler.fi/dev/index.php?title=Toiminnot:Recentchanges&amp;uselang=fa</a>
+<a href="http://nike.users.idler.fi/dev/index.php?title=Toiminnot:Recentchanges&amp;uselang=he">http://nike.users.idler.fi/dev/index.php?title=Toiminnot:Recentchanges&amp;uselang=he</a>
+<a href="http://nike.users.idler.fi/dev/index.php?title=Toiminnot:Recentchanges&amp;uselang=de">http://nike.users.idler.fi/dev/index.php?title=Toiminnot:Recentchanges&amp;uselang=de</a>
+
+Hope to get this fixed and that more patches will come soon:
+<a href="http://nike.users.idler.fi/betawiki/Luokka:Patch/BiDi">http://nike.users.idler.fi/betawiki/Luokka:Patch/BiDi</a>
+and later also other pages as
+<a href="http://nike.users.idler.fi/dev/index.php?title=%D7%90&amp;action=history&amp;uselang=he">http://nike.users.idler.fi/dev/index.php?title=%D7%90&amp;action=history&amp;uselang=he</a>
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-11 17:08:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1709" name="attach_1709" title="Patch v2 (trunk)">attachment 1709</a> <a href="attachment.cgi?id=1709&amp;action=edit" title="Patch v2 (trunk)">[details]</a></span>
+Patch v2 (trunk)
+
+I've created a new, improved patch, which adds two more direction marks in the
+right places. The three direction marks are added at the following places (the
+explanations assume you use an RTL wiki, but they also apply to LTR wikis if
+you read &quot;RTL&quot; instead of &quot;LTR&quot;):
+1. Before the edit summary, to prevent confusion when both the user name and
+the edit summary start is LTR.
+2. Before and after the user name in the signatures, to prevent confusion when
+both the end of sentence and the user name are LTR, or when both the user name
+and the date/time are LTR.
+3. After the user name in the changes list (recentchanges, recentchangeslinked,
+watchlist, etc.), to prevent the very popular and very, very annoying confusion
+when both the user name and the page name are LTR, and the smaller confusion
+when both the user name and the date/time are LTR.
+These three fixes stop the annoying problems – especially the third one –
+and make no harm as far as I've checked.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-12 15:32:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1713" name="attach_1713" title="Patch v3 (trunk)">attachment 1713</a> <a href="attachment.cgi?id=1713&amp;action=edit" title="Patch v3 (trunk)">[details]</a></span>
+Patch v3 (trunk)
+
+This patch also does the following things:
+* Documents the function Language::getDirMark, which was not documented.
+* Replaces the entities with real marks in Language::getDirMark, to prevent
+problems when the HTML is not parsed (edit summaries), or when editing the page
+with signatures (a hidden character isn't annoying to see like an entity).
+* Adds a mark between the edit summary and the log action text in the recent
+changes (in the last patch it wasn't possible, because the entities, which were
+not parsed, were used).
+
+Please check this patch in, because the problems are very annoying.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-19 19:19:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1793" name="attach_1793" title="Patch if Bug 6100 is not fixed">attachment 1793</a> <a href="attachment.cgi?id=1793&amp;action=edit" title="Patch if Bug 6100 is not fixed">[details]</a></span>
+Patch if <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">Bug 6100</a> is not fixed
+
+This patch also adds the direction mark:
+* Between the image file name and the info about it, because the image
+extension is most likely in English, and so is the number of kilobytes in the
+info, and it will confuse the text direction and make the link to the image
+unclickable in Gecko browsers.
+* Between the user name and the log entry in the log page, as in the move page,
+a user in English moves a page in English may confuse the direction.
+Please check this patch in, the bug is very annoying but the patch is small.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-20 14:50:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Editing RTL article confuses RC"
+   href="show_bug.cgi?id=3016">Bug 3016</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Pablo Saratxaga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-26 23:28:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think Lang should be used instead of LangCont</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-27 07:03:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5724#c13">comment #13</a>)
+<span class="quote">&gt; I think Lang should be used instead of LangCont</span >
+
+I don't think so, as the page direction is not changed when the language is
+changed (just another bug, because the whole page direction should be changed,
+although the content itself should be in the content direction).</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Pablo Saratxaga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-28 22:52:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I mean for the dirmar, it should be wgLang-&gt;DirMark(), as the prupose of those
+is to fix the ordering of the elements of the line for the *user language*.
+
+In the patch for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">bug #6100</a> I put much more dirmark (from Lang, not ContLang) in
+all the lists, logs, etc. between the different elements, so they show in the
+proper ordering according to user language directionality.
+Additionally, article links get enclosed in &lt;span dir=ltr|rtl&gt; &lt;/span&gt; in the
+case when wiki direction is different from user language direction (that way,
+the article name are displayed correctly in those list, logs, etc)
+
+I agree that in getUserSig() ContLang should be used, but in all other cases, it
+should be Lang instead.
+
+Try testing viewing an RTL wiki with a uselang in LTR; or the other way, and you
+will see that the dirmarks should indeed be in the user language directionality
+not in the wiki directionality.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-29 18:28:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5724#c15">comment #15</a>)
+<span class="quote">&gt; I mean for the dirmar, it should be wgLang-&gt;DirMark(), as the prupose of those
+&gt; is to fix the ordering of the elements of the line for the *user language*.
+&gt; 
+&gt; In the patch for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">bug #6100</a> I put much more dirmark (from Lang, not ContLang) in
+&gt; all the lists, logs, etc. between the different elements, so they show in the
+&gt; proper ordering according to user language directionality.
+&gt; Additionally, article links get enclosed in &lt;span dir=ltr|rtl&gt; &lt;/span&gt; in the
+&gt; case when wiki direction is different from user language direction (that way,
+&gt; the article name are displayed correctly in those list, logs, etc)
+&gt; 
+&gt; I agree that in getUserSig() ContLang should be used, but in all other cases, it
+&gt; should be Lang instead.
+&gt; 
+&gt; Try testing viewing an RTL wiki with a uselang in LTR; or the other way, and you
+&gt; will see that the dirmarks should indeed be in the user language directionality
+&gt; not in the wiki directionality.</span >
+
+If I use a Hebrew wiki, and watch in the English language, the whole page
+remains *RTL*, and the parts of the text I want to avoid confusion with remain
+RTL. Of course other parts of the interface are confused, but I don't try to
+avoid it this patch. If a user with an English name edits a page with an English
+name in a Hebrew wiki, they are confused, and I want to use RLM to avoid it;
+however, if I change the user language to English (by &quot;uselang&quot;, or by the
+preferences), the page direction is not changed, and the user name and page are
+still confused. Then I use the English direction mark – LRM – but it doesn't
+solve the problem. I have to use $wgContLang since the page direction is set by
+$wgContLang; and although there are some confusions if I use, for example,
+<a href="http://he.wikipedia.org/w/index.php?title=Special:Recentchanges&amp;uselang=en">http://he.wikipedia.org/w/index.php?title=Special:Recentchanges&amp;uselang=en</a> –
+they are not related to this bug, but are another bug should be fixed.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-31 19:23:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1866" name="attach_1866" title="Patch if Bug 6100 is fixed">attachment 1866</a> <a href="attachment.cgi?id=1866&amp;action=edit" title="Patch if Bug 6100 is fixed">[details]</a></span>
+Patch if <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">Bug 6100</a> is fixed
+
+Now that we change the page direction by the user language, we should use
+$wgLang. Using it.
+
+Please commit this fix – it is very needed and makes no harm.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 09:01:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=1793" name="attach_1793" title="Patch if Bug 6100 is not fixed">attachment 1793</a> <a href="attachment.cgi?id=1793&amp;action=edit" title="Patch if Bug 6100 is not fixed">[details]</a></span>
+Patch if <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">Bug 6100</a> is not fixed
+
+If <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">Bug 6100</a> is not fixed, check in this patch.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 09:01:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=1866" name="attach_1866" title="Patch if Bug 6100 is fixed">attachment 1866</a> <a href="attachment.cgi?id=1866&amp;action=edit" title="Patch if Bug 6100 is fixed">[details]</a></span>
+Patch if <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">Bug 6100</a> is fixed
+
+If <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow different directionality (rtl/ltr) for user interface and wiki content"
+   href="show_bug.cgi?id=6100">Bug 6100</a> is fixed, commit this patch instead.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-11 17:28:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1937" name="attach_1937" title="Patch (trunk)">attachment 1937</a> <a href="attachment.cgi?id=1937&amp;action=edit" title="Patch (trunk)">[details]</a></span>
+Patch (trunk)
+
+Just commit that one, it fixes all the problems.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5724#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-05 20:00:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixed everything, except for the signature issue.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5724&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5724">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5724">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5724">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5724&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5724" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5724&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419365834-nZ7-Uq-ZQdHv8OoEgL4s8BIA38m44Hhh4k8g7j82BgQ">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

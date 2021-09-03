@@ -1,0 +1,3120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5881 &ndash; Labeled Section Transclusion</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5881&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5881">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5881">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5881">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5881 – Labeled Section Transclusion",  
+                             "show_bug.cgi?id=5881" );
+        document.title = "Bug 5881 – Labeled Section Transclusion";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5881 – Labeled Section Transclusion", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki_extensions bz_component_Extensions_requests bz_bug_5881 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 09:21:25 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 09:21:25">
+  <input type="hidden" name="longdesclength" value="51">
+  <input type="hidden" name="id" value="5881">
+  <input type="hidden" name="token" value="1419366070-8mUYFd-q3RQon99BdJX_C7B89gDRfEaDpwbutwjMhJo">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5881"><b>Bug&nbsp;5881</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Labeled Section Transclusion</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Labeled Section Transclusion
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Labeled Section Transclusion', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Extensions requests
+    
+    (<a href="buglist.cgi?component=Extensions%20requests&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5881">9 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5881#vote_5881">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://www.mediawiki.org/wiki/Labeled_Section_Transclusion"><span title="http://www.mediawiki.org/wiki/Labeled_Section_Transclusion">http://www.mediawiki.org/wiki/Labeled...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Make {{subst:}} be able to include sections of pages"
+   href="show_bug.cgi?id=6785">6785</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Enable LabeledSectionTransclusion extension on WIkimedia wikis"
+   href="show_bug.cgi?id=9514">9514</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=6785,9514">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - aggregated Labelled Section Transclusion"
+   href="show_bug.cgi?id=9559">9559</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - interwiki transcluding with part of the page"
+   href="show_bug.cgi?id=14724">14724</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5881&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5881">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-05-09 08:45 UTC by <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 09:21 UTC 
+      (<a href="show_activity.cgi?id=5881">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>7 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="federicoleva">federicoleva</option>
+                <option value="gangleri">gangleri</option>
+                <option value="lkcl">lkcl</option>
+                <option value="mediazilla">mediazilla</option>
+                <option value="stanley">stanley</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+                <option value="wmbugs">wmbugs</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2375"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">my implementation, from my local installation</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.65 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2375"
+               title="Go to the comment associated with the attachment">2006-09-20 19:03 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2375&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2467"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">updated patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.19 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2467"
+               title="Go to the comment associated with the attachment">2006-10-06 19:29 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2467&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2468"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">test cases</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.91 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2468"
+               title="Go to the comment associated with the attachment">2006-10-06 19:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2468&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2469"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">enhancement to allow indivual markers to subst from templates.</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.26 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2469"
+               title="Go to the comment associated with the attachment">2006-10-06 19:54 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2469&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2470"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">additional test cases for new enhancement</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.29 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2470"
+               title="Go to the comment associated with the attachment">2006-10-06 19:55 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2470&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2631"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">reimplemented as an extension</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.89 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2631"
+               title="Go to the comment associated with the attachment">2006-11-03 20:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2631&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2632"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">regression tests for extension</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.62 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2632"
+               title="Go to the comment associated with the attachment">2006-11-03 20:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2632&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2657"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">reformat, work on edit links a bit.</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.61 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2657"
+               title="Go to the comment associated with the attachment">2006-11-07 23:15 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2657&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a9" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2673"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">extension</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.18 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2673"
+               title="Go to the comment associated with the attachment">2006-11-10 21:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2673&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a10" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2674"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">regression tests with closing /</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.99 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2674"
+               title="Go to the comment associated with the attachment">2006-11-10 22:38 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2674&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a11" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2709"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">new extension with Nick's fixes</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.01 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2709"
+               title="Go to the comment associated with the attachment">2006-11-14 16:52 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2709&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a12" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2711"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">extension, with better hook for recursive parsing.</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.02 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2711"
+               title="Go to the comment associated with the attachment">2006-11-15 23:42 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2711&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a13" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2712"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">regerssion tests (+ a few more)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.08 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2712"
+               title="Go to the comment associated with the attachment">2006-11-15 23:55 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2712&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a14" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2713"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">regression tests</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.18 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2713"
+               title="Go to the comment associated with the attachment">2006-11-16 00:20 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2713&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a15" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=2715"
+               title="View the content of the attachment">
+          <b>extension, with fixed quoting</b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.56 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2715"
+               title="Go to the comment associated with the attachment">2006-11-16 18:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2715&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a16" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=2716"
+               title="View the content of the attachment">
+          <b>regression tests (+2 more)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.77 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2716"
+               title="Go to the comment associated with the attachment">2006-11-16 18:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2716&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a17" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=2853"
+               title="View the content of the attachment">
+          <b>Patch for bug in wfLstInclude() when article doesn't have any labeled section for the given label</b></a>
+
+          <span class="bz_attach_extra_info">
+              (652 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_2853"
+               title="Go to the comment associated with the attachment">2006-12-12 23:46 UTC</a>,
+
+            <span class="vcard"><span class="fn">Cyril Dangerville</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2853&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (14)
+        </span>
+        <a href="attachment.cgi?bugid=5881&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 08:45:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Request for a function that allows calling up a predefined *portion* of a page,
+without transcluding any of the rest of the wiki text on that page.
+
+Beginning and end points of sections to be made available for individual
+transclusion could be determined by using marks such as in the following
+example, in which &quot;section 1&quot; could be individually transcluded on any other
+wiki page:
+
+Beginning of section 1: &lt;span id=&quot;bookmark&quot;&gt;start1&lt;/span&gt;
+
+End of section 1: &lt;span id=&quot;&quot;&gt;end1&lt;/span&gt;.
+
+Those are just examples. Any section of text marked off with &lt;span
+id=&quot;x&quot;&gt;&lt;/span&gt; at its beginning and end could be transcluded individually.
+
+Please note that this is intuitively the *opposite* of &lt;noinclude&gt;&lt;/noinclude&gt;.
+These *exclude* parts of a template not meant for transclusion. The suggestion
+here is for designating exactly what *will* be included, rather than what will
+*not* be included.
+
+Discussion of this began with the formatting of Bible verses at Wikisource.
+
+See
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=http%3A%2F%2Fen.wikisource.org%2Fwiki%2FWikisource%3AScriptorium%23Technical_Question%3A_.22Bookmarks.22">http://en.wikisource.org/wiki/Wikisource:Scriptorium#Technical_Question:_.22Bookmarks.22</a>]]
+
+and
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=http%3A%2F%2Fen.wikisource.org%2Fwiki%2FWikisource%3AScriptorium%23More_radical_technical_bookmark_question">http://en.wikisource.org/wiki/Wikisource:Scriptorium#More_radical_technical_bookmark_question</a>]]</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 10:03:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I apologize for a silly error above, which should read:
+
+Beginning of section 1: &lt;span id=&quot;start1&quot;&gt;&lt;/span&gt;
+
+End of section 1: &lt;span id=&quot;end1&quot;&gt;&lt;/span&gt;
+
+The point is that sections could be defined using whatever labels make sense.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phil Boswell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 10:23:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Isn't this already accomplished using the &lt;onlyinclude&gt; tag?
+
+Can you have more than one of those on a page?</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 10:32:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This would be much more flexible, allowing the definition of sections 1, 2, 5a,
+78, a, b, c - any number of different sections, each with its appropriate tag name.
+
+In Wikisource, these could be individual chapters of books (where the whole book
+is on one page), single numbered paragraphs of Aristotle, or (as in the recent
+discussion) individual verses of the bible.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jesse (Pathoschild)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 10:51:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Templates might be made to recognize sections, which would at least partially
+accomplish the above. For example, {{foo#Section_78}} would transclude
+everything within ==Section 78== on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo">Foo</a>]].</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoran Obradovic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 10:52:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This can already be done with parser functions, like #if and #switch.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 10:59:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks, Jesse, that is a good tool already available. I didn't know that was
+possible. It is a bit clunky, however, in its being dependant on == === type
+sections.
+
+Thanks too Zoran, but please explain what you mean?</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phil Boswell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 11:06:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The problem with transcluding sections is whether you include sub-sections.
+
+For example, if ==Section 78== includes ===Section 78.1=== should it be possible to transclude 
+just that portion between those two lines? or should transcluding &quot;Section 78&quot; always include 
+all sub-sections?
+
+In other words, if your source page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo">foo</a>]] looks like:
+...
+==Section 78 ==
+aaaaa
+===Section 78.1===
+bbbbb
+==Section 79 ==
+...
+should {{foo#Section 78}} cover the &quot;aaaaa&quot; AND &quot;bbbbb&quot; text or just the former? should you be 
+able to specify just the former?
+
+Also, does your partial transclusion include the associated section heading? Does 
+{{foo#Section 78}} start with &quot;==Section 78==&quot; or not? If not, then what do you do with any 
+sub-section headers which might be included? Should they remain at the given level or be 
+adjusted to take account of their level relative to the &quot;top-level&quot; header being transcluded?</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 11:12:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Phil is right. Only exact markers placed at beginning and end would be able to
+define units of text without ambiguity.
+
+But still pardon me, what do #if and #switch accomplish here?</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoran Obradovic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 12:03:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >something like this should do exactly what you want:
+
+{{#ifeq:{{{section|name1}}}|name1|
+text of section 1
+}}
+
+{{#ifeq:{{{section|name2}}}|name2|
+text of section 2
+}}
+
+{{#ifeq:{{{section|name3}}}|name3|
+text of section 3
+}}
+</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zoran Obradovic</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 12:05:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe that wasn't clear enough. You put that code on the page from which you
+want to transclude text, and then transclude it with {{pagename}}, which will
+display all text, or with {{pagename|section=name}}, which will display only the
+section you want.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 13:56:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks. Is there a page that gives information on the #if and #switch functions?</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 14:16:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tried it, and it doesn't seem to work, but rather transcludes the entire page:
+
+User:Dovi/Bible (King James)/Genesis/45
+
+Have I made an error someplace?
+
+Also, I realized that by deliniating the text within the brackets (as in this
+suggestion), there is no way to allow for overlapping sections. *Independent*
+beginning and end markets would allow for theat.
+
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jesse (Pathoschild)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 16:40:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[In reply to <a href="show_bug.cgi?id=5881#c10">comment #10</a>] Zoran Obradovic's suggestion does technically work,
+but is far from sufficient to accomplish what Dovi is looking for. There are
+several limitations to using ParserFunctions for this: the contents of the page
+will be hidden on the page itself, since the parameter is not specified. This
+can be circumvented, but it's tedious and messy. Another limitation is that the
+pipe is used as a seperator in the ParserFunctions, so any pipe in the page will
+have to be escape with {{!}}. Further, it would be extremely messy to implement
+this on all pages, which is something that would need to be done to address the
+scope of Dovi's proposal. If this is to be accomplished, it would be much better
+to do so with new functionality.
+
+[In reply to <a href="show_bug.cgi?id=5881#c7">comment #7</a>] The expected behaviour when calling {{:foo#Section}}
+would be to include the section title. In those circumstances where this is not
+desireable, it could be removed using ParserFunctions (which are more suited to
+that particular task then to the greater proposal). Alternately, a new syntax as
+suggested by Dovi might be better suited for more control. We could implement
+this in the same general syntax as the Parserfunctions: &quot;{{#section:name|start}}
+[...] {{#section:name|end}}&quot;. This would have the benefit of being unambiguous,
+avoiding any confusion with anchors and actual &lt;span&gt; containers.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 18:39:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Jesse's final syntax suggestion:
+
+{{#section:name|start}} [...] {{#section:name|end}}
+
+sounds exactly like what I envisioned, but I had no idea how to express it as a
+code suggestion.
+
+The suggestion is clear and unambiguous. Plus it is completely flexible in terms
+of how the text may be divided (even allowing for complementary overlapping
+divisions such as exist in many classical texts).
+
+If such a function were implemented, it would not only be an extremely useful
+tool for Wikisource, but would probably find a great many positive
+implementations in other contexts as well.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 20:46:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Overlapping portions would interact very badly with formalized syntax;
+this is not likely to be supported.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-10 03:42:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The above syntax is not likely to be supported, or the use of it in overlapping
+ways?</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-10 03:43:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(Just to clarify: in the vast majority of cases, text sections are sequential
+anyways.)</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-31 07:24:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This proposal was unfortunately only clarified towards its end, and has been
+further clarified since the last comments in the discussion here.
+
+Current status is reflected here:
+
+<a href="http://en.wikisource.org/wiki/Wikisource:Labeled_section_transclusion">http://en.wikisource.org/wiki/Wikisource:Labeled_section_transclusion</a></pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-31 07:29:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Two further notes:
+
+1. This would also solve <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - extension request: &lt;intro&gt;; together with {{intro:page}} and &amp;action=intro"
+   href="show_bug.cgi?id=3626">bug 3626</a> (transclusion of article introductions).
+
+2. This bug should be closed here and reopened as &quot;Labeled section transclusion&quot;
+since we are no longer talking about ParserFunctions.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jennifer Zagurski</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-31 22:38:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is a very important feature for Wikisource as it will allow all sorts of
+comparitive texts to be created without the worry of errors in duplication.  As
+you can imagine the difficulties involved in making sure all instances are
+proofread equally in a text re-used in many places.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dovi Jacobs</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-20 11:04:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding the current coding suggestion from the URL:
+
+A. Mark off a section of text
+
+A section of text (an individual chapter, subsection of a chapter, a numbered
+paragraph in a classical text, an individual verse) might be marked off
+something like this:
+
+&lt;begin section=&quot;Paragraph 1&quot;/&gt; ...text of the section...&lt;end section=&quot;Paragraph 1&quot;/&gt;
+
+The slashes inside the tags are XML-style, which is similar to &lt;br/&gt;,
+&lt;references/&gt;, etc.
+
+NB: Sections may overlap (different sectioning mechanisms may be used within the
+same text), so a syntax where the end tag is ambiguous is not acceptable.
+[edit]
+
+B. Call up the section of text
+
+When calling up that section, it would be done like this:
+
+{{Text##Paragraph 1}}
+
+The double-## syntax is suggested because a single &quot;#&quot; has the problem of being
+normally used for regular wiki sections, so users might intuitively try
+transcluding sections and be confused when it doesn't work. That is why &quot;##&quot; is
+suggested as an alternative. Other non-title characters would work, too.
+
+For further information, see:
+<a href="http://en.wikisource.org/wiki/Wikisource:Labeled_section_transclusion">http://en.wikisource.org/wiki/Wikisource:Labeled_section_transclusion</a></pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-31 00:51:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Make {{subst:}} be able to include sections of pages"
+   href="show_bug.cgi?id=6785">Bug 6785</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-20 19:03:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2375" name="attach_2375" title="my implementation, from my local installation">attachment 2375</a> <a href="attachment.cgi?id=2375&amp;action=edit" title="my implementation, from my local installation">[details]</a></span>
+my implementation, from my local installation
+
+I've implemented this on my test installation, and copied a few test cases to
+wikisource, which are linked from the talk page referenced in the description.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-24 08:12:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You add a &lt;section /&gt; tag to the sanitizer. There is no such tag in HTML and
+thus it should not be in that list.
+
+Why is this needed at all? Instead of including a section, one could create a
+third article containing teh section and including it into both articles. This
+would avoid the introduction of even more markup.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jennifer Zagurski</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-24 16:37:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please read 
+
+<a href="http://en.wikisource.org/wiki/Wikisource:Labeled_section_transclusion">http://en.wikisource.org/wiki/Wikisource:Labeled_section_transclusion</a>
+
+And the talk page for many details as to why this function is needed.  The
+suggestion you make is one already used at the Hebrew Wikipedia (although
+instead of a third &quot;article&quot; they put it in the template namespace).   This
+method is outlined on the page I linked above along with several other
+alternatives.  The disadvantage listed there is &quot;This method is extremely
+labor-intensive, and also involves the creation of huge numbers of separate
+pages.&quot;  I would also like to add it makes proofreading very diffucult when you
+have to look up every sentance or two on a new page to proofread,  Basically it
+does not scale well. Imagine every verse in the Bible on a seperate page then
+multiply that times the seven or so seperate PD English translations available,
+then imagine proofreading such a montrosity!  
+
+Please anyone who thinks they have a better alternative read the above page on
+Wikisource and be sure we have not already considered this.
+
+</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-25 14:54:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5881#c24">comment #24</a>)
+<span class="quote">&gt; You add a &lt;section /&gt; tag to the sanitizer. There is no such tag in HTML and
+&gt; thus it should not be in that list.
+&gt; </span >
+
+This was done primarily to allow a section marker to be placed into a template,
+and allowed to pass through a normal transclusion; i.e. ot put &lt;section
+begin=discussion&gt; in one template and &lt;section end=discussion&gt; in another, So
+that a page that transcludes a lot of subpages could exclude all of the
+discussions, thus making for a much smaller transclusion.  
+
+This feature removes unused section markers when they're rendering, so it isn't
+necessary for the sanitizer to remove them
+
+It's not critical for the way it's used in WS, but it generally makes it more
+flexible and more useful.
+
+<span class="quote">&gt; Why is this needed at all? Instead of including a section, one could create a
+&gt; third article containing teh section and including it into both articles. This
+&gt; would avoid the introduction of even more markup.</span >
+
+That was my thought at first, too.  But we're not talking about one section;
+there's already a markup for that, &lt;onlyinclude&gt;.  But that won't work with
+multiple sections.  The editors have been understandably concerned about trying
+to manage the editing when each page is split into potentially hundreds of tiny
+articles, each of which is transcluded into two real articles.  
+
+Even if we did split everything up like this, we could wind up seeing the same
+kind of problems on article space in WS as we occasionally see in project space
+in W when a page consists of an unbounded number of transclusions.
+
+
+</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-06 19:29:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2467" name="attach_2467" title="updated patch">attachment 2467</a> <a href="attachment.cgi?id=2467&amp;action=edit" title="updated patch">[details]</a></span>
+updated patch
+
+I've decided to drop support for indirect LST (where begin/end can ceom from
+sepeate templates).
+
+It would be nice, but more work than I expected to get it working correctly,
+and not important enough to hold up other projects that are waiting for it.
+
+This obviates the Sanitizer changes, so this patch is simpler as well.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-06 19:31:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2468" name="attach_2468" title="test cases">attachment 2468</a> <a href="attachment.cgi?id=2468&amp;action=edit" title="test cases">[details]</a></span>
+test cases
+
+Now that I've been introduced to the regression testing system, I've ported the
+test cases I previously posted on ws.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-06 19:54:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2469" name="attach_2469" title="enhancement to allow indivual markers to subst from templates.">attachment 2469</a> <a href="attachment.cgi?id=2469&amp;action=edit" title="enhancement to allow indivual markers to subst from templates.">[details]</a></span>
+enhancement to allow indivual markers to subst from templates.
+
+OK, I can't transclude markers from templates, but with a small block op on the
+code, substing them will work.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-06 19:55:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2470" name="attach_2470" title="additional test cases for new enhancement">attachment 2470</a> <a href="attachment.cgi?id=2470&amp;action=edit" title="additional test cases for new enhancement">[details]</a></span>
+additional test cases for new enhancement</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-03 20:34:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2631" name="attach_2631" title="reimplemented as an extension">attachment 2631</a> <a href="attachment.cgi?id=2631&amp;action=edit" title="reimplemented as an extension">[details]</a></span>
+reimplemented as an extension
+
+
+This extension adds the &lt;section&gt; hook, and two parser functions, #lst to
+include a section, and #lstx to exclude. It only needs to be included from
+LocalSettings.php to be used.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-03 20:35:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2632" name="attach_2632" title="regression tests for extension">attachment 2632</a> <a href="attachment.cgi?id=2632&amp;action=edit" title="regression tests for extension">[details]</a></span>
+regression tests for extension
+
+These are the regression tests for this extension, and show most of its
+functionality.
+
+Note that this depends on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - add regression test support for parser functions"
+   href="show_bug.cgi?id=7801">bug 7801</a> to run the regression test, since parser
+functions currently can't be regression tested.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Thomas Kindig</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-07 22:26:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I attempted to use this extension with MediaWiki version 1.5.8. I have not been
+able to fathom the syntax change for setFunctionHook(), as I assume the
+undefined function has been replaced with another function.
+
+Fatal error: Call to undefined function: setfunctionhook() in
+/var/www/html/home/extensions/LabeledSectionTransclusion.php on line 18
+
+I don't mind updating the extension myself. I'm just not sure where to begin.
+Any advise appreciated.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-07 23:15:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2657" name="attach_2657" title="reformat, work on edit links a bit.">attachment 2657</a> <a href="attachment.cgi?id=2657&amp;action=edit" title="reformat, work on edit links a bit.">[details]</a></span>
+reformat, work on edit links a bit.
+
+I hadn't thought too much about supporting older versions, and don't have much
+experience with then; but I think this version should work and give you must of
+the functionality.
+
+There are two issues with these versions that I know about:
+1) I'm trying to do this with parser functions, since those work with subst:. 
+That is where the SetFunctionHook is used, which was introduced around 1.6.  I
+added a check to disable that in pre 1.6, and added a transclude tag, i.e.
+&lt;transclude page=mypage include=mysection&gt; (or exclude=mysection
+[replace=something]
+
+2) The recursive parsing function was introduced in 1.8; I've added a
+workaround for that.
+
+Of course, this is still in development, so any of that could change, but this
+should work.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Racine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-09 14:13:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >1- &#64;Kindig : This extention will only work with 1.8 and above.
+See here : <a href="http://www.mediawiki.org/wiki/Labeled_Section_Transclusion">http://www.mediawiki.org/wiki/Labeled_Section_Transclusion</a>
+
+2- So... I have tryed a couple of combination of tag and it does not work. What
+is the correct way of using this thing? In other words, what is the correct syntax?</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-09 16:25:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5881#c35">comment #35</a>)
+
+True; for now I'm more concerned with getting something we can use in wikisource
+than supporting a lot of versions.  But it should be possible to make at least
+some of it work in some older verions by checking the version number and
+switching the behavior appropriately.
+
+The main issues with older MWs are:
+
+1) Recursive parsing, to parse the markup in the template, changed in 1.8. 
+There is a workaround in the previous attachment that should allow this for
+older versions.
+
+2) Parser functions don't exist prior to 1.6 or 1.7, so the #lst syntax can't be
+used in older verions.  So while 1.7+ can use {{#lst:mypage|mysection}}, 1.5
+would use (in the previous attachment) would use &lt;transclude page=mypage
+section=mysection/&gt;, which should work for any version from 1.5 on.
+
+Regardless of which version you use, you mark a document with section tags, i.e.
+
+&lt;section begin=mysection/&gt;this is a section&lt;section end=mysection/&gt;, then
+transclude it with one of the above syntaxes.  Note that if you don't specify a
+namespace to transclude, the extension uses the main namespace; i.e.
+{{#lts:mypage... is different form {{#lts:template:mypage...
+
+<span class="quote">&gt; 1- &#64;Kindig : This extention will only work with 1.8 and above.
+&gt; See here : <a href="http://www.mediawiki.org/wiki/Labeled_Section_Transclusion">http://www.mediawiki.org/wiki/Labeled_Section_Transclusion</a>
+&gt; 
+&gt; 2- So... I have tryed a couple of combination of tag and it does not work. What
+&gt; is the correct way of using this thing? In other words, what is the correct</span >
+syntax?
+
+</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-09 17:23:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When introducing a new extension, and a new kind of extension at that, it's
+probably a good idea not to worry too much about supporting anything earlier
+than the current stable branch; so concentrate on support for trunk and 1.8.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-10 21:00:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2673" name="attach_2673" title="extension">attachment 2673</a> <a href="attachment.cgi?id=2673&amp;action=edit" title="extension">[details]</a></span>
+extension
+
+OK, cool; luckily, stable &amp; branch seem pretty similar w.r.t to this.
+
+So I seem to have found the right voodoo to transclude from an extension.  This
+version
+
+* handles sections correctly, with the right TOC &amp; edit links (whew!)
+* handles cycles correctly, changing the loop into a self link
+* drops (at least for now) non-parserfunction support, which couldn't do edit
+sections.
+
+Although I wish I understood noparse=true better, it does make things work,
+allowing it to parse in the site (although not in the regression tests); all my
+weird test cases look good.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-10 22:38:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2674" name="attach_2674" title="regression tests with closing /">attachment 2674</a> <a href="attachment.cgi?id=2674&amp;action=edit" title="regression tests with closing /">[details]</a></span>
+regression tests with closing /
+
+I've added the / to the &lt;section /&gt; tags; the current extension drops support
+for the non-well-formed version</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-14 16:52:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2709" name="attach_2709" title="new extension with Nick's fixes">attachment 2709</a> <a href="attachment.cgi?id=2709&amp;action=edit" title="new extension with Nick's fixes">[details]</a></span>
+new extension with Nick's fixes
+
+Implemented a few fixes recommended by Nick Jenkins:
+
+* add closing ?&gt;
+* rm some dead code
+* handle case where title is invalid.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-15 23:42:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2711" name="attach_2711" title="extension, with better hook for recursive parsing.">attachment 2711</a> <a href="attachment.cgi?id=2711&amp;action=edit" title="extension, with better hook for recursive parsing.">[details]</a></span>
+extension, with better hook for recursive parsing.
+
+Found a better hook for recursive parsing, so the parser can mark the headings
+for us.  This simplifies the code somewhat, and fixes the issues that Nick
+brought up.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-15 23:55:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2712" name="attach_2712" title="regerssion tests (+ a few more)">attachment 2712</a> <a href="attachment.cgi?id=2712&amp;action=edit" title="regerssion tests (+ a few more)">[details]</a></span>
+regerssion tests (+ a few more)
+
+Add Nick's test cases.	With improved parsing hooks in previous version, all
+tests work now.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-16 00:20:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2713" name="attach_2713" title="regression tests">attachment 2713</a> <a href="attachment.cgi?id=2713&amp;action=edit" title="regression tests">[details]</a></span>
+regression tests
+
+fix error in last (js) test.</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-16 18:33:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2715" name="attach_2715" title="extension, with fixed quoting">attachment 2715</a> <a href="attachment.cgi?id=2715&amp;action=edit" title="extension, with fixed quoting">[details]</a></span>
+extension, with fixed quoting
+
+Apparently, \Q..\E doesn't interpolate into variables, so call preg_quote()
+instead.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-16 18:35:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2716" name="attach_2716" title="regression tests (+2 more)">attachment 2716</a> <a href="attachment.cgi?id=2716&amp;action=edit" title="regression tests (+2 more)">[details]</a></span>
+regression tests (+2 more)
+
+Add test for transcluded section heading, since implementing that was a lot of
+the effort.
+
+Test quoting by transcluding a section called &quot;/&quot;, which produced warnings (and
+didn't work) before.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nick Jenkins</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-17 01:41:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Added to SVN in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/17736" title="revision 17736 in SVN">r17736</a>.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Cyril Dangerville</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-12 23:46:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2853" name="attach_2853" title="Patch for bug in wfLstInclude() when article doesn't have any labeled section for the given label">attachment 2853</a> <a href="attachment.cgi?id=2853&amp;action=edit" title="Patch for bug in wfLstInclude() when article doesn't have any labeled section for the given label">[details]</a></span>
+Patch for bug in wfLstInclude() when article doesn't have any labeled section for the given label
+
+Hi Mr Sanbeg, thanks for your extension! 
+I am testing some use of it in DynamicPageList2.
+I had just one bug when calling wfLstInclude($parser, $page, $sec) - directly
+from DPL2 - on a page (title=$page) that doesn't have any section with
+label=$sec. No match, so in particular, the $m[0] is empty, and therefore I get
+the warning &quot;Undefined offset: 0...&quot; (where the $m[0][0][1] appears).
+I know this is not the usual intended use of your extension, but when using
+DPL, you don't expect every page in the output list to have labeled sections
+for a given label.
+Anyway, I made a quick fix (see attachment) to deal with it. You may fix that
+better for SVN. Thanks.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-13 00:05:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Cool, thanks.
+
+It's supposed to just transclude an empty string when there's no section.  The
+heading offset code is new, so that bug is recent.  I've added your fix and a
+regression test so it won't break again to <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/18301" title="revision 18301 in SVN">r18301</a>.
+
+(In reply to <a href="show_bug.cgi?id=5881#c47">comment #47</a>)
+<span class="quote">&gt; Created an attachment (id=2853) [edit]
+&gt; Patch for bug in wfLstInclude() when article doesn't have any labeled section
+&gt; for the given label
+&gt; 
+&gt; Hi Mr Sanbeg, thanks for your extension! 
+&gt; I am testing some use of it in DynamicPageList2.
+&gt; I had just one bug when calling wfLstInclude($parser, $page, $sec) - directly
+&gt; from DPL2 - on a page (title=$page) that doesn't have any section with
+&gt; label=$sec. No match, so in particular, the $m[0] is empty, and therefore I get
+&gt; the warning &quot;Undefined offset: 0...&quot; (where the $m[0][0][1] appears).
+&gt; I know this is not the usual intended use of your extension, but when using
+&gt; DPL, you don't expect every page in the output list to have labeled sections
+&gt; for a given label.
+&gt; Anyway, I made a quick fix (see attachment) to deal with it. You may fix that
+&gt; better for SVN. Thanks.</span >
+
+</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-09 14:35:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Enable LabeledSectionTransclusion extension on WIkimedia wikis"
+   href="show_bug.cgi?id=9514">Bug 9514</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5881#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Sanbeg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-22 20:49:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Brion enabled it on *.wikisource.org and test.wikipedia.org.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5881&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5881">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5881">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5881">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5881&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5881" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5881&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419366070-bbPZPDsysPNfnHPIHni_mEhhveeJWc7MA38m5cPpt2w">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

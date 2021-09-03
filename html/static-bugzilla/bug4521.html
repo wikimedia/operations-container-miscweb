@@ -1,0 +1,2437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4521 &ndash; Colon (:) &amp; semicolon (;) shouldn't output as HTML definition list when used for indentation, boldfacing</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4521&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4521">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4521">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4521">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4521 – Colon (:) & semicolon (;) shouldn\'t output as HTML definition list when used for indentation, boldfacing",  
+                             "show_bug.cgi?id=4521" );
+        document.title = "Bug 4521 – Colon (:) & semicolon (;) shouldn\'t output as HTML definition list when used for indentation, boldfacing";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4521 – Colon (:) & semicolon (;) shouldn\'t output as HTML definition list when used for indentation, boldfacing", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_Parser bz_bug_4521 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-04 22:52:51 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-04 22:52:51">
+  <input type="hidden" name="longdesclength" value="40">
+  <input type="hidden" name="id" value="4521">
+  <input type="hidden" name="token" value="1419363715-0GVpoXgrc0g19w1JXArIrceuMHC6GllT13RkVnlstpQ">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4521"><b>Bug&nbsp;4521</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Colon (:) &amp; semicolon (;) shouldn't output as HTML definition list when used for indentation, boldfacing</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="Colon (:) &amp; semicolon (;) shouldn't output as HTML definition list when used for indentation, boldfacing">Colon (:) &amp; semicolon (;) shouldn't output as HTML definition list when used ...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Colon (:) & semicolon (;) shouldn\'t output as HTML definition list when used for indentation, boldfacing', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.6.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       minor<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=4521">14 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4521#vote_4521">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://en.wikipedia.org/wiki/User:Joris_Gillis/SF"><span title="http://en.wikipedia.org/wiki/User:Joris_Gillis/SF">http://en.wikipedia.org/wiki/User:Jor...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">newparser
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - definition list abused for indentation purposes"
+   href="show_bug.cgi?id=4522">4522</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=4522">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use semantic HTML (tracking)"
+   href="show_bug.cgi?id=10467">semantic-html</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HTML5 features (tracking)"
+   href="show_bug.cgi?id=19719">html5</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4521&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4521">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-01-07 18:24 UTC by <span class="vcard"><span class="fn">Joris Gillis</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-04 22:52 UTC 
+      (<a href="show_activity.cgi?id=4521">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>14 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="b">b</option>
+                <option value="brion">brion</option>
+                <option value="bugzilla.wikimedia.mail">bugzilla.wikimedia.mail</option>
+                <option value="buzz">buzz</option>
+                <option value="cogden1970">cogden1970</option>
+                <option value="ed.palmer">ed.palmer</option>
+                <option value="frungi">frungi</option>
+                <option value="gangleri">gangleri</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="jerabek">jerabek</option>
+                <option value="krinklemail">krinklemail</option>
+                <option value="matma.rex">matma.rex</option>
+                <option value="pandiculation">pandiculation</option>
+                <option value="smccandlish">smccandlish</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Replace colons by em spaces at the beginning of verses inside poem tag"
+   href="show_bug.cgi?id=31146">31146</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=4521&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joris Gillis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 18:24:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wikipedians often use lines starting with one or more colons to indent a line:
+e.g.
+: this line is indented
+:: double indented
+
+I recently noticed that the generated HTML contains a definition list (&lt;dl/&gt;).
+Obviously this is not a good means to indent text. (<a href="http://www.w3.org/TR/html401/struct/lists.html#h">http://www.w3.org/TR/html401/struct/lists.html#h</a>-
+10.3)
+Apparently, the mediawiki-syntax for defintion lists (;term : def) is being abused for visual effects.
+
+I suggest that a &lt;div style=&quot;margin-left: 2em&quot;&gt;&lt;/div&gt; is used instead of &lt;dl&gt;&lt;dd&gt;&lt;/dd&gt;&lt;/dl&gt;, whenever 
+a colon is found without a preceding semicolon.
+
+
+keywords: indentation colon semicolon dl dt dd definition list abuse parser</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 19:03:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - definition list abused for indentation purposes"
+   href="show_bug.cgi?id=4522">Bug 4522</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joris Gillis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-07 21:25:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Example: <a href="http://en.wikipedia.org/wiki/User:Joris_Gillis/SF">http://en.wikipedia.org/wiki/User:Joris_Gillis/SF</a></pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-17 19:26:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >well we can either:
+- add a new syntax token like '&gt;'
+- accept using &lt;dd&gt; for indentation
+
+
+<span class="quote">&gt; this is indented text of some sort
+&gt; also used in email for quoting!</span >
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-17 19:39:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Lowering priority; the system works fine, it's just arguably not &quot;semantically 
+correct&quot;.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joris Gillis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-17 19:59:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I oppose the suggested new syntax. The ':' syntax is way too wide-spread. 
+Neither will accept &lt;dd&gt; for indentation.
+
+I think there's an another option: just let the wiki-syntax interpreter logically seperate 
+cases A) when ':' is used together with ';' and B) when ':' serves indentation purposes.
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-19 12:38:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+Please remember
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - BiDi related issues to &quot;;&quot;, &quot;:&quot;, &quot;#&quot;, and &quot;*&quot;, monobook skin etc."
+   href="show_bug.cgi?id=2020">Bug 2020</a>: BiDi related issues to &quot;;&quot;, &quot;:&quot;, &quot;#&quot;, and &quot;*&quot;, monobook skin etc.
+
+Only some of the identation variants can be used at RTL projects
+([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3ABiDi_workgroup">meta:BiDi_workgroup</a>]]) by modifying MediaWiki:Monobook.css manualy.
+
+Please note that many of the RTL or BiDi projets do not have sysops at this moment
+([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3ABiDi_workgroup%2FTo-do%23BiDi_projects_without_sysop">meta:BiDi_workgroup/To-do#BiDi_projects_without_sysop</a>]]).
+
+
+If there is a posibility to use another implementation / coding of the page
+output this would be a great help. The page source / the wiki syntax should
+preserve.
+
+It might not be easy to find the solution imediately because varius bugs in
+different browsers. This has to checked in adition to the compliance to one or
+another standard / specification.
+
+*if this does not relate here please open another bug*
+I am not familiar in what MediaWiki php file Monobook.css clases are defined. In
+my opinion both the LTR and the RTL  clases should be available by default
+because BiDi projects as thouse in Kurdhish, Ladino etc. would need to use both
+&quot;environments&quot; / would contain pages both with LTR and RTL sections. This
+applies also to commons:, meta: and to any wiki.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]
+
+P.S. I am not shure if <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - BiDi related issues to &quot;;&quot;, &quot;:&quot;, &quot;#&quot;, and &quot;*&quot;, monobook skin etc."
+   href="show_bug.cgi?id=2020">bug 2020</a> is depending on this bug. If this is the case
+please add it to &quot;blocks&quot;.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-01 22:12:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It should also be mentioned that colons are widely misused to format block quotations in articles.  
+
+If there were ever some major rehabilitation of wikitext syntax, definition lists should be reformatted to display 
+without any indentation (bold text sufficing to reflect the intended use), and new syntax introduced for block quotes 
+and nested discussion.  
+
+Alternately, definition lists could be made to display differently in articles and discussion pages.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-30 06:05:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would suggest that
+
+:foo
+
+translate to 
+
+&lt;div style=&quot;left: 2em;&quot;&gt;
+  foo
+&lt;/div&gt;
+
+(obviously the exact distance is negotiable).  &quot;::foo&quot; would obviously just be
+the same thing, only nested:
+
+&lt;div style=&quot;left: 2em;&quot;&gt;
+  &lt;div style=&quot;left: 2em;&quot;&gt;
+    foo
+  &lt;/div&gt;
+&lt;/div&gt;
+
+:foo
+::bar
+
+should be
+
+&lt;div style=&quot;left: 2em;&quot;&gt;
+  foo
+  &lt;div style=&quot;left: 2em;&quot;&gt;
+    bar
+  &lt;/div&gt;
+&lt;/div&gt;
+
+And
+
+::foo
+::bar
+
+should be
+
+&lt;div style=&quot;left: 2em;&quot;&gt;
+    &lt;p&gt;foo&lt;/p&gt;
+    &lt;p&gt;bar&lt;/p&gt;
+&lt;/div&gt;
+
+From observation, this last is pretty universally what people want when they
+enter two things on the same line; they don't want a simple line break (which is
+what UAs would probably render for two successive &lt;div&gt;s, and what they
+certainly render with the present &lt;dl&gt;), they want a paragraph break.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-30 06:07:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry for the double-post, just to say: I'm not sure if that &quot;left&quot; should
+actually be &quot;left-margin&quot;, but whichever, you get the point.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-31 16:35:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A couple of potential problems with rendering colons as DIVs:
+
+1. There are many articles where colons are actually used as definition lists, using 
+semicolons and colons.
+
+2. The HTML should somehow reflect the nested structure of a discussion page, for the 
+sake of non-visual or text-only browsers.  Nested definition lists is actually not so bad at 
+this (the lack of definition terms is odd but valid, but unfortunately wikitext usually 
+screws it all up by closing and reopening the list after each item) -- alternatively, 
+discussion could be seen as an unordered (ordered?) list of statements.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 02:18:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4521#c10">comment #10</a>)
+<span class="quote">&gt; 1. There are many articles where colons are actually used as definition lists,</span >
+using 
+<span class="quote">&gt; semicolons and colons.</span >
+
+Certainly, any solution will have to handle that.
+
+<span class="quote">&gt; 2. The HTML should somehow reflect the nested structure of a discussion page,</span >
+for the 
+<span class="quote">&gt; sake of non-visual or text-only browsers.  Nested definition lists is actually</span >
+not so bad at 
+<span class="quote">&gt; this (the lack of definition terms is odd but valid, but unfortunately</span >
+wikitext usually 
+<span class="quote">&gt; screws it all up by closing and reopening the list after each item) --</span >
+alternatively, 
+<span class="quote">&gt; discussion could be seen as an unordered (ordered?) list of statements.</span >
+
+Well, nested &lt;div&gt;s represent it as nested just as well as nested &lt;dl&gt;s do,
+don't they?  Compare (* used for indentation purposes only, it wouldn't be in
+the actual HTML):
+
+&lt;div style=&quot;left: 2em;&quot;&gt;
+**foo
+**&lt;div style=&quot;left: 2em;&quot;&gt;
+****bar
+**&lt;/div&gt;
+**baz
+&lt;/div&gt;
+
+&lt;dl&gt;
+**&lt;dd&gt;foo&lt;/dd&gt;
+**&lt;dl&gt;
+****&lt;dd&gt;bar&lt;/dd&gt;
+**&lt;/dl&gt;
+**&lt;dd&gt;baz&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 05:40:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, div elements are semantically void, and are used for grouping other elements only.  Definition lists imply a 
+semantic meaning and relationship between their parts.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 05:59:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4521#c12">comment #12</a>)
+<span class="quote">&gt; Well, div elements are semantically void, and are used for grouping other</span >
+elements only.  Definition lists imply a 
+<span class="quote">&gt; semantic meaning and relationship between their parts.</span >
+
+Yes, but a semantic meaning complete different from the actual meaning intended.
+ That's significantly worse than no meaning at all.  Alternatives:
+
+* &lt;ul&gt; would work.  However, it would be redundant with * unless we use
+&quot;list-style-type: none;&quot;, which has near-zero support at present as far as I can
+tell.  Or else we could use &quot;list-style-image:&quot; with a blank image; is that
+property widely supported?
+
+* We could use &lt;blockquote&gt;.  This is possibly the most sensible, really.
+
+Ultimately, it should be remembered that users *aren't* entering the indentation
+with any universal semantic meaning; they're entering them for the indentation.
+ So semantically speaking, presentational markup is probably the best thing to
+translate any wikimarkup into.  (Remember when '' used to be &lt;em&gt;, and '''
+&lt;strong&gt;?)</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Joris Gillis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 18:06:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I totally support the blockquotes.
+Since they are block-level containers, they can be nested.
+
+&lt;blockquote&gt;
+	&lt;p&gt;foo&lt;/p&gt;
+	&lt;blockquote&gt;
+		&lt;p&gt;bar&lt;/p&gt;
+		&lt;blockquote&gt;
+			&lt;p&gt;baz&lt;/p&gt;
+		&lt;/blockquote&gt;
+	&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">omniplex
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 13:40:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The behaviour of colon / semicolon should stay as is.
+Div-style hacks won't work without CSS, and each colon
+a new paragraph makes no sense, for that effect I can
+simply add an empty line:
+
+: indented line
+: indented line (same para)
+
+: new indented parahraph. Cheers.
+</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 18:21:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4521#c15">comment #15</a>)
+<span class="quote">&gt; The behaviour of colon / semicolon should stay as is.
+&gt; Div-style hacks won't work without CSS</span >
+
+Which is a problem for all fifty people who don't use CSS . . . how does Lynx
+render &lt;dd&gt; anyway?
+
+<span class="quote">&gt; and each colon
+&gt; a new paragraph makes no sense, for that effect I can
+&gt; simply add an empty line:</span >
+
+Which works until you're working on a second-level list, and the underlying list
+is a UL or OL.  Try the following:
+
+#Number
+#:Comment
+
+#:Comment
+#Another number
+
+*Bullet
+*:Comment
+
+*:Comment
+*Another bullet
+
+They don't work too well.  Most people, I've observed, just make do with a
+linebreak when it's necessary, whereas I pedantically insert &lt;p&gt;s manually to
+break my comments into paragraphs.  But that issue is minor, I suppose.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 21:47:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;&gt; Div-style hacks won't work without CSS</span >
+
+<span class="quote">&gt; Which is a problem for all fifty people who don't use CSS</span >
+
+Divs are semantically meaningless.  Using divs + css to create so-called 
+structure on a page is just inadequate, 1999-style markup, unworthy of 
+open software Wikimedia or a forward-looking project like Wikipedia.
+
+For some perspective, see &quot;level 4&quot; at both:
+
+  Levels of CSS knowledge
+  &lt;<a href="http://friendlybit.com/css/levels-of-css-knowledge/">http://friendlybit.com/css/levels-of-css-knowledge/</a>&gt;
+
+  Levels of HTML knowledge
+  &lt;<a href="http://www.456bereastreet.com/archive/200605/">http://www.456bereastreet.com/archive/200605/</a>
+levels_of_html_knowledge/&gt;</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 21:56:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4521#c17">comment #17</a>)
+<span class="quote">&gt; Divs are semantically meaningless.  Using divs + css to create so-called 
+&gt; structure on a page is just inadequate, 1999-style markup, unworthy of 
+&gt; open software Wikimedia or a forward-looking project like Wikipedia.</span >
+
+I'm well aware of the benefits of semantic markup.  The problem is, 95% of our
+editors are not, and they're most of the ones who are using things like :.  If
+you use &lt;dd&gt; or &lt;blockquote&gt; to indent it, you're saying that the item is a
+definition or a quote, when nine-tenths of the time it isn't.  It's usually a
+comment in a discussion, or otherwise just something that someone wants to indent.
+
+To put it another way: users are entering content presentationally, not
+semantically, and adding probably-false semantic meaning to their solely
+presentational input is much worse from a semantics perspective than admitting
+that, in fact, there are no semantics to the input.  Genuine semantics is good;
+calling all indentation &quot;blockquote&quot; so that you don't have to use the dreaded
+meaningless div is pointless from a semantic perspective.  &lt;div class=&quot;indent&quot;&gt;
+is much more sensible and honest, because that's what it was entered as.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-30 22:06:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, but this bug and follow-up comments are an attempt to improve the situation in some way, not just throw 
+up our hands and give up.  A definition list may not be perfect for discussions, but at least it expresses the 
+nested structure.  Switching to divs would be discarding even this and turning the page to text soup.
+
+It would be nice if wikitext markup for blockquotes existed.  We may be stuck with definitions and discussion 
+threads being conflated, but maybe we can come up with some bright ideas to fix that.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-19 19:52:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If I remember correctly, the HTML spec for definition lists is pretty loose,
+allowing them to be used for plays, for instance.  Using them for talk pages is
+not semantically wrong.  
+
+Using them for indentation is.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-20 00:18:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dialogues is given as an example of other applications of definition lists in 
+the specification, but this still implies a term-definition relationship 
+between the parts.  For example:
+
+&lt;dl&gt;
+&lt;dd&gt;John&lt;/dd&gt;&lt;!-- a label for John's statements --&gt;
+&lt;dt&gt;Hi, how are you?&lt;/dt&gt;&lt;!-- defines what John said --&gt;
+&lt;/dl&gt;
+
+Nested discussion in Wikipedia is a list of definition lists containing 
+definitions, but no defined terms, so I don't think it really makes semantic 
+sense as a definition list in the same way as a script.  However, the nested 
+lists do imply a hierarchy, and the default indented formatting of 
+definitions does imply the same hierarchy in almost any text-only or 
+graphical web browser (don't know how well it works in screen readers).  
+
+Changing this formatting to divs would eliminate both the semantic and 
+visual relationship completely.  This would make things worse, and not 
+acceptable, even if CSS was added to make it look the same in graphical 
+browsers.
+
+Technically, the DTD allows a DL to contain only one or more terms, or 
+only one or more definitions, so there is no problem with validation.
+
+So although using colons for threaded discussion is semantically odd, it 
+does work visually and semantically.  The more I think about it, the more 
+comfortable I am with it.  Since it is easy to type and is firmly entrenched 
+in Wikipedia talk pages, I suggest closing this bug.
+
+----
+
+Tangentially-related issue:
+
+However, the indented display of definition lists is actually rather 
+unsuitable for definition lists in articles—it breaks up the left-hand vertical 
+line of text and looks sloppy.  In countless instances, editors enter 
+wikitext like the following instead, where a definition list would be a 
+perfect semantic fit:
+
+'''Term'''&lt;br /&gt;
+Definition
+
+So, when both <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Linebreaks are mishandled in &lt;blockquote&gt; and &lt;li&gt;"
+   href="show_bug.cgi?id=6200">Bug 6200</a> (Linebreaks are mishandled in &lt;blockquote&gt; and 
+&lt;li&gt;) and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - blockquote support in wikitext"
+   href="show_bug.cgi?id=4827">Bug 4827</a> (blockquote support in wikitext) are fixed, so that 
+there is no longer any incentive to abuse definition lists for block 
+quotation formatting in articles, then the common style sheet ought to be 
+updated to not indent definitions, in articles only.
+
+----
+
+References:
+
+Introduction to lists
+<a href="http://www.w3.org/TR/html401/struct/lists.html#h-10.1">http://www.w3.org/TR/html401/struct/lists.html#h-10.1</a>
+&quot;Definition lists, created using the DL element, generally consist of a series 
+of term/definition pairs (although definition lists may have other 
+applications).&quot;
+
+Definition lists: the DL, DT, and DD elements
+<a href="http://www.w3.org/TR/html401/struct/lists.html#h-10.3">http://www.w3.org/TR/html401/struct/lists.html#h-10.3</a>
+&quot;Definition lists vary only slightly from other types of lists in that list items 
+consist of two parts: a term and a description.&quot;
+
+In the DTD for XHTML 1.0 transitional
+<a href="http://www.w3.org/TR/xhtml1/dtds.html#dtdentry_xhtml1">http://www.w3.org/TR/xhtml1/dtds.html#dtdentry_xhtml1</a>-
+transitional.dtd_dl
+&quot;&lt;!ELEMENT dl (dt|dd)+&gt;&quot;</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-20 00:49:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4521#c21">comment #21</a>)
+<span class="quote">&gt; Dialogues is given as an example of other applications of definition lists in 
+&gt; the specification, but this still implies a term-definition relationship 
+&gt; between the parts.</span >
+
+They also give an example of a recipe, where the DTs function almost like
+headers, and the DD contains another list or paragraph.  I think that when they
+say &quot;although definition lists may have other applications&quot;, they mean it quite
+liberally.  I don't think using them for threaded discussions is semantically
+wrong, regardless of the fact that there are no DTs.
+
+<span class="quote">&gt; Since it is easy to type and is firmly entrenched 
+&gt; in Wikipedia talk pages, I suggest closing this bug.</span >
+
+That would imply that the bug is only about using definition lists for threaded
+discussions, but the title of the bug is about indentation, which *is* still a
+problem in articles.  Things like indenting math formulas and the like.
+
+<span class="quote">&gt; However, the indented display of definition lists is actually rather 
+&gt; unsuitable for definition lists in articles—it breaks up the left-hand vertical 
+&gt; line of text and looks sloppy.</span >
+
+I think it looks good.  :-)  I convert things like the example you gave to
+definition lists whenever I see them.
+ 
+<span class="quote">&gt; So, when both <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Linebreaks are mishandled in &lt;blockquote&gt; and &lt;li&gt;"
+   href="show_bug.cgi?id=6200">Bug 6200</a> (Linebreaks are mishandled in &lt;blockquote&gt; and 
+&gt; &lt;li&gt;) and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - blockquote support in wikitext"
+   href="show_bug.cgi?id=4827">Bug 4827</a> (blockquote support in wikitext) are fixed, so that 
+&gt; there is no longer any incentive to abuse definition lists for block 
+&gt; quotation formatting in articles, then the common style sheet ought to be 
+&gt; updated to not indent definitions, in articles only.</span >
+
+I disagree.  We should figure out what people are semantically trying to do when
+they use DDs for indentation, and provide markup and CSS to provide the same
+effect the correct way.  They use it for blockquotes, so we have the
+&lt;blockquote&gt; tag instead.  They use it for indentation of disambig links, so we
+should build the indentation into the dablink class and remove the DD from the
+template, etc.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jools Wills</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-20 12:47:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This one is really bugging me. I want to use definition lists for their real purpose and have them styled so they are inline and with slightly different default margins etc
+
+Title: Definition
+Title: Definition
+
+but this of course messes up everywhere that : has been used for indentation. Having it so : :: ::: is parsed differently would be great. I would be quite happy for it to use &lt;div class=&quot;indent&quot;&gt; or so
+
+of course I can wrap my inline definition lists in a div and style it like that, but it seems like overcoming the problem in the wrong way
+
+And it just seems wrong to use definition lists for indentation anyway.
+
+Is it possible to parse
+
+;title:defintion
+and
+;title
+:definition
+
+differently from
+
+:indent
+::indent
+
+?
+</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-20 14:47:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In principle, sure.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">S. McCandlish</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-05 20:36:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In response to an older comment, it isn't &quot;arguably&quot; semantically incorrect, it IS semantically incorrect. I don't care which of the proposed solutions is implemented, as long as its use for simple indentation renders as CSS not definition lists by the time it hits the user agent.  Web markup semantics are important for accessibility reasons, among others.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-30 02:07:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Changing summary to reflect the direction of attack we would actually follow.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">S. McCandlish</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-31 20:45:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Generally I like the way this is heading.  My 2 cents:
+
+1) General-purpose indentation should be done with divs.
+2) Blockquotes should be used for quotations, not general indentation.
+3) Definition lists should be used when the editor is intentionally demonstrating a relationship between the two parts (term + definition, character + dialogue, etc.).
+4) Ul/ol lists should not be used for things that are not actually lists.
+
+And I concur strongly that that the present behavior of using dl/dt/dd lists for presentational indentation IS semantically invalid (not &quot;arguably&quot;), and that this is important to fix for accessibility and other reasons.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">S. McCandlish</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-12 21:55:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >FYI: While fixing this bug would be very helpful, I have to point out that there are quite a few other definition list problems in MediaWiki, as shown by some simple test cases:
+
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style_(glossaries)/DD_bug_test_cases">http://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style_(glossaries)/DD_bug_test_cases</a>
+
+I'll probably file this as another bug (or more - there may be more than one issue here) after further investigation, and notify this Cc loop of the new bug number. But I think this may be something to do with MW's weird handling of lists more generally.
+
+PS: For anyone pulling their hair out with vagaries of &quot;;&quot; and &quot;:&quot; markup, just use the real HTML tags, and the problems melt away. But don't mix-and-match.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">S. McCandlish</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-25 21:10:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Updating bug title to reflect related problem.  Colon is output as a definition list definition (dd element), and semicolon, often abused for boldfacing and creating pseudo-headings, outputs a definition list term (dt element).  Both of these should be replaced with CSS, at least if they are not in an actual definition list.  There are three ways to handle this:
+
+1) Stop connecting this wikimarkup in any way to definition lists (which would have to be HTML-coded manually, like blockquotes and various other things that MediaWiki doesn't have special wikimarkup for).
+
+2) Have the parser test the conditions of the markup, such that if the material is formatted like:
+
+ ;A1
+ :A2
+ ;B1
+ :B2
+
+it is treated as a definition list, but if it has blank lines between any of these, or a ; without one or more :'s or vice versa, or otherwise doesn't fit this pattern, treat it as CSS-styled, non-list text.
+
+3) Always treat this markup as CSS-style regular prose, unless it is inside an explicit HTML dl element, in which case always treat it as a definition list (regardless of whitespacing and regardless of missing definitions or terms).
+
+4) Or some combination of these.  I'm marginally against option 1, and feel that 3 should usually apply (always apply in the case of explicit dl markup), but can't see anything wrong with MW doing some very limited guesswork as in option 2.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-26 13:13:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'd prefer (2).  There are plenty of times I've used this for an actual definition list, and almost all of the abuses I've seen are cases where &quot;;&quot; isn't used at all, which is very easy to detect automatically.  We should just treat &quot;:&quot; without accompanying &quot;;&quot; as &lt;div class=&quot;indent&quot;&gt; or something, that's enough to fix the large majority of the cases.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">cogden1970
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-10 23:40:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I just want to register my strong agreement with #2. I think there is a need for the association list markup, and that it should not be difficult to separate out sole : lines, or ; lines without one or more corresponding :s, for special treatment as &lt;div&gt;s.
+
+Will this be addressed in Brion Vibber's parser rewrite?</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-10 23:43:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4521#c31">comment #31</a>)
+<span class="quote">&gt; That would work for me too, provided that the corresponding case of &quot;;&quot; without
+&gt; accompanying &quot;:&quot; be treated as a div with class=&quot;indent boldface&quot; or whatever,
+&gt; so that both abuses of def. list markup are fixed.  PS: If you find that, when
+&gt; you are actually using &quot;;&quot; and &quot;:&quot; for def. lists, that you can't get the
+&gt; layout you want, try using explicit dl, dt, dd markup, and the problems go away
+&gt; (see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=WP%3AMOSGLOSS">WP:MOSGLOSS</a>]] for details).
+&gt; </span >
+&gt;
+
+(I'm quoting this message by S. McCandlish, posted on 2010-07-28 21:45:46 UTC becuase his original reply contained appended spam, which is the reason I hid the reply from view)</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-08 21:45:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; Will this be addressed in Brion Vibber's parser rewrite?</span >
+
+I'm adding the newparser keyword to bring it to the parser rewriters' attention.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Helder</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-19 03:32:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >On enwiki's village pump[1] it was mentioned that LQT would solve the issue, at least for talk pages (but since it is a dead project[2], well...)
+
+[1] <a href="https://en.wikipedia.org/wiki/Wikipedia:Village_pump_(technical)/Archive_73#Talk_page_comments_on_same_indent_level_are_not_vertically_separated_as_much_as_other_comments.E2.80.94bug.3F">https://en.wikipedia.org/wiki/Wikipedia:Village_pump_(technical)/Archive_73#Talk_page_comments_on_same_indent_level_are_not_vertically_separated_as_much_as_other_comments.E2.80.94bug.3F</a>
+
+[2] <a href="https://www.mediawiki.org/wiki/Talk:LiquidThreads_3.0#It.27s_dead.21">https://www.mediawiki.org/wiki/Talk:LiquidThreads_3.0#It.27s_dead.21</a></pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Helder</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-09-10 18:52:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The rendering of :'s was improved at least inside of &lt;poem&gt; tags to fix <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Replace colons by em spaces at the beginning of verses inside poem tag"
+   href="show_bug.cgi?id=31146">bug 31146</a> (see <a href="https://gerrit.wikimedia.org/r/13539" title="Gerrit change #13539">Gerrit change #13539</a>).
+
+Wouldn't be possible to do something similar here?</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Emil Jerabek</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-16 10:26:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As was pointed out on <a href="http://en.wikipedia.org/wiki/Help_talk:Wiki_markup#semicolon_issue.3F">http://en.wikipedia.org/wiki/Help_talk:Wiki_markup#semicolon_issue.3F</a> , the &lt;dl&gt; markup currently produced by unpaired ; or : fails validation since the switch to HTML5. Shouldn't the importance of the bug be raised?</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gadget850</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-16 13:12:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Since this is now an HTML5 issue, I have added it to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HTML5 features (tracking)"
+   href="show_bug.cgi?id=19719">bug 19719</a>.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4521#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sam Martin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-16 16:21:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As long as the software translates colons to definitions, the syntax should absolutely not be used in articles except when a definition list is what is actually desired. But since _everyone_ uses these or *lists for threads on Talk pages, could the HTML conversion be changed specifically for Talk pages?</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4521&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4521">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4521">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4521">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4521&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4521" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4521&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419363715-WmOL28bFJc-1z-1sqEtz9XQ1ffUWC672Y9hl2R6X-yM">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

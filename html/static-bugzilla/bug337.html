@@ -1,0 +1,2042 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 337 &ndash; inconsistent treatment of character entities and invalid chararcters in titles/links</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=337&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=337">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=337">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=337">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 337 – inconsistent treatment of character entities and invalid chararcters in titles\/links",  
+                             "show_bug.cgi?id=337" );
+        document.title = "Bug 337 – inconsistent treatment of character entities and invalid chararcters in titles\/links";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 337 – inconsistent treatment of character entities and invalid chararcters in titles\/links", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_337 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2008-12-30 02:20:30 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2008-12-30 02:20:30">
+  <input type="hidden" name="longdesclength" value="28">
+  <input type="hidden" name="id" value="337">
+  <input type="hidden" name="token" value="1419356992-X81g-ff91Zdi3DPa42n7fZVDqHj8tSH-2FcIL_Shtrw">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=337"><b>Bug&nbsp;337</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">inconsistent treatment of character entities and invalid chararcters in titles/links</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="inconsistent treatment of character entities and invalid chararcters in titles/links">inconsistent treatment of character entities and invalid chararcters in title...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('inconsistent treatment of character entities and invalid chararcters in titles\/links', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          INVALID
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=337">2 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=337#vote_337">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Extended characters in category names"
+   href="show_bug.cgi?id=631">631</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - red links and &amp;ndash; etc."
+   href="show_bug.cgi?id=2096">2096</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - HTML entities in article titles not handled correctly"
+   href="show_bug.cgi?id=5731">5731</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Moving pages with named entity in title"
+   href="show_bug.cgi?id=6932">6932</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=631,2096,5731,6932">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Unicode (UTF-8, utf8) compatibility (tracking)"
+   href="show_bug.cgi?id=3969">unicode</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=337&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=337">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-03 03:23 UTC by <span class="vcard"><span class="fn">Timwi</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2008-12-30 02:20 UTC 
+      (<a href="show_activity.cgi?id=337">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>10 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="apb">apb</option>
+                <option value="beland">beland</option>
+                <option value="brion">brion</option>
+                <option value="bugzillas+padREMOVETHISdu">bugzillas+padREMOVETHISdu</option>
+                <option value="gangleri">gangleri</option>
+                <option value="herr.th">herr.th</option>
+                <option value="hippytrail">hippytrail</option>
+                <option value="inbox">inbox</option>
+                <option value="rowan.collins">rowan.collins</option>
+                <option value="timwi">timwi</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=337&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Timwi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-03 03:23:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >BUG MIGRATED FROM SOURCEFORGE
+<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=830206&amp;group_id=34373&amp;atid=411192">http://sourceforge.net/tracker/index.php?func=detail&amp;aid=830206&amp;group_id=34373&amp;atid=411192</a>
+Originally submitted by Luc Van Oostenryck (looxix)  2003-10-25 20:39
+
+
+On fr: ther is an article (a stub in fact) with the
+name [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Fonction%20%26amp%3Bdelta%3B%20de%20Dirac">Fonction &amp;amp;delta; de Dirac</a>]].
+It's impossible to rename it and worse; the soft
+doesn't detect that the renaming failed so
+theredirection page is still created with a bad name
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Fonction%20%25CE%25B4%20de%20Dirac">Fonction %CE%B4 de Dirac</a>]].
+
+-- Looxix
+
+------------------------- Additional comments ------------------------
+Date: 2003-12-10 11:36
+Sender: SF user vibber
+
+Copying text of #856267, marked as duplicate of this:
+
+ There are several ways to write a wikilink with a
+superscript-2 in the destination article text:
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AFinlay%20McWalter%3Asandbox%3Am%C2%B2">User:Finlay McWalter:sandbox:m²</a>]]
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AFinlay_McWalter%3Asandbox%3Am%2526sup2">User:Finlay_McWalter:sandbox:m%26sup2</a>]]
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AFinlay_McWalter%3Asandbox%3Am%2526sup2%3B">User:Finlay_McWalter:sandbox:m%26sup2;</a>]]
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AFinlay_McWalter%3Asandbox%3Am%2526sup2%253b">User:Finlay_McWalter:sandbox:m%26sup2%3b</a>]]
+
+Of these, the top two resolve to the same page, and
+each of the latter two resolves to a brand new page.
+All three have the same article title, despite being
+different articles as far as the database is concerned.
+
+So the creating the two latter pages in the above list
+produced the following watchlist fragment:
+
+NM 15:09 User:Finlay McWalter:sandbox:m² (cur; hist) .
+. Finlay McWalter (Talk) (another tmp page)
+M 15:08 Current events (cur; hist) . . Menchi (Talk)
+(typo)
+NM 15:08 User:Finlay McWalter:sandbox:m² (cur; hist) .
+. Finlay McWalter (Talk) (created (superscript in URLs
+thing))
+
+So it sure looks like the &amp;quot;new article&amp;quot; code should
+resolve the escaping of characters to produce the
+canonical article name.
+
+I'm [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AFinlay%20McWalter">User:Finlay McWalter</a>]] on the english wikipedia.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-12 09:45:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - numeric entity references for problematic characters"
+   href="show_bug.cgi?id=462">Bug 462</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan Barrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-12 15:31:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See test cases at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Atest%3ABug462">:test:Bug462</a>]]</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 00:40:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Extended characters in category names"
+   href="show_bug.cgi?id=631">Bug 631</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 04:36:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c2">comment #2</a>)
+<span class="quote">&gt; See test cases at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Atest%3ABug462">:test:Bug462</a>]]</span >
+
+I fixed your self links example in HEAD. It looks like all your other
+examples either have been fixed, or are arguably expected behavior. I
+think I disagree &quot;Foo bar&quot; and &quot;Foo_bar&quot; should ever refer to different
+articles.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan Barrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 17:54:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c4">comment #4</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=337#c2">comment #2</a>)
+&gt; &gt; See test cases at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Atest%3ABug462">:test:Bug462</a>]]
+&gt; 
+&gt; I fixed your self links example in HEAD. It looks like all your other
+&gt; examples either have been fixed, or are arguably expected behavior. I
+&gt; think I disagree &quot;Foo bar&quot; and &quot;Foo_bar&quot; should ever refer to different
+&gt; articles.</span >
+
+Most of the bugs described at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Atest%3ABug462">:test:Bug462</a>]] are still present.  I have
+updated the page in an atempt to make it more clear.
+
+I don't want &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%20bar">Foo bar</a>]]&quot; and &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo_bar">Foo_bar</a>]]&quot; to be different.  I do want
+<a href="http://server/wiki/Foo_bar">http://server/wiki/Foo_bar</a> and <a href="http://server/wiki/Foo%20bar">http://server/wiki/Foo%20bar</a> to be different,
+with the latter page being accessible via &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%26%2395%3Bbar">Foo&amp;#95;bar</a>]]&quot;.
+
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 18:00:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c5">comment #5</a>)
+<span class="quote">&gt; I don't want &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%20bar">Foo bar</a>]]&quot; and &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo_bar">Foo_bar</a>]]&quot; to be different.  I do want
+&gt; <a href="http://server/wiki/Foo_bar">http://server/wiki/Foo_bar</a> and <a href="http://server/wiki/Foo%20bar">http://server/wiki/Foo%20bar</a> to be different,
+&gt; with the latter page being accessible via &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%26%2395%3Bbar">Foo&amp;#95;bar</a>]]&quot;.</span >
+
+Would you mind explaining the logic behind this? I'm quite boggled.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan Barrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 18:23:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >=== Suggested fix ===
+
+1. The parser should first examine the raw wikitext, looking for links in square brackets.
+2. For each link, the canonicalisation algorithm should be performed (ignore leading and trailing 
+spaces, treat space and underline as the same, etc.).
+3. After that canonicalisation step, HTML entities (&amp;amp;amp;, &amp;amp;#123;, etc) should be mapped to 
+the corresponding unicode characters.
+
+The existing observed behaviour is consistent with step 3 being done first instead of last.
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 18:25:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Entity to unicode conversion must come before canonicalization on internal links in order to perform whitespace matching 
+and case conversion.
+</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan Barrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 18:37:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c6">comment #6</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=337#c5">comment #5</a>)
+&gt; &gt; I don't want &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%20bar">Foo bar</a>]]&quot; and &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo_bar">Foo_bar</a>]]&quot; to be different.  I do want
+&gt; &gt; <a href="http://server/wiki/Foo_bar">http://server/wiki/Foo_bar</a> and <a href="http://server/wiki/Foo%20bar">http://server/wiki/Foo%20bar</a> to be different,
+&gt; &gt; with the latter page being accessible via &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo%26%2395%3Bbar">Foo&amp;#95;bar</a>]]&quot;.
+&gt; 
+&gt; Would you mind explaining the logic behind this? I'm quite boggled.</span >
+
+Major premise: All characters should be allowed in page names,
+    even if it difficult to use some characters.
+Minor premise: Numeric entity refs are a good way of referring to
+    characters that are otherwise difficult to include in a page name.
+
+Almost all my other arguments else follow from that.
+
+</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 19:31:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >One of the major arguments for &quot;%20&quot; being treated the same as &quot;_&quot; (and this may
+apply for some other examples, too) is that typing &quot;en.wikipedia.org/wiki/Name
+of a page&quot; into the address bar of a web browser will be converted, by the
+browser, to &quot;en.wikipedia.org/wiki/Name%20of%20a%20page&quot;. Now we can be
+99.9999999% sure that what the user was after was the page
+&quot;en.wikipedia.org/wiki/Name_of_a_page&quot;, since that is what they would get if
+they typed [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Name%20of%20a%20page">Name of a page</a>]] in the text of an article; thus, it's pretty clear
+to me that we should never have an article whose literal title is
+&quot;Name%20of%20a%20page&quot;.
+
+As far as I can see, the treatment of spaces and underscores is currently a)
+completely consistent; and b) consistent in a very useful manner: it is
+impossible to create an article whose title looks different from the only way of
+actually linking to it. Such an article would be an absolute nightmare to
+maintain (page moves, deletion, just plain trying to link there and not
+happening to use the same escape sequence as the original author). In my
+opinion, this goes for the other &quot;problem&quot; characters too: if they're illegal in
+titles, they should be illegal in titles; but I grant that some, like leading
+'/' or '#' could conceivably be useful. It seems to me, though, that having to
+use some unnatural escape sequence whenever you need to refer to an article is
+going to create more head-aches than it will solve (think newbies...).
+
+Re-casting the problem, I wonder if a mechanism to display the page's title (in
+the HTML output) as something different from its name (in the database) could be
+created, which showed the real name (as needed for linking to the article)
+underneath:
+&lt;h1&gt;C#&lt;/h1&gt;
+&lt;p&gt;&lt;small&gt;[Article title: C_sharp]&lt;/small&gt;&lt;/p&gt;
+Except I'm not sure how to label the second line so that it would make sense to
+inexperienced users. My thought is that this could be a magic word at the
+beginning of the article: '#TITLE C#'; similarly, one could use '#TITLE h2g2' to
+display the lower-case leading letter on a wiki where this was otherwise not
+possible.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan Barrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 22:03:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c10">comment #10</a>)
+<span class="quote">&gt; One of the major arguments for &quot;%20&quot; being treated the same as &quot;_&quot; (and this may
+&gt; apply for some other examples, too) is that typing &quot;en.wikipedia.org/wiki/Name
+&gt; of a page&quot; into the address bar of a web browser will be converted, by the
+&gt; browser, to &quot;en.wikipedia.org/wiki/Name%20of%20a%20page&quot;. Now we can be
+&gt; 99.9999999% sure that what the user was after was the page
+&gt; &quot;en.wikipedia.org/wiki/Name_of_a_page&quot;, since that is what they would get if
+&gt; they typed [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Name%20of%20a%20page">Name of a page</a>]] in the text of an article; thus, it's pretty clear
+&gt; to me that we should never have an article whose literal title is
+&gt; &quot;Name%20of%20a%20page&quot;.</span >
+
+OK, I see your point, but I would expect to get an error if I attempted
+to browse to the wrong URL by using %20 instead of underline as a word
+separator.
+
+<span class="quote">&gt; Re-casting the problem, I wonder if a mechanism to display the page's title (in
+&gt; the HTML output) as something different from its name (in the database) could be
+&gt; created, which showed the real name (as needed for linking to the article)
+&gt; underneath:</span >
+
+Yes, that would be fine.  If, in the wikitext for <a href="http://en.wikipedia.org/wiki/C_plus_plus">http://en.wikipedia.org/wiki/C_plus_plus</a>
+and <a href="http://en.wikipedia.org/wiki/H2gh">http://en.wikipedia.org/wiki/H2gh</a>,
+I could say &quot;#TITLE C++&quot; and &quot;#TITLE h2gh&quot;, and if that modified the 
+&lt;TITLE&gt; and &lt;H1&gt; elements of the HTML output, then I wouldn't mind that
+the articles are filed in the database under slightly incorrect names.
+
+<span class="quote">&gt; &lt;h1&gt;C#&lt;/h1&gt;
+&gt; &lt;p&gt;&lt;small&gt;[Article title: C_sharp]&lt;/small&gt;&lt;/p&gt;
+&gt; Except I'm not sure how to label the second line so that it would make sense to
+&gt; inexperienced users.</span >
+
+Perhaps &quot;To link to this article, use [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=C%20sharp">C sharp</a>]].&quot;  Put it as close to the H1
+heading as possible, and use a stylesheet to hide it in print media.
+
+See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aen%3ATemplate%3AWrongtitle">:en:Template:Wrongtitle</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aen%3AWikipedia%3ANaming%20conventions%20%28technical%20restrictions%29">:en:Wikipedia:Naming conventions (technical restrictions)</a>]]
+(and the corresponding talk pages) for relevant discussion.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-13 22:07:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please continue the alternate title display discussion at <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Override title text and formatting from page markup"
+   href="show_bug.cgi?id=496">bug 496</a>, where it is on-topic.
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-14 15:39:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In the discussion for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Google search with [[Google:search term]]"
+   href="show_bug.cgi?id=707">bug 707</a>, someone spotted that (in 1.3.x) one can use links
+such as [[foo&lt;nowiki&gt;+&lt;/nowiki&gt;bar]], and they will be treated as valid links,
+with the characters in question not being escaped in any way. This is rather
+handy for interwiki-links (as discussed there) but it hints at something rather
+odd going on, and creates strange behaviour for an internal link:
+[[foo&lt;nowiki&gt;+&lt;/nowiki&gt;bar]] produces an edit link to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo_bar">Foo_bar</a>]], for instance.
+What's more, the version running on the test server doesn't deal at all well
+with this markup, leaving un-replaced placeholders: see
+<a href="http://test.wikipedia.org/wiki/Bug707">http://test.wikipedia.org/wiki/Bug707</a> 
+
+I know this isn't exactly the same as what we've been talking about so far, but
+it's certainly a related issue: how *should* such markup be treated?
+
+(In reply to <a href="show_bug.cgi?id=337#c11">comment #11</a>)
+<span class="quote">&gt; OK, I see your point, but I would expect to get an error if I attempted
+&gt; to browse to the wrong URL by using %20 instead of underline as a word
+&gt; separator.</span >
+
+But that's a developer's way of seeing it, not a user's: as far as the user is
+concerned, words are seperated by spaces in links, and so they will type them
+seperated by spaces in the URL. They may never notice that in one &quot; &quot; becomes
+&quot;_&quot; and in the other &quot; &quot; becomes &quot;%20&quot;, and certainly don't care; they have no
+conception that they are &quot;using %20 instead of underline as a word separator.&quot;
+
+(In reply to <a href="show_bug.cgi?id=337#c12">comment #12</a>)
+<span class="quote">&gt; Please continue the alternate title display discussion at <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Override title text and formatting from page markup"
+   href="show_bug.cgi?id=496">bug 496</a>, where it is</span >
+on-topic.
+
+My apologies: I should have thought to search for existing bugs relating to this
+suggestion; I've copied those comments there.
+
+</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-15 17:54:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c13">comment #13</a>)
+<span class="quote">&gt; [[foo&lt;nowiki&gt;+&lt;/nowiki&gt;bar]] produces an edit link to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Foo_bar">Foo_bar</a>]], for instance.
+&gt; What's more, the version running on the test server doesn't deal at all well
+&gt; with this markup, leaving un-replaced placeholders: see
+&gt; <a href="http://test.wikipedia.org/wiki/Bug707">http://test.wikipedia.org/wiki/Bug707</a> </span >
+
+This should be fixed in HEAD; thanks for pointing that out.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wikipedia:en:User:Paddu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 21:11:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://test.wikipedia.org/wiki/Bug707">http://test.wikipedia.org/wiki/Bug707</a> currently produces this HTML:
+
+&lt;ul&gt;
+&lt;li&gt;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo%2Bbar">foo+bar</a>]]&lt;/li&gt;
+&lt;li&gt;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=C%2B%2B">C++</a>]]&lt;/li&gt;
+&lt;li&gt;&lt;!--IWLINK 0--&gt;&lt;/li&gt;
+&lt;li&gt;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3Afoo%2Bbar">meta:foo+bar</a>]]&lt;/li&gt;
+&lt;/ul&gt;
+
+The third line is obviously a bug irrespective of how the others are treated.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wikipedia:en:User:Paddu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 21:31:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AUser%3ASirJective%2FParenthesis">en:User:SirJective/Parenthesis</a>]] has another example of a problematic
+link/title. I've described the workarounds in the talk page. IMHO the user
+shouldn't've been allowed to create the page:
+	613 commandments ( ''mitzvot'' )
+in the first place. Having a page with such a title which must be linked only as:
+	613 commandments %28 %27%27mitzvot%27%27 %29
+or similar is undesirable.
+
+PS: probably my previous comment adds nothing more to what was already said
+(though I couldn't understand what &quot;unreplaced placeholder&quot; meant). Sorry about
+that.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wikipedia:en:User:Paddu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-09 21:36:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Oops! Another goof up &amp; another spam from me :(. The link is
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AUser%3ASirJective%2FParenthesis%2Fother">en:User:SirJective/Parenthesis/other</a>]]. Bugzilla should also have a preview
+feature like mediawiki :).</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-07 05:52:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - red links and &amp;ndash; etc."
+   href="show_bug.cgi?id=2096">Bug 2096</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-12 14:35:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug is still open:
+
+See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AUser%3AGangleri%2Ftests%2Fbugzilla%3A00337">en:User:Gangleri/tests/bugzilla:00337</a>]] about [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%26rlm%3B">&amp;rlm;</a>]] (this is
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%26amp%3Brlm%3B">&amp;amp;rlm;</a>]]) and generates <a href="http://en.wikipedia.org/wiki/%E2%80%8F">http://en.wikipedia.org/wiki/%E2%80%8F</a> .</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-12 14:49:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&amp;lrm; &amp;rlm; &amp;#8234; &amp;#8235; &amp;#8236; &amp;#8237; &amp;#8238; alone does not make much
+sense for titles. I would say this is more or less &quot;whitespace&quot;.
+
+Regards Reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 20:04:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >changed Component to &quot;Page rendering&quot;
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - numeric entity references for problematic characters"
+   href="show_bug.cgi?id=462">bug 462</a>: numeric entity references for problematic characters
+is no longer a duplicate of this bug
+
+opened an unsolved issue at
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Escaped generation of [[foo|bar]] does not render properly"
+   href="show_bug.cgi?id=4250">bug 4250</a>: Escaped generation of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo">foo</a>|bar]] does not render properly
+Please read comments about it at <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - numeric entity references for problematic characters"
+   href="show_bug.cgi?id=462">bug 462</a> coment 2.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-13 03:23:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c10">comment #10</a>)
+
+<span class="quote">&gt; ... Such an article would be an absolute nightmare to
+&gt; maintain (page moves, deletion, just plain trying to link there and not
+&gt; happening to use the same escape sequence as the original author). In my
+&gt; opinion, this goes for the other &quot;problem&quot; characters too: if they're illegal in
+&gt; titles, they should be illegal in titles; but I grant that some, like leading
+&gt; '/' or '#' could conceivably be useful. It seems to me, though, that having to
+&gt; use some unnatural escape sequence whenever you need to refer to an article is
+&gt; going to create more head-aches than it will solve (think newbies...).</span >
+
+I agree: &quot;would be an *absolute* *nightmare* to *maintain* (page moves,
+deletion, just plain trying to link there and not happening to use the same
+escape sequence as the original author).&quot;
+regarding &quot;ilegal characters&quot; see below.
+
+I agree: &quot;if they're illegal in titles, they should be illegal in titles; but I
+grant that some, like leading '/' or '#' could conceivably be useful.&quot;
+
+<span class="quote">&gt; Re-casting the problem, I wonder if a mechanism to display the page's title (in
+&gt; the HTML output) as something different from its name (in the database) could be
+&gt; created, which showed the real name (as needed for linking to the article)
+&gt; underneath:</span >
+
+I can not (I do not like to) provide / propose a &quot;markup&quot; here but with the
+examples from below it should be possible to solved this with &lt;charinsert&gt;.
+
+----
+
+I made some testcase for the original links from <a href="show_bug.cgi?id=337#c0">comment 0</a> at
+<a href="http://yi.wiktionary.org/w/index.php?title=project:bugzilla/00337&amp;oldid=6893#m.C2.B2">http://yi.wiktionary.org/w/index.php?title=project:bugzilla/00337&amp;oldid=6893#m.C2.B2</a>
+.
+
+During the various previews I made in order to generate the testcase I realised
+that it *is* possible to generate titles containing characters which are *not*
+allowed in titles. I know also the method to create them as first character (and
+also to generate titles starting with lowercase letters).
+
+Please do not understand me wrong. I do not like to *hack* MediaWiki - I only
+want to report what I have seen. I also want to refer at various requests (can
+not find all bug numbers now)
+- allow titles starting with lowercase letters
+-- <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Override title text and formatting from page markup"
+   href="show_bug.cgi?id=496">bug 496</a>: Override title text and formatting from page markup
+-- <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - patch to let mediawiki display the title lowercase in wgCapitalLinks mode"
+   href="show_bug.cgi?id=2118">bug 2118</a>: patch to let mediawiki display the title lowercase in
+wgCapitalLinks mode
+- allow titles containing the characters which are *not* allowed in titles
+Thise are requests made by others not by me.
+
+Before describing the method I want to point at two issues:
+1) Would the &quot;normalisation function&quot; be stable enough to be aplied multiple
+times because of how the code / implementation of the whole package is *now*?
+Else changing and maintaining the code would me a *nighmare* as Rowan said.
+2) What benefit would have the users if there is a tricky way to generate titles
+that they want (all using %nn coding) but they would not have the keyboard /
+knowledge / skills to generate these easely and / or to refer / link to them easily?
+
+
+The *new* issue for me was that %nn is a method to generate the characters which
+are not alloed in titles. &amp;nn alone would not work as &quot;first characters&quot; but you
+/ we could use for exampe *one* and *only* one heading Unicode Character ZERO
+WIDTH SPACE - U+200B
+<a href="http://www.fileformat.info/info/unicode/char/200b/index.htm">http://www.fileformat.info/info/unicode/char/200b/index.htm</a>
+HTML Entity (decimal) &amp;#8203; (hex) &amp;#x200b;
+UTF-8 (hex) 0xE2 0x80 0x8B (e2808b) %E2%80%8B %e2%80%8b
+
+There are requirements (bug reports) to disallow certain characters. If ZERO
+WIDTH SPACE would be disalowed also it mide be whise to allow it *only*
+a) before the character characters which are *not* allowed in titles
+b) before a lower case letter
+These are simple rules.
+
+Made some tests at <a href="http://test.leuksman.com/view/Category:Bugzilla/00337">http://test.leuksman.com/view/Category:Bugzilla/00337</a> .
+The titles there &quot;look&quot; like &quot;/&quot;, starting &quot;?&quot;, starting &quot;:&quot; etc.
+Was not able to find a way to generate a title that &quot;looks&quot; like &quot;/&quot;.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-13 03:24:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >changed summary: &quot;illegal&quot; =&gt; &quot;invalid&quot;, the characters in question are invalid,
+they are not a violation of the law.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-13 04:06:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=337#c22">comment #22</a>)
+<span class="quote">&gt; I made some testcase for the original links from <a href="show_bug.cgi?id=337#c0">comment 0</a> at</span >
+&gt;
+<a href="http://yi.wiktionary.org/w/index.php?title=project:bugzilla/00337&amp;oldid=6893#m.C2.B2">http://yi.wiktionary.org/w/index.php?title=project:bugzilla/00337&amp;oldid=6893#m.C2.B2</a>
+
+<a href="http://yi.wiktionary.org/w/index.php?title=project:bugzilla/00337&amp;oldid=6904#m.C2.B2">http://yi.wiktionary.org/w/index.php?title=project:bugzilla/00337&amp;oldid=6904#m.C2.B2</a>
+
+<span class="quote">&gt; Was not able to find a way to generate a title that &quot;looks&quot; like &quot;/&quot;.</span >
+
+Was not able to find a way to generate a title that &quot;looks&quot; like &quot;#&quot;.
+There is an example which should *not* break apache's using &quot;&amp;#8203;/&quot; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%26%238203%3B%2F">&amp;#8203;/</a>]].
+</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-27 17:27:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - HTML entities in article titles not handled correctly"
+   href="show_bug.cgi?id=5731">Bug 5731</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-12 04:08:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Moving pages with named entity in title"
+   href="show_bug.cgi?id=6932">Bug 6932</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=337#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-30 02:20:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think all the relevant bits got separated out to other bugs (and most if not all fixed) over the years. The core premise of this bug seems to have been a request to do things the *opposite* order from what we want to be doing (<a href="show_bug.cgi?id=337#c7">comment 7</a>, 9).
+
+Resolving INVALID.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=337&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=337">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=337">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=337">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=337&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=337" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=337&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419356993-6VRLsuXyGLBI1N6RU46y69BU6ABe94LhBKypIChg4cM">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

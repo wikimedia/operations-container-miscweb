@@ -1,0 +1,1663 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3615 &ndash; blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3615&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3615">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3615">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3615">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3615 – blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)",  
+                             "show_bug.cgi?id=3615" );
+        document.title = "Bug 3615 – blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3615 – blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_MediaWiki bz_component_Internationalization bz_bug_3615 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-08-03 09:25:03 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-08-03 09:25:03">
+  <input type="hidden" name="longdesclength" value="16">
+  <input type="hidden" name="id" value="3615">
+  <input type="hidden" name="token" value="1419362283-XXxB6SfAJmHObzRyFsE0XeUasu-w_VIe4UmylwSqLDc">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3615"><b>Bug&nbsp;3615</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)">blocks of code not handling magic character conversions in Esperanto correcty...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Internationalization
+    
+    (<a href="buglist.cgi?component=Internationalization&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.6.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       trivial<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3615">1 
+            vote</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3615#vote_3615">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://eo.wikipedia.org/w/index.php?title=Speciala%3ALog&amp;type=delete&amp;user=Gangleri"><span title="http://eo.wikipedia.org/w/index.php?title=Speciala%3ALog&amp;type=delete&amp;user=Gangleri">http://eo.wikipedia.org/w/index.php?t...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">i18n
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Esperanto Magical conversion should be a part of Special:Preferences and deselectable at every page"
+   href="show_bug.cgi?id=21781">21781</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - character conversion (tracking)"
+   href="show_bug.cgi?id=3985">3985</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3615&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3615">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-10-05 15:26 UTC by <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-08-03 09:25 UTC 
+      (<a href="show_activity.cgi?id=3615">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>5 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="gangleri">gangleri</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="siebrand">siebrand</option>
+                <option value="verdy_p">verdy_p</option>
+                <option value="Yekrats">Yekrats</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_jpeg">
+        <td valign="top">
+            <a href="attachment.cgi?id=1202"
+               title="View the content of the attachment">
+          <b>screen dump for bug 03615</b></a>
+
+          <span class="bz_attach_extra_info">
+              (54.68 KB,
+                image/jpeg)
+
+            <br>
+            <a href="#attach_1202"
+               title="Go to the comment associated with the attachment">2005-12-16 03:03 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1202&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=3615&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-05 15:26:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+Sorry for this:
+
+Most of bugs relating to
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - magic character conversions in Esperanto cause problems with foreign words, interlanguage links"
+   href="show_bug.cgi?id=1512">bug 1512</a>: magic character conversions in Esperanto cause problems with foreign
+words, interlanguage links
+where fixed.
+
+However it seams that there are still some blocks of codes where magical
+character in Esperanto is used and wrong links are generated.
+
+At the URL from above you may find
+
+16:49, 5. Okt 2005 Gangleri forigis &quot;La Chaŭ-de-Fonds&quot; (ne plu bezunata ĉar cimo
+bugzilla:01512 nun estas fiksita --- la enteno estis : '#REDIRECT La
+Chaŭ-de-Fonds' (kaj la sola kontribuinto estis 'Gangleri'))
+
+Please note that the seccond *La Chaŭ-de-Fonds* is wrong. It should be a link to
+*[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3ALa%20Chaux-de-Fonds">eo:La Chaux-de-Fonds</a>]]*. In the URL most of the redirects where valid
+redirects. You should see blue links not red ones!!!
+
+Hope you understand the point. If not please do not hesitate to contanct me again.
+
+Best regards and thanks in advance for fixing this. Reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Scott Starkey</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-16 16:16:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Interwiki links (and directly typed URLs) that had an 'x' character were at one
+time converted into Esperanto. cx became ĉ, gx became ĝ, ... and so on, and xx
+became x. Thus, several interwiki links have been set up with the *x two-letter
+codes into Esperanto.
+
+However, a few months ago, this conversion tool went away. I'm not sure why or
+how. But when it happened, it caused all of the interwiki links previously set
+up with this x-system to become broken. There are quite a few links broken by
+this, possibly hundreds. 
+
+Ideally, I'd like the old system to come back. It's more convenient to type the
+ASCII sx instead of ŝ, and that would fix the major problem, broken links in the
+interwiki. 
+
+However, if a bot could be written to repair the Esperanto links, that would fix
+the interwiki issue, which is fairly important. -- User Yekrats.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-16 16:55:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3615#c1">comment #1</a>)
+<span class="quote">&gt; Ideally, I'd like the old system to come back. It's more convenient to type the
+&gt; ASCII sx instead of ŝ, and that would fix the major problem, broken links in the
+&gt; interwiki. </span >
+
+Dear Scott
+
+The way how *magical Esperanto character conversion* worked *between* wiki's of
+other languages and projects in Esperanto before the change you mention in your
+comment was broken anyhow.
+
+I support Brions decision to define the *magical Esperanto character conversion*
+as *local* to a project with *content language* Esperanto. Else this
+functionality would have been a part of *all* language projects. For my
+understanding this is not realistic.
+
+Because the InterLanguage links where broken anyhow a fix was necessary one way
+or another. The solution chosen for InterLanguage links *to* projects with
+content language Esperanto is [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=KISS">KISS</a>]] (simple), users can use &quot;copy and paste&quot;
+between languages as you would do with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Ahi%3A">:hi:</a>]], [:ja:]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aka%3A">:ka:</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Ako%3A">:ko:</a>]],
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aur%3A">:ur:</a>]] and other projects where you do not need to understand the language and
+/ or alphabet. This is also straight forward for [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AWikipedia%3Abot">en:Wikipedia:bot</a>]]s as well.
+
+The main issue of this bug report related to parts of MediaWiki code which do
+not handle the *magical Esperanto character conversion* at the time I opened the
+bug.
+
+I identified the *magical Esperanto character conversion* in &quot;pieces of
+MediaWiki&quot; messages as inserted in history fields and logs. If you look at this
+carefully it is mainly relating how the content of the variables $1, $2, etc.
+when submitted and the *magical Esperanto character conversion* procedure might
+be activated or not.
+
+I am shure that Brion can fix these &quot;minor issues&quot; at a point in time. The bugy
+code might be spread &quot;here and there&quot; which complicates the fix / all fixes.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-15 00:20:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*testlinks*
+I just deleted an useless redirect [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AAldous_HUXXLEY">eo:Aldous_HUXXLEY</a>]]. The correct title *is*
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AAldous_HUXLEY">eo:Aldous_HUXLEY</a>]]
+Please compare what
+<a href="http://eo.wikipedia.org/w/index.php?title=Special:Log&amp;type=delete&amp;user=Gangleri">http://eo.wikipedia.org/w/index.php?title=Special:Log&amp;type=delete&amp;user=Gangleri</a>
+is showing:
+01:52, 15. Dec 2005 Gangleri forigis &quot;Aldous HUXXLEY&quot; (enhavis: '#REDIRECTAldous
+HŬLEY' Aldous HUXLEY' ne plu bezonata)
+It mentions a / the messy link [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AAldous_H%C5%ACLEY">eo:Aldous_HŬLEY</a>]] deletd in Oktober.
+
+*request 1*
+The comment should be
+(enhavis: '#REDIRECTAldous HUXLEY' Aldous HUXXLEY' ne plu bezonata)
+
+This was known before and reported in comments above.
+
+----
+
+Now you can tray &quot;page=foo&quot; using one, two, three &quot;X&quot; and other coding characters:
+
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXLEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXLEY</a>
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AAldous_H%C5%ACLEY">eo:Aldous_HŬLEY</a>]] was deleted in Oktober.
+16:35, 5. Okt 2005 Gangleri forigis &quot;Aldous HŬLEY&quot; (ne plu bezunata ĉar cimo
+bugzilla:01512 nun estas fiksita --- la enteno estis : '#REDIRECT Aldous_HŬLEY'
+(kaj la sola kontribuinto estis 'ArnoLagrange'))
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXLEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXLEY</a>
+no result
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXXLEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXXLEY</a>
+no result
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HU%58XLEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HU%58XLEY</a>
+no result
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_H%55%58%58LEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_H%55%58%58LEY</a>
+no result
+other combinations ...
+
+I was not able to find an url to filter that delete event.
+
+*request 2*
+Please fix the search. The magical character sonversion is done at a place it
+shouldn't.
+
+Thanks for your efforts in advance.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 01:09:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3615#c3">comment #3</a>)
+
+<span class="quote">&gt; I was not able to find an url to filter that delete event.</span >
+
+The right url is:
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXXXLEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXXXLEY</a></pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 01:51:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*note*
+1)
+When deleting a page the automatic reason for page deletion was *displayed* as
+enhavis: '#REDIRECT[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Aldous%20HUXLEY">Aldous HUXLEY</a>]]'
+I added
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Aldous%20HUXXLEY">Aldous HUXXLEY</a>]]' ne plu bezonata (because I was nor aware if the characters should be 
+in Esperanto notation or not).
+
+As a result of this &quot;misunderstanding&quot;
+what was added in the database *dispalys* as:
+enhavis: '#REDIRECTAldous HŬLEY' Aldous HUXLEY' ne plu bezonata
+
+
+What would be required is that the reason for deletion should have been
+enhavis: '#REDIRECT[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Aldous%20HUXXLEY">Aldous HUXXLEY</a>]]'
+because this is an editbox where Esperanto cx, gx, hx, jx, ux etc. notation is used by 
+default same as in every other editbox at eo: .
+
+2)
+I assume that
+<a href="http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXXXLEY">http://eo.wikipedia.org/w/index.php?title=Speciala:Log&amp;type=delete&amp;page=Aldous_HUXXXXLEY</a>
+is wrong because the &quot;page&quot; parameter expects cx, gx, hx, jx, ux etc. notation.
+
+In other url's this is not the case compare:
+<a href="http://en.wikipedia.org/wiki/eo:Aldous_HUXLEY">http://en.wikipedia.org/wiki/eo:Aldous_HUXLEY</a>
+<a href="http://eo.wikipedia.org/wiki/Aldous_HUXLEY">http://eo.wikipedia.org/wiki/Aldous_HUXLEY</a>
+and
+<a href="http://en.wikipedia.org/wiki/eo:Aldous_HUXXLEY">http://en.wikipedia.org/wiki/eo:Aldous_HUXXLEY</a>
+<a href="http://eo.wikipedia.org/wiki/Aldous_HUXXLEY">http://eo.wikipedia.org/wiki/Aldous_HUXXLEY</a>
+
+3)
+another block of code:
+Please go to
+<a href="http://eo.wikipedia.org/wiki/Aldous_HUXXLEY">http://eo.wikipedia.org/wiki/Aldous_HUXXLEY</a> (page does not exist)
+and log *in*.
+After login you return to
+<a href="http://eo.wikipedia.org/wiki/Aldous_HUXLEY">http://eo.wikipedia.org/wiki/Aldous_HUXLEY</a> (existing page)
+
+4)
+*undelete*
+has the same problem:
+Undeleting [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3AAldous_HUXXLEY">eo:Aldous_HUXXLEY</a>]]
+<a href="http://eo.wikipedia.org/wiki/Speciala:Undelete/Aldous_HUXXLEY">http://eo.wikipedia.org/wiki/Speciala:Undelete/Aldous_HUXXLEY</a>
+returns with the message:
+&quot;La artikolo [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Aldous_HUXLEY">Aldous_HUXLEY</a>]] estas sukcese restarigita. ...&quot;
+see
+<a href="http://eo.wikipedia.org/wiki/Speciala:Log">http://eo.wikipedia.org/wiki/Speciala:Log</a>
+where there is an entry about completion
+Please verify the timestamps at Special:Undelete with those from the history of 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aeo%3AAldous_HUXLEY">:eo:Aldous_HUXLEY</a>]] .
+
+
+5)
+but after undelete
+tray <a href="http://eo.wikipedia.org/wiki/Speciala:Undelete/Aldous_HUXXLEY">http://eo.wikipedia.org/wiki/Speciala:Undelete/Aldous_HUXXLEY</a>
+*nothing* will happen.
+I was not able to undelete neither the last nor all 4 revisions.
+
+6)
+another block of code:
+Please go to
+<a href="http://eo.wikipedia.org/wiki/Aldous_HUXXLEY">http://eo.wikipedia.org/wiki/Aldous_HUXXLEY</a> (page does not exist)
+and log *out*.
+After loggin out you return to
+<a href="http://eo.wikipedia.org/wiki/Aldous_HUXLEY">http://eo.wikipedia.org/wiki/Aldous_HUXLEY</a> (existing page)
+
+Hope that these examples help to identify many of required pieces of code.
+
+best reagards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 01:59:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*note*
+<a href="http://eo.wikipedia.org/wiki/Speciala:Undelete/Aldous_HUXXLEY">http://eo.wikipedia.org/wiki/Speciala:Undelete/Aldous_HUXXLEY</a>
+is identical to
+<a href="http://eo.wikipedia.org/wiki/Speciala:Undelete?target=Aldous_HUXXXXLEY">http://eo.wikipedia.org/wiki/Speciala:Undelete?target=Aldous_HUXXXXLEY</a>
+
+U+XX+XX is correct Esperanto encoding.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 03:01:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*more*
+I tried to create a user name:
+Cx Gx Hx Jx Sx Ux cx gx hx jx sx ux CXX GXx HXX JXx SXX UXx cxX gxx hxX jxx sxX uxx
+but received the error:
+Ensaluta eraro: Vi ne enmetis validan salutnomon.
+
+However the user name field changed to:
+Ĉ Ĝ Ĥ Ĵ Ŝ Ŭ ĉ ĝ ĥ ĵ ŝ ŭ CX GX HX JX SX UX cx gx hx jx sx ux
+
+7)
+I am puzzeled if this is ok because submitting it another time changes the user name.
+
+Finaly I created:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3Auser%3A%C4%88%20%C4%9D%20%C4%A4%20%C4%B5%20%C5%9C%20%C5%AD%20%C4%88%20%C4%9D%20%C4%A4%20%C4%B5%20%C5%9C%20%C5%AD">eo:user:Ĉ ĝ Ĥ ĵ Ŝ ŭ Ĉ ĝ Ĥ ĵ Ŝ ŭ</a>]] and
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=eo%3Auser%3A%C4%88%20%C4%9D%20%C4%A4%20%C4%B5%20%C5%9C%20%C5%AD%20CX%20gx%20HX%20jx%20SX%20ux">eo:user:Ĉ ĝ Ĥ ĵ Ŝ ŭ CX gx HX jx SX ux</a>]]
+the last using
+Ĉ ĝ Ĥ ĵ Ŝ ŭ CXX gxX HXx jxx SXX uxX
+
+8) please go to
+<a href="http://eo.wikipedia.org/wiki/Speciala:Movepage/Vikipediisto:%C4%88_%C4%9D_%C4%A4_%C4%B5_%C5">http://eo.wikipedia.org/wiki/Speciala:Movepage/Vikipediisto:%C4%88_%C4%9D_%C4%A4_%C4%B5_%C5</a>%
+9C_%C5%AD_CX_gx_HX_jx_SX_ux
+It shows:
+Movu paĝon: Vikipediisto:Ĉ ĝ Ĥ ĵ Ŝ ŭ Ĉ ĝ Ĥ ĵ Ŝ ŭ
+Al nova titolo: Vikipediisto:Ĉ ĝ Ĥ ĵ Ŝ ŭ Ĉ ĝ Ĥ ĵ Ŝ ŭ
+This is wrong.
+
+9) The screen dump following in the next attachment shows an example about blocking
+There are more editboxes some are using the magical character conversion but the one for 
+the user name does not.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 03:03:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1202" name="attach_1202" title="screen dump for bug 03615">attachment 1202</a> <a href="attachment.cgi?id=1202&amp;action=edit" title="screen dump for bug 03615">[details]</a></span>
+screen dump for <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - blocks of code not handling magic character conversions in Esperanto correcty (as reason for page deletion etc.)"
+   href="show_bug.cgi?id=3615">bug 03615</a></pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 10:54:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >10)
+<a href="http://eo.wikipedia.org/w/index.php?title=Special:Search&amp;search=cxx&amp;fulltext=cxx">http://eo.wikipedia.org/w/index.php?title=Special:Search&amp;search=cxx&amp;fulltext=cxx</a>
+is an url I leared at other wiki's ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3A">he:</a>]])
+
+Please tray to do the following:
+a) insert cxx in the editbox under the navigation menu
+b) click &quot;Serĉu&quot;
+c) the url is now
+   <a href="http://eo.wikipedia.org/wiki/Speciala:Search?search=cxx&amp;fulltext=Ser%C4%89u">http://eo.wikipedia.org/wiki/Speciala:Search?search=cxx&amp;fulltext=Ser%C4%89u</a>
+   in the editbox under the navigation menu you still have &quot;cxx&quot;
+   in the editbox beside &quot;Trovu&quot; you have &quot;cx&quot;
+d) click on &quot;Trovu&quot;
+e) the url changes to
+  
+<a href="http://eo.wikipedia.org/w/index.php?title=Special%3ASearch&amp;search=cx&amp;fulltext=Trovu">http://eo.wikipedia.org/w/index.php?title=Special%3ASearch&amp;search=cx&amp;fulltext=Trovu</a>
+   notice that &quot;cxx&quot; changed to &quot;cx&quot;
+   in the editbox under the navigation menu you have now &quot;cx&quot;
+   beside &quot;Trovu&quot; you have now &quot;ĉ&quot;
+
+*request*
+As all editboxes the input syntax should be &quot;magic esperanto conversion. This
+means that in both fields you should enter &quot;ĉ&quot; or &quot;cx&quot; alternatively. This is
+the case now.
+*But* the input in the field under the navigation bar should preserve. The
+relavant cases are cxx cxxxx ... uxx uxxxx etc.
+
+*note*
+f) <a href="http://he.wikipedia.org/wiki/special:Search?search=%D7%90%D7%90%D7%90">http://he.wikipedia.org/wiki/special:Search?search=%D7%90%D7%90%D7%90</a>
+using three *alephs* shows different in IE and Firefox
+Firefox shows only *two* alephs. I will identify this bug at bugzilla.mozilla.
+
+g) however the url's look different if you compare the parameters
+   I did not see somthing as &quot;&amp;fulltext=Trovu&quot; at he:
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-21 11:28:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3615#c9">comment #9</a>)
+<span class="quote">&gt; 10)<a href="http://eo.wikipedia.org/w/index.php">http://eo.wikipedia.org/w/index.php</a>?</span >
+title=Special:Search&amp;search=cxx&amp;fulltext=cxx
+
+&quot;fulltext=cxx&quot; is INVALID
+
+<span class="quote">&gt; *note*
+&gt; f) <a href="http://he.wikipedia.org/wiki/special:Search?search=%D7%90%D7%90%D7%90">http://he.wikipedia.org/wiki/special:Search?search=%D7%90%D7%90%D7%90</a>
+&gt; using three *alephs* shows different in IE and FirefoxFirefox shows only </span >
+*two* alephs.
+
+see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bugzilla%3A04332">bugzilla:04332</a>]]: RTL characters disapear in the Search edit box at 
+special:Search
+
+<span class="quote">&gt; I will identify this bug at bugzilla.mozilla.</span >
+still open
+
+<span class="quote">&gt; g) however the url's look different if you compare the parametersI did </span >
+not see somthing as &quot;&amp;fulltext=Trovu&quot; at he:
+
+is INVALID
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-22 00:04:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3615#c10">comment #10</a>)
+<span class="quote">&gt; see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=bugzilla%3A04332">bugzilla:04332</a>]]: RTL characters disapear in the Search edit box at 
+&gt; special:Search</span >
+
+wrong link:
+see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - RTL characters disappear in the Search edit box at Special:Search"
+   href="show_bug.cgi?id=4332">bug 4332</a>: RTL characters disapear in the Search edit box at special:Search
+sorry!</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-22 04:24:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Restored bug from flood attack.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-11-19 19:02:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I still think that the esperanto specific magical conversion is a hack that should not be present in the MediaWiki stoftware itself, but that should only be offered as an edit tool that will manually convert selected characters to actual esperanto. This should then be supported only within a gadget for the page editor, or a more general gadget for use in various forms (like the Search form). The conversion should be explicitly requested, otherwise nothing should be done automagically as this breaks too often.
+
+This also means that the esperanto messages (in the MadiaWiki: namespace) need to be created on TranslateWiki with the correct characters (you may ask to TranslateWiki to add a gadget for esperantists that can't type the circumflexes on their keyboard, but I really suggest that the esperanto wiki documents how to create or install a keyboard layout to support the circumflex diacritic directly (because this is really easy in Windows and Linux; I don't know if this is possible as easily on MacOSX, but I suppose that tools similar to MSKLC for Windows also exist on MacOSX).
+
+If there remains incorrect links using extra &quot;x&quot; characters or where characters where converted to esperanto that should not have been converted on EO:WP, this has to be fixed within the articles. But the magic conversion after pressing the Publish button is really a bad thing with unsolvable problems.
+</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 01:36:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've implemented input method rules for Esperanto in the Narayam input method extension in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/85504" title="revision 85504 in SVN">r85504</a>.
+
+This relies on JavaScript-capable browsers that work with modern UTF-8 and have working fonts -- usually now a good assumption, whereas it wasn't in 2002 :) -- but if all goes well, we should be able to dump the old internal conversions and use this instead.
+
+The client-side input method handles *all* text input fields, and doesn't rely on server-side processing remembering what type of field it's dealing with. Yay!
+
+See also <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Esperanto Magical conversion should be a part of Special:Preferences and deselectable at every page"
+   href="show_bug.cgi?id=21781">bug 21781</a>.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3615#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-22 23:51:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Marking this as dependent on 21781; dumping the old conversion for the new Narayam ext's conversion will be much nicer... but that itself is pending on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Narayam input method does not take effect in many input boxes"
+   href="show_bug.cgi?id=28668">bug 28668</a> -- it needs to be modified to work reliably on all fields too. :)</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3615&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3615">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3615">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3615">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3615&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3615" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3615&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419362283-qAj6V0kPLcwkPp6AcLsbSpEysbkMlf3lZvswHwCu2GI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

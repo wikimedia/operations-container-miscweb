@@ -1,0 +1,1444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 8130 &ndash; Query pages should limit to content namespaces, not just main namespace</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=8130&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=8130">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=8130">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=8130">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 8130 – Query pages should limit to content namespaces, not just main namespace",  
+                             "show_bug.cgi?id=8130" );
+        document.title = "Bug 8130 – Query pages should limit to content namespaces, not just main namespace";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 8130 – Query pages should limit to content namespaces, not just main namespace", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Special_pages bz_bug_8130 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-12-22 21:26:22 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-12-22 21:26:22">
+  <input type="hidden" name="longdesclength" value="12">
+  <input type="hidden" name="id" value="8130">
+  <input type="hidden" name="token" value="1419369435-1aMy5Yt0aaw1DZ3xM7eivsQg1KpTsLSfpYBjrLvxPNA">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=8130"><b>Bug&nbsp;8130</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Query pages should limit to content namespaces, not just main namespace</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Query pages should limit to content namespaces, not just main namespace
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Query pages should limit to content namespaces, not just main namespace', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Special pages
+    
+    (<a href="buglist.cgi?component=Special%20pages&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=8130#vote_8130">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Special pages use NS_MAIN instead of ContentNamespaces"
+   href="show_bug.cgi?id=18804">18804</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=18804">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Access QueryPage-based special pages via API"
+   href="show_bug.cgi?id=14869">14869</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Consolidate special pages with namespace selector"
+   href="show_bug.cgi?id=4204">4204</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=8130&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=8130">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-12-03 07:33 UTC by <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-12-22 21:26 UTC 
+      (<a href="show_activity.cgi?id=8130">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>3 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="lgarczewski">lgarczewski</option>
+                <option value="nephele">nephele</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5916"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implementation of Namespace::isContentQuery()</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (8.95 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5916"
+               title="Go to the comment associated with the attachment">2009-03-11 21:50 UTC</a>,
+
+            <span class="vcard">nephele
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5916&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=6062"
+               title="View the content of the attachment">
+          <b>Add/implement MWNamespace::getContentNamespaces(), patch for querypage-work branch</b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.84 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6062"
+               title="Go to the comment associated with the attachment">2009-04-25 19:19 UTC</a>,
+
+            <span class="vcard">nephele
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6062&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (1)
+        </span>
+        <a href="attachment.cgi?bugid=8130&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-03 07:33:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Per <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Special:Popularpages: no indication that is only NS_MAIN"
+   href="show_bug.cgi?id=7991#c3">bug 7991 comment 3</a>, certain query pages should probably have their SQL
+tweaked such that all valid content namespaces, as defined in
+$wgContentNamespaces, are included, rather than just the main namespace.
+
+This might still present problems, where pages are laid out with the assumption
+that all list items reflect a single namespace, but it's probably a viable
+consideration for the future.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">nephele
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-11 21:50:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5916" name="attach_5916" title="Implementation of Namespace::isContentQuery()">attachment 5916</a> <a href="attachment.cgi?id=5916&amp;action=edit" title="Implementation of Namespace::isContentQuery()">[details]</a></span>
+Implementation of Namespace::isContentQuery()
+
+Makes various special pages check all specified content namespaces instead of just NS_MAIN.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">nephele
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-11 21:53:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug has been a problem on the wiki where I'm an admin (www.uesp.net), because our site makes extensive use of content namespaces other than NS_MAIN.  I've implemented a code modification on our wiki that fixes this bug, and I think it would be useful if the same fixes could be implemented in the core mediawiki code.  In my previous comment I uploaded a patch file that implements all of the suggested changes.
+
+I've added a new static function, Namespace::isContentQuery(), to Namespace.php (basically just moving existing code in SpecialPopularPages.php into a centralized function).
+That function has then been added into the SQL queries of all relevant special pages, basically just replacing &quot;page_namespace=&quot;.NS_MAIN with &quot;page_namespace &quot;.Namespace::isContentQuery() .  A few special cases where more than just one line needed to be changed in the Specialxxx.php are:
+* On SpecialPopularPages.php and SpecialShortpages.php existing redundant code was removed.
+* On SpecialUncategorizedpages.php, the default request was changed to be &quot;all content pages&quot; (requested using NULL) instead of NS_MAIN (Uncategorizedtemplates and Uncategorizedcategories still work properly)
+
+These changes have been in place at UESP for a year now, so I'm confident that they do work on a live wiki.  If anyone would like to see the resulting code in action, you can check some of UESP's special pages, i.e.
+<a href="http://www.uesp.net/wiki/Special:Disambiguations">http://www.uesp.net/wiki/Special:Disambiguations</a>
+<a href="http://www.uesp.net/wiki/Special:Lonelypages">http://www.uesp.net/wiki/Special:Lonelypages</a>
+<a href="http://www.uesp.net/wiki/Special:Deadendpages">http://www.uesp.net/wiki/Special:Deadendpages</a>
+<a href="http://www.uesp.net/wiki/Special:DoubleRedirects">http://www.uesp.net/wiki/Special:DoubleRedirects</a>
+The only caveat is that UESP is still running Mediawiki 1.10.0 (in part because we have numerous code modifications like this that make upgrading unbearably difficult, thus the interest in getting some of the modifications added to mediawiki).  However, the relevant code hasn't changed much since 1.10.  The attached patch was created for 1.14, and I did some basic tests on the 1.14 configuration to check that the changes work.
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-12 08:33:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Argh, ugliness!
+
+All this code should use the Database class functions instead of building a raw SQL query. When they do that, you no longer need the ugly-as-hell MWNamespace::isContentQuery() (the Namespace class was renamed to MWNamespace a while ago) that spits out weird raw SQL fragments, but just a function that returns an array of content namespaces.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">nephele
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-24 19:31:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, the code may be ugly.  But the patch is not the source of the ugliness -- the existing SpecialPage classes all pass around raw SQL fragments and make minimal use of the Database class functions.  In a nutshell, trying to refactor the code to make it pretty would be a major code revamp -- with no performance or functionality benefits -- and refactoring the code would by itself still do nothing to fix this bug.  I'm not trying to provide the ultimate, perfect code; I'm just trying to provide some progress towards fixing a two-year old bug.
+
+Some of the fundamental obstacles complicating a conversion of all this code to use the Database class functions include:
+* Some 32 special pages are based on QueryPage.  Any comprehensive fix requires revamping all of those pages, plus QueryPage.php and PageQueryPage.php.  Even worse, a comprehensive fix is likely to break any extension special pages that create special pages derived from QueryPage -- possibly 235 extensions based on Mediawiki-registered extensions alone.
+* QueryPage::getSQL is supposed to return raw SQL.  If getSQL is changed to instead return an array of ($table, $var, $cond, $fname, $options), then every use of getSQL is made uglier, because it's now passing around 5+ parameters instead of just one.  The other option is that getSQL still returns raw SQL, but that the various implementations of getSQL use Database functions to generate that raw SQL -- however, that's not currently possible, because the Database class does not have functions that construct a raw SQL query and return it -- without actually executing the SQL query.
+* Many of the existing SQL queries cannot be handled by the Database functions.  See SpecialDisambiguations, for example, where the page table is accessed twice within a single query, and therefore it is aliased (&quot;FROM {$page} AS pb, {$pagelinks} AS la, {$page} AS pa&quot;).  The database functions are unable to handle table aliases.  Without major revisions to Database, it is impossible to change all of the special pages to use the database functions -- and changing half of the special pages to use one syntax and leaving half using the old syntax is even uglier, in my opinion.
+
+After all of that is done, it's still necessary to figure out how to fix this bug.
+* The &quot;prettiest&quot; way to do it would seem to be adding it as a flag recognized by Database::makeSelectOptions.  However, burying it that deep within the Database class then means it's unavailable to queries that are not entirely constructed by the Database functions -- such as SpecialDisambiguations (unless the database functions are made fully alias-aware).  So then a separate function is needed outside of makeSelectOptions that spits out raw SQL fragments -- so why not just introduce that separate function right now instead of forcing a code revamp that won't even get rid of the separate function?
+* I added isContentQuery to the MWNamespace class because the necessary information is ''not'' part of the database: the list of content namespaces is defined solely through a global variable, $wgContentNamespaces.  With my patch, all uses of $wgContentNamespaces are centralized in Namespace.php -- only MWNamespace needs to know the inner details of the content namespaces are defined.
+
+I'm willing to update my patch if provided with specific suggestions about what could be done differently within the scope of this approach.  But I'm not prepared to take on a huge project to fix something that's basically unrelated to this bug.  Especially since with my superficial knowledge of the MW codebase, my efforts to tackle such a huge revamp would inevitably add a whole new stack of bugs.
+
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-24 19:34:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8130#c4">comment #4</a>)
+<span class="quote">&gt; Yes, the code may be ugly.  But the patch is not the source of the ugliness --
+&gt; the existing SpecialPage classes all pass around raw SQL fragments and make
+&gt; minimal use of the Database class functions.  In a nutshell, trying to refactor
+&gt; the code to make it pretty would be a major code revamp -- with no performance
+&gt; or functionality benefits -- and refactoring the code would by itself still do
+&gt; nothing to fix this bug.  I'm not trying to provide the ultimate, perfect code;
+&gt; I'm just trying to provide some progress towards fixing a two-year old bug.
+&gt; 
+&gt; Some of the fundamental obstacles complicating a conversion of all this code to
+&gt; use the Database class functions include:
+&gt; * Some 32 special pages are based on QueryPage.  Any comprehensive fix requires
+&gt; revamping all of those pages, plus QueryPage.php and PageQueryPage.php.  Even
+&gt; worse, a comprehensive fix is likely to break any extension special pages that
+&gt; create special pages derived from QueryPage -- possibly 235 extensions based on
+&gt; Mediawiki-registered extensions alone.
+&gt; * QueryPage::getSQL is supposed to return raw SQL.  If getSQL is changed to
+&gt; instead return an array of ($table, $var, $cond, $fname, $options), then every
+&gt; use of getSQL is made uglier, because it's now passing around 5+ parameters
+&gt; instead of just one.  The other option is that getSQL still returns raw SQL,
+&gt; but that the various implementations of getSQL use Database functions to
+&gt; generate that raw SQL -- however, that's not currently possible, because the
+&gt; Database class does not have functions that construct a raw SQL query and
+&gt; return it -- without actually executing the SQL query.
+&gt; * Many of the existing SQL queries cannot be handled by the Database functions.
+&gt;  See SpecialDisambiguations, for example, where the page table is accessed
+&gt; twice within a single query, and therefore it is aliased (&quot;FROM {$page} AS pb,
+&gt; {$pagelinks} AS la, {$page} AS pa&quot;).  The database functions are unable to
+&gt; handle table aliases.  Without major revisions to Database, it is impossible to
+&gt; change all of the special pages to use the database functions -- and changing
+&gt; half of the special pages to use one syntax and leaving half using the old
+&gt; syntax is even uglier, in my opinion.
+&gt; 
+&gt; After all of that is done, it's still necessary to figure out how to fix this
+&gt; bug.
+&gt; * The &quot;prettiest&quot; way to do it would seem to be adding it as a flag recognized
+&gt; by Database::makeSelectOptions.  However, burying it that deep within the
+&gt; Database class then means it's unavailable to queries that are not entirely
+&gt; constructed by the Database functions -- such as SpecialDisambiguations (unless
+&gt; the database functions are made fully alias-aware).  So then a separate
+&gt; function is needed outside of makeSelectOptions that spits out raw SQL
+&gt; fragments -- so why not just introduce that separate function right now instead
+&gt; of forcing a code revamp that won't even get rid of the separate function?
+&gt; * I added isContentQuery to the MWNamespace class because the necessary
+&gt; information is ''not'' part of the database: the list of content namespaces is
+&gt; defined solely through a global variable, $wgContentNamespaces.  With my patch,
+&gt; all uses of $wgContentNamespaces are centralized in Namespace.php -- only
+&gt; MWNamespace needs to know the inner details of the content namespaces are
+&gt; defined.
+&gt; 
+&gt; I'm willing to update my patch if provided with specific suggestions about what
+&gt; could be done differently within the scope of this approach.  But I'm not
+&gt; prepared to take on a huge project to fix something that's basically unrelated
+&gt; to this bug.  Especially since with my superficial knowledge of the MW
+&gt; codebase, my efforts to tackle such a huge revamp would inevitably add a whole
+&gt; new stack of bugs.
+&gt; </span >
+
+I'm working on doing all this in the querypage-work branch; and yes, it is possible to prettify stuff and move away from raw SQL.
+
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">nephele
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-24 23:42:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Aha, that makes it alot easier (especially for a newb like me) to see the direction where you're heading with the special page queries.
+
+So, should I wait until the querypage-work branch is complete to proceed?
+
+Or could I help by providing a patch for querypage-work? In which case, it looks like what you're suggesting is that the entry in $conds would be changed from
+  page_namespace =&gt; NS_MAIN
+to something like
+  page_namespace =&gt; MWNamespace::getContentNamespaces()
+where getContentNamespaces could return a single value or an array of values (returning a single-value as a non-array seems slightly more efficient for Database::makeList).
+
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-25 06:57:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8130#c6">comment #6</a>)
+<span class="quote">&gt; Aha, that makes it alot easier (especially for a newb like me) to see the
+&gt; direction where you're heading with the special page queries.
+&gt; 
+&gt; So, should I wait until the querypage-work branch is complete to proceed?
+&gt; 
+&gt; Or could I help by providing a patch for querypage-work? In which case, it
+&gt; looks like what you're suggesting is that the entry in $conds would be changed
+&gt; from
+&gt;   page_namespace =&gt; NS_MAIN
+&gt; to something like
+&gt;   page_namespace =&gt; MWNamespace::getContentNamespaces()</span >
+Yeah, that's what will be needed. I'll look into that on a per-query basis (such a condition might hurt efficiency for some queries).
+
+<span class="quote">&gt; where getContentNamespaces could return a single value or an array of values
+&gt; (returning a single-value as a non-array seems slightly more efficient for
+&gt; Database::makeList).
+&gt; </span >
+Doesn't really matter.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">nephele
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-25 19:19:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=6062" name="attach_6062" title="Add/implement MWNamespace::getContentNamespaces(), patch for querypage-work branch">attachment 6062</a> <a href="attachment.cgi?id=6062&amp;action=edit" title="Add/implement MWNamespace::getContentNamespaces(), patch for querypage-work branch">[details]</a></span>
+Add/implement MWNamespace::getContentNamespaces(), patch for querypage-work branch
+
+Here's a new patch, written specifically for the querypage-work branch.  The new function is now MWNamespace::getContentNamespaces().  I went ahead and added it to every query where I think it should be used.  In the process, I took a stab at converting SpecialPopularPages over to the new syntax.
+
+In terms of efficiency, using getContentNamespaces() instead of just NS_MAIN shouldn't have any impact on wikipedia, because the two end up producing identical SQL.  And as someone who uses a wiki where the content namespaces have been customized, I'd argue getContentNamespaces() needs to be used in all possible queries -- because otherwise the corresponding special page ends up being completely useless.  If performance really is a limiting factors in some of these queries, it might make more sense to just drop the namespace condition completely (or at least drop it if the content namespaces have been customized).
+
+There are a couple of other minor fixes included in the patch that I came across while doing a quick test-run of the code; I left them in place because it seemed likely you'd want to make those fixes eventually.  (Specifically, abstract-ing PageQueryPage, fixing a missing ' in SpecialDeadendpages)</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-27 13:32:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8130#c8">comment #8</a>)
+<span class="quote">&gt; Created an attachment (id=6062) [details]
+&gt; Add/implement MWNamespace::getContentNamespaces(), patch for querypage-work
+&gt; branch
+&gt; 
+&gt; Here's a new patch, written specifically for the querypage-work branch.</span >
+Thanks, committed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/49951" title="revision 49951 in SVN">r49951</a>.
+
+<span class="quote">&gt; The
+&gt; new function is now MWNamespace::getContentNamespaces().  I went ahead and
+&gt; added it to every query where I think it should be used.  In the process, I
+&gt; took a stab at converting SpecialPopularPages over to the new syntax.
+&gt; </span >
+Thanks; I thought I had converted all of them, but I seem to have missed that one somehow.
+
+<span class="quote">&gt; In terms of efficiency, using getContentNamespaces() instead of just NS_MAIN
+&gt; shouldn't have any impact on wikipedia, because the two end up producing
+&gt; identical SQL.  And as someone who uses a wiki where the content namespaces
+&gt; have been customized, I'd argue getContentNamespaces() needs to be used in all
+&gt; possible queries -- because otherwise the corresponding special page ends up
+&gt; being completely useless.  If performance really is a limiting factors in some
+&gt; of these queries, it might make more sense to just drop the namespace condition
+&gt; completely (or at least drop it if the content namespaces have been
+&gt; customized).
+&gt; </span >
+True. In all of the queries you modified, it looks like the WHERE clause for page_namespace is not indexed anyway, so whether it limits to one or more values doesn't matter.
+
+<span class="quote">&gt; There are a couple of other minor fixes included in the patch that I came
+&gt; across while doing a quick test-run of the code; I left them in place because
+&gt; it seemed likely you'd want to make those fixes eventually.  (Specifically,
+&gt; abstract-ing PageQueryPage, fixing a missing ' in SpecialDeadendpages)
+&gt; </span >
+Good catch.
+</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-15 11:06:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Special pages use NS_MAIN instead of ContentNamespaces"
+   href="show_bug.cgi?id=18804">Bug 18804</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8130#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-22 21:26:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Branch was merged in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/78786" title="revision 78786 in SVN">r78786</a>.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=8130&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=8130">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=8130">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=8130">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=8130&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=8130" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=8130&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419369435-e7DM3DHHmKRqM780dCsbSJWqNA0EvNN3k6SCbnWwBz8">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

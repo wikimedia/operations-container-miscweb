@@ -1,0 +1,2437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4947 &ndash; SVGZ (gzipped SVG) support</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4947&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4947">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4947">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4947">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4947 – SVGZ (gzipped SVG) support",  
+                             "show_bug.cgi?id=4947" );
+        document.title = "Bug 4947 – SVGZ (gzipped SVG) support";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4947 – SVGZ (gzipped SVG) support", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_File_management bz_bug_4947 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-09-23 23:35:45 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-09-23 23:35:45">
+  <input type="hidden" name="longdesclength" value="35">
+  <input type="hidden" name="id" value="4947">
+  <input type="hidden" name="token" value="1419364677-0Zq2XII0P8fL1nzXO-xwWkpy_RtFHfVJjV5PRfVBRnA">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4947"><b>Bug&nbsp;4947</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">SVGZ (gzipped SVG) support</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>SVGZ (gzipped SVG) support
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('SVGZ (gzipped SVG) support', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>File management
+    
+    (<a href="buglist.cgi?component=File%20management&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=4947">8 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4947#vote_4947">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-reviewed
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Send svg files compressed on upload.wikimedia.org"
+   href="show_bug.cgi?id=22191">22191</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - SVG rasterisation and management on Wikimedia sites (tracking)"
+   href="show_bug.cgi?id=8901">svg</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4947&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4947">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-02-10 15:59 UTC by <span class="vcard">ejsanders
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-09-23 23:35 UTC 
+      (<a href="show_activity.cgi?id=4947">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>10 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ayg">ayg</option>
+                <option value="b">b</option>
+                <option value="brion">brion</option>
+                <option value="gpaumier">gpaumier</option>
+                <option value="gwicke">gwicke</option>
+                <option value="kosikfl">kosikfl</option>
+                <option value="nospam">nospam</option>
+                <option value="physik">physik</option>
+                <option value="Platonides">Platonides</option>
+                <option value="vitalif">vitalif</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Use gzip transfer encoding for SVG files on bits.wikimedia.org"
+   href="show_bug.cgi?id=61442">61442</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2817"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch to enable SVGZ support</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.94 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2817"
+               title="Go to the comment associated with the attachment">2006-12-03 20:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2817&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2818"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Instructions to apply the patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.21 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_2818"
+               title="Go to the comment associated with the attachment">2006-12-03 20:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2818&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2881"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">A better patch using zlib</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.34 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2881"
+               title="Go to the comment associated with the attachment">2006-12-16 17:47 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2881&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=2882"
+               title="View the content of the attachment">
+          <b>Instructions to apply the patch (newer)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1013 bytes,
+                text/plain)
+
+            <br>
+            <a href="#attach_2882"
+               title="Go to the comment associated with the attachment">2006-12-16 17:48 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2882&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5578"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch to enable SVGZ support - against r44559</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.86 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5578"
+               title="Go to the comment associated with the attachment">2008-12-14 05:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5578&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5579"
+               title="View the content of the attachment">
+          <b>Check if PHP was compiled with ZLib support</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.89 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5579"
+               title="Go to the comment associated with the attachment">2008-12-14 06:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5579&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=8827"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">VitaliyFilippov's patch, based on XMLTypeCheck</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.37 KB,
+                patch)
+
+            <br>
+            <a href="#attach_8827"
+               title="Go to the comment associated with the attachment">2011-07-27 13:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=8827&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=9470"
+               title="View the content of the attachment">
+          <b>Updated patch for r103314 (VitaliyFilippov)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.36 KB,
+                patch)
+
+            <br>
+            <a href="#attach_9470"
+               title="Go to the comment associated with the attachment">2011-11-16 12:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=9470&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (5)
+        </span>
+        <a href="attachment.cgi?bugid=4947&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">ejsanders
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-10 15:59:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is it possible / worthwhile? With some very large SVGs being uploaded and the
+possibility of client-side SVG rendering - it might be a good idea. Due to XMLs
+repetitive nature, compression is usually fairly high.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">denelson83</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-04 08:56:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I second this idea.  It would make more efficient use of space on Wikimedia's
+servers.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-03 20:34:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I created a patch, attached.  Please post feedback here or en:User_talk:Brownsteve
+
+INSTRUCTIONS TO USE THE SVGZ PATCH
+
+1. Install/upgrade MediaWiki - latest version is best
+2. Install ImageMagick 6.2 or later.  This is required for
+   SVGZ support.  You may also need to install librsvg / rsvg.
+
+3. Apply this patch (if the patch has been accepted, SKIP THIS STEP)
+   cd /path/to/mediawiki
+   patch -p0 svgz.patch
+
+4. In LocalSettings.php, add these lines:
+   $wgStrictFileExtensions=false;
+   $wgEnableUploads       = true;
+
+5. You MUST enable your web server to properly serve
+   SVGZ files with Content-Encoding:gzip and MIME type
+   image/svg+xml.  This is NOT enabled by default.
+   Edit httpd.conf or .htaccess (search Google if stuck)
+EXAMPLE: In Apache's httpd.conf, add these lines:
+
+AddType image/svg+xml .svg .svgz
+AddEncoding gzip .svgz
+&lt;Files *.svgz.*&gt;
+RemoveEncoding .svgz
+&lt;/Files&gt;
+
+6. Restart your web server (on Linux, sudo /etc/init.d/httpd restart)
+7. That's it!  Have fun.  Report bugs/problems/etc. to en:User_talk:Brownsteve
+
+
+BUGS IN THIS PATCH!!!!
+SVG is not a registered MIME type with IANA.
+Apache only includes IANA-approved MIME types by default.
+You must configure your httpd.conf by hand until this is fixed.
+
+We assume all browsers that can render SVG graphics
+can also Accept-Encoding:gzip.
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-03 20:34:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2817" name="attach_2817" title="Patch to enable SVGZ support">attachment 2817</a> <a href="attachment.cgi?id=2817&amp;action=edit" title="Patch to enable SVGZ support">[details]</a></span>
+Patch to enable SVGZ support</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-03 20:35:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2818" name="attach_2818" title="Instructions to apply the patch">attachment 2818</a> <a href="attachment.cgi?id=2818&amp;action=edit" title="Instructions to apply the patch">[details]</a></span>
+Instructions to apply the patch</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 17:43:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=2817" name="attach_2817" title="Patch to enable SVGZ support">attachment 2817</a> <a href="attachment.cgi?id=2817&amp;action=edit" title="Patch to enable SVGZ support">[details]</a></span>
+Patch to enable SVGZ support
+
+Index: maintenance/FiveUpgrade.inc
+===================================================================
+--- maintenance/FiveUpgrade.inc (revision 18367)
++++ maintenance/FiveUpgrade.inc (working copy)
+&#64;&#64; -714,7 +714,7 &#64;&#64;
+
+		# Height and width
+		$gis = false;
+-		if( $mime == 'image/svg' ) {
++		if( $mime == 'image/svg' || $mime == 'image/svg+xml' ) {
+			$gis = wfGetSVGsize( $filename );
+		} elseif( $magic-&gt;isPHPImageType( $mime ) ) {
+			$gis = getimagesize( $filename );
+Index: includes/MimeMagic.php
+===================================================================
+--- includes/MimeMagic.php	(revision 18367)
++++ includes/MimeMagic.php	(working copy)
+&#64;&#64; -23,7 +23,7 &#64;&#64;
+ image/gif gif
+ image/jpeg jpeg jpg jpe
+ image/png png
+-image/svg+xml svg
++image/svg+xml svg svgz
+ image/tiff tiff tif
+ image/vnd.djvu djvu
+ text/plain txt
+&#64;&#64; -51,7 +51,8 &#64;&#64;
+ image/gif [BITMAP]
+ image/jpeg [BITMAP]
+ image/png [BITMAP]
+-image/svg image/svg+xml [DRAWING]
++image/svg+xml [DRAWING]
++image/svg [DRAWING]
+ image/tiff [BITMAP]
+ image/vnd.djvu [BITMAP]
+ text/plain [TEXT]
+&#64;&#64; -368,6 +369,26 &#64;&#64;
+			$mime = &quot;application/x-msmetafile&quot;;
+		}
+
++		if (substr($head,0,2) == &quot;\x1f\x8b&quot; &amp;&amp;
+preg_match('/\.svgz$/si', $file) &amp;&amp; $f = gzopen($file, &quot;rt&quot;) ) {
++			//GZip Magic Signature; probably a GZipped SVG file
+(.svgz)
++
++			//The host web server software is responsible to output
++			//the proper &quot;Content-Encoding: gzip&quot; HTTP header for
+.svgz
++			//  True SVGZ images without the &quot;.svgz&quot; extension WILL
+fail because
++			//  only this extension triggers the server's correct
+encoding header.
++			// Example: In Apache httpd.conf add:
++			//  AddType image/svg+xml .svg .svgz
++			//  AddEncoding gzip .svgz
++			//  &lt;Files *.svgz.*&gt;
++			//  RemoveEncoding .svgz
++			//  &lt;/Files&gt;
++			$chunk = gzread( $f, 4096 );
++			gzclose( $f );
++
++			//look for svg tag
++			if( preg_match( '/&lt;svg\s*([^&gt;]*)\s*&gt;/s', $chunk ) )
+$mime = &quot;image/svg+xml&quot;;
++		}
++
+		if (strpos($mime,&quot;text/&quot;)===0 || $mime===&quot;application/xml&quot;) {
+
+			$xml_type= NULL;
+&#64;&#64; -399,8 +420,8 &#64;&#64;
+
+					#print &quot;&lt;br&gt;ANALYSING $file ($mime):
+doctype= $doctype; tag= $tag&lt;br&gt;&quot;;
+
+-					if (strpos($doctype,&quot;-//W3C//DTD
+SVG&quot;)===0) $mime= &quot;image/svg&quot;;
+-					elseif ($tag===&quot;svg&quot;) $mime=
+&quot;image/svg&quot;;
++					if (strpos($doctype,&quot;-//W3C//DTD
+SVG&quot;)===0) $mime= &quot;image/svg+xml&quot;;
++					elseif ($tag===&quot;svg&quot;) $mime=
+&quot;image/svg+xml&quot;;
+					elseif (strpos($doctype,&quot;-//W3C//DTD
+XHTML&quot;)===0) $mime= &quot;text/html&quot;;
+					elseif ($tag===&quot;html&quot;) $mime=
+&quot;text/html&quot;;
+				}
+Index: includes/Image.php
+===================================================================
+--- includes/Image.php	(revision 18367)
++++ includes/Image.php	(working copy)
+&#64;&#64; -272,7 +272,7 &#64;&#64;
+
+			# Height and width
+			wfSuppressWarnings();
+-			if( $this-&gt;mime == 'image/svg' ) {
++			if( $this-&gt;mime == 'image/svg' || $this-&gt;mime ==
+'image/svg+xml' ) {
+				$gis = wfGetSVGsize( $this-&gt;imagePath );
+			} elseif( $this-&gt;mime == 'image/vnd.djvu' ) {
+				$deja = new DjVuImage( $this-&gt;imagePath );
+&#64;&#64; -619,7 +619,7 &#64;&#64;
+		if (!$mime || $mime==='unknown' || $mime==='unknown/unknown')
+return false;
+
+		#if it's SVG, check if there's a converter enabled
+-		if ($mime === 'image/svg') {
++		if ($mime === 'image/svg' || $mime === 'image/svg+xml') {
+			global $wgSVGConverters, $wgSVGConverter;
+
+			if ($wgSVGConverter &amp;&amp; isset(
+$wgSVGConverters[$wgSVGConverter])) {
+&#64;&#64; -1150,8 +1150,7 &#64;&#64;
+		$err = false;
+		$cmd = &quot;&quot;;
+		$retval = 0;
+-		
+-		if( $this-&gt;mime === &quot;image/svg&quot; ) {
++		if( $this-&gt;mime === &quot;image/svg&quot; || $this-&gt;mime ===
+&quot;image/svg+xml&quot; ) {
+			#Right now we have only SVG
+
+			global $wgSVGConverters, $wgSVGConverter;
+Index: includes/ImageFunctions.php
+===================================================================
+--- includes/ImageFunctions.php (revision 18367)
++++ includes/ImageFunctions.php (working copy)
+&#64;&#64; -139,7 +139,6 &#64;&#64;
+
+ /**
+  * Compatible with PHP getimagesize()
+- * &#64;todo support gzipped SVGZ
+  * &#64;todo check XML more carefully
+  * &#64;todo sensible defaults
+  *
+&#64;&#64; -156,6 +155,15 &#64;&#64;
+	$chunk = fread( $f, 4096 );
+	fclose( $f );
+
++	if (substr($chunk,0,2) == &quot;\x1f\x8b&quot; &amp;&amp; preg_match('/\.svgz$/si',
+$filename)) {
++		//it's compressed; decompress it
++		$f = gzopen( $filename, &quot;rt&quot; );
++		if ( !$f ) return false;
++
++		$chunk = gzread( $f, 4096 );
++		gzclose( $f );
++	}
++	
+	// Uber-crappy hack! Run through a real XML parser.
+	$matches = array();
+	if( !preg_match( '/&lt;svg\s*([^&gt;]*)\s*&gt;/s', $chunk, $matches ) ) {</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 17:47:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2881" name="attach_2881" title="A better patch using zlib">attachment 2881</a> <a href="attachment.cgi?id=2881&amp;action=edit" title="A better patch using zlib">[details]</a></span>
+A better patch using zlib</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 17:48:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2882" name="attach_2882" title="Instructions to apply the patch (newer)">attachment 2882</a> <a href="attachment.cgi?id=2882&amp;action=edit" title="Instructions to apply the patch (newer)">[details]</a></span>
+Instructions to apply the patch (newer)</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-21 22:41:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c6">comment #6</a>)
+<span class="quote">&gt; Created an attachment (id=2881) [edit]
+&gt; A better patch using zlib
+&gt; </span >
+
+* thinks like changing image/svg to image/svg+xml hasn't anything to do with
+svgz, should be applied to own bug
+* preg_match('/\.svgz$/si', $filename), a bit unnecessary using preg_match here.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-22 16:10:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The mimetype conversion is required so as not to confuse Apache.  It just works
+around another <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - &quot;image/svg&quot; should be &quot;image/svg+xml&quot;"
+   href="show_bug.cgi?id=7554">bug 7554</a>, which has been sitting untouched for a while.  </pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-14 05:33:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5578" name="attach_5578" title="Patch to enable SVGZ support - against r44559">attachment 5578</a> <a href="attachment.cgi?id=5578&amp;action=edit" title="Patch to enable SVGZ support - against r44559">[details]</a></span>
+Patch to enable SVGZ support - against <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/44559" title="revision 44559 in SVN">r44559</a>
+
+Updated patch against <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/44559" title="revision 44559 in SVN">r44559</a> (2008-12-13).  I believe this should satisfy Carl's concerns, now that <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - &quot;image/svg&quot; should be &quot;image/svg+xml&quot;"
+   href="show_bug.cgi?id=7554">bug 7554</a> is resolved.  Please note Apache2 will still need configuration with these lines (see <a href="show_bug.cgi?id=4947#c3">Comment #3</a> above):
+
+AddType image/svg+xml .svg .svgz
+AddEncoding gzip .svgz
+&lt;Files *.svgz.*&gt;
+RemoveEncoding .svgz
+&lt;/Files&gt;</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-14 06:00:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5579" name="attach_5579" title="Check if PHP was compiled with ZLib support">attachment 5579</a> <a href="attachment.cgi?id=5579&amp;action=edit" title="Check if PHP was compiled with ZLib support">[details]</a></span>
+Check if PHP was compiled with ZLib support
+
+Also check function_exists( 'gzopen' ) per ^demon on #mediawiki.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ilmari Karonen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-14 06:56:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just tried it out.  I see two issues so far.  The bigger one is that thumbnailing doesn't seem to work.  The other problem is file extensions: it seems I can upload gzipped SVG as either .svg or .svgz, but not as .svg.gz (which is what I originally tried).  I'm not sure what the most reasonable thing to do here would be: I'd think either gzipped SVG should only be allowed as .svgz (or .svg.gz), or we should just treat normal and gzipped SVG as identical, and probably automatically rename all three suffixes to just .svg (and maybe even go ahead and automatically gzip any SVG files not already uploaded that way).  I'm mostly inclined towards the latter option, if only because it seems silly to hardcode such a trivial difference into the file page title.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-14 14:34:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c12">comment #12</a>)
+<span class="quote">&gt; Just tried it out.  I see two issues so far.  The bigger one is that
+&gt; thumbnailing doesn't seem to work.  The other problem is file extensions: it
+&gt; seems I can upload gzipped SVG as either .svg or .svgz, but not as .svg.gz
+&gt; (which is what I originally tried).  I'm not sure what the most reasonable
+&gt; thing to do here would be</span >
+
+What we do for .jpeg, .jpg, .JPEG, .JPG, etc. is just store the extensions differently despite there being no difference in the file type.  :)  Which is the bug for &quot;don't make file extension part of file name&quot;?
+
+I don't see why users should decide whether to gzip SVG at upload time, though.  Surely it should just be transparently compressed as it's served to the user, like with styles/scripts?  .svgz and .svg.gz could then be accepted as aliases for .svg on upload, and the files could be decompressed for storage.  Or compressed, or whatever, but consistently.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-16 18:45:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c12">Comment #12</a>) thumbnailing &quot;works for me.&quot;  We must track this down, but I don't know what could be going on.  It looks like you need ImageMagick &gt;= 5.5.7 to thumbnail SVGZ images.  Are you using a different $wgSVGConverter?
+
+When uploading images to my testbed, my $wgDebugLogFile shows this:
+<span class="quote">&gt; SvgHandler::rasterize: convert -background white -geometry 180 '/var/lib/mediawiki/images/c/c1/France.svgz' PNG:'/var/lib/mediawiki/images/thumb/c/c1/France.svgz/180px-France.svgz.png' 2&gt;&amp;1
+&gt; wfShellExec: convert -background white -geometry 180 '/var/lib/mediawiki/images/c/c1/France.svgz' PNG:'/var/lib/mediawiki/images/thumb/c/c1/France.svgz/180px-France.svgz.png' 2&gt;&amp;1</span >
+
+I don't think we should support the .svg.gz extension.  Apache thinks this an archive mimetype.  It then serves it up with the wrong headers and confuses Firefox, instead of decompressing inside the browser.  And it might open the door to uploading any arbitrary archive file.
+
+
+(In reply to <a href="show_bug.cgi?id=4947#c13">Comment #13</a>) 
+
+If SVGZ support is added, I imagine a &quot;WikiProject Convert All Images to .svgz&quot; might spring up, or someone might write a bot.  We should just be consistent here and now, and avoid any wasted labor later on.  So should the internal storage be SVG or SVGZ?  I guess this is mostly a matter of opinion, so here are my thoughts:
+
+-HTML, CSS, etc. are documents, rapidly changing and volatile (this is a wiki, after all.)
+-It makes good sense to compress HTML at serve-time through Content-Encoding:gzip
+-Images, including vector graphics, are much more static
+-For efficiency's sake, we should compress images only once if possible.  It doesn't make sense to recompress a SVG 6000 times on every serve (or even if it's cached.)  We should only recompress when the file changes.
+-User data, e.g. Wikipedia, has wider scope than live web sites: dbdumps, cdroms, etc.  We need to consider these use-cases as well.  Permanent compression could be a major advantage here.
+-PNG, GIF, et al. all have compression features; this maximizes their usefulness and spread
+-Wikipedia is a major driving force behind SVG; it would help further popularize the format if we support SVGZ
+</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-16 20:05:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >SVGZ is pretty ugly to handle because it doesn't have its own Content-Type... the server is supposed to serve them out with Content-Type: image/svg+xml *and* Content-Encoding: gzip... which has the added confusion that the user-agent would transparently decompress it... and if you save it to disk you'll get the decompressed version.
+
+So, even if everything's working right on the server end, when you download you may not get back the same file you uploaded. Potentially now you've got an &quot;.svgz&quot; file on disk which is actually not compressed... Eww!
+
+As a trivial test, I gzipped an SVG file and uploaded it to my web server, running Apache 2 on Ubuntu 8.10:
+
+<a href="http://leuksman.com/misc/test2.svgz">http://leuksman.com/misc/test2.svgz</a>
+
+With a stock Apache configuration, it's served out as image/svg+xml *without* the encoding setting. Firefox 3.0.3 interprets it as raw SVG, which of course is invalid XML (being a big binary blob) and doesn't render it.
+
+After adding the Apache config bits above to add the Content-Encoding header, I find that Firefox renders it now. (Yay!) But, if I save the file to disk, it saves the *compressed* version with a &quot;.svgz.svg&quot; extension, which now fails to load since it's marked as uncompressed but is in fact compressed.
+
+Safari 3.2.1 and Opera 9.5 render the image fine inline, but when saving to disk give me an *uncompressed* version with &quot;.svgz&quot; extension.
+
+So... I think things are not quite mature enough here. :(
+
+
+IMHO the cleanest way to go would be to transparently decompress .svgz files on upload, normalize everything to .svg, and have the web server transparently gzip .svg files when serving out, if we like, to save bandwidth. (Most of the time we don't even serve the .svg out -- we serve a .png rasterization -- so this wouldn't be a heavy burden.)</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-16 23:30:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c14">comment #14</a>)
+<span class="quote">&gt; -For efficiency's sake, we should compress images only once if possible.  It
+&gt; doesn't make sense to recompress a SVG 6000 times on every serve (or even if
+&gt; it's cached.)  We should only recompress when the file changes.</span >
+
+This will be the case in practice either way, pretty much.  The HTTP response (with the compressed version of the file) should be cached indefinitely by Squid.  Anyway, as Brion points out, we don't serve actual SVGs on page views and aren't going to start anytime soon:
+
+* Limited benefit without IE support, which last I checked looks to arrive in approximately 2027 if Microsoft doesn't invent a proprietary alternative in the intervening time.
+* Browser support needs to be as fast as rendering a bitmap, so there's no performance regression (this is far from the case right now with arbitrary SVGs).
+* It would be a pain to do this until we can assume all clients support SVG, because we would have to serve bitmaps to some users and SVG to others.  Then we'd have problems with cache fragmentation and inconsistent appearance (depending on the features supported by various browsers vs. our SVG renderer).
+* Security!  We would need an SVG sanitizer that we know is reliable, to avoid script injection and fun stuff like that.
+
+So the number of times SVG will actually be served to users is likely to be very low.
+
+<span class="quote">&gt; -User data, e.g. Wikipedia, has wider scope than live web sites: dbdumps,
+&gt; cdroms, etc.  We need to consider these use-cases as well.  Permanent
+&gt; compression could be a major advantage here.</span >
+
+No image dumps exist now at all, do they?  If they did, SVGs could be gzipped in the dump (or heavier compression could be used if convenient).</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">x00000000
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-17 03:13:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c15">comment #15</a>)
+<span class="quote">&gt; SVGZ is pretty ugly to handle because it doesn't have its own Content-Type...
+&gt; the server is supposed to serve them out with Content-Type: image/svg+xml *and*
+&gt; Content-Encoding: gzip... which has the added confusion that the user-agent
+&gt; would transparently decompress it... and if you save it to disk you'll get the
+&gt; decompressed version.</span >
+
+Transparently decompressing documents with Content-Encoding is a bug.
+
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a> :
+
+| The content-coding is a characteristic of the entity identified by
+| the Request-URI. Typically, the entity-body is stored with this
+| encoding and is only decoded before rendering or analogous usage.
+
+However, support for HTTP/1.1-compliant transparent encoding via TE and Transfer-Encoding headers is still minimal, so Content-Encoding continues to be abused for that with no consistent user-agent behavior (depending on media type).
+
+Mozilla behavior for SVGZ depends on user choice between &quot;Web Page, complete&quot; (saves a mangled version of decompressed SVG) and &quot;Web Page, SVG only&quot; (saves original SVGZ, but suggests a filename with .svg appended).
+
+<span class="quote">&gt; IMHO the cleanest way to go would be to transparently decompress .svgz files on
+&gt; upload, normalize everything to .svg, and have the web server transparently
+&gt; gzip .svg files when serving out, if we like, to save bandwidth.</span >
+
+That is the same as sending SVGZ with correct headers from the user-agent's point of view (until TE/Transfer-Encoding are supported), just more expensive on the server side.
+</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-17 19:23:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c17">comment #17</a>)
+<span class="quote">&gt; &gt; IMHO the cleanest way to go would be to transparently decompress .svgz files on
+&gt; &gt; upload, normalize everything to .svg, and have the web server transparently
+&gt; &gt; gzip .svg files when serving out, if we like, to save bandwidth.
+&gt; 
+&gt; That is the same as sending SVGZ with correct headers from the user-agent's
+&gt; point of view (until TE/Transfer-Encoding are supported), just more expensive
+&gt; on the server side.</span >
+
+We wouldn't bother with the compression until/unless browser behavior is consistent, which it isn't right now. Keeping everything uncompressed server-side makes the potential transition much simpler if that day ever comes.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">p858snake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-30 00:09:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*Bulk BZ Change: +Patch to open bugs with patches attached that are missing the keyword*</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-27 13:34:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=8827" name="attach_8827" title="VitaliyFilippov's patch, based on XMLTypeCheck">attachment 8827</a> <a href="attachment.cgi?id=8827&amp;action=edit" title="VitaliyFilippov's patch, based on XMLTypeCheck">[details]</a></span>
+VitaliyFilippov's patch, based on XMLTypeCheck
+
+Hi all!
+I've made my own patch for this. It's simpler and based on XMLTypeCheck, it fully supports SVGZ, and also correctly detects gzipped Dia diagrams.
+Review it please.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-27 13:35:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding myself to CC.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-28 18:32:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmm, it kinda looks like that won't be able to distinguish between a gzipped file with .svg extension (wrong) and a gzipped file with .svgz extension (right), or an uncompressed file with .svgz extension (wrong) and an uncompressed file with .svg extension (right).
+
+It also doesn't look like the SvgMetadataExtractor class will automatically pick up compression -- it uses XMLReader directly -- so we won't be able to extract width/height and any generic metadata that may be in the file. If we don't have a size, we can't render it.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-30 23:38:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yeah, but there's also no separate mime type for SVGZ...
+
+Width/height extraction works at least in 1.16... It looks like it also uses XmlTypeCheck... Is it changed in trunk?</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-31 00:12:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yep, that changed back in 1.17. Always make and test patches against trunk to make sure you're working with current code.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-10 06:45:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Vitaliy, thanks for your patch. Do you have time to revise it so it works against trunk?</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-16 12:53:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=9470" name="attach_9470" title="Updated patch for r103314 (VitaliyFilippov)">attachment 9470</a> <a href="attachment.cgi?id=9470&amp;action=edit" title="Updated patch for r103314 (VitaliyFilippov)">[details]</a></span>
+Updated patch for <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/103314" title="revision 103314 in SVN">r103314</a> (VitaliyFilippov)
+
+Updated the patch.
+Is it OK to use stream wrappers for SVGMetadataExtractor?
+(I mean compress.zlib://)</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-17 00:06:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmm, looks like it ought to work (haven't tested just yet). Looks like SvgMegadataExtractor ought to work, though I'm uncertain about that file subset cutoff thing.
+
+From my previous comments in <a href="show_bug.cgi?id=4947#c22">comment 22</a> it looks like the extension issue still stands: there doesn't appear to be logic to ensure that '.svg' files are uncompressed and '.svgz' files are compressed.
+
+Additionally it may be more likely for .svgz files to be misconfigured on the server, or possibly served out incorrectly via streaming (eg when using img_auth.php on private sites, or fetching images from the image stash API or Special:Undelete) -- IIRC correct way to serve an .svgz is as:
+
+  Content-Type: image/svg+xml
+  Content-Encoding: gzip
+
+if we only record that the file is of type image/svg+xml but don't track that gzipiness, we'll be serving the gzip data and clients won't handle it right.
+
+I think my preferred handling for .svgz would be to transparently decompress them on upload and rename them into .svg files... :P
+
+
+(.dia doesn't have this problem as there's not a separate extension or special HTTP header configuration for compressed files!)</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-17 00:07:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >On the streams -- main thing to check is what behavior you get if zlib support is not enabled in PHP. If it still works with uncompressed files, then fine -- if not then it should only kick in the compress.zlib: or gzopen if it knows they will work.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-17 00:21:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Testing the patch on current trunk... does not work for me.
+
+
+My LocalSettings.php contains:
+
+  $wgFileExtensions[] = 'svg';
+  $wgFileExtensions[] = 'svgz';
+
+
+Selecting a gzipped SVG image I've saved as .svgz lets me go through initial upload, but kicks me back with this error:
+
+  &quot;File extension &quot;.svgz&quot; does not match the detected MIME type of the file (image/svg+xml).&quot;
+
+
+Renaming the same gzipped file to &quot;.svg&quot; extension (incorrect) allows me to upload it. It rasterizes via ImageMagick, but if I load the image directly into Firefox I get an XML error because the file is actually binary gzip data:
+
+  XML Parsing Error: not well-formed
+  Location: <a href="http://stormcloud.local/trunk/images/e/ef/Wrong.svg">http://stormcloud.local/trunk/images/e/ef/Wrong.svg</a>
+  Line Number 1, Column 1:\uffff
+
+Renaming the uncompressed original to &quot;.svgz&quot; extension (also incorrect) fails like the real .svgz file did with:
+
+  File extension &quot;.svgz&quot; does not match the detected MIME type of the file (image/svg+xml).</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-17 16:23:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c26">comment #26</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=9470" name="attach_9470" title="Updated patch for r103314 (VitaliyFilippov)">attachment 9470</a> <a href="attachment.cgi?id=9470&amp;action=edit" title="Updated patch for r103314 (VitaliyFilippov)">[details]</a></span>
+&gt; Updated patch for <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/103314" title="revision 103314 in SVN">r103314</a> (VitaliyFilippov)
+&gt; 
+&gt; Updated the patch.
+&gt; Is it OK to use stream wrappers for SVGMetadataExtractor?
+&gt; (I mean compress.zlib://)</span >
+
+I had written an answer, which somehow isn't here :S
+Trying to summarise:
+* Noching against stream wrappers usage.
+* We should be able to work with normal svg even without zlib extension.
+* You are using fread() on a gzopen() handle. Which works, but is an undocumented feature.
+* Another option would be to use gzopen everywhere, and not check gzippiness.
+* The ( $size &gt; $wgSVGMetadataCutoff ) check can be fooled by the compression. This could be extracted from the header in some cases, but the comment about a fake File instance being passed doesn't give me confidence.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vitaliy Filippov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-18 10:48:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c27">comment #27</a>)
+<span class="quote">&gt; (.dia doesn't have this problem as there's not a separate extension or special
+&gt; HTTP header configuration for compressed files!)</span >
+
+Inkscape also doesn't make any difference between compressed and uncompressed SVG images. It opens uncompressed *.svgz and compressed *.svg without any problem :)</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-18 18:41:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That isa quirk of Inkscape that you cannot rely on.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gabriel Wicke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-18 17:25:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Can we at least enable gzip Transfer-Encoding for plain SVG files?</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4947#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-18 21:18:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4947#c33">comment #33</a>)
+<span class="quote">&gt; Can we at least enable gzip Transfer-Encoding for plain SVG files?</span >
+
+That would be very logical yes! I've filed <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Apply Transfer-encoding: gzip to SVG files from upload.wikimedia.org"
+   href="show_bug.cgi?id=54291">bug 54291</a> in the Wikimedia servers component for configuring such a thing... in theory if configured on the server it'll be more transparent to users than explicit .svgz saving.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4947&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4947">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4947">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4947">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4947&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4947" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4947&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419364677-1DbjlhcRIvhIeXgLDsRxb1CtypeBYHbhnN2-HyXOXH8">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

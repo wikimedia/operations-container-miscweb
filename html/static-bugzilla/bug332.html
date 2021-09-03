@@ -1,0 +1,1923 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 332 &ndash; Broken UTF-8 cutoff breaks display in some browsers</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=332&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=332">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=332">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=332">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 332 – Broken UTF-8 cutoff breaks display in some browsers",  
+                             "show_bug.cgi?id=332" );
+        document.title = "Bug 332 – Broken UTF-8 cutoff breaks display in some browsers";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 332 – Broken UTF-8 cutoff breaks display in some browsers", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_332 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2013-06-18 14:43:33 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2013-06-18 14:43:33">
+  <input type="hidden" name="longdesclength" value="25">
+  <input type="hidden" name="id" value="332">
+  <input type="hidden" name="token" value="1419356984-V2FcxUalTbqffo2-IJ_MQvvoilCVLoz5ptoCBaIehYc">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=332"><b>Bug&nbsp;332</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Broken UTF-8 cutoff breaks display in some browsers</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Broken UTF-8 cutoff breaks display in some browsers
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Broken UTF-8 cutoff breaks display in some browsers', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          WORKSFORME
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       Windows XP
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       minor<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=332">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=332#vote_332">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">testme
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &quot;Corrupted&quot;/truncated text on deletion log entry in Recent Changes"
+   href="show_bug.cgi?id=5401">5401</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Image truncated comment chopped UTF-8 character"
+   href="show_bug.cgi?id=11087">11087</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - File history - not XHTML valid unicode sign"
+   href="show_bug.cgi?id=19712">19712</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=5401,11087,19712">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Unicode (UTF-8, utf8) compatibility (tracking)"
+   href="show_bug.cgi?id=3969">unicode</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Internet Explorer (IE) issues on Windows (tracking)"
+   href="show_bug.cgi?id=640">640</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=332&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=332">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-03 03:23 UTC by <span class="vcard"><span class="fn">Timwi</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2013-06-18 14:43 UTC 
+      (<a href="show_activity.cgi?id=332">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>13 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="fomafix">fomafix</option>
+                <option value="fran">fran</option>
+                <option value="gangleri">gangleri</option>
+                <option value="hippytrail">hippytrail</option>
+                <option value="jidanni">jidanni</option>
+                <option value="malafaya">malafaya</option>
+                <option value="marcin.cieslak">marcin.cieslak</option>
+                <option value="matanya">matanya</option>
+                <option value="michael.frey">michael.frey</option>
+                <option value="nospam">nospam</option>
+                <option value="siebrand">siebrand</option>
+                <option value="timwi">timwi</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">Internet Explorer</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=90"
+               title="View the content of the attachment">
+          <b>Partial screenshot of problem in IE 6/WinXP</b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.68 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_90"
+               title="Go to the comment associated with the attachment">2004-10-11 11:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=90&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=734"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">A naive code to solve similar problems</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.17 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_734"
+               title="Go to the comment associated with the attachment">2005-07-21 15:07 UTC</a>,
+
+            <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=734&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=737"
+               title="View the content of the attachment">
+          <b>A naive code to solve similar problems (revised)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.18 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_737"
+               title="Go to the comment associated with the attachment">2005-07-22 07:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=737&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_image_jpeg">
+        <td valign="top">
+            <a href="attachment.cgi?id=4597"
+               title="View the content of the attachment">
+          <b>screen dump - special Recentchanges - deletion event text should truncate at UTF-8 character boundaries · 01.jpg</b></a>
+
+          <span class="bz_attach_extra_info">
+              (192.38 KB,
+                image/jpeg)
+
+            <br>
+            <a href="#attach_4597"
+               title="Go to the comment associated with the attachment">2008-01-30 18:51 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=4597&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (1)
+        </span>
+        <a href="attachment.cgi?bugid=332&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Timwi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-03 03:23:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >BUG MIGRATED FROM SOURCEFORGE
+<a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=855680&amp;group_id=34373&amp;atid=411192">http://sourceforge.net/tracker/index.php?func=detail&amp;aid=855680&amp;group_id=34373&amp;atid=411192</a>
+Originally submitted by Nobody/Anonymous - nobody  2003-12-07 10:32
+
+
+When someone write a long summary comment, it 
+messes RecentChanges, History, and other texts. 
+
+I think this is unique to languages using 2-byte 
+characters - when a character is cut-off in the middle, it 
+turns into some wierd character, and affects other part 
+of the page. 
+
+As an example, please see the following history page in 
+which the text (including the sidebar) is inappropriately 
+italicized. 
+
+<a href="http://ja.wikipedia.org/w/wiki.phtml?title=Wikipedia">http://ja.wikipedia.org/w/wiki.phtml?title=Wikipedia</a>:%
+E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%
+83%87%E3%82%A3%E3%82%A2%E3%81%AE%E4%BB%
+B2%E9%96%93&amp;amp;action=history
+
+When this happens at RecentChanges, it is quite difficult 
+to read through it. 
+
+As a fix, it would be nice to automatically detect too 
+long summary comment and ask the user to shorten it. 
+
+Or there may be a way to properly cut 2byte-char texts. 
+That would be good, too. 
+
+Or maybe some other solution is available. 
+
+Thanks for the help,
+
+Tomos ( wiki_tomos at hotmail dot com )
+
+------------------------- Additional comments ------------------------
+Date: 2003-12-07 11:31
+Sender: SF user vibber
+
+Confirmed; this seems to be a problem with how Internet
+Explorer handles broken UTF-8 code; in at least some
+circumstances it will eat the non-UTF-8-trail byte(s) that
+follow the broken sequence. (I presume it's reading ahead
+the entire number of bytes that the head byte specifies and
+eating the false tail bytes instead of resynchronizing at
+the break point. That's a real shame, since this ability is
+one of the neatest things about UTF-8 compared with
+traditional double-byte character sets.)
+
+In the attached screenshot (from IE 6.0 on WinXP) this shows
+it destroying the following &amp;quot;)&amp;quot; and even
+the &amp;quot;&amp;lt;&amp;quot; that starts
+the closing &amp;lt;/em&amp;gt; tag, so the rest of the page is left in
+italics when the markup is incorrectly interpreted.
+
+Most other browsers I have tested (Mozilla, Camino, Safari)
+replace only the broken sequence with a placeholder 'broken'
+glyph, and correctly restart the UTF-8 interpretation at the
+next byte, which as ASCII is itself a valid UTF-8 character
+sequence. Konqueror 3.1.2 seems to break the following
+&amp;quot;)&amp;quot;
+but not the &amp;quot;&amp;lt;&amp;quot;, so the tags at least are intact.
+
+Text gets cutoff at maximum lengths in a number of places;
+titles as well as comments have a max size in the database,
+which knows nothing of UTF-8 and treats our data as raw byte
+strings. We should add a function to our code to perform a
+UTF-8-safe max-byte-length string trimmer to keep the bad
+ones out on general principle; since we can't fix IE from
+choking on them we should also go through and eliminate any
+remaining in the database.
+
+Impact: mostly a cosmetic annoyance, but because of the
+ability to damage markup in some popular browsers it could
+harm usability. It's unlikely that cross-site scripting
+attacks are possible through this, but it's bad juju anyway.
+Database should be cleaned of any broken strings there are
+now, and code should be fixed to avoid putting them in in
+the future.
+
+Only affects UTF-8 wikis, but that's a large and growing
+portion of the user base (and we want to switch everything
+to UTF-8 at some point). Asian languages are particularly
+affected because UTF-8 balloons to 3 bytes per character in
+most Asian scripts, so the byte limits are reached with a
+smaller number of characters.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-11 11:33:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=90" name="attach_90" title="Partial screenshot of problem in IE 6/WinXP">attachment 90</a> <a href="attachment.cgi?id=90&amp;action=edit" title="Partial screenshot of problem in IE 6/WinXP">[details]</a></span>
+Partial screenshot of problem in IE 6/WinXP
+
+originally taken by Brion; copied from SF.net.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-11 14:25:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Another kind of effects also exist on the bug. I remembered :)
+
+Example
+<a href="http://ja.wikipedia.org/w/wiki.phtml?title=%E4%BB%99%E5%8F%B0%E5%B8%82&amp;action=edit&amp;oldid=805477">http://ja.wikipedia.org/w/wiki.phtml?title=%E4%BB%99%E5%8F%B0%E5%B8%82&amp;action=edit&amp;oldid=805477</a>
+
+For some reason the end of wikitext in the editbox has broken, so there are no buttons et al., so 
+it seems there is nothing but to revert it. As I suspected, if original edits stepped into such 
+trouble, they wouldn't be able to be reverted without a sysop. Do, do, do, dōdeshō?</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">peter green</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-28 01:31:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >im not convinced that the utf-8 tag is being used correctly here
+
+utf8   	This keyword tags bugs that would automatically be fixed if all wikis
+without exception would use UTF-8.
+
+it seems that this bug is one that ONLY breaks utf-8 wikis the opposite of what
+this tag is supposed to mean
+
+another possible fix would be to parse for broken utf-8 at output time (Which
+may be easier than trying to find all places where strings are chopped)</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 15:04:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=332#c3">comment #3</a>)
+<span class="quote">&gt; im not convinced that the utf-8 tag is being used correctly here
+&gt; 
+&gt; utf8   	This keyword tags bugs that would automatically be fixed if all wikis
+&gt; without exception would use UTF-8.
+&gt; 
+&gt; it seems that this bug is one that ONLY breaks utf-8 wikis the opposite of what
+&gt; this tag is supposed to mean</span >
+
+You are right; therefore I was TOO wrong and incomparably SLOW! I am sorry for
+my poor comprehension, and thank you for correcting. Now I understand. Or, at
+least, I hope so.
+
+By the way, I have just tried to write a naive code for interest. But I cannot
+guess how useful this is.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-21 15:07:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=734" name="attach_734" title="A naive code to solve similar problems">attachment 734</a> <a href="attachment.cgi?id=734&amp;action=edit" title="A naive code to solve similar problems">[details]</a></span>
+A naive code to solve similar problems</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-22 07:00:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=737" name="attach_737" title="A naive code to solve similar problems (revised)">attachment 737</a> <a href="attachment.cgi?id=737&amp;action=edit" title="A naive code to solve similar problems (revised)">[details]</a></span>
+A naive code to solve similar problems (revised)</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-06 22:21:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &quot;Corrupted&quot;/truncated text on deletion log entry in Recent Changes"
+   href="show_bug.cgi?id=5401">Bug 5401</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-17 22:09:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is this still an issue?</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mulukhiyya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-27 08:00:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just a few months ago, an automated tool, on Wikimedia Toolserver, seemed to stumble at this bug (malformed XML whatever?). But sorry my memory about that case is a bit obscure...</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-30 18:51:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=4597" name="attach_4597" title="screen dump - special Recentchanges - deletion event text should truncate at UTF-8 character boundaries · 01.jpg">attachment 4597</a> <a href="attachment.cgi?id=4597&amp;action=edit" title="screen dump - special Recentchanges - deletion event text should truncate at UTF-8 character boundaries · 01.jpg">[details]</a></span>
+screen dump - special Recentchanges - deletion event text should truncate at UTF-8 character boundaries · 01.jpg
+
+(In reply to <a href="show_bug.cgi?id=332#c8">comment #8</a>)
+<span class="quote">&gt; Is this still an issue?</span >
+
+I just wanted to create a new report with the summary
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=special%3ARecentchanges">special:Recentchanges</a>]] - deletion event text should truncate at UTF-8 character boundaries
+
+� the Unicode Character REPLACEMENT CHARACTER U+FFFD
+<a href="http://www.fileformat.info/info/unicode/char/fffd/index.htm">http://www.fileformat.info/info/unicode/char/fffd/index.htm</a>
+HTML Entity (decimal)  	&amp;#65533;
+HTML Entity (hex) 	&amp;#xfffd;
+UTF-8 (hex) 	        0xEF 0xBF 0xBD (efbfbd)
+shows up in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3Aspecial%3ARecentchanges">yi:special:Recentchanges</a>]].
+
+It does not show up in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3Aspecial%3ALogs%2Fdelete">yi:special:Logs/delete</a>]].
+
+Hiw does this relate to
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Deletion summary lengths problems"
+   href="show_bug.cgi?id=12359">bug 12359</a> Deletion summary lengths problems ?
+
+Best regards Reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3AGangleri">user:Gangleri</a>]]
+
+references:
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3Aspecial%3AVersios">yi:special:Versios</a>]] shows
+    *  MediaWiki: 1.12alpha (<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/30286" title="revision 30286 in SVN">r30286</a>)
+    * PHP: 5.1.4 (apache)
+    * MySQL: 4.0.29-nightly-20070112-wikimedia-log</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marcin Cieślak</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-17 00:21:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Some recent examples:
+
+Description cut-off at the first byte: <a href="http://commons.wikimedia.org/wiki/Image:Banka_mydlana.jpg?uselang=pl">http://commons.wikimedia.org/wiki/Image:Banka_mydlana.jpg?uselang=pl</a>
+
+hexdump:
+
+<a href="https://gerrit.wikimedia.org/r/#q,00003970,n,z" title="Git commit 00003970">00003970</a>  44 20 2d 2d 3c 61 20 68  72 65 66 3d 22 2f 77 2f  |D --&lt;a href=&quot;/w/|
+<a href="https://gerrit.wikimedia.org/r/#q,00003980,n,z" title="Git commit 00003980">00003980</a>  69 6e 64 65 78 2e 70 68  70 3f 74 69 74 6c 65 3d  |index.php?title=|
+<a href="https://gerrit.wikimedia.org/r/#q,00003990,n,z" title="Git commit 00003990">00003990</a>  57 69 6b 69 70 65 64 79  73 74 61 3a 4d 72 74 6e  |Wikipedysta:Mrtn|
+<a href="https://gerrit.wikimedia.org/r/#q,000039a0,n,z" title="Git commit 000039a0">000039a0</a>  26 61 6d 70 3b 61 63 74  69 6f 6e 3d 65 64 69 74  |&amp;amp;action=edit|
+<a href="https://gerrit.wikimedia.org/r/#q,000039b0,n,z" title="Git commit 000039b0">000039b0</a>  26 61 6d 70 3b 72 65 64  6c 69 6e 6b 3d 31 22 20  |&amp;amp;redlink=1&quot; |
+<a href="https://gerrit.wikimedia.org/r/#q,000039c0,n,z" title="Git commit 000039c0">000039c0</a>  63 6c 61 73 73 3d 22 6e  65 77 22 20 74 69 74 6c  |class=&quot;new&quot; titl|
+<a href="https://gerrit.wikimedia.org/r/#q,000039d0,n,z" title="Git commit 000039d0">000039d0</a>  65 3d 22 57 69 6b 69 70  65 64 79 73 74 61 3a 4d  |e=&quot;Wikipedysta:M|
+<a href="https://gerrit.wikimedia.org/r/#q,000039e0,n,z" title="Git commit 000039e0">000039e0</a>  72 74 6e 20 28 6a 65 73  7a 63 7a 65 20 6e 69 65  |rtn (jeszcze nie|
+<a href="https://gerrit.wikimedia.org/r/#q,000039f0,n,z" title="Git commit 000039f0">000039f0</a>  20 75 74 77 6f 72 7a 6f  6e 61 29 22 3e 4d 61 72  | utworzona)&quot;&gt;Mar|
+<a href="https://gerrit.wikimedia.org/r/#q,00003a00,n,z" title="Git commit 00003a00">00003a00</a>  63 69 6e 20 44 65 72 c4  99 67 6f 77 73 6b 69 3c  |cin Der..gowski&lt;|
+<a href="https://gerrit.wikimedia.org/r/#q,00003a10,n,z" title="Git commit 00003a10">00003a10</a>  2f 61 3e 20 32 31 3a 30  35 2c 20 32 36 20 73 69  |/a&gt; 21:05, 26 si|
+<a href="https://gerrit.wikimedia.org/r/#q,00003a20,n,z" title="Git commit 00003a20">00003a20</a>  65 20 32 30 30 34 20 28  43 45 53 54 29 20 20 5a  |e 2004 (CEST)  Z|
+<a href="https://gerrit.wikimedia.org/r/#q,00003a30,n,z" title="Git commit 00003a30">00003a30</a>  64 6a c4 99 63 69 65 20  70 72 7a 65 64 73 74 61  |dj..cie przedsta|
+<a href="https://gerrit.wikimedia.org/r/#q,00003a40,n,z" title="Git commit 00003a40">00003a40</a>  77 69 61 20 62 61 c5 29  3c 2f 73 70 61 6e 3e 3c  |wia ba.)&lt;/span&gt;&lt;|
+
+At byte 0x3a46 one can see 0xC5 byte standing alone.
+
+Another one:
+
+<a href="http://pl.wikipedia.org/w/index.php?useskin=monobook&amp;title=Grafika%3ABialyMarszWloclawek.jpg&amp;redirect=no">http://pl.wikipedia.org/w/index.php?useskin=monobook&amp;title=Grafika%3ABialyMarszWloclawek.jpg&amp;redirect=no</a>
+
+<a href="https://gerrit.wikimedia.org/r/#q,000026a0,n,z" title="Git commit 000026a0">000026a0</a>  9b 63 69 c5 82 20 77 20  31 39 39 31 20 72 6f 6b  |.ci.. w 1991 rok|
+<a href="https://gerrit.wikimedia.org/r/#q,000026b0,n,z" title="Git commit 000026b0">000026b0</a>  75 20 4a 61 6e 20 50 61  77 65 c5 82 20 49 49 2c  |u Jan Pawe.. II,|
+<a href="https://gerrit.wikimedia.org/r/#q,000026c0,n,z" title="Git commit 000026c0">000026c0</a>  20 64 6f 20 6f 64 64 61  6c 6f 6e 65 67 6f 20 31  | do oddalonego 1|
+<a href="https://gerrit.wikimedia.org/r/#q,000026d0,n,z" title="Git commit 000026d0">000026d0</a>  32 6b 6d 20 70 6f 64 20  77 c5 82 6f 63 c5 82 61  |2km pod w..oc..a|
+<a href="https://gerrit.wikimedia.org/r/#q,000026e0,n,z" title="Git commit 000026e0">000026e0</a>  77 73 6b 69 65 67 6f 20  6c 6f 74 6e 69 73 6b 61  |wskiego lotniska|
+<a href="https://gerrit.wikimedia.org/r/#q,000026f0,n,z" title="Git commit 000026f0">000026f0</a>  20 4b 72 75 73 7a 79 6e  2c 20 67 64 7a 69 65 20  | Kruszyn, gdzie |
+<a href="https://gerrit.wikimedia.org/r/#q,00002700,n,z" title="Git commit 00002700">00002700</a>  6f 64 62 79 c5 29 3c 2f  73 70 61 6e 3e 3c 2f 74  |odby.)&lt;/span&gt;&lt;/t|
+
+And here this is byte 0x2704 - also cutoff character 0xc5
+
+
+
+
+
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Marcin Cieślak</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-17 00:39:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just found out that in the recordUpload2() function:
+
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/filerepo/LocalFile.php?revision=38312&amp;content-type=text%2Fplain">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/filerepo/LocalFile.php?revision=38312&amp;content-type=text%2Fplain</a>
+
+$comment parameter is inserted as-is into the 
+
+image.img_description and oldimage.oi_description - both fields are TINYBLOBs, and they get cut off at the 255th character. 
+
+An additional check should be introduced there plus existing database entries should be cleaned up.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-19 16:50:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Image truncated comment chopped UTF-8 character"
+   href="show_bug.cgi?id=11087">Bug 11087</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-29 19:36:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Removing testme – still present in the current trunk (see e.g. <a href="http://cs.wikipedia.org/w/index.php?diff=2989674">http://cs.wikipedia.org/w/index.php?diff=2989674</a>), raising severity at least to minor (we are generating invalid UTF-8!), adding a tracking bug dependence.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Fran Rogers</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-15 00:59:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40837" title="revision 40837 in SVN">r40837</a>. All output to the browser will now be scanned for invalid forms per the rules in RFC 3629; invalid forms will be replaced with �. :)</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-15 09:42:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hold on for a second… OK, the is a solution to the “breaks display” part of this bug, and it is a nice improvement of the general behavior of MW. But still, shouldn’t we, in the first place, do the string cutoffs properly?
+
+There is absolutely no reason why the history should display any � characters. Or should I open a new bug for that?</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-15 17:44:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >a) the data should be stored correctly in the first place
+
+b) this post-op scan on all output looks like it will perform abominably.
+
+This needs to be reverted.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-15 17:52:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >And of course c) it duplicates existing code for UTF-8 fixups. :)
+
+Reverted <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40837" title="revision 40837 in SVN">r40837</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40839" title="revision 40839 in SVN">r40839</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40840" title="revision 40840 in SVN">r40840</a> in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40861" title="revision 40861 in SVN">r40861</a>.
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-04 11:35:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding testme. Please test with Internet Explorer 8 and note the result here.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-14 19:38:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - File history - not XHTML valid unicode sign"
+   href="show_bug.cgi?id=19712">Bug 19712</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ilmari Karonen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-06 19:39:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It seems we're still generating upload summaries with badly truncated UTF-8.  See for example <a href="http://commons.wikimedia.org/wiki/File:NuclearMedicineImageOfAHandAfterShadowFilter-2.png">http://commons.wikimedia.org/wiki/File:NuclearMedicineImageOfAHandAfterShadowFilter-2.png</a></pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Fomafix</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-28 12:05:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - truncate full characters from log comment"
+   href="show_bug.cgi?id=28649">Bug 28649</a> (fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/95456" title="revision 95456 in SVN">r95456</a>) is related to this bug. In <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/62387" title="revision 62387 in SVN">r62387</a> also some truncate bugs are fixed. Are there still any truncate bugs?</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-16 19:52:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=332#c21">comment #21</a>)
+<span class="quote">&gt; It seems we're still generating upload summaries with badly truncated UTF-8. 
+&gt; See for example
+&gt; <a href="http://commons.wikimedia.org/wiki/File:NuclearMedicineImageOfAHandAfterShadowFilter-2.png">http://commons.wikimedia.org/wiki/File:NuclearMedicineImageOfAHandAfterShadowFilter-2.png</a></span >
+
+This was fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/103362" title="revision 103362 in SVN">r103362</a> (well for new uploads anyways, uploads before this revision would still be affected).
+
+I'm not aware of any more examples of this bug.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=332#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">matanya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-25 21:34:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tested in IE, seems to have no issues any more. closing</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=332&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=332">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=332">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=332">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=332&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=332" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=332&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419356984-Re7Ozea7W4IFcn9CJWK3FrNOHjjOQiww2M3qPByKX30">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

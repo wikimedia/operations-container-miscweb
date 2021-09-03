@@ -1,0 +1,4431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 454 &ndash; E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=454&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=454">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=454">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=454">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 454 – E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages",  
+                             "show_bug.cgi?id=454" );
+        document.title = "Bug 454 – E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 454 – E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_CLOSED bz_product_MediaWiki bz_component_Special_pages bz_bug_454 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 15:37:41 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 15:37:41">
+  <input type="hidden" name="longdesclength" value="73">
+  <input type="hidden" name="id" value="454">
+  <input type="hidden" name="token" value="1419357196-vU8oB9SCbVqtTgCFoKtvDuR5N5sPW9YF6lRvbKYopd0">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=454"><b>Bug&nbsp;454</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages">E-mail notification (EN) for page changes of watch-listed pages, user_talk pa...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">CLOSED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Special pages
+    
+    (<a href="buglist.cgi?component=Special%20pages&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.5.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=454">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=454#vote_454">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">T. Gries</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://meta.wikimedia.org/wiki/Enotif">http://meta.wikimedia.org/wiki/Enotif</a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Stop linked watchlist treatment for normal pages and corresponding talk pages (not user_talk pages)"
+   href="show_bug.cgi?id=580">580</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=580">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Stop linked watchlist treatment for normal pages and corresponding talk pages (not user_talk pages)"
+   href="show_bug.cgi?id=580">580</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED WONTFIX - treat user_talk pages as every other &quot;normal&quot; page"
+   href="show_bug.cgi?id=581">581</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Delete + undelete cycle doesn't preserve old_id"
+   href="show_bug.cgi?id=603">603</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - EConfirm (EC): e-mail address confirmation by sending a link comprising a token to the unconfirmed mailaddress"
+   href="show_bug.cgi?id=866">866</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - UserMailer() function revision to allow for parameters in the form &quot;name (..) &lt;emailaddress&gt;&quot;"
+   href="show_bug.cgi?id=907">907</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Check email addresses before storing in database for compliance with RFC 2822"
+   href="show_bug.cgi?id=959">959</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Subject of email-notifications must be quoted-printable."
+   href="show_bug.cgi?id=1746">1746</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - waste through varchar in database- use CHAR not DATETIME"
+   href="show_bug.cgi?id=1855">1855</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Any mediawiki mail functions are potentially blocked by missing &quot;space&quot;in php mail() call in UserMailer::userMailer()"
+   href="show_bug.cgi?id=2105">2105</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Please add cross-wiki talk page notification."
+   href="show_bug.cgi?id=1066">1066</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Show &quot;You have new messages on your user or user_talk page&quot; -- i.e. both pages are notified"
+   href="show_bug.cgi?id=1876">1876</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - ENotif/EConfirm &amp; further enhancements (tracking)"
+   href="show_bug.cgi?id=1932">1932</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - For pages on watchlist save last seen version number"
+   href="show_bug.cgi?id=536">536</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - Number of watching users per page to be shown on recent changes view (finished)"
+   href="show_bug.cgi?id=727">727</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - user preference page: do not show help for ''realname'' if &quot;realname&quot; field is disabled by sysop"
+   href="show_bug.cgi?id=824">824</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - E-mail notification for page changes or new pages, where title or body or category matches a regular expression"
+   href="show_bug.cgi?id=1116">1116</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - adding e-mail notification for _new_ pages to ENotif patch (this is my patchlet #2)"
+   href="show_bug.cgi?id=2066">2066</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Secondary watchlist adds checkboxes for watched pages: watching with or without E-mail notification (enotif)"
+   href="show_bug.cgi?id=2555">2555</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=454&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=454">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-11 13:58 UTC by <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 15:37 UTC 
+      (<a href="show_activity.cgi?id=454">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>9 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bugzilla.wikipedia.org">bugzilla.wikipedia.org</option>
+                <option value="bugzillas+padREMOVETHISdu">bugzillas+padREMOVETHISdu</option>
+                <option value="dvd">dvd</option>
+                <option value="Jan">Jan</option>
+                <option value="jens">jens</option>
+                <option value="mail">mail</option>
+                <option value="nospam-mediawiki-mediazilla">nospam-mediawiki-mediazilla</option>
+                <option value="stefan.boberg">stefan.boberg</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=52"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">E-mail notification v1.0 complete (tar.gz diff -u against CVS 1.4 phase3 incl. a new file)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (13.30 KB,
+                patch)
+
+            <br>
+            <a href="#attach_52"
+               title="Go to the comment associated with the attachment">2004-09-29 00:29 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=52&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=53"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">E-mail notification v1.0 part 1 of 2 (plain diff file against CVS 1.4)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (46.23 KB,
+                patch)
+
+            <br>
+            <a href="#attach_53"
+               title="Go to the comment associated with the attachment">2004-09-29 00:36 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=53&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=54"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">E-Mail notification v1.0 part 2 of 2 (one new file for /maintenance/archives)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (832 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_54"
+               title="Go to the comment associated with the attachment">2004-09-29 00:41 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=54&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=73"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">enotif v1.1 diff patch -u -b against phase3 -- please tell me your observations</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (44.96 KB,
+                patch)
+
+            <br>
+            <a href="#attach_73"
+               title="Go to the comment associated with the attachment">2004-10-07 00:03 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=73&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=79"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">enotif V1.2 for MediaWiki REL1_3_5 (diff against REL1_3_5)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (43.00 KB,
+                patch)
+
+            <br>
+            <a href="#attach_79"
+               title="Go to the comment associated with the attachment">2004-10-09 23:47 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=79&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=102"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.21 diff against MediaWiki 1.3.6</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (43.37 KB,
+                patch)
+
+            <br>
+            <a href="#attach_102"
+               title="Go to the comment associated with the attachment">2004-10-16 18:45 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=102&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=103"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.21 diff against previous version MediaWiki 1.3.5 incl. Enotif v1.2</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (43.35 KB,
+                patch)
+
+            <br>
+            <a href="#attach_103"
+               title="Go to the comment associated with the attachment">2004-10-16 18:46 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=103&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=111"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.22 Patch for today's CVS 1.4 version (25.10.2004)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (55.59 KB,
+                patch)
+
+            <br>
+            <a href="#attach_111"
+               title="Go to the comment associated with the attachment">2004-10-25 20:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=111&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a9" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=112"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif v1.22 against CVS 1.4 25.10.2003</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (55.64 KB,
+                patch)
+
+            <br>
+            <a href="#attach_112"
+               title="Go to the comment associated with the attachment">2004-10-25 20:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=112&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a10" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=115"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif patch 1.30 against CVS 1.4 (= 1st review of Enotif v1.22)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (55.49 KB,
+                patch)
+
+            <br>
+            <a href="#attach_115"
+               title="Go to the comment associated with the attachment">2004-10-27 20:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=115&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a11" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=120"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (66.67 KB,
+                patch)
+
+            <br>
+            <a href="#attach_120"
+               title="Go to the comment associated with the attachment">2004-11-01 22:52 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=120&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a12" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=121"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (66.67 KB,
+                patch)
+
+            <br>
+            <a href="#attach_121"
+               title="Go to the comment associated with the attachment">2004-11-02 07:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=121&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a13" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=122"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (66.67 KB,
+                patch)
+
+            <br>
+            <a href="#attach_122"
+               title="Go to the comment associated with the attachment">2004-11-02 07:54 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=122&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a14" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=123"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Enotif 1.34 for MediaWiki 1.3.7 (diff -r -u -b) (diff file only)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (67.59 KB,
+                patch)
+
+            <br>
+            <a href="#attach_123"
+               title="Go to the comment associated with the attachment">2004-11-03 02:29 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=123&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a15" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=125"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Maintenance relase of Enotif 1.35 for MediaWiki 1.3.7 (diff file only)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (71.45 KB,
+                patch)
+
+            <br>
+            <a href="#attach_125"
+               title="Go to the comment associated with the attachment">2004-11-06 23:37 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=125&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a16" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=126"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Difference between Enotif 1.34 and Enotif 1.35</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.47 KB,
+                patch)
+
+            <br>
+            <a href="#attach_126"
+               title="Go to the comment associated with the attachment">2004-11-06 23:41 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=126&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a17" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=168"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Maintenance release of enotif 1.351 (patch for enotif 1.35 for mediawiki 1.3.7)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.03 KB,
+                patch)
+
+            <br>
+            <a href="#attach_168"
+               title="Go to the comment associated with the attachment">2004-12-11 21:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=168&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a18" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=171"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">EN+EA 2.00/CVS against CVS 1.5 as of today (manually applied patch)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (118.04 KB,
+                patch)
+
+            <br>
+            <a href="#attach_171"
+               title="Go to the comment associated with the attachment">2004-12-14 02:18 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=171&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a19" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=281"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">ENotif 2.01alpha including and for MediaWiki 1.3.10</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (74.08 KB,
+                patch)
+
+            <br>
+            <a href="#attach_281"
+               title="Go to the comment associated with the attachment">2005-02-10 20:43 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=281&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a20" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=312"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">ENotif 2.02 for Mediawiki 1.3.11</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (74.50 KB,
+                patch)
+
+            <br>
+            <a href="#attach_312"
+               title="Go to the comment associated with the attachment">2005-02-24 23:24 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=312&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a21" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=417"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch against Mediawiki REL1_4 of 13.04.2005</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (127.55 KB,
+                patch)
+
+            <br>
+            <a href="#attach_417"
+               title="Go to the comment associated with the attachment">2005-04-13 02:22 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=417&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a22" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=422"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">ENotif and EAuthent MediaWiki 1.4.1 a small bugfix (for lvrd -- diff-view of last-seen revision -- if there is only the initial version, no difference is shown, but the initial version itself)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (127.76 KB,
+                patch)
+
+            <br>
+            <a href="#attach_422"
+               title="Go to the comment associated with the attachment">2005-04-14 19:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=422&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a23" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=425"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">diff between current REL1_4 and current ENotif (version number 3.07)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (129.36 KB,
+                patch)
+
+            <br>
+            <a href="#attach_425"
+               title="Go to the comment associated with the attachment">2005-04-17 19:20 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=425&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a24" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=429"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">MediaWiki 1.4.1 plus Enotif v3.08. Added the new feature e-mail notification for _new_ pages (user and sysop option)</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (134.85 KB,
+                patch)
+
+            <br>
+            <a href="#attach_429"
+               title="Go to the comment associated with the attachment">2005-04-18 23:20 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=429&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a25" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=430"
+               title="View the content of the attachment">
+          <b>MediaWiki-REL1_4 (pre-1.4.2) plus ENotif 3.09</b></a>
+
+          <span class="bz_attach_extra_info">
+              (134.90 KB,
+                patch)
+
+            <br>
+            <a href="#attach_430"
+               title="Go to the comment associated with the attachment">2005-04-19 07:02 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=430&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a26" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=466"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">ENotif/EConfirm v3.15 for REL1_5 of today, 27.04.2005 20:25 UTC</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (106.66 KB,
+                patch)
+
+            <br>
+            <a href="#attach_466"
+               title="Go to the comment associated with the attachment">2005-04-27 20:28 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=466&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a27" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=468"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">ENotif/EConfirm v3.16 for REL1_5. some small problems fixed</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (108.50 KB,
+                patch)
+
+            <br>
+            <a href="#attach_468"
+               title="Go to the comment associated with the attachment">2005-04-27 23:09 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=468&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a28" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=474"
+               title="View the content of the attachment">
+          <b>ENotif/EConfirm v3.17 for REL1_5. Fixed a) &quot;address was confirmed w/o confirmation&quot; and b) &quot;superusers don't have to confirm their addresses: not working&quot;</b></a>
+
+          <span class="bz_attach_extra_info">
+              (112.81 KB,
+                patch)
+
+            <br>
+            <a href="#attach_474"
+               title="Go to the comment associated with the attachment">2005-04-28 20:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=474&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (26)
+        </span>
+        <a href="attachment.cgi?bugid=454&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-11 13:58:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We almost *finished* a reasonable framework and the necessary patches for two
+independent kind of e-mail notifications: 
+for
+(1) general page changes (all namespace)
+(2) User_talk:page changes
+
+Assume you are User X and you have a watchlist and a user_talk:X page.
+You will receive a (one) short e-mail, when someone (else than you) changes
+pages you watch or changes your user_talk:X page. Further notifications
+regarding this page are suppressed until you revisit this page. An icon
+indicates your watch list items, which have new, not yet visited content, and
+for which you already got a notification. A new general reset button on your
+watch list page allows you to reset all notification flags at once.
+
+Further reading, implementation details and documentation is already available
+on <a href="http://meta.wikimedia.org/wiki/EmailNotification">http://meta.wikimedia.org/wiki/EmailNotification</a> and secondary pages.
+The expected date of the patch publication is 19. September 2004
+
+Thomas Gries and Markus Arndt
+
+free keywords: e-mail, email, notification, watchlist, user_talk, page changes</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-11 21:26:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Assigning back to wikibugs-l (needed to get notification e-mails out.)
+
+Thomas, please make sure you make your patches against 1.4 CVS if you want them to be included.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-26 14:54:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >reason for introducing dependencies to 581 and 580: Given, that user_talk pages
+are treated as every other page (or talk_pages), this also would make  enotif
+easier.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 00:29:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=52" name="attach_52" title="E-mail notification v1.0 complete (tar.gz diff -u against CVS 1.4 phase3 incl. a new file)">attachment 52</a> <a href="attachment.cgi?id=52&amp;action=edit" title="E-mail notification v1.0 complete (tar.gz diff -u against CVS 1.4 phase3 incl. a new file)">[details]</a></span>
+E-mail notification v1.0 complete (tar.gz diff -u against CVS 1.4 phase3 incl. a new file)
+
+This is the first release of the announced enhancement called &quot;E-Mail
+Notification on page and user_talk page changes&quot;. The comprehensive
+documentation can be consulted on <a href="http://meta.wikipedia.org/Enotif">http://meta.wikipedia.org/Enotif</a>.
+
+Inside the tar.gz: 
+1. diff -u (against CVS 1.4)
+2. new file /maintenance/archives/patch-email-notification.sql
+
+Please report all your findings to the bugzilla bug tracker.
+
+Tom Gries</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 00:36:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=53" name="attach_53" title="E-mail notification v1.0 part 1 of 2 (plain diff file against CVS 1.4)">attachment 53</a> <a href="attachment.cgi?id=53&amp;action=edit" title="E-mail notification v1.0 part 1 of 2 (plain diff file against CVS 1.4)">[details]</a></span>
+E-mail notification v1.0 part 1 of 2 (plain diff file against CVS 1.4)
+
+Same patch, but plain diff file against CVS 1.4</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 00:41:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=54" name="attach_54" title="E-Mail notification v1.0 part 2 of 2 (one new file for /maintenance/archives)">attachment 54</a> <a href="attachment.cgi?id=54&amp;action=edit" title="E-Mail notification v1.0 part 2 of 2 (one new file for /maintenance/archives)">[details]</a></span>
+E-Mail notification v1.0 part 2 of 2 (one new file for /maintenance/archives)
+
+E-Mail notification v1.0 (one new file for /maintenance/archives)</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 00:46:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If you remove wikibugs-l from the assignment, you MUST add it to the CC list so
+that bugmail reports continue to go through the notification channels.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 06:26:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >* Your patch changes the way talk pages are handled, in a not downward
+  compatible way, for no obvious reason.
+* We normally try to have the globals a function uses in one place, 
+  at the beginning of the function.
+* $wgEmailNotificationSystembeepForWatchlistPages etc look like debugging
+  options. MediaWiki already has wfDebug for debugging.
+* The UserMailer.php is included in Setup.php. Is this module needed for
+  all pages? My impression was that it is only needed on page change, but
+  not for viewing pages etc? The number of included modules should be kept
+  as small as possible, to reduce memory footprint and PHP compile times.
+* For user_newtalk, you always query the database, ignoring that the flag is
+  also available in memcached, which is faster.
+* Specifying additional_paramaters for PHP's mail() function generates warnings
+  in safe mode. Do they work under Windows?
+* NotifyOnChange doesn't use the MagicWord class, but hardcoded strings. Bad for
+  i18n.
+* Please use ' instead of &quot; for string messages that don't require string
+interpolation
+  (e.g., no {$variable} and no \n)
+* The date and time functions don't use the Language-objects, but reimplements them
+  in a broken way. For example, German date format is $day. $month $year
+* in UserTalkUpdate.php, the code from NotifyOnChange is duplicated. This is a
+potential
+  source for future errors.
+* Use CSS for changing the layout of the minor-&quot;m&quot;. What does &quot;corr.&quot; stand for?
+* same for updateletter etc. How would this look like on a green background?
+* The updaters.inc update looks strange, user_rights_update etc are handled
+using $wgNewTables,
+  changes were probably not merged correctly.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 06:48:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thank you for your work. In addition to JeLuF's excellent comments, I wanted
+to add:
+
+* It might make your patch easier to read if you didn't include whitespace
+changes.
+* You add your names to the source 42 times. Documenting changes and taking
+credit for your work are good, but at some point it begins to clutter the
+code, IMHO.
+* Documenting your functions with phpdoc comments would make them more
+consistent with the rest of the MediaWiki code (although the existing
+code could be improved in that regard)
+* What's the point of emitting a beep when an email is sent?
+
+I'm a new developer, and these are only suggestions for you to consider.
+Thanks again for taking the time to work on this.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-29 06:55:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The lines
+# Patch for email notification on page changes T.Gries/M.Arndt 11.09.2004
+are so-called change marks. I know them from other big software projects, where
+they are widely used. In my opinion, cvs annotate provides the needed functionality,
+too, but I know that others consider it more easy to have these notes inside the
+source code.
+
+When using them, I personally would add <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages"
+   href="show_bug.cgi?id=454">BUG#454</a>, for easier reference.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-30 06:26:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thank you all for your valuable feedback w.r.t. my enotif patch. Don' t panic, I
+will not use bugzilla for broadcasting plenty of mails to you ... however, I am
+keen to get to know whether anyone of you has really installed it, i.e. to learn
+your experiences of installing and using it.
+
+I will duly consider all your suggestions and comment the items in the next
+couple of days.
+Tom</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-07 00:03:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=73" name="attach_73" title="enotif v1.1 diff patch -u -b against phase3 -- please tell me your observations">attachment 73</a> <a href="attachment.cgi?id=73&amp;action=edit" title="enotif v1.1 diff patch -u -b against phase3 -- please tell me your observations">[details]</a></span>
+enotif v1.1 diff patch -u -b against phase3 -- please tell me your observations
+
+This new version enotif 1.1 has a text problem fixed when mailing to several
+watching users in module UserMailer.php .
+
+I did not yet fixed the several others issues mentioned by Brion, JeLuf and Wil
+-- Please apologise and be patient with me, I'll do my very best, started with
+using diff -u -b - many thanks to all of you helping me as a newbie.
+
+I am still keen to learn from any developer trying my patch (in order to
+improve it based on your findings). [ Until now, I did not get a feedback from
+someone actually using enotif. ]
+
+Tom Gries
+Berlin/Germany</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-09 23:47:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=79" name="attach_79" title="enotif V1.2 for MediaWiki REL1_3_5 (diff against REL1_3_5)">attachment 79</a> <a href="attachment.cgi?id=79&amp;action=edit" title="enotif V1.2 for MediaWiki REL1_3_5 (diff against REL1_3_5)">[details]</a></span>
+enotif V1.2 for MediaWiki REL1_3_5 (diff against REL1_3_5)
+
+I applied the enotif patch now against the 1.3.5 release version. Attached is
+the diff file against 1.3.5 (you also need the new file
+maintenance/archives/patch-email-notification.sql when you make a fresh
+installation). The current version enotif v1.2 complies with many of your
+comments/instructions for patches. A major improvement allows now for non-ASCII
+usernames and page titles in the mail headers eg. Subject: and To: .
+
+See the other attachment for a COMPLETE tar.gz archive of REL1_3_5 INCLUDING
+enotif v1.2 and all others needed files. This complete tar.gz also comprises
+the diff file against REL1_3_5.
+
+The tar.gz can be used as a complete substitute for either a complete fresh
+installation or an upgrade of an existing database, as it automatically changes
+the database structure (if needed). Please make a database backup or nysqldump
+before upgrading for safety/fall-back reasons.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 00:17:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The COMPLETE MediaWiki 1.3.5 including Enotif 1.2 can be downloaded from 
+ 
+<a href="http://www.tgries.de/mw/enotif/mw1.3.5_incl_enotif1.2.tgz">http://www.tgries.de/mw/enotif/mw1.3.5_incl_enotif1.2.tgz</a> , 
+ 
+for your fresh or upgrade installations.  
+This tgz also comprises the enotif V1.2 diff against MediaWiki REL1_3_5 . 
+ 
+Tom 
+ </pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 00:21:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I changed the version info to 1.3.5, because the enotif patch and complete installation tgz are now available for MediaWiki 1.3.5. 
+ </pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-10 14:21:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Stop linked watchlist treatment for normal pages and corresponding talk pages (not user_talk pages)"
+   href="show_bug.cgi?id=580">Bug 580</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-16 18:45:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=102" name="attach_102" title="Enotif 1.21 diff against MediaWiki 1.3.6">attachment 102</a> <a href="attachment.cgi?id=102&amp;action=edit" title="Enotif 1.21 diff against MediaWiki 1.3.6">[details]</a></span>
+Enotif 1.21 diff against MediaWiki 1.3.6</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-16 18:46:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=103" name="attach_103" title="Enotif 1.21 diff against previous version MediaWiki 1.3.5 incl. Enotif v1.2">attachment 103</a> <a href="attachment.cgi?id=103&amp;action=edit" title="Enotif 1.21 diff against previous version MediaWiki 1.3.5 incl. Enotif v1.2">[details]</a></span>
+Enotif 1.21 diff against previous version MediaWiki 1.3.5 incl. Enotif v1.2</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Guttorm Flatabø</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-16 19:40:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So why hasn't this been included in CVS and the default package?</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-16 19:44:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=454#c18">comment #18</a>)
+<span class="quote">&gt; So why hasn't this been included in CVS and the default package</span >
+
+because I have no developer status yet. Just talked with Emmanuel and he
+explained what I have to do. Commit to CVS will follow after I got the rights
+and  after technical checks- perhaps in the next few hours or tomorrow. Tom
+
+
+</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-16 21:48:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=454#c18">comment #18</a>)
+<span class="quote">&gt; So why hasn't this been included in CVS and the default package?</span >
+
+It hasn't been reviewed yet, there's still no e-mail address verification which is highly recommended before adding more e-mail features, and 
+there's not a current patch against 1.4.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jamesday</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-17 05:41:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >WikiAdmin may have to be used for urgent or system notices, so it shouldn't be
+used for routine notifications caused by random page editors. Better to have the
+default from user be {{MediaWiki:Sitetitle}} Page Edit or similar. There is the
+X-Mailer field but Subject and From are the two fields on which filters can most
+universally be used, so it's better to have such clear tags in those fields.
+
+Limited clients also may limit the From match to only people in the address
+book, so some easy string match in the Subject is good. Changing the default
+subject from:
+
+{{MediaWiki:Sitetitle}} page $PAGETITLE_QP has been changed by $PAGEEDITOR_QP
+
+to:
+
+{{MediaWiki:Sitetitle}} page changed: $PAGEEDITOR_QP changed $PAGETITLE_QP
+
+would allow a subject match on &quot;{{MediaWiki:Sitetitle}} page changed:&quot;. That
+should be fairly reliable in filtering rules.
+
+I suggested moving $PAGEEDITOR_QP earlier so that it's easier to filter out page
+change notices from those you trust or those you don't want to know about - you
+can match on {{MediaWiki:Sitetitle}} page changed: $PAGEEDITOR_QP changed&quot; and
+get good filter results.
+</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-17 07:57:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=454#c21">comment #21</a>)
+<span class="quote">&gt; WikiAdmin may have to be used for urgent or system notices, so it shouldn't be
+&gt; used for routine notifications caused by random page editors. Better to have the
+&gt; default from user be {{MediaWiki:Sitetitle}} Page Edit or similar.</span >
+Agreed. I need to pass this Sitetitle - which can have non-ASCII character to
+QuotedPrintable, but will do so.
+
+<span class="quote">&gt; to:</span >
+ &gt; {{MediaWiki:Sitetitle}} page changed: $PAGEEDITOR_QP changed $PAGETITLE_QP
+
+<span class="quote">&gt; would allow a subject match on &quot;{{MediaWiki:Sitetitle}} page changed:&quot;. That
+&gt; should be fairly reliable in filtering rules.</span >
+Agreed. This is an easy (cosmetic) change, and if you are happy with it: I am.
+
+My &quot;Agreed&quot; means, that I will change the defaults in Language.php accordingly
+to your two proposals. Everyone WikiAdmin who whishes so, can further modify
+his/her MediaWiki:Email_notification_messagetext &quot;live&quot; on the program, as you
+certainly know.
+
+Tom Gries
+
+</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-21 23:28:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reasons why I declared dependency from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Delete + undelete cycle doesn't preserve old_id"
+   href="show_bug.cgi?id=603">bug 603</a> (delete + undelete cycle doesn't preserve old_id): 
+ 
+Enotif versions &gt; 1.21 will use &quot;old_id&quot; in emails to give a watching user a direct link to the *difference view* between current 
+and last visited version of a watch-listed page, this was recently requested by some users. 
+ 
+{{SERVER}}{{localurl:namespace:pagettitle|diff=0&amp;oldid=$OLDID}} 
+($OLDID = oldid of the last visited version, delivered by Enotif) 
+ 
+Once a mail is sent out, there is no chance to signal further changes between &quot;old_id&quot; and corresponding page eg. due to a delete/
+undelete cycle. Therefore, Enotif depends at least a little bit on a permanent and fixed meaning of &quot;old_id&quot; with respect to a page. 
+ </pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-25 20:11:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=111" name="attach_111" title="Enotif 1.22 Patch for today's CVS 1.4 version (25.10.2004)">attachment 111</a> <a href="attachment.cgi?id=111&amp;action=edit" title="Enotif 1.22 Patch for today's CVS 1.4 version (25.10.2004)">[details]</a></span>
+Enotif 1.22 Patch for today's CVS 1.4 version (25.10.2004)
+
+
+The new Enotif patch pays attention to a lot of your comments. 
+
+I also reestablished the &quot;old&quot; user interface, i.e. when user adds a page to
+the watchlist, the corresponding talk page is also watched. 
+
+Many further improvements such as
+- &quot;update (since my last visit)&quot; marker shown on recent changes, page history
+and watchlist (also for users without email address in preferences)
+- number of watching users shown in recent changes, page article footers
+- link to diff-to-last-visited-version sent in notification mails</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-25 20:16:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You can also compare oldid=1234&amp;direction=next, e.g.
+<a href="http://schema.mormo.org/index.php?title=Somewhere&amp;direction=next&amp;oldid=914">http://schema.mormo.org/index.php?title=Somewhere&amp;direction=next&amp;oldid=914</a>
+
+This will compare rev 914 with the next revision.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-25 20:21:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=112" name="attach_112" title="Enotif v1.22 against CVS 1.4 25.10.2003">attachment 112</a> <a href="attachment.cgi?id=112&amp;action=edit" title="Enotif v1.22 against CVS 1.4 25.10.2003">[details]</a></span>
+Enotif v1.22 against CVS 1.4 25.10.2003</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-25 20:25:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=454#c25">comment #25</a>) 
+<span class="quote">&gt; You can also compare oldid=1234&amp;direction=next, e.g. 
+&gt; <a href="http://schema.mormo.org/index.php?title=Somewhere&amp;direction=next&amp;oldid=914">http://schema.mormo.org/index.php?title=Somewhere&amp;direction=next&amp;oldid=914</a> 
+&gt;  
+&gt; This will compare rev 914 with the next revision. </span >
+Thanks, but users who read their mail, let's say one week after the notification was sent, want to compare the current (today's) 
+version with the one they last visited (i.e. one week ago or later). 
+ 
+Perhaps I can add your link too, but then the mails will become to long. 
+ 
+Best will be: I can convince Brion to check my code now. It's working fine and took the new database calls into account. 
+The avoid confusion, many of my new features can be switched off (by variables in Default/LocalSettings.php). 
+ 
+I am interested in your feedback. 
+ 
+ 
+ </pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-25 22:50:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've e-mailed Tom a list of things that should be addressed.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-27 20:53:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=115" name="attach_115" title="Enotif patch 1.30 against CVS 1.4 (= 1st review of Enotif v1.22)">attachment 115</a> <a href="attachment.cgi?id=115&amp;action=edit" title="Enotif patch 1.30 against CVS 1.4 (= 1st review of Enotif v1.22)">[details]</a></span>
+Enotif patch 1.30 against CVS 1.4 (= 1st review of Enotif v1.22)</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-27 22:35:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Some more comments:
+
+Please take out $wgRCUseModStyle; it's an unnecessary complication and 
+doesn't actually provide UseMod's basic features.
+
+Avoid loading UserMailer.php in Setup.php. Every inclusion requires 
+processing time and memory, which slows down the operation of the wiki. If 
+you're not going to send mail on every hit, don't include it every time.
+
+There's a weird comment:
++# while code from www/home/www/phase3/
+enotif1.22_against_CVS1.4.diff.php.net
+
+wfMsg( 'updatedletter' ) is dumped as raw HTML several times; change this to 
+plaintext via htmlspecialchars(). Any formatting should be done through the 
+stylesheet; wrap it in a &lt;span&gt; or something. The other messages added 
+should also be either plaintext or wikitext as appropriate.
+
+This is really wrong:
++		global $wgUser, $notificationtimestamp, $numberofWatchingusers;
++		# set the global variable here. We could pass it as a parameter, but 
+it would be need to many code changes
++		$notificationtimestamp = $xnotificationtimestamp;
++		$numberofWatchingusers =  $xnumberofWatchingusers;
+
+Why would these be set as globals? If they must be preserved between calls, 
+use member variables, not globals.
+
++		mail( $to, $subject, $body, $headers, &quot;-
+f{$wgEmergencyContact}\n&quot;);
+How does this behave if special shell characters or spaces appear in the 
+contact address?
+
++		if (($wgUser-&gt;getEmail() != '') &amp;&amp; (1 != $wgUser-
+<span class="quote">&gt;getOption('disablemail')))  {</span >
+In general boolean checks should be done as booleans rather than looking 
+specifically for == or != 1.
+
+More generally this bit totally changes the privacy rules:
++		# the user who edited is $wgUser-&gt;getName():
++		# reveal the page editor's address as REPLY-TO address only if the 
+user has not opted-out
++		if (($wgUser-&gt;getEmail() != '') &amp;&amp; (1 != $wgUser-
+<span class="quote">&gt;getOption('disablemail')))  {</span >
++			$headers = 
+str_replace('$PAGEEDITORNAMEANDEMAILADDR_QP', $pageeditor_qp . ' &lt;' . 
+$wgUser-&gt;getEmail() . '&gt;', $headers);
++			$body = str_replace('$PAGEEDITORNAMEANDEMAILADDR', 
+$wgUser-&gt;getName() . ' &lt;' . $wgUser-&gt;getEmail() . '&gt;', $body);
++		} else {
+
+Currently we do not reveal anyone's e-mail address unless they explicitly 
+send a mail to another user through Special:Useremail; if I'm reading this 
+correctly this would reveal the listed e-mail address of the editor to everyone 
+watching the page, unless they chose to opt out of *receiving* e-mail through 
+Special:Useremail. That's a big privacy leak.
+
+I'd recommend changing the functions to accept Title objects rather than title:
+namespace pairs for consistency and cleanliness. Also, method names should 
+begin with a lowercase letter (traditional camelCase naming style) and the 
+contents of a class definition should be indented.
+
+There's still a huge amount of duplicated code in UserTalkUpdate; please 
+merge this with Notification.
+
+WatchedItem in a couple places runs the same query twice with a tiny 
+difference. Refactor this to another method so that the two queries don't have 
+to be updated identically every time something changes.
+
++'updatedletter'		=&gt; '&lt;font size=-2 style=&quot;background:
+#00FF00&quot;&gt;&amp;nbsp;updated (since my last visit)&amp;nbsp;&lt;/font&gt;',
+This is still not valid XHTML. Make it plaintext (use htmlspecialchars on the 
+output) and surround it with a &lt;span class=&quot;update&quot;&gt; or something, so the 
+CSS stylesheet can specify formatting.
+
++'email_notification_infotext' =&gt; '
+This one contains a huge amount of HTML mixed in, which is not valid XHTML 
+either. Please try to extract the _text_ from the HTML form; maintaining form 
+changes across copies in dozens of localizations is a huge maintenance 
+burden.
+
++'email_notification_headers' =&gt; 'MIME-Version: 1.0
+Again this should not be in the localization system, as it's special text. The 
+line ending format of the person downloading the files may also affect how 
+and whether the headers work. Headers broken accidentally or maliciously 
+through the wiki could cause failure to deliver, or incorrect delivery.
+
+In general you might also want to look over some of the options which 
+require an additional query eg on every line of RC output to see if they can be 
+consolidated, if that might help performance.
+</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-29 23:49:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >RELEASE NOTES FOR THE NEW ENOTIF PATCH 1.33 FOR MEDIAWIKI 1.3.7 (URL for complete tgz follows) 
+ 
+ATTENTION:  
+========== 
+the DIFF file and the TGZ file will be published/uploaded later, because I first serve some test users, who already uses my older 
+version. 
+ 
+ 
+DISCLAIMER: 
+=========== 
+I tried to address as MANY of Brion's and JeLuf's ultra-valuable comments as possible, especially the security related and 
+&quot;hard&quot;cosmetic ones. The rest of their comments will be addressed in further releases - as soon as possible. Overall it was a VERY 
+hard work for me, but the released patch - coming with my PERSONALLY SUGGESTED DEFAULT OPTIONS - is worth to have look into it. 
+ 
+If you decompress the tgz file - its URL will follow soon - it will decompress the whole MediaWiki 1.3.7 code INCLUDING the Enotif 
+1.33 patch and my PERSONALLY SUGGESTED DEFAULTS to a subdirectory /testwiki . Then you can perform either a fresh installation with 
+a fresh database or a fresh installation with an existing database. If you prefer to copy the files manually, you need to issue a 
+PHP /maintenance/update.php command to adapt the database structure (for watchlist table only). 
+ 
+Users of my older Enotif patches can use their databases without any changes (there is NO further database layout change necessary). 
+ 
+For feedback: I prefer to communicate via mail, <a href="mailto:mail&#64;tgries.de">mailto:mail&#64;tgries.de</a> . 
+ 
+I hope, that my contribution is seen friendly and that it is kindly appreciated by you. However, there might be cases that you do 
+not like my patch. Please be then courageous and tell me why, because I will definitely try to improve it for a manifold of 
+applications. especially for medium-sized companies and family wikis. On the other hand, I already know of several users and 
+companies which finds the pre-released versions an epoch-making improvement. 
+ 
+Hope, you like it, too. 
+ 
+Tom Gries 
+Berlin 
+ 
+THESE IS THE RELEASE NOTE AS INCLUDED IN FILE mw137+en133.tgz (URL follows separately) 
+ 
+== Version 1.3.7+enotif v1.33, 2004-10-29 == 
+ 
+* Enotif v1.33 
+  written by Tom Gries, Berlin and Markus Arndt, Munich 
+ 
+* Executive summary for the impatient reader: 
+ Enotif adds e-mail notification to MediaWiki version stable release 1.3.7 
+ It sends e-mails when a watch-listed page or user_talk page is changed 
+ to the watching users. 
+ Listed as &quot;enhancement&quot; <a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=454">http://bugzilla.wikipedia.org/show_bug.cgi?id=454</a> 
+ Visit the complete documentation on <a href="http://meta.wikipedia.org/Enotif">http://meta.wikipedia.org/Enotif</a> 
+ 
+* Details: 
+ Implements almost all enotif options as user preferences. 
+ These are only shown on the user preference page, if they are globally 
+ enabled by the corresponding admin option in DefaultSettings.php. 
+ Added admin feature to let enotifs appear to come from the page editor. 
+ This facilitates automatic mail sorting and anti-spam filtering; feature was 
+ originally proposed by Nick Triantos, thank you ! 
+ Page editor's email address is however only shown, if this user enabled 
+ the option &quot;reveal my email address&quot; in user preferences. Otherwise, 
+ the enotifs appear to come from WikiAdmin as usual (tricky to program, 
+ but simply trust the algorithm. or look into UserMailer.php and 
+ UserTalkPage.php). 
+ 
+* Changes from previous enotif versions 
+ 
+* v1.31 is an improved version with many security and also cosmetic changes 
+ applied after two first reviews by Brion Vibber. v1.31 is basically the same as 
+ the older Enotif v1.30 and v1.22 versions. 
+ Added UseMod style for recent changes view so that only the most recent 
+ change of any page is listed. The (diff) and (hist) still allow to retrieve the 
+ older versions at users' discretion, but the RC view is much cleaner for 
+ trusted environments such as medium-size companies or family wikis. 
+ 
+* v1.22 &quot;updated (since my last visit)&quot; also shown for users without stored 
+ email address in preferences, so that they can see, what watched pages 
+ have changed. 
+* show &quot;updated (since my last visit)&quot; markers in RC, history and watchlist 
+* Systemvariables to suppress updated marker in all views 
+* show number of watching users in RC and on bottom of articles in 
+ classic skin and in monobook skin 
+* Systemvariables in DefaultSettings.php to enable or disable features 
+* v1.21 now suppresses displaying the marker &quot;updated (since my last visit)&quot; 
+ in recent changes view for the older (already visited) versions of watched 
+ pages - i.e. page versions before the enotif was sent do not bear that 
+ marker any longer. 
+* enotif mails come with a link to the diff view between current and last 
+ visited version of the watching user; feature was proposed by 
+ Chris Phoenix, thank you ! 
+ 
+*database structure is changed automatically when installing via the 
+ recommended way (starting index.php and re-using the old database name). 
+	run php /maintenance/update.php 
+ OR see /maintenance/archives/patch-email-notification.sql and apply the 
+ command 
+	ALTER TABLE  watchlist 
+	ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); 
+ manually to your database, which does not harm the non notification versions 
+ 
+*adding a page x to the watchlist does automatically add a watch 
+  for the accompanying talk_page talk:x and vice versa; 
+ </pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-01 21:53:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Because the patch performed well the last days (no glitches or whatsoever), I
+hereby publish the download URL for 
+
+   ***MediaWiki 1.3.7 (FULL VERSION) including my patch Enotif 1.33***
+   <a href="http://www.tgries.de/mw/enotif/mw137+en133.tgz">http://www.tgries.de/mw/enotif/mw137+en133.tgz</a>
+   This will decompress to a subdirectory testwiki/ unless you use the tar - C
+option
+
+PLEASE READ CAREFULLY the documentation. There are two possibilities: one to
+study the text of the files RELEASE-NOTES, second to read the verbose
+<a href="http://meta.wikipedia.org/Email_notification_installation">http://meta.wikipedia.org/Email_notification_installation</a> page. Both versions
+explain how to install &quot;from scratch&quot; or how to &quot;upgrade with using an existing
+database&quot; (which is then automatically adjusted to work with Enotif by adding
+the field wl_notificationtimestamp to the table watchlist. For users who already
+have used one of the older Enotif versions: there are no further database layout
+changes.
+
+PLEASE BE ALSO REMINDED, that the above *.tgz comes with some slightly different
+MediaWiki default settings, inter alia is &quot;remember password across session&quot; now
+checked by default. The enotif email options (see DefaultSettings.php and user
+preferences) are generously enabled; the debug options for beeps on the server
+beeper when enotif mails are actually sent are *disabled*.
+
+The patch comes with (in my view) useful extras, which are also generously
+enabled to give an impression, what powerful extensions it brings to this
+project. For example, there is this long-awaited &quot;updated&quot; marker, which
+indicates these revisions of your watched pages which you haven't seen since
+your last visit.
+
+Anyone, who do not like one or more of my defaults can easily set up other
+default options, as they are verbosely commented anywhere and on the users'
+preference pages. My intention was to show the powerful possibilities.
+
+AGAIN:
+This mw137+en133 is my personal view of the story. Some readers will certainly
+have objections against this-and-that, which I fully respect. Some cosmetic
+problems (only inside the code) are outstanding matter and will be solved as
+soon as possible. All your valuable other advices regarding potential security
+problems have been picked up and appear to be solved. In case you have comments,
+please let me known them as soon as possible.
+
+Many thanks to 
+Chris Phoenix in Florida for the (diff-to-last-visited-revision) link idea in
+enotif mails,
+Nick Triantos in California,
+David in Germany for pointing to a php-mail() inconsistency,
+Hans-Jürgen for &quot;CVS briefing&quot;,
+Emmanuel from Alsace/France, 
+Ashar in Nantes/France 
+and of course Brion Vibber in ? 
+and JeLuf in Germany for chatting, suggestions and comments.
+and last, but not least, my friend-colleague and co-author Markus Arndt for the
+first implementations.
+
+Tom
+</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-01 22:52:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=120" name="attach_120" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b)">attachment 120</a> <a href="attachment.cgi?id=120&amp;action=edit" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b)">[details]</a></span>
+Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b)</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-02 07:53:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=121" name="attach_121" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)">attachment 121</a> <a href="attachment.cgi?id=121&amp;action=edit" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)">[details]</a></span>
+Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-02 07:54:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=122" name="attach_122" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)">attachment 122</a> <a href="attachment.cgi?id=122&amp;action=edit" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)">[details]</a></span>
+Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-02 07:55:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=121" name="attach_121" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)">attachment 121</a> <a href="attachment.cgi?id=121&amp;action=edit" title="Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)">[details]</a></span>
+Enotif 1.33 for MediaWiki 1.3.7 (diff -r -u -b) (same program; changed a few default options)
+
+(obsolete due to user  upload abort)</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-03 02:29:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=123" name="attach_123" title="Enotif 1.34 for MediaWiki 1.3.7 (diff -r -u -b) (diff file only)">attachment 123</a> <a href="attachment.cgi?id=123&amp;action=edit" title="Enotif 1.34 for MediaWiki 1.3.7 (diff -r -u -b) (diff file only)">[details]</a></span>
+Enotif 1.34 for MediaWiki 1.3.7 (diff -r -u -b) (diff file only)
+
+A problem with $oldid is solved in this bug-fix, which prohibited the
+generation of (diff-to-last-visited-version) link in enotif mails.
+
+Download of the whole package MediaWiki 1.3.7 incl. Enotif 1.34 and diff files 
+<a href="http://www.tgries.de/mw/enotif/mw137+en134.tgz">http://www.tgries.de/mw/enotif/mw137+en134.tgz</a></pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-04 01:44:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reopened; this feature is not (yet) in MediaWiki, but in an in-development third-party patch which has not 
+(yet) been included.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-06 23:37:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=125" name="attach_125" title="Maintenance relase of Enotif 1.35 for MediaWiki 1.3.7 (diff file only)">attachment 125</a> <a href="attachment.cgi?id=125&amp;action=edit" title="Maintenance relase of Enotif 1.35 for MediaWiki 1.3.7 (diff file only)">[details]</a></span>
+Maintenance relase of Enotif 1.35 for MediaWiki 1.3.7 (diff file only)
+
+The complete download Enotif 1.35 including the full MediaWiki 1.3.7 code can
+be downloaded from <a href="http://www.tgries.de/mw/mw137+en135.tgz">http://www.tgries.de/mw/mw137+en135.tgz</a> .
+
+This decompresses to a subdirectory testwiki/ .
+
+More info see documentation on <a href="http://meta.wikipedia.org/Enotif">http://meta.wikipedia.org/Enotif</a></pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-06 23:41:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=126" name="attach_126" title="Difference between Enotif 1.34 and Enotif 1.35">attachment 126</a> <a href="attachment.cgi?id=126&amp;action=edit" title="Difference between Enotif 1.34 and Enotif 1.35">[details]</a></span>
+Difference between Enotif 1.34 and Enotif 1.35</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Guttorm Flatabø</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-10 08:28:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Brion has kindly clarified why enotif is not included in the current MediWiki
+release in the following e-mail to the mediawiki mailinglist:
+
+<a href="http://mail.wikipedia.org/pipermail/mediawiki-l/2004-November/002082.html">http://mail.wikipedia.org/pipermail/mediawiki-l/2004-November/002082.html</a>
+
+I hope for everybodies (and espescially, tom and brions) patience in getting the
+necessary work done.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-23 23:19:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I am sending this only as a &quot;staying-alive&quot; message and also to pre-announce a
+new version Enotif v2.00 for CVS HEAD, overcoming all objections. Those of you,
+who are interested in a preview of the code, can contact me personally.
+
+Scheduled date of the patch: 30.11.2004</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-11 21:19:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=168" name="attach_168" title="Maintenance release of enotif 1.351 (patch for enotif 1.35 for mediawiki 1.3.7)">attachment 168</a> <a href="attachment.cgi?id=168&amp;action=edit" title="Maintenance release of enotif 1.351 (patch for enotif 1.35 for mediawiki 1.3.7)">[details]</a></span>
+Maintenance release of enotif 1.351 (patch for enotif 1.35 for mediawiki 1.3.7)
+
+The updated full tgz file can be downloaded from
+<a href="http://www.tgries.de/mw/mw137+en135.tgz">http://www.tgries.de/mw/mw137+en135.tgz</a> (I did not change the filename).</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-12 07:04:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >EN = Email Notification (Enotif)
+EA = Email Authentication
+ENEA = EN+EA</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-14 01:44:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The first alpha release of Enotif AND Eauthent 2.00/CVS for CVS HEAD (1.5) is ready and can be obtained from my server on request. 
+Code review, diff files and complete URL will be published soon after I have received some feedback from my testusers. 
+ 
+If you want to test it too, now, please let me now by <a href="mailto:mail&#64;tgries.de">mailto:mail&#64;tgries.de</a> , then I'll pass you the URL. 
+ 
+Tom aka Wikinaut 
+ </pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-14 02:18:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=171" name="attach_171" title="EN+EA 2.00/CVS against CVS 1.5 as of today (manually applied patch)">attachment 171</a> <a href="attachment.cgi?id=171&amp;action=edit" title="EN+EA 2.00/CVS against CVS 1.5 as of today (manually applied patch)">[details]</a></span>
+EN+EA 2.00/CVS against CVS 1.5 as of today (manually applied patch)
+
+Here it comes -- please be polite with me -- the long promised (first) release
+of email authentication and notification for page changes in the version for
+CVS HEAD i.e. 1.5 of today. 
+
+The full program can be downloaded from
+<a href="http://www.tgries.de/mw/cvs15+enea200-minus-cvs.tgz">http://www.tgries.de/mw/cvs15+enea200-minus-cvs.tgz</a> for a fresh installation or
+update installation. Everything shall work as you expect.
+
+If not, please let me know as soon as possible. 
+
+Use at your own risk; however, it is very very nice, you will see.
+Try it, before telling me, that you don't like it from the beginning.
+
+Every single feature can be fully disabled; many switches have corresponding
+option on the user preference page, so that each user can determine if he wants
+to have this and that.
+
+Tom</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-16 19:05:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I uploaded a freshly updated (from CVS HEAD 16.12.2004 1900 UTC) version to my
+server
+
+EN+EA 2.00/CVS against CVS 1.5
+
+The full program can be downloaded from
+<a href="http://www.tgries.de/mw/cvs15+enea200-minus-cvs.tgz">http://www.tgries.de/mw/cvs15+enea200-minus-cvs.tgz</a> (2,9 MB) for a fresh
+installation or update installation. Everything shall work as you expect.
+
+Use at your own risk.
+
+Every single feature can be fully disabled; many switches have corresponding
+option on the user preference page, so that each user can determine if he wants
+to have this and that.
+
+Tom
+
+Brion: I hope, that I can upload it soon (tonight?) into the CVS HEAD; how do
+you think about this step now ?</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-16 19:08:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(I forgot:) There ware no code changes in ENotif or EAuthent.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-18 04:41:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Merged in CVS HEAD.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dieter Menne</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-13 19:27:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >E-mail notification failed for me with 
+$wgEmergencyContact = '<a href="mailto:dieter.menne&#64;menne-biomed.de">dieter.menne&#64;menne-biomed.de</a>'; 
+No error, but mail never arrived.
+
+Works ok without the wgEmergencyContact. I thought it had to do with safe mode
+and tried
+
+if( ini_get('safe_mode') )
+  mail( wfQuotedPrintable_name_and_emailaddr($to), $subject, $body, $headers);
+else
+  mail( wfQuotedPrintable_name_and_emailaddr($to), $subject, $body, $headers,
+&quot;-f{$wgEmergencyContact}\n&quot;);
+
+but this does not work too. phpVersion is 4.10
+</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-08 07:48:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Pre-Announcement (to avoid double efforts, if you are interested):
+
+An intermediate release of ENotif for MediaWiki version 1.3.10 is scheduled for
+publication on 09. Feb. 2005. It can be installed with a new or using an
+existing wiki database, as it comes with a database upgrader module as usual.
+
+Tom</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-08 07:52:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=454#c51">comment #51</a>)
+<span class="quote">&gt; Pre-Announcement (to avoid double efforts, if you are interested):
+&gt; 
+&gt; An intermediate release of ENotif for MediaWiki version 1.3.10 is scheduled for
+&gt; publication on 09. Feb. 2005.</span >
+
+I forget to say w.r.t. to MediaWiki 1.5:
+
+A different version of ENotif is available for mediawiki testers and developers
+in CVS HEAD since 18.12.2004 for version 1.5, this version not intended for
+production environments.
+</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-10 20:43:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=281" name="attach_281" title="ENotif 2.01alpha including and for MediaWiki 1.3.10">attachment 281</a> <a href="attachment.cgi?id=281&amp;action=edit" title="ENotif 2.01alpha including and for MediaWiki 1.3.10">[details]</a></span>
+ENotif 2.01alpha including and for MediaWiki 1.3.10
+
+Downloadsite <a href="http://www.wikinaut.de/mw/mw1310+en201alpha.tgz">http://www.wikinaut.de/mw/mw1310+en201alpha.tgz</a>
+Please take note that the tgz decompresses to a subdirectory testwiki/ .
+
+Some further necessary remarks.
+
+First at all: use at your own risk. I did my very best to make it robust and
+safe, it is a fresh port onto the mediawiki 1.3.10 stable release code and
+almost every contribution and remark by Tim, JeLuF, Brion, Hashar has been duly
+considered. It looks fine, but one can never know.
+
+Next advice: make a database backup (you always should do this), however, I
+never encountered a single problem.
+
+You can safely make new installations (with a &quot;fresh&quot; database) or use an
+existing database, because a database updating step for table watchlist is
+performed if you never used ENotif before.
+
+My version comes with a few personal settings (default user preferences for
+newly created accounts) which differ slighty from standard mediawiki 1.3.10
+release versions. Try them please, you can later disable everything.
+
+The version has also again support for a third option for what Recent Changes
+view, I call it &quot;RecentChanges in UseModStyle&quot; see
+<a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=782">http://bugzilla.wikipedia.org/show_bug.cgi?id=782</a> , which can be disabled by
+Sysop and in user preferences. It also shows the number of watching users in
+the RC view.
+
+The latter features can be easily disabled in both
+DefaultSettings/LocalSettings.php and in every user's preferences page.
+
+Accompanying documentation as usual on <a href="http://meta.wikimedia.org/Enotif">http://meta.wikimedia.org/Enotif</a> .
+
+Tom</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-24 23:24:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=312" name="attach_312" title="ENotif 2.02 for Mediawiki 1.3.11">attachment 312</a> <a href="attachment.cgi?id=312&amp;action=edit" title="ENotif 2.02 for Mediawiki 1.3.11">[details]</a></span>
+ENotif 2.02 for Mediawiki 1.3.11
+
+Release of ENotif 2.02 for Mediawiki 1.3.11 . Full code mediawiki 1.3.11 incl.
+ENotif 2.02 can be downloaded from my server as
+<a href="http://www.tgries.de/mw/mw1311+en202.tgz">http://www.tgries.de/mw/mw1311+en202.tgz</a> . 
+
+It installs into a subdirectory /testwiki .
+
+Pls. read previous comment for details of installation. Accompanying
+documentation on <a href="http://meta.wikimedia.org/wiki/Enotif">http://meta.wikimedia.org/wiki/Enotif</a> - as usual.
+
+Hotline: <a href="mailto:mail&#64;wikinaut.de">mailto:mail&#64;wikinaut.de</a> (mention your phone number, if you wish. I'll
+call you back.)
+
+Tom</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-12 00:49:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear all:
+
+ENotif and EAuthent for REL1_4 will be published tomorrow; it's ready and stable.
+Allow one more day for testing.
+
+Tom</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-13 02:22:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=417" name="attach_417" title="Patch against Mediawiki REL1_4 of 13.04.2005">attachment 417</a> <a href="attachment.cgi?id=417&amp;action=edit" title="Patch against Mediawiki REL1_4 of 13.04.2005">[details]</a></span>
+Patch against Mediawiki REL1_4 of 13.04.2005
+
+FULL ALPHA RELEASE 13.04.2005
+Download <a href="http://www.tgries.de/mw/mw141+en305alpha.tgz">http://www.tgries.de/mw/mw141+en305alpha.tgz</a>
+
+- Make backups. Always.
+
+- Attention:
+     tar -xzf mw141+en305aplha.tgz 
+  installs into /testwiki
+- comes with my preferred settings
+- You will like it. Direct links to the last seen version (of watched pages
+only). User-Talk AND User-Pages are notified by the &quot;You have new messages&quot;
+marker. Many dozens of other features. See RELEASE-NOTES inside the patch; see
+Metawiki page <a href="http://meta.wikipedia.org/wiki/Enotif">http://meta.wikipedia.org/wiki/Enotif</a> (not updated at the moment)
+
+Tom (Wikinaut)</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-14 19:53:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=422" name="attach_422" title="ENotif and EAuthent MediaWiki 1.4.1 a small bugfix (for lvrd -- diff-view of last-seen revision -- if there is only the initial version, no difference is shown, but the initial version itself)">attachment 422</a> <a href="attachment.cgi?id=422&amp;action=edit" title="ENotif and EAuthent MediaWiki 1.4.1 a small bugfix (for lvrd -- diff-view of last-seen revision -- if there is only the initial version, no difference is shown, but the initial version itself)">[details]</a></span>
+ENotif and EAuthent MediaWiki 1.4.1 a small bugfix (for lvrd -- diff-view of last-seen revision -- if there is only the initial version, no difference is shown, but the initial version itself)
+
+To say it again: I invite all of you to install my patch. I invested roughly
+300 hours into ENotif and EAuthent, and integrated many other feature requests,
+such as &quot;show a link (or better, a link to the difference view) to the last
+version I saw&quot;.
+
+Every database /where applicable/ is wrapped; ENotif and EAuthent already uses
+the NEW DATABASE type for timestamps which is DATETIME (for MySQL).
+
+So say what ? 
+Try it, taste it, and let me know, whether/that you like it.
+
+Pushy as always --
+Wikinaut Tom
+
+Attention Magnus, JeLuf, Ashar, Brion, Tim:
+I kindly but pushy ask Magnus or JeLuf or Ashar or Brion or Tim to install it
+on <a href="http://test.wikipedia.org">http://test.wikipedia.org</a>.
+
+The current patch is a diff against the CVS REL1_4 (=1.4.1) from Sourceforge as
+of 14-APR-2005, 20:40 UTC; the whole code is available on my site
+<a href="http://www.wikinaut.de/mw/mw141+en305alpha.tgz">http://www.wikinaut.de/mw/mw141+en305alpha.tgz</a> ( and installs into /testwiki if
+you do not change this).
+
+Everything is like in the original release, so you have to &quot;chmod a+w config&quot;
+and to move /config/LocalSettings.php one level up.</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-17 19:20:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=425" name="attach_425" title="diff between current REL1_4 and current ENotif (version number 3.07)">attachment 425</a> <a href="attachment.cgi?id=425&amp;action=edit" title="diff between current REL1_4 and current ENotif (version number 3.07)">[details]</a></span>
+diff between current REL1_4 and current ENotif (version number 3.07)
+
+Full download of MediaWiki-Plus: <a href="http://www.wikinaut.de/mw/mw141+enea.tgz">http://www.wikinaut.de/mw/mw141+enea.tgz</a> (~
+3MByte)
+
+Sent feedback, please <a href="mailto:mail&#64;wikinaut.de">mailto:mail&#64;wikinaut.de</a>
+
+Small bugfix compared to previous version: when a page is moved, the correct
+watchlist settings are now taken into consideration, i.e. when a user is
+watching the subject and the talk page X and that page X is moved to page Y,
+all four pages are watched correctly.
+
+MediaWiki-Plus = MediaWiki REL1_4 incl. E-mail notification incl. E-mail
+address authentication, fully customizable according to your needs.
+
+Under GNU/GPL license.</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-17 19:25:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In reply to <a href="show_bug.cgi?id=454#c58">comment #58</a>)
+Created an attachment (id=425) [edit]
+diff between current REL1_4 and current ENotif (version number 3.07)
+
+The full version of MediaWiki-Plus is here:
+<a href="http://www.wikinaut.de/mw/mw141+enea.tgz">http://www.wikinaut.de/mw/mw141+enea.tgz</a> (~ 3MByte)
+This is NOT a spawn of MediaWiki; it's an enhanced version and open for peer
+code review.
+
+Sent feedback, please <a href="mailto:mail&#64;wikinaut.de">mailto:mail&#64;wikinaut.de</a> or post in this bugzilla, please.
+ 
+Small bugfix compared to previous version: when a page is moved, the correct
+watchlist settings are now taken into consideration, i.e. when a user is
+watching the subject and the talk page X and that page X is moved to page Y,
+all four pages are watched correctly.
+ 
+MediaWiki-Plus = MediaWiki REL1_4 incl. E-mail notification incl. E-mail
+address authentication, fully customizable according to your needs.
+ 
+Under GNU/GPL license.
+ 
+I can only add this:
+* recommended to try this version and 
+* to set it up as <a href="http://test.wikipedia.org">http://test.wikipedia.org</a>
+
+
+</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-18 23:20:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=429" name="attach_429" title="MediaWiki 1.4.1 plus Enotif v3.08. Added the new feature e-mail notification for _new_ pages (user and sysop option)">attachment 429</a> <a href="attachment.cgi?id=429&amp;action=edit" title="MediaWiki 1.4.1 plus Enotif v3.08. Added the new feature e-mail notification for _new_ pages (user and sysop option)">[details]</a></span>
+MediaWiki 1.4.1 plus Enotif v3.08. Added the new feature e-mail notification for _new_ pages (user and sysop option)</pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-18 23:28:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >MediaWiki 1.4.1 plus Enotif v3.08. 
+
+I added a long-felt want:
+
+   new feature: e-mail notification for _new_ pages
+
+The &quot;patch&quot; includes user and sysop options and update.php; it is based on
+today's update from REL1_4 = 1.4.1
+
+a) sysops can disable or enable the new option &quot;Send me an e-mail when a new
+page is created&quot; to be shown for everyone or
+b) only for developers, sysops, and bureaucrats
+
+Donwload URL as usual 
+<a href="http://www.wikinaut.de/mw/mw141+enea.tgz">http://www.wikinaut.de/mw/mw141+enea.tgz</a> (now at version 3.08)
+
+it installs to /testwiki
+
+Please report problems (or if you like that one) here or mail me, please.
+
+Tom
+</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-18 23:55:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bugzilla title adapted to reflect the new feature.</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-19 07:02:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=430" name="attach_430" title="MediaWiki-REL1_4 (pre-1.4.2) plus ENotif 3.09">attachment 430</a> <a href="attachment.cgi?id=430&amp;action=edit" title="MediaWiki-REL1_4 (pre-1.4.2) plus ENotif 3.09">[details]</a></span>
+MediaWiki-REL1_4 (pre-1.4.2) plus ENotif 3.09
+
+Going 1.4.2. Small security fix to prevent non-authorized users to enable
+newpage notification flag by form tampering in SpecialPreferences.php.</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-19 07:05:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >download url adapted to new pre-version number
+<a href="http://www.wikinaut.de/mw/mw142+enea.tgz">http://www.wikinaut.de/mw/mw142+enea.tgz</a></pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 20:28:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=466" name="attach_466" title="ENotif/EConfirm v3.15 for REL1_5 of today, 27.04.2005 20:25 UTC">attachment 466</a> <a href="attachment.cgi?id=466&amp;action=edit" title="ENotif/EConfirm v3.15 for REL1_5 of today, 27.04.2005 20:25 UTC">[details]</a></span>
+ENotif/EConfirm v3.15 for REL1_5 of today, 27.04.2005 20:25 UTC
+
+adds optional notifcation on _new_ pages; &quot;(last seen)&quot; links for watched
+pages; improved code went to RecentChange.php module; E-mail address
+confirmation sends a link with a token to unconfirmed address; &quot;you have new
+messages on your user and/or user_talk page&quot; (new) including &quot;(last seen)&quot;
+links; new option for recent changes &quot;show only current revision of pages in
+Recent view&quot;.</pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 20:34:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please consult documentation and screenshots on
+<a href="http://meta.wikipedia.org/wiki/Enotif">http://meta.wikipedia.org/wiki/Enotif</a>
+
+Please contact me on <a href="http://test.leuksman.com/wiki/Enotif">http://test.leuksman.com/wiki/Enotif</a> . I have &quot;enotified&quot;
+this page, meaning: I watch it with e-mail notification switched on.
+
+Euer/Your Wikinaut</pre>
+    </div><div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c67">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 23:09:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=468" name="attach_468" title="ENotif/EConfirm v3.16 for REL1_5. some small problems fixed">attachment 468</a> <a href="attachment.cgi?id=468&amp;action=edit" title="ENotif/EConfirm v3.16 for REL1_5. some small problems fixed">[details]</a></span>
+ENotif/EConfirm v3.16 for REL1_5. some small problems fixed
+
+minor bug fixes.</pre>
+    </div><div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c68">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 23:45:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The full code of this patch (diff =
+<a href="http://bugzilla.wikimedia.org/attachment.cgi?id=468&amp;action=view">http://bugzilla.wikimedia.org/attachment.cgi?id=468&amp;action=view</a> ) is available
+as <a href="http://www.wikinaut.de/mw/rel15+enec316_CVS.tgz">http://www.wikinaut.de/mw/rel15+enec316_CVS.tgz</a> (3,3 MB)
+
+Attention:
+(a) be aware, that it installs into the subdirectory /phase3 and save your
+directory, if you need it.
+(b) the tgz file comprises the CVS markers and tags, so that you easily can make
+further updates from CVS upon my version
+
+Hotpage and helpdesk for this version: <a href="http://test.leuksman.com/wiki/Enotif">http://test.leuksman.com/wiki/Enotif</a>
+</pre>
+    </div><div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c69">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-28 00:29:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(correction to <a href="show_bug.cgi?id=454#c68">comment #68</a>, sorry)
+The full code ... <a href="http://www.wikinaut.de/mw/rel15+enec316_CVS.tgz">http://www.wikinaut.de/mw/rel15+enec316_CVS.tgz</a> (3,3 MB)
+... Hotpage and helpdesk: <a href="http://test.leuksman.com/index.php/Enotif">http://test.leuksman.com/index.php/Enotif</a> &lt;&lt; corrected</pre>
+    </div><div id="c70" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c70">Comment 70</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-28 20:31:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=474" name="attach_474" title="ENotif/EConfirm v3.17 for REL1_5. Fixed a) &quot;address was confirmed w/o confirmation&quot; and b) &quot;superusers don't have to confirm their addresses: not working&quot;">attachment 474</a> <a href="attachment.cgi?id=474&amp;action=edit" title="ENotif/EConfirm v3.17 for REL1_5. Fixed a) &quot;address was confirmed w/o confirmation&quot; and b) &quot;superusers don't have to confirm their addresses: not working&quot;">[details]</a></span>
+ENotif/EConfirm v3.17 for REL1_5. Fixed a) &quot;address was confirmed w/o confirmation&quot; and b) &quot;superusers don't have to confirm their addresses: not working&quot;
+
+Everything including the CVS-tag files can be downloaded as
+<a href="http://www.wikinaut.de/mw/rel15+enec317_CVS.tgz">http://www.wikinaut.de/mw/rel15+enec317_CVS.tgz</a> .
+
+Attention again, it installs to a subdirectory /phase3
+
+Msg for Brion only: will propose to you, that I proceed now breaking this down
+into a reasonable set of (+/-4..6) smaller subject-oriented patches. Pls. let
+me know, if you accept my offer. 
+
+What I have placed here, is working fine for me, and I really propose the whole
+patch for REL1_5 - but nothing more :-)) ...</pre>
+    </div><div id="c71" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c71">Comment 71</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-28 20:48:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Recent work is heading for REL1_5 .
+
+Lovers of 1.3.x and 1.4.x versions can look here and or consult the
+documentation pages <a href="http://meta.wikipedia.org/wiki/Enotif">http://meta.wikipedia.org/wiki/Enotif</a> . [ but I stopped
+describing the differences between my evolving versions, now 3.x -- I can't
+afford the time for this any longer, pls. apologise. But I offer this &quot;Helpdesk&quot;
+on <a href="http://test.leuksman.com/index.php/Enotif">http://test.leuksman.com/index.php/Enotif</a> or wikitech-l mailinglist ]</pre>
+    </div><div id="c72" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=454#c72">Comment 72</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-28 22:37:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm marking this bug CLOSED (it's been FIXED for ages).
+
+If there are specific changes that should be made, please provide individual patches under the appropriate bugs. Do not post 
+anything additional under this bug, which is done since December.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=454&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=454">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=454">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=454">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=454&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=454" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=454&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357196-794avQckwncNaRdzU9gw-CKLPT2dyBP1ub9-_uPcDUQ">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

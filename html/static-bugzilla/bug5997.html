@@ -1,0 +1,2408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5997 &ndash; Greater flexibility with references</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5997&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5997">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5997">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5997">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5997 – Greater flexibility with references",  
+                             "show_bug.cgi?id=5997" );
+        document.title = "Bug 5997 – Greater flexibility with references";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5997 – Greater flexibility with references", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki_extensions bz_component_Cite bz_bug_5997 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-18 21:51:57 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-18 21:51:57">
+  <input type="hidden" name="longdesclength" value="39">
+  <input type="hidden" name="id" value="5997">
+  <input type="hidden" name="token" value="1419366244-jO5uUXndUR2RN1xG0C-q5QUr6mviX8EdL0iuOm1fJnI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5997"><b>Bug&nbsp;5997</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Greater flexibility with references</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Greater flexibility with references
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Greater flexibility with references', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Cite
+    
+    (<a href="buglist.cgi?component=Cite&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5997">15 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5997#vote_5997">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow references (&lt;ref&gt;) to be defined without adding this instance to the list of references (&lt;references/&gt;)"
+   href="show_bug.cgi?id=12358">12358</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Enhancing the editing of references on Wikipedia"
+   href="show_bug.cgi?id=12538">12538</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow &quot;hidden&quot; references"
+   href="show_bug.cgi?id=12765">12765</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=12358,12538,12765">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Dedicated textarea for &lt;references&gt;...&lt;/references&gt; block"
+   href="show_bug.cgi?id=19739">19739</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5997&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5997">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-05-17 08:12 UTC by <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-18 21:51 UTC 
+      (<a href="show_activity.cgi?id=5997">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>10 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ayg">ayg</option>
+                <option value="bill.mitchell">bill.mitchell</option>
+                <option value="danny.b">danny.b</option>
+                <option value="jfd31">jfd31</option>
+                <option value="random832">random832</option>
+                <option value="rohde">rohde</option>
+                <option value="sharon.dagan">sharon.dagan</option>
+                <option value="vacuum">vacuum</option>
+                <option value="waldir">waldir</option>
+                <option value="Wikipedia">Wikipedia</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=2286"
+               title="View the content of the attachment">
+          <b>Patch to extend the capabilities of Cite</b></a>
+
+          <span class="bz_attach_extra_info">
+              (12.13 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2286"
+               title="Go to the comment associated with the attachment">2006-08-30 03:58 UTC</a>,
+
+            <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2286&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5414"
+               title="View the content of the attachment">
+          <b>Adds 'visible' attribute to 'ref' tag </b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.78 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5414"
+               title="Go to the comment associated with the attachment">2008-10-10 01:06 UTC</a>,
+
+            <span class="vcard">sharon.dagan
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5414&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=5997&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-17 08:12:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I hope I have the component right - this relates to &lt;ref&gt; and &lt;references&gt; tags.
+
+There are two general types of problems:
+1) This doesn't work:
+&lt;ref name = &quot;foo&quot; /&gt;...
+&lt;ref name = &quot;foo&quot;&gt;www.foo.com &lt;/ref&gt;
+...
+&lt;references /&gt;
+
+That is, the *definition* of the footnote absolutely has to be the first time
+the reference is used. This is particularly awkward when later adding more
+footnotes from the same source, particularly if one works backwards. Each time
+you want to refer to the source, you have to both locate the current first
+reference to that source, update it to the form without definition, then move
+the definition up. More likely, you end up just duplicating the reference all
+over the place.
+
+2) Long citations in the body of the text make the code pretty much unreadable,
+especially compared to the previous template-based way of handling footnotes,
+where the definition of the footnote was at the bottom of the page in the
+footnotes section.
+
+General proposal:
+1. Allow references to refer to undefined footnotes.
+2. Allow some mechanism whereby a footnote can be solely a definition without
+actually displaying anything at that point.
+
+This would allow the following:
+
+&lt;ref name=&quot;foo&quot; /&gt;
+&lt;ref name = &quot;bar&quot; /&gt;
+&lt;ref name = &quot;foo&quot;&gt;www.foo.com&lt;/ref&gt;
+
+==References==
+&lt;ref name = &quot;bar&quot; hide=&quot;true&quot;&gt;Some really long citation that is best kept out of
+the body of the text to improve readability. Only one footnote reference [1]
+should be generated - up in the main body.
+
+&lt;references /&gt; &lt;!-- should contain definition for foo (referenced twice) and bar
+(referenced once) --&gt;</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-18 12:32:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Apparently a solution to proposal 1. above exists:
+<a href="http://en.wikipedia.org/wiki/Wikipedia_talk:Footnotes#Fixing_non-1st_ref_content">http://en.wikipedia.org/wiki/Wikipedia_talk:Footnotes#Fixing_non-1st_ref_content</a></pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phil Boswell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-18 12:46:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Suggestion regarding the second point:
+
+==References ==
+&lt;references&gt;
+&lt;ref name=foo&gt;Define the foo reference in here. If there's a &lt;nowiki&gt;&lt;ref 
+name=foo/&gt;&lt;/nowiki&gt; then it will show up as a numbered reference linking up to the 
+appropriate [#]. If not, then it will show up at the end of the list as an 
+UNNUMBERED reference, no link required.&lt;/ref&gt;
+&lt;/references&gt;
+
+HTH HAND</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-18 13:42:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looks good. Thought you meant it actually already works 
+(<a href="http://en.wikipedia.org/wiki/User:Stevage/reftest">http://en.wikipedia.org/wiki/User:Stevage/reftest</a>) but you must mean a 
+proposal for new syntax.
+
+I like this overall - it's still quick and easy to make references for quick 
+footnotes, but when you have a lot and they are quite substantial, there is a 
+way of getting them out of the body of the article.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-01 21:58:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The suggestion in <a href="show_bug.cgi?id=5997#c2">comment 2</a> sounds good to me. With the parser 
+fixes in 1.7 it should be doable.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">David Mertz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-02 01:37:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I provided a fix for this under <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Non-first reference with common 'name' attribute hidden in rendering"
+   href="show_bug.cgi?id=5885">bug 5885</a>:
+
+--- Cite.php 2006-05-04 13:12:19.000000000 -0400
++++ Cite.php.new 2006-05-04 12:47:24.000000000 -0400
+&#64;&#64; -291,7 +291,12 &#64;&#64;
+$this-&gt;mRefs[$key]['number']
+);
+} else
+- // We've been here before
++ // We've been here before
++ $found_text = $this-&gt;mRefs[$key]['text'];
++ if ( empty($found_text) and !empty($str)) {
++ // If no text found before, use this text
++ $this-&gt;mRefs[$key]['text'] = $str;
++ }
+return
+$this-&gt;linkRef(
+$key,</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-04 22:26:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please *do not* encourage people to avoid including the full contents of the
+&lt;ref&gt; at least once in an appropriate place until it's impossible to save
+invalid references (i.e., it refuses to save &lt;ref name=&quot;name&quot; /&gt; if no &lt;ref
+name=&quot;name&quot;&gt;...&lt;/ref&gt; has been defined).  I've had to clean up multiple pages
+where someone used the old {{ref|...}} and it got disconnected from the
+accompanying {{note|...}}, and it's a nightmare: you have to dredge through tons
+of history to find where it got cut off.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-04 22:32:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please *do not* encourage people to avoid including the full contents of the
+&lt;ref&gt; at least once in an appropriate place until it's impossible to save
+invalid references (i.e., it refuses to save &lt;ref name=&quot;name&quot; /&gt; if no &lt;ref
+name=&quot;name&quot;&gt;...&lt;/ref&gt; has been defined).  I've had to clean up multiple pages
+where someone used the old {{ref|...}} and it got disconnected from the
+accompanying {{note|...}}, and it's a nightmare: you have to dredge through tons
+of history to find where it got cut off.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">NikoSilver</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-14 22:19:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Agree. Similar (extensive) talk and poll at 
+
+<a href="http://en.wikipedia.org/wiki/Wikipedia_talk:Footnotes">http://en.wikipedia.org/wiki/Wikipedia_talk:Footnotes</a>
+
+Suggestion was (among others) to NOT allow orphan refs, by red error in preview/save.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-14 22:28:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would amend my previous suggestion slightly, however, by saying an error
+should be thrown up but the save should go through fine.  That would allow the
+problem to be caught quickly and thus fixed easily, while still not losing
+submitted data in the event of a save-and-forget or something of the sort.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">NikoSilver</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-14 22:45:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >sure</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-05 14:35:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would be nice, and logical, if citations could go into a container tag:
+
+  &lt;ref name=&quot;Smith 2006&quot; /&gt;...
+  ...
+  &lt;references&gt;
+      &lt;ref name=&quot;Smith 2006&quot;&gt;Smith, John (2006) ''References''.  London: Penguin.&lt;/ref&gt;
+  &lt;/references&gt;
+
+This would allow some citations to be placed without a citation in the text.  The order they appear in the references 
+section could also be used to manually sort the list, with &lt;references sort=&quot;manual&quot;&gt;&lt;/references&gt;.
+
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-30 03:58:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2286" name="attach_2286" title="Patch to extend the capabilities of Cite">attachment 2286</a> <a href="attachment.cgi?id=2286&amp;action=edit" title="Patch to extend the capabilities of Cite">[details]</a></span>
+Patch to extend the capabilities of Cite
+
+I sent this patch to Avar a while ago, but haven't heard anything.  It extends
+Cite by doing the following:
+
+* Added &lt;refdefine&gt;.  This can be used to define a reference in the same way as
+&lt;ref&gt;, but may appear anywhere in the file and outputs nothing.  This is
+motivated by the complaint that the inline &lt;ref&gt; definitions can make heavily
+cited text hard to edit, so this provides the ability to collect all the ref
+definitions in some central part of the file.  These would then be referred to
+by &lt;ref name=&quot;foo&quot;/&gt; as with other indirect references.
+
+* Added 'text' argument to &lt;ref&gt; and &quot;cite_reference_link_with_text&quot; message. 
+This allows one to pass an optional label that can be used with the reference
+link.  By default, this translates [1] to [1 - some label].  This would allow
+one to use Harvard style notes in footnotes, e.g. &quot;[1 - Dyurgerov and Meier
+1999]&quot; or to denote a specific section of the reference, e.g. &quot;[3 - page 11]&quot;. 
+By design, a 'text' attribute appearing in &lt;refdefine&gt; (or in the first &lt;ref&gt;
+if no &lt;redefine&gt; exists for that key) is applied to all references with the
+same key, unless they individually specify a different value of 'text'.  'text'
+appearing in subsequent calls to &lt;ref&gt; applies to that call only.
+
+* Modified &quot;Cite::stack&quot; so that the reference information need not be given in
+the first &lt;ref&gt; call, but can be placed in any &lt;refdefine&gt; or &lt;ref&gt; call within
+the same document.
+
+* Added error messages for &lt;refdefine&gt; used with no corresponding &lt;ref&gt; and for
+multiple attempts to define the same &lt;ref&gt; or &lt;refdefine&gt;.  This latter case is
+the only situation that changes existing behavior.  In the existing version,
+attempts to redefine a ref result in the new definition being ignored.
+
+
+I hope that you will review these modifications and consider adding them (or
+something similar) into the live version.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-30 08:50:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That sounds great, hope someone can have a look. Your &quot;text&quot; argument sounds
+very interesting - would it be possible to allow URLs? Allowing a footnote
+reference to generate HTML like this would be great:
+
+As John Smith said [&lt;A HREF=&quot;#footnote1&quot;1&lt;/A&gt; &lt;A HREF&gt;URL&lt;/A&gt;], fish are smelly.
+
+In other words, you could have *two* links within the text - one takes you to
+the full citation at the bottom of the page, and one takes you directly to the
+web page being cited. Note that the link to the webpage should always be some
+short text like &quot;URL&quot; or &quot;Web&quot; or whatever.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Titoxd</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 02:10:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Part 1 of the bug has been fixed already, which alleviates the problem described
+in Part 2.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-23 21:44:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow &quot;hidden&quot; references"
+   href="show_bug.cgi?id=12765">Bug 12765</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-26 06:22:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please see related <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Enable editors to control footnote ordering and to insert wikitex between footnotes. Also declutter article prose."
+   href="show_bug.cgi?id=12796">bug 12796</a> which, among other things, addresses point 2 by allowing footnote text to be declared in a footnote-declaration block outside of the main body of the article prose.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jelte (WebBoy)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-11 18:24:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow references (&lt;ref&gt;) to be defined without adding this instance to the list of references (&lt;references/&gt;)"
+   href="show_bug.cgi?id=12358">Bug 12358</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Erling Blad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-06 21:23:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are now a solution of the annoying situation with full reference definitions inside the text. This is partly described at <a href="show_bug.cgi?id=5997#c9">comment #9</a>. Instead of defining the text inside &lt;ref&gt; tags it is defined inside the &lt;references&gt; tags, yet also the previous form can be used. The description of the necessary changes is on the page <a href="http://www.mediawiki.org/wiki/Extension_talk:Cite/Cite.php#Variation_for_refs_in_the_final_references_block">http://www.mediawiki.org/wiki/Extension_talk:Cite/Cite.php#Variation_for_refs_in_the_final_references_block</a></pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Erling Blad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-06 21:25:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That should be <a href="show_bug.cgi?id=5997#c11">comment #11</a>, not <a href="show_bug.cgi?id=5997#c9">comment #9</a>.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">sharon.dagan
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-07 23:12:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I like <a href="show_bug.cgi?id=5997#c11">comment #11</a>. It is further described by [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ASaldan">User:Saldan</a>]]:
+
+[M]y suggestion would be; use of &lt;source lang=&quot;xml&quot;&gt;&lt;references group=&quot;xyz&quot;&gt; &lt;ref name=&quot;asdf&quot;&gt;Easter bunny.&lt;/ref&gt;&lt;ref name=&quot;qwer&quot;&gt;Mooo&lt;/ref&gt; &lt;ref name=&quot;zxcv&quot;/&gt; &lt;/references&gt;  &lt;references group=&quot;xyz&quot;/&gt;&lt;/source&gt;.  In that example:
+:# any use of &lt;code&gt;ref&lt;/code&gt; like &lt;source lang=&quot;xml&quot;&gt; &lt;references&gt; &lt;ref&gt;...&lt;/ref&gt; &lt;!-- or --&gt;&lt;ref/&gt; &lt;!-- inside an enclosing --&gt; &lt;/references&gt; &lt;/source&gt; block ''removes'' a reference from the automatic list
+:# &lt;source lang=&quot;xml&quot;&gt;&lt;references&gt; &lt;ref name=&quot;jkl&quot;&gt;...&lt;/ref&gt; &lt;!-- inside an enclosing --&gt; &lt;/references&gt; &lt;/source&gt; provides an in-place definition
+:# &lt;source lang=&quot;xml&quot;&gt;&lt;references&gt; &lt;ref name=&quot;jkl&quot;/&gt; &lt;!-- inside an enclosing --&gt; &lt;/references&gt; &lt;/source&gt; expands a definition in-place.
+:# &lt;source lang=&quot;xml&quot;&gt;&lt;references/&gt;&lt;/source&gt; alone, expands all automatic references remaining.
+:Everything should to apply within its correct &lt;code&gt;group=&quot;&quot;&lt;/code&gt; scope.  The result of that should allow bibliography styles:
+&lt;source lang=&quot;xml&quot;&gt;
+Do it like this&lt;ref name=&quot;mos-dates&quot;&gt;Manual of Style&lt;ref group=&quot;bib&quot; name=&quot;mos&quot;/&gt;, Dates&lt;/ref&gt;
+and that&lt;ref name=&quot;mos-moo&quot;&gt;Manual of Style&lt;ref group=&quot;bib&quot; name=&quot;mos&quot;/&gt;&lt;ref name=&quot;good-practice&quot;&gt;lala&lt;/ref&gt;,
+  Transliteration of Bovine language&lt;/ref&gt;.
+Remember to take care with negative dates!&lt;ref name=&quot;mos-dates&quot;/&gt;
+
+==References==
+{{reflist}}  &lt;!-- Expands default references group --&gt;
+
+==Bibliography==
+;Ordered
+&lt;references group=&quot;bib&quot;&gt;
+&lt;ref name=&quot;mos&quot;&gt;{{cite web|work=Wikifoo|title=Manual of Style|url=...}}&lt;/ref&gt;
+&lt;ref name=&quot;good-practice&quot;/&gt;
+&lt;references&gt;
+
+;All the rest
+&lt;references group=&quot;bib&quot;/&gt;  &lt;!-- Expands all non-manually listed --&gt;
+&lt;/source&gt;
+:The alternative to relying on overloading &lt;code&gt;ref&lt;/code&gt; is to add a &lt;code&gt;refdef&lt;/code&gt; tag that causes expansion, or definition, and always acts as the definition/endpoint.  —[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ASladen">User:Sladen</a>|Sladen]] 14:44, 25 September 2008 (UTC)</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-07 23:38:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reformatting and slight rewording of previous post for readability and clarity:
+-------------------------------
+
+[M]y suggestion would be; use of
+
+&lt;references group=&quot;xyz&quot;&gt;
+&lt;ref name=&quot;asdf&quot;&gt;Easter bunny.&lt;/ref&gt;
+&lt;ref name=&quot;qwer&quot;&gt;Mooo&lt;/ref&gt; 
+&lt;ref name=&quot;zxcv&quot;/&gt; &lt;/references&gt;  [sic]
+&lt;references group=&quot;xyz&quot;/&gt;
+
+In that example:
+
+&lt;references&gt;
+&lt;ref&gt;...&lt;/ref&gt; 
+&lt;/references&gt; 
+
+This removes a reference from the automatic list.
+
+&lt;references&gt; 
+&lt;ref name=&quot;jkl&quot;&gt;...&lt;/ref&gt; 
+&lt;/references&gt; 
+
+This provides an in-place definition 
+
+&lt;references&gt; 
+&lt;ref name=&quot;jkl&quot;/&gt; 
+&lt;/references&gt; 
+
+This expands a definition in-place.
+
+&lt;references/&gt; alone expands all automatic references remaining.
+
+Everything should apply within its correct 'group=&quot;&quot;' scope.
+
+The result of that should allow bibliography styles:
+
+----
+Do it like this&lt;ref name=&quot;mos-dates&quot;&gt;Manual of Style&lt;ref group=&quot;bib&quot;
+name=&quot;mos&quot;/&gt;, Dates&lt;/ref&gt;
+and that&lt;ref name=&quot;mos-moo&quot;&gt;Manual of Style&lt;ref group=&quot;bib&quot; name=&quot;mos&quot;/&gt;&lt;ref name=&quot;good-practice&quot;&gt;lala&lt;/ref&gt;,
+  Transliteration of Bovine language&lt;/ref&gt;.
+Remember to take care with negative dates!&lt;ref name=&quot;mos-dates&quot;/&gt;
+ 
+==References==
+{{reflist}}  &lt;!-- Expands default references group --&gt;
+ 
+==Bibliography==
+;Ordered
+&lt;references group=&quot;bib&quot;&gt;
+&lt;ref name=&quot;mos&quot;&gt;{{cite web|work=Wikifoo|title=Manual of Style|url=...}}&lt;/ref&gt;
+&lt;ref name=&quot;good-practice&quot;/&gt;
+&lt;references&gt;
+ 
+;All the rest
+&lt;references group=&quot;bib&quot;/&gt;  &lt;!-- Expands all non-manually listed --&gt;
+----
+
+The alternative to relying on overloading 'ref' is to add a
+'refdef' tag that causes expansion, or definition, and always acts
+as the definition/endpoint.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">sharon.dagan
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-10 01:06:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5414" name="attach_5414" title="Adds 'visible' attribute to 'ref' tag">attachment 5414</a> <a href="attachment.cgi?id=5414&amp;action=edit" title="Adds 'visible' attribute to 'ref' tag">[details]</a></span>
+Adds 'visible' attribute to 'ref' tag 
+
+This works like this:
+
+==Article==
+* AAA&lt;ref name=&quot;aaa&quot;/&gt;
+* BBB&lt;ref name=&quot;bbb&quot;&gt;This is a ref for BBB&lt;/ref&gt;
+* CCC&lt;ref name=&quot;ccc&quot; group=&quot;c&quot;/&gt;
+
+==Refs==
+&lt;ref visible=&quot;no&quot; name=&quot;aaa&quot;&gt;This is a ref for AAA&lt;/ref&gt;
+&lt;ref name=&quot;ccc&quot; group=&quot;c&quot; visible=&quot;no&quot;&gt;This is a ref for CCC&lt;/ref&gt;
+&lt;ref name=&quot;ddd&quot; visible=&quot;no&quot;&gt;This is a ref for DDD&lt;/ref&gt;
+&lt;references/&gt;
+&lt;references group=&quot;c&quot;/&gt;</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">sharon.dagan
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-10 01:27:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I suggest that we approach the problem in two phases:
+
+Phase 1, add 'visible' attribute to &lt;ref&gt;, as in attachment (id=5414). This is an easy change with low risk. Nevertheless, it provides an easy to use solution to the editors, where the citation body need not placed in the article text.
+
+Phase 2, enhance &lt;references/&gt; so that &lt;ref&gt; tags can be placed within it. This would imply that the visibility of the &lt;ref&gt;'s will be 'visible=&quot;no&quot;', and that the group will be that of the parent tag, if specified. Further, 'group' and  'visible' attributes specified in the &lt;ref&gt; itself, will override that of the &lt;references/&gt;.
+
+This would work like this:
+
+==Article==
+* AAA&lt;ref name=&quot;aaa&quot;/&gt;
+* BBB&lt;ref name=&quot;bbb&quot;&gt;This is a ref for BBB&lt;/ref&gt;
+* CCC&lt;ref name=&quot;ccc&quot; group=&quot;c&quot;/&gt;
+
+==Refs==
+&lt;references&gt;
+  &lt;ref name=&quot;aaa&quot;&gt;This is a ref for AAA&lt;/ref&gt;
+  &lt;ref name=&quot;ddd&quot; visible=&quot;yes&quot;&gt;Force this into the list, even if it's not referenced in the article&lt;/ref&gt;
+&lt;/references&gt;
+
+&lt;references group=&quot;c&quot;&gt;
+  &lt;ref name=&quot;ccc&quot;&gt;This is a ref for CCC&lt;/ref&gt;
+&lt;/references/&gt;
+</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Erling Blad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-10 08:18:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't see any use of &quot;visibility=no&quot;, and the final solution seems to be more of a solution for machines then humans. The main problem is that the overall solution already is to little readable, and because of this it is not a very good solution to increase the complexity and make it even less readable. What's the minimum necessary markup to get it working, and can it be simplified?
+</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Bennett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-10 23:57:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Agree that &quot;visibility&quot; flag is not needed:
+
+&lt;ref name=&quot;foo&quot;&gt;...&lt;/ref&gt; - not within &lt;references /&gt;, therefore should render as a [1].
+&lt;ref name=&quot;bar&quot; /&gt; - should render as a [2].
+
+&lt;references&gt;
+&lt;ref name=&quot;bar&quot;&gt;...&lt;/ref&gt; - foo (implicitly listed) and bar should render the same here.
+&lt;ref name=&quot;baz&quot;&gt;...&lt;/ref&gt; - should render like foo and bar.
+&lt;ref name=&quot;bort&quot; /&gt; - illegal, meaningless.
+&lt;references /&gt;
+
+The desired semantics seem pretty clear to me. I don't see any need for &quot;visible&quot; or &quot;decl&quot; (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Enable editors to control footnote ordering and to insert wikitex between footnotes. Also declutter article prose."
+   href="show_bug.cgi?id=12796">bug 12796</a>) flags. Other features like grouping or &quot;headers&quot; (also 12796) might be useful, but they're not required to address the two major issues here.
+
+Open question: What is the correct ordering of:
+  a) Implicitly listed refs (defined in text, not referred to in &lt;references /&gt;)
+  b) Explicitly listed refs (referred to in text, defined in &lt;references /&gt;)
+  c) Double-listed refs (defined in text, referred to in &lt;references /&gt;, like if we added &lt;ref name=&quot;foo&quot; /&gt; in the example above)
+
+Anyway, seems like the patch in 12796 does most of what we want, someone just needs to tweak it a bit and Make It Happen.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-11 01:11:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For a thumbnail description of an alternative approach which I believe would be simpler and cleaner, see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FUser_talk%3AWtmitchell%23Bug_12796%20this%20section">http://en.wikipedia.org/wiki/User_talk:Wtmitchell#Bug_12796 this section</a>]] on my talk page. I'm currently traveling, will be away from home for the next few weeks, and won't have the time or handy facilities to contribute much on this. -- ~~~~</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Erling Blad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-11 09:55:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is a solution, but a solution for someone who writes xml-code. This is for a wiki written by humans, and because of this it has to be a lot simpler. As I see it, xml is nice for machines and people used to write code. It is not something to learn a 80 year old grandma. The wiki-code is even to complex, but it is way much easier than xml-code.
+
+Use of &lt;ref name=&quot;foo&quot; /&gt; in the text should be _allowed_ but it should not be the primary method of referencing citations. Something like {{ref:foo}} or even {foo} should be sufficient. Under a heading ==Bar==, or any identifiable group, a reordering should be done and any identifiable references should be pulled into a group &lt;references group=&quot;bar&quot; /&gt;. One group should be default to all refs without a group, someting like ==References==.
+
+A reordering could be done by parsing the text and identifying certain aspects of the text. Probably there should be several such parsers and probably they should use some of the more common forms for citation. At least one should allow identified attributes.
+
+But the real solution is going one step further, if a declaration for a ref - no matter how its identified, can't be found, then he extension should use a mechanism for collecting those references from external sites. In Norway that could for example be <a href="http://www.bibsys.no">http://www.bibsys.no</a>. Wikimedia Norway has had talks with Bibsys about such use, and there are probably other similar sites for other countries. For web pages such data may be delivered as Dublin Core metadata or as RDF frameworks.
+
+Anyhow, first step is to make citations a lot easier to use, next step is to make it possible to only _identify_ the citation and let the rest come from external sites.
+
+Note that the actual use of citations within Wikipedia is very important for such sites as it builds subject references for them to use.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-11 20:27:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Re <a href="show_bug.cgi?id=5997#c27">comment#27</a> above, if that is intended as a suggestion that the Ref &amp; References tag pair which the Cite.php code supports, That is firmly entrenched. See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikipedia%3AFOOT">Wikipedia:FOOT</a>]].  
+
+The template {{Ref}} already exists at Wikipedia, and does something different from what <a href="show_bug.cgi?id=5997#c27">comment#27</a> above describes. Some sort of template to turn, say {{Foot|foo}} into &lt;Ref name=foo&gt; and suchlike would be easy to write, once the template name is chosen, the template parameters and the desired wikitext output corresponding to various parameter combinations are defined, but that's another topic for another venue. It has little or nothing to do with the cite extension.
+
+</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Erling Blad</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-11 21:06:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Its not about replacing &lt;ref&gt; with a template, its about smarter references. If a reference goes to a identifiable book, for example with an ISBN-number, then it is no reason why the user should manually enter the data. Likewise with an url. The whole extension as it is centers around a specific syntax that is difficult to use because it has to coope with unreadable templates and because they have to be filled in manually. The solution isn't to make it even more unreadable, it is to solve the main reason why it is unreadable, and that can best be done by reducing the use of the template and the necessity of doing the job altogether.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-23 02:59:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Enhancing the editing of references on Wikipedia"
+   href="show_bug.cgi?id=12538">Bug 12538</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-23 07:23:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This looks similar to functionality already implemented in [<a href="https://bugzilla.wikimedia.org/show_bug.cgi?id=18890">https://bugzilla.wikimedia.org/show_bug.cgi?id=18890</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">Bug 18890</a>]. A test wiki for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">Bug 18890</a> is available [siteslot.com/testwiki2 here.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-23 07:25:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This looks similar to functionality already implemented in
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">Bug 18890</a>. A test wiki
+for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">Bug 18890</a> is available [<a href="http://siteslot.com/testwiki2">http://siteslot.com/testwiki2</a> here].
+</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-26 22:28:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The extended functionality to allow refs to be defined within the references block - described in <a href="show_bug.cgi?id=5997#c2">comment 2</a> and others - has been implemented in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/53790" title="revision 53790 in SVN">r53790</a>.
+
+In other words it will now be possible to use constructions of the form:
+
+&lt;ref name=&quot;foo&quot; /&gt;
+
+&lt;references&gt;
+&lt;ref name=&quot;foo&quot;&gt;Bar bar bar&lt;/ref&gt;
+&lt;/references&gt;
+
+To define the content of the named reference.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-27 00:21:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Re <a href="show_bug.cgi?id=5997#c33">comment  #33</a> From Robert Rohde; Yes. As I said, similar to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">Bug# 18890</a>, which implements similar functionality with syntax as follows:
+
+---begin
+&lt;ref name=&quot;foo&quot; /&gt; (probably more than one ref; probably several refs, having several different names.)
+
+
+&lt;ref def name=&quot;foo&quot;&gt;Bar bar bar&lt;/ref&gt; (note the &quot;def&quot; element. probably a block of these; one for each name.)
+
+
+&lt;/references /&gt;
+---end
+
+Note that the order of the expanded refs can be controlled by the editor by situating the block of &lt;ref def name=whatever&gt;...&lt;/ref&gt; defs ahead of the wikitext. The refs will then be expanded in the order in which they were invisibly defined. See the test wiki at <a href="http://www.siteslot.com/testwiki2/">http://www.siteslot.com/testwiki2/</a>
+
+Apologies for my terseness here; I am in an internet cafe and am hurrying because I need to be on an airplane later today.
+
+
+</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-27 01:44:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5997#c34">comment #34</a>)
+<span class="quote">&gt; Re <a href="show_bug.cgi?id=5997#c33">comment  #33</a> From Robert Rohde; Yes. As I said, similar to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">Bug# 18890</a>, which
+&gt; implements similar functionality with syntax as follows:
+&gt; 
+&gt; ---begin
+&gt; &lt;ref name=&quot;foo&quot; /&gt; (probably more than one ref; probably several refs, having
+&gt; several different names.)
+&gt; 
+&gt; 
+&gt; &lt;ref def name=&quot;foo&quot;&gt;Bar bar bar&lt;/ref&gt; (note the &quot;def&quot; element. probably a block
+&gt; of these; one for each name.)
+&gt; 
+&gt; 
+&gt; &lt;/references /&gt;
+&gt; ---end</span >
+
+As noted at 
+
+<a href="http://en.wikipedia.org/w/index.php?title=Wikipedia_talk:Citing_sources&amp;oldid=304379503#Option_.232:_Allow_reference_content_to_be_defined_anywhere">http://en.wikipedia.org/w/index.php?title=Wikipedia_talk:Citing_sources&amp;oldid=304379503#Option_.232:_Allow_reference_content_to_be_defined_anywhere</a>
+
+The enwiki editing community appears to be mostly opposed to a &quot;def&quot; or &quot;hidden&quot; syntax that would allow ref content to be defined at any arbitrary position in the text.  They strongly supported the alternative of moving the definitions into the references block however, so that's the only version I implemented.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bill Mitchell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-29 01:00:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Re <a href="show_bug.cgi?id=5997#c35">comment #35</a>. I'm happy to go along with community consensus. I think adopting an implementation of a facility allowing hidden declaration of ref body content outside of the wikitext prose would be a good thing, whether done via the &quot;ref def&quot; syntax which I implemented in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Enable editors to declare ref body text outside of main article prose. Also Enable editors to control footnote ordering."
+   href="show_bug.cgi?id=18890">bug# 18890</a> or with an alternative implementation. As I understand it, the alternative implementation limits the location of hidden ref body declarations to the references block, and omits the optional ability of editor control over the ordering of the expanded footnotes which the &quot;ref def&quot; implementation which I have online at at <a href="http://siteslot.com/testwiki2">http://siteslot.com/testwiki2</a> provides, but if the community consensus is to forego that optional editor control ver ordering of the expanded footnotes, then that is the community consensus.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Waldir</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-05-18 13:18:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Doesn't the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikipedia%3ACiting_sources%23List-defined%20references">Wikipedia:Citing_sources#List-defined references</a>|List-defined references]] feature fix this bug?</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5997#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-05-18 21:51:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I agree.  I'm closing this as the main thrust is already addressed by the LDR features.  (Some other features discussed in comments here that weren't implemented should probably be moved to new requests if people still want to pursue them.)</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5997&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5997">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5997">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5997">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5997&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5997" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5997&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419366244-BIzWtFoWMkWryyI6E4YJ2Wh8SDQ0gTD90SvaompwxJM">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

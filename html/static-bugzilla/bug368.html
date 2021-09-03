@@ -1,0 +1,2085 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 368 &ndash; Image syntax shouldn't use caption as alt= text</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=368&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=368">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=368">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=368">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 368 – Image syntax shouldn\'t use caption as alt= text",  
+                             "show_bug.cgi?id=368" );
+        document.title = "Bug 368 – Image syntax shouldn\'t use caption as alt= text";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 368 – Image syntax shouldn\'t use caption as alt= text", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_368 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-04 22:53:25 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-04 22:53:25">
+  <input type="hidden" name="longdesclength" value="23">
+  <input type="hidden" name="id" value="368">
+  <input type="hidden" name="token" value="1419357047-bUmHc7c7jowWnV9H1UGv1nSkx95AEb--L71MR9CMZ1c">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=368"><b>Bug&nbsp;368</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Image syntax shouldn't use caption as alt= text</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Image syntax shouldn't use caption as alt= text
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Image syntax shouldn\'t use caption as alt= text', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=368">12 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=368#vote_368">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://en.wikipedia.org/wiki/Wikipedia_talk:Extended_image_syntax#Alternate_text_shouldn.27t_be_the_same_as_caption_text"><span title="http://en.wikipedia.org/wiki/Wikipedia_talk:Extended_image_syntax#Alternate_text_shouldn.27t_be_the_same_as_caption_text">http://en.wikipedia.org/wiki/Wikipedi...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">accessibility, parser
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - double captions just as bad as none for non-visual users"
+   href="show_bug.cgi?id=8186">8186</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=8186">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - reorganise and tidy up parsing of extended image syntax"
+   href="show_bug.cgi?id=689">689</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Markup accessibility issues (tracking)"
+   href="show_bug.cgi?id=367">367</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Image alt text should be compulsory"
+   href="show_bug.cgi?id=2443">2443</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=368&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=368">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-03 13:31 UTC by <span class="vcard"><span class="fn">Matthew &quot;mpt&quot; Thomas</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-04 22:53 UTC 
+      (<a href="show_activity.cgi?id=368">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>7 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ayg">ayg</option>
+                <option value="jidanni">jidanni</option>
+                <option value="pandiculation">pandiculation</option>
+                <option value="Platonides">Platonides</option>
+                <option value="rowan.collins">rowan.collins</option>
+                <option value="suruena">suruena</option>
+                <option value="timwi">timwi</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=368&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew &quot;mpt&quot; Thomas</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-03 13:31:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wikimedia's image syntax should have separate fields for 
+the caption and for alternate text. Captions and 
+alternate text have opposite purposes: captions only make 
+sense if an image *is* visible, whereas alternate text is 
+intended for display only if the image is *not* visible. So 
+it doesn't make sense for them to use the same data.
+
+The current effect, in screenreaders and in text-only 
+browsers, is two recitals of the same non-sequitur.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Karl O. Pinc</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-05 18:31:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See <a href="http://meta.wikimedia.org/wiki/">http://meta.wikimedia.org/wiki/</a>
+MediaWiki_1.3_comments_and_bug_reports#Separate_captions_and_alt_text for further comments, links to 
+further comments, and related issues.  (In particular, I think that alternate text should be stored with the 
+image, on the image page.  If that's the only place it goes then the current wiki syntax can be used to 
+encode the caption.  But this may not be the best solution.)</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew &quot;mpt&quot; Thomas</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-06 12:27:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Unfortunately, that wouldn't work. Appropriate alternate 
+text will almost always, and appropriate caption text will 
+often, be different for the same image used in different 
+articles.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alan Barrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-19 15:37:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are actually three different text values, not just two.
+
+alt text (shown instead of the image by text browsers or audio browsers), title 
+text (typically shown as a tool tip by graphical browsers), and caption text 
+(shown below the image), should all be distinct.  See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AWikipedia_talk%3AExtended%20%0Aimage%20syntax%23Alt.2C_title.2C_and_caption_text_in_extended_markup">en:Wikipedia_talk:Extended 
+image syntax#Alt.2C_title.2C_and_caption_text_in_extended_markup</a>]] for some 
+discussion.
+
+I suggest syntax like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AFilename.ext">Image:Filename.ext</a>|other|options|here|title=Title 
+text|alt=Alt text|caption=Caption text]], with defaults like: If caption is unset, 
+then no caption; if alt is unset, then copy the title or the caption, or fall back 
+to the file name; if title is unset then copy the alt text or the caption, or fall 
+back to the file name.  For backward compatibility, allow the existing [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3A%0AFilename.ext">Image:
+Filename.ext</a>|other|options|here|Text that gets used for all three purposes]].
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-20 15:18:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >ALT is always required for an image, but caption and title should only be present if explicitly set and not generated by 
+default.  Title is least important.  A better order for arguments would be:
+
+  [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AFilename.ext">Image:Filename.ext</a>|other|options|here|alt=Alt text|caption=Caption text|title=Title text]]</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew &quot;mpt&quot; Thomas</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-21 09:38:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >However, the most appropriate alt text for an image is 
+usually nothing at all -- even on a Wiki, despite Wikis' 
+avoidance of purely decorative images. Usually a Wiki 
+image is either a diagram of a point that has already 
+been put, as well as it can be in text format, in the 
+article text already (in which case repeating it as more 
+text is pointless), or it's an illustration of something 
+that's marginally interesting to those viewing images 
+(e.g. a person's appearance) but not interesting enough 
+to feature in a text-only rendition of an article (e.g. 
+you wouldn't bother mentioning the image if reading the 
+article to someone over the phone). I am not saying alt 
+should always be nothing at all, but it is more likely 
+that the most appropriate alternate text will be nothing 
+than that the most appropriate caption will be nothing.
+ 
+Therefore, I think alternate text should come after the 
+caption, to reduce the compulsion for people to create 
+redundant alt text (which they frequently do). I don't 
+see the point of having a customizable title= at 
+all, but I suppose that belongs to another bug report.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-02 03:49:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In the 1.4pre CVS branch, there are problems with image captions that
+contain links; the image alt text and &quot;title&quot; attribute of the link to
+the image page are set incorrectly. I think fixing this bug would be a
+way of fixing that problem as well.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 15:52:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c5">comment #5</a>)
+<span class="quote">&gt; However, the most appropriate alt text for an image is 
+&gt; usually nothing at all</span >
+
+This is simply incorrect.  
+
+This is saying that users of alternative browsers or on slow connections 
+should be denied access to images.  It's also treating some 
+handicapped users as second-class citizens.  If there's a a point in 
+putting an image into an article, then everyone who reads the article 
+should be able to see that it's there, get an idea of what it is, and have 
+the option of loading or downloading it.
+
+All images on WP must have alt attributes.  Many will have captions, but 
+they aren't strictly necessary, as many images can speak for themselves 
+(unless, of course, they have empty alt text).  E.g.: a prominent portrait 
+on a bio page, a chart with a graphical title/caption, a country's 
+location map.
+
+And remember that every image on WP also serves as a link to the 
+Image: page, which may contain a more information that's not in the 
+article, important copyright info, or a more detailed text description of 
+the image.
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 17:43:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Firstly, note that image parameters are not order-specific, so all discussion of
+&quot;which should come first&quot; is irrelevant. The only parameter that is currently
+order specific is that which is currently used for alt, title and caption; this
+is order specific in the sense that it is not treated as a parameter at all.
+(Roughly, the syntax is
+[[&lt;image-name&gt;|&lt;zero-or-more-params&gt;|&lt;caption-and-alt-text&gt;]]). If we wanted, we
+could define parameters of form alt=, caption= and title= and use the last
+not-really-a-parameter only as a fall-back. This leaves us with two questions:
+precedence, and defaults.
+
+[I'll refer to the text currently used for all three as &lt;alltext&gt;]
+* &lt;caption&gt; text is only used on images using the &quot;frame&quot; or &quot;thumb&quot; parameters;
+it needs to default to &lt;alltext&gt; to avoid breaking current usage. 
+* &lt;alt&gt; text should be present on every image, but ideally be different from a
+visible caption; however, non-captioned images (those with neither &quot;thumb&quot; nor
+&quot;frame&quot;) may have &lt;alltext&gt; deliberately chosen as a good &lt;alt&gt;; we could
+therefore fall back to &lt;oldtext&gt; for non-captioned images, but generate
+something from the filename for captioned images.
+* title text is the other position of &lt;alltext&gt; in non-captioned images, and so
+like &lt;alt&gt; should probably fall back to that; it's less clear, however, what
+fallback title a captioned image should have
+
+I propose the following:
+[[Image:&lt;filename&gt;|&lt;options&gt;|alt=&lt;alt&gt;|title=&lt;title&gt;|&lt;caption&gt;]]
+* &lt;caption&gt; is compulsory, as now; the others are optional
+For a non-captioned image:
+* the alt attribute contains &lt;alt&gt; if set, &lt;caption&gt; otherwise
+* the title attribute contains &lt;title&gt; if set, &lt;caption&gt; otherwise
+For a captioned image:
+* the alt attribute contains &lt;alt&gt; if set, &lt;filename&gt; otherwise
+* the title attribute contains &lt;title&gt; if set; if none set, I'm not sure: &lt;alt&gt;?
+&lt;filename&gt;? &lt;caption&gt;?; note that if &lt;alt&gt;, we need a third fallback for when
+that isn't set either.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 18:04:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c6">comment #6</a>)
+<span class="quote">&gt; In the 1.4pre CVS branch, there are problems with image captions that
+&gt; contain links; the image alt text and &quot;title&quot; attribute of the link to
+&gt; the image page are set incorrectly. I think fixing this bug would be a
+&gt; way of fixing that problem as well.</span >
+
+If we still use the current &lt;alltext&gt; as a fall-back for anything, we need a way
+of fixing that problem anyway, otherwise existing instances will remain broken.
+However, no non-captioned image should have links in its &lt;alltext&gt; anyway, so if
+we generate &lt;title&gt; and &lt;alt&gt; from &lt;filename&gt; for these cases, we can indeed
+avoid fixing the problem.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tom Gilder</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 18:42:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c7">comment #7</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=368#c5">comment #5</a>)
+&gt; &gt; However, the most appropriate alt text for an image is 
+&gt; &gt; usually nothing at all
+&gt; 
+&gt; This is simply incorrect.  </span >
+
+No, it isn't. It's a very valid viewpoint (and I don't believe alt text is an exact science, there are many 
+different points of view), and one that I share.
+
+<span class="quote">&gt; This is saying that users of alternative browsers or on slow connections 
+&gt; should be denied access to images.  It's also treating some 
+&gt; handicapped users as second-class citizens.  If there's a a point in 
+&gt; putting an image into an article, then everyone who reads the article 
+&gt; should be able to see that it's there, get an idea of what it is, and have 
+&gt; the option of loading or downloading it.</span >
+
+Blank alt text does not deny the image to anyone. It simply prevents the image from sometimes becoming a great 
+annoyance.
+
+As Matthew pointed out, alt text is currently usually duplicated caption text - what's the point in that? The 
+caption text is already in the document. Having it displayed or read out twice is pointless. 
+
+<span class="quote">&gt; All images on WP must have alt attributes.</span >
+
+Yes, but the attribute may be empty.
+
+<span class="quote">&gt; Many will have captions, but they aren't strictly necessary, as many images
+&gt; can speak for themselves (unless, of course, they have empty alt text).
+&gt; E.g.: a prominent portrait on a bio page, a chart with a graphical
+&gt; title/caption, a country's  location map.</span >
+
+For a portrait, good alt text would either be nothing or possibly a brief description of the person's appearance 
+(especially if their appearance is specifically relevant to the article). Bad alt text is &quot;George W. Bush&quot;, it adds 
+nothing - but it's what a lot of portraits currently have.
+
+For a chart, good old text would be details about the data it shows - possibly a brief summing up of the results 
+with a link to full information.  Bad alt text is &quot;a chart showing the growth of Wikipedia&quot;.
+
+For a map, good alt text could be a brief description on where the country is, presuming it isn't already in the 
+text. Bad alt text is &quot;a map of &lt;wherever&gt;&quot;. Especially bad alt text is &quot;Image:LocationUSA.png&quot;, as you currently 
+get.
+
+Most of the bad alt text would make an appropriate title, however.
+
+<span class="quote">&gt; And remember that every image on WP also serves as a link to the 
+&gt; Image: page, which may contain a more information that's not in the 
+&gt; article, important copyright info, or a more detailed text description of 
+&gt; the image.</span >
+
+I'd suggest that's what the longdesc attribute is for. But caption text can also be linked to the image page.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 21:05:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c10">comment #10</a>)
+<span class="quote">&gt; As Matthew pointed out, alt text is currently usually duplicated caption text</span >
+- what's the point in that? The 
+<span class="quote">&gt; caption text is already in the document. Having it displayed or read out twice</span >
+is pointless. 
+
+Hence my suggestion that it not default to being the same as &lt;caption&gt;, ever.
+But images that don't use |frame| or |thumb| don't have automatic captions
+anyway, so its a case of deciding whether the text that has been entered should
+be used for alt, title, or both.
+ 
+<span class="quote">&gt; For a chart, good old text would be details about the data it shows - possibly</span >
+a brief summing up of the results 
+<span class="quote">&gt; with a link to full information.  Bad alt text is &quot;a chart showing the growth</span >
+of Wikipedia&quot;.
+
+Just a small point: as far as I know, alt attributes can't contain links;
+they're just a short string.
+ 
+<span class="quote">&gt; For a map, good alt text could be a brief description on where the country is,</span >
+presuming it isn't already in the 
+<span class="quote">&gt; text. Bad alt text is &quot;a map of &lt;wherever&gt;&quot;. Especially bad alt text is</span >
+&quot;Image:LocationUSA.png&quot;, as you currently 
+<span class="quote">&gt; get.
+&gt; 
+&gt; Most of the bad alt text would make an appropriate title, however.</span >
+
+The problem is, how to tell which any given image's label is: a decent alt text,
+or a decent title text. If we default to alt=&quot;&quot; title=&quot;&lt;alltext&gt;&quot; we break any
+images where people *did* consider the alt text. For captioned images, though,
+you might be right: just fall back on &quot;&quot;.
+
+<span class="quote">&gt; &gt; And remember that every image on WP also serves as a link to the 
+&gt; &gt; Image: page, which may contain a more information that's not in the 
+&gt; &gt; article, important copyright info, or a more detailed text description of 
+&gt; &gt; the image.
+&gt; 
+&gt; I'd suggest that's what the longdesc attribute is for. But caption text can</span >
+also be linked to the image page.
+
+Auto-linking caption text to the image page runs contrary to the current ability
+to put formatting - including links - in the caption. I'm afraid I don't know
+anything about the longdesc attribute: what is its official role, and is it
+widely supported by UAs?
+
+I guess it all boils down to whether we think that people who can't see images
+would want to know they were there anyway. The advantage of having a non-blank
+alt text is that it shows the user that there is something there, and allows
+them to easily access a description page which may have more details about it
+(which could include the description of results for a graph...). The
+disadvantage is that, since they can't see it, they may simply be frustrated at
+an alt text that tells them little more than that there is an image there.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-04 01:32:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c10">comment #10</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=368#c7">comment #7</a>)
+&gt; &gt; (In reply to <a href="show_bug.cgi?id=368#c5">comment #5</a>)
+&gt; &gt; &gt; However, the most appropriate alt text for an image is 
+&gt; &gt; &gt; usually nothing at all
+&gt; &gt; 
+&gt; &gt; This is simply incorrect.  
+&gt; 
+&gt; No, it isn't. It's a very valid viewpoint (and I don't believe alt text is an exact science, there are many 
+&gt; different points of view), and one that I share.
+&gt; 
+&gt; &gt; This is saying that users of alternative browsers or on slow connections 
+&gt; &gt; should be denied access to images.  It's also treating some 
+&gt; &gt; handicapped users as second-class citizens.  If there's a a point in 
+&gt; &gt; putting an image into an article, then everyone who reads the article 
+&gt; &gt; should be able to see that it's there, get an idea of what it is, and have 
+&gt; &gt; the option of loading or downloading it.
+&gt; 
+&gt; Blank alt text does not deny the image to anyone. It simply prevents the image from sometimes becoming a </span >
+great 
+<span class="quote">&gt; annoyance.</span >
+
+Images with blank alt attributes, *and* the links surrounding them, are hidden and inaccessible in Lynx.  I 
+presume that audible and braille page readers would similarly omit an empty string, and possibly the existance 
+of the link, too.  There are probably other cases we haven't thought of.
+
+<span class="quote">&gt; 
+&gt; As Matthew pointed out, alt text is currently usually duplicated caption text - what's the point in that? The 
+&gt; caption text is already in the document. Having it displayed or read out twice is pointless. </span >
+
+I agree; this is the point of this bug.  A mechanism that lets us specify useful alt text, and optionally captions.  A 
+caption is *not* a substitute for alt text.  
+
+Captions are displayed next to an image, *adding to or claryifying* information that we can see by viewing the 
+image.
+
+Alt attributes (optionally supplemented by title attributes and longdesc destinations) attempt to be a *substitute 
+for the image*.  The W3's Web Content Accessibility Guidelines say that these should constitute &quot;equivalent 
+information to the visual or auditory content.&quot;
+ 
+<span class="quote">&gt; &gt; All images on WP must have alt attributes.
+&gt; 
+&gt; Yes, but the attribute may be empty.</span >
+
+Yes, this is a way to *hide* a purely decorative image.  The HTML 4 recommendation section 13.8 says:
+
+&lt;blockquote&gt;
+Do not specify irrelevant alternate text when including images intended to _format_ a page, for instance, 
+alt=&quot;red ball&quot; would be inappropriate for an image that adds a red ball for decorating a heading or paragraph. In 
+such cases, the alternate text should be the empty string (&quot;&quot;).
+&lt;/blockquote&gt;
+
+I can't think of any instances on Wikipedia where an uploaded image is purely decorative. If the image is 
+content, then alt text must also be content.  Alt attributes with zero content are for images of zero content.
+
+
+<span class="quote">&gt; &gt; Many will have captions, but they aren't strictly necessary, as many images
+&gt; &gt; can speak for themselves (unless, of course, they have empty alt text).
+&gt; &gt; E.g.: a prominent portrait on a bio page, a chart with a graphical
+&gt; &gt; title/caption, a country's  location map.
+&gt; 
+&gt; For a portrait, good alt text would either be nothing or possibly a brief description of the person's appearance 
+&gt; (especially if their appearance is specifically relevant to the article). Bad alt text is &quot;George W. Bush&quot;, it adds 
+&gt; nothing - but it's what a lot of portraits currently have.</span >
+
+A portrait is not decorative -- it conveys information about what a person's appearance, dress, and age.  It can 
+provide information about context and period (e.g. sepia-toned photo in a top-hat, or fresco with crown and 
+sceptre).
+
+A brief description would be good, but even &quot;portrait photo of George W. Bush&quot; tells you what's there, and helps 
+you decide whether to look at it.  
+
+If the alt text is empty, how does a user browsing without images know that there is a portrait available for 
+viewing or downloading?  At best, some browser *might* show that some image exists or display its filename, 
+which is practically never an acceptable text equivalent.  
+
+<span class="quote">&gt; For a chart, good old text would be details about the data it shows - possibly a brief summing up of the </span >
+results 
+<span class="quote">&gt; with a link to full information.  Bad alt text is &quot;a chart showing the growth of Wikipedia&quot;.
+&gt; 
+&gt; For a map, good alt text could be a brief description on where the country is, presuming it isn't already in the 
+&gt; text. Bad alt text is &quot;a map of &lt;wherever&gt;&quot;. Especially bad alt text is &quot;Image:LocationUSA.png&quot;, as you </span >
+currently 
+<span class="quote">&gt; get.</span >
+
+Agreed, but in all these cases bad alt text is better than no alt text.
+
+<span class="quote">&gt; Most of the bad alt text would make an appropriate title, however.
+&gt; 
+&gt; &gt; And remember that every image on WP also serves as a link to the 
+&gt; &gt; Image: page, which may contain a more information that's not in the 
+&gt; &gt; article, important copyright info, or a more detailed text description of 
+&gt; &gt; the image.
+&gt; 
+&gt; I'd suggest that's what the longdesc attribute is for. But caption text can also be linked to the image page.</span >
+
+longdesc is one way of indicating more info about an image.  Wikipedia makes it more accessible (in most 
+current browsers) by linking the image to the full image page, which may carry additional text.
+
+W3 HTML 4 recommendation section 13.2 says about alt and longdesc:
+
+&lt;blockquote&gt;
+The alt attribute provides a short description of the image. This should be sufficient to allow users to decide 
+whether they want to follow the link given by the longdesc attribute to the longer description...
+&lt;/blockquote&gt;
+
+Ideally, the Image: page would include a fuller &quot;text equivalent&quot; of the image.  E.g. a description of George 
+Bush's appearance and circumstances of the photo.  
+
+As Wikipedia style guides are developed, we should incorporate more accessibility guidelines into them.  The 
+Wikimedia interface must also be developed with the tools to support them.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-04 04:04:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think everyone can agree that the alt text for an image is logically
+separate from the caption, as Matthew and others noted. As a practical
+matter, a caption may contain links and be as long as reasonably
+necessary, while alt text should be text-only and is generally shorter,
+as Rowan said.
+
+So we should be able to do:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3Afoo.jpg">Image:foo.jpg</a>|alt=&lt;alt&gt;|&lt;caption&gt;]]. I agree with that part of
+Rowan's proposal, and hope most others do too.
+
+The obvious question is what to do if no alt text is specified:
+1) Use empty alt text
+2) Use the caption
+
+Option 2 would be most consistent with current behavior, and
+is what Rowan proposed. However, I would favor option 1, for
+the reasons Matthew and Tom gave. A caption is a long description
+and could contain links, and in general doesn't make good alt
+text, IMHO. If an image needs alt text, and it isn't specified,
+I think that's a deficiency in the article, and not something
+for which we can find a technical solution.
+
+As Rowan noted, there is also the issue of the title attribute
+of the link. Unlike the alt text, I don't see any good reason
+to allow editors to specify the title explicitly; I think we
+should keep the image syntax as simple as reasonably possible.
+Practically speaking, the main use of the title attribute is in
+a &quot;tooltip&quot; in modern browsers. Possibilities for title include:
+
+1) Blank
+2) The caption
+3) The name of the link target (always the image page, for now)
+4) Whatever the alt text is
+
+I would argue against option 2 for the same reason as above.
+I like option 3, which would give users with modern browsers
+a hint about what happens when they click on the image, and
+could complement a fix to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Allow images that link somewhere other than the image page (using normal link syntax)"
+   href="show_bug.cgi?id=539">bug 539</a>. I don't feel strongly about
+it, though.
+
+(In reply to <a href="show_bug.cgi?id=368#c8">comment #8</a>)
+<span class="quote">&gt; * title text is the other position of &lt;alltext&gt; in non-captioned images, and so
+&gt; like &lt;alt&gt; should probably fall back to that; it's less clear, however, what
+&gt; fallback title a captioned image should have</span >
+
+When neither &quot;thumb&quot; nor &quot;frame&quot; is specified, the &quot;caption&quot; text isn't
+used as a caption at all, so it makes sense to use it for the title.
+I don't think it's necessary to use the caption for the title with
+&quot;thumb&quot; or &quot;frame&quot;, though, because then the caption is always displayed.
+I don't think it makes sense to repeat the caption, which the reader can
+presumably already see, in the tooltip.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew &quot;mpt&quot; Thomas</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-04 13:59:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The HTML spec's guidelines are not exhaustive. They say 
+alt=&quot;&quot; is appropriate for &quot;purely decorative&quot; images, but 
+that does not mean alt=&quot;&quot; is inappropriate in less &quot;pure&quot; 
+cases. Even very smart people often misunderstand this.
+
+Maybe this will help: Imagine that MediaWiki didn't allow 
+graphics at all, just text. Would it be acceptable to 
+litter articles with non-sequiturs like &quot;foopy.jpg&quot; or 
+&quot;Eiffel Tower viewed from the east&quot;? Of course not. That 
+wouldn't make any sense when listening to the article. 
+Contributors would instead work towards the best possible 
+text for the article.
+
+Now imagine graphics support has been added to MediaWiki. 
+For those using text-only UAs, has the best possible text 
+for each article suddenly changed? No, the ideal text is 
+still the ideal text. So there still isn't any reason to 
+add gibberish like &quot;foopy.jpg&quot; or &quot;Eiffel Tower viewed from 
+the east&quot; to the text. That still wouldn't make any sense 
+when listening to the article. Anyone who listens to it can 
+tell that any alt= text like that is wrong.
+
+So when to use alt=? Well, occasionally a graphic makes 
+some of that ideal text redundant. For example, a map may 
+replace a sentence or two telling where a place is. A graph 
+may replace a text summary of some data. A diagram may 
+replace a list of instructions, a description of a chess 
+move, etc. In these cases, the text that the image replaces 
+should be moved into the alt= attribute for the image.
+
+That is the only reason for alt= to be anything other than 
+&quot;&quot;. It's the only reason. alt= is the *text equivalent*: 
+the text that you honestly would have included if the image 
+was never there, but that is redundant when the image is 
+visible. alt= is hard to understand because often we have 
+to work backwards. The image is introduced before the
+text-only version is finished (especially on a Wiki, where 
+the text is never finished), so we have to ask: &quot;If we had 
+the ideal text, would this image replace any of it?&quot;
+
+Portraits are an interesting example. Graphic portraits 
+feature regularly in biographical articles, but textual 
+portraits hardly ever do. So even if you *could* describe 
+someone's appearance textually, the most appropriate alt= 
+for a portrait image is still &quot;&quot; -- unless you can argue 
+with a straight face that their appearance would still have 
+been important enough to describe in the text if MediaWiki 
+didn't allow images (which probably isn't true), *and* that 
+the most appropriate text description is neatly made 
+redundant by the image (which probably isn't true either).
+
+... Apologies for turning Bugzilla into a podium.
+
+For those concerned about breaking existing syntax for  
+alternate text: I just visited [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ARandompage">Special:Randompage</a>]] until 
+I had encountered 50 images with custom alternate text 
+specified. The alternate text was appropriate in ... zero 
+of them. (That's even fewer than I was expecting.) So if 
+the syntax is changed now, it will break very little that's 
+not already broken, and certainly much less than it fixes.
+
+<span class="quote">&gt; Images with blank alt attributes, *and* the links
+&gt; surrounding them, are hidden and inaccessible in Lynx.</span >
+
+Hidden? Of course, that's the whole point. Inaccessible? 
+Not true -- see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Image enlargement icon should have alt=&quot;&quot;, not alt=&quot;Enlarge&quot;"
+   href="show_bug.cgi?id=371#c4">bug 371 comment 4</a>.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-04 19:11:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c14">comment #14</a>)
+<span class="quote">&gt; so we have to ask: &quot;If we had the ideal text, would this image
+&gt; replace any of it?&quot;</span >
+[...]
+<span class="quote">&gt; So even if you *could* describe someone's appearance textually, the
+&gt; most appropriate alt= for a portrait image is still &quot;&quot; </span >
+
+You're using a backwards argument to say that images have no inherent
+value.  An image that shows *what someone looks like* isn't replacing
+some text in an article, *it is part of the article*.  It could still
+have value to someone who is browsing without images turned on.  A
+&quot;text equivalent&quot; (which can consist of one or more of alt, title, and
+longdesc) attempts to:
+
+  1. Indicate the presence and nature of the image.
+  2. Convey some information which is in that image.
+
+In an ideal world, the image's longdesc attribute links to a page that
+actually describes the image in detail, so an unsighted user could get
+an idea of what George Bush looks like.  Wikipedia's not there yet, so
+we should be trying to improve accessibility, not work around it!
+
+W3's Web Content Accessibility Guideline number 1 is &quot;Provide
+equivalent alternatives to auditory and visual content&quot;.  Alt=&quot;Portrait
+of George W. Bush&quot; is infinitely closer to this than alt=&quot;&quot;.
+
+
+<span class="quote">&gt; For those concerned about breaking existing syntax for alternate
+&gt; text: I just visited [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ARandompage">Special:Randompage</a>]] until I had encountered
+&gt; 50 images with custom alternate text specified. The alternate text
+&gt; was appropriate in ... zero of them. (That's even fewer than I was
+&gt; expecting.) So if the syntax is changed now, it will break very
+&gt; little that's not already broken, and certainly much less than it
+&gt; fixes.</span >
+
+Okay.  Let's build the tools that let us do it right, then show people
+how to use them well.
+
+
+<span class="quote">&gt;&gt; Images with blank alt attributes, *and* the links surrounding them,
+&gt;&gt; are hidden and inaccessible in Lynx.
+&gt; Hidden? Of course, that's the whole point. Inaccessible? Not true --
+&gt; see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Image enlargement icon should have alt=&quot;&quot;, not alt=&quot;Enlarge&quot;"
+   href="show_bug.cgi?id=371#c4">bug 371 comment 4</a>.</span >
+
+Okay, so if a Lynx user suspects that maybe you've hidden a link and a
+portrait on a page, he can type &quot;*&quot;, guess that &quot;bush_por.jpg&quot; might be
+useful, download the file, and fire up the Gimp to view the image.
+Oops, turns out it's a Portuguese flowering shrub.
+
+This doesn't prove that all non-visual browser users have access to
+an image with alt=&quot;&quot;.
+
+This doesn't fulfil WCAG Guideline 1.
+
+This scheme substitutes dumb luck for established accessibility
+techniques.  It's a somewhat poorer user experience than FTP.  
+</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Wil Mahan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-04 19:24:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c15">comment #15</a>)
+<span class="quote">&gt; W3's Web Content Accessibility Guideline number 1 is &quot;Provide
+&gt; equivalent alternatives to auditory and visual content&quot;.  Alt=&quot;Portrait
+&gt; of George W. Bush&quot; is infinitely closer to this than alt=&quot;&quot;.</span >
+
+Even if there is already a caption with exactly that text?
+
+I don't think there's any dispute that editors should be able to
+specify alt text separately from the caption. To me, the only question
+is what default to use when no alt text is given, and that is either
+blank, or the caption text.
+
+Beyond that, it's not a MediaWiki issue, IMHO, and you can take the
+discussion to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikipedia%20talk%3AAlternative%20text%20for%20images">Wikipedia talk:Alternative text for images</a>]], or
+whereever, and argue for whatever policy you want.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-07 22:37:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - double captions just as bad as none for non-visual users"
+   href="show_bug.cgi?id=8186">Bug 8186</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-28 21:11:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/41364" title="revision 41364 in SVN">r41364</a>:
+
+* [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AFoo.png">Image:Foo.png</a>|alt=xyz]] now works as desired, setting the alt text.
+* If no alt text is specified, the alt text is the empty string, since it's useless to repeat the caption.
+
+If the second point causes problems for users of deficient user agents that are incapable of allowing their users to interact with images without alt text, please open another bug (and link to it from this one).  longdesc support would be nice, too, probably would be done by linking to a specially-named page like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AImagename%2Flongdesc">Image:Imagename/longdesc</a>]] if it exists and doing nothing otherwise (but that scheme would have to handle non-local images).  Again, that's another bug.
+
+It's kind of sad that this was like a ten-line fix that anyone could have done at any point in the last four years, which could significantly increase Wikipedia's accessibility.  Oh well, it's done now.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-30 20:37:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This caused parser test regressions; reverted in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/41407" title="revision 41407 in SVN">r41407</a>:
+
+Revert <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/41364" title="revision 41364 in SVN">r41364</a> -- broke 22 parser test cases with change of alt behavior.
+
+The caption was originally defined *as* the alt text (defaulting to the image file name if there is no alt text). Note that a separate caption text is only displayed in some display modes ('frame' and 'thumb', iirc), and not by default.
+
+Please run the parser tests and check the effect you have on them. If it's really an appropriate change, then update the test cases. If you're not sure, consider backing out pending further discussion.  :)
+
+It might be appropriate to not set the 'alt' attribute for frame/thumb cases, but definitely not for inline images where we already have a way of setting the alt text which you're removing! </pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-02 13:29:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I tried running the parser tests, but they weren't working for me, per the e-mail I sent to Wikitech-l: they crashed, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/40209" title="revision 40209 in SVN">r40209</a> broke them.  So I couldn't make sure they passed.  And they're still broken on current trunk, with the same error message.  So I pointed out the problem and committed without the parser tests.
+
+The behavior of using the same syntax to mean captions for thumbs/frames but alt text for inline images seems confusing and kind of broken, not at all what would be expected.  It seems like it would make more sense to consistently require alt= for alt text, for all images.  I'm guessing it wouldn't cause much incompatibility, because I don't think I've *ever* seen the extra parameter used for alt text on inline images.  Probably in most of the cases where it's used, people were trying to make a caption anyway, so the text would be just as inappropriate as in all the other cases.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-02 13:52:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=368#c20">comment #20</a>)
+<span class="quote">&gt; I don't think I've *ever* seen the extra parameter
+&gt; used for alt text on inline images.  Probably in most of the cases where it's
+&gt; used, people were trying to make a caption anyway, so the text would be just as
+&gt; inappropriate as in all the other cases.</span >
+
+I have seen images with the extra parameter with text. Perhaps not made for alt, 
+but appropiate to be used as it. So it may be good to use alt parameter for 'normal'
+images, but it should fallback to the text.
+
+</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=368#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-08 16:34:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Re-committed with the requested modifications in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/41837" title="revision 41837 in SVN">r41837</a>.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=368&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=368">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=368">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=368">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=368&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=368" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=368&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357048-sYnsy2YgMhRtk5k9d-MADq2op_ide2-o88ykDnbhQZI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

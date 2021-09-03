@@ -1,0 +1,1621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4734 &ndash; Multiple errors and problems in config</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4734&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4734">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4734">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4734">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4734 – Multiple errors and problems in config",  
+                             "show_bug.cgi?id=4734" );
+        document.title = "Bug 4734 – Multiple errors and problems in config";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4734 – Multiple errors and problems in config", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Installer bz_bug_4734 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 15:38:14 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 15:38:14">
+  <input type="hidden" name="longdesclength" value="19">
+  <input type="hidden" name="id" value="4734">
+  <input type="hidden" name="token" value="1419364042-zpVPb7-0sQ-CLWs_rkpAhpBTKsIanbCGbruIFfsGeKI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4734"><b>Bug&nbsp;4734</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Multiple errors and problems in config</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Multiple errors and problems in config
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Multiple errors and problems in config', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          WORKSFORME
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Installer
+    
+    (<a href="buglist.cgi?component=Installer&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.5.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">Other
+       FreeBSD
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4734#vote_4734">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4734&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4734">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-01-23 07:56 UTC by <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 15:38 UTC 
+      (<a href="show_activity.cgi?id=4734">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>0 
+          users
+        <div id="cc_edit_area">
+          <br>
+        </div>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=4734&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 07:56:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I created a mediawiki installation. All went well. Then I tried to create a
+second installation.
+
+I copied the files from the original tarball, set the permissions, set the
+database owner as before, used a different prefix for the tables... and got an
+error that the user root had no access. So I removed the root mySqL password and
+got faryther, but with an error that the transcache table could not be created
+(and suddenly my db user did not have create access). So I set the password for
+root again and got farther. All tables created (I think) and the message
+# Finished update checks.
+
+Creating LocalSettings.php...
+
+Installation successful! Move the config/LocalSettings.php file into the parent
+directory, then follow this link to your wiki.
+
+Except that there is no such file config/LocalSettings.php
+
+So I copied the one from the previous installation tree and manually edited the
+lines that differ.
+
+but I am REALLY CONFUSED :-(</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 08:04:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Oops. Sorry. I DO have the LocalSettings file. 
+All the rest was a prolem but I do have the file.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 16:35:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Read the installer page a little more carefully. If the database user does not
+exist or have access to create tables, MediaWiki will attempt to use a specified
+superuser account. To indicate that this should not be the case, leave the
+superuser password set to -, which is the default.
+
+Closing WORKSFORME.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 16:35:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >He says, hitting the wrong button...reopening to correct resolution.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 21:06:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You're missing the point. I read the page very carefully. MySQL did not read the
+instructions at all.
+
+The database existed. I therefore didn't set the root password. Everything
+worked up to the point opf the transcache table and then, suddenly, my user
+stopped having authorization. It was a right royal mess.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 21:08:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In otherwords, following the instructions didn't work because MySQL kept blowing up</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 21:09:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >mySQL complained that the user used to connect to the database didn't have
+create permissions? Had the installer attempted to create tables prior to that
+point? Did said user, in fact, have those permissions?</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-24 03:39:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's the weird part.
+
+As I said in the original report, I created a mediawiki installation. All went
+well. Then I tried to create a second installation.
+
+I used the same MySQL user (created by the previous installation) and the same
+database (created by the previous installation) with a different table prefix.
+
+The first time I tried this, &quot;root&quot; didn't have privs. I tried again w/o root.
+The second time, the user worked fine until it was time to create the transcache
+table; then, suddenly and inexplicably, the user no longer had create table privs.
+I tried again with root. This time all went through to the end.
+
+I never meant to imply this was an easy problem with a quick solution :-)
+
+Did the user have permission? Yes, until it no longer had permission.  Don't ask
+me why the privs went away; I haven't a cluse.
+
+The database, the user, and the GRANT Privileges etc... were all performed by
+the mediawiki installation (the first one).</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-27 23:02:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't reall y care if it works for you.
+
+
+Here's a sample in a Brand New installation
+
+First, it ran like this:
+
+MediaWiki 1.5.6 installation
+
+Checking environment...
+
+    * PHP 4.3.9: ok
+    * PHP server API is apache; ok, using pretty URLs (index.php/Page_Title)
+    * Have XML / Latin1-UTF-8 conversion support.
+    * PHP is configured with no memory_limit.
+    * No zlib support.
+    * Neither Turck MMCache nor eAccelerator are installed, can't use object
+caching functions
+    * GNU diff3 not found.
+    * Found ImageMagick: /usr/local/bin/convert; image thumbnailing will be
+enabled if you enable uploads.
+    * Installation directory:
+/ad4/ENV/cfcl/usr_local/Server/WWW/web/technofile/mediawiki
+    * Script URI path: /mediawiki
+    * Connecting to tf_wikidb on localhost as root...success.
+    * Connected to 4.1.7-standard; using enhancements for mySQL 4.
+    * Created database tf_wikidb
+    * Creating tables... using MySQL 3/4 table defs... done.
+    * Initializing data...A database error has occurred Query: SELECT user_id
+FROM `tf_user` WHERE user_name = 'WikiSysop' LIMIT 1 Function: User::idFromName
+Error: 1142 select command denied to user 'wikiuser'&#64;'localhost' for table
+'tf_user' (localhost) Backtrace: GlobalFunctions.php line 451 calls
+wfbacktrace() Database.php line 397 calls wfdebugdiebacktrace() Database.php
+line 347 calls databasemysql::reportqueryerror() Database.php line 723 calls
+databasemysql::query() Database.php line 742 calls databasemysql::select()
+User.php line 150 calls databasemysql::selectrow() User.php line 74 calls
+user::idfromname() index.php line 645 calls user::newfromname() 
+    
+
+
+Then I tried again:
+
+Checking environment...
+
+    * PHP 4.3.9: ok
+    * PHP server API is apache; ok, using pretty URLs (index.php/Page_Title)
+    * Have XML / Latin1-UTF-8 conversion support.
+    * PHP is configured with no memory_limit.
+    * No zlib support.
+    * Neither Turck MMCache nor eAccelerator are installed, can't use object
+caching functions
+    * GNU diff3 not found.
+    * Found ImageMagick: /usr/local/bin/convert; image thumbnailing will be
+enabled if you enable uploads.
+    * Installation directory:
+/ad4/ENV/cfcl/usr_local/Server/WWW/web/technofile/mediawiki
+    * Script URI path: /mediawiki
+    * Connecting to tf_wikidb on localhost as root...success.
+    * Connected to 4.1.7-standard; using enhancements for mySQL 4.
+    * Database tf_wikidb exists
+    * There are already MediaWiki tables in this database. Checking if updates
+are needed...
+    * DB user account ok
+
+      ...hitcounter table already exists.
+      ...querycache table already exists.
+      ...objectcache table already exists.
+      ...categorylinks table already exists.
+      ...logging table already exists.
+      ...validate table already exists.
+      ...user_newtalk table already exists.
+      Creating transcache table...ok
+      ...trackbacks table already exists.
+      ...have ipb_id field in ipblocks table.
+      ...have ipb_expiry field in ipblocks table.
+      ...have rc_type field in recentchanges table.
+      ...have rc_ip field in recentchanges table.
+      ...have rc_id field in recentchanges table.
+      ...have rc_patrolled field in recentchanges table.
+      ...have user_real_name field in user table.
+      ...have user_token field in user table.
+      ...have user_email_token field in user table.
+      ...have log_params field in logging table.
+      ...have ar_rev_id field in archive table.
+      ...have ar_text_id field in archive table.
+      ...have page_len field in page table.
+      ...have rev_deleted field in revision table.
+      ...have img_width field in image table.
+      ...have img_metadata field in image table.
+      ...have img_media_type field in image table.
+      ...have val_ip field in validate table.
+      ...have ss_total_pages field in site_stats table.
+      ...have iw_trans field in interwiki table.
+      ...already have interwiki table
+      ...indexes seem up to <a href="https://gerrit.wikimedia.org/r/#q,20031107,n,z" title="Git commit 20031107">20031107</a> standards
+      Already have pagelinks; skipping old links table updates.
+      ...image primary key already set.
+      The watchlist table is already set up for email notification.
+      ...user table does not contain old email authentication field.
+      Logging table has correct title encoding.
+      ...page table already exists.
+      revision timestamp indexes already up to 2005-03-13
+      ...rev_text_id already in place.
+      ...page_namespace is already a full int (int(11)).
+      ...ar_namespace is already a full int (int(11)).
+      ...rc_namespace is already a full int (int(11)).
+      ...wl_namespace is already a full int (int(11)).
+      ...qc_namespace is already a full int (int(11)).
+      ...log_namespace is already a full int (int(11)).
+      ...already have pagelinks table.
+      No img_type field in image table; Good.
+      Already have unique user_name index.
+      ...user_groups table already exists.
+      ...user_groups is in current format.
+      Initialising &quot;MediaWiki&quot; namespace...
+      A database error has occurred
+      Query: SELECT page_title,page_is_new,rev_user_text FROM `tf_page`,
+`tf_revision` WHERE
+      		page_namespace=8 AND rev_page=page_id AND page_title
+IN('1movedto2','1movedto2_redir','Monobook.css','Monobook.js','About','Aboutpage','Aboutsite','Accesskey-compareselectedversions','Accesskey-diff','Accesskey-minoredit','Accesskey-preview','Accesskey-save','Accesskey-search','Accmailtext','Accmailtitle','Acct_creation_throttle_hit','Actioncomplete','Addedwatch','Addedwatchtext','Addgroup','Addgrouplogentry','Addsection','Administrators','Allarticles','Allinnamespace','Alllogstext','Allmessages','Allmessagescurrent','Allmessagesdefault','Allmessagesname','AllmessagesnotsupportedDB','AllmessagesnotsupportedUI','Allmessagestext','Allnonarticles','Allnotinnamespace','Allpages','Allpagesfrom','Allpagesnext','Allpagesprev','Allpagessubmit','Alphaindexline','Already_bureaucrat','Already_steward','Already_sysop','Alreadyloggedin','Alreadyrolled','Ancientpages','And','Anontalk','Anontalkpagetext','Anonymous','Apr','April','Article','Articleexists','Articlepage','Aug','August','Autoblocker','Badaccess','Badaccesstext','Badarticleerror','Badfilename','Badfiletype','Badipaddress','Badquery','Badquerytext','Badretype','Badtitle','Badtitletext','Blanknamespace','Blockedtext','Blockedtitle','Blockip','Blockipsuccesssub','Blockipsuccesstext','Blockiptext','Blocklink','Blocklistline','Blocklogentry','Blocklogpage','Blocklogtext','Bold_sample','Bold_tip','Booksources','Booksourcetext','Brokenredirects','Brokenredirectstext','Bugreports','Bugreportspage','Bureaucratlog','Bureaucratlogentry','Bydate','Byname','Bysize','Cachederror','Cancel','Cannotdelete','Cantrollback','Categories','Categoriespagetext','Category','Category_header','Categoryarticlecount','Categoryarticlecount1','Changed','Changegrouplogentry','Changepassword','Changes','Clearyourcache','Columns','Compareselectedversions','Confirm','Confirmdelete','Confirmdeletetext','Confirmemail','Confirmemail_body','Confirmemail_error','Confirmemail_invalid','Confirmemail_loggedin','Confirmemail_send','Confirmemail_sendfailed','Confirmemail_sent','Confirmemail_subject','Confirmemail_success','Confirmemail_text','Confirmprotect','Confirmprotecttext','Confirmunprotect','Confirmunprotecttext','Contextchars','Contextlines','Contribs-showhideminor','Contribslink','Contribsub','Contributions','Copyright','Copyrightpage','Copyrightpagename','Copyrightwarning','Copyrightwarning2','Couldntremove','Createaccount','Createaccountmail','Createarticle','Created','Creditspage','Cur','Currentevents','Currentevents-url','Currentrev','Currentrevisionlink','Data','Databaseerror','Dateformat','Dberrortext','Dberrortextcl','Deadendpages','Debug','Dec','December','Default','Defaultns','Defemailsubject','Delete','Delete_and_move','Delete_and_move_reason','Delete_and_move_text','Deletecomment','Deletedarticle','Deletedrev','Deletedrevision','Deletedtext','Deleteimg','Deleteimgcompletely','Deletepage','Deletesub','Deletethispage','Deletionlog','Dellogpage','Dellogpagetext','Destfilename','Developertext','Developertitle','Diff','Difference','Disambiguations','Disambiguationspage','Disambiguationstext','Disclaimerpage','Disclaimers','Doubleredirects','Doubleredirectstext','Eauthentsent','Edit','Edit-externally','Edit-externally-help','Editcomment','Editconflict','Editcurrent','Editgroup','Edithelp','Edithelppage','Editing','Editingcomment','Editingold','Editingsection','Editsection','Editthispage','Editusergroup','Email','Emailauthenticated','Emailconfirmlink','Emailflag','Emailforlost','Emailfrom','Emailmessage','Emailnotauthenticated','Emailpage','Emailpagetext','Emailsend','Emailsent','Emailsenttext','Emailsubject','Emailto','Emailuser','Emptyfile','Enotif_body','Enotif_lastvisited','Enotif_mailer','Enotif_newpagetext','Enotif_reset','Enotif_subject','Enterlockreason','Error','Errorpagetitle','Exbeforeblank','Exblank','Excontent','Excontentauthor','Exif-aperturevalue','Exif-artist','Exif-bitspersample','Exif-brightnessvalue','Exif-cfapattern','Exif-colorspace','Exif-colorspace-1','Exif-colorspace-ffff.h','Exif-componentsconfiguration','Exif-componentsconfiguration-0','Exif-componentsconfiguration-1','Exif-componentsconfiguration-2','Exif-componentsconfiguration-3','Exif-componentsconfiguration-4','Exif-componentsconfiguration-5','Exif-componentsconfiguration-6','Exif-compressedbitsperpixel','Exif-compression','Exif-compression-1','Exif-compression-6','Exif-contrast','Exif-contrast-0','Exif-contrast-1','Exif-contrast-2','Exif-copyright','Exif-customrendered','Exif-customrendered-0','Exif-customrendered-1','Exif-datetime','Exif-datetimedigitized','Exif-datetimeoriginal','Exif-devicesettingdescription','Exif-digitalzoomratio','Exif-exifversion','Exif-exposurebiasvalue','Exif-exposureindex','Exif-exposuremode','Exif-exposuremode-0','Exif-exposuremode-1','Exif-exposuremode-2','Exif-exposureprogram','Exif-exposureprogram-0','Exif-exposureprogram-1','Exif-exposureprogram-2','Exif-exposureprogram-3','Exif-exposureprogram-4','Exif-exposureprogram-5','Exif-exposureprogram-6','Exif-exposureprogram-7','Exif-exposureprogram-8','Exif-exposuretime','Exif-filesource','Exif-filesource-3','Exif-flash','Exif-flashenergy','Exif-flashpixversion','Exif-fnumber','Exif-focallength','Exif-focallengthin35mmfilm','Exif-focalplaneresolutionunit','Exif-focalplaneresolutionunit-2','Exif-focalplanexresolution','Exif-focalplaneyresolution','Exif-gaincontrol','Exif-gaincontrol-0','Exif-gaincontrol-1','Exif-gaincontrol-2','Exif-gaincontrol-3','Exif-gaincontrol-4','Exif-gpsaltitude','Exif-gpsaltituderef','Exif-gpsareainformation','Exif-gpsdatestamp','Exif-gpsdestbearing','Exif-gpsdestbearingref','Exif-gpsdestdistance','Exif-gpsdestdistanceref','Exif-gpsdestlatitude','Exif-gpsdestlatituderef','Exif-gpsdestlongitude','Exif-gpsdestlongituderef','Exif-gpsdifferential','Exif-gpsdirection-m','Exif-gpsdirection-t','Exif-gpsdop','Exif-gpsimgdirection','Exif-gpsimgdirectionref','Exif-gpslatitude','Exif-gpslatitude-n','Exif-gpslatitude-s','Exif-gpslatituderef','Exif-gpslongitude','Exif-gpslongitude-e','Exif-gpslongitude-w','Exif-gpslongituderef','Exif-gpsmapdatum','Exif-gpsmeasuremode','Exif-gpsmeasuremode-2','Exif-gpsmeasuremode-3','Exif-gpsprocessingmethod','Exif-gpssatellites','Exif-gpsspeed','Exif-gpsspeed-k','Exif-gpsspeed-m','Exif-gpsspeed-n','Exif-gpsspeedref','Exif-gpsstatus','Exif-gpsstatus-a','Exif-gpsstatus-v','Exif-gpstimestamp','Exif-gpstrack','Exif-gpstrackref','Exif-gpsversionid','Exif-imagedescription','Exif-imagelength','Exif-imageuniqueid','Exif-imagewidth','Exif-isospeedratings','Exif-jpeginterchangeformat','Exif-jpeginterchangeformatlength','Exif-lightsource','Exif-lightsource-0','Exif-lightsource-1','Exif-lightsource-10','Exif-lightsource-11','Exif-lightsource-12','Exif-lightsource-13','Exif-lightsource-14','Exif-lightsource-15','Exif-lightsource-17','Exif-lightsource-18','Exif-lightsource-19','Exif-lightsource-2','Exif-lightsource-20','Exif-lightsource-21','Exif-lightsource-22','Exif-lightsource-23','Exif-lightsource-24','Exif-lightsource-255','Exif-lightsource-3','Exif-lightsource-4','Exif-lightsource-9','Exif-make','Exif-make-value','Exif-makernote','Exif-maxaperturevalue','Exif-meteringmode','Exif-meteringmode-0','Exif-meteringmode-1','Exif-meteringmode-2','Exif-meteringmode-255','Exif-meteringmode-3','Exif-meteringmode-4','Exif-meteringmode-5','Exif-meteringmode-6','Exif-model','Exif-model-value','Exif-oecf','Exif-orientation','Exif-orientation-1','Exif-orientation-2','Exif-orientation-3','Exif-orientation-4','Exif-orientation-5','Exif-orientation-6','Exif-orientation-7','Exif-orientation-8','Exif-photometricinterpretation','Exif-photometricinterpretation-1','Exif-photometricinterpretation-6','Exif-pixelxdimension','Exif-pixelydimension','Exif-planarconfiguration','Exif-planarconfiguration-1','Exif-planarconfiguration-2','Exif-primarychromaticities','Exif-referenceblackwhite','Exif-relatedsoundfile','Exif-resolutionunit','Exif-rowsperstrip','Exif-samplesperpixel','Exif-saturation','Exif-saturation-0','Exif-saturation-1','Exif-saturation-2','Exif-scenecapturetype','Exif-scenecapturetype-0','Exif-scenecapturetype-1','Exif-scenecapturetype-2','Exif-scenecapturetype-3','Exif-scenetype','Exif-scenetype-1','Exif-sensingmethod','Exif-sensingmethod-1','Exif-sensingmethod-2','Exif-sensingmethod-3','Exif-sensingmethod-4','Exif-sensingmethod-5','Exif-sensingmethod-7','Exif-sensingmethod-8','Exif-sharpness','Exif-sharpness-0','Exif-sharpness-1','Exif-sharpness-2','Exif-shutterspeedvalue','Exif-software','Exif-software-value','Exif-spatialfrequencyresponse','Exif-spectralsensitivity','Exif-stripbytecounts','Exif-stripoffsets','Exif-subjectarea','Exif-subjectdistance','Exif-subjectdistance-value','Exif-subjectdistancerange','Exif-subjectdistancerange-0','Exif-subjectdistancerange-1','Exif-subjectdistancerange-2','Exif-subjectdistancerange-3','Exif-subjectlocation','Exif-subsectime','Exif-subsectimedigitized','Exif-subsectimeoriginal','Exif-transferfunction','Exif-usercomment','Exif-whitebalance','Exif-whitebalance-0','Exif-whitebalance-1','Exif-whitepoint','Exif-xresolution','Exif-xyresolution-c','Exif-xyresolution-i','Exif-ycbcrcoefficients','Exif-ycbcrpositioning','Exif-ycbcrsubsampling','Exif-yresolution','Expiringblock','Explainconflict','Export','Exportcuronly','Exporttext','Externaldberror','Extlink_sample','Extlink_tip','Faq','Faqpage','Feb','February','Feedlinks','Filecopyerror','Filedeleteerror','Filedesc','Fileexists','Fileinfo','Filemissing','Filename','Filenotfound','Filerenameerror','Files','Filesource','Filestatus','Fileuploaded','Formerror','Friday','Geo','Getimagelist','Go','Googlesearch','Group-admin-desc','Group-admin-name','Group-anon-desc','Group-anon-name','Group-bureaucrat-desc','Group-bureaucrat-name','Group-loggedin-desc','Group-loggedin-name','Group-steward-desc','Group-steward-name','Groups','Groups-addgroup','Groups-already-exists','Groups-editgroup','Groups-editgroup-description','Groups-editgroup-name','Groups-editgroup-preamble','Groups-existing','Groups-group-edit','Groups-lookup-group','Groups-noname','Groups-tableheader','Guesstimezone','Headline_sample','Headline_tip','Help','Helppage','Hide','Hidetoc','Hist','Histfirst','Histlast','Histlegend','History','History_copyright','History_short','Historywarning','Hr_tip','Ignorewarning','Illegalfilename','Ilsubmit','Image_sample','Image_tip','Imagelinks','Imagelist','Imagelistall','Imagelisttext','Imagemaxsize','Imagepage','Imagereverted','Imgdelete','Imgdesc','Imghistlegend','Imghistory','Imglegend','Immobile_namespace','Import','Importfailed','Importhistoryconflict','Importinterwiki','Importnofile','Importnosources','Importnotext','Importsuccess','Importtext','Importuploaderror','Infiniteblock','Info_short','Infobox','Infobox_alert','Infosubtitle','Internalerror','Intl','Invalidemailaddress','Invert','Ip_range_invalid','Ipaddress','Ipadressorusername','Ipb_expiry_invalid','Ipbexpiry','Ipblocklist','Ipblocklistempty','Ipboptions','Ipbother','Ipbotheroption','Ipbreason','Ipbsubmit','Ipusubmit','Ipusuccess','Isbn','Isredirect','Italic_sample','Italic_tip','Iteminvalidname','Jan','January','Jul','July','Jun','June','Laggedslavemode','Largefile','Last','Lastmodified','Lastmodifiedby','Lineno','Link_sample','Link_tip','Linklistsub','Linkprefix','Linkshere','Linkstoimage','Linktrail','Listform','Listingcontinuesabbrev','Listusers','Loadhist','Loadingrev','Localtime','Lockbtn','Lockconfirm','Lockdb','Lockdbsuccesssub','Lockdbsuccesstext','Lockdbtext','Locknoconfirm','Log','Login','Loginend','Loginerror','Loginpagetitle','Loginproblem','Loginprompt','Loginreqtext','Loginreqtitle','Loginsuccess','Loginsuccesstitle','Logout','Logouttext','Logouttitle','Lonelypages','Longpages','Longpagewarning','Mailerror','Mailmypassword','Mailnologin','Mailnologintext','Mainpage','Mainpagedocfooter','Mainpagetext','Maintenance','Maintenancebacklink','Maintnancepagetext','Makesysop','Makesysopfail','Makesysopname','Makesysopok','Makesysopsubmit','Makesysoptext','Makesysoptitle','Mar','March','Markaspatrolleddiff','Markaspatrolledlink','Markaspatrolledtext','Markedaspatrolled','Markedaspatrolledtext','Matchtotals','Math','Math_bad_output','Math_bad_tmpdir','Math_failure','Math_image_error','Math_lexing_error','Math_notexvc','Math_sample','Math_syntax_error','Math_tip','Math_unknown_error','Math_unknown_function','May','May_long','Media_sample','Media_tip','Mediawarning','Metadata','Metadata_page','Minlength','Minoredit','Minoreditletter','Mispeelings','Mispeelingspage','Mispeelingstext','Missingarticle','Missingimage','Missinglanguagelinks','Missinglanguagelinksbutton','Missinglanguagelinkstext','Monday','Moredotdotdot','Mostlinked','Move','Movearticle','Movedto','Movelogpage','Movelogpagetext','Movenologin','Movenologintext','Movepage','Movepagebtn','Movepagetalktext','Movepagetext','Movereason','Movetalk','Movethispage','Mw_math_html','Mw_math_mathml','Mw_math_modern','Mw_math_png','Mw_math_simple','Mw_math_source','Mycontris','Mypage','Mytalk','Namespace','Namespacesall','Navigation','Nbytes','Nchanges','Newarticle','Newarticletext','Newbies','Newimages','Newmessages','Newmessageslink','Newpage','Newpageletter','Newpages','Newpassword','Newtitle','Newusersonly','Newwindow','Next','Nextdiff','Nextn','Nextpage','Nextrevision','Nlinks','Noarticletext','Noconnect','Nocontribs','Nocookieslogin','Nocookiesnew','Nocreativecommons','Nocredits','Nodb','Nodublincore','Noemail','Noemailprefs','Noemailtext','Noemailtitle','Nogomatch','Nohistory','Noimage','Noimages','Nolinkshere','Nolinkstoimage','Noname','Nonefound','Nonunicodebrowser','Nospecialpagetext','Nosuchaction','Nosuchactiontext','Nosuchspecialpage','Nosuchuser','Nosuchusershort','Notacceptable','Notanarticle','Notargettext','Notargettitle','Note','Notextmatches','Notitlematches','Notloggedin','Nov','November','Nowatchlist','Nowiki_sample','Nowiki_tip','Nstab-category','Nstab-help','Nstab-image','Nstab-main','Nstab-media','Nstab-mediawiki','Nstab-special','Nstab-template','Nstab-user','Nstab-wp','Numauthors','Number_of_watching_users_RCview','Number_of_watching_users_pageview','Numedits','Numtalkauthors','Numtalkedits','Numwatchers','Nviews','Oct','October','Ok','Oldpassword','Orig','Orphans','Othercontribs','Otherlanguages','Others','Pagemovedsub','Pagemovedtext','Pagetitle','Passwordremindertext','Passwordremindertitle','Passwordsent','Passwordtooshort','Perfcached','Perfdisabled','Perfdisabledsub','Personaltools','Popularpages','Portal','Portal-url','Postcomment','Poweredby','Powersearch','Powersearchtext','Preferences','Prefs-help-email','Prefs-help-email-enotif','Prefs-help-realname','Prefs-misc','Prefs-personal','Prefs-rc','Prefslogintext','Prefsnologin','Prefsnologintext','Prefsreset','Preview','Previewconflict','Previewnote','Previousdiff','Previousrevision','Prevn','Print','Printableversion','Printsubtitle','Protect','Protectcomment','Protectedarticle','Protectedpage','Protectedpagewarning','Protectedtext','Protectlogpage','Protectlogtext','Protectmoveonly','Protectpage','Protectsub','Protectthispage','Proxyblocker','Proxyblockreason','Proxyblocksuccess','Pubmedurl','Qbbrowse','Qbedit','Qbfind','Qbmyoptions','Qbpageinfo','Qbpageoptions','Qbsettings','Qbspecialpages','Randompage','Randompage-url','Range_block_disabled','Rchide','Rclinks','Rclistfrom','Rcliu','Rcloaderr','Rclsub','Rcnote','Rcnotefrom','Rcpatroldisabled','Rcpatroldisabledtext','Readonly','Readonly_lag','Readonlytext','Readonlywarning','Recentchanges','Recentchanges-url','Recentchangesall','Recentchangescount','Recentchangeslinked','Recentchangestext','Redirectedfrom','Remembermypassword','Removechecked','Removedwatch','Removedwatchtext','Removingchecked','Renamegrouplogentry','Resetprefs','Restorelink','Restorelink1','Restrictedpheading','Resultsperpage','Retrievedfrom','Returnto','Retypenew','Reupload','Reuploaddesc','Reverted','Revertimg','Revertmove','Revertpage','Revhistory','Revisionasof','Revisionasofwithlink','Revnotfound','Revnotfoundtext','Rfcurl','Rights','Rightslogtext','Rollback','Rollback_short','Rollbackfailed','Rollbacklink','Rows','Saturday','Savearticle','Savedprefs','Savefile','Savegroup','Saveprefs','Saveusergroups','Scarytranscludedisabled','Scarytranscludefailed','Scarytranscludetoolong','Search','Searchdisabled','Searchfulltext','Searchquery','Searchresults','Searchresultshead','Searchresulttext','Sectionlink','Selectnewerversionfordiff','Selectolderversionfordiff','Selflinks','Selflinkstext','Selfmove','Sep','September','Servertime','Sessionfailure','Set_rights_fail','Set_user_rights','Setbureaucratflag','Setstewardflag','Shareddescriptionfollows','Sharedupload','Shareduploadwiki','Shortpages','Show','Showbigimage','Showdiff','Showhideminor','Showingresults','Showingresultsnum','Showlast','Showpreview','Showtoc','Sidebar','Sig_tip','Sitenotice','Sitestats','Sitestatstext','Sitesubtitle','Sitesupport','Sitesupport-url','Sitetitle','Siteuser','Siteusers','Skin','Skinpreview','Sorbs','Sorbs_create_account_reason','Sorbsreason','Sourcefilename','Spamprotectionmatch','Spamprotectiontext','Spamprotectiontitle','Speciallogtitlelabel','Specialloguserlabel','Specialpage','Specialpages','Spheading','Sqlhidden','Statistics','Storedversion','Stubthreshold','Subcategories','Subcategorycount','Subcategorycount1','Subject','Subjectpage','Successfulupload','Summary','Sunday','Sysoptext','Sysoptitle','Tableform','Tagline','Talk','Talkexists','Talkpage','Talkpagemoved','Talkpagenotmoved','Talkpagetext','Templatesused','Textboxsize','Textmatches','Thisisdeleted','Thumbnail-more','Thumbsize','Thursday','Timezonelegend','Timezoneoffset','Timezonetext','Titlematches','Toc','Tog-editondblclick','Tog-editsection','Tog-editsectiononrightclick','Tog-editwidth','Tog-enotifminoredits','Tog-enotifrevealaddr','Tog-enotifusertalkpages','Tog-enotifwatchlistpages','Tog-externaldiff','Tog-externaleditor','Tog-fancysig','Tog-hideminor','Tog-highlightbroken','Tog-justify','Tog-minordefault','Tog-nocache','Tog-numberheadings','Tog-previewonfirst','Tog-previewontop','Tog-rememberpassword','Tog-shownumberswatching','Tog-showtoc','Tog-showtoolbar','Tog-underline','Tog-usenewrc','Tog-watchdefault','Toolbox','Tooltip-compareselectedversions','Tooltip-diff','Tooltip-minoredit','Tooltip-preview','Tooltip-save','Tooltip-search','Tooltip-watch','Trackback','Trackbackbox','Trackbackdeleteok','Trackbackexcerpt','Trackbacklink','Trackbackremove','Tryexact','Tuesday','Uclinks','Ucnote','Uctop','Unblockip','Unblockiptext','Unblocklink','Unblocklogentry','Uncategorizedcategories','Uncategorizedpages','Undelete','Undelete_short','Undelete_short1','Undeletearticle','Undeletebtn','Undeletedarticle','Undeletedrevisions','Undeletedtext','Undeletehistory','Undeletepage','Undeletepagetext','Undeleterevision','Undeleterevisions','Underline-always','Underline-default','Underline-never','Unexpected','Unit-pixel','Unlockbtn','Unlockconfirm','Unlockdb','Unlockdbsuccesssub','Unlockdbsuccesstext','Unlockdbtext','Unprotect','Unprotectcomment','Unprotectedarticle','Unprotectsub','Unprotectthispage','Unusedcategories','Unusedcategoriestext','Unusedimages','Unusedimagestext','Unwatch','Unwatchthispage','Updated','Upload','Upload_directory_read_only','Uploadbtn','Uploadcorrupt','Uploaddisabled','Uploadedfiles','Uploadedimage','Uploaderror','Uploadlink','Uploadlog','Uploadlogpage','Uploadlogpagetext','Uploadnewversion','Uploadnologin','Uploadnologintext','Uploadscripted','Uploadtext','Uploadvirus','Uploadwarning','Usenewcategorypage','User_rights_set','Usercssjsyoucanpreview','Usercsspreview','Userexists','Userjspreview','Userlogin','Userlogout','Usermailererror','Userpage','Userrights','Userrights-editusergroup','Userrights-groupsavailable','Userrights-groupshelp','Userrights-groupsmember','Userrights-logcomment','Userrights-lookup-user','Userrights-user-editname','Userstats','Userstatstext','Val_add','Val_article_lists','Val_clear_old','Val_del','Val_details_th','Val_details_th_user','Val_form_note','Val_iamsure','Val_list_header','Val_merge_old','Val_my_stats_title','Val_no','Val_no_anon_validation','Val_noop','Val_of','Val_page_validation_statistics','Val_percent','Val_percent_single','Val_rev_for','Val_rev_stats','Val_revision','Val_revision_changes_ok','Val_revision_number','Val_revision_of','Val_revision_stats_link','Val_show_my_ratings','Val_stat_link_text','Val_tab','Val_table_header','Val_this_is_current_version','Val_time','Val_topic_desc_page','Val_total','Val_user_stats_title','Val_user_validations','Val_validate_article_namespace_only','Val_validate_version','Val_validated','Val_validation_of','Val_version','Val_version_of','Val_view_version','Val_votepage_intro','Val_warning','Val_yes','Validate','Variantname-zh','Variantname-zh-cn','Variantname-zh-hk','Variantname-zh-sg','Variantname-zh-tw','Version','Versionrequired','Versionrequiredtext','Viewcount','Viewprevnext','Views','Viewsource','Viewtalkpage','Wantedpages','Watch','Watchdetails','Watcheditlist','Watchlist','Watchlistall1','Watchlistall2','Watchlistcontains','Watchlistsub','Watchmethod-list','Watchmethod-recent','Watchnochange','Watchnologin','Watchnologintext','Watchthis','Watchthispage','Wednesday','Welcomecreation','Whatlinkshere','Whitelistacctext','Whitelistacctitle','Whitelistedittext','Whitelistedittitle','Whitelistreadtext','Whitelistreadtitle','Wikipediapage','Wlheader-enotif','Wlheader-showupdated','Wlhide','Wlhideshowown','Wlnote','Wlsaved','Wlshow','Wlshowlast','Wrong_wfQuery_params','Wrongpassword','Yourdiff','Yourdomainname','Youremail','Yourlanguage','Yourname','Yournick','Yourpassword','Yourpasswordagain','Yourrealname','Yourtext','Yourvariant')
+      Function: 
+      Error: 1142 select command denied to user 'wikiuser'&#64;'localhost' for table
+'tf_page' (localhost)
+
+      Backtrace:
+      GlobalFunctions.php line 451 calls wfbacktrace()
+      Database.php line 397 calls wfdebugdiebacktrace()
+      Database.php line 347 calls databasemysql::reportqueryerror()
+      InitialiseMessages.inc line 140 calls databasemysql::query()
+      InitialiseMessages.inc line 72 calls initialisemessagesreal()
+      updaters.inc line 670 calls initialisemessages()
+      index.php line 606 calls do_all_updates()
+
+All of a sudden with no reason, my user has no access to do a select on a
+table?? What give?</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-27 23:15:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I went into mysql as user root from the cpommand line and ran
+   GRANT ALL PRIVILEGES ON my_wikidb.* to wikiuser&#64;localhost
+   IDENTIFIED BY 'wikipassword' WITH GRANT OPTION;
+
+I then re-ran the MediaWiki installation, setting the root password to '-'
+and got to the end successfully
+Initialising &quot;MediaWiki&quot; namespace...
+Clearing message cache...Done.
+
+# Finished update checks.
+
+Creating LocalSettings.php...
+
+Installation successful! Move the config/LocalSettings.php file into the parent
+directory, then follow this link to your wiki.
+
+I don't mind having to do this, but I think if the installer is supposed to be
+able to do everything for me it ought to work.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-29 17:33:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Did you specify superuser information at the bottom of the installation form? It
+defaults to assuming the user has the permissions granted if you don't.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-29 18:12:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've made this all very clear in the report.
+Yes I specify the root password.
+Yes the user has privileges (until they are mysteriously lost halfway through
+the installation).
+Some tables are cfreated. Others are not (and there is an error).
+
+Again, if this were simple I wouldn't be filing the repoort. It's not simple.
+It's mysterious, occasional, and different every time.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jim Hu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-26 07:24:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I believe that this is a problem that only happens on new installations of
+MediaWiki on Mac OS X 10.4.X using the preinstalled mysql. 
+
+<span class="quote">&gt;Error: 1142 select command denied to user 'wikiuser'&#64;'localhost' for table</span >
+
+The problem is that the wikiuser you define tries to connect to localhost, which
+is not the default hostname in 10.4.
+The solution is to look in the user table in the mysql database, and change the
+host_name for wikiuser to &lt;computer_name&gt;.local
+where computer name is the name of your host.  This fixed the problem for me. I
+have no idea why Apple changed this.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rich Morin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-15 16:36:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Odd - OSX 10.4.7 (at least) seems to know about localhost:
+
+  %  ping localhost
+  PING localhost (127.0.0.1): 56 data bytes
+  64 bytes from 127.0.0.1: icmp_seq=0 ttl=64 time=0.093 ms
+  64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.073 ms</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-15 16:36:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This installation of MediaWiki is installed on FreeBSD 4.7.
+
+It is not installed on Mac OS X.
+
+localhost is well understood on FreeBSD and none of my otherMySQL databases have
+any problems.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-15 16:38:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Apparebtly the bug reporting software made inappropriate guesses based on my Web
+browser configuration and I did not see that.
+</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Vicki Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-15 16:39:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4734#c13">comment #13</a>)
+<span class="quote">&gt; Odd - OSX 10.4.7 (at least) seems to know about localhost:</span >
+
+While this is true, it's unrelated because <a href="show_bug.cgi?id=4734#c12">comment #12</a> does not apply to this
+installation.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-02 22:27:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >How much of this is still happening? I recall (how could I forget?) the rather
+ridiculous security bug I introduced some time before 1.5.6 (messed about with
+MySQL's root password) which *might* explain the permissions funkiness here. If
+other problems are still occurring with the latest version, it might be an idea
+to relist those, or close this bug in favour of new ones separating any
+reproducable issues.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4734#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-15 22:37:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Going to assume that the fixes to the installer a couple versions back solved this,
+closing WORKSFORME.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4734&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4734">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4734">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4734">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4734&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4734" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4734&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419364043-DY6sqJ762hycl73TL-FWT9eelyHLQ6x8h2Bwxr0hIsM">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

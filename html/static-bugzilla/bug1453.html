@@ -1,0 +1,1721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1453 &ndash; RSS feeds not working in FireFox due to blank lines</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1453&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1453">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1453">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1453">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1453 – RSS feeds not working in FireFox due to blank lines",  
+                             "show_bug.cgi?id=1453" );
+        document.title = "Bug 1453 – RSS feeds not working in FireFox due to blank lines";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1453 – RSS feeds not working in FireFox due to blank lines", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_History_Diffs bz_bug_1453 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 15:28:03 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 15:28:03">
+  <input type="hidden" name="longdesclength" value="9">
+  <input type="hidden" name="id" value="1453">
+  <input type="hidden" name="token" value="1419358972-VISVtnuOMrUM-clwjNIiVAVC65p863XMF7A5drWey5E">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1453"><b>Bug&nbsp;1453</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">RSS feeds not working in FireFox due to blank lines</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>RSS feeds not working in FireFox due to blank lines
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('RSS feeds not working in FireFox due to blank lines', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          WORKSFORME
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>History/Diffs
+    
+    (<a href="buglist.cgi?component=History%2FDiffs&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.3.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1453#vote_1453">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://www.tmbw.net/wiki/index.php?title=Special:Recentchanges&amp;feed=rss"><span title="http://www.tmbw.net/wiki/index.php?title=Special:Recentchanges&amp;feed=rss">http://www.tmbw.net/wiki/index.php?ti...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1453&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1453">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-02-02 20:37 UTC by <span class="vcard"><span class="fn">Brad Will (tmbw.net)</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 15:28 UTC 
+      (<a href="show_activity.cgi?id=1453">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>1 
+          user
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="bugzilla.wikipedia">bugzilla.wikipedia</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_html">
+        <td valign="top">
+            <a href="attachment.cgi?id=244"
+               title="View the content of the attachment">
+          <b>html/xml source for the RSS feed</b></a>
+
+          <span class="bz_attach_extra_info">
+              (35.11 KB,
+                text/html)
+
+            <br>
+            <a href="#attach_244"
+               title="Go to the comment associated with the attachment">2005-02-02 21:00 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brad Will (tmbw.net)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=244&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=1453&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Will (tmbw.net)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-02 20:37:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >On my site (tmbw.net), the RSS &amp; ATOM feeds do not work in FireFox 1.0.  It
+throws an &quot;xml parsing error&quot;, due to the existence of several (nine) blank
+lines before the content starts.  These blank lines are there in the source of
+every page, before the &quot;&lt;!DOCTYPE...&quot;, but it only causes an issue with the
+RSS/ATOM feeds.
+
+The OS that the wiki runs on is Linux, and the server info is: 
+Apache/1.3.33 (Unix) mod_gzip/1.3.26.1a mod_auth_passthrough/1.8
+mod_log_bytes/1.2 mod_bwlimited/1.4 PHP/4.3.10 FrontPage/5.0.2.2634a
+mod_ssl/2.8.22 OpenSSL/0.9.7a</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Will (tmbw.net)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-02 21:00:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=244" name="attach_244" title="html/xml source for the RSS feed">attachment 244</a> <a href="attachment.cgi?id=244&amp;action=edit" title="html/xml source for the RSS feed">[details]</a></span>
+html/xml source for the RSS feed
+
+Here is a copy of the html source for the xml that the RSS feed generates on my
+site.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Will (tmbw.net)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-02 21:05:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class=""><a href="attachment.cgi?id=244" name="attach_244" title="html/xml source for the RSS feed">attachment 244</a> <a href="attachment.cgi?id=244&amp;action=edit" title="html/xml source for the RSS feed">[details]</a></span>
+html/xml source for the RSS feed
+
+
+
+
+
+
+
+
+
+
+<span class="quote">&gt;&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;This Might Be A Wiki - Recent changes [en]&lt;/TITLE&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;LINK/&gt;&lt;/HEAD&gt;</span >
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+<span class="quote">&gt;&lt;BODY&gt;&lt;RSS _moz-userdefined=&quot;&quot; xmlns:dc=&quot;<a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a>&quot;&gt;
+&gt;	&lt;CHANNEL _moz-userdefined=&quot;&quot;&gt;
+&gt;		
+&gt;		<a href="http://www.tmbw.net/wiki/index.php/Special:Recentchanges">http://www.tmbw.net/wiki/index.php/Special:Recentchanges</a>
+&gt;		&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Track the most recent changes to the wiki on this page.&lt;/DESCRIPTION&gt;
+&gt;		&lt;LANGUAGE _moz-userdefined=&quot;&quot;&gt;en&lt;/LANGUAGE&gt;
+&gt;		&lt;GENERATOR _moz-userdefined=&quot;&quot;&gt;MediaWiki 1.3.9&lt;/GENERATOR&gt;
+&gt;		&lt;LASTBUILDDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 20:58:43 GMT&lt;/LASTBUILDDATE&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Chopping_Block_Testimonial">http://www.tmbw.net/wiki/index.php/Chopping_Block_Testimonial</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 20:56:18 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;24.238.145.47&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Chopping_Block_Testimonial">http://www.tmbw.net/wiki/index.php/Talk:Chopping_Block_Testimonial</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Damn_Good_Times/Interpretations">http://www.tmbw.net/wiki/index.php/Damn_Good_Times/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 18:05:24 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;64.28.62.209&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Damn_Good_Times/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Damn_Good_Times/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Sorry_I_f'ed_Up_The_Show/Lyrics">http://www.tmbw.net/wiki/index.php/Sorry_I_f'ed_Up_The_Show/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 13:21:25 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Swear_Words">http://www.tmbw.net/wiki/index.php/Swear_Words</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 12:45:30 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Augie&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 12:18:02 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 06:53:41 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Slumby&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Mrs._Train/Interpretations">http://www.tmbw.net/wiki/index.php/Mrs._Train/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 02:18:24 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;63.201.88.93&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Mrs._Train/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Mrs._Train/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User:Paradox_02">http://www.tmbw.net/wiki/index.php/User:Paradox_02</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;edited profile&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Wed, 02 Feb 2005 00:52:29 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Paradox 02&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Paradox_02">http://www.tmbw.net/wiki/index.php/User_talk:Paradox_02</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;clarifying&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 19:12:21 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;/* script */&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 19:09:45 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;script&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 19:07:07 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;problem with Wanted Pages&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 18:57:06 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Instrumentals">http://www.tmbw.net/wiki/index.php/Instrumentals</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Dewitt Clinton&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 18:54:46 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Instrumentals">http://www.tmbw.net/wiki/index.php/Talk:Instrumentals</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Instrumentals">http://www.tmbw.net/wiki/index.php/Instrumentals</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;added dog on fire&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 18:47:04 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Instrumentals">http://www.tmbw.net/wiki/index.php/Talk:Instrumentals</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/TMBG.ORG_FAQ">http://www.tmbw.net/wiki/index.php/TMBG.ORG_FAQ</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 18:10:51 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;193.230.222.76&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:TMBG.ORG_FAQ">http://www.tmbw.net/wiki/index.php/Talk:TMBG.ORG_FAQ</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;No longer necessary&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 17:53:35 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.143.172.48&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 17:51:31 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.143.172.48&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Broke_In_Two/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Broke_In_Two/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 17:45:05 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Byrthfood&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Broke_In_Two/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Broke_In_Two/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 17:21:29 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;66.71.38.170&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Videos">http://www.tmbw.net/wiki/index.php/Videos</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;added Damn Good Times&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 15:21:54 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Badqueso&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Videos">http://www.tmbw.net/wiki/index.php/Talk:Videos</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Shows">http://www.tmbw.net/wiki/index.php/Shows</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 14:20:24 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;68.36.94.224&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Shows">http://www.tmbw.net/wiki/index.php/Talk:Shows</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Sorry_I_%28Explict%29_Up_The_Show/Lyrics">http://www.tmbw.net/wiki/index.php/Sorry_I_%28Explict%29_Up_The_Show/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Sorry I (Explict) Up The Show/Lyrics moved to Sorry I f'ed Up The Show/Lyrics&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 13:23:45 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Sorry_I_f'ed_Up_The_Show">http://www.tmbw.net/wiki/index.php/Sorry_I_f'ed_Up_The_Show</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 13:23:14 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_f'ed_Up_The_Show</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Sorry_I_%28Explict%29_Up_The_Show">http://www.tmbw.net/wiki/index.php/Sorry_I_%28Explict%29_Up_The_Show</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Sorry I (Explict) Up The Show moved to Sorry I f'ed Up The Show&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 13:22:59 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Talk:Sorry I (Explict) Up The Show moved to Talk:Sorry I f'ed Up The Show&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 13:22:59 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;response to ed&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 13:22:17 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Ed">http://www.tmbw.net/wiki/index.php/User_talk:Ed</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Shows">http://www.tmbw.net/wiki/index.php/Shows</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 12:48:38 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;68.36.94.224&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Shows">http://www.tmbw.net/wiki/index.php/Talk:Shows</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Secret_Area">http://www.tmbw.net/wiki/index.php/Secret_Area</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 09:17:11 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;82.36.133.99&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Secret_Area">http://www.tmbw.net/wiki/index.php/Talk:Secret_Area</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 09:02:44 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;24.4.35.175&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 09:01:41 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;24.4.35.175&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Severe_Tire_Damage">http://www.tmbw.net/wiki/index.php/Severe_Tire_Damage</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 06:49:35 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;128.253.199.71&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Severe_Tire_Damage">http://www.tmbw.net/wiki/index.php/Talk:Severe_Tire_Damage</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Number_Three/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Number_Three/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;bee vs beak&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:56:38 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Number_Three/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Number_Three/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/When_It_Rains_It_Snows/Lyrics">http://www.tmbw.net/wiki/index.php/When_It_Rains_It_Snows/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;A few notes&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:50:33 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:When_It_Rains_It_Snows/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:When_It_Rains_It_Snows/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Put_Your_Hand_Inside_The_Puppet_Head/Lyrics">http://www.tmbw.net/wiki/index.php/Put_Your_Hand_Inside_The_Puppet_Head/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;really nitpicking&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:35:05 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Put_Your_Hand_Inside_The_Puppet_Head/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Put_Your_Hand_Inside_The_Puppet_Head/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Boat_Of_Car/Lyrics">http://www.tmbw.net/wiki/index.php/Boat_Of_Car/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;windows vs windshield&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:32:51 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Boat_Of_Car/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Boat_Of_Car/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/You%27ll_Miss_Me/Lyrics">http://www.tmbw.net/wiki/index.php/You%27ll_Miss_Me/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:25:47 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:You%27ll_Miss_Me/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:You%27ll_Miss_Me/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/You%27ll_Miss_Me/Lyrics">http://www.tmbw.net/wiki/index.php/You%27ll_Miss_Me/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Added original lyrics&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:24:25 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:You%27ll_Miss_Me/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:You%27ll_Miss_Me/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/After_Hours_Party_At_The_Insect_Hospital/Lyrics">http://www.tmbw.net/wiki/index.php/After_Hours_Party_At_The_Insect_Hospital/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Some slight changes according to the recording I have&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:09:48 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:After_Hours_Party_At_The_Insect_Hospital/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:After_Hours_Party_At_The_Insect_Hospital/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Lyric_Variations/Your_Racist_Friend">http://www.tmbw.net/wiki/index.php/Lyric_Variations/Your_Racist_Friend</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Adding to category&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 05:00:35 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Lyric_Variations/Your_Racist_Friend">http://www.tmbw.net/wiki/index.php/Talk:Lyric_Variations/Your_Racist_Friend</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Lyric_Variations/Ana_Ng">http://www.tmbw.net/wiki/index.php/Lyric_Variations/Ana_Ng</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;category&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:50:29 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Lyric_Variations/Ana_Ng">http://www.tmbw.net/wiki/index.php/Talk:Lyric_Variations/Ana_Ng</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Lyric_Variations/Ana_Ng">http://www.tmbw.net/wiki/index.php/Lyric_Variations/Ana_Ng</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Human hair&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:50:14 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Lyric_Variations/Ana_Ng">http://www.tmbw.net/wiki/index.php/Talk:Lyric_Variations/Ana_Ng</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;About censorship&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:39:55 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show">http://www.tmbw.net/wiki/index.php/Talk:Sorry_I_%28Explict%29_Up_The_Show</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:36:54 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;/* Your Racist Friend */&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:34:44 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Your_Racist_Friend/Lyrics">http://www.tmbw.net/wiki/index.php/Your_Racist_Friend/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;pre tags and a note&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:32:01 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Your_Racist_Friend/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Your_Racist_Friend/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Stormy_Pinkness/Lyrics">http://www.tmbw.net/wiki/index.php/Stormy_Pinkness/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Correction and note&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:20:51 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Stormy_Pinkness/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Stormy_Pinkness/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;About wanted&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 04:19:40 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Ed&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Taglines">http://www.tmbw.net/wiki/index.php/Taglines</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Yey&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 02:52:55 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;68.229.66.41&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Taglines">http://www.tmbw.net/wiki/index.php/Talk:Taglines</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;/* Your Racist Friend */&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 02:23:51 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Whistling in the dark&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Your Racist Friend&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 02:23:35 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Whistling in the dark&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Swear_Words">http://www.tmbw.net/wiki/index.php/Talk:Swear_Words</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/They_Might_Be_Giants_%28The_Song%29/Interpretations">http://www.tmbw.net/wiki/index.php/They_Might_Be_Giants_%28The_Song%29/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;moved nav_stub&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 02:22:43 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:They_Might_Be_Giants_%28The_Song%29/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:They_Might_Be_Giants_%28The_Song%29/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/William_Allen_White">http://www.tmbw.net/wiki/index.php/William_Allen_White</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Some spacing.&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 01:47:43 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Blitz&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:William_Allen_White">http://www.tmbw.net/wiki/index.php/Talk:William_Allen_White</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 01:30:40 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Shows">http://www.tmbw.net/wiki/index.php/Shows</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 01:26:08 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Shows">http://www.tmbw.net/wiki/index.php/Talk:Shows</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Damn_Good_Times">http://www.tmbw.net/wiki/index.php/Damn_Good_Times</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 01:24:33 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Damn_Good_Times">http://www.tmbw.net/wiki/index.php/Talk:Damn_Good_Times</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Shows">http://www.tmbw.net/wiki/index.php/Shows</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 01:22:42 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Shows">http://www.tmbw.net/wiki/index.php/Talk:Shows</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Tue, 01 Feb 2005 01:19:32 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Taglines">http://www.tmbw.net/wiki/index.php/Taglines</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;/* Suggested Taglines */&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 23:33:13 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Rljenk&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Taglines">http://www.tmbw.net/wiki/index.php/Talk:Taglines</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Ana_Ng/Interpretations">http://www.tmbw.net/wiki/index.php/Ana_Ng/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 23:21:30 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Rljenk&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Ana_Ng/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Ana_Ng/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/They_Might_Be_Giants_%28The_Song%29/Interpretations">http://www.tmbw.net/wiki/index.php/They_Might_Be_Giants_%28The_Song%29/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 21:43:02 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;65.94.245.8&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:They_Might_Be_Giants_%28The_Song%29/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:They_Might_Be_Giants_%28The_Song%29/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 20:49:09 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.17.40.242&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Taglines">http://www.tmbw.net/wiki/index.php/Taglines</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;/* Previous taglines */&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 20:48:15 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.17.40.242&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Taglines">http://www.tmbw.net/wiki/index.php/Talk:Taglines</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Archived_News">http://www.tmbw.net/wiki/index.php/Archived_News</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;archived jan news&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 19:51:45 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Archived_News">http://www.tmbw.net/wiki/index.php/Talk:Archived_News</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;archived jan 2005 news&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 19:50:22 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 18:06:52 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 18:06:06 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Reverted edit of 63.202.254.134, changed back to last version by 69.76.59.146&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 16:36:15 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;updated amazon links&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 16:02:26 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Monsters_Of_Mud/Interpretations">http://www.tmbw.net/wiki/index.php/Monsters_Of_Mud/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;moved last comment from 68.229.66.41&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 13:56:16 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Monsters_Of_Mud/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Monsters_Of_Mud/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Monsters_Of_Mud/Interpretations">http://www.tmbw.net/wiki/index.php/Monsters_Of_Mud/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;interp&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 13:15:00 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;68.229.66.41&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Monsters_Of_Mud/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Monsters_Of_Mud/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Ana_Ng/Interpretations">http://www.tmbw.net/wiki/index.php/Ana_Ng/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 03:12:19 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;204.186.253.89&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Ana_Ng/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Ana_Ng/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Ana_Ng/Interpretations">http://www.tmbw.net/wiki/index.php/Ana_Ng/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 03:11:07 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;204.186.253.89&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Ana_Ng/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Ana_Ng/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:D_%26_W">http://www.tmbw.net/wiki/index.php/Talk:D_%26_W</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:20:16 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:D_%26_W">http://www.tmbw.net/wiki/index.php/Talk:D_%26_W</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Alphabet_Of_Nations">http://www.tmbw.net/wiki/index.php/Alphabet_Of_Nations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:15:47 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Alphabet_Of_Nations">http://www.tmbw.net/wiki/index.php/Talk:Alphabet_Of_Nations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Make_It_The_Same/Lyrics">http://www.tmbw.net/wiki/index.php/Make_It_The_Same/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:15:15 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Make_It_The_Same/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Make_It_The_Same/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Make_It_The_Same/Lyrics">http://www.tmbw.net/wiki/index.php/Make_It_The_Same/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;first pass&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:14:49 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Make_It_The_Same/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Make_It_The_Same/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Hide_Away_Folk_Family/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Hide_Away_Folk_Family/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:14:37 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;24.166.55.6&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Hide_Away_Folk_Family/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Hide_Away_Folk_Family/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/L_M_N_O/Lyrics">http://www.tmbw.net/wiki/index.php/L_M_N_O/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:13:46 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:L_M_N_O/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:L_M_N_O/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/L_M_N_O/Lyrics">http://www.tmbw.net/wiki/index.php/L_M_N_O/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;mistype&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:13:33 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:L_M_N_O/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:L_M_N_O/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Fingertips">http://www.tmbw.net/wiki/index.php/User_talk:Fingertips</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Wiki Members Only concert&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 02:10:29 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Fingertips">http://www.tmbw.net/wiki/index.php/User_talk:Fingertips</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 01:43:56 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Jazz_Waltz_In_C_%28Live_Almanac%29/Lyrics">http://www.tmbw.net/wiki/index.php/Jazz_Waltz_In_C_%28Live_Almanac%29/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Thank You For Coming... Almanac lyrics&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 01:17:37 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;205.133.211.107&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Jazz_Waltz_In_C_%28Live_Almanac%29/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Jazz_Waltz_In_C_%28Live_Almanac%29/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Anaheim">http://www.tmbw.net/wiki/index.php/Anaheim</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Mon, 31 Jan 2005 01:06:38 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;AaronSw&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Anaheim">http://www.tmbw.net/wiki/index.php/Talk:Anaheim</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 23:06:47 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;63.202.254.134&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 23:06:24 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;63.202.254.134&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Missing Apostrophe&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 22:52:15 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.14.23.231&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Fingertips">http://www.tmbw.net/wiki/index.php/User_talk:Fingertips</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;swartmore concert question&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 21:46:10 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Fingertips&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Fingertips">http://www.tmbw.net/wiki/index.php/User_talk:Fingertips</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 21:16:33 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 19:52:18 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.76.59.146&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 19:52:05 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.76.59.146&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_events">http://www.tmbw.net/wiki/index.php/Template:Current_events</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 19:51:49 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;69.14.23.231&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_events">http://www.tmbw.net/wiki/index.php/Template_talk:Current_events</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;sexxy&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 16:51:54 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;12.72.174.29&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Stormy_Pinkness/Interpretations">http://www.tmbw.net/wiki/index.php/Stormy_Pinkness/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 05:23:28 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;207.10.54.33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Stormy_Pinkness/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Stormy_Pinkness/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Stormy_Pinkness/Interpretations">http://www.tmbw.net/wiki/index.php/Stormy_Pinkness/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 05:22:46 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;207.10.54.33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Stormy_Pinkness/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Stormy_Pinkness/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:TheBlunderbuss">http://www.tmbw.net/wiki/index.php/User_talk:TheBlunderbuss</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;response to blunderbuss&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 04:46:07 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:TheBlunderbuss">http://www.tmbw.net/wiki/index.php/User_talk:TheBlunderbuss</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 04:44:33 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Purple_Toupee/Lyrics">http://www.tmbw.net/wiki/index.php/Purple_Toupee/Lyrics</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;fixed&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 04:44:01 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;Duke33&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Purple_Toupee/Lyrics">http://www.tmbw.net/wiki/index.php/Talk:Purple_Toupee/Lyrics</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Talk:Someone_Keeps_Moving_My_Chair/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Someone_Keeps_Moving_My_Chair/Interpretations</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 04:23:53 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;TheBlunderbuss&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Talk:Someone_Keeps_Moving_My_Chair/Interpretations">http://www.tmbw.net/wiki/index.php/Talk:Someone_Keeps_Moving_My_Chair/Interpretations</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;&gt;Uncoded coding on Purple Toupee lyric page&lt;/DESCRIPTION&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 04:07:28 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;TheBlunderbuss&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/User_talk:Duke33">http://www.tmbw.net/wiki/index.php/User_talk:Duke33</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;		&lt;ITEM _moz-userdefined=&quot;&quot;&gt;
+&gt;			
+&gt;			<a href="http://www.tmbw.net/wiki/index.php/Template:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template:Current_Tagline</a>
+&gt;			&lt;DESCRIPTION _moz-userdefined=&quot;&quot;/&gt;
+&gt;			&lt;PUBDATE _moz-userdefined=&quot;&quot;&gt;Sun, 30 Jan 2005 02:06:29 GMT&lt;/PUBDATE&gt;			&lt;DC:CREATOR _moz-userdefined=&quot;&quot;&gt;67.183.218.185&lt;/DC:CREATOR&gt;			&lt;COMMENTS _moz-userdefined=&quot;&quot;&gt;<a href="http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline">http://www.tmbw.net/wiki/index.php/Template_talk:Current_Tagline</a>&lt;/COMMENTS&gt;		&lt;/ITEM&gt;
+&gt;	&lt;/CHANNEL&gt;
+&gt;&lt;/RSS&gt;&lt;/BODY&gt;&lt;/HTML&gt;</span ></pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-02 22:09:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are a bunch of blank lines either at the beginning or the end of your LocalSettings.php file. Remove them.
+
+And please, don't post large amounts of markup in comments. It makes the page hard to read, and is particularly redundant when 
+you're pasting the contents of an attached file (but now appearing with incorrect formatting).</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dr. Mike</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-09 14:30:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have users reporting this error as well.  I've double checked.  There are not empty lines at the beginning 
+or the end of my LocalSettings.php file.  Any other suggestions?
+
+<a href="http://www.tdjc.net/w/index.php?title=Special:Newpages&amp;feed=rss">http://www.tdjc.net/w/index.php?title=Special:Newpages&amp;feed=rss</a>
+
+Thanks,
+-drmike</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-09 21:22:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You've either got blank lines at the beginning or end of LocalSettings.php, or some other file that 
+you've modified in the distribution, or you've changed the code to echo blank lines before the feed 
+output code sends its headers.
+
+Please check all the .php files for such modifications.
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Keppler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-10 17:53:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've just visited the URL for the bug with several feed readers including
+Firefox. All worked fine and I didn't find empty lines in any feed sources. I
+guess the reporter fixed the problem on his side.
+
+Therefor closing this bug as WORKSFORME.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">produnis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-13 08:53:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >i have the same problem at:
+<a href="http://www.pflegewiki.de/index.php?title=Spezial:Recentchanges&amp;feed=rss">http://www.pflegewiki.de/index.php?title=Spezial:Recentchanges&amp;feed=rss</a>
+
+i checked localSettings.php for blank lines and found none...
+
+anyone an idea ?
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1453#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">produnis</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-13 08:55:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >ahh... i think i got this error because of blank lines in some &quot;extensions&quot;
+which are included in LocalSettings.php
+
+sorry for posting before analyzing the hole code
+:)</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1453&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1453">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1453">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1453">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1453&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1453" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1453&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419358973-PAGvRM379vpqhUSStXJHI9HnSCHttJLa4zi4zRC713I">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

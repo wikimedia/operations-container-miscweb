@@ -1,0 +1,1420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4247 &ndash; WP:IT and WSource:IT Request for 2 new namespaces</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4247&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4247">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4247">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4247">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4247 – WP:IT and WSource:IT Request for 2 new namespaces",  
+                             "show_bug.cgi?id=4247" );
+        document.title = "Bug 4247 – WP:IT and WSource:IT Request for 2 new namespaces";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4247 – WP:IT and WSource:IT Request for 2 new namespaces", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_Wikimedia bz_component_General_Unknown bz_bug_4247 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2006-01-10 18:49:02 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2006-01-10 18:49:02">
+  <input type="hidden" name="longdesclength" value="10">
+  <input type="hidden" name="id" value="4247">
+  <input type="hidden" name="token" value="1419363299-Yh8RBWnCyX-a4XZLyzv9OK10XZtRv1VGBF6Ek5y3yl0">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4247"><b>Bug&nbsp;4247</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">WP:IT and WSource:IT Request for 2 new namespaces</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>WP:IT and WSource:IT Request for 2 new namespaces
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('WP:IT and WSource:IT Request for 2 new namespaces', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=4247">1 
+            vote</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4247#vote_4247">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Enable subpages for 2 new namespaces (#4247) at Italian Wikipedia and Italian Wikisource"
+   href="show_bug.cgi?id=4248">4248</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4247&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4247">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-12-11 13:02 UTC by <span class="vcard"><span class="fn">Frieda</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2006-01-10 18:49 UTC 
+      (<a href="show_activity.cgi?id=4247">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>0 
+          users
+        <div id="cc_edit_area">
+          <br>
+        </div>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=4247&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Frieda</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:02:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >as English, German and French Wikipedia it.wiki likes to have a
+namespace &quot;Portale&quot; too [we had many discussions on our village pump, last one is 
+available here:
+&lt;<a href="http://it.wikipedia.org/wiki/Wikipedia:Bar#Portali_come_namespace:_attiviamo">http://it.wikipedia.org/wiki/Wikipedia:Bar#Portali_come_namespace:_attiviamo</a>.
+3F&gt;]
+
+it.wikisource is already using a pseudo-namespace &quot;Autore&quot; [take a look here:
+&lt;<a href="http://it.wikisource.org/w/index.php?title=Speciale%3AAllpages&amp;from=Autore">http://it.wikisource.org/w/index.php?title=Speciale%3AAllpages&amp;from=Autore</a>%
+3A&amp;namespace=0&gt;],
+is it possible, instead, having a &quot;real&quot; namespace &quot;Autore&quot;?
+
+thanks.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Frieda</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:07:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Upgrade ;-) 
+Talk namespaces:
+* Autore -&gt; Discussioni autore
+* Portale -&gt; Discussioni portale</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:12:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Made modifications:
+
+'itwiki'       =&gt; array( 100 =&gt; 'Portale', 101 =&gt; 'Discussioni_portale'),
+'itwikisource' =&gt; array( 102 =&gt; 'Autore' , 103 =&gt; 'Discussioni_autore'),
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:13:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All conflicts for itwiki fixed automaticly:
+
+
+Checking namespace 100: &quot;Portale&quot;
+... 20 conflicts detected:
+... 242326 (0,&quot;Portale:Fantascienza&quot;) -&gt; (100,&quot;Fantascienza&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFantascienza">Portale:Fantascienza</a>]]
+... resolving on page... ok.
+... 241780 (0,&quot;Portale:Filosofia&quot;) -&gt; (100,&quot;Filosofia&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia">Portale:Filosofia</a>]]
+... resolving on page... ok.
+... 241797 (0,&quot;Portale:Filosofia/Correnti_specifiche&quot;) -&gt;
+(100,&quot;Filosofia/Correnti_specifiche&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FCorrenti%20specifiche">Portale:Filosofia/Correnti specifiche</a>]]
+... resolving on page... ok.
+... 241789 (0,&quot;Portale:Filosofia/Discipline_classiche&quot;) -&gt;
+(100,&quot;Filosofia/Discipline_classiche&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FDiscipline%20classiche">Portale:Filosofia/Discipline classiche</a>]]
+... resolving on page... ok.
+... 241790 (0,&quot;Portale:Filosofia/Discipline_tematiche&quot;) -&gt;
+(100,&quot;Filosofia/Discipline_tematiche&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FDiscipline%20tematiche">Portale:Filosofia/Discipline tematiche</a>]]
+... resolving on page... ok.
+... 241786 (0,&quot;Portale:Filosofia/Mancanti&quot;) -&gt; (100,&quot;Filosofia/Mancanti&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FMancanti">Portale:Filosofia/Mancanti</a>]]
+... resolving on page... ok.
+... 241788 (0,&quot;Portale:Filosofia/Menu&quot;) -&gt; (100,&quot;Filosofia/Menu&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FMenu">Portale:Filosofia/Menu</a>]]
+... resolving on page... ok.
+... 241792 (0,&quot;Portale:Filosofia/Metodi&quot;) -&gt; (100,&quot;Filosofia/Metodi&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FMetodi">Portale:Filosofia/Metodi</a>]]
+... resolving on page... ok.
+... 241785 (0,&quot;Portale:Filosofia/Nuovi&quot;) -&gt; (100,&quot;Filosofia/Nuovi&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FNuovi">Portale:Filosofia/Nuovi</a>]]
+... resolving on page... ok.
+... 241798 (0,&quot;Portale:Filosofia/Pagine_utili&quot;) -&gt;
+(100,&quot;Filosofia/Pagine_utili&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FPagine%20utili">Portale:Filosofia/Pagine utili</a>]]
+... resolving on page... ok.
+... 241796 (0,&quot;Portale:Filosofia/Posizioni&quot;) -&gt; (100,&quot;Filosofia/Posizioni&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FPosizioni">Portale:Filosofia/Posizioni</a>]]
+... resolving on page... ok.
+... 241794 (0,&quot;Portale:Filosofia/Scuole&quot;) -&gt; (100,&quot;Filosofia/Scuole&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FScuole">Portale:Filosofia/Scuole</a>]]
+... resolving on page... ok.
+... 241787 (0,&quot;Portale:Filosofia/Sezione&quot;) -&gt; (100,&quot;Filosofia/Sezione&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FSezione">Portale:Filosofia/Sezione</a>]]
+... resolving on page... ok.
+... 241782 (0,&quot;Portale:Filosofia/Titolo&quot;) -&gt; (100,&quot;Filosofia/Titolo&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AFilosofia%2FTitolo">Portale:Filosofia/Titolo</a>]]
+... resolving on page... ok.
+... 244639 (0,&quot;Portale:Storia&quot;) -&gt; (100,&quot;Storia&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AStoria">Portale:Storia</a>]]
+... resolving on page... ok.
+... 244647 (0,&quot;Portale:Storia/Articolo&quot;) -&gt; (100,&quot;Storia/Articolo&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AStoria%2FArticolo">Portale:Storia/Articolo</a>]]
+... resolving on page... ok.
+... 250139 (0,&quot;Portale:Storia/Storico&quot;) -&gt; (100,&quot;Storia/Storico&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AStoria%2FStorico">Portale:Storia/Storico</a>]]
+... resolving on page... ok.
+... 244656 (0,&quot;Portale:Storia/biografia&quot;) -&gt; (100,&quot;Storia/biografia&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AStoria%2Fbiografia">Portale:Storia/biografia</a>]]
+... resolving on page... ok.
+... 244642 (0,&quot;Portale:Storia/chiave&quot;) -&gt; (100,&quot;Storia/chiave&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AStoria%2Fchiave">Portale:Storia/chiave</a>]]
+... resolving on page... ok.
+... 244653 (0,&quot;Portale:Storia/titolo&quot;) -&gt; (100,&quot;Storia/titolo&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Portale%3AStoria%2Ftitolo">Portale:Storia/titolo</a>]]
+... resolving on page... ok.
+Checking namespace 101: &quot;Discussioni_portale&quot;
+... no conflicts detected!
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:14:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All 64 conflicts for itwikisource fixed automaticly:
+
+Checking namespace 102: &quot;Autore&quot;
+... 64 conflicts detected:
+... 1346 (0,&quot;Autore:Alessandro_Manzoni&quot;) -&gt; (102,&quot;Alessandro_Manzoni&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AAlessandro%20Manzoni">Autore:Alessandro Manzoni</a>]]
+... resolving on page... ok.
+... 2249 (0,&quot;Autore:Bonvesin_de_la_Riva&quot;) -&gt; (102,&quot;Bonvesin_de_la_Riva&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ABonvesin%20de%20la%20Riva">Autore:Bonvesin de la Riva</a>]]
+... resolving on page... ok.
+... 1510 (0,&quot;Autore:Brunetto_Latini&quot;) -&gt; (102,&quot;Brunetto_Latini&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ABrunetto%20Latini">Autore:Brunetto Latini</a>]]
+... resolving on page... ok.
+... 1906 (0,&quot;Autore:Carlo_Collodi&quot;) -&gt; (102,&quot;Carlo_Collodi&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ACarlo%0ACollodi">Autore:Carlo
+Collodi</a>]]
+... resolving on page... ok.
+... 2798 (0,&quot;Autore:Carlo_Goldoni&quot;) -&gt; (102,&quot;Carlo_Goldoni&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ACarlo%0AGoldoni">Autore:Carlo
+Goldoni</a>]]
+... resolving on page... ok.
+... 1569 (0,&quot;Autore:Carlo_Porta&quot;) -&gt; (102,&quot;Carlo_Porta&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ACarlo%20Porta">Autore:Carlo Porta</a>]]
+... resolving on page... ok.
+... 1557 (0,&quot;Autore:Cecco_Angiolieri&quot;) -&gt; (102,&quot;Cecco_Angiolieri&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ACecco%20Angiolieri">Autore:Cecco Angiolieri</a>]]
+... resolving on page... ok.
+... 1513 (0,&quot;Autore:Cesare_Beccaria&quot;) -&gt; (102,&quot;Cesare_Beccaria&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ACesare%0ABeccaria">Autore:Cesare
+Beccaria</a>]]
+... resolving on page... ok.
+... 1893 (0,&quot;Autore:Compiuta_Donzella&quot;) -&gt; (102,&quot;Compiuta_Donzella&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ACompiuta%20Donzella">Autore:Compiuta Donzella</a>]]
+... resolving on page... ok.
+... 2930 (0,&quot;Autore:Dante&quot;) -&gt; (102,&quot;Dante&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ADante">Autore:Dante</a>]]
+... resolving on page... ok.
+... 1312 (0,&quot;Autore:Dante_Alighieri&quot;) -&gt; (102,&quot;Dante_Alighieri&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ADante%0AAlighieri">Autore:Dante
+Alighieri</a>]]
+... resolving on page... ok.
+... 1542 (0,&quot;Autore:Felice_Romani&quot;) -&gt; (102,&quot;Felice_Romani&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFelice%0ARomani">Autore:Felice
+Romani</a>]]
+... resolving on page... ok.
+... 1514 (0,&quot;Autore:Filippo_Tommaso_Marinetti&quot;) -&gt;
+(102,&quot;Filippo_Tommaso_Marinetti&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFilippo%20Tommaso%20Marinetti">Autore:Filippo Tommaso Marinetti</a>]]
+... resolving on page... ok.
+... 2253 (0,&quot;Autore:Filippo_Turati&quot;) -&gt; (102,&quot;Filippo_Turati&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFilippo%0ATurati">Autore:Filippo
+Turati</a>]]
+... resolving on page... ok.
+... 1555 (0,&quot;Autore:Folgóre_di_San_Gimignano&quot;) -&gt;
+(102,&quot;Folgóre_di_San_Gimignano&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFolg%C3%B3re%20di%20San%20Gimignano">Autore:Folgóre di San Gimignano</a>]]
+... resolving on page... ok.
+... 1300 (0,&quot;Autore:Francesco_Bacone&quot;) -&gt; (102,&quot;Francesco_Bacone&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFrancesco%20Bacone">Autore:Francesco Bacone</a>]]
+... resolving on page... ok.
+... 1951 (0,&quot;Autore:Francesco_Petrarca&quot;) -&gt; (102,&quot;Francesco_Petrarca&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFrancesco%20Petrarca">Autore:Francesco Petrarca</a>]]
+... resolving on page... ok.
+... 1506 (0,&quot;Autore:Franz_Kafka&quot;) -&gt; (102,&quot;Franz_Kafka&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFranz%20Kafka">Autore:Franz Kafka</a>]]
+... resolving on page... ok.
+... 1522 (0,&quot;Autore:François_Villon&quot;) -&gt; (102,&quot;François_Villon&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFran%C3%A7ois%20Villon">Autore:François Villon</a>]]
+... resolving on page... ok.
+... 3219 (0,&quot;Autore:Fratelli_Grimm&quot;) -&gt; (102,&quot;Fratelli_Grimm&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AFratelli%0AGrimm">Autore:Fratelli
+Grimm</a>]]
+... resolving on page... ok.
+... 2928 (0,&quot;Autore:Galileo_Galilei&quot;) -&gt; (102,&quot;Galileo_Galilei&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGalileo%20Galilei">Autore:Galileo Galilei</a>]]
+... resolving on page... ok.
+... 1307 (0,&quot;Autore:Giacomo_Leopardi&quot;) -&gt; (102,&quot;Giacomo_Leopardi&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiacomo%20Leopardi">Autore:Giacomo Leopardi</a>]]
+... resolving on page... ok.
+... 2071 (0,&quot;Autore:Giacomo_da_Lentini&quot;) -&gt; (102,&quot;Giacomo_da_Lentini&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiacomo%20da%20Lentini">Autore:Giacomo da Lentini</a>]]
+... resolving on page... ok.
+... 2271 (0,&quot;Autore:Giambattista_Basile&quot;) -&gt; (102,&quot;Giambattista_Basile&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiambattista%20Basile">Autore:Giambattista Basile</a>]]
+... resolving on page... ok.
+... 1305 (0,&quot;Autore:Giambattista_Marino&quot;) -&gt; (102,&quot;Giambattista_Marino&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiambattista%20Marino">Autore:Giambattista Marino</a>]]
+... resolving on page... ok.
+... 2245 (0,&quot;Autore:Giosuè_Carducci&quot;) -&gt; (102,&quot;Giosuè_Carducci&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiosu%C3%A8%0ACarducci">Autore:Giosuè
+Carducci</a>]]
+... resolving on page... ok.
+... 1712 (0,&quot;Autore:Giovanni_Boccaccio&quot;) -&gt; (102,&quot;Giovanni_Boccaccio&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiovanni%20Boccaccio">Autore:Giovanni Boccaccio</a>]]
+... resolving on page... ok.
+... 2108 (0,&quot;Autore:Giovanni_Della_Casa&quot;) -&gt; (102,&quot;Giovanni_Della_Casa&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiovanni%20Della%20Casa">Autore:Giovanni Della Casa</a>]]
+... resolving on page... ok.
+... 1531 (0,&quot;Autore:Giovanni_Meli&quot;) -&gt; (102,&quot;Giovanni_Meli&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiovanni%0AMeli">Autore:Giovanni
+Meli</a>]]
+... resolving on page... ok.
+... 1568 (0,&quot;Autore:Giovanni_Pico_della_Mirandola&quot;) -&gt;
+(102,&quot;Giovanni_Pico_della_Mirandola&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiovanni%20Pico%20della%20Mirandola">Autore:Giovanni Pico della Mirandola</a>]]
+... resolving on page... ok.
+... 2246 (0,&quot;Autore:Giovanni_Verga&quot;) -&gt; (102,&quot;Giovanni_Verga&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiovanni%0AVerga">Autore:Giovanni
+Verga</a>]]
+... resolving on page... ok.
+... 1627 (0,&quot;Autore:Giuseppe_Gioacchino_Belli&quot;) -&gt;
+(102,&quot;Giuseppe_Gioacchino_Belli&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiuseppe%20Gioacchino%20Belli">Autore:Giuseppe Gioacchino Belli</a>]]
+... resolving on page... ok.
+... 2185 (0,&quot;Autore:Giuseppe_Parini&quot;) -&gt; (102,&quot;Giuseppe_Parini&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGiuseppe%20Parini">Autore:Giuseppe Parini</a>]]
+... resolving on page... ok.
+... 1660 (0,&quot;Autore:Goffredo_Mameli&quot;) -&gt; (102,&quot;Goffredo_Mameli&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGoffredo%20Mameli">Autore:Goffredo Mameli</a>]]
+... resolving on page... ok.
+... 1502 (0,&quot;Autore:Grazia_Deledda&quot;) -&gt; (102,&quot;Grazia_Deledda&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGrazia%0ADeledda">Autore:Grazia
+Deledda</a>]]
+... resolving on page... ok.
+... 1535 (0,&quot;Autore:Guido_Cavalcanti&quot;) -&gt; (102,&quot;Guido_Cavalcanti&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGuido%20Cavalcanti">Autore:Guido Cavalcanti</a>]]
+... resolving on page... ok.
+... 3220 (0,&quot;Autore:Guido_Gozzano&quot;) -&gt; (102,&quot;Guido_Gozzano&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AGuido%0AGozzano">Autore:Guido
+Gozzano</a>]]
+... resolving on page... ok.
+... 3003 (0,&quot;Autore:Italo_Svevo&quot;) -&gt; (102,&quot;Italo_Svevo&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AItalo%20Svevo">Autore:Italo Svevo</a>]]
+... resolving on page... ok.
+... 2161 (0,&quot;Autore:Jacopone_da_Todi&quot;) -&gt; (102,&quot;Jacopone_da_Todi&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AJacopone%20da%20Todi">Autore:Jacopone da Todi</a>]]
+... resolving on page... ok.
+... 1347 (0,&quot;Autore:Karl_Marx&quot;) -&gt; (102,&quot;Karl_Marx&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AKarl%20Marx">Autore:Karl Marx</a>]]
+... resolving on page... ok.
+... 1511 (0,&quot;Autore:Ludovico_Ariosto&quot;) -&gt; (102,&quot;Ludovico_Ariosto&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ALudovico%20Ariosto">Autore:Ludovico Ariosto</a>]]
+... resolving on page... ok.
+... 1503 (0,&quot;Autore:Luigi_Pirandello&quot;) -&gt; (102,&quot;Luigi_Pirandello&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ALuigi%20Pirandello">Autore:Luigi Pirandello</a>]]
+... resolving on page... ok.
+... 1534 (0,&quot;Autore:Marco_Polo&quot;) -&gt; (102,&quot;Marco_Polo&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AMarco%20Polo">Autore:Marco Polo</a>]]
+... resolving on page... ok.
+... 1625 (0,&quot;Autore:Martin_Lutero&quot;) -&gt; (102,&quot;Martin_Lutero&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AMartin%0ALutero">Autore:Martin
+Lutero</a>]]
+... resolving on page... ok.
+... 2528 (0,&quot;Autore:Miguel_Cervantes&quot;) -&gt; (102,&quot;Miguel_Cervantes&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AMiguel%20Cervantes">Autore:Miguel Cervantes</a>]]
+... resolving on page... ok.
+... 1530 (0,&quot;Autore:Niccolò_Machiavelli&quot;) -&gt; (102,&quot;Niccolò_Machiavelli&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ANiccol%C3%B2%20Machiavelli">Autore:Niccolò Machiavelli</a>]]
+... resolving on page... ok.
+... 3033 (0,&quot;Autore:Omero&quot;) -&gt; (102,&quot;Omero&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AOmero">Autore:Omero</a>]]
+... resolving on page... ok.
+... 1610 (0,&quot;Autore:Oscar_Romero&quot;) -&gt; (102,&quot;Oscar_Romero&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AOscar%20Romero">Autore:Oscar Romero</a>]]
+... resolving on page... ok.
+... 1577 (0,&quot;Autore:Paolo_Diacono&quot;) -&gt; (102,&quot;Paolo_Diacono&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3APaolo%0ADiacono">Autore:Paolo
+Diacono</a>]]
+... resolving on page... ok.
+... 1582 (0,&quot;Autore:Pietro_Metastasio&quot;) -&gt; (102,&quot;Pietro_Metastasio&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3APietro%20Metastasio">Autore:Pietro Metastasio</a>]]
+... resolving on page... ok.
+... 1596 (0,&quot;Autore:Platone&quot;) -&gt; (102,&quot;Platone&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3APlatone">Autore:Platone</a>]]
+... resolving on page... ok.
+... 1886 (0,&quot;Autore:Primo_Levi&quot;) -&gt; (102,&quot;Primo_Levi&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3APrimo%20Levi">Autore:Primo Levi</a>]]
+... resolving on page... ok.
+... 1529 (0,&quot;Autore:René_Descartes&quot;) -&gt; (102,&quot;René_Descartes&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ARen%C3%A9%0ADescartes">Autore:René
+Descartes</a>]]
+... resolving on page... ok.
+... 1575 (0,&quot;Autore:Robert_Baden-Powell&quot;) -&gt; (102,&quot;Robert_Baden-Powell&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ARobert%20Baden-Powell">Autore:Robert Baden-Powell</a>]]
+... resolving on page... ok.
+... 2260 (0,&quot;Autore:Salvatore_Di_Giacomo&quot;) -&gt; (102,&quot;Salvatore_Di_Giacomo&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ASalvatore%20Di%20Giacomo">Autore:Salvatore Di Giacomo</a>]]
+... resolving on page... ok.
+... 1532 (0,&quot;Autore:San_Francesco_d'Assisi&quot;) -&gt; (102,&quot;San_Francesco_d'Assisi&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ASan%20Francesco%20d%27Assisi">Autore:San Francesco d'Assisi</a>]]
+... resolving on page... ok.
+... 1608 (0,&quot;Autore:Silo&quot;) -&gt; (102,&quot;Silo&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ASilo">Autore:Silo</a>]]
+... resolving on page... ok.
+... 2615 (0,&quot;Autore:Silvio_Pellico&quot;) -&gt; (102,&quot;Silvio_Pellico&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ASilvio%0APellico">Autore:Silvio
+Pellico</a>]]
+... resolving on page... ok.
+... 1525 (0,&quot;Autore:Tommaso_Campanella&quot;) -&gt; (102,&quot;Tommaso_Campanella&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ATommaso%20Campanella">Autore:Tommaso Campanella</a>]]
+... resolving on page... ok.
+... 2075 (0,&quot;Autore:Torquato_Tasso&quot;) -&gt; (102,&quot;Torquato_Tasso&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3ATorquato%0ATasso">Autore:Torquato
+Tasso</a>]]
+... resolving on page... ok.
+... 1591 (0,&quot;Autore:Ugo_Foscolo&quot;) -&gt; (102,&quot;Ugo_Foscolo&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AUgo%20Foscolo">Autore:Ugo Foscolo</a>]]
+... resolving on page... ok.
+... 1690 (0,&quot;Autore:Vincenzo_Monti&quot;) -&gt; (102,&quot;Vincenzo_Monti&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AVincenzo%0AMonti">Autore:Vincenzo
+Monti</a>]]
+... resolving on page... ok.
+... 2451 (0,&quot;Autore:Vincenzo_Russo&quot;) -&gt; (102,&quot;Vincenzo_Russo&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AVincenzo%0ARusso">Autore:Vincenzo
+Russo</a>]]
+... resolving on page... ok.
+... 1540 (0,&quot;Autore:Violante_Beatrice_di_Baviera&quot;) -&gt;
+(102,&quot;Violante_Beatrice_di_Baviera&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Autore%3AViolante%20Beatrice%20di%20Baviera">Autore:Violante Beatrice di Baviera</a>]]
+... resolving on page... ok.
+Checking namespace 103: &quot;Discussioni_autore&quot;
+... no conflicts detected!
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:15:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The changes have been made live on itwiki and itwikisources :o)
+
+Feel free to talk to devs and or reopen the bug if something
+goes wrong :o)</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Helios</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 13:48:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I see that subpages don't work...</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-11 14:00:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Subpages are a seperate issue closing.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-10 18:21:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >removed boguous url:
+<a href="http://it.wikipedia.org">http://it.wikipedia.org</a> - <a href="http://it.wikisource.org">http://it.wikisource.org</a>
+
+test links at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=it%3Atemplate%3Awikivar">it:template:wikivar</a>]] and
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=s%3Ait%3Atemplate%3Awikivar">s:it:template:wikivar</a>]] - [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikisource%3Ait%3Atemplate%3Awikivar">wikisource:it:template:wikivar</a>]] 
+<a href="http://it.wikisource.org/wiki/Template:Wikivar">http://it.wikisource.org/wiki/Template:Wikivar</a></pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4247#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-10 18:37:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Enable subpages for 2 new namespaces (#4247) at Italian Wikipedia and Italian Wikisource"
+   href="show_bug.cgi?id=4248">Bug 4248</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4247&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4247">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4247">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4247">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4247&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4247" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4247&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419363299-uVWD8SUsJvomnPsgo67-E-iIhSY5bnq-X3LjNMZtfws">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

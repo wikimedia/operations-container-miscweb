@@ -1,0 +1,2853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 505 &ndash; Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=505&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=505">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=505">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=505">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 505 – Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)",  
+                             "show_bug.cgi?id=505" );
+        document.title = "Bug 505 – Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 505 – Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_User_preferences bz_bug_505 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2008-12-22 21:55:29 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2008-12-22 21:55:29">
+  <input type="hidden" name="longdesclength" value="48">
+  <input type="hidden" name="id" value="505">
+  <input type="hidden" name="token" value="1419357420-OtSoLMUSBpFeCOeaQeoiNwH2FAeUIZNyVpUFHHwa2-U">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=505"><b>Bug&nbsp;505</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)">Specify timezones by location, to allow automatic adjustments of timeoffset a...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Specify timezones by location, to allow automatic adjustments of timeoffset and daylight saving time (DST)', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>User preferences
+    
+    (<a href="buglist.cgi?component=User%20preferences&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=505">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=505#vote_505">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://meta.wikimedia.org/wiki/Automatic_timezone_selection"><span title="http://meta.wikimedia.org/wiki/Automatic_timezone_selection">http://meta.wikimedia.org/wiki/Automa...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Time offset not calculating correctly"
+   href="show_bug.cgi?id=2004">2004</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Timezone set to GMT since update from 1.4.8 to 1.4.9"
+   href="show_bug.cgi?id=3305">3305</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - New Zealand Timezone"
+   href="show_bug.cgi?id=13648">13648</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=2004,3305,13648">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=505&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=505">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-16 07:21 UTC by <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2008-12-22 21:55 UTC 
+      (<a href="show_activity.cgi?id=505">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>12 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="azatoth">azatoth</option>
+                <option value="bjorsch">bjorsch</option>
+                <option value="brion">brion</option>
+                <option value="certain.shadow">certain.shadow</option>
+                <option value="jidanni">jidanni</option>
+                <option value="johnblumel">johnblumel</option>
+                <option value="legoktm.wikipedia">legoktm.wikipedia</option>
+                <option value="magnusrk+wiki">magnusrk+wiki</option>
+                <option value="moz">moz</option>
+                <option value="nospam">nospam</option>
+                <option value="rowan.collins">rowan.collins</option>
+                <option value="tbold63">tbold63</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=517"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">ad-hoc fix to overwrite user timezone settings - not a solution</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.76 KB,
+                patch)
+
+            <br>
+            <a href="#attach_517"
+               title="Go to the comment associated with the attachment">2005-05-10 23:48 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=517&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=518"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.76 KB,
+                patch)
+
+            <br>
+            <a href="#attach_518"
+               title="Go to the comment associated with the attachment">2005-05-11 00:44 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=518&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5500"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">A patch to allow timezone selection in user preferences</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.42 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5500"
+               title="Go to the comment associated with the attachment">2008-11-03 05:46 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5500&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5600"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Updated patch based on Brion's comments</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (14.15 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5600"
+               title="Go to the comment associated with the attachment">2008-12-20 15:16 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5600&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5612"
+               title="View the content of the attachment">
+          <b>Modified patch to fix PST bug, tweak text</b></a>
+
+          <span class="bz_attach_extra_info">
+              (14.17 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5612"
+               title="Go to the comment associated with the attachment">2008-12-22 21:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5612&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (4)
+        </span>
+        <a href="attachment.cgi?bugid=505&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-16 07:21:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I propose to add to the recently discussed &quot;single-login&quot; (one user account
+accross several wikipedia servers) the following feature regarding a single
+timezone setting for such users:
+
+One user lives usually in one TIMEZONE linked to a location and having certain
+properties regarding &quot;timecorrection&quot; value and daylight saving time changes
+twice a year.
+
+I wish to get rid of the manual setting of my timezone (timeoffset to UTC) when
+I have a single-login; the timezone setting should reflect not only the
+tiemcorrection to UTC, but also the changes according to national or
+international or local daylight saving time changes. It can be linked to a
+country code for most of the countries and for huge countries like the U.S.A. we
+need a more detailed setting.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-16 07:23:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I fail to see what this has to do with single-login. Pruned unrelated items from summary.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-16 16:27:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Changed pointer to page
+<a href="http://meta.wikimedia.org/wiki/Automatic_timezone_selection">http://meta.wikimedia.org/wiki/Automatic_timezone_selection</a> . Brion: you are
+right, I agree. Tom</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-01 01:34:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is there anyone dealing with enhancement feature ?
+
+It would be nice to have a quick solution which could be patched into running
+wikis (to adjust timezones automatically - do we have a script for this ?)
+
+Okay, I understand that not all users can simply get a (-01:00) offset to their
+timecorrections, but perhaps someone has a neat solution.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-11-08 22:14:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think, that TIMEZONE is a user option and when the wiki would also know the
+country, any change from daylight saving time and back for certain users can be
+automatically done by the wiki.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-28 07:32:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bring forward / follow up posting
+
+In four weeks, most of the US states and also European countries will change to
+daylight saving time (&quot;Sommerzeit&quot;) --&gt; timezone offset of many users need to be
+adapted individually.
+
+What I proposed within this enhancement report was, to switch timezones
+automatically according to the affected countries (for users who have opted-in
+such a new method).
+
+Basically and allow me to repeat: if a user lives in country X and has indicated
+this in a new user preference option, and has opted-in, then the change to or
+from daylight saving time could be done automatically by the wiki software.
+
+So, the wiki needs to know the country, in which a user lives, instead of the
+timezone. 
+
+The implementation of this enhancement requires two new options in addition to
+the old option in user preferences:
+
+* new *  &quot;user wants to stick to UTC&quot; (proposed as the new default for new account)
+* new *  &quot;user wants local time of country XY&quot;; country = XY
+* old *  &quot;user wants to have fixed offset to UTC&quot;; timezone/offset = hh:mm (this
+is the current method)
+
+See also <a href="http://meta.wikimedia.org/wiki/Automatic_timezone_selection">http://meta.wikimedia.org/wiki/Automatic_timezone_selection</a> - for
+commenting</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-28 19:45:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[Changed summary to better reflect what's being discussed. It's not about
+&quot;automatic selection&quot; so much as a different way of specifying (location as opp.
+offset), and an automatic adjustment of the offset based on that specification.]
+
+There's probably a neat way of dealing with location-&gt;{offset and DST} within
+PHP but for the curious, I followed bread-crumbs from the GNU C library
+(&quot;glibc&quot;/&quot;libc6&quot;) to a package called &quot;tzdata&quot;, which can be retrieved from
+<a href="ftp://elsie.nci.nih.gov/pub/">ftp://elsie.nci.nih.gov/pub/</a>  Not only does this contain extensive details of
+offsets and &quot;savings&quot; for geographic locations, it has them throughout history
+as well. Just reading through the files, with their copious comments and
+historical notes, is kind of fascinating... :)</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-18 01:45:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I just want to bring this forward - there are just a couple of days left until
+the time shift to daylight saving time (&quot;Sommerzeit&quot;...).
+
+Wouldn't it be great to help many of the Wikipedia users by adapting the time
+offset automatically (after they have set their location timezone, which is
+neither forseen in the 1.3.x nor 1.4 ) ?
+
+I just want to encourage some of you to eventually write a &quot;sniplet&quot; to adapt
+for the majority of users (US citizens and Mid-Europeans) the time offset next
+week when it changes: 
+
+    automatically.
+
+Just an idea.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-18 19:57:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c7">comment #7</a>)
+<span class="quote">&gt; I just want to encourage some of you to eventually write a &quot;sniplet&quot; to adapt
+&gt; for the majority of users (US citizens and Mid-Europeans) the time offset next
+&gt; week when it changes: </span >
+
+Nice though this would be, I very much doubt that this could be implemented in
+time for this changeover, for a number or reasons:
+* Firstly, this is a fairly major change (involving, for one thing, storing the
+preference in a completely different way), and 1.4.x is &quot;frozen&quot; for new
+features already; it's therefore most likely to come in 1.5, or at best after
+the formal release of 1.4.0
+* Secondly, in order to actually be useful, every user would have to change over
+to specifying a location rather an offset (doing this automatically wouldn't be
+appropriate, as we wouldn't be able to tell apart multiple locations with the
+same offset but different &quot;DST&quot; rules). Granted, at least some of those affected
+will go in and correct the offset anyway (and probably spot the new option), but
+that still means the first *automatic* adjustment would be this autumn at best.
+* Thirdly, and most importantly, there just aren't enough active developers, and
+this isn't a high enough priority, for it to be realistically developed and
+tested in such a short time.
+
+It is a nice idea though, and if I get round to it I'll have a look at what
+implementing it would involve, with an eye to it perhaps being in place (for
+those who've spotted it) by the *end* of summertime.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-18 23:24:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c8">comment #8</a>)
+<span class="quote">&gt; It is a nice idea though, and if I get round to it I'll have a look at what
+&gt; implementing it would involve, with an eye to it perhaps being in place (for
+&gt; those who've spotted it) by the *end* of summertime.</span >
+Rowan, thank you.
+
+I created this bugzilla in September 2004, just two weeks before the last time
+change, and my only intention was now to bring it back to our mind, which was
+successful.
+
+Perhaps we all find a solution in the coming months (I'll help to do this).
+Thanks anyway for your appreciated comments.
+Tom</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-26 08:26:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Summary:
+We could start something by using the TLD suffixes of the users' e-mail
+addresses, as .DE .CH .FR .CH .AT addresses and many more could used as a rough
+indication, in which timezone these user &quot;live&quot; !! !! All of them needs
+certainly a time shift tonight.
+
+Long version:
+We already have this bugzilla for drafting a framework to allow *automatic
+timeshift* adjustments. Changing the user data is once needed, because we
+currently have a time*offset* value, but better need *location* information.
+
+User entries with *location* information could be automatically changed twice a
+year (goal of this bugzilla).
+
+Any volunteers to write something ?
+
+Ad-hoc proposal:
+We could start something by using the TLD suffixes of the users' e-mail
+addresses, as .DE .CH .FR .CH .AT addresses and many more could used as a rough
+indication, in which timezone these user &quot;live&quot; !! !! All of them needs
+certainly a time shift tonight.
+
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-26 08:59:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c10">comment #10</a>)
+<span class="quote">&gt; Summary:
+&gt; We could start something by using the TLD suffixes of the users' e-mail
+&gt; addresses, as .DE .CH .FR .CH .AT addresses and many more could used as a rough
+&gt; indication, in which timezone these user &quot;live&quot; !! !! All of them needs
+&gt; certainly a time shift tonight.</span >
+
+Do not apply, if the users apparently(!) prefer UTC:
+
+if TLD = .de .fr .at .ch (and so on) and current-offset &lt;&gt;'00:00' then ...
+/* apply ad-hoc patch only, if the user most probably has already chosen to use
+local time */
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-26 09:02:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >... use the top level domain of email addresses and current time offset value as
+a first indication, where the user lives
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 14:39:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c12">comment #12</a>)
+<span class="quote">&gt; ... use the top level domain of email addresses and current time offset value as
+&gt; a first indication, where the user lives</span >
+
+That's an intriguing idea - note that not all users have an e-mail address set
+at all, and that many will have .com (e.g. hotmail.com) or even &quot;foreign&quot;
+addresses. In fact, it seems to me we have several points of information which
+could be used, if technically feasible and desirable, to guess users' locations,
+namely:
+* offset currently chosen (obviously)
+* national TLD (if present) of e-mail address (if present)
+* interface language selected, if different from the site's default (e.g. on a
+multilingual site like meta, or a 2nd-language wiki, users can now select their
+first language for the interface)
+** or, on some wikis, the very fact that they *haven't* selected a different
+interface (e.g. editors on a Swedish-language wiki, whose timezone is currently
+consistent with living in Sweden, can reasonably be assumed to be in Sweden).
+
+If the available information is a) consistent, and b) provides a pretty strong
+indication that the user is in a particular region (i.e. we can assume that
+people on an obscure island that doesn't do DST won't mind all that much being
+put in the wrong location as long as they can fix it) then we can enter the
+location into their preferences instead of the bare offset.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 20:42:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c13">comment #13</a>)
+<span class="quote">&gt; &gt; ... use the top level domain of email addresses and current time offset value as
+&gt; &gt; a first indication, where the user lives
+&gt; 
+&gt; That's an intriguing idea .. In fact, it seems to me we have several points of</span >
+information which
+<span class="quote">&gt; could be used, if technically feasible and desirable, to guess users' locations,
+&gt; namely:
+&gt; * offset currently chosen (obviously)
+&gt; * national TLD (if present) of e-mail address (if present)
+&gt; * interface language selected, if different from the site's default (e.g. on a
+&gt; multilingual site like meta, or a 2nd-language wiki, users can now select their
+&gt; first language for the interface) .. 
+&gt; If the available information is a) consistent, and b) provides a pretty strong
+&gt; indication that the user is in a particular region</span >
+
+--&gt; then the wikisoftware _could_ propose an automatic change of the user
+settings - migrating from &quot;Time Offset&quot; to &quot;Time Zone&quot; settings -
+by sending out one e-mail with the suggested new setting
+(e.g. Germany-MET/MEST = mid european time and mid european summer time =
+&quot;Gesetzliche Zeit Deutschland&quot;)  which the user can accept by clicking.
+
+Dear Rowan, thanks for your contribution !</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 23:20:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c14">comment #14</a>)
+<span class="quote">&gt; --&gt; then the wikisoftware _could_ propose an automatic change of the user
+&gt; settings - migrating from &quot;Time Offset&quot; to &quot;Time Zone&quot; settings -
+&gt; by sending out one e-mail with the suggested new setting
+&gt; (e.g. Germany-MET/MEST = mid european time and mid european summer time =
+&gt; &quot;Gesetzliche Zeit Deutschland&quot;)  which the user can accept by clicking.</span >
+
+I would be extremely wary of doing this by e-mail, as people have not said that
+they wish their addresses to be used in this way (which comes rather close to
+mass-mailing) and might not be pleased at the precedent it sets. It also rules
+out making suggestions to people with no e-mail entered (e.g. by matching with
+language preferences, or even offering multiple options based purely on offset).
+
+I like the idea of &quot;offering&quot; rather than automatically changing, though -
+perhaps a message could be displayed on the site itself, similar to (or even
+just making use of) the &quot;You have new messages&quot; one. For instance, just before
+the next adjustment (October for E.U. countries) it could appear saying &quot;Your
+current settings suggest that you are in &lt;location&gt;/one of the following
+locations; by selecting the appropriate link below, you can enable the software
+to automatically adjust for 'Daylight Savings Time'/'Summer Time' on the
+appropriate dates.&quot; That way, we could just completely guess from offsets if no
+other clues were available, and show the message to *every* user; an &quot;Other&quot;
+link could take them to the appropriate preference screen to select manually.
+
+OTOH, people might find even *that* unnecessarily obtrusive, and prefer just to
+discover the new option when they get round to manually fixing the offset, I'm
+not sure...</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 23:28:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c15">comment #15</a>)
+<span class="quote">&gt; I would be extremely wary of doing this by e-mail, as people have not said that
+&gt; they wish their addresses to be used in this way</span >
+Yes, you might be right; this is why I wrote &quot;_could_ send a mail&quot; - with the
+markers. 
+I justed wanted to bring up this idea to trigger new, alternative ideas.
+Again, thanks.
+
+What's missing ? A kind of algorithm. It think, we both could start writing
+something, don't you think ?
+Should probably go into the several login code functions and also
+specialpreferences.php, I guess.
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-29 00:39:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Time offset not calculating correctly"
+   href="show_bug.cgi?id=2004">Bug 2004</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-08 19:55:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I propose, to solve also the issue of this bugzilla soon:
+
+instead of TimeOFFSET, allow users to store a TimeZONE which better reflects
+relation between servertime, localtime and UTC. 
+
+Any Windows detects timezone and daylight saving time offset, when it changes
+twice a year, quite well, why not we in MediaWiki ?
+
+Potentially blocking <a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=1002">http://bugzilla.wikipedia.org/show_bug.cgi?id=1002</a> (1.5)
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-08 20:01:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This should not be made to block <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Milestone: MediaWiki 1.5 (tracking)"
+   href="show_bug.cgi?id=1002">bug 1002</a> since this is a non-essential feature
+request.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-10 23:48:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=517" name="attach_517" title="ad-hoc fix to overwrite user timezone settings - not a solution">attachment 517</a> <a href="attachment.cgi?id=517&amp;action=edit" title="ad-hoc fix to overwrite user timezone settings - not a solution">[details]</a></span>
+ad-hoc fix to overwrite user timezone settings - not a solution
+
+This first patch is for users running a local wiki, e.g. in an intranet, and
+who want to set the display time e.g. for page history to their local time.
+With the patch the time offset is preset (fixed) and cannot be changed by users
+as long as $wgTimezoneoffsetOverwrite is set and has an value.
+
+The current fix allows them (the WikiSysops) to preset a value for the timezone
+offset, example for Mid European Summer Time: 
+
+$wgTimezoneoffsetOverwrite = '02:00';
+
+The corresponding user input form is now blinded out, but the offset value is
+shown - with the additional text &quot; (fixed)&quot;.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-11 00:44:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=518" name="attach_518" title="corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution">attachment 518</a> <a href="attachment.cgi?id=518&amp;action=edit" title="corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution">[details]</a></span>
+corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dashiva</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-04 00:16:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I suggest DST and timezone/offset be separate. &quot;Use DST&quot; should be a simple checkbox. It would save a lot of work having to guess which 
+timezones and areas (Arizona/Indiana anyone?) use DST, and would hopefully lead to the checkbox option going live fast. Yes, there would be 
+some logic needed to check for US/EU/Other start and end dates, but less so than as a combined feature.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-05 05:58:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c22">comment #22</a>)
+<span class="quote">&gt; I suggest DST and timezone/offset be separate. &quot;Use DST&quot; should be a simple</span >
+checkbox. It would save a lot of work having to guess which 
+<span class="quote">&gt; timezones and areas (Arizona/Indiana anyone?) use DST, and would hopefully</span >
+lead to the checkbox option going live fast. Yes, there would be 
+<span class="quote">&gt; some logic needed to check for US/EU/Other start and end dates, but less so</span >
+than as a combined feature.
+
+The question is, whether a &quot;daylight saving time&quot; checkbox is sufficient. For
+example: in the 70s and 80s, Europe and US had different days for changing
+from/to daylight saving time. 
+
+And, moreover, what's about countries in the southern hemisphere ? Do they
+change on the same date as the northern countries, which switch on last Saturday
+in March and October ? I have my doubts and need more information.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dashiva</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-05 18:45:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, you would still have to check which general location the user was in. However, 
+establishing start and end dates for what basically amounts to separate continents should be a 
+lot easier than doing so for every country, state or other subnational entity which may or may 
+not use DST. :)
+
+The main point is to decouple DST from time zone.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-05 19:43:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Collecting background information.
+
+[3] could be used for a built-in checker (validator) of allowed timezone codes
+and corresponding offsets
+
+Resources:
+[0] <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">http://en.wikipedia.org/wiki/Daylight_saving_time</a>
+[1] <a href="http://www.netz-tipp.de/kat/Reference/Time/Current_Time/">http://www.netz-tipp.de/kat/Reference/Time/Current_Time/</a> List of _good_ pointer
+[2] <a href="http://www.worldtimezone.com/">http://www.worldtimezone.com/</a>  A world map with inserted clocks for every
+time zone in the world.
+[3] <a href="http://www.worldtimezone.com/wtz-names/timezonenames.html">http://www.worldtimezone.com/wtz-names/timezonenames.html</a> All time zone
+names and offsets
+[4]
+<a href="http://www.nmm.ac.uk/site/request/setTemplate:singlecontent/contentTypeA/conWebDoc/contentId/344">http://www.nmm.ac.uk/site/request/setTemplate:singlecontent/contentTypeA/conWebDoc/contentId/344</a>
+Article from Royal Observatory Greenwich on European summer time, daylight
+saving time.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-05 19:54:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c24">comment #24</a>)
+<span class="quote">&gt; Yes, you would still have to check which general location the user was in. </span >
+This might be not sufficient, see below
+
+<span class="quote">&gt; establishing start and end dates for what basically amounts to separate</span >
+continents should be a 
+<span class="quote">&gt; lot easier than doing so for every country, state or other subnational entity</span >
+which may or may 
+<span class="quote">&gt; not use DST. :)
+&gt; 
+&gt; The main point is to decouple DST from time zone.</span >
+
+Yes and no. A single checkbox is not giving enough information, because there
+might be areas having more than two different offsets, let me cite from DST
+article on enwiki <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">http://en.wikipedia.org/wiki/Daylight_saving_time</a>
+
+&quot;DST commonly begins in the Northern Hemisphere on either the first Sunday in
+April or the last Sunday in March, and ends on the last Sunday in October. In
+the Southern Hemisphere, the beginning and ending dates are switched (thus the
+time difference between, e.g., the United Kingdom and Chile may be three, four,
+or five hours).&quot;
+
+--&gt; &quot;thus the time difference between, e.g., the United Kingdom and Chile may be
+three, four, or five hours).&quot;
+
+
+&quot;Australia has a mixed implementation of daylight saving time. During winter it
+has three time zones, but when daylight saving time is in effect, it has five
+time zones (mostly differing by 30 minutes) ranging from UTC+8 to UTC+11.
+Although there have been several referenda on the topic, Western Australia, the
+Northern Territory and Queensland have not adopted the practice. As a result,
+the tropical regions of the country do not observe daylight saving.
+Interestingly, during daylight saving time, South Australia observes a time
+later than Queensland, despite the latter being almost entirely further east.
+Tasmania starts DST earlier than the rest of the country, usually at the start
+of October.&quot;
+
+</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-05 20:02:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So, this bugzilla has now enough information to program 'something'.
+
+</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-05 20:40:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Collecting background information, added [5]
+[3] could be used for a built-in checker (validator) of allowed timezone codes
+and corresponding offsets
+ 
+Resources:
+[0] <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">http://en.wikipedia.org/wiki/Daylight_saving_time</a>
+[1] <a href="http://www.netz-tipp.de/kat/Reference/Time/Current_Time/">http://www.netz-tipp.de/kat/Reference/Time/Current_Time/</a> List of _good_ pointer
+[2] <a href="http://www.worldtimezone.com/">http://www.worldtimezone.com/</a>  A world map with inserted clocks for every
+time zone in the world.
+[3] <a href="http://www.worldtimezone.com/wtz-names/timezonenames.html">http://www.worldtimezone.com/wtz-names/timezonenames.html</a> All time zone
+names and offsets
+[4]
+<a href="http://www.nmm.ac.uk/site/request/setTemplate:singlecontent/contentTypeA/conWebDoc/contentId/344">http://www.nmm.ac.uk/site/request/setTemplate:singlecontent/contentTypeA/conWebDoc/contentId/344</a>
+Article from Royal Observatory Greenwich on European summer time, daylight
+saving time.
+[5] <a href="http://www.timeanddate.com/time/">http://www.timeanddate.com/time/</a> comprehensive information about DST; tables
+of DST changes date
+
+
+</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-09 19:32:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Collecting background information, added [3a]
+[3] could be used for a built-in checker (validator) of allowed timezone codes
+and corresponding offsets
+  
+Resources:
+[0] <a href="http://en.wikipedia.org/wiki/Daylight_saving_time">http://en.wikipedia.org/wiki/Daylight_saving_time</a>
+[1] <a href="http://www.netz-tipp.de/kat/Reference/Time/Current_Time/">http://www.netz-tipp.de/kat/Reference/Time/Current_Time/</a> List of _good_ pointer
+[2] <a href="http://www.worldtimezone.com/">http://www.worldtimezone.com/</a>  A world map with inserted clocks for every
+time zone in the world.
+[3] <a href="http://www.worldtimezone.com/wtz-names/timezonenames.html">http://www.worldtimezone.com/wtz-names/timezonenames.html</a> All time zone
+names and offsets
+[3a] <a href="http://www.worldtimezone.com/daylight.html">http://www.worldtimezone.com/daylight.html</a> all DST times and changes
+[4]
+<a href="http://www.nmm.ac.uk/site/request/setTemplate:singlecontent/contentTypeA/conWebDoc/contentId/344">http://www.nmm.ac.uk/site/request/setTemplate:singlecontent/contentTypeA/conWebDoc/contentId/344</a>
+ Article from Royal Observatory Greenwich on European summer time, daylight
+saving time.
+[5] <a href="http://www.timeanddate.com/time/">http://www.timeanddate.com/time/</a> comprehensive information about DST; tables
+of DST changes date</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-09 19:39:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=505#c29">comment #29</a>)
+<span class="quote">&gt; [3a] <a href="http://www.worldtimezone.com/daylight.html">http://www.worldtimezone.com/daylight.html</a> all DST times and changes</span >
+
+I just tried to contact the webmasters of this great page. If they deliver me
+the data in _table_form_, such a table could be straightforward used to generate
+now and then an option box in user preferences.
+
+Users could then select their country (or timezone code) and timeoffsets could
+be adjusted by the wiki automatically when DST applies or not.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-09 19:41:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >changed title</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-10 15:08:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sniplet from account management page of <a href="http://sourceforge.net/account/">http://sourceforge.net/account/</a> - if you
+have an account.
+
+hundreds of lines deleted:
+
+		&lt;select NAME=&quot;timezone&quot;&gt;
+				&lt;option VALUE=&quot;US/Alaska&quot;&gt;US/Alaska&lt;/option&gt;
+			         &lt;option VALUE=&quot;US/Aleutian&quot;&gt;US/Aleutian&lt;/option&gt;
+
+				&lt;option VALUE=&quot;US/Arizona&quot;&gt;US/Arizona&lt;/option&gt;
+				&lt;option VALUE=&quot;US/Central&quot;&gt;US/Central&lt;/option&gt;
+				&lt;option VALUE=&quot;US/Eastern&quot;&gt;US/Eastern&lt;/option&gt;
+				&lt;option VALUE=&quot;US/East-Indiana&quot;&gt;US/East-Indiana&lt;/option&gt;
+				&lt;option VALUE=&quot;Pacific/Fakaofo&quot;&gt;Pacific/Fakaofo&lt;/option&gt;
+				&lt;option VALUE=&quot;Pacific/Fiji&quot;&gt;Pacific/Fiji&lt;/option&gt;
+				&lt;option VALUE=&quot;ROK&quot;&gt;ROK&lt;/option&gt;
+				&lt;option VALUE=&quot;Singapore&quot;&gt;Singapore&lt;/option&gt;
+				&lt;option VALUE=&quot;Turkey&quot;&gt;Turkey&lt;/option&gt;
+				&lt;option VALUE=&quot;UCT&quot;&gt;UCT&lt;/option&gt;
+				&lt;option VALUE=&quot;Universal&quot;&gt;Universal&lt;/option&gt;
+				&lt;option VALUE=&quot;UTC&quot;&gt;UTC&lt;/option&gt;
+				&lt;option VALUE=&quot;WET&quot;&gt;WET&lt;/option&gt;
+				&lt;option VALUE=&quot;Zulu&quot;&gt;Zulu&lt;/option&gt;
+		&lt;/select&gt;&lt;/td&gt;
+
+</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-28 20:51:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See provisionally
+<a href="http://meta.wikimedia.org/wiki/MediaWiki_FAQ#How_do_I_set_the_timezone_for_my_MediaWiki.3F">http://meta.wikimedia.org/wiki/MediaWiki_FAQ#How_do_I_set_the_timezone_for_my_MediaWiki.3F</a></pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Arthur</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-30 09:01:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Timezone set to GMT since update from 1.4.8 to 1.4.9"
+   href="show_bug.cgi?id=3305">Bug 3305</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-30 16:45:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=518" name="attach_518" title="corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution">attachment 518</a> <a href="attachment.cgi?id=518&amp;action=edit" title="corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution">[details]</a></span>
+corrected two typos. Ad-hoc fix to simply overwrite user timezone settings - not a solution
+
+This patch is fully obsolete, because the $wgLocalTZoffset variable serves the
+same purpose.
+
+I simply did not know about that variable, because it is/was not listed in
+DefaultSettings.php.
+
+Attention: currently $wgLocalTZoffset only allows to set non-fractional hour
+offsets, examples:
+
+$wgLocalTZOffset = '+2'; (to display all date/times in a mediawiki with an
+offset of +2 hours to the servertime, most often UTC.) Further reading in
+<a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=3305">http://bugzilla.wikipedia.org/show_bug.cgi?id=3305</a> .</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-23 20:31:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >one week left to implement this :-((</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-15 18:31:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is anyone working on a solution/implementation of that ? It's also a long-felt need.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Evan Prodromou</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-06 02:38:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is an excellent timezone database at <a href="http://www.twinsun.com/tz/tz-link.htm">http://www.twinsun.com/tz/tz-link.htm</a>
+that maps geographical locations to timezones. Since we now accept timezones at
+the config level in these formats (!), it's probably about time we accepted them
+as a user config.
+
+Considering that hundreds of thousands of people have customized time offsets on
+<span class="quote">&gt;1000 MW wikis, it makes sense to leave the existing TZ offset in the UI, and</span >
+use it only when the timezone setting is not set. Like:
+
+Choose a timezone: [America/Montreal ▼]
+Or specify tz offset: [-4:00]
+
+</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-10-28 16:40:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >is there any progress on this bug? Had to change the diff manually again :( </pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-11-30 21:31:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Basically we either have to rely on the operating system's time zone information or PHP's time zone information.
+
+The OS might be tricky as:
+
+a) Accessing that information will be OS-dependent (finding a list of available zones)
+
+b) Presenting that list in a localizable manner may be tricky
+
+c) The TZ info might not be reliable -- the United States, New Zealand, and parts of Australia have changed their daylight saving time rules in the last couple of years. Depending on your OS, whether you've applied updates, and even whether those updates are *available*, the OS may have incorrect results.
+
+
+PHP's build-in TZ info has some the same problems, plus it might be out of sync with the OS and is only available in recent versions of PHP.
+
+It may be best if some interested party dives into the PHP datetime functions and just codes up something that works on PHP 5.1 and later (or if necessary, 5.2 and later). Then at least it should be self-consistent. :)</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-20 05:34:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All I know is here I am looking at
+ Time zone
+ Server time	05:24
+ Local time	13:24
+ Offset¹
+ ¹The number of hours your local time differs from server time (UTC).
+
+and thinking in Unix we can just do
+TZ=Asia/Taipei
+just once forever, daylight savings time or not.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-09 00:13:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - New Zealand Timezone"
+   href="show_bug.cgi?id=13648">Bug 13648</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-11-03 05:46:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5500" name="attach_5500" title="A patch to allow timezone selection in user preferences">attachment 5500</a> <a href="attachment.cgi?id=5500&amp;action=edit" title="A patch to allow timezone selection in user preferences">[details]</a></span>
+A patch to allow timezone selection in user preferences
+
+This is a first shot at a patch to allow timezone selection in the user preferences. I took a bit of a different approach than some of the previous comments suggested: I make absolutely no attempt to guess what time zone a user might want, and all existing users will keep their existing offset-based preference until they change it. This is both easiest to code and follows the principle of least surprise.
+
+If the current PHP does not contain the new DateTime functions (enabled in 5.2 by default, and 5.1 with a special compilation option), the patch should make no difference to the current operation of MediaWiki; all uses of the DateTime functions are wrapped in function_exists(), with fall-through to the old offset-based code. If these functions are available, the following changes are available.
+
+* Currently, the 'timecorrection' user preference may be empty, an integer, or a &quot;+HH:MM&quot; formatted string. The patch adds a fourth option: a [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3AZoneinfo">w:Zoneinfo</a>]] timezone name.
+
+* Special:Preferences will contain a dropdown list containing the available timezone specifiers, as returned by timezone_identifiers_list() with the backwards-compatibility options filtered out. There is also an option to use the existing Offset box, for users who haven't yet updated their preference and for users who want to keep using the offset-based system.
+
+* Two new system messages are added: 'timezoneselect' contains the label for the new dropdown list, and 'timezoneuseoffset' contains the text for the &quot;use the existing Offset box&quot; option in that dropdown.
+
+* $wgLang-&gt;userAdjust() will recognize the new possibility for its $tz parameter, and use the DateTime functions to do the timezone correction in that case. I also took the opportunity to fix <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - {{REVISIONTIMESTAMP}} does not function as documented"
+   href="show_bug.cgi?id=15980">bug 15980</a>.
+
+The patch does not add a configuration variable to disable this new feature, although one could easily enough be added. It should be noted in that case that changing the setting from enabled to disabled would then result in 0 offset being used for all users who had specified a timezone in their prefs.
+
+The patch doesn't attempt to allow localization of the Zoneinfo names. If this is desirable, I could try to work that out (I guess using pages like &quot;MediaWiki:Zoneinfo/America/New_York&quot;?).
+
+Also, it might be useful to note in the documentation the existence of the pecl timezonedb module, which contains updates to the timezone database used by the DateTime functions.</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-19 00:06:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Functionality seems good!
+
+Might want to consider the interface; right now it's a bit unclear how the &quot;timezone&quot; and &quot;offset&quot; parameters interact....
+
+The Offset field should either be hidden entirely or disabled when another timezone is selected, since it won't be used in this case. The &quot;Fill in from browser&quot; which detects the hour offset should either be disabled as well in this case, or should override the &quot;Timezone&quot; back to &quot;Use 'Offset' below&quot; so it'll actually do something.
+
+Updating the &quot;Local time&quot; (and maybe the offset!) visibly when an item is selected might be good too, so you don't have to save and go back to the form to confirm you picked the right timezone.
+
+Consider also having the default in the drop-down be something like &quot;server default&quot;, with an &quot;Other&quot; or &quot;manual offset&quot; option that will be automatically selected if the offset field is filled in manually.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-20 15:16:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5600" name="attach_5600" title="Updated patch based on Brion's comments">attachment 5600</a> <a href="attachment.cgi?id=5600&amp;action=edit" title="Updated patch based on Brion's comments">[details]</a></span>
+Updated patch based on Brion's comments
+
+I had to change the data format to make it work sanely, but I think it's better this way anyway. If someone wants to add another method of specifying date offsets now, it should be pretty easy to add. Changes since the last patch:
+
+* There is now an option for &quot;System time offset&quot;, which uses $wgLocalTZoffset.
+
+* The format of the 'timecorrection' user option, and thus the various $timecorrection parameters used in Language.php, has changed again. The old style (integer, or hour:minute value) is still accepted for backwards compatibility. Other possibilites are now:
+** &quot;System|$minDiff&quot;, which specifies that $wgLocalTZoffset is to be used. $minDiff is a copy of $wgLocalTZoffset at the time the preference was last set, and is currently ignored.
+** &quot;Offset|$minDiff&quot;, which specifies a specific difference in minutes.
+** &quot;ZoneInfo|$minDiff|$zone&quot;, which specifies a specific zoneinfo timezone. $minDiff is the offset in minutes for the specified timezone at the time the preference was last set, and is used as a fallback in case $zone later cannot be loaded.
+** Any new method can be added easily enough in the future, as long as it conforms to the general &quot;$tag|$minDiff|$whatever&quot; layout.
+
+* The offset field is now disabled unless &quot;Offset&quot; is selected in the dropdown. The &quot;Fill from browser&quot; button changes the dropdown to &quot;Offset&quot; and fills it in.
+
+* The local time and offset are now updated as the fields are changed. This is done by storing the UTC time in minutes in a hidden field, and using the &quot;$minDiff&quot; value from the possible timecorrection values.
+
+* Another system message has been added, 'timezoneuseserverdefault', which specifies the text of the &quot;Use server default&quot; option in the dropdown.
+
+* It looks like the wfTimestamp timestamps are always in UTC; I'm not sure this won't break if that is ever not true. Of course, I'm not sure the old code won't break in that case either.
+
+* The dropdown is now displayed even if the PHP timezone functions are not available, to allow the user to select the server default or a specific offset.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-22 21:31:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5612" name="attach_5612" title="Modified patch to fix PST bug, tweak text">attachment 5612</a> <a href="attachment.cgi?id=5612&amp;action=edit" title="Modified patch to fix PST bug, tweak text">[details]</a></span>
+Modified patch to fix PST bug, tweak text
+
+Looks good!
+
+A couple minor tweaks in this version:
+
+I noticed that the local time display update wasn't working right when I used the detection button. Problem turned out to be that parseInt() by default attempts to interpret numbers starting with a &quot;0&quot; as octal, thus our zero-padded offsets for 8 or 9 hours off from UTC would fail (&quot;-08&quot; -&gt; 0). Passing base 10 explicitly to parseInt() resolves this.
+
+I wouldn't have noticed this bug in the summer, when California time is -07:00... ;)
+
+Additionally, the offset was saved incorrectly due to use of &quot;+&quot; in PHP code where the concatenation operator &quot;.&quot; is needed. (&quot;+&quot; coerces strings to integers in PHP, so we got &quot;-480&quot; instead of &quot;Offset:-480&quot;... the &quot;-480&quot; was then interpreted as -480 hours when re-loaded.)
+
+I also went ahead and changed the text string in the drop-down for the explicit-offset selection to &quot;Other (specify offset)&quot;, which seems a little more consistent with the UI to me.
+
+Ready to commit unless anyone notices any other issues...</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=505#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-22 21:55:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Applied in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/44915" title="revision 44915 in SVN">r44915</a>, whee!</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=505&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=505">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=505">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=505">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=505&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=505" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=505&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357420-ypaSFCDhiwtwgvKAAxW-gCqOba_JkPX7zhIJhzHqKq4">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

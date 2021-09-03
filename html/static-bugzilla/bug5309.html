@@ -1,0 +1,2876 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5309 &ndash; Localize captcha images</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5309&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5309">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5309">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5309">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5309 – Localize captcha images",  
+                             "show_bug.cgi?id=5309" );
+        document.title = "Bug 5309 – Localize captcha images";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5309 – Localize captcha images", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_PATCH_TO_REVIEW bz_product_MediaWiki_extensions bz_component_ConfirmEdit_&#X28;CAPTCHA_extension&#X29; bz_bug_5309 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 11:10:37 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 11:10:37">
+  <input type="hidden" name="longdesclength" value="56">
+  <input type="hidden" name="id" value="5309">
+  <input type="hidden" name="token" value="1419365210-8Pm1VAhBvw5eTLVZGjj6Z5VFpBaGKJ8CvEzkLshrFfc">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5309"><b>Bug&nbsp;5309</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Localize captcha images</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Localize captcha images
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Localize captcha images', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">PATCH_TO_REVIEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>ConfirmEdit (CAPTCHA extension)
+    
+    (<a href="buglist.cgi?component=ConfirmEdit%20(CAPTCHA%20extension)&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5309">29 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5309#vote_5309">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="https://www.mediawiki.org/wiki/CAPTCHA">https://www.mediawiki.org/wiki/CAPTCHA</a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">i18n, patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Captcha in the latin script fails people who do not do Latin"
+   href="show_bug.cgi?id=19229">19229</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=19229">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Review and Deploy Wikicaptcha"
+   href="show_bug.cgi?id=32695">32695</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Only accept CAPTCHA responses with diacritics removed"
+   href="show_bug.cgi?id=63216">63216</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5309&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5309">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-03-21 20:41 UTC by <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 11:10 UTC 
+      (<a href="show_activity.cgi?id=5309">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>37 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="541329866">541329866</option>
+                <option value="a.d.bergi">a.d.bergi</option>
+                <option value="aalekh1993">aalekh1993</option>
+                <option value="alolita.sharma">alolita.sharma</option>
+                <option value="amir.aharoni">amir.aharoni</option>
+                <option value="b">b</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="eip">eip</option>
+                <option value="everton137">everton137</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="gangleri">gangleri</option>
+                <option value="Gerard.meijssen">Gerard.meijssen</option>
+                <option value="gpaumier">gpaumier</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="jforrester">jforrester</option>
+                <option value="jhsoby">jhsoby</option>
+                <option value="liangent">liangent</option>
+                <option value="lugusto">lugusto</option>
+                <option value="matanya">matanya</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="nasir8891">nasir8891</option>
+                <option value="niharikakohli29">niharikakohli29</option>
+                <option value="nullzero.free">nullzero.free</option>
+                <option value="pginer">pginer</option>
+                <option value="qgil">qgil</option>
+                <option value="RandomDSdevel">RandomDSdevel</option>
+                <option value="rillke">rillke</option>
+                <option value="siebrand">siebrand</option>
+                <option value="smolensk">smolensk</option>
+                <option value="solstag">solstag</option>
+                <option value="trijnstel">trijnstel</option>
+                <option value="whym">whym</option>
+                <option value="wikibugs">wikibugs</option>
+                <option value="wmf.amgine3691">wmf.amgine3691</option>
+                <option value="xenondwb">xenondwb</option>
+                <option value="yannfo">yannfo</option>
+                <option value="zfilipin">zfilipin</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Blacklist IME from Captcha and username field for user registration, to enter Latin letters"
+   href="show_bug.cgi?id=41675">41675</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Prototype CAPTCHA optimized for multilingual and mobile"
+   href="show_bug.cgi?id=62960">62960</a>
+          </li>
+          <li><a href="http://code.google.com/p/googlefontdirectory/issues/detail?id=297">http://code.google.com/p/googlefontdirectory/issues/detail?id=297</a>
+          </li>
+          <li><a href="https://bugzilla.osafoundation.org/show_bug.cgi?id=13081">https://bugzilla.osafoundation.org/show_bug.cgi?id=13081</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=7775"
+               title="View the content of the attachment">
+          <b>(naive) patch to make captcha.py work with unicode</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.32 KB,
+                patch)
+
+            <br>
+            <a href="#attach_7775"
+               title="Go to the comment associated with the attachment">2010-11-01 18:44 UTC</a>,
+
+            <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=7775&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=5309&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-21 20:41:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The captcha software should generate captchas in languages other than English at
+non-English projects, depending on the locale. I've seen some generated captchas
+at the Vietnamese Wikipedia that would definitely confuse Vietnamese-speakers
+(can't remember the words exactly), because of things like r's and n's smooshed
+up right next to each other, so it looks like an m, except to an English user
+who happens to know a word that has &quot;rn&quot; instead. The user might have to *guess*
+because the English words really don't follow Vietnamese spelling rules. We've
+recently had users complaining to the sysops of not being able to read captcha
+images, presumably for this reason.
+
+An advantage to localizing the captchas would be that it might reduce the impact
+of spambots at non-English projects. As far as I know, there isn't yet a
+captcha-defeating bot that understands Vietnamese or Basque or Quechua.
+
+For now, I'm only proposing localizing for most languages that use the Latin
+alphabet, because requiring users to respond to a captcha in Thai or Arabic
+would exclude a lot of legitimate interwiki users. And users of other scripts
+tend to have the means of entering in Latin-based characters. Also, for
+languages that use diacritical marks, we should generate the words with or
+without the marks (not sure which) and modify
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ACaptcha-createaccount">MediaWiki:Captcha-createaccount</a>]], asking the user to enter in the word
+without diacritical marks of any kind.
+
+Once Latin-based alphabets are out of the way, it'd be a good idea to localize
+for other writing systems as well, but provide a Latin-based alternative, per
+Neil Harris' suggestion [1].
+
+These localized captcha strings should *not* be stored in the MediaWiki:
+namespace, nor anywhere easily accessible to the public, because bot writers
+could easily write language-aware bots using such information. For wordlists, we
+could start by using open-source lexicons, such as OpenOffice.org's [2]. We
+should also contact embassadors of non-English projects, asking them for help
+compiling sufficiently long lists of their own.
+
+[1] <a href="http://mail.wikimedia.org/pipermail/wikien-l/2006-March/042263.html">http://mail.wikimedia.org/pipermail/wikien-l/2006-March/042263.html</a>
+[2] <a href="http://lingucomponent.openoffice.org/spell_dic.html">http://lingucomponent.openoffice.org/spell_dic.html</a></pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">mimouni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-20 12:43:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If the source code of capatcha is one PHP. The functions which to generate my 
+images with character strings are only in coding ANSI. That wants to say that the 
+Arab characters for example cannot be poster. </pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Adam Dziura</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-20 21:00:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that polish users of Wikipedia wants localized captcha images. Is 
+better for new users.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Eugene N</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-01 21:22:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This would be very useful in Russian Wikipedia too. Of course the words have to be in Cyrillic alphabet. </pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Guillaume Paumier</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-12-28 21:26:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Removed URL since it was not relevant to this bug (probably due to a rebuilding of the archives)</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amir E. Aharoni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-11-01 14:55:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I am surprised that it came up only now, but now there is demand for this in the Hebrew Wikipedia, too.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-11-01 18:44:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=7775" name="attach_7775" title="(naive) patch to make captcha.py work with unicode">attachment 7775</a> <a href="attachment.cgi?id=7775&amp;action=edit" title="(naive) patch to make captcha.py work with unicode">[details]</a></span>
+(naive) patch to make captcha.py work with unicode
+
+(In reply to <a href="show_bug.cgi?id=5309#c1">comment #1</a>)
+<span class="quote">&gt; If the source code of capatcha is one PHP. The functions which to generate my 
+&gt; images with character strings are only in coding ANSI. That wants to say that the 
+&gt; Arab characters for example cannot be poster. </span >
+
+With some very minor changes to the script this is not true. For example I just generated a bunch of hebrew captchas (just taking random words off the main page of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3A">he:</a>]]) and some Ukraine captchas (because it was the only non-latin language who had a word list thats just an apt-get away).
+
+My very minor changes included disabling the regex check that words don't match /[^a-z]/. Presumably other languages would need an equivalent checks, and checks to avoid words with diacritical marks (since those would i presume be hard to see in captchas)
+
+p.s. I don't know python, so the very minor changes in my example might not be the &quot;proper python way&quot;.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-11-01 18:53:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Captcha in the latin script fails people who do not do Latin"
+   href="show_bug.cgi?id=19229">Bug 19229</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bergi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-06 18:28:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5309#c0">comment #0</a>)
+<span class="quote">&gt; For now, I'm only proposing localizing for most languages that use the Latin
+&gt; alphabet, because requiring users to respond to a captcha in Thai or Arabic
+&gt; would exclude a lot of legitimate interwiki users.</span >
+
+We also could use the uselang attribute (and user setting) instead of locale, then this wouldn't be a problem. But I guess the bigger problem then is to find a captcha generator for exotic alphabets.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">l3o</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-12 19:00:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have an idea how this problem could be solved:
+
+MediaWiki should have an default fund of words, if the wiki doesn't contain enough words (eg. 500 words).
+Than everytime a captcha should be displayed, a script fetches a random article and two random words. This words will be in the target language, because the are from articles in the same language as the user wants.
+Than a script would place those two words onto an image, make them a bit unreadable and display them to the user.
+The user would now have the task to solve the captcha.
+
+But there are some problems:
+- As mentioned: If the Wiki has not enough words, it can't create really random captchas. So, eventually should be included a default fund of words, but this could be a design problem.
+- Also it would be a problem with the non unicode characters. Eventually it should be coded new, instead of using five millions totally different existing solutions and merge them.
+- For big pages this could eventually be a performance problem.
+= And the biggest problem: It would take some time to create all this new code. Also, I don't know if that would be really better than the existing solution.
+
+And there would be one desing thing: This would be only a good solution for big Wikis, because there it would be hard to predict the selected words in the captcha, like it could eventually be with smaller Wikis.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-05-25 03:16:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding i18n keyword,</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Everton Zanella Alvarenga</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-05-30 15:43:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi, while working for WMF for the Wikipedia Education Program, I've seen a lot of new editors, most of them students, facing a lot of difficulties while editing the CAPTCHA in English.
+
+I think this is a very important issue for Wikipedia in other  languages. I've changed its importance to &quot;high&quot;.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">555</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-01 02:40:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's a shame that even single implementations are very backlogged.
+
+The developers team really thinks that Vector skin and a WYSIWYG editing interface will be the most relevant to help on editors retention?
+
+Somewhere I've recently said that the language barrier was solved on Wikimedia, resting only the non-Wikipedia projects issue. But unfortunately I was very wrong.
+
+On the bug opening, the Wikimedia paid staff was very small. Now it's a bit larger. But still no single word from any tech-guys, neither the volunteers one...
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Am%3AUser%3A555">:m:User:555</a>]]</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">matanya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-24 12:59:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >where is this standing?</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rainer Rillke &#64;commons.wikimedia</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-26 11:30:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5309#c12">comment #12</a>)
+Yes, WYSIWYG, article feedback and MoodBar are far more important than some key-issues. The reason? Here it is: Jimmy and the remaining board and Sue are native English speakers so it isn't prioritized. It's not what they are seeing when they are editing Wikipedia. We prefer designing a nice new en.wp main page investing thousands of dollars into questionable campus ambassadors, ...
+
+So even lots of other simple bugs will be never fixed.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Oliver Keyes</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-26 13:56:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm terribly sorry to see the delay with this :(.
+
+Well, just to be clear, we've not designed a nice new en.wp page - that's a community decision! - and of the 10 board members, half are ESL speakers. Localisation and services to non-enlang projects are things we're focusing more and more on; we've got a dedicated internationalisation team, for example.
+
+On the rest of your examples - I think there's some confusion here as to who does what. Localisation and bug-fixing the &quot;core&quot; software is divided between the internationalisation team and the &quot;Platform&quot; sub-department of Engineering. Things like the visual editor or the feedback tool are the responsibility of the Features Engineering team. So there isn't really one set of things being prioritised by staffers over the other, because they're each handled by different sets of people :).
+
+A more likely issue is that, well, things get lost in Bugzilla :(. Furthermore, there are a lot more bugs than there are developer hours to deal with them - take a look at <a href="https://bugzilla.wikimedia.org/weekly-bug-summary.cgi?tops=10&amp;days=365">https://bugzilla.wikimedia.org/weekly-bug-summary.cgi?tops=10&amp;days=365</a> to see what I mean. Compared to the profile of the software, we really don't have a massive engineering team overall - and that's not down to the board, that's down to our comparatively small budget organisation-wide, which they can't really do anything about.
+
+However! if you'll look above you'll see that Sumana (our awesome Engineering Community Manager) has added the localisation keyword, which should bring this problem to the attention of the localisation team, and I'm going to do my best to make sure they're reached - either to deal with the request, provide some kind of ETA on dealing with it or, if they can't solve the issue, explain what the problem is. They're great people, and I'm confident as both a staffer and a long-term editor that this will get resolved one way or another :).</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Al-Scandar Solstag</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-26 17:58:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Ni!
+
+Thanks for the very informative message Oliver.
+
+I think it is good for us to get really upset when a bug that ***affects the
+experience of every single new editor*** in many Wikipedias has had no
+meaningful progress after 6 years since being reported, despite several
+comments here and even face-to-face to staff members.
+
+At the same time, it is important for us to get the fact straight about who is
+responsible for what, like you described.
+
+However, &quot;bugs get lost&quot; is also not a good explanation for what goes on here.
+It's not even an explanation at all.
+
+There are only 17 Mediawiki bugs with equal or more votes than this one, and
+that number only grows to 25 if considering every product on this bugzilla:
+<a href="https://bugzilla.wikimedia.org/buglist.cgi?votes_type=greaterthaneq&amp;query_format=advanced&amp;list_id=132785&amp;votes=24&amp;resolution=---&amp;resolution=LATER&amp;resolution=DUPLICATE&amp;product=MediaWiki">https://bugzilla.wikimedia.org/buglist.cgi?votes_type=greaterthaneq&amp;query_format=advanced&amp;list_id=132785&amp;votes=24&amp;resolution=---&amp;resolution=LATER&amp;resolution=DUPLICATE&amp;product=MediaWiki</a>
+
+Some of those 17 don't even count as they are already solved or have equivalent
+functionality implemented, but some partial issue keeps them from going away.
+
+Yet some of those are, similar to this one, also in a completely stalled state
+for no good reason, despite a lot of people contributing to point out how
+important they are and suggest solutions. Red interwiki links is probably my
+favorite (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Red interwiki links -- check for page existence across wikis"
+   href="show_bug.cgi?id=11">Bug #11</a>).
+
+Wikimedia's tech team needs to improve how they prioritize work based
+on community input.
+
+And the board is also at fault for not requiring or developing themselves a
+clear policy about that.
+
+My impression is that they might be comfortable relying mainly on commissioned
+studies of usability and participation, overlooking that most of those are
+statistically questionable or based on unrealistic assumptions. Not meaning
+they are not useful, they are useful and necessary, just limited. They won't
+reveal the whole story by themselves, and sometimes not even the crucial facts.
+
+So here we are, despite continuous community input, six years into a relatively
+simple bug that affects every single new editor of Wikipedia in several
+languages.
+
+Thanks again Oliver for replying and looking after, and Sumana, now let us
+hope the right people get to read this.
+
+Hugs,
+
+Ni!</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Oliver Keyes</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-26 18:07:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is actually one of my prime concerns; that we prioritise primarily based on &quot;how big a deal, technically, a bug is&quot; rather than the potential impact on the community. Bugzilla has one metric, and it's largely used for technical importance. But I'm confident the new Bugmeister, whomever they will be, can start making progress in this area :). At the moment we're without a bugmeister completely (which may go some way to explaining how even highly-voted bugs are falling through the cracks, although I appreciate this is older than the bugmeister position).</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-26 21:34:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Review and Deploy Wikicaptcha"
+   href="show_bug.cgi?id=32695">bug 32695</a> as blocker because it might be the solution, by fetching the correct Wikisource.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-26 22:09:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5309#c16">comment #16</a>)
+<span class="quote">&gt; Wikimedia's tech team needs to improve how they prioritize work based
+&gt; on community input.</span >
+
+Yes, the WMF absolutely does need to do better at incorporating community input into our work prioritization.  Guillaume Paumier, Rob Lanphier, and I presented a talk about this a few weeks ago: <a href="https://wikimania2012.wikimedia.org/wiki/Submissions/Transparency_and_collaboration_in_Wikimedia_engineering">https://wikimania2012.wikimedia.org/wiki/Submissions/Transparency_and_collaboration_in_Wikimedia_engineering</a> and I know Oliver and other folks have talked about and worked on it as well, but there's a ways to go.
+
+On that more general topic, I strongly recommend that you join the wikitech-ambassadors mailing list <a href="https://lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors">https://lists.wikimedia.org/mailman/listinfo/wikitech-ambassadors</a> and bring up your concerns from <a href="show_bug.cgi?id=5309#c16">comment # 16</a>, so we can talk about them in a group that includes more community members and Foundation folks, including Guillaume and Rob.
+
+But on this particular issue (localising CAPTCHAs) I'm cc'ing Alolita Sharma, Director of Engineering (Internationalization and R&amp;D), and Siebrand Mazeland, Product Manager of the Localisation team, hoping for their input.
+
+Thanks, Al-Scandar Solstag!</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-27 12:42:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmm I like the idea of <a href="show_bug.cgi?id=5309#c9">comment 9</a>.
+
+Some issues:
+*Swear words - people get angsty when &quot;fuck&quot;, etc is in their captcha. (This is probably a minor consideration)
+*complex characters - Unicode characters in and of themselves are not a problem. (Some wikis have words not in their native script, but that's the minority, and can be resolved with a &quot;request new captcha&quot;) More concerning is Diacritics. Diacritics are small, and may be hard to see when messed with by the captcha algorithm (although a native speaker might know what the word is and be able to fill in the diacritics). I'm doubtful that a captcha of ɓ b will look very different.
+
+However, with that said, perhaps we should just do some testing to see if that's really an issue. Maybe its less of an issue to a non-native speaker than using english captchas are.
+
+*Actual coding - we'd need to be able to generate captchas from php, presumably in real time. Not a major issue, but requires coding efforts. (Or I suppose we could get the word list once, and generate the captchas one off with the current script)
+
+-----
+We should also evaluate the effectiveness of our captchas. The captcha program was written a while ago. Since then there's been advances in getting text out of images. Lots of third party wikis report captchas not being all that effective against spam. Perhaps our captchas aren't actually doing anything.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-07-27 17:22:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5309#c20">comment #20</a>)
+<span class="quote">&gt; We should also evaluate the effectiveness of our captchas. The captcha program
+&gt; was written a while ago. Since then there's been advances in getting text out
+&gt; of images. Lots of third party wikis report captchas not being all that
+&gt; effective against spam. Perhaps our captchas aren't actually doing anything.</span >
+
+AFAIK it's already proven to be completely broken, see <a href="http://lists.wikimedia.org/pipermail/wikitech-l/2011-November/056078.html">http://lists.wikimedia.org/pipermail/wikitech-l/2011-November/056078.html</a> (maybe while implementing the proposed new method we could also get it to use the right dictionaries).
+There's quite a chance that our captchas are discouraging only good faith editors, especially non-English speaking.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Pau Giner</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-08-03 06:42:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As part of an email conversation related to this topic, I made some mockups to illustrate some captcha ideas that could be less problematic for non-English speakers, improve the general UX, and rely on images from Commons. 
+
+* Panorama captcha: <a href="http://commons.wikimedia.org/wiki/File:Panorama-captcha-idea.png">http://commons.wikimedia.org/wiki/File:Panorama-captcha-idea.png</a> 
+Based on tagging parts of a panorama picture with the appropriate word (in the UI language or Basic English words).
+
+* 'Who is who' captcha: <a href="http://commons.wikimedia.org/wiki/File:Find-all-captcha-idea.png">http://commons.wikimedia.org/wiki/File:Find-all-captcha-idea.png</a>
+Based on finding from a set of similar images the ones that fit a specific criteria (with an image describing also the criteria).
+
+* 'Find the different' captcha: <a href="http://commons.wikimedia.org/wiki/File:Find-the-different-captcha-idea.png">http://commons.wikimedia.org/wiki/File:Find-the-different-captcha-idea.png</a> 
+Based on finding the image that is different from a set of images.
+
+
+These captchas will probably generate new problems for the technical side, require adjustments to reduce the chance of a machine to solve them, or may just be unfeasible to generate, but I wanted to provide these ideas in case anybody else may use it as a base for improve on any technical weakness they may have and make them at least as hard to solve for a machine as text-based captchas are.
+
+A page at Mediawiki has been created to gather ideas and feedback: <a href="https://www.mediawiki.org/wiki/Requests_for_comment/CAPTCHA">https://www.mediawiki.org/wiki/Requests_for_comment/CAPTCHA</a></pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-08-03 11:50:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As others have said on the mailing list, I fear such captchas would not only be easier for bots to solve than the current solution (once they've had a little time to adjust), but also would be harder to localize unless the number of such captcha challanges were extremely small.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nikola Smolenski</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-08 10:45:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that some users may not have appropriate keyboard to enter the captcha in their language. Aside from captcha generation in various languages, fuzzy comparison with the answer is needed as well.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-01 20:00:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >fyi there is a proposal from the Language team for a mentored project about 
+
+Multilingual, usable and effective captchas
+<a href="http://www.mediawiki.org/wiki/Mentorship_programs/Possible_projects#Multilingual.2C_usable_and_effective_captchas">http://www.mediawiki.org/wiki/Mentorship_programs/Possible_projects#Multilingual.2C_usable_and_effective_captchas</a>
+
+I have some reservations about featuring that project to Google Summer of Code or Outreach Program for Women participants, but I'm willing to be proven wrong. Reasons:
+
+* Unclear buy-in from the community or the maintainers. The whole CAPTCHA topic is messy, with several discussion threads, a RFC, a prototype, and potential plans. We don't have a clear plan for captchas. There hasn't been enough feedback about captchas based purely on images without any text, as this project proposes.
+
+* <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Review and Deploy Wikicaptcha"
+   href="show_bug.cgi?id=32695">Bug 32695</a> - Review and Deploy Wikicaptcha. Is there and waiting for feedback.
+
+* I'm not a CS anything and I could be perfectly wrong, but the project feels too ambitious for three months, both with the amount of work required and the skills needed.
+
+With all this I see the risk of failure bigger than wished for a GSOC project, either because students will most likely lack the time/skills or because even a complete GSOC project would have a hard time ending up merged in our codebase.
+
+Feedback welcome.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-01 21:20:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The key word in the gsoc proposal that I like is research. My problem with most captcha proposals is that they promote someone's pet idea without any citations to back up their theory.
+
+This does seem to be much more research oriented than most gsoc projects.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-02 23:33:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sure, research is great. But before proposing someone to do a 3 month research on this subject I would like to have confidence that this research is welcome and there is an interest from the MediaWiki / ConfirmEdit maintainers in changing the status quo.
+
+Reading the feedback in various channels it is easier to find a disbelief on captchas as a solution altogether.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MZMcBride</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-13 17:31:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Possibly related: <a href="https://gerrit.wikimedia.org/r/113122">https://gerrit.wikimedia.org/r/113122</a></pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aalekh Nigam</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-20 20:25:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Over a period of few months there has been active Development of Multilingual, usable and effective captchas for GSOC 2014.But currently it seems that there is no technical and primary mentor for the project. Therefore I Request all members to please have a thought about becoming a part of this project as primary technical mentor.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-22 18:14:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Let's move the GSoC 2014 discussion to 
+
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Prototype CAPTCHA optimized for multilingual and mobile"
+   href="show_bug.cgi?id=62960">Bug 62960</a> - Prototype CAPTCHA optimized for multilingual and mobile</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-29 08:02:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 121255 had a related patch set uploaded by Nemo bis:
+Make captcha.py produce images in arbitrary language
+
+<a href="https://gerrit.wikimedia.org/r/121255">https://gerrit.wikimedia.org/r/121255</a></pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-29 08:33:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Plans for the ultimate solution are being discussed at <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Prototype CAPTCHA optimized for multilingual and mobile"
+   href="show_bug.cgi?id=62960">bug 62960</a>.
+
+In the meanwhile, as workaround, we're testing making images in all languages with words taken from Wiktionary. For technical details please read and comment on <a href="https://gerrit.wikimedia.org/r/121255">https://gerrit.wikimedia.org/r/121255</a>
+You can see samples at <a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/-RRtFyoJji/captchas">https://www.dropbox.com/sh/i2af7xvn4y593gc/-RRtFyoJji/captchas</a>
+
+In my testing the images seem rather good, mainly depending on the availability of a good font. DejaVu is a well known high quality font covering most languages and DejaVuSans-Bold seems to work well for the languages it covers: <a href="https://sourceforge.net/p/dejavu/code/HEAD/tree/trunk/dejavu-fonts/langcover.txt">https://sourceforge.net/p/dejavu/code/HEAD/tree/trunk/dejavu-fonts/langcover.txt</a>
+
+Caveats:
+* We still have to handle RTL languages. Results probably don't make any sense now.
+* We've not yet made the blacklist multilingual but it's not too hard, ignore the bad words if any.
+* We still have to figure out how to exclude confusable words. It's not impossible, there is a Unicode library for that (but not for python perhaps). See <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Only accept CAPTCHA responses with diacritics removed"
+   href="show_bug.cgi?id=63216">bug 63216</a>.
+* Of 165 languages for which Amgine gave me &quot;big&quot; dictionaries, 20 were not in DejaVu and for 10 I used FreeSerif instead. Those are lower quality. We may end up using [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3AULS">mw:ULS</a>]] font repo with some hacks, if many languages need it; or we could just skip them: I wonder if a captcha in e.g. Gujarati or Japanese will ever make sense.
+* Security fixes demanded by <a href="http://cdn.ly.tl/publications/text-based-captcha-strengths-and-weaknesses.pdf">http://cdn.ly.tl/publications/text-based-captcha-strengths-and-weaknesses.pdf</a> will be in a separate patch. They're several small things that someone familiar with PIL can do easily enough in the existing code. One of them is &quot;printing&quot; each letter separately with some aspect variations, which may solve some problems with ligatures too.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Yusuke Matsubara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 10:16:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Nemo from <a href="show_bug.cgi?id=5309#c32">comment #32</a>)
+<span class="quote">&gt; Plans for the ultimate solution are being discussed at <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Prototype CAPTCHA optimized for multilingual and mobile"
+   href="show_bug.cgi?id=62960">bug 62960</a>.
+&gt; 
+&gt; In the meanwhile, as workaround, we're testing making images in all
+&gt; languages with words taken from Wiktionary. For technical details please
+&gt; read and comment on <a href="https://gerrit.wikimedia.org/r/121255">https://gerrit.wikimedia.org/r/121255</a>
+&gt; You can see samples at
+&gt; <a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/-RRtFyoJji/captchas">https://www.dropbox.com/sh/i2af7xvn4y593gc/-RRtFyoJji/captchas</a>
+&gt; 
+&gt; In my testing the images seem rather good, mainly depending on the
+&gt; availability of a good font. DejaVu is a well known high quality font
+&gt; covering most languages and DejaVuSans-Bold seems to work well for the
+&gt; languages it covers:
+&gt; <a href="https://sourceforge.net/p/dejavu/code/HEAD/tree/trunk/dejavu-fonts/langcover">https://sourceforge.net/p/dejavu/code/HEAD/tree/trunk/dejavu-fonts/langcover</a>.
+&gt; txt
+&gt; </span >
+
+I think zh-* (Chinese) variants are mistakenly included. They are not claimed to be covered by the font, and many substitute squares (tofus) appear in your samples.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 10:29:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Yusuke Matsubara from <a href="show_bug.cgi?id=5309#c33">comment #33</a>)
+<span class="quote">&gt; I think zh-* (Chinese) variants are mistakenly included.</span >
+
+Indeed; deleted. If someone thinks a captcha in CJK locales makes sense and/or has ideas on how to support them, please share.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 10:45:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >ISO code got does not make sense, tofu at <a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/a6Kz0eSXZ4/captchas/got#f:image_5edb52ac_e04341dd3d25c8f8.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/a6Kz0eSXZ4/captchas/got#f:image_5edb52ac_e04341dd3d25c8f8.png</a></pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 11:01:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Siebrand Mazeland from <a href="show_bug.cgi?id=5309#c35">comment #35</a>)
+<span class="quote">&gt; ISO code got does not make sense, tofu at
+&gt; <a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/a6Kz0eSXZ4/captchas/got#f">https://www.dropbox.com/sh/i2af7xvn4y593gc/a6Kz0eSXZ4/captchas/got#f</a>:
+&gt; image_5edb52ac_e04341dd3d25c8f8.png</span >
+
+Right. Maybe <a href="https://www.gnu.org/software/freefont/coverage.html">https://www.gnu.org/software/freefont/coverage.html</a> lies? I'm getting more and more inclined to only use DejaVu. For the languages it doesn't support we'd need to ensure native speakers like the font (e.g. by using ULS fonts) but it's also quite hard to design image distortions that make sense with those scripts.
+If you know one of the following languages please speak up!
+
+* bn Bengali
+* chr Cherokee
+* gu Gujarati
+* hi Hindi (Devanagari script)
+* mr Marathi (Devanagari script)
+* sa Sanskrit (Devanagari script)
+* ml Malayalam
+* si Sinhala/Sinhalese
+* ta Tamil
+* th Thai 1%
+
+Missing in FreeFont too:
+
+* am Amharic
+* bo Tibetan
+* ja Japanese
+* km Central Khmer
+* kn Kannada
+* ko Korean
+* my Burmese (Myanmar)
+* pa Panjabi/Punjabi
+* te Telugu
+* ug Uyghur 87%
+* ur Urdu 92%</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 11:07:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry for double message; another idea I had is that some of those languages don't have an OCR, as Wikisource folks painfully know (for instance Malayam). Maybe for such languages we could just disable distortions, given bots are unlikely to parse them on their own anyway.
+Cf. <a href="http://finereader.abbyy.com/recognition_languages/">http://finereader.abbyy.com/recognition_languages/</a></pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niharika</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 12:41:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I went through the pictures for CAPTCHAs in Hindi. They're mostly understandable except for in a few of the images it's impossible to distinguish the character. Hindi has quite a few similar-looking characters differing just by a small line or a dot. 
+
+For example, the middle character is not-recognizable in <a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/050a6S-21C/captchas/hi#lh:null-image_76947daa_e5d5575a79755d28.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/050a6S-21C/captchas/hi#lh:null-image_76947daa_e5d5575a79755d28.png</a>
+
+But mostly they read just fine.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-03-30 13:40:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I must say the Czech (cs) version is better than I’d expect. The only issue seems to be diacritics: especially the difference between i/í is practically indistinguishable after the distortion. For most words, you can probably tell from context, but in some cases, both versions would make correct words (e.g. <a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/bSYQyGEMBH/captchas/cs#lh:null-image_6d80659d_e7c8421a61605559.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/bSYQyGEMBH/captchas/cs#lh:null-image_6d80659d_e7c8421a61605559.png</a> can be both “dobyti” and “dobytí”). Removing all words with “í” would probably be enough, ignoring the difference between “í” and “i” would be perfect, but I guess having some (low) nonzero expected error rate would be acceptable as well.</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-01 08:35:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For Vietnamese, 27 of the images contain a piece of tofu instead of a second word; 2 images contain more than one piece. It’s odd, because this font clearly supports the Vietnamese half of Latin Extended Additional. The high distortion is problematic and probably unnecessary, because Vietnamese OCR is still pretty rudimentary, with little support for diacritics. As it is, though, a different font may help with many of the following legibility challenges:
+
+ú or ủ?
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/v_jkVCy5Xg/captchas/vi/image_6876ca11_cc6e08a95ea5b935.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/v_jkVCy5Xg/captchas/vi/image_6876ca11_cc6e08a95ea5b935.png</a>
+
+ẽ or ế?
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/rfc7TwizAo/captchas/vi/image_432bfc9d_d02d9707bcb0a02b.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/rfc7TwizAo/captchas/vi/image_432bfc9d_d02d9707bcb0a02b.png</a>
+
+If I didn’t know this font used two-story a’s, I’d see ã instead of ỗ:
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/CGUSde4hfC/captchas/vi/image_5cbb4b12_976cd14e4e332a23.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/CGUSde4hfC/captchas/vi/image_5cbb4b12_976cd14e4e332a23.png</a>
+
+ú or ứ?
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/Svdiq4ZLS5/captchas/vi/image_c90d4c3d_6b4e7a877b3e79dc.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/Svdiq4ZLS5/captchas/vi/image_c90d4c3d_6b4e7a877b3e79dc.png</a>
+
+d or đ?
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/Ah4yviImWT/captchas/vi/image_ae9020dd_0a618ab7494104fd.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/Ah4yviImWT/captchas/vi/image_ae9020dd_0a618ab7494104fd.png</a></pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-01 10:03:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tofu is because of things like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3A%E8%A3%98">wikt:裘</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3A%E6%84%8F%E8%A6%8B">wikt:意見</a>]] being in the dictionary. As with Malayalam issues reported on mailing list, I'm unsure how to handle such &quot;extraneous&quot; &quot;words&quot; for all languages; though in this and the Serbian's case we could &quot;just&quot; check the dictionary is in the main language's script (if we know the language code...).
+
+About vi, I was reading earlier this morning on Gentium: «version of the font with redesigned diacritics (flatter ones) to make it more suitable for use with stacking diacritics, and for languages such as Vietnamese». &lt;<a href="http://scripts.sil.org/cms/scripts/page.php?item_id=Gentium_faq&amp;_sc=1#5d25a5da">http://scripts.sil.org/cms/scripts/page.php?item_id=Gentium_faq&amp;_sc=1#5d25a5da</a>&gt;
+How many languages have such complex diacritics and is there some generic enough font? I doubt we can exclude words with diacritics, we'd only have 500 left out of thousands in vi's case. I'm uploading a new attempt with Arimo font, please check if it's any better.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-01 10:21:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Nemo from <a href="show_bug.cgi?id=5309#c41">comment #41</a>)
+<span class="quote">&gt; Tofu is because of things like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3A%E8%A3%98">wikt:裘</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3A%E6%84%8F%E8%A6%8B">wikt:意見</a>]] being in the
+&gt; dictionary. As with Malayalam issues reported on mailing list, I'm unsure
+&gt; how to handle such &quot;extraneous&quot; &quot;words&quot; for all languages; though in this
+&gt; and the Serbian's case we could &quot;just&quot; check the dictionary is in the main
+&gt; language's script (if we know the language code...).</span >
+
+Yep, that’s what’s required for Vietnamese then.
+
+<span class="quote">&gt; About vi, I was reading earlier this morning on Gentium: «version of the
+&gt; font with redesigned diacritics (flatter ones) to make it more suitable for
+&gt; use with stacking diacritics, and for languages such as Vietnamese».
+&gt; &lt;<a href="http://scripts.sil.org/cms/scripts/page">http://scripts.sil.org/cms/scripts/page</a>.
+&gt; php?item_id=Gentium_faq&amp;_sc=1#5d25a5da&gt;
+&gt; How many languages have such complex diacritics and is there some generic
+&gt; enough font?</span >
+
+Among Latin alphabets that we’ll be displaying, Vietnamese is a bit of a special case for stacking diacritics. GentiumAlt’s flatter diacritics allow it to fit Vietnamese on a standard-height line at the cost of some legibility. If anything, we need more exaggerated diacritics that can survive the distortions.
+
+<span class="quote">&gt; I doubt we can exclude words with diacritics, we'd only have
+&gt; 500 left out of thousands in vi's case.</span >
+
+Right, the whole point of this exercise is to include the diacritics. :-)</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-01 13:49:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comments regarding sinitic captcha's in third paragraph of this revision: <a href="https://en.wiktionary.org/w/index.php?title=User_talk%3AWyang&amp;action=historysubmit&amp;diff=26075006&amp;oldid=26066452">https://en.wiktionary.org/w/index.php?title=User_talk%3AWyang&amp;action=historysubmit&amp;diff=26075006&amp;oldid=26066452</a></pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nasir Khan Saikat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-02 09:03:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi,
+Bengali (bn) text are not displaying properly. All the conjunctions are misplaced and that is why almost none of the image represents any word. In some images (Example:<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/7fTaoyiaSb/captchas/bn#lh:null-image_a060ec4f_d15f04bc689bb980.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/7fTaoyiaSb/captchas/bn#lh:null-image_a060ec4f_d15f04bc689bb980.png</a>) parts of the characters are missing because of the padding/border.
+
+I am not sure it is a problem of the font or not. But if can tell me the name of the font i can test that. 
+
+--
+Nasir Khan Saikat</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-02 09:11:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Nemo from <a href="show_bug.cgi?id=5309#c41">comment #41</a>)
+<span class="quote">&gt; I'm uploading a new attempt with
+&gt; Arimo font, please check if it's any better.</span >
+
+Yes, it’s better. The only severe ambiguity I ran into was:
+
+h or n? Knowing the word, it’s n, but it sure looks like h:
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/-GesxDHeX9/captchas/vi-arimo/image_03be064f_70c0338194b8dca2.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/-GesxDHeX9/captchas/vi-arimo/image_03be064f_70c0338194b8dca2.png</a>
+
+Another issue for Vietnamese: the  ̃ and  ̉ diacritics can look like each other when stacked over  ̂ and distorted. The southern dialect merges the two tones into  ̉, so southerners won’t always be able to rely on the words they know to resolve the ambiguity. I’ve asked the Vietnamese Wikipedia community for feedback on this issue: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=vi%3AWikipedia%3ATh%E1%BA%A3o%20lu%E1%BA%ADn%23Vi%E1%BB%87t%20h%C3%B3a%20c%C3%A1c%20h%C3%ACnh%20CAPTCHA">vi:Wikipedia:Thảo luận#Việt hóa các hình CAPTCHA</a>]].
+
+Finally, many Vietnamese Wikipedia users rely on an IME script embedded via a gadget, but gadgets are disabled at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AUserLogin%2Fsignup">Special:UserLogin/signup</a>]]. We’d need to port the (rather complex) IME to ULS to keep the signup form accessible. Otherwise, as others have mentioned on the mailing lists, there will have to be an option to fall back to an English CAPTCHA.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nikola Smolenski</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-02 11:19:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Suggestion regarding Bengali and similar: they do not have to be distorted as much. This because OCR for these scripts is less developed than OCR for Latin alphabet, and I doubt spammers will be willing to bother so much for relatively small Wikipedias. If we notice that the captchas are being ignored, more distortion could be added.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-02 16:21:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Also see comments at <a href="http://lists.wikimedia.org/pipermail/wikitech-ambassadors/2014-April/thread.html#644">http://lists.wikimedia.org/pipermail/wikitech-ambassadors/2014-April/thread.html#644</a> about Swedish, French, Bengali, Romanian, and Catalan.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Željko Filipin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-03 08:47:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Croatian (hr) is _completely_ broken. For example, 80% of them (or so) is completely (or half) in Cyrillic. Some older people will be able to read it, but almost nobody in Croatia will be able to enter Cyrillic text, since that is not an official script here.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Željko Filipin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-03 08:55:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Serbian (sr) is strange too. I think both Latin and Cyrillic are official there, but isn't it strange to ask for people to change input method (from Latin to Cyrillic, and vice versa) in the middle of captcha, like here?
+
+<a href="https://www.dropbox.com/sh/i2af7xvn4y593gc/ocKv1yBPuf/captchas/sr#lh:null-image_e373536e_2ecbd37b76d67185.png">https://www.dropbox.com/sh/i2af7xvn4y593gc/ocKv1yBPuf/captchas/sr#lh:null-image_e373536e_2ecbd37b76d67185.png</a>
+
+The above is not the only example.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Željko Filipin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-03 09:08:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bosnian (ba) has completely Cyrillic CAPTCHAs, as far as I can see, but according to Wikipedia &quot;Standard Bosnian uses a Latin alphabet.&quot;[1]
+
+Željko
+--
+1: <a href="https://en.wikipedia.org/wiki/Bosnian_language">https://en.wikipedia.org/wiki/Bosnian_language</a></pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-03 09:19:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >ba is not Bosnian <a href="https://translatewiki.net/wiki/Portal:Ba">https://translatewiki.net/wiki/Portal:Ba</a>
+
+Thanks for these comments, but we're already aware of the mixed/wrong script issues: it was the first thing people brought to our knowledge, no need for more examples.
+<a href="http://thread.gmane.org/gmane.org.wikimedia.mediawiki.i18n/846">http://thread.gmane.org/gmane.org.wikimedia.mediawiki.i18n/846</a>
+
+As previously said (see <a href="show_bug.cgi?id=5309#c41">comment 41</a>), we'll rely on the ICU interface to Unicode data to remove mixed script and (where possible) secondary/wrong scripts for each language. Problems with the source dictionary (en.wiktionary.org) should be dealt by editing said wiki.</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Minh Nguyễn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-03 11:03:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So far, the general sentiment from the Vietnamese Wikipedia community has been that the added difficulty of distinguishing diacritics vastly outweighs any readability improvements from using actual Vietnamese words instead of English words or random letters. Moreover, there is skepticism that the wiki even has a problem with CAPTCHA-solving bots. These are gut feelings rather than hard data, of course, but I can imagine a couple changes that would mitigate the community's concerns:
+
+1a. Minimize or eliminate distortions in Vietnamese. High-quality OCR solutions like Google's already have enough difficulty with clear, undistorted Vietnamese text.
+1b. Alternatively, strip diacritics *before* display and accept diacritic-less input. There would likely be no change in difficulty for bots, but Vietnamese users would still be able to employ their knowledge of Vietnamese spelling patterns.
+2. Provide an option to solve a standard English CAPTCHA. (Not sure what the default should be.) Many websites that require CAPTCHAs offer some alternative for accessibility; Vietnamese CAPTCHAs with diacritics would be insurmountable to those with declining eyesight.</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sorawee Porncharoenwase</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-07 13:51:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >IMHO, for Thai language, the pictures are very blurred. Although some can be guessed easily, the rest needs a lot of effort. In some cases, it is impossible to determine the correct word at all.</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sorawee Porncharoenwase</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-08 15:24:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Results from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=th%3AWP%3AHELPDESK%23CAPTCHA">th:WP:HELPDESK#CAPTCHA</a>]] from Thai Wikipedia: S: 0, O: 6, N: 0
+
+Comments:
+
+Nullzero: See the above comment
+
+G(x): Too hard too read
+
+Taweetham: (1) Too hard to read (2) Contain swearing words (3) Not convenient for interwiki users (4) Thai language is complex. He doesn't know whether the software will generate words which are impossible to enter or not
+
+BlackKoro: Unable to read
+
+Lerdsuwa: Can't distinguish between &quot;ท&quot; and &quot;ห&quot;, &quot;ล&quot; and &quot;ส&quot;
+
+Aristitleism: (1) Very hard to read (2) Contain swearing words (3) Contain some obsolete characters which no one uses anymore such as &quot;ฦ&quot; It is also hard to find these obsolete characters on Thai keyboard.</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5309#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryce Glover</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-02 18:45:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Minh Nguyễn from <a href="show_bug.cgi?id=5309#c52">comment #52</a>)
+<span class="quote">&gt; Moreover, there is skepticism that the wiki even has a problem with CAPTCHA- 
+&gt; solving bots. These are gut feelings rather than hard data, of course, but I 
+&gt; can imagine a couple changes that would mitigate the community's concerns:  
+&gt; 
+&gt; …</span >
+
+Could some hard data be found on whether or not the Vietnamese Wikipedia has ever had any problems with CAPTCHA-solving bots?</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5309&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5309">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5309">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5309">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5309&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5309" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5309&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419365210-83RzrBQlMK_fNxLNYGgyebM1S_dFEQUjALqRGVBb7rI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

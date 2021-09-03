@@ -1,0 +1,3919 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3311 &ndash; Automatic category redirects</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3311&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3311">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3311">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3311">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3311 – Automatic category redirects",  
+                             "show_bug.cgi?id=3311" );
+        document.title = "Bug 3311 – Automatic category redirects";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3311 – Automatic category redirects", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_PATCH_TO_REVIEW bz_product_MediaWiki bz_component_Categories bz_bug_3311 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-19 10:19:57 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-19 10:19:57">
+  <input type="hidden" name="longdesclength" value="81">
+  <input type="hidden" name="id" value="3311">
+  <input type="hidden" name="token" value="1419361815-zTWrXswKdCguqI2bC4BMeinRk1OtliTKgjey50yFmf4">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3311"><b>Bug&nbsp;3311</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Automatic category redirects</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Automatic category redirects
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Automatic category redirects', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">PATCH_TO_REVIEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Categories
+    
+    (<a href="buglist.cgi?component=Categories&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3311">55 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3311#vote_3311">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>Future release
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">performance
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow the categories to be redirected and moved"
+   href="show_bug.cgi?id=4879">4879</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Categories redirect should treat as one category"
+   href="show_bug.cgi?id=5893">5893</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &quot;please use category:a instead of category:b&quot;"
+   href="show_bug.cgi?id=6750">6750</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Support moving categories"
+   href="show_bug.cgi?id=8685">8685</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - catch REDIRECT on Category pages"
+   href="show_bug.cgi?id=10236">10236</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Category redirect bug"
+   href="show_bug.cgi?id=15742">15742</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Renaming categories"
+   href="show_bug.cgi?id=32262">32262</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=4879,5893,6750,8685,10236,15742,32262">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use a dedicated interface for adding interwiki/category links, not wikitext"
+   href="show_bug.cgi?id=167">167</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">710</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - When adding a redirected category to a page, put the page in both the redirect cat and its target"
+   href="show_bug.cgi?id=17571">17571</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Support moving categories"
+   href="show_bug.cgi?id=8685">8685</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3311&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3311">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-08-30 18:05 UTC by <span class="vcard">p_simoons
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-19 10:19 UTC 
+      (<a href="show_activity.cgi?id=3311">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>39 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="541329866">541329866</option>
+                <option value="abutko">abutko</option>
+                <option value="Ahonc.ua">Ahonc.ua</option>
+                <option value="anboia">anboia</option>
+                <option value="b">b</option>
+                <option value="base-w">base-w</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="beland">beland</option>
+                <option value="bencmqwiki">bencmqwiki</option>
+                <option value="catlow">catlow</option>
+                <option value="daniel.kinzler">daniel.kinzler</option>
+                <option value="danny.b">danny.b</option>
+                <option value="deletesoftware">deletesoftware</option>
+                <option value="douglas">douglas</option>
+                <option value="dragonlordofxanther">dragonlordofxanther</option>
+                <option value="Eugene.Zelenko">Eugene.Zelenko</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="firilacroco">firilacroco</option>
+                <option value="gangleri">gangleri</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="ipatrol6010">ipatrol6010</option>
+                <option value="jayvdb">jayvdb</option>
+                <option value="lambdav">lambdav</option>
+                <option value="liangent">liangent</option>
+                <option value="lowzl">lowzl</option>
+                <option value="matma.rex">matma.rex</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="moses.mason">moses.mason</option>
+                <option value="PhiLiP.NPC">PhiLiP.NPC</option>
+                <option value="Platonides">Platonides</option>
+                <option value="qgil">qgil</option>
+                <option value="raimond.spekking">raimond.spekking</option>
+                <option value="reeves.87">reeves.87</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="rowan.collins">rowan.collins</option>
+                <option value="russblau">russblau</option>
+                <option value="stanley">stanley</option>
+                <option value="tylerromeo">tylerromeo</option>
+                <option value="waldir">waldir</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - make category redirects appear as italics or different colored links"
+   href="show_bug.cgi?id=5346">5346</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2905"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (841 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_2905"
+               title="Go to the comment associated with the attachment">2006-12-19 18:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2905&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3015"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.91 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3015"
+               title="Go to the comment associated with the attachment">2007-01-06 18:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3015&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=3016"
+               title="View the content of the attachment">
+          <b>Patch</b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.38 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3016"
+               title="Go to the comment associated with the attachment">2007-01-06 20:06 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3016&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=3823"
+               title="View the content of the attachment">
+          <b>Include redirected members in category view</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.10 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3823"
+               title="Go to the comment associated with the attachment">2007-06-25 15:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3823&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=3824"
+               title="View the content of the attachment">
+          <b>Include redirected members in API list=categorymembers</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.42 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3824"
+               title="Go to the comment associated with the attachment">2007-06-25 15:45 UTC</a>,
+
+            <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3824&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (2)
+        </span>
+        <a href="attachment.cgi?bugid=3311&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">p_simoons
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-30 18:05:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Supposing category:A redirects to category:B.
+Would it be feasible to automatically move all articles placed in cat:A into
+cat:B instead?
+Alternateively, would it be possible to create a Specialpage that lists all
+categories that are redirects, so that a bot can do the moving?</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-31 16:08:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've been pondering for a while how to deal with this. The cleanest solution
+(automatically reassigning the pages) is impossible unless/until we move
+category information out of the page content and into a separately editable
+&quot;metadata&quot; display.
+
+The best alternative I can think of is to follow redirects from category to
+category when displaying the category page. For instance, if Category:Foo is
+moved to Category:Bar, and you then view Category:Bar, pages containing
+&quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AFoo">Category:Foo</a>]]&quot; should show up in the &quot;articles in this category&quot; list,
+perhaps with a footnote-marker explained below as &quot;Via alternate name
+''Category:Foo''&quot; so they can be distinguished for maintenance etc. On the
+technical front, this would mainly consist of recursively following redirects
+backwards, like Special:Whatlinkshere does, only using the categorylinks table.
+
+(In reply to <a href="show_bug.cgi?id=3311#c0">comment #0</a>)
+<span class="quote">&gt; Alternateively, would it be possible to create a Specialpage that lists all
+&gt; categories that are redirects, so that a bot can do the moving?</span >
+
+That would certainly be pretty easy, I'd have thought.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">p_simoons
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-01 08:03:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Out of curiosity - is moving category info into metadata a planned change?
+
+Would this work... if you save a page, some lookups are already made for e.g.
+substing in templates. Would it be feasible to check, when a page is saved,
+whether it is in any categories, and whether those categories are redirects, and
+if so, to change them accordingly?
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-01 11:31:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c2">comment #2</a>)
+<span class="quote">&gt; Out of curiosity - is moving category info into metadata a planned change?</span >
+
+Well, category membership is already stored in a special 'categorylinks' table
+in the database, so it's not unreasonable to consider presenting the current
+content of this to the user, rather than also storing it as part of the article
+text. But there's no specific plans to do this any time soon, afaik, it's just a
+thought that gets floated occasionally.
+
+<span class="quote">&gt; Would this work... if you save a page, some lookups are already made for e.g.
+&gt; substing in templates. Would it be feasible to check, when a page is saved,
+&gt; whether it is in any categories, and whether those categories are redirects, and
+&gt; if so, to change them accordingly?</span >
+
+I guess that would be kind of possible, but I'm not keen on the idea of actual
+text in an article changing without the user's consent, as it were. Hence the
+need to present this metadata as separate from the main content - if there were
+a box labelled &quot;Current category memberships&quot;, it could be changed either by
+hand, or by the software, as appropriate. OTOH, having the categories in the
+article text has the advantage that changing them shows up in the article
+history, watchlists, etc...</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">p_simoons
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-01 12:01:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; I guess that would be kind of possible, but I'm not keen on the idea of actual
+&gt; text in an article changing without the user's consent, as it were.</span >
+
+It's not dissimilar from doing {{subst:sometemplate}} when sometemplate in fact
+redirects to another template. This is mainly intended for such things as
+&quot;American actors&quot; and &quot;United States actores&quot; - both categories are the same,
+but many people don't know that so they put articles in either or both (which
+has the undesirable side-effect that neither category is in fact complete).
+Having a true cat redirect would prevent that.
+
+(by the way wouldn't having categories as metadata allow for cross-secting
+categories? e.g. list all articles that are in both cat:A and cat:B? That would
+be terrific)
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-09-01 12:27:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c4">comment #4</a>)
+<span class="quote">&gt; &gt; I guess that would be kind of possible, but I'm not keen on the idea of actual
+&gt; &gt; text in an article changing without the user's consent, as it were.
+&gt; 
+&gt; It's not dissimilar from doing {{subst:sometemplate}} when sometemplate in fact
+&gt; redirects to another template. </span >
+
+It's not really the same at all - in that case, the user has specifically
+requested that their text be converted on save into something else; the only
+relevance of the redirect is that the content that goes in isn't from exactly
+the same title they typed. Changing a category in a page on edit, however, might
+happen without the user even *touching* the list of categories - the category
+might have become a redirect since the page was last editted - and yet the user
+will be creditted with having made that change to the text. [And what if someone
+vandalises a category to be a redirect somewhere inappropriate; suddenly,
+innocent editors appear to be vandalising the pages in that category...] 
+
+Generally, this is a kind of voodoo that should be minimised, because users who
+don't know why it's happening will become confused and frustrated - &quot;I typed X,
+but when I saved the page it said Y instead; what's going on?&quot;
+
+Don't get me wrong, I absolutely agree that some solution to this would be very
+useful, as your example demonstrates; I'm just saying that automatically
+changing the content of an article because something's changed elsewhere is a
+departure from the current data model. If we're to go down that route, it needs
+to be in a more bot-like form, which makes an explicit edit to all affected
+articles with an appropriate summary. Unless, as I say, the list of categories
+is removed from the article's content and placed in a separate box pulled
+straight from the database, which can be dynamically updated by both users and
+system operations.
+
+<span class="quote">&gt; (by the way wouldn't having categories as metadata allow for cross-secting
+&gt; categories? e.g. list all articles that are in both cat:A and cat:B? That would
+&gt; be terrific)</span >
+
+Perhaps I haven't put this very clearly: categories are already *stored* as
+metadata (there's a seperate table in the database that basically stores {page,
+category} pairs); but currently you can't edit that metadata directly, only by
+changing the content of the article. Indeed, the &lt;DynamicPageList&gt; extension
+used on Wikinews (see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3ADynamicPageList">meta:DynamicPageList</a>]]) can already do the kind of lists
+you're talking about; it's just that it's potentially very db-intensive to allow
+unbounded lists like this, I think. 
+
+What would become possible is an interface for editting categories from the
+other side, as it were - edit the list of &quot;pages in this category&quot;, and those
+pages would change automagically.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jakob Voss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-25 20:05:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'd also like redirects for categories but I doubt a smart solution will be
+possible while categories are part of the article text. Until then a simple
+special page would help: 
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ACategoriesThatAreRedirects">Special:CategoriesThatAreRedirects</a>]] - lists all categories that are redirects: 
+
+SELECT page_title from page where page_is_redirect=1 AND page_namespace=14
+
+So the user can find categories that are redirects, get it's articles, change
+category tags and delete the category afterwards. But what if the next user
+creates the deleted category again? So you better not delete the category that
+is a redirect but use another new special page:
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3ACategoriesThatAreRedirectsButAreNotEmpty">Special:CategoriesThatAreRedirectsButAreNotEmpty</a>]] - lists all categories that
+are redirects but have pages in it:
+
+SELECT page_title from page where page_is_redirect=1 AND page_namespace=14 AND
+EXISTS (SELECT * FROM categorylinks WHERE cl_to=page_title);
+
+The second special page is also fast for most Wikipedias I testet (it took 22
+seconds at the Toolserver for the first call at enwiki_p but following calls are
+faster because of some kind of caching I don't know). At the moment there are
+580 category redirects and 171 of them have pages in it - I'd call them &quot;lost
+categories&quot; because if a user clicks on them at an article he won't find the
+article in the category he is directed to. There are 1348 articles pages in the
+English Wikipedia that are partly hidden this way:
+
+SELECT cl_from FROM categorylinks WHERE EXISTS (select page_title from page
+WHERE page_title=cl_to AND page_is_redirect=1 AND page_namespace=14 AND EXISTS
+(SELECT * FROM categorylinks AS C WHERE C.cl_to=page_title));
+
+
+
+
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-03 12:52:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Marking as dependend of
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">Bug 710</a>: Redirect to category page doesn't work
+
+<a href="show_bug.cgi?id=3311#c1">Comment 1</a> is about &quot;category:A redirects to category:B&quot;
+The genaral case (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">bug 710</a>) is &quot;namespace:pagename redirects to category:B&quot;
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-05 18:48:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Allow the categories to be redirected and moved"
+   href="show_bug.cgi?id=4879">Bug 4879</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">brianna.laugher
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-24 00:29:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Having this problem solved for the Commons would be fantastic. Because of this
+problem we currently have a restriction that all category names should be in
+English. As you can imagine that hardly does anything to promote the
+multilingual policy of the Commons and I'm sure it's one of the things that
+turns off would-be contributors whose native tongue is not English.
+
+If this was implemented (as I understand it), we'd be able to have
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AMaus">:Category:Maus</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AMouse">:Category:Mouse</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AMysz">:Category:Mysz</a>]], and the effect
+of putting an image in any of them would be the same in the end.
+</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">David Benbennick</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-24 09:12:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It seems to me that we don't want to &quot;automatically move all articles&quot;.  When
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=A">A</a>]] redirects to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=B">B</a>]] and you link to A in an article, MediaWiki doesn't
+replace that with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=B">B</a>|A]].  I think all that's necessary is that if Category:A
+redirects to Category:B, then every article in Category:A appears in the
+category listing for Category:B.  Implementing this wouldn't require having
+articles store category links as metadata, since it has nothing to do with
+''how'' a particular article got into a category.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jakob Voss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 15:44:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would also help get a message in category view at the list of pages in this
+category that shows a list of categories that redirect to the viewed category.
+Example:
+
+1. There is Category:Mouse
+2. People regularly use Category:Maus instead of Category:Mouse
+3. So you create Category:Maus as a redirect to Category:Mouse
+4. If you view Category:Mouse you miss all the articles in Category:Maus
+5. So a message is shown: &quot;Category:Mouse is also know as Category:Maus. Please
+move the articles to the redirected category.&quot;
+
+The current status is unsatisfying. In commons 857 categories are redirects and
+1263 pages use this categories (452 pages in 677 categories for the English
+Wikipedia):
+
+SELECT COUNT(*) from page where page_is_redirect=1 AND page_namespace=14;
+
+SELECT COUNT(DISTINCT cl_from) from categorylinks, page WHERE 
+page_is_redirect=1 AND page_namespace=14 AND cl_to=page_title;
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 15:50:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c11">comment #11</a>)
+<span class="quote">&gt; It would also help get a message in category view at the list of pages in this
+&gt; category that shows a list of categories that redirect to the viewed category.
+&gt; Example:
+&gt; 
+&gt; 1. There is Category:Mouse
+&gt; 2. People regularly use Category:Maus instead of Category:Mouse
+&gt; 3. So you create Category:Maus as a redirect to Category:Mouse
+&gt; 4. If you view Category:Mouse you miss all the articles in Category:Maus
+&gt; 5. So a message is shown: &quot;Category:Mouse is also know as Category:Maus. Please
+&gt; move the articles to the redirected category.&quot;
+&gt; 
+&gt; The current status is unsatisfying. In commons 857 categories are redirects and
+&gt; 1263 pages use this categories (452 pages in 677 categories for the English
+&gt; Wikipedia):
+&gt; 
+&gt; SELECT COUNT(*) from page where page_is_redirect=1 AND page_namespace=14;
+&gt; 
+&gt; SELECT COUNT(DISTINCT cl_from) from categorylinks, page WHERE 
+&gt; page_is_redirect=1 AND page_namespace=14 AND cl_to=page_title;
+&gt; </span >
+
+There is no need to do that - if we fix that bug, the pages in Category:Maus are
+automatically shown in the Category:Mouse. Your suggestion is just a workaround.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Eugene Zelenko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-11 13:35:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Categories redirect should treat as one category"
+   href="show_bug.cgi?id=5893">Bug 5893</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Moses</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-11 16:17:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Category redirect is especially useful in chinese wikipeida and wikinews. 
+
+As you may know, In chinese, one thing can be writen both in traditional chinese
+and simplified chinese. These character to represent the same thing and both of
+them are correct and should be existe. For example, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3A%E7%81%BD%E9%9B%A3">Category:災難</a>]] and
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3A%E7%81%BE%E9%9A%BE">Category:灾难</a>]] are the same (BTW: &quot;災難&quot; and &quot;灾难&quot; mean &quot;disaster&quot;).
+
+However, redirect [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3A%E7%81%BD%E9%9B%A3">Category:災難</a>]] to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3A%E7%81%BE%E9%9A%BE">Category:灾难</a>]] is useless, now.
+Articles categorized under 災難 still can not be seen in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3A%E7%81%BE%E9%9A%BE">Category:灾难</a>]].
+Category redirect only redirected the category *itself*, but not the articles
+categorized in the category.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-20 00:55:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - &quot;please use category:a instead of category:b&quot;"
+   href="show_bug.cgi?id=6750">Bug 6750</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-19 18:33:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2905" name="attach_2905" title="Patch">attachment 2905</a> <a href="attachment.cgi?id=2905&amp;action=edit" title="Patch">[details]</a></span>
+Patch
+
+This patch changes Parser::replaceInternalLinks: when parsing a link to a
+category (e.g. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AA">Category:A</a>]], *not* [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AA">:Category:A</a>]]), checking if it's exist
+in the &quot;redirect&quot; table (using a slave - I think it's OK), and if so and the
+redirect is to another category, overriding the current title (variable $nt)
+with the redirected title.
+
+This fixes both the display in the page and the DB (table &quot;categorylinks&quot;), as
+the additions to this table are done using the same parser method.
+
+The patch works for me, however it should still be checked for regressions.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-06 18:13:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3015" name="attach_3015" title="Patch">attachment 3015</a> <a href="attachment.cgi?id=3015&amp;action=edit" title="Patch">[details]</a></span>
+Patch
+
+Two additions:
+1. Allowing categories to be moved.
+2. Updating categorylinks when moving categories.
+
+TODO: Fix new redirect (currently links to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AB">Category:B</a>]] instead of
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AB">:Category:B</a>]]), update categorylinks when editing a category.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-06 20:06:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=3016" name="attach_3016" title="Patch">attachment 3016</a> <a href="attachment.cgi?id=3016&amp;action=edit" title="Patch">[details]</a></span>
+Patch
+
+Fixing redirect page, move page message and links to the page when it becomes a
+redirect.
+
+Summary of the patch changes:
+1. Redirect the categories: if a category is a redirection, make the links to
+it and the items in &quot;categorylinks&quot; table refer to the redirected category when
+parsing the page.
+2. Update categorylinks when a category is edited and becomes a redirect.
+3. Make category moves possible - remove it from the forbidden namespaces.
+4. Update categorylinks when a category is moved.
+5. Fix the redirect page left when a category is moved: used a colon to prevent
+inclusion in the category.
+6. Fix the links in pagemovedtext.
+
+Things which still have to be done:
+1. Update categorylinks when a redirect category becomes a redirection to
+another category.
+2. Update categorylinks when a redirect category becomes a regular category
+which is not a redirection.
+I think that these require another field in categorylinks, &quot;cl_original_to&quot;
+(may be null, or maybe same to &quot;cl_to&quot; if not redirected?), which specifies the
+original target (which is now a redirection). If it's not added, it's not
+possible to update categorylinks because it's not *known* which pages are in
+this category. I don't know if this field should be added, these things should
+not be fixed, or there is another way to do it. Any ideas?</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rick Block</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-25 18:39:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As an expediency, somewhat short of full category redirect support, can a change be made so that when an article is 
+saved it is added to the target of a redirected category rather than the redirected category (i.e. if category:A is redirected 
+to category:B, when changing an article to add it to cateogry:A the article is actually added to category:B)?  Doing this 
+one change, in combination with recat bots like RobotG, would enable category redirects to work nearly perfectly.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Frank Bartus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-08 22:27:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Endorse expediency request above with fervency! Moving/remaning would be nice
+too, but per
+[<a href="http://en.wikipedia.org/wiki/Wikipedia_talk:Categories_for_discussion#Propose_tagging_with_both_and_expanding_use_of_Cat_redirects_overall">http://en.wikipedia.org/wiki/Wikipedia_talk:Categories_for_discussion#Propose_tagging_with_both_and_expanding_use_of_Cat_redirects_overall</a>
+this] the method of combined soft and hard redirects put together with the
+proper linking at the time of saving a page would pretty well cover normal
+editing objections to redirecting categories. 
+
+CONSIDER: There are multiple ways to phrase the equivalent page classification
+in English, but note the three legged stool... most every language's wiki, no
+matter what type project, one way or another connects with interwiki's to the
+English Wikipedia articles pages (if only through their own article on the topic
+in their Wikipedia), the commons category, and/or the Wikipedia category (Which
+I labor mightily to synchronize, as much as possible, so I know them well). 
+
+How a language alliterates into English translation we native speakers would
+find to be an awkward phrasing more often than not, AND VICE VERSA, so on the
+commons, redirects of categories are tolerated specifically to cover such
+'ambiguities', including redirects of foreign category names to the &quot;Official&quot;
+English name (Unlike most namings on the commons, Principal Category names are
+English by fiat... articles, images, etc. can all be other languages. So the
+importance should be obvious, I hope!). 
+
+So too do we native speakers have our choice of how to state a category name...
+(e.g. Countries in Europe, vs. Countries of Europe) the halls of the
+en.Wikipedia (and I suspect all others!) CFD discussions are ankle deep in blood
+from some of those debates! That in part exists because of different schemes in
+related categorisation (Geography, Maps, and History all intersect Countries...
+so comes complications, or a need to alias however belatedly! &lt;g&gt;) Which frankly
+is a needless waste of time, were it easy to alias a name, and that name be the
+one 'online' per this proposal. 
+
+In one sense these names issues are are trivialities, but they are important
+trivialities, as recollection and modes of phrase formulation are inherently
+personal things involving the way each of us thinks. So there is a natural
+factionalism as others think like me, and some like him, and even when
+compromises occasion, they involve a lot of work for someone... which is
+hopefully the guys not thinking like me! &lt;BSEG&gt; Bottom line, aliasing would
+prevent and eliminate a lot of relatively uselessly wasted man-hours renaming
+things. The computers should be doing that drudgery, not we humans, save for you
+developers... if you do it once, your effort pays back over and over for the many.
+
+In sum, this matter has a inherently more important and higher priority than
+convenience of one editor, but to multiples of the many of many's of editor's
+across all nationalities! I guess I'm saying this has had far too low a priority
+heretofore. It seems simple, so unimportant, but categories are fundamental to
+organising the projects, hence the effects are vastly magnified. In one swell
+foop, all the nit-picky (local language) name choices can be trivialized and one
+uniform name emerge in each locale&amp;mdash;yet still not only retain, but actually
+enhance interconnectivity between sisters and within a given project. So please
+do expedite both a determination on Rick's iterim proposal, and a full
+implementation allowing name moves and the like. 
+
+Just cutting down the debate will free many daily man-hours each day on CFD, so
+delay is frankly, costly and world wide costly at that. Best regards // ~~~~
+</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-22 14:12:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; 2. Update categorylinks when a category is edited and becomes a redirect.
+&gt; ...
+&gt; 4. Update categorylinks when a category is moved.</span >
+
+This might be an issue.  I don't know if an UPDATE of, for the current worst case,
+a couple hundred thousand rows is acceptable.  An alternative would be to check the
+redirect status at display time rather than on update, as we do for pages: retrieve
+all pages that are in category X or anything that redirects to it.  Of course that
+means faster UPDATE and slower SELECT, which is generally the reverse of what's
+wanted.  We should ask Domas or Tim or someone what's best, I guess.
+
+<span class="quote">&gt; Things which still have to be done:
+&gt; 1. Update categorylinks when a redirect category becomes a redirection to
+&gt; another category.
+&gt; 2. Update categorylinks when a redirect category becomes a regular category
+&gt; which is not a redirection.
+&gt; I think that these require another field in categorylinks, &quot;cl_original_to&quot;
+&gt; (may be null, or maybe same to &quot;cl_to&quot; if not redirected?), which specifies the
+&gt; original target (which is now a redirection). If it's not added, it's not
+&gt; possible to update categorylinks because it's not *known* which pages are in
+&gt; this category. I don't know if this field should be added, these things should
+&gt; not be fixed, or there is another way to do it. Any ideas?</span >
+
+Short of reparsing every page in the category, this probably does require an
+extra field, yes.  Other schema updates might be necessary to make the updates
+for large categories efficient.  I think that whatever happens will be more
+efficient than bots loading tons of pages and forcing them to be reparsed, though.
+:)</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-13 00:09:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - catch REDIRECT on Category pages"
+   href="show_bug.cgi?id=10236">Bug 10236</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-25 15:33:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=3823" name="attach_3823" title="Include redirected members in category view">attachment 3823</a> <a href="attachment.cgi?id=3823&amp;action=edit" title="Include redirected members in category view">[details]</a></span>
+Include redirected members in category view
+
+The patch submitted earlier kind of scares me. Consider the following scenario:
+
+1. Page is categorized in Category:A
+2. Category:A becomes a redirect to Category:B
+3. Page is updated accordingly
+4. Category:A becomes a redirect to Category:C
+5. Page is NOT updated accordingly, since it is treated as a member of Category:B.
+
+Someone suggested a new DB field to counter this, but that isn't necessary.
+
+The attached patch fixes this bug in a simpler way, without the problem described above. When you view Category:B, the code will check if any other categories redirect to B. If Category:A redirects to Category:B, both A and B's members will show up when you view Category:B. As usual, double redirects won't work, i.e. if A redirects to B and B redirects to C, Category:C will show B and C's members, but not A's.
+
+The attached patch makes moving categories easy, just remove NS_CATEGORY from the forbidden namespaces. Since everything is handled transparently through redirects (just like we do with normal pages), no problems should ensue.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zhen Lin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-25 15:40:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A solution was proposed using the redirects table in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Support moving categories"
+   href="show_bug.cgi?id=8685">bug 8685</a> ...</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-25 15:45:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=3824" name="attach_3824" title="Include redirected members in API list=categorymembers">attachment 3824</a> <a href="attachment.cgi?id=3824&amp;action=edit" title="Include redirected members in API list=categorymembers">[details]</a></span>
+Include redirected members in API list=categorymembers
+
+This patch does the same thing as my previous patch, with the difference that this one fixes listing category members in the MediaWiki API as opposed to the category page itself.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-25 17:10:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Support moving categories"
+   href="show_bug.cgi?id=8685">Bug 8685</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-25 17:16:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm hardly an SQL expert, I'm afraid, but any particular reason you added an extra query rather than joining?  I doubt it makes much difference, though, performance-wise.
+
+I'm a bit alarmed that the change has to be made separately for the API, rather than both calling a general-purpose public method of something, but I guess that's a separate issue.
+
+I'll take a look at this and hopefully commit something today or tomorrow.  Although I notice a few bugs assigned to me that I've totally forgotten about, so let's hope this doesn't become one.  :D</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-25 17:48:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c24">comment #24</a>)
+<span class="quote">&gt; A solution was proposed using the redirects table in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Support moving categories"
+   href="show_bug.cgi?id=8685">bug 8685</a> ...</span >
+
+(In reply to <a href="show_bug.cgi?id=3311#c27">comment #27</a>)
+<span class="quote">&gt; I'm hardly an SQL expert, I'm afraid, but any particular reason you added an
+&gt; extra query rather than joining?  I doubt it makes much difference, though,
+&gt; performance-wise.</span >
+The JOIN suggestion suggested in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Support moving categories"
+   href="show_bug.cgi?id=8685">bug 8685</a> didn't work (selected the wrong data from the page table), and since I'm not particularly good at writing complex SQL queries either, I decided to do it this way. I think my way may actually be faster, since the latter query is still a regular category lookup which is indexed. A complex JOIN statement wouldn't have the indexing benefit (correct me if I'm wrong).
+
+
+<span class="quote">&gt; I'm a bit alarmed that the change has to be made separately for the API, rather
+&gt; than both calling a general-purpose public method of something, but I guess
+&gt; that's a separate issue.</span >
+This is partly due to the fact the API provides much more information and filtering options than you'll ever need in a regular page. Also, the current code mixes DB code with UI code, which makes a lot of functions unusable for the API. Article.php and EditPage.php are good examples.
+
+<span class="quote">&gt; I'll take a look at this and hopefully commit something today or tomorrow. 
+&gt; Although I notice a few bugs assigned to me that I've totally forgotten about,
+&gt; so let's hope this doesn't become one.  :D</span >
+We're all humans, we all need breaks ;) take your time.
+
+</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 00:35:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Checking EXPLAIN shows that the query will use a filesort due to replacement of simple equality with a check for IN.  I got the same trying the one-query join technique, adjusted to give correct results.  Domas will probably kill me if I add a gratuitous filesort to every category, so I (we) will have to ask him why it's filesorting and how to stop it.
+
+(By the way, more easily fixed but also significant, your check for rd_title='title' alone can't use the redirect table's indexes, because the index is on (rd_namespace, rd_title).  You need to add 'rd_namespace' =&gt; NS_CATEGORY to the conditions for that query to be efficient.)</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 13:14:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c29">comment #29</a>)
+<span class="quote">&gt; (By the way, more easily fixed but also significant, your check for
+&gt; rd_title='title' alone can't use the redirect table's indexes, because the
+&gt; index is on (rd_namespace, rd_title).  You need to add 'rd_namespace' =&gt;
+&gt; NS_CATEGORY to the conditions for that query to be efficient.)</span >
+By all means do so. I know just enough about MySQL to get by, and have no idea how all those optimizations work. 
+
+</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-30 07:54:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c29">comment #29</a>)
+<span class="quote">&gt; Checking EXPLAIN shows that the query will use a filesort due to replacement of
+&gt; simple equality with a check for IN.  I got the same trying the one-query join
+&gt; technique, adjusted to give correct results.  Domas will probably kill me if I
+&gt; add a gratuitous filesort to every category, so I (we) will have to ask him why
+&gt; it's filesorting and how to stop it.</span >
+I don't really understand any of that (for instance, my query doesn't use IN AFAIK), but I understand it's a performance problem. How can that be solved? 
+
+</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-01 02:30:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Your code contains an IN because you have 'cl_to' =&gt; $titles as a condition, with $titles an array, and that translates to (cl_to IN ($titles)).  I don't know how it can be solved, try asking Domas or someone.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-03 03:08:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >After discussion with Domas, it seems that any attempt to check for redirects in the current schema will *probably* cause a filesort, or at least all the ones suggested did.  We probably need a new field, cl_real_to or something, that has the redirect pre-resolved.  When adding a category to a page, the actual target would be put in cl_to as now; then if it's a redirect, the redirect target would be put in cl_real_to, otherwise that would be a copy of cl_to (or it would be NULL, depending on which works better).  Then cl_real_to would be used for displaying category pages in place of cl_to.  Whenever a category is changed to a redirect, or  the target of a category redirect is changed, categorylinks would be updated appropriately.
+
+River pointed out that if cl_real_to is an id instead of a title, it will persist across renames of the category.  But Rob pointed out that that only works if the category has an associated page.  River then suggested a cat_id, which may or may not be going too far for this exercise.  We can always stick updates for cl_real_to in the job queue, basically mimicking the current bot-update situation.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-03 09:42:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c33">comment #33</a>)
+I think cl_real_to is the way to go. Queries would be indexed, you'd have something like WHERE cl_to='title' OR cl_real_to='title';. Updating cllinks would be the simple (but potentially massive) query UPDATE categorylinks SET cl_real_to='redirtarget' WHERE cl_to='redirname';.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Eugene Zelenko</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-09-29 17:46:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Category redirect bug"
+   href="show_bug.cgi?id=15742">Bug 15742</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-11-05 13:15:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry, the technical stuff is over my head, but can someone explain what the chances are of this being fixed? What effect do the patches referred to have? Can we expect members of redirected categories to show up on the target category page?</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sebastian Helm</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-13 21:42:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just came here from <a href="http://en.wikipedia.org/wiki/Wikipedia_talk:Categories_for_discussion#Category_redirects">http://en.wikipedia.org/wiki/Wikipedia_talk:Categories_for_discussion#Category_redirects</a> and wanted to add a vote for this bug.
+
+Disclaimer: It's a long time that I last was here, and I didn't find a &quot;vote&quot; feature, as the Mozilla db has. Also, I didn't spend much time to understand the discussion of this and related bugs, and I don't understand the difference to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">bug 710</a>, which is supposedly fixed. </pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-13 23:10:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c37">comment #37</a>)
+<span class="quote">&gt; I didn't find a &quot;vote&quot;
+&gt; feature, as the Mozilla db has.</span >
+
+Bottom right, &quot;Vote for this bug&quot; (Ctrl-F for &quot;vote&quot; would have found it).
+
+<span class="quote">&gt; I don't understand the difference
+&gt; to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">bug 710</a>, which is supposedly fixed. </span >
+
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">Bug 710</a> is about redirects to a category working when you navigate directly to the page, the same way they work for other pages.  Prior to that bug's resolution, I guess &quot;#REDIRECT [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3ACategory%3AXYZ">:Category:XYZ</a>]]&quot; would do nothing, or be buggy or something (it was before my time).  This is about redirects actually including one category's contents in another.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philip Tzou</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-03 02:27:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >may fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/46706" title="revision 46706 in SVN">r46706</a>.</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-07 17:02:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This seems not to be working (at least, I just tried it on English Wikipedia and it didn't work - I don't know if it's supposed to be live there yet).</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-07 17:05:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wikipedia is still on <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/46424" title="revision 46424 in SVN">r46424</a>, see Special:Version.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-12 12:47:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm glad this is going to be solved soon, but there is the problem of potential exploitation by vandals. I've filed a new bug (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Separate privileges for redirecting"
+   href="show_bug.cgi?id=17461">bug 17461</a>) to address this.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-18 15:01:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Don't like to sound impatient, but when can we expect this fix to actually come live?</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-19 17:01:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >OK, it is live, thanks. There still seems to be a slight problem, though, in that you can't get a list of members of the redirected category specifically. I've raised this in a new bug (bug:17571).</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">ipatrol</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-03 22:10:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It has been decided that the change will be made in the next mediawiki full release ( <a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/RELEASE-NOTES?view=markup">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/RELEASE-NOTES?view=markup</a> ) , so just be patient.☺</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-19 08:06:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reverted, see CodeReview <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/46706" title="revision 46706 in SVN">r46706</a>.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-19 09:50:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why has this potentially helpful change been reverted? It seemed to be working well; the only problem was <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - When adding a redirected category to a page, put the page in both the redirect cat and its target"
+   href="show_bug.cgi?id=17571">bug 17571</a>, which surely can't be difficult to fix. We know that the tables don't get updated straight away when a category is changed to/from a redirect, and I presume we wouldn't want them to. Bots would handle emptying existing categories when they get redirected, exactly as they do now.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-19 11:47:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c47">comment #47</a>)
+<span class="quote">&gt; Why has this potentially helpful change been reverted? It seemed to be working
+&gt; well; the only problem was <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - When adding a redirected category to a page, put the page in both the redirect cat and its target"
+   href="show_bug.cgi?id=17571">bug 17571</a>, which surely can't be difficult to fix.
+&gt; We know that the tables don't get updated straight away when a category is
+&gt; changed to/from a redirect, and I presume we wouldn't want them to. Bots would
+&gt; handle emptying existing categories when they get redirected, exactly as they
+&gt; do now.</span >
+
+The tables indeed were not updated straight away, in fact they were not updated at all, ever. You'd have to have a bot go through and edit every page in the category, every time the redirect status or redirect target changed.
+
+It's possible to do these updates immediately, with negligible performance loss, and to retire the bots. But it would be much more difficult to implement that feature if the categorylinks table was significantly polluted with spurious links from <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/46706" title="revision 46706 in SVN">r46706</a>.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-19 12:34:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't think it was ever envisaged that the tables would be updated automatically (I didn't think that was desirable anyway, since inappropriate redirects of large categories, and subsequent reversions, would cause lots of extra processing, of the sort that doesn't seem to happen when e.g. templates with categories get updated). But if you say it can be done, then we'll wait in eager anticipation...</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-19 13:49:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c49">comment #49</a>)
+<span class="quote">&gt; I don't think it was ever envisaged that the tables would be updated
+&gt; automatically (I didn't think that was desirable anyway, since inappropriate
+&gt; redirects of large categories, and subsequent reversions, would cause lots of
+&gt; extra processing, of the sort that doesn't seem to happen when e.g. templates
+&gt; with categories get updated). But if you say it can be done, then we'll wait in
+&gt; eager anticipation...
+&gt; </span >
+
+Templates with categories don't cause immediate updates because those updates are put in the job queue and executed later. Presumably, updating for category redirect changes would also use the job queue.</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-19 14:09:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Templates with categories don't cause immediate updates because those updates require reparsing of large numbers of pages.  Category redirects don't, I don't see any reason why they should need the job queue.  Except for really giant categories, maybe, where you'd want to batch the updates to not lag the slaves.</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-22 18:02:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Making a &quot;normal&quot; Category a category can be done straight away, but unredirecting a category requires reparsing all category members.</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-22 19:19:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Or adding an extra column to categorylinks.  That seems like a better idea, unless un-redirecting is expected to be very rare.</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-22 22:55:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's probably the way to go. What would be that column?</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-24 13:56:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >cl_to_original or such, an unredirected variant of cl_to.  Then if a redirect chain changes, you could do UPDATE categorylinks SET cl_to='New_redirect_target' WHERE cl_to_original IN ('Original_category1', 'Original_category2');.  You'd want an index on cl_to_original, of course, so this is a pretty heavyweight addition to the table.</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">ipatrol</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-11 21:37:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that the best solution is you place [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=A">A</a>]] into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AFoo">Category:Foo</a>]] and Foo redirects to Bar so you see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=A">A</a>]] in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3ABar">Category:Bar</a>]] and clicking on the catlink to Foo leads you to Bar. For commons they can have &quot;co-categories&quot; where a member of one co-category is visible in all other co-categories. This can be done by having all the categories have [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3BCategory%3AFu">;Category:Fu</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3BCategory%3AFuz">;Category:Fuz</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3BCategory%3AFaz">;Category:Faz</a>]] [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3BCategory%3A%28...%29">;Category:(...)</a>]]  </pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Le Chat</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-11-17 12:34:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello, is anyone still working on this? Any progress lately? It all seemed to be going so well at one point...</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-01 04:38:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry my following observation is probably noted above, but I didn't check.
+
+On [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Page%20A">Page A</a>]] put &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AC1">Category:C1</a>]]&quot;.
+Now on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AC1">Category:C1</a>]] put
+&quot;#REDIRECT [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Category%3AC2">Category:C2</a>]]&quot;.
+
+Note how Page A is not listed on Category:C2.
+Instead the only way to hunt down Page A in the categories is to
+visit Category:1&amp;redirect=no !</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-01 04:40:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c58">comment #58</a>)
+<span class="quote">&gt; visit Category:1&amp;redirect=no !</span >
+I meant Category;C1&amp;redirect=no. The redirect=no part is not something the average user will know to try. So the category entry is effectively lost in this sense.</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">p858snake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-30 00:10:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*Bulk BZ Change: +Patch to open bugs with patches attached that are missing the keyword*</pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-08 21:13:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Renaming categories"
+   href="show_bug.cgi?id=32262">Bug 32262</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-09 04:15:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding the keywords that seem right -- if the patches still need reviewing, please change &quot;reviewed&quot; to &quot;need-review&quot;.</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-03-23 18:24:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This feature request is being proposed at
+
+<a href="http://www.mediawiki.org/wiki/Mentorship_programs/Possible_projects#Automatic_category_redirects">http://www.mediawiki.org/wiki/Mentorship_programs/Possible_projects#Automatic_category_redirects</a>
+
+and I'm considering whether to add it or not to 
+
+<a href="https://www.mediawiki.org/wiki/Summer_of_Code_2013#Project_ideas">https://www.mediawiki.org/wiki/Summer_of_Code_2013#Project_ideas</a>
+
+Question:
+
+Is there a potential mentor willing to help potential students interested in
+this project?
+
+Is there a reasonable support from the MediaWiki core maintainers to incorporate this feature if it's developed and meets the quality criteria?
+
+Without these qualifications in place we can't even consider the proposal for
+GSOC 2013.</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-03-23 18:26:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c63">comment #63</a>)
+
+<span class="quote">&gt; Question:
+&gt; 
+&gt; Is there a potential mentor willing to help potential students interested in
+&gt; this project?</span >
+
+Yes me :)
+
+<span class="quote">&gt; 
+&gt; Is there a reasonable support from the MediaWiki core maintainers to
+&gt; incorporate this feature if it's developed and meets the quality criteria?
+&gt; </span >
+
+I think so. Would require schema changes which is the only bit that could potentially be sticky.</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-03-23 18:48:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Ok, you're in:
+
+<a href="https://www.mediawiki.org/wiki/Summer_of_Code_2013#Automatic_category_redirects">https://www.mediawiki.org/wiki/Summer_of_Code_2013#Automatic_category_redirects</a>
+
+Thank you and good luck!</pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-23 06:38:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The more you know...
+
+The current query for getting category members is:
+SELECT ...
+FROM `page`
+INNER JOIN `categorylinks`
+    FORCE INDEX (cl_sortkey)
+    ON ((cl_from = page_id))
+LEFT JOIN `category`
+    ON ((cat_title = page_title) AND page_namespace = '14')
+WHERE cl_to = 'Test' AND cl_type = 'page'
+ORDER BY cl_sortkey
+LIMIT 201
+
+And, true enough, if you change the cl_to check from a comparison to an IN operator, it triggers a filesort. *However*, if you instead move the contents of the WHERE clause into the INNER JOIN condition, then the filesort disappears. The resulting query is:
+
+SELECT ...
+FROM `page`
+INNER JOIN `categorylinks`
+    FORCE INDEX (cl_sortkey)
+    ON ((cl_from = page_id) AND (cl_to IN ('Test')) AND (cl_type = 'page'))
+LEFT JOIN `category`
+    ON ((cat_title = page_title) AND page_namespace = '14')
+ORDER BY cl_sortkey
+LIMIT 201
+
+Now I'm not too much of an expert on databases, but theoretically this should produce the exact same results (since it's an INNER JOIN) but still be efficient (because the cl_sortkey index includes the cl_from and cl_to columns).
+
+This would eliminate the need for any new columns and whatnot.</pre>
+    </div><div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c67">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-23 21:08:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just a note to say that Liangent has applied to GSoC with a proposal related to this report. Good luck!
+
+<a href="https://www.mediawiki.org/wiki/User:Liangent/cat-redir">https://www.mediawiki.org/wiki/User:Liangent/cat-redir</a></pre>
+    </div><div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c68">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-23 21:40:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Re <a href="show_bug.cgi?id=3311#c66">comment 66</a>:
+
+If I have more than a single category in the IN condition when doing that, I get a filesort:
+
+mysql&gt; describe SELECT /* CategoryViewer::doCategoryQuery Bawolff */  page_id,page_title,page_namespace,page_len,page_is_redirect,cl_sortkey,cat_id,cat_title,cat_subcats,cat_pages,cat_files,cl_sortkey_prefix,cl_collation  FROM `page` INNER JOIN `categorylinks` FORCE INDEX (cl_sortkey) ON ((cl_from = page_id) AND cl_to in ('Foo', 'se') and cl_type = 'page') LEFT JOIN `category` ON ((cat_title = page_title) AND page_namespace = '14')   ORDER BY cl_sortkey LIMIT 2\G
+*************************** 1. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: categorylinks
+         type: range
+possible_keys: cl_sortkey
+          key: cl_sortkey
+      key_len: 258
+          ref: NULL
+         rows: 559
+        Extra: Using where; Using filesort
+*************************** 2. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: page
+         type: eq_ref
+possible_keys: PRIMARY
+          key: PRIMARY
+      key_len: 4
+          ref: wikidb.categorylinks.cl_from
+         rows: 1
+        Extra: 
+*************************** 3. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: category
+         type: eq_ref
+possible_keys: cat_title
+          key: cat_title
+      key_len: 257
+          ref: wikidb.page.page_title
+         rows: 1
+        Extra: 
+3 rows in set (0.00 sec)</pre>
+    </div><div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c69">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-24 05:13:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmm, damn databases.</pre>
+    </div><div id="c70" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c70">Comment 70</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-28 21:17:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Success! So the issue is that the cl_sortkey index on categorylinks puts the cl_to column before the cl_sortkey column, so when you add the &quot;cl_to IN ...&quot;, it can no longer use the index to sort by cl_sortkey (from the ORDER BY clause). 
+
+After adding the following index:
+
+ALTER TABLE `categorylinks`
+ADD UNIQUE `cl_newsort` ( `cl_type`, `cl_sortkey`, `cl_to`, `cl_from` )
+
+And then running the following query:
+
+EXPLAIN EXTENDED SELECT `cl_from`
+FROM `categorylinks`
+INNER JOIN `page` ON
+	`page_id` = `cl_from`
+LEFT JOIN `category` ON
+	`cat_title` = `page_title` AND
+	`page_namespace` = 14
+WHERE
+	`cl_type` = 'page' AND
+	`cl_to` IN ( 'Foo', 'Test' )
+ORDER BY cl_sortkey
+
+I finally got no more filesort. (I was even able to get rid of the FORCE INDEX usage.) If somebody could please check this and make sure I'm still sane, and that MySQL isn't just inventing things to trick my mind, that'd be great.</pre>
+    </div><div id="c71" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c71">Comment 71</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-28 21:25:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I havent tested this, but I would guess that unless it is doing something very fancy with merging indecies, this would cause very large scans of the categorylinks table. (Since it wouldn't be able to skip to only results in the relavent category). filesort isnt the only way that a db query can be inefficient.</pre>
+    </div><div id="c72" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c72">Comment 72</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-28 21:33:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c71">comment #71</a>)
+<span class="quote">&gt; I havent tested this, but I would guess that unless it is doing something
+&gt; very
+&gt; fancy with merging indecies, this would cause very large scans of the
+&gt; categorylinks table. (Since it wouldn't be able to skip to only results in
+&gt; the
+&gt; relavent category). filesort isnt the only way that a db query can be
+&gt; inefficient.</span >
+
+Hmm, you're right. Now that I realize it, this would require scanning the entire cl_sortkey index (I think).</pre>
+    </div><div id="c73" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c73">Comment 73</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-05-03 21:56:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just a note to say that Andre Saboia has submitted a GSoC proposal related to this report: <a href="https://www.mediawiki.org/wiki/User:Anboia/Automatic_category_redirects">https://www.mediawiki.org/wiki/User:Anboia/Automatic_category_redirects</a></pre>
+    </div><div id="c74" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c74">Comment 74</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-05-24 07:44:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Related URL: <a href="https://gerrit.wikimedia.org/r/65176">https://gerrit.wikimedia.org/r/65176</a> (Gerrit Change <a href="https://gerrit.wikimedia.org/r/#q,I29a629a514f9568d0ee4d967c516dfd599dc11ba,n,z" title="Gerrit Change-Id: I29a629a514f9568d0ee4d967c516dfd599dc11ba">I29a629a514f9568d0ee4d967c516dfd599dc11ba</a>)</pre>
+    </div><div id="c75" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c75">Comment 75</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-26 14:37:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tyler: The patch received a -1, do you plan to rework it?</pre>
+    </div><div id="c76" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c76">Comment 76</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-26 14:44:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If I ever have free time again (read: probably not for a while), I offer to help Tyler address some of the issues with the patch.</pre>
+    </div><div id="c77" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c77">Comment 77</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-26 14:59:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c76">comment #76</a>)
+<span class="quote">&gt; If I ever have free time again (read: probably not for a while), I offer to
+&gt; help Tyler address some of the issues with the patch.</span >
+
+That would be great. I don't have much free time myself, although once I do I'll definitely work on it.</pre>
+    </div><div id="c78" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c78">Comment 78</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-26 15:00:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3311#c77">comment #77</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=3311#c76">comment #76</a>)
+&gt; &gt; If I ever have free time again (read: probably not for a while), I offer to
+&gt; &gt; help Tyler address some of the issues with the patch.
+&gt; 
+&gt; That would be great. I don't have much free time myself, although once I do
+&gt; I'll definitely work on it.</span >
+
+yeah, somebody should make a graph of number of commits to mediawiki by volunteers vs when school semester starts.</pre>
+    </div><div id="c79" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c79">Comment 79</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-24 20:35:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm delisting this project from <a href="https://www.mediawiki.org/wiki/Mentorship_programs/Possible_projects#Automatic_category_redirects">https://www.mediawiki.org/wiki/Mentorship_programs/Possible_projects#Automatic_category_redirects</a> since it looks like you are almost there.</pre>
+    </div><div id="c80" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3311#c80">Comment 80</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-10-24 20:37:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Remove milestone 1.22 - Given that this has somewhat stalled due to lack of time on the part of interested parties, seems unlikely it could possibly make it to 1.22.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3311&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3311">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3311">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3311">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3311&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3311" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3311&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419361815-YkKIfHMmCiW-T3BGNBh8Jr_1yR4NzNx7h3nBAQ8eQZM">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

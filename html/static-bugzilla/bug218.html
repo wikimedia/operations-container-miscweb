@@ -1,0 +1,2738 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 218 &ndash; Redirects do not support named anchors</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=218&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=218">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=218">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=218">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 218 – Redirects do not support named anchors",  
+                             "show_bug.cgi?id=218" );
+        document.title = "Bug 218 – Redirects do not support named anchors";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 218 – Redirects do not support named anchors", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Redirects bz_bug_218 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2013-12-29 08:35:12 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2013-12-29 08:35:12">
+  <input type="hidden" name="longdesclength" value="48">
+  <input type="hidden" name="id" value="218">
+  <input type="hidden" name="token" value="1419356784-ryBQ9yv4GncRRsiIQfmJ52b2geis-5p63X-WuhpghWY">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=218"><b>Bug&nbsp;218</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Redirects do not support named anchors</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Redirects do not support named anchors
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Redirects do not support named anchors', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Redirects
+    
+    (<a href="buglist.cgi?component=Redirects&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.3.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=218">10 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=218#vote_218">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - redirects don't lead to the precise anchor specified with them"
+   href="show_bug.cgi?id=466">466</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - #redirect [[lemma#sublemma]] does not work"
+   href="show_bug.cgi?id=1282">1282</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirects don't handle anchors"
+   href="show_bug.cgi?id=4695">4695</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirects don't handle anchors"
+   href="show_bug.cgi?id=4696">4696</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Process anchor links in redirects"
+   href="show_bug.cgi?id=6994">6994</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirect does not work for section headers"
+   href="show_bug.cgi?id=7176">7176</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=466,1282,4695,4696,6994,7176">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=218&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=218">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-08-25 20:56 UTC by <span class="vcard"><span class="fn">Charles Stewart</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2013-12-29 08:35 UTC 
+      (<a href="show_activity.cgi?id=218">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>14 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="ayg">ayg</option>
+                <option value="b">b</option>
+                <option value="brian">brian</option>
+                <option value="DmitryKo">DmitryKo</option>
+                <option value="gangleri">gangleri</option>
+                <option value="kleine_matthias">kleine_matthias</option>
+                <option value="nyenyec">nyenyec</option>
+                <option value="phlipping">phlipping</option>
+                <option value="ropers">ropers</option>
+                <option value="rowan.collins">rowan.collins</option>
+                <option value="timwi">timwi</option>
+                <option value="ui2t5v002">ui2t5v002</option>
+                <option value="wiki">wiki</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=218&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Charles Stewart</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-25 20:56:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If one creates a redirect with a named anchor, such as:
+  Page <a href="http://en.wikipedia.org/wiki/Structural_proof_theory">http://en.wikipedia.org/wiki/Structural_proof_theory</a>
+  contains just &quot;#REDIRECT[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20theory%23Structural_proof_theory">Proof theory#Structural_proof_theory</a>]]&quot;
+I expected the behaviour to be, the tag [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural%20proof%20theory">Structural proof theory</a>]]
+either links to the page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20theory%23Structural_proof_theory">Proof theory#Structural_proof_theory</a>]]
+or to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural_proof%20theory%23Structural_proof_theory">Structural_proof theory#Structural_proof_theory</a>]].
+
+In fact it does not work like this, but is instead a link to
+  <a href="http://en.wikipedia.org/wiki/Structural_proof_theory">http://en.wikipedia.org/wiki/Structural_proof_theory</a>
+(ie. with the anchor part stripped out).
+
+This means that redirects cannot be to sections, which restricts the flexibility
+in handling merges of material, reduces the accuracy of links into long
+articles, encourages the proliferation of stub articles in Wikipedia or short
+articles rehearsing parts of material contained in longer articles, perhaps
+reduces the longevity of links.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Timwi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-28 20:36:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Anchors have never worked (and were never meant to work) in redirects.  I have
+no idea why people keep putting them in, apparently not noticing that they
+simply don't work.
+
+There is no easy way of fixing this.  One could either:
+
+* have [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural%20proof%20theory">Structural proof theory</a>]] turn into a link to
+  /wiki/Structural_proof_theory#Structural_proof_theory,
+  but this would mean that, when we parse a page, we would have to check *all*
+  the pages linked to to see if any of them happens to be a redirect with an
+  anchor in it, thereby increasing the database load significantly; or
+
+* have redirects with an anchor produce a 502 response that actually redirects
+  the browser to /wiki/Proof_theory#Structural_proof_theory,
+  but this would mean that the user will no longer see the &quot;redirected from&quot;
+  message, and hence, it will be very difficult for people to change the
+  redirect (because one would have to manually fiddle with the URL, or go
+  through Whatlinkshere, but the latter is difficult to think of if you don't
+  know).
+
+This is why we'd rather not have redirects with an anchor.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-28 20:40:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >302'ing to
+/w/wiki.phtml?title=Proof_theory&amp;from=Structural_proof_theory#Structural_proof_theory
+could do the job</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Angela</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-28 21:03:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The reason people keep putting them in us because
+<a href="http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page">http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page</a> says &quot;This
+feature may be implemented in the future, so such redirects could be used now
+for future compatibility.&quot;</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-28 21:33:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c2">comment #2</a>)
+<span class="quote">&gt; 302'ing to
+&gt; /w/wiki.phtml?title=Proof_theory&amp;from=Structural_proof_theory#Structural_proof_theory
+&gt; could do the job</span >
+
+I'd recommend against that sort of thing. First, it's ugly as heck. :) Second, it harms caching and 
+googlability (since that page would be forbidden by robots.txt).
+
+Note also that the fragment identifier (the bit from the #) isn't sent to the server, so we can't tell whether we're 
+being requested to go to a particular fragment already -- we'd lose subsection fragments, for instance, if 
+someone wanted to use such.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Timwi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-28 22:20:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; 302'ing to /w/wiki.phtml?title=X&amp;from=Y#Z could do the job</span >
+
+I should have thought of this, and should have mentioned the concerns with this
+(which brion already did).  We don't want to add too many URL parameters that
+don't really do much (this one would only add the &quot;redirected from&quot; message).
+
+<span class="quote">&gt; The reason people keep putting them in us because
+&gt; <a href="http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page">http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page</a> says [...]</span >
+
+This seriously needs to be changed.  I'm afraid this feature is not feasible, as
+much as I would like to have it.  (I wish in addition to &quot;WONTFIX&quot; there was
+&quot;CANTFIX&quot; :-))</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chris Wood</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-08-29 02:38:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixed <a href="http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page">http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page</a> </pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-12 22:32:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - redirects don't lead to the precise anchor specified with them"
+   href="show_bug.cgi?id=466">Bug 466</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-15 15:27:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - #redirect [[lemma#sublemma]] does not work"
+   href="show_bug.cgi?id=1282">Bug 1282</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bovlb</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-21 04:57:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe there's a JavaScript solution, something like (untested):
+
+&lt;script language=&quot;JavaScript&quot;&gt;&lt;!--
+if(frame.location.hash == '') {
+  frame.location.hash = '#Structural_proof_theory';
+}
+//--&gt;&lt;/script&gt;
+
+According to <a href="http://wp.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#146128">http://wp.netscape.com/eng/mozilla/3.0/handbook/javascript/ref_h-l.htm#146128</a> setting the hash does not reload the document.
+
+This could be injected along with the &quot;Redirected from&quot; message.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bovlb</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-21 05:41:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Erm, that should be:
+
+&lt;script language=&quot;JavaScript&quot;&gt;&lt;!--
+if(window.location.hash == '') {
+  window.location.hash = '#Structural_proof_theory';
+}
+//--&gt;&lt;/script&gt;
+
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew Flaschen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-24 17:00:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;* have [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural%20proof%20theory">Structural proof theory</a>]] turn into a link to
+  /wiki/Structural_proof_theory#Structural_proof_theory,
+  but this would mean that, when we parse a page, we would have to check *all*
+  the pages linked to to see if any of them happens to be a redirect with an
+  anchor in it, thereby increasing the database load significantly; or&quot;
+How does this require higher server load than a regular redirect?  When I go to
+<a href="http://en.wikipedia.org/wiki/William_Clinton">http://en.wikipedia.org/wiki/William_Clinton</a>, it notices that the page is a
+redirect and sends me to <a href="http://en.wikipedia.org/wiki/Bill_Clinton">http://en.wikipedia.org/wiki/Bill_Clinton</a>, and serves a
+notice that it did so.  If I have a redirect at
+<a href="http://en.wikipedia.org/wiki/Bill_Clinton">http://en.wikipedia.org/wiki/Bill_Clinton</a> trivia]] to
+<a href="http://en.wikipedia.org/wiki/Bill">http://en.wikipedia.org/wiki/Bill</a> Clinton#Trivia, how is that more work for the
+servers?</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew Flaschen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-24 17:01:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I MEANT:
+
+&quot;* have [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural%20proof%20theory">Structural proof theory</a>]] turn into a link to
+  /wiki/Structural_proof_theory#Structural_proof_theory,
+  but this would mean that, when we parse a page, we would have to check *all*
+  the pages linked to to see if any of them happens to be a redirect with an
+  anchor in it, thereby increasing the database load significantly; or&quot;
+How does this require higher server load than a regular redirect?  When I go to
+<a href="http://en.wikipedia.org/wiki/William_Clinton">http://en.wikipedia.org/wiki/William_Clinton</a>, it notices that the page is a
+redirect and sends me to <a href="http://en.wikipedia.org/wiki/Bill_Clinton">http://en.wikipedia.org/wiki/Bill_Clinton</a>, and serves a
+message that it did so.  If I have a redirect at
+<a href="http://en.wikipedia.org/wiki/Bill_Clinton_trivia">http://en.wikipedia.org/wiki/Bill_Clinton_trivia</a> to
+<a href="http://en.wikipedia.org/wiki/Bill">http://en.wikipedia.org/wiki/Bill</a> Clinton#Trivia, how is that more work for the
+servers?</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bovlb</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-24 17:37:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If you go to <a href="http://en.wikipedia.org/wiki/William_Clinton">http://en.wikipedia.org/wiki/William_Clinton</a> it shows you the contents of the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Bill%20Clinton">Bill Clinton</a>]] page (with a redirection note), but it does *not* redirect you to <a href="http://en.wikipedia.org/">http://en.wikipedia.org/</a>
+wiki/Bill_Clinton in the HTTP sense.  The MediaWiki redirection that is done is purely server-side.  An HTTP redirection requires the server to instruct the browser to ask the server for a different 
+page.  This involves another browser-server round trip, and another server request, so increases both latency and server load.
+
+Normally, an HTTP redirect is required to change the URL, and this is why the URL remains at &quot;William Clinton&quot; while you see the &quot;Bill Clinton&quot; page.  Adding a secttion anchor would require 
+changing the URL.  The JavaScript above gives a way to do a browser-side redirect to a section anchor within the same document.  This would allow MediaWiki redirection to go to a specific section 
+without sending another request to the server.
+
+The remaining flaw in my proposed solution is that the redirection notice at the top would likely not be visible when the page is scrolled down to the section, thus potentially increasing user 
+confusion.  I don't think that moving the redirection notice down to the section header would be a good idea, however.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-30 01:42:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >My preferred &quot;solution&quot; to this would be in combination with a &quot;manual text in
+redirect message&quot; feature, as discussed here:
+<a href="http://mail.wikimedia.org/pipermail/wikitech-l/2005-May/029142.html">http://mail.wikimedia.org/pipermail/wikitech-l/2005-May/029142.html</a> 
+
+Basically, &quot;#redirect [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo%23bar">foo#bar</a>]]&quot; could add a string to the end of the
+&quot;Redirected from...&quot; message so that it read something like &quot;Redirected from
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=X">X</a>]]. For information on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=X">X</a>]] see the section titled [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%23bar">#bar</a>|bar]] below.&quot; As I
+say in that message, though, I would consider this solution to depend on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - allow anchor name to be defined independent of section header text"
+   href="show_bug.cgi?id=1521">bug
+1521</a> in some form...
+
+Oh, and note Lee Crocker's response in that thread, which also applies here I
+think: <a href="http://mail.wikimedia.org/pipermail/wikitech-l/2005-May/029158.html">http://mail.wikimedia.org/pipermail/wikitech-l/2005-May/029158.html</a></pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-15 03:15:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+Today I used
+<a href="http://en.wikipedia.org/wiki/IPA#Note:_This_page_uses_special_characters">http://en.wikipedia.org/wiki/IPA#Note:_This_page_uses_special_characters</a>
+and this was equivalent to
+<a href="http://en.wikipedia.org/wiki/International_Phonetic_Alphabet#Note:_This_page_uses_special_characters">http://en.wikipedia.org/wiki/International_Phonetic_Alphabet#Note:_This_page_uses_special_characters</a>
+From Wikipedia, the free encyclopedia that anyone can edit
+(Redirected from IPA)
+
+I was puzzeled!!! I never tried this before.
+I was more puzzeled when making the redirect tests at
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AUser%3AGangleri%2Ftests%2Fbugzilla%2F00218">en:User:Gangleri/tests/bugzilla/00218</a>]].
+I was more and more and more puzzeled reading the &quot;historical&quot; comments here.
+
+Whould it be possible *today* (whit MediaWiki as far as is is now) to simply
+change the redirect.php (or whatever) and do the following:
+
+a) preserve the anchor when rendering the redirect page; if necessary preserve
+it in another variable as #bar
+b) forward the anchor as parameter in order to be displayed as (Redirected from
+foo|bar)
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]
+
+P.S.
+duplicates of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirects do not support named anchors"
+   href="show_bug.cgi?id=218">bug 218</a>
+- <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - redirects don't lead to the precise anchor specified with them"
+   href="show_bug.cgi?id=466">Bug 466</a>: redirects don't lead to the precise anchor specified with them
+- <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - #redirect [[lemma#sublemma]] does not work"
+   href="show_bug.cgi?id=1282">Bug 1282</a>: #redirect [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=lemma%23sublemma">lemma#sublemma</a>]] does not work
+
+I searched a bug which depends on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirects do not support named anchors"
+   href="show_bug.cgi?id=218">bug 218</a> and 1476. The searched bug is <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Would like the ability to list an article under multiple names in its categories"
+   href="show_bug.cgi?id=1333">bug 1333</a>
+(==<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Pages cannot be listed multiple times in a category."
+   href="show_bug.cgi?id=2688">bug 2688</a>).
+
+The whole dupes and dependencies should be updated.
+
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Category tag on redirect pages does not work"
+   href="show_bug.cgi?id=1476">Bug 1476</a>: Category tag on redirect pages does not work
+ignore <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Category tag on redirect pages does not work"
+   href="show_bug.cgi?id=1476#c1">bug 1476 comment 1</a> about relation to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirect to category page doesn't work"
+   href="show_bug.cgi?id=710">Bug 710</a>: Redirect to category page
+doesn't work
+duplicates of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Category tag on redirect pages does not work"
+   href="show_bug.cgi?id=1476">bug 1476</a>
+- (reopened) <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Categories need piping feature to list by alternative name"
+   href="show_bug.cgi?id=491">Bug 491</a>: Categories need piping feature to list by alternative name
+- ** <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Would like the ability to list an article under multiple names in its categories"
+   href="show_bug.cgi?id=1333">Bug 1333</a>: Would like the ability to list an article under multiple names in
+its categories **
+-- duplicate of <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Would like the ability to list an article under multiple names in its categories"
+   href="show_bug.cgi?id=1333">bug 1333</a>
+--- ** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Pages cannot be listed multiple times in a category."
+   href="show_bug.cgi?id=2688">Bug 2688</a>: Pages cannot be listed multiple times in a category **
+- <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - redirect pages cannot be added to categories"
+   href="show_bug.cgi?id=2278">Bug 2278</a>: redirect pages cannot be added to categories
+- <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirected terms cannot be included in categories"
+   href="show_bug.cgi?id=3344">Bug 3344</a>: Redirected terms cannot be included in categories
+
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Category tag on redirect pages does not work"
+   href="show_bug.cgi?id=1476">Bug 1476</a> works (again). Else I did not get the point. See
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AUser%3AGangleri%2Ftests%2Fbugzilla%2F00218%2FIcelandic%20Sheepdog%20section%20External%20links">en:User:Gangleri/tests/bugzilla/00218/Icelandic Sheepdog section External links</a>]]
+<a href="http://en.wikipedia.org/w/index.php?title=Category:Dog_breeds&amp;from=I">http://en.wikipedia.org/w/index.php?title=Category:Dog_breeds&amp;from=I</a></pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-15 13:51:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c15">comment #15</a>)
+
+In pure, clean English, without loading it full of URLs and unrelated test
+cases, please explain what the hell you did, and what your comment *means* -
+that's complete gibberish, I'm afraid to say, and frankly, incomprehensible.
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-15 15:05:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >from <a href="irc://irc.freenode.net/#mediawiki">irc://irc.freenode.net/#mediawiki</a>
+
+&lt;gangleri&gt; robchurch : re: <a href="http://bugzilla.wikimedia.org/show_bug.cgi?id=218">http://bugzilla.wikimedia.org/show_bug.cgi?id=218</a> Why
+does <a href="http://en.wikipedia.org/wiki/IPA#Note:_This_page_uses_special_characters">http://en.wikipedia.org/wiki/IPA#Note:_This_page_uses_special_characters</a>
+work ???
+&lt;gangleri&gt; This is an anchor used with as a redirect to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3AIPA">en:IPA</a>]].
+&lt;robchurch&gt; Because the browser is instructed to go to that anchor on whatever
+it loads, when it finishes loading it.
+&lt;gangleri&gt; ok.
+&lt;gangleri&gt; can we use this?
+&lt;robchurch&gt; Because IPA redirects to International Phonetic Alphabet, there ends
+up being an anchor with that name on what the browser sees.
+&lt;robchurch&gt; So no, it's of o use to us.
+&lt;gangleri&gt; I did not know these details.
+----
+*note*
+The anchor works for me with the redirect in Firefox but *not* in IE.
+
+----
+regarding all these &quot;unrelated testcases&quot;
+Rob I appreciate that you are and think like a developer. I am intersted to find
+out the dependencies in order to find solutions as for bug is <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - Would like the ability to list an article under multiple names in its categories"
+   href="show_bug.cgi?id=1333">bug 1333</a> (==<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Pages cannot be listed multiple times in a category."
+   href="show_bug.cgi?id=2688">bug
+2688</a>). If <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Redirects do not support named anchors"
+   href="show_bug.cgi?id=218">bug 218</a> would be fixed it would be half the job. The other half is
+related to &quot;adding redirects to categories&quot;. But the relations between all the
+reports in MediaZilla relating to &quot;adding redirects to categories&quot; are not up to
+date.
+
+It is not clear at all the &quot;adding redirects to categories&quot; works at WP:, WIKT:
+... and is not clear which MediaWiki revisions / branches support this and which
+not.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 02:13:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >After having reviewed the above with Gangleri in IRC, where we worked a couple
+of these things out, marking as WONTFIX once more owing to the fact that we
+can't implement this in a nice, clean fashion.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 15:59:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c6">comment #6</a>)
+<span class="quote">&gt; Fixed <a href="http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page">http://en.wikipedia.org/wiki/Wikipedia:How_does_one_edit_a_page</a> </span >
+
+On what basis can we guarantee that this feature will *never* be implemented? All I can see is 
+that *currently* the consensus is that using the *current* tools it is not practical.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-27 17:03:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c19">comment #19</a>)
+<span class="quote">&gt; On what basis can we guarantee that this feature will *never* be implemented?</span >
+All I can see is 
+<span class="quote">&gt; that *currently* the consensus is that using the *current* tools it is not</span >
+practical.
+
+I've changed the text in question to state that it's &quot;very unlikely&quot; - the key
+point is that people shouldn't use redirects like that as though they are about
+to work, because the chances are they never will. Yes, someone might implement a
+cunningly innovative way of dealing with them, but there's no point anyone
+holding their breath for it, as it were.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-28 15:21:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The JavaScript bit ten comments above would do the job fine. The remaining question is whether we *want* to support that or not.
+</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-20 20:09:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirects don't handle anchors"
+   href="show_bug.cgi?id=4695">Bug 4695</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-20 20:16:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirects don't handle anchors"
+   href="show_bug.cgi?id=4696">Bug 4696</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-21 09:37:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c21">comment #21</a>)
+<span class="quote">&gt; The JavaScript bit ten comments above would do the job fine. The remaining</span >
+question is whether we *want* to support that or not.
+<span class="quote">&gt; </span >
+
+Thanks Brion for your feedback!
+
+If it is possible to implement this it will be great thing. If some wikies do
+not like it anabeled please make it as an option.
+
+There are more aspects:
+a) the *functionality*
+It is the *most* important. If somebody makes a redirect to a section / anchor
+in a very long page this would help visitors to go to this section / anchor
+b) the *details*
+b1) redirect to section
+If a redirect from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=foo">foo</a>]] could be displayed below the section via Java this
+would be great. If this will cause problems with caching do not implement b1).
+b2) redirect to anchors
+These can be at any place inside the page wiki source and render also to places
+inside tables, image captions, galeries etc.
+It is obvious that the link is pointing somewhere else then to the top of the
+page. I assume that people can live with that.
+c) robots: follow / no follow 
+I have no idea about this. Some spommers could start to vondalize redirects if
+they will think that they can have a benefit from this ...
+&amp;redirect=no does not show their actions immediatelly. Only &amp;diff and
+&amp;action=edit will show them. Not all such ottacks might be detected. But this is
+another issue / possibly another bug / request.
+d) others
+
+
+(In reply to <a href="show_bug.cgi?id=218#c0">comment #0</a>)
+<span class="quote">&gt; If one creates a redirect with a named anchor, such as:
+&gt;   Page <a href="http://en.wikipedia.org/wiki/Structural_proof_theory">http://en.wikipedia.org/wiki/Structural_proof_theory</a>
+&gt;   contains just &quot;#REDIRECT[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20theory%23Structural_proof_theory">Proof theory#Structural_proof_theory</a>]]&quot;
+&gt; I expected the behaviour to be, the tag [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural%20proof%20theory">Structural proof theory</a>]]
+&gt; either links to the page [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20theory%23Structural_proof_theory">Proof theory#Structural_proof_theory</a>]]
+&gt; or to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural_proof%20theory%23Structural_proof_theory">Structural_proof theory#Structural_proof_theory</a>]].</span >
+
+Personally I think that [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20theory%23Structural_proof_theory">Proof theory#Structural_proof_theory</a>]] is the target
+and *not* [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Structural_proof%20theory%23Structural_proof_theory">Structural_proof theory#Structural_proof_theory</a>]].
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-21 22:01:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Who the hell keeps marking this WONTFIX?</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Patrick Collison</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-21 22:14:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The following works for me as an extension:
+
+&lt;?php
+
+$wgHooks[&quot;ArticleViewRedirect&quot;][] = 'wfRedirectJump';
+
+function wfRedirectInjectJS($data, &amp;$parser, &amp;$text) {
+    $text .= $data;
+}
+
+function wfRedirectJump (&amp;$array) {
+    global $wgHooks;
+
+    $section = $array-&gt;mTitle-&gt;mFragment;
+    if($section) {
+        $inject = '&lt;script&gt;'
+                 .'window.location.hash = \''.$section.'\';'
+                 .'&lt;/script&gt;';
+        $wgHooks['ParserAfterTidy'][] = array('wfRedirectInjectJS', $inject);
+    }
+
+    return true;
+}
+
+?&gt;</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Piet De Somere</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-13 09:59:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >How about adding a notice to the &quot;Redirected from ...&quot; message.
+If there is a section with the right name, a link could be added
+
+(Redirected from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20Theory">Proof Theory</a>]])
+(Jump to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%23Structural%20Proof%20Theory">#Structural Proof Theory</a>]])
+
+That seems no big deal implementationwise.
+The existing links would have a meaning and 
+it would be easy for the user to jump to the right section.
+
+Regards,
+Piet</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-13 12:49:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c27">comment #27</a>)
+<span class="quote">&gt; How about adding a notice to the &quot;Redirected from ...&quot; message.
+&gt; If there is a section with the right name, a link could be added
+&gt; 
+&gt; (Redirected from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Proof%20Theory">Proof Theory</a>]])
+&gt; (Jump to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%23Structural%20Proof%20Theory">#Structural Proof Theory</a>]])
+&gt; 
+&gt; That seems no big deal implementationwise.
+&gt; The existing links would have a meaning and 
+&gt; it would be easy for the user to jump to the right section.
+&gt; 
+&gt; Regards,
+&gt; Piet</span >
+
+I agree.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-18 22:19:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Here's a javascript workaround:
+
+<a href="http://en.wikipedia.org/wiki/User:Omegatron/monobook.js/namedredirect.js">http://en.wikipedia.org/wiki/User:Omegatron/monobook.js/namedredirect.js</a>
+
+I've been meaning to learn AJAX, and this is my first ever use of
+XMLHttpRequest, so it probably needs a lot of work, has strange bugs, etc.
+
+Test cases:
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AOmegatron%2FSandbox%2FRedirector">User:Omegatron/Sandbox/Redirector</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AOmegatron%2FSandbox%2FRedirector2">User:Omegatron/Sandbox/Redirector2</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=i.e.">i.e.</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=e.g.">e.g.</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=et%20al.">et al.</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Embiggens">Embiggens</a>]]
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Skittlebrau">Skittlebrau</a>]]</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phlip</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 16:53:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I fail to see how doing an HTTP redirect from /wiki/Foo to
+/wiki/Bar?redirectedfrom=Foo#anchor would harm caching.
+
+The way it is done now, a cache will have to cache both /wiki/Foo and /wiki/Bar
+- making it cache /wiki/Bar and /wiki/Bar?redirectedfrom=Foo instead wouldn't
+change anything. Indeed if we want to keep the &quot;Redirected from&quot; link, then we
+*need* to keep caching it in 2 places. Having to cache an extra HTTP redirect is
+not going to kill anybody, and probably won't happen at all with 303 redirect
+(which the standards say must not be cached).
+
+The only effect would be for a brief period after it was changed, when
+/wiki/Foo, /wiki/Bar and /wiki/Bar?redirectedfrom=Foo would all be cached, and
+even then it would be only until the cache on Foo expired.
+
+Though I'm thinking of end-user caching, and serverside caching might be
+different, but I can't think of a way that the server could cache redirects now
+that couldn't be done with HTTP redirects.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 19:15:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >IT WOULD HAVE NOTHING TO DO WITH CACHING. PLEASE NO ONE COMMENT
+FURTHER ON THIS BUG UNLESS YOU'RE POSTING A PATCH TO CURRENT
+CODE OR COMMENTING DIRECTLY ON THE QUALITY OF THE PATCH.
+THANK YOU.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-01 13:04:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looks like a typo in Wiki.php:
+
+===================================================================
+--- includes/Wiki.php   (revision 13988)
++++ includes/Wiki.php   (working copy)
+&#64;&#64; -225,7 +225,7 &#64;&#64;
+                                        if ($rarticle-&gt;mTitle-&gt;mArticleID) {
+                                                $article = $rarticle;
+                                                $wgTitle = $target;
+-                                               $article-&gt;setRedirectedFrom(
+$title );
++                                               $article-&gt;setRedirectedFrom(
+$target );
+                                        } else {
+                                                $wgTitle = $title;
+                                        }
+
+
+Commited as <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/13993" title="revision 13993 in SVN">r13993</a> in trunk, not backported in REL1_6 yet.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-01 13:06:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is some code in Article::view() ( line 800 and below ) that seems
+to be a duplicate of the above Wiki.php code. Need investigation :)</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-01 17:01:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Given an article [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=RedirectAnchor">RedirectAnchor</a>]] that contains:
+
+#REDIRECT [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=218%2Flongtext%23anchorlast">218/longtext#anchorlast</a>]]
+
+It redirects to:
+$wgServer/wiki?title=218/longtext&amp;lrfrom=RedirectAnchor#anchorlast
+
+It is an ugly URL but it works, commited in my branch as <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/14000" title="revision 14000 in SVN">r14000</a></pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-01 17:51:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have reverted <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/13993" title="revision 13993 in SVN">r13993</a></pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-01 18:20:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please don't make some ugly URL, it's totally unnecessary.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-10 14:45:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've been using my javascript workaround since March with no problems.  Is this
+something that people would want to put into Monobook.js sitewide?  Is there a
+Common.js for all skins?</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-11 02:43:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Judging by this crazy line, there is a Common.js:
+
+&lt;style type=&quot;text/css&quot;&gt;/*&lt;![CDATA[*/
+&#64;import &quot;/w/index.php?title=MediaWiki:Common.css&amp;action=raw&amp;ctype=text/css&amp;smaxage=2678400&quot;;
+&#64;import &quot;/w/index.php?title=MediaWiki:Monobook.css&amp;action=raw&amp;ctype=text/css&amp;smaxage=2678400&quot;;
+&#64;import &quot;/w/index.php?title=-&amp;action=raw&amp;gen=css&amp;maxage=2678400&quot;;
+/*]]&gt;*/&lt;/style&gt;</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-11 02:47:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Those are all CSS.  I believe wikibits.js is common to all skins, but there's no
+in-wiki equivalent of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ACommon.css">MediaWiki:Common.css</a>]], no.  See <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Add MediaWiki:Common.js file, similar to MediaWiki:Common.css"
+   href="show_bug.cgi?id=4178">bug 4178</a>.</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-11 03:00:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c39">comment #39</a>)
+<span class="quote">&gt; Those are all CSS.  I believe wikibits.js is common to all skins, but there's no
+&gt; in-wiki equivalent of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ACommon.css">MediaWiki:Common.css</a>]], no.  See <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Add MediaWiki:Common.js file, similar to MediaWiki:Common.css"
+   href="show_bug.cgi?id=4178">bug 4178</a>.</span >
+
+Ah.  Well it could be added to wikibits, if desired.  Same thing.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">DmitryKo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-12 20:39:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Process anchor links in redirects"
+   href="show_bug.cgi?id=6994">Bug 6994</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-30 17:14:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Redirect does not work for section headers"
+   href="show_bug.cgi?id=7176">Bug 7176</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nyenyec</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-30 17:27:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c37">comment #37</a>)
+<span class="quote">&gt; I've been using my javascript workaround since March with no problems.  Is this
+&gt; something that people would want to put into Monobook.js sitewide?  Is there a
+&gt; Common.js for all skins?</span >
+
+Omegatron, is that a pure JavaScript workaround that requires no MediaWiki
+patches? Could you point me to details?</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-30 17:55:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c43">comment #43</a>)
+
+<span class="quote">&gt; Omegatron, is that a pure JavaScript workaround that requires no MediaWiki
+&gt; patches? Could you point me to details?</span >
+
+Yes.  Details were in <a href="show_bug.cgi?id=218#c29">comment #29</a>.  It checks to see if you were redirected to
+the current page.  If so, it checks the redirector page to see if there's a hash
+in the link.  If there is, it navigates to it.
+
+You can try it out by adding this to your monobook.js:
+
+document.write('&lt;scr' + 'ipt type=&quot;text/javascript&quot; src=&quot;' 
+             +
+'<a href="http://en.wikipedia.org/w/index.php?title=User:Omegatron/monobook.js/namedredirect.js">http://en.wikipedia.org/w/index.php?title=User:Omegatron/monobook.js/namedredirect.js</a>'
+             + '&amp;action=raw&amp;ctype=text/javascript&amp;dontcountme=s&quot;&gt;&lt;/scr' 
+             + 'ipt&gt;');
+
+Then click my example links in <a href="show_bug.cgi?id=218#c29">comment #29</a></pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-08 06:47:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/18220" title="revision 18220 in SVN">r18220</a>.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Splarka</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-27 13:05:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Long delayed followup:
+
+Now that there are redirect tables listing redirects, and also now that each link is checked for redirectitude (they are given a CSS class if they are), could this be done in the base links rather than on the target page, eliminating the need for the javascript hack? Do the redirect tables store the section hash?
+
+ /wiki/Structural_proof_theory#Structural_proof_theory &lt;-- per above, best would be to generate the link and keep the link to the redirect, but include the hash for the target (same as the javascript code does).
+
+If possible, maybe worth reopening?
+
+</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=218#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-27 17:56:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=218#c46">comment #46</a>)
+<span class="quote">&gt; Now that there are redirect tables listing redirects, and also now that each
+&gt; link is checked for redirectitude (they are given a CSS class if they are),
+&gt; could this be done in the base links rather than on the target page,
+&gt; eliminating the need for the javascript hack?</span >
+
+It wouldn't eliminate the need for the hack, because people could still type the URL directly into their address bar, or into the search bar, etc.  However, it would reduce the need for it, I suppose, if that's a big deal.
+
+<span class="quote">&gt; Do the redirect tables store the
+&gt; section hash?</span >
+
+No.
+
+<span class="quote">&gt; If possible, maybe worth reopening?</span >
+
+No, open a new bug.  Either link to it here or mark this bug as blocking it.
+</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=218&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=218">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=218">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=218">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=218&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=218" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=218&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419356784-V1p6tsY2AMhVNpaimi9ix13rcZW1RqFkKw2tTrSPitI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

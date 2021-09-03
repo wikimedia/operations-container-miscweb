@@ -1,0 +1,1759 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 8898 &ndash; Install more fonts (especially for Unicode) (tracking)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=8898&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=8898">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=8898">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=8898">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 8898 – Install more fonts (especially for Unicode) (tracking)",  
+                             "show_bug.cgi?id=8898" );
+        document.title = "Bug 8898 – Install more fonts (especially for Unicode) (tracking)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 8898 – Install more fonts (especially for Unicode) (tracking)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_Wikimedia bz_component_General_Unknown bz_bug_8898 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-07-18 13:52:59 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-07-18 13:52:59">
+  <input type="hidden" name="longdesclength" value="26">
+  <input type="hidden" name="id" value="8898">
+  <input type="hidden" name="token" value="1419370580-fIQHGTQ8ynXUDjbtXVspG1wqGQeZ36pYPxMljZ7zmZU">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=8898"><b>Bug&nbsp;8898</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Install more fonts (especially for Unicode) (tracking)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Install more fonts (especially for Unicode) (tracking)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Install more fonts (especially for Unicode) (tracking)', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=8898">2 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=8898#vote_8898">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">tracking
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Rendering of malayalam fonts in SVG"
+   href="show_bug.cgi?id=25140">25140</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Update Malayalam fonts packages"
+   href="show_bug.cgi?id=31950">31950</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tracking bug (tracking)"
+   href="show_bug.cgi?id=2007">tracking</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Allow using custom fonts with EasyTimeline"
+   href="show_bug.cgi?id=21497">21497</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Bengali Wiki projects (tracking)"
+   href="show_bug.cgi?id=40760">40760</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=8898&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=8898">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2007-02-06 10:58 UTC by <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-07-18 13:52 UTC 
+      (<a href="show_activity.cgi?id=8898">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>16 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="camjsb7j9g">camjsb7j9g</option>
+                <option value="dzahn">dzahn</option>
+                <option value="filippe.vasconcellos">filippe.vasconcellos</option>
+                <option value="Gerard.meijssen">Gerard.meijssen</option>
+                <option value="gtisza">gtisza</option>
+                <option value="jayantanth">jayantanth</option>
+                <option value="jayvdb">jayvdb</option>
+                <option value="kjoonlee">kjoonlee</option>
+                <option value="mah">mah</option>
+                <option value="makineni.pradeep">makineni.pradeep</option>
+                <option value="martineznovo">martineznovo</option>
+                <option value="mediawiki-bugs">mediawiki-bugs</option>
+                <option value="ondra.hosek">ondra.hosek</option>
+                <option value="tstarling">tstarling</option>
+                <option value="verdy_p">verdy_p</option>
+                <option value="vyzasatya">vyzasatya</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=8898&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-06 10:58:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >At the moment the SVG rasterizer uses Arial or a font that looks like it. It
+lacks many characters needed by many languages.
+
+The rasterizer should use fonts that have a better Unicode coverage like DejaVu
+fonts for Latin, Greek and Cyrillic based scripts, etc.
+
+Many of these fonts are free and/or Open Source.
+
+Example <a href="http://commons.wikimedia.org/wiki/Image:Digestive_system_diagram_ln.svg">http://commons.wikimedia.org/wiki/Image:Digestive_system_diagram_ln.svg</a>
+should have words like Monɔkɔ, Nsɔ́ngɛ, etc, but the characters missing in Arial
+are just not displayed.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-06 12:19:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See also
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Fonts are off in rasterized SVG images on wikimedia sites"
+   href="show_bug.cgi?id=3769">Bug 3769</a> Fonts are off in rasterized SVG images on wikimedia sites
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - SVG with CJK fonts doesn't render CJK text"
+   href="show_bug.cgi?id=8666">Bug 8666</a> SVG with CJK fonts doesn't render CJK text
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Greek character in .svg wrong rendered for replacement- .png"
+   href="show_bug.cgi?id=5694">Bug 5694</a> Greek character in .svg wrong rendered for replacement- .png</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-06 12:19:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Some greek characters don't render in SVG"
+   href="show_bug.cgi?id=8797">Bug 8797</a> Some greek characters don't render in SVG</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-06 12:25:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Incorrect rendering of stretched text in svg -&gt; png conversion"
+   href="show_bug.cgi?id=8895">Bug 8895</a> may also be related (stretched font's don't work right)
+
+Note that most of the problems do not exist with my local install of rsvg 2.16.0
+(on unbuntu edgy)
+
+Perhaps a tracking bug for rsvg font issues would be handy</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-06 12:36:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8898#c3">comment #3</a>)
+<span class="quote">&gt; Note that most of the problems do not exist with my local install of rsvg 2.16.0
+&gt; (on unbuntu edgy)</span >
+
+That's probably because you have the required fonts installed on you system.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-06 15:57:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8898#c3">comment #3</a>)
+<span class="quote">&gt; Perhaps a tracking bug for rsvg font issues would be handy</span >
+
+Filed as <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - SVG rasterisation and management on Wikimedia sites (tracking)"
+   href="show_bug.cgi?id=8901">bug 8901</a>.
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">arun</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-31 21:31:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There should atleast be a serif font like Times new roman if not all fonts. 
+Its quite a nuisance when a map youve made has everything in Arial Roman,  
+even if its in Arial Bold or Italics.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-18 22:07:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have installed the following font packages from FC4:
+
+bitstream-vera-fonts-1.10-5
+fonts-bengali-1.10-2
+fonts-chinese-2.15-2
+fonts-gujarati-1.10-2
+fonts-hindi-1.10-2
+fonts-japanese-0.20050222-3
+fonts-korean-1.0.11-4
+fonts-punjabi-1.10-2
+fonts-tamil-1.10-2
+
+and a custom build of DejaVu fonts version 2.16.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ravi Vyzasatya</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-19 08:04:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please install Telugu fonts too.
+Fonts are off from the svg images in telugu wikipedia ex. see <a href="http://te.wikipedia.org/wiki/Image:Distancedisplacement-te.svg">http://te.wikipedia.org/wiki/Image:Distancedisplacement-te.svg</a>
+</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Pradeep Makineni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-06 04:53:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You can get two telugu fonts from <a href="http://www.kavya-nandanam.com/Pothana2k.zip">http://www.kavya-nandanam.com/Pothana2k.zip</a>
+And there is also Gautami font, comes with the default installation of the WinXP.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tisza Gergő</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-01 15:06:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Liberation ( <a href="https://www.redhat.com/promo/fonts/">https://www.redhat.com/promo/fonts/</a> ) has been suggested on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ATalk%3ASVG%20fonts">m:Talk:SVG fonts</a>]] as a free package that contains fonts metrically equivalent to many common non-free fonts. Right now PNGs converted from SVGs that use standard Windows fonts look awful. This one for example uses Times New Roman: <a href="http://csomalin.csoma.elte.hu/~tgergo/bugs/commons_svg_conversion_problems.svg">http://csomalin.csoma.elte.hu/~tgergo/bugs/commons_svg_conversion_problems.svg</a> and the result is: <a href="http://csomalin.csoma.elte.hu/~tgergo/bugs/commons_svg_conversion_problems.png">http://csomalin.csoma.elte.hu/~tgergo/bugs/commons_svg_conversion_problems.png</a> .</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-01 15:27:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Liberation Sans and Serif are great substitutions for Arial and Times New Roman as they match their metrics. It would be great to have the system configured to use them instead of Arial and Times New Roman if those aren't present or up to date with the latest version.
+
+Gergő: there's a serious bug with the renderer used for commons_svg_conversion_problems.svg </pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kyungjoon Lee</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-12 12:24:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Liberation fonts do not match Arial or Times New Roman very well IMHO.
+
+Nimbus Sans L and Nimbus Roman No9 L, however, match Helvetica (and thus Arial) and Times New Roman almost perfectly. The URW Nimbus fonts are already installed.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Denis Jacquerye</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-13 10:51:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8898#c12">comment #12</a>)
+<span class="quote">&gt; Liberation fonts do not match Arial or Times New Roman very well IMHO.
+&gt; 
+&gt; Nimbus Sans L and Nimbus Roman No9 L, however, match Helvetica (and thus Arial)
+&gt; and Times New Roman almost perfectly. The URW Nimbus fonts are already
+&gt; installed.
+&gt; </span >
+
+Liberation fonts might have different looks than Arial and Times New Roman but they have almost the exact same metric.
+So a string in Arial will probably have the same length as Liberation Sans. Whereas Nimbus Sans has the same shapes as Helvetica but metrics, especially kerning or the space between characters, will be have more differences than with Liberation fonts.
+
+Either way, Liberation fonts should be installed.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-14 05:05:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fonts have been updated, all the language support virtual packages in Ubuntu 8.04 have been installed, Telugu included. Liberation fonts have been installed.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">fvasconcellos</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-22 11:24:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This has seriously screwed up font rendering, probably because of a substitution issue—see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ATalk%3ASVG%20fonts">m:Talk:SVG fonts</a>]]. All SVGs uploaded after the installation and specifying Arial/Helvetica/Nimbus Sans L are now defaulting to Liberation, with pretty sketchy results (hinting in particular seems terrible, at least on my system). Liberation Sans may be metrically equivalent to Arial, but is in no way an adequate substitute; Nimbus Sans was much, much better from an aesthetic point of view, and there were never any appreciable kerning/metrics issues. 
+
+The new packages were a great addition, but if there is any way for the Nimbus fonts to be the renderer's default Sans and Serif families, _please_ go back to that. Pretty please. Cherry on top.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jayanta Nath</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-06 10:31:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is another bug in the SVG to PNG conversion done by the WikiCommons software. Check File:Prokaryote cell diagram-bn.svg . I just translate in bengali language with a Font SolaimanLipi.ttf(welknown good looking Bengali font) in svg, but PNG out put shown Font with vrinda.ttf. Please check.
+Is it possible to add SolaimanLipi.ttf to coversion list here <a href="http://meta.wikimedia.org/wiki/SVG_fonts">http://meta.wikimedia.org/wiki/SVG_fonts</a>
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">84user</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-06-12 19:46:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I find wikimedia renders thumbnails for SVGs when they contain DejaVu Sans and Liberation Sans fonts. A set of files with problems is linked from
+
+<a href="http://commons.wikimedia.org/wiki/File:Ikaros_solar_sail_key_liberation_sans.svg">http://commons.wikimedia.org/wiki/File:Ikaros_solar_sail_key_liberation_sans.svg</a>
+
+
+and I posted more details here: 
+
+<a href="http://commons.wikimedia.org/wiki/Commons:Graphics_village_pump#Wikimedia_renders_Deja_and_Liberation_fonts_badly">http://commons.wikimedia.org/wiki/Commons:Graphics_village_pump#Wikimedia_renders_Deja_and_Liberation_fonts_badly</a>
+
+Is it possible that wikimedia server software has out of date versions of those fonts? I recall one or both of those fonts had serious kerning or hinting problems on my PC and I recently installed newer versions to clear the problems.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ondřej Hošek</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-09 22:30:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'd like to request installation of the TeX Gyre fonts [1], which are rather popular amongst TeX users and contain clones of the prescribed PDF fonts (Helvetica, Times, Futura, Bookman, Chancery, Palatino, et al.) based on the URW fonts, but with some slightly less common accented characters. They are licensed under the comparably permissive GUST font license. [2]
+
+[1] <a href="http://www.gust.org.pl/projects/e-foundry/tex-gyre/whole">http://www.gust.org.pl/projects/e-foundry/tex-gyre/whole</a>
+[2] <a href="http://www.gust.org.pl/projects/e-foundry/licenses">http://www.gust.org.pl/projects/e-foundry/licenses</a>
+
+Thanks a lot in advance.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-10-27 13:36:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Turning this into a tracking bug so it is easier to keep track of individual font requests.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Zahn</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-21 06:53:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >bump .. In October 2011 after a major upgrade the situation was then as follows. 
+Please confirm if you are still missing something specific nowadays..
+
+ii  console-setup                   1.34ubuntu15                      console font and keymap setup program
+ii  console-terminus                4.30-2                            Fixed-width fonts for fast reading on the Li
+ii  defoma                          0.11.10-4ubuntu1                  Debian Font Manager -- automatic font config
+ii  fontconfig                      2.8.0-2ubuntu1                    generic font configuration library - support
+ii  fontconfig-config               2.8.0-2ubuntu1                    generic font configuration library - configu
+ii  gsfonts                         1:8.11+urwcyr1.0.7~pre44-4        Fonts for the Ghostscript interpreter(s)
+ii  gsfonts-x11                     0.21                              Make Ghostscript fonts available to X11
+ii  kbd                             1.15-1ubuntu3                     Linux console font and keytable utilities
+ii  libfont-afm-perl                1.20-1                            Font::AFM - Interface to Adobe Font Metrics
+ii  libfontconfig1                  2.8.0-2ubuntu1                    generic font configuration library - runtime
+ii  libfontenc1                     1:1.0.5-1                         X11 font encoding library
+ii  libfreetype6                    2.3.11-1ubuntu2.4                 FreeType 2 font engine, shared library files
+ii  libt1-5                         5.1.2-3build1                     Type 1 font rasterizer library - runtime
+ii  libxfont1                       1:1.4.1-1ubuntu0.1                X11 font rasterisation library
+ii  libxft2                         2.1.14-1ubuntu1                   FreeType-based font drawing library for X
+ii  lmodern                         2.004.1-3                         scalable PostScript and OpenType fonts based
+ii  psfontmgr                       0.11.10-4ubuntu1                  PostScript font manager -- part of Defoma, D
+ii  texlive-font-utils              2009-7ubuntu3                     TeX Live: TeX and Outline font utilities
+ii  texlive-fonts-extra             2009-7ubuntu3                     TeX Live: Extra fonts
+ii  texlive-fonts-extra-doc         2009-7ubuntu3                     TeX Live: Documentation files for texlive-fo
+ii  texlive-fonts-recommended       2009-7                            TeX Live: Recommended fonts
+ii  texlive-fonts-recommended-doc   2009-7                            TeX Live: Documentation files for texlive-fo
+ii  ttf-dejavu-core                 2.30-2                            Vera font family derivate with additional ch
+ii  x-ttcidfont-conf                32                                TrueType and CID fonts configuration for X
+ii  xfonts-encodings                1:1.0.3-1                         Encodings for X.Org fonts
+ii  xfonts-utils                    1:7.5+2                           X Window System font utility programs</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-03-21 16:44:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looks fixed to me.
+
+If you find a problem, please open a *new* bug and point to an SVG with text that does not render correctly in the PNG thumb.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-18 00:01:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding the excellent Noto collection? (Sponsored by Google and Adobe, but completely free fonts, under Apache Licence 2.0).
+
+<a href="http://www.google.com/get/noto/">http://www.google.com/get/noto/</a>
+
+No more tofu, that whole collection can be a default base collection working in stead of fallback fonts showing very little information.
+
+The collection is high quality, fully hinted, with metrics adjusted for correct display in pages using ultiple scripts ? Some scripts are available in two styles.
+
+Almost all world scripts are supported (most modern scripts, including Burmese for which good fonts are very scarse or bugged). All Indian scripts are covered, and most scripts for Eastern Asia.
+
+Now it also supports the full CJK repertoire (with 4 linguistic variants, with 7 weights !). Full support of OpenType required features for each scripts)
+
+Full support of Arabic script (both major styles).
+
+There are only 2 missing modern scripts : Tibetan, Thaana for Divehi/Maldivian (but work is in progress, with some issues in OpenType tables to discuss and fix). Many historic scripts are covered. Most new scripts created in the last 50 years (for languages that were still not written, notably in Africa) are covered, including experimental ones (like Deseret).
+
+The goal of the collection is the full repertoire of Unicode (almost all Unicode 7.0 is covered), including musical symbols, technical symbols, weather and games symbols, emojis (soon color emojis too)...</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-18 10:16:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug report was closed more than two years ago. 
+If you have specific requests for specific fonts, please file a separate report for each font/language and explain the impact/usecases.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-18 12:02:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You're wrong, this bug is a tracking bug referenced directly by OPEN bugs (they are even listed at top of this page!!)
+
+And it was specific to a &quot;collection&quot; of fonts made to be used together, and for all the documented scripts and languages.
+
+I don't need to detail all of then, refer to the site which documents everything. I just was describing its content and licence instead of just posting a blank URL.
+It is important for Wikiemdia, notably for many scripts that don't have decent free fonts (e.g. Burmese in Myanmar) in the current collection of free webfonts (that should remain open and cannot be &quot;closed&quot; when many scripts are still lacking the most basic support with donts that are really readable and with correct metrics).</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8898#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-18 13:52:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Again: This ticket is closed as fixed. If you want some font, file a new ticket.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=8898&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=8898">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=8898">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=8898">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=8898&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=8898" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=8898&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419370580-gH33EEvNhKbDoL9QA5It0LBhHzi2B2jnvzxdtgQFQ2o">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

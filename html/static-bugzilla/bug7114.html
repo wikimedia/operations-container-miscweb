@@ -1,0 +1,1508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 7114 &ndash; Introduce {{#timediff:}} parser function</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=7114&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=7114">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=7114">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=7114">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 7114 – Introduce {{#timediff:}} parser function",  
+                             "show_bug.cgi?id=7114" );
+        document.title = "Bug 7114 – Introduce {{#timediff:}} parser function";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 7114 – Introduce {{#timediff:}} parser function", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_MediaWiki_extensions bz_component_ParserFunctions bz_bug_7114 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-04-14 15:10:56 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-04-14 15:10:56">
+  <input type="hidden" name="longdesclength" value="16">
+  <input type="hidden" name="id" value="7114">
+  <input type="hidden" name="token" value="1419367918-vPVg-RF2JtPeP_iZ-wdegx8_OfmzsA9LV66Lyx44YQM">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=7114"><b>Bug&nbsp;7114</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Introduce {{#timediff:}} parser function</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Introduce {{#timediff:}} parser function
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Introduce {{#timediff:}} parser function', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>ParserFunctions
+    
+    (<a href="buglist.cgi?component=ParserFunctions&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=7114">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=7114#vote_7114">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=7114&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=7114">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-08-24 10:54 UTC by <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-04-14 15:10 UTC 
+      (<a href="show_activity.cgi?id=7114">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>2 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="happy.melon.wiki">happy.melon.wiki</option>
+                <option value="raimond.spekking">raimond.spekking</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=7114&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 10:54:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There are many cases, when it's necessary to count either date +- some period or
+difference between two dates.
+
+Since having {{#expr:}} which allows easy constructing or deconstructing of
+timestamp, I'd suggest following simple syntax:
+
+{{timediff:20060824124500|20070925134601}} = <a href="https://gerrit.wikimedia.org/r/#q,000101010101,n,z" title="Git commit 000101010101">000101010101</a>
+time difference between 24th Aug 2006 12:45:00 and 25th Aug 2007 13:46:01
+is 1 year 1 month 1 day 1 hour 1 minute 1 second
+
+{{timediff:20060824124500|+000101010101}} = <a href="https://gerrit.wikimedia.org/r/#q,20070925134601,n,z" title="Git commit 20070925134601">20070925134601</a>
+24th Aug 2006 12:45:00 + 1 year 1 month 1 day 1 hour 1 minute 1 second
+is 25th Aug 2007 13:46:01
+
+{{timediff:20060824124500|-000101010101}} = <a href="https://gerrit.wikimedia.org/r/#q,20050723114359,n,z" title="Git commit 20050723114359">20050723114359</a>
+24th Aug 2006 12:45:00 - 1 year 1 month 1 day 1 hour 1 minute 1 second
+is 23th Jul 2005 11:43:59</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 11:00:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Do we have functions that can format the output into a friendlier format? If
+not, then this will have more limited use.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 11:25:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c1">comment #1</a>)
+<span class="quote">&gt; Do we have functions that can format the output into a friendlier format? If
+&gt; not, then this will have more limited use.</span >
+
+Well, I tried to suggest the simpliest and straightest syntax. Formatting output
+can by done via {{#expr:}}
+eg.:
+year = (timestamp - timestamp mod <a href="https://gerrit.wikimedia.org/r/#q,10000000000,n,z" title="Git commit 10000000000">10000000000</a>) / <a href="https://gerrit.wikimedia.org/r/#q,10000000000,n,z" title="Git commit 10000000000">10000000000</a>
+etc.
+Creating input is even simplier:
+timestamp = year * <a href="https://gerrit.wikimedia.org/r/#q,10000000000,n,z" title="Git commit 10000000000">10000000000</a> + month * <a href="https://gerrit.wikimedia.org/r/#q,100000000,n,z" title="Git commit 100000000">100000000</a> + day * 1000000 + hour *
+10000 + minute * 100 + second
+
+If not such a big issue, another parameter can be added to format the output in
+common syntax
+eg.:
+{{timediff:20060824124500|+000101010101|d. M. yyyy, hh:mm:ss}}
+but I guess, there would have to be probably only numerical output (no
+monthnames) or will the i18n be no problem?
+
+Going further, there are other possibilities, like:
+{{decodetimestamp:20060824124500|MM}} = 08
+{{decodetimestamp:20060824124500|s}} = 0
+etc.
+
+or even a set of colon functions like:
+{{getday:&lt;timestamp&gt;}}, {{getmonth:&lt;timestamp&gt;}} etc...
+but I don't think, it's necessary to go that far.
+
+But the biggest need now at all is to count the time difference. Other things to
+make it more user friendly can wait for demand, I think.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 11:41:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c0">comment #0</a>)
+Whoups, made a small mistake:
+<a href="https://gerrit.wikimedia.org/r/#q,000101010101,n,z" title="Git commit 000101010101">000101010101</a> should be <a href="https://gerrit.wikimedia.org/r/#q,00010101010101,n,z" title="Git commit 00010101010101">00010101010101</a> (+ one more 01 at the end) of course.
+Sorry.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 11:46:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have a better idea: a parser function called #time. It takes one required 
+parameter and one optional parameter. The required parameter is a date format in 
+the style of Language::sprintfDate(), which is the internationalised date 
+formatter I wrote a few weeks ago. The optional parameter is a string date as 
+accepted by strtotime(), the same function we use for block expiries. strtotime() 
+accepts both relative and absolute dates, so it could do timezone conversions. 
+
+For example, you could find out what time it is here in Melbourne with:
+
+{{#time:H:i|+10 hours}}
+
+This is very simple to code, just a few lines.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 12:59:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c4">comment #4</a>)
+So what would be the syntax (and output) to get the time difference between two
+timestamps?
+{{#time:2006-08-24 14:50:00|2007-09-25 15:51:01}} ?
+
+And what should be the output in general? I think the output should be either
+raw (timestamp) so people can format it the way they want, or the function
+should allow output formatting parameter, because you don't need precisious time
+everytime.
+
+Couple examples from cs wiki:
+Certain procedures are being closed tightly to minute, so the precisious time is
+needed.
+Certain procedures are being closed in the midnight of counted day, so only date
+without time is needed.
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 13:25:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c4">comment #4</a>)
+<span class="quote">&gt; I have a better idea: a parser function called #time. It takes one required 
+&gt; parameter and one optional parameter. The required parameter is a date format in 
+&gt; the style of Language::sprintfDate(), which is the internationalised date 
+&gt; formatter I wrote a few weeks ago. The optional parameter is a string date as 
+&gt; accepted by strtotime(), the same function we use for block expiries. strtotime() 
+&gt; accepts both relative and absolute dates, so it could do timezone conversions. </span >
+
+If you do this, how about adding U to the list of supported formatting
+characters?  That would mean date arithmetic would be possible via {{#time:
+Y-m-d H:i:s|&#64;{{#expr: {{#time:U|2007-09-25 15:51:01}} - {{#time:U|2006-08-24
+14:50:00}} }} }}, which is hardly elegant and not particularly efficient but
+should be usable.  (Why not support all PHP's formatting characters anyway? 
+It's not as though cases after the one you hit are going to affect performance,
+I assume.)
+
+(In reply to <a href="show_bug.cgi?id=7114#c5">comment #5</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=7114#c4">comment #4</a>)
+&gt; So what would be the syntax (and output) to get the time difference between two
+&gt; timestamps?</span >
+
+As Tim proposed it, it wouldn't be possible that I can see; with the slight
+emendation I suggested, it would be as I stated above.  Note that in either
+case, the input date (second parameter) can be basically anything that looks
+like a date: see <a href="http://www.gnu.org/software/tar/manual/html_node/tar_109.html">http://www.gnu.org/software/tar/manual/html_node/tar_109.html</a>
+for how it decides to parse the formats, but basically you can use most
+unambiguous date formats and it will figure them out.  &quot;2006-08-24 14:50:00&quot; can
+also be written as &quot;2:50 PM -0500, 24 August 2006&quot;, or &quot;200608241450&quot;, or whatever.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 13:41:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c6">comment #6</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=7114#c5">comment #5</a>)
+&gt; &gt; (In reply to <a href="show_bug.cgi?id=7114#c4">comment #4</a>)
+&gt; &gt; So what would be the syntax (and output) to get the time difference between two
+&gt; &gt; timestamps?
+&gt; 
+&gt; As Tim proposed it, it wouldn't be possible that I can see; with the slight
+&gt; emendation I suggested, it would be as I stated above.  Note that in either
+&gt; case, the input date (second parameter) can be basically anything that looks
+&gt; like a date: see <a href="http://www.gnu.org/software/tar/manual/html_node/tar_109.html">http://www.gnu.org/software/tar/manual/html_node/tar_109.html</a>
+&gt; for how it decides to parse the formats, but basically you can use most
+&gt; unambiguous date formats and it will figure them out.  &quot;2006-08-24 14:50:00&quot; can
+&gt; also be written as &quot;2:50 PM -0500, 24 August 2006&quot;, or &quot;200608241450&quot;, or</span >
+whatever.
+
+Well, in fact I don't care about syntax of function or date format, just do it
+the way which is simpliest for you guys to program. The only two things I care
+about are
+* output should be either difference between two dates or date + difference (if
+unnecessary hard to program or considered confusing, just split it into two
+functions)
+* output should be formattable to be able to get just certain part (eg. just
+day) or it should be raw timestamp so people can format it further
+
+I'll be totally pleased and satisfied with anything what will allow these two
+points regardless the final syntax.
+
+Thank you guys that you're interested in solving it. I think this feature is
+being missed by many users.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 13:58:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wait, one minute, my bad.  Tim, {{#time:}} would output a date, not a time
+interval, so is unsuitable for this purpose.  I've split this into <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Create {{#time:}} for date() or Language::sprintfDate()"
+   href="show_bug.cgi?id=7116">bug 7116</a>.  A
+{{#timediff:}} function that will output some kind of time interval is still
+necessary for many purposes.  It shouldn't be hard; something like
+
+{{#timediff: date 1 | date 2 | format}}
+
+would be what we want, with date 1 and date 2 fed into strtotime() and then
+format constructed out of characters representing various units, both with and
+without considering remainders (so S could be the total integer number of
+seconds in the difference, and s could be the number of seconds modulo 60).</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 21:35:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's now possible, albeit awkward, to calculate date differences.  Watch out for
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikipedia%3ATemplate%20limit">Wikipedia:Template limit</a>]].  To calculate the floor of the number of years
+between two dates, for instance, you can use {{#expr: {{#time: Y|first time}} -
+{{#time: Y|second time}} }}.  You can then do the same for days, months, etc.,
+although you'll need more logic to handle negative values.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Raimond Spekking</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-07 14:29:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Referring to <a href="show_bug.cgi?id=7114#c9">comment #9</a> this bug seems to be FIXED.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-07 14:47:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c10">comment #10</a>)
+<span class="quote">&gt; Referring to <a href="show_bug.cgi?id=7114#c9">comment #9</a> this bug seems to be FIXED.</span >
+
+Definitely not.
+
+Bunch of templates with possible excessing of translusion limit instead of one parser function? No, that isn't the purpose.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Happy-melon</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-22 19:18:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See, for instance, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Template%3ATime%20ago">Template:Time ago</a>]]. This is miles off the template limits, and is simple and effective.  A specific function #time*diff* would actually be less useful than a function that simply converts a number-of-seconds value into a relative time, but that's not specifically what this bug is about.  </pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-22 20:01:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c12">comment #12</a>)
+<span class="quote">&gt; See, for instance, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Template%3ATime%20ago">Template:Time ago</a>]]. This is miles off the template
+&gt; limits, and is simple and effective.  A specific function #time*diff* would
+&gt; actually be less useful than a function that simply converts a
+&gt; number-of-seconds value into a relative time, but that's not specifically what
+&gt; this bug is about.  
+&gt; </span >
+
+Actually, what exactly would be less useful? Did you read the proposals of behavior?
+
+Please, don't close this as FIXED since it is not fixed in fact.
+
+I'm also pointing to the fact that PHP 5.3.0 introduces DateTime::diff. So basically this can be left open until a wikisyntax wrapper for that method (as a separate extension probably - thus the entire ParserFunctions wouldn't have to depend on high version of PHP) will be developed.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Happy-melon</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-22 20:25:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >With the #time and #expr parser functions we can trivially calculate the number of seconds between two dates:
+
+{{#expr: {{#time:U|date1}} - {{#time:U|date2}} }}
+
+If we had a function #timeformat to match #dateformat, that converted that string into a relative time, then you have your prettified output; as noted in <a href="show_bug.cgi?id=7114#c7">comment7</a>, it would be nice to be able to get only a part of the output.  But such a function could also be used to, for instance, convert between units of time (eg {{#timeformat: numberofseconds | Y }} converts seconds to years).  Of course this can be done using #expr but guess what, so can #timeformat itself.  If you're determined to ignore the fact that this can be quite easily handled on-wiki without any extra bells-and-whistles from the software end, the resulting function might as well be as useful as possible.
+
+You're right, I guess, that this bug isn't really FIXED because the available solution is not software-based, but I'd strongly suggest WONTFIX for exactly that reason.  It's easily doable on-wiki, without bloating the code with another myserious parser function, and without running into performance issues. </pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=7114#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-26 21:51:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=7114#c14">comment #14</a>)
+<span class="quote">&gt; With the #time and #expr parser functions we can trivially calculate the number
+&gt; of seconds between two dates:
+&gt; 
+&gt; {{#expr: {{#time:U|date1}} - {{#time:U|date2}} }}
+&gt; 
+&gt; If we had a function #timeformat to match #dateformat, that converted that
+&gt; string into a relative time, then you have your prettified output; as noted in
+&gt; <a href="show_bug.cgi?id=7114#c7">comment7</a>, it would be nice to be able to get only a part of the output.  But
+&gt; such a function could also be used to, for instance, convert between units of
+&gt; time (eg {{#timeformat: numberofseconds | Y }} converts seconds to years).  Of
+&gt; course this can be done using #expr but guess what, so can #timeformat itself. 
+&gt; If you're determined to ignore the fact that this can be quite easily handled
+&gt; on-wiki without any extra bells-and-whistles from the software end, the
+&gt; resulting function might as well be as useful as possible.
+&gt; 
+&gt; You're right, I guess, that this bug isn't really FIXED because the available
+&gt; solution is not software-based, but I'd strongly suggest WONTFIX for exactly
+&gt; that reason.  It's easily doable on-wiki, without bloating the code with
+&gt; another myserious parser function, and without running into performance issues. 
+&gt; </span >
+
+Aha, so we're going to bloat the wikitext with way so complex template(s) to return the time diff in desired format instead? When I want the time difference, I want it in human legible format - &quot;the difference is 1 year, 2 months, 3 days, 4 hours, 5 minutes and 6 seconds&quot;, not in a number of seconds or so. I also want to be able to format the result any possible way simply by adding the format string as a parameter of the function (such as {{#time:}} has now) without having to create and call either bunch of one-format-purpose templates or way so complex, very possibly nested, templates with dozens of {{#if:}}s and {{#switch:}}es and other stuff which actually would run into performance issues much earlier.
+
+Anyway, so far we don't have any #timeformat or any other function, right? So _after_ we'll have it, thus we'll be able to format the time differences easier than by dozens of {{#expr:}}s in dozens of (nested) templates, this request might be closed. We do not have any _simple_ way how to do what's requested.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=7114&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=7114">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=7114">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=7114">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=7114&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=7114" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=7114&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419367918-2Zm7DL2dCE4Q0AqgErRnLBEhVvhEyT1YpqLrHQoSBTA">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

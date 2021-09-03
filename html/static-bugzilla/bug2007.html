@@ -1,0 +1,2608 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 2007 &ndash; Tracking bug (tracking)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=2007&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=2007">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=2007">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=2007">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 2007 – Tracking bug (tracking)",  
+                             "show_bug.cgi?id=2007" );
+        document.title = "Bug 2007 – Tracking bug (tracking)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 2007 – Tracking bug (tracking)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_General_Unknown bz_bug_2007 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-19 22:29:48 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-19 22:29:48">
+  <input type="hidden" name="longdesclength" value="9">
+  <input type="hidden" name="id" value="2007">
+  <input type="hidden" name="token" value="1419359830-VcKjZscSKqbALQQLR3-82ZrQbS61MsUF-TIDKl8aRXs">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=2007"><b>Bug&nbsp;2007</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+        (<span id="alias_nonedit_display">tracking</span>) 
+      <span id="short_desc_nonedit_display">Tracking bug (tracking)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">(tracking)
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Tracking bug (tracking)
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Tracking bug (tracking)', 'tracking');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=2007#vote_2007">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">tracking
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Documentation is out of date, incomplete (tracking)"
+   href="show_bug.cgi?id=1">documentation</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HTML validity (tracking)"
+   href="show_bug.cgi?id=209">html</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Many MediaWiki: messages not safe in HTML (tracking)"
+   href="show_bug.cgi?id=212">212</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Markup accessibility issues (tracking)"
+   href="show_bug.cgi?id=367">367</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - PostgreSQL/pgsql support (tracking)"
+   href="show_bug.cgi?id=384">postgres</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [OAI-PMH] Open Archives Initiative Protocol for Metadata Harvesting (tracking)"
+   href="show_bug.cgi?id=576">oai-pmh</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Code quality issues (tracking)"
+   href="show_bug.cgi?id=700">code_quality</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RTL/bidirectional issues (tracking)"
+   href="show_bug.cgi?id=745">rtl</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Database replication lag issues (tracking)"
+   href="show_bug.cgi?id=1268">db-repl-track</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - ENotif/EConfirm &amp; further enhancements (tracking)"
+   href="show_bug.cgi?id=1932">1932</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - JavaScript (tracking)"
+   href="show_bug.cgi?id=2114">javascript</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HTML Tidy issues (tracking)"
+   href="show_bug.cgi?id=2542">tidy</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RSS, Atom, XML syndication feeds (tracking)"
+   href="show_bug.cgi?id=3646">feeds</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Unicode (UTF-8, utf8) compatibility (tracking)"
+   href="show_bug.cgi?id=3969">unicode</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - character conversion (tracking)"
+   href="show_bug.cgi?id=3985">3985</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - shared file repository (tracking)"
+   href="show_bug.cgi?id=4243">4243</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Increasing the length of the edit summary (tracking)"
+   href="show_bug.cgi?id=4714">4714</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -&gt; nan, zh-yue -&gt; yue, zh-classical -&gt; lzh) (tracking)"
+   href="show_bug.cgi?id=8217">8217</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Cascading Page Protection (tracking)"
+   href="show_bug.cgi?id=8575">8575</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - SVG rasterisation and management on Wikimedia sites (tracking)"
+   href="show_bug.cgi?id=8901">svg</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Get OpenID extension to a state where it could be used on Wikimedia projects as a provider (tracking)"
+   href="show_bug.cgi?id=9604">9604</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Microsoft SQL Server/MSSQL support (tracking)"
+   href="show_bug.cgi?id=9767">mssql</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Improve security for Special:Userlogin (tracking)"
+   href="show_bug.cgi?id=9816">9816</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Reduce use of global and public variables (tracking)"
+   href="show_bug.cgi?id=9968">global-vars</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use semantic HTML (tracking)"
+   href="show_bug.cgi?id=10467">semantic-html</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - DynamicPageList requests (tracking)"
+   href="show_bug.cgi?id=12423">12423</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - CSS (tracking)"
+   href="show_bug.cgi?id=12788">css</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Deploy ULS/UniversalLanguageSelector to all Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=13097">uls-deployment</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Things that could use a category table (tracking)"
+   href="show_bug.cgi?id=13326">13326</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Things that could use the title rewrite (tracking)"
+   href="show_bug.cgi?id=13639">13639</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Revamping of special pages UI, and creation of MW UI standards (tracking)"
+   href="show_bug.cgi?id=13747">13747</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make MediaWiki more AJAXy (tracking)"
+   href="show_bug.cgi?id=14123">ajax</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Extension can't pass error information back to user in API call (tracking)"
+   href="show_bug.cgi?id=14261">14261</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - robots.txt (tracking)"
+   href="show_bug.cgi?id=14720">robots.txt</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Separate out and clean up account creation logic in MediaWiki core (tracking)"
+   href="show_bug.cgi?id=15700">15700</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GIF Issues (tracking)"
+   href="show_bug.cgi?id=16456">gif</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Database table cleanup (tracking)"
+   href="show_bug.cgi?id=16660">16660</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting for creation (tracking)"
+   href="show_bug.cgi?id=16976">wikis-to-create</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Search engine indexing (tracking)"
+   href="show_bug.cgi?id=17004">17004</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Chemistry support (tracking)"
+   href="show_bug.cgi?id=17598">17598</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Edit toolbar &amp; Edit tools (tracking)"
+   href="show_bug.cgi?id=17653">edit-toolbar</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - System messages structure (tracking)"
+   href="show_bug.cgi?id=18521">18521</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RevDelete/HideUser (tracking)"
+   href="show_bug.cgi?id=18840">revdel</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HTML5 features (tracking)"
+   href="show_bug.cgi?id=19719">html5</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting to be renamed (tracking)"
+   href="show_bug.cgi?id=19986">wikis-to-rename</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - SQLite support (tracking)"
+   href="show_bug.cgi?id=20257">sqlite</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Support for protocol-relative URLs (tracking)"
+   href="show_bug.cgi?id=20342">20342</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - IIS Bugs (Tracking)"
+   href="show_bug.cgi?id=22710">iis</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Add/Update indexes for queries done by the API (tracking)"
+   href="show_bug.cgi?id=22744">22744</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - CSS hooks in output (tracking)"
+   href="show_bug.cgi?id=22771">22771</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Non Core API issues (tracking)"
+   href="show_bug.cgi?id=23855">noncoreapi</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use display title from page_props as the displayed title everywhere (tracking)"
+   href="show_bug.cgi?id=24139">24139</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - CodeReview's parsers suck"
+   href="show_bug.cgi?id=24279">24279</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Clean up require_once()'s of autoloaded files (tracking)"
+   href="show_bug.cgi?id=24687">24687</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Create partial SQL dumps for certain database tables (tracking)"
+   href="show_bug.cgi?id=25602">25602</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - UNIQ issues (tracking)"
+   href="show_bug.cgi?id=26213">UNIQ</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - CodeReview's (partial absence of) query params suck (tracking)"
+   href="show_bug.cgi?id=26240">26240</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Remove or fixup Wikimedia/Wikipedia specific stuff from core (tracking)"
+   href="show_bug.cgi?id=26262">26262</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Missing Indexes, Inefficient queries and alike (tracking)"
+   href="show_bug.cgi?id=26394">26394</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Extensions that should really be core functionality (tracking)"
+   href="show_bug.cgi?id=26751">26751</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement configuration database aka configuration management aka no shell excuse (tracking)"
+   href="show_bug.cgi?id=26992">26992</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - XML dumps development issues/bugs for 2011 (tracking)"
+   href="show_bug.cgi?id=27110">27110</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Skinning system improvement (tracking)"
+   href="show_bug.cgi?id=27292">27292</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Search Suggest bugs (tracking)"
+   href="show_bug.cgi?id=27411">27411</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - XML data post-processing (tracking)"
+   href="show_bug.cgi?id=27772">27772</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - ID related API requests (tracking)"
+   href="show_bug.cgi?id=27810">27810</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Overhaul and standardize apple-touch-icons (tracking)"
+   href="show_bug.cgi?id=27911">27911</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - SSL related (tracking)"
+   href="show_bug.cgi?id=27946">ssl</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rewrite deletion system (tracking)"
+   href="show_bug.cgi?id=28124">28124</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - log_action / log_type modifications (tracking)"
+   href="show_bug.cgi?id=28412">28412</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Avoid parser cache fragmentation (tracking)"
+   href="show_bug.cgi?id=28424">28424</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Incubator site settings and related bugs (tracking)"
+   href="show_bug.cgi?id=28486">incubator</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - 1205: Lock wait timeout exceeded; try restarting transaction (tracking)"
+   href="show_bug.cgi?id=28499">28499</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Deadlock tracking bug (tracking)"
+   href="show_bug.cgi?id=28599">28599</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - BiDi: LTR and RTL mixed up (tracking)"
+   href="show_bug.cgi?id=28708">28708</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis ready for closing (tracking)"
+   href="show_bug.cgi?id=28985">28985</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Core features that shouldn't be in core (tracking)"
+   href="show_bug.cgi?id=29145">29145</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki is inconsistent in how it displays time (tracking)"
+   href="show_bug.cgi?id=29235">29235</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement Gadgets 2.0 (tracking)"
+   href="show_bug.cgi?id=29272">gadgets-2.0</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement Gadget Manager (tracking)"
+   href="show_bug.cgi?id=29398">29398</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Magic Linking (tracking)"
+   href="show_bug.cgi?id=29473">29473</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - LQT: Keep talk refactoring possible (tracking)"
+   href="show_bug.cgi?id=29711">29711</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Extensions that need resource loader-ifying (tracking)"
+   href="show_bug.cgi?id=29713">29713</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Incomplete user renames (and other username discrepancies) (tracking)"
+   href="show_bug.cgi?id=29757">29757</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Maintenance scripts waiting to be run on Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=29782">29782</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki PHP 5.4 compatibility (tracking)"
+   href="show_bug.cgi?id=30092">30092</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GENDER (tracking)"
+   href="show_bug.cgi?id=30443">gender</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use locale-specific sorting (tracking)"
+   href="show_bug.cgi?id=30672">30672</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement central locale-specific, or tailored, sorting framework (tracking)"
+   href="show_bug.cgi?id=30673">30673</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Languages that need a LanguageConverter implementation (tracking)"
+   href="show_bug.cgi?id=30759">30759</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Change $wgCategoryCollation values to appropriate one for each Wikimedia wiki (tracking)"
+   href="show_bug.cgi?id=30996">30996</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - UploadWizard deployment (tracking)"
+   href="show_bug.cgi?id=31071">31071</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Extensions awaiting code review to be deployed on Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=31235">31235</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - File properties storage (tracking)"
+   href="show_bug.cgi?id=31257">31257</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Installer: extensions improvements: descriptions, alternatives, multiselection, configuration (tracking)"
+   href="show_bug.cgi?id=31279">31279</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image rotation issues (tracking)"
+   href="show_bug.cgi?id=31504">31504</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PDF related (Collection extension) bugs (tracking)"
+   href="show_bug.cgi?id=31552">31552</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - tablesorter (tracking)"
+   href="show_bug.cgi?id=31601">31601</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Ensure consistency of how special pages [et al.] switches can be saved (tracking)"
+   href="show_bug.cgi?id=31882">31882</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - High-density display issues (tracking) xhdpi hdpi Retina high-resolution HiDPI"
+   href="show_bug.cgi?id=32101">hidpi</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki needs a sane notification system (tracking)"
+   href="show_bug.cgi?id=32281">32281</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tamil Wiki projects (tracking)"
+   href="show_bug.cgi?id=32578">32578</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Support for root /Foo style pretty urls (tracking)"
+   href="show_bug.cgi?id=32620">32620</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tracking categories (tracking)"
+   href="show_bug.cgi?id=33033">33033</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor multilingual input / i18n issues (tracking)"
+   href="show_bug.cgi?id=33077">ve-multi-lingual</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Preserve rich text formatting when pasting from internal or external sources (tracking)"
+   href="show_bug.cgi?id=33105">ve-richpaste</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Support for right-to-left (rtl) / bidirectional content (tracking)"
+   href="show_bug.cgi?id=33126">ve-rtl</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - RTL bugs in the Wikimedia Mobile Android app (tracking)"
+   href="show_bug.cgi?id=34166">rtl-android</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Support for overflow: auto; on the content area (tracking)"
+   href="show_bug.cgi?id=34558">34558</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Huggle's blockers for next release (tracking)"
+   href="show_bug.cgi?id=34892">34892</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Gadgets issues that will be resolved in Gadgets 2.0 (tracking)"
+   href="show_bug.cgi?id=35126">35126</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Deprecate inline styles (tracking)"
+   href="show_bug.cgi?id=35704">inline-styles</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Complete unification of all accounts to SUL"
+   href="show_bug.cgi?id=35707">sulfinalization</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikisource related bugs and enhancements (tracking)"
+   href="show_bug.cgi?id=35925">Wikisource</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use the Translate extension in CentralNotice (tracking)"
+   href="show_bug.cgi?id=36591">36591</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RTL / BiDi issues in Semantic MediaWiki and related extensions (tracking)"
+   href="show_bug.cgi?id=37246">37246</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Support media (tracking)"
+   href="show_bug.cgi?id=37870">ve-mediasupport</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Bug and feature requests related to Wikimedia Commons (tracking)"
+   href="show_bug.cgi?id=37883">commons</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Reimplement MediaWiki's info action (tracking)"
+   href="show_bug.cgi?id=38450">38450</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Interface messages needing rewording or documentation and other issues with existing messages (tracking)"
+   href="show_bug.cgi?id=38638">messages</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Messages needing PLURAL support (tracking)"
+   href="show_bug.cgi?id=38781">plural</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: API design and documentation (tracking)"
+   href="show_bug.cgi?id=38855">ve-api</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Next wmf deployment (tracking)"
+   href="show_bug.cgi?id=38865">wmf-deployment</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki API 2.0 (tracking)"
+   href="show_bug.cgi?id=38891">api-2.0</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Oracle DB support (tracking)"
+   href="show_bug.cgi?id=38916">oracle</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikidata repo MW API (tracking)"
+   href="show_bug.cgi?id=39174">repoapi</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Live preview (requires JavaScript) feature bugs (tracking)"
+   href="show_bug.cgi?id=39272">39272</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Bugs affecting translatewiki.net (errors from MediaWiki master) (tracking)"
+   href="show_bug.cgi?id=39480">39480</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Support tables (tracking)"
+   href="show_bug.cgi?id=39596">ve-tablesupport</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Query pages improvements (tracking)"
+   href="show_bug.cgi?id=39661">39661</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Pain points of using multiple namespaces on a single wiki rather than multiple wikis (tracking)"
+   href="show_bug.cgi?id=40446">40446</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Drafts extension selection integration needs UX rework (tracking)"
+   href="show_bug.cgi?id=40482">40482</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Deprecated things (tracking)"
+   href="show_bug.cgi?id=40486">40486</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Usability should be default (tracking)"
+   href="show_bug.cgi?id=40621">40621</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Bengali Wiki projects (tracking)"
+   href="show_bug.cgi?id=40760">40760</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Deprecate legacy ajax interface (tracking)"
+   href="show_bug.cgi?id=40787">40787</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikibase badges (tracking)"
+   href="show_bug.cgi?id=40810">40810</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PDF related bugs and enhancements (tracking)"
+   href="show_bug.cgi?id=41037">41037</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Incorporate analytics into MediaWiki's info action (tracking)"
+   href="show_bug.cgi?id=41326">41326</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Hindi Wikiprojects (tracking)"
+   href="show_bug.cgi?id=41348">41348</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Thumbnail/imagescaler (tracking)"
+   href="show_bug.cgi?id=41371">41371</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Steward, global sysop and SWMT tasks bugs (tracking)"
+   href="show_bug.cgi?id=41492">SWMT</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Provide a plain linked data interface for accessing entities (story)"
+   href="show_bug.cgi?id=42063">42063</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement English Wikipedia-only enhancements for other Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=42630">42630</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Multimedia support (tracking)"
+   href="show_bug.cgi?id=42725">multimedia</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Sidebar toolbox is too crowded (tracking)"
+   href="show_bug.cgi?id=43170">43170</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki AJAX interface (tracking)"
+   href="show_bug.cgi?id=43175">43175</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - UploadWizard Flickr (tracking)"
+   href="show_bug.cgi?id=43450">43450</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Special pages and other forms with initial focus of input nowhere or no tab order/tabindex set (tracking)"
+   href="show_bug.cgi?id=43562">43562</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement scaleable graphing capability in a MediaWiki extension for Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=43666">43666</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Course pages improvements (tracking)"
+   href="show_bug.cgi?id=43859">43859</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Many typical wiki page features do not work on course pages (tracking)"
+   href="show_bug.cgi?id=43975">43975</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Vector: Issues related to narrow window size, low resolution (tracking)"
+   href="show_bug.cgi?id=44386">44386</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikidata search problems (tracking)"
+   href="show_bug.cgi?id=44529">44529</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use draft 4 of JSON Schema specification"
+   href="show_bug.cgi?id=44809">44809</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Vector skin issues (tracking)"
+   href="show_bug.cgi?id=44881">44881</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Deploy language-specific &quot;uca-xx&quot; collations on Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=45443">collations</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - EQIAD migration aftermath (tracking)"
+   href="show_bug.cgi?id=45528">45528</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - IRC bots account pending nickserv registration (tracking)"
+   href="show_bug.cgi?id=46252">46252</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Inconsistent font usage in MediaWiki (tracking)"
+   href="show_bug.cgi?id=46437">46437</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Plugin editors to be created (tracking)"
+   href="show_bug.cgi?id=46803">ve-plugins-to-create</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Tools to set/unset text with annotations (tracker)"
+   href="show_bug.cgi?id=47780">47780</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - allow accessing data from an item not connected to the current page - arbitrary access (tracking)"
+   href="show_bug.cgi?id=47930">unconnectedq</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Requested Scribunto/Lua built-in methods/functions (tracking)"
+   href="show_bug.cgi?id=48176">48176</a> <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - Implement autocompletion/search suggestion throughout MediaWiki (tracking)"
+   href="show_bug.cgi?id=48240">48240</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Issues related to section edit links (tracking)"
+   href="show_bug.cgi?id=48717">editlinks</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Issues related to section editing (tracking)"
+   href="show_bug.cgi?id=48719">section-editing</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Improvements and behaviour changes to the link input widget (tracking)"
+   href="show_bug.cgi?id=48789">ve-linkediting</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - (Tracking) Database replication services"
+   href="show_bug.cgi?id=48930">labs-replication</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - MediaWiki-Vagrant should be easy to distribute and set up at events (tracking)"
+   href="show_bug.cgi?id=49057">49057</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Schema changes for Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=49188">49188</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Well formed XML (tracking)"
+   href="show_bug.cgi?id=49337">well-formedness</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Performance issues (tracker)"
+   href="show_bug.cgi?id=49685">ve-performance</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki PHP 5.5 compatibility (tracking)"
+   href="show_bug.cgi?id=49975">49975</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - UploadWizard has some pretty awful code in places (tracking)"
+   href="show_bug.cgi?id=49987">49987</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Enable VisualEditor by default for all users of all Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=50000">50000</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Proposed changes to default settings (DefaultSettings.php) (tracking)"
+   href="show_bug.cgi?id=50039">50039</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Browser blacklist issues (tracking)"
+   href="show_bug.cgi?id=50781">ve-browserblacklist</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use VipsScaler to scale JPGs on WMF wikis"
+   href="show_bug.cgi?id=51451">51451</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use Beta cluster as a true canary for code deployments (tracking)"
+   href="show_bug.cgi?id=51494">51494</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Non-English Wikipedia issues (tracking)"
+   href="show_bug.cgi?id=51792">ve-nonenglish</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Watchlist and recent changes usability issues (tracking)"
+   href="show_bug.cgi?id=51942">51942</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Redesign Item UI for Wikidata repo"
+   href="show_bug.cgi?id=52136">52136</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Broken browser plugins cause cruft to be injected into the page (tracker)"
+   href="show_bug.cgi?id=52327">ve-browserplugin</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - automatically import some content from production (tracking)"
+   href="show_bug.cgi?id=52382">52382</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Query by one property and one value (tracking)"
+   href="show_bug.cgi?id=52385">52385</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - User preferences in MediaWiki to be removed (tracking)"
+   href="show_bug.cgi?id=52807">52807</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Add sources to Wiki Loves Monuments monuments database (tracking)"
+   href="show_bug.cgi?id=52818">52818</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Database tables to be dropped on Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=52921">52921</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Input Methods issues for supported languages (tracking)"
+   href="show_bug.cgi?id=53014">53014</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Font support (tracking)"
+   href="show_bug.cgi?id=53015">53015</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Obstacles to enabling MobileFrontend for anonymous users (tracking)"
+   href="show_bug.cgi?id=53069">53069</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Remove sajax usage from MediaWiki extensions (tracking)"
+   href="show_bug.cgi?id=53119">53119</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Merge Extension:TwoFactorAuthentication into Extension:OATHAuth (tracking)"
+   href="show_bug.cgi?id=53192">53192</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Update existing &amp; install new countries in Piwik (tracking)"
+   href="show_bug.cgi?id=53298">53298</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Transclusion dialog improvements (tracking)"
+   href="show_bug.cgi?id=53604">ve-templatesupport</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [project] trigger browser tests from Gerrit (tracking)"
+   href="show_bug.cgi?id=53697">53697</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Packages to be added to toollabs puppet"
+   href="show_bug.cgi?id=53704">53704</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Use the same icons to represent the same things (tracking)"
+   href="show_bug.cgi?id=53733">53733</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Monuments database future (tracker)"
+   href="show_bug.cgi?id=53807">53807</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Migrate current selenium tests to cucumber"
+   href="show_bug.cgi?id=53849">53849</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Locate and eradicate unnecessarily complex things that are unused"
+   href="show_bug.cgi?id=54024">54024</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [UI] Front-end performance: Improve loading time of items"
+   href="show_bug.cgi?id=54098">54098</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Infographics, graph, chart, diagram, plotting, animation support (tracking)"
+   href="show_bug.cgi?id=54213">54213</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Quantity datatype (tracking)"
+   href="show_bug.cgi?id=54318">54318</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Tracking bugs for VisualEditor (tracking)"
+   href="show_bug.cgi?id=54363">ve-tracking</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Implement support for sharing protocols (tracking)"
+   href="show_bug.cgi?id=54829">54829</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image / media handling tracker bug"
+   href="show_bug.cgi?id=54844">54844</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - ResourceLoader: Cache issues (tracking)"
+   href="show_bug.cgi?id=54945">54945</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - run i18n message checks in Jenkins (tracking)"
+   href="show_bug.cgi?id=55456">55456</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make MediaWiki run on Google's App Engine (tracking)"
+   href="show_bug.cgi?id=55475">55475</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Bugs caught by mw.loader.inspect() (tracking)"
+   href="show_bug.cgi?id=55683">55683</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Functionality existing in compat but missing from core"
+   href="show_bug.cgi?id=55880">55880</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Reimplement Wikibase data structures in Lua"
+   href="show_bug.cgi?id=55920">55920</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] API design"
+   href="show_bug.cgi?id=56190">56190</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make ULS more lightweight (tracking)"
+   href="show_bug.cgi?id=56292">uls-diet</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Malayalam Wiki Projects [Tracking]"
+   href="show_bug.cgi?id=56295">56295</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tracking: Watchlist features available on desktop that aren't on mobile yet"
+   href="show_bug.cgi?id=56817">56817</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - CSSMin::encodeImageAsDataURI() should be smarter about SVG images (tracking)"
+   href="show_bug.cgi?id=57777">57777</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Flow: no-JavaScript glitches (tracking)"
+   href="show_bug.cgi?id=58019">58019</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Performance issues in TimedMediaHandler (tracking)"
+   href="show_bug.cgi?id=58083">58083</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Add domains to $wgCopyUploadsDomains (tracking)"
+   href="show_bug.cgi?id=58224">58224</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - 127.0.0.1, ::1, localhost, loopback, lo0 bugs (tracking)"
+   href="show_bug.cgi?id=58272">user-127.0.0.1</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - create API level tests to monitor services on beta/test2wiki and also on production (tracking)"
+   href="show_bug.cgi?id=58353">58353</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Flow: support VisualEditor VE editing of header &amp; topics (tracking)"
+   href="show_bug.cgi?id=58411">58411</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GWToolset metadata input tracker"
+   href="show_bug.cgi?id=58509">58509</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Invalid message parameter tracking"
+   href="show_bug.cgi?id=58676">58676</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Toolserver migration to Tools (tracking)"
+   href="show_bug.cgi?id=58788">ts-migration</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Missing Toolserver features in Tools (tracking)"
+   href="show_bug.cgi?id=58791">tool-missing-ts-feat</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [tracking] toolserver.org tools that have not been migrated"
+   href="show_bug.cgi?id=58865">58865</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [tracking] Missing unit tests"
+   href="show_bug.cgi?id=58941">58941</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [tracking] features to move from scripts to framework"
+   href="show_bug.cgi?id=58942">58942</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display filters and settings on category description pages (filter category membership) (tracking)"
+   href="show_bug.cgi?id=59108">59108</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Chunked upload (tracking)"
+   href="show_bug.cgi?id=59914">chunked-upload</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Separate data-handling, interface, and other controlling methods and put generally-applicable code into MediaWiki (tracking)"
+   href="show_bug.cgi?id=60002">60002</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Universal Language Selector non-availability impact detection (tracker)"
+   href="show_bug.cgi?id=60329">60329</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - All repositories should pass jshint test (tracking)"
+   href="show_bug.cgi?id=60619">jshint</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Formulae that can be rendered in PNG mode but not with MathJax"
+   href="show_bug.cgi?id=61091">61091</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - browsertest: failures as of 2014-02-11 (tracking)"
+   href="show_bug.cgi?id=61216">61216</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Add system logs to logstash (tracking)"
+   href="show_bug.cgi?id=61779">61779</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Support language variants (LanguageConverter)"
+   href="show_bug.cgi?id=62416">62416</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - TIFF handling (tracking)"
+   href="show_bug.cgi?id=62466">tiff-handling</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Redesign Special:Preferences (tracking)"
+   href="show_bug.cgi?id=62559">redesign-sp-prefs</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Consolidate Special:Uploads and Special:UploadWizard code"
+   href="show_bug.cgi?id=62638">62638</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Perform input validation based on ChangeOp (tracking)"
+   href="show_bug.cgi?id=62927">62927</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Actually support novalue and somevalue snaks in queries (tracking)"
+   href="show_bug.cgi?id=63477">63477</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Consolidate code for MediaViewer across desktop and mobile"
+   href="show_bug.cgi?id=63504">63504</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Vector Typography Refresh (tracking)"
+   href="show_bug.cgi?id=63549">typography-refresh</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - WikiEditor: Search and replace (tracking)"
+   href="show_bug.cgi?id=63665">63665</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Upgrade servers to Ubuntu 14.04"
+   href="show_bug.cgi?id=63899">ubuntu-trusty</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Gallium must be backed up (tracking)"
+   href="show_bug.cgi?id=63934">gallium-backup</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Move Nearby code to Geodata extension"
+   href="show_bug.cgi?id=64316">64316</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Personal tools are too crowded (tracking)"
+   href="show_bug.cgi?id=64321">64321</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Make Wikibase compatible with HHVM"
+   href="show_bug.cgi?id=64415">64415</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - getHumanTimestamp issues"
+   href="show_bug.cgi?id=64430">64430</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make crosswiki bits and pieces truly global (tracking)"
+   href="show_bug.cgi?id=64475">64475</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Issues related to the Draft namespace"
+   href="show_bug.cgi?id=64539">draft-namespace</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Migrate css rules in hacks.less into templates."
+   href="show_bug.cgi?id=64578">64578</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Support dark skins (tracking)"
+   href="show_bug.cgi?id=64731">64731</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make compact interwikis (interlanguage wikilinks) default (tracking)"
+   href="show_bug.cgi?id=64793">64793</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Pywikibot Documentation"
+   href="show_bug.cgi?id=64840">pwbdoc</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Set up dev.wikimedia.org portal"
+   href="show_bug.cgi?id=65074">65074</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - TemplateData: Add new parameter type (tracking)"
+   href="show_bug.cgi?id=65082">td-param-type</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Create tests for default gadgets (tracking)"
+   href="show_bug.cgi?id=65257">65257</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Information can be passed between #invoke's (tracking)"
+   href="show_bug.cgi?id=65258">65258</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Don't use deprecated features removed in jQuery 1.9 (tracking)"
+   href="show_bug.cgi?id=65399">jqmigrate</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - EXIF support (tracking)"
+   href="show_bug.cgi?id=65681">exif</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Special page for migration of legacy translation pages (tracking)"
+   href="show_bug.cgi?id=65740">65740</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki extensions with failing phpunit tests (tracking)"
+   href="show_bug.cgi?id=65874">65874</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make Huggle 3 interface fully localizable"
+   href="show_bug.cgi?id=65950">65950</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Additional keyboard shortcuts (tracking)"
+   href="show_bug.cgi?id=65955">ve-keyboardshortcuts</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Functionality existing in AutoWikiBrowser but missing from core"
+   href="show_bug.cgi?id=65987">65987</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Increase WikiStats reports discoverability"
+   href="show_bug.cgi?id=65991">65991</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Disable images in signatures (tracking)"
+   href="show_bug.cgi?id=66006">66006</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - stream.wikimedia.org: Implement equivalent of irc.wikimedia.org/#central for CentralAuth log (tracking)"
+   href="show_bug.cgi?id=66172">66172</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - ActivityMonitor: Initial version (tracking)"
+   href="show_bug.cgi?id=66176">66176</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Have unit tests of all wmf deployed extensions pass when installed together, in both PHP-Zend and HHVM (tracking)"
+   href="show_bug.cgi?id=67216">67216</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - jquery.tipsy (tracking)"
+   href="show_bug.cgi?id=67500">tipsy</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - merl tools (tracking)"
+   href="show_bug.cgi?id=67556">merl-tools</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor: Support non-image media (tracking)"
+   href="show_bug.cgi?id=67690">ve-media-nonimages</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Issues blocking deployment of new SecurePoll interface (tracking)"
+   href="show_bug.cgi?id=68118">68118</a> <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [tracking] Block spider / web crawler on tool labs"
+   href="show_bug.cgi?id=68300">68300</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Improve mobile uploads (tracking)"
+   href="show_bug.cgi?id=68376">68376</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Zuul: scale merge operations (tracking)"
+   href="show_bug.cgi?id=68480">68480</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Undeploy OAI extension"
+   href="show_bug.cgi?id=68867">68867</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Scripts which are not properly tested by script_tests [tracking]"
+   href="show_bug.cgi?id=69069">pwb_script_tests</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Convert things to use Config classes instead of globals (tracking)"
+   href="show_bug.cgi?id=69084">config-obj</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Repurpose MobileFrontend as Minerva skin"
+   href="show_bug.cgi?id=69366">69366</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Log files on labs instance fill up disk (/var is only 2GB) (tracking)"
+   href="show_bug.cgi?id=69601">69601</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] Deprecate redlink removal (enable redlinks in stable)"
+   href="show_bug.cgi?id=69849">69849</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MediaWiki 2.0 (tracking)"
+   href="show_bug.cgi?id=70000">mediawiki-2.0</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW"
+   href="show_bug.cgi?id=70013">70013</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Edit conflicts (tracking)"
+   href="show_bug.cgi?id=70163">70163</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - VisualEditor Mobile: Support Android (tracking)"
+   href="show_bug.cgi?id=70372">ve-androidsupport</a> <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Deploy HHVM for all users (tracking)"
+   href="show_bug.cgi?id=70418">70418</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Pywikibot 2.0 [tracking]"
+   href="show_bug.cgi?id=70936">pwb20</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - py2.6 bugs [tracking]"
+   href="show_bug.cgi?id=70987">py26</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Tracking] MobileFrontend should use mw-ui-icon"
+   href="show_bug.cgi?id=71181">71181</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [HHVM] Get rid of class aliases"
+   href="show_bug.cgi?id=71295">71295</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PDF backend needs to parse some CSS"
+   href="show_bug.cgi?id=71339">71339</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Support tables (tracking)"
+   href="show_bug.cgi?id=71808">71808</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Release Math 2.1"
+   href="show_bug.cgi?id=71975">71975</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikimedia Italia's Cotton book (tracking)"
+   href="show_bug.cgi?id=72372">72372</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - OOUI: Get OOUI PHP to be good to go (tracking)"
+   href="show_bug.cgi?id=72713">72713</a> <a class="bz_bug_link 
+          bz_status_PATCH_TO_REVIEW "
+   title="PATCH_TO_REVIEW - MW API version problems [tracking]"
+   href="show_bug.cgi?id=72854">pwb-oldmw</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Family detection [tracking]"
+   href="show_bug.cgi?id=72873">pwb-family</a> <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - Tracking: Getting rid of own login page"
+   href="show_bug.cgi?id=72910">72910</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Efficient entity label lookup (tracking)"
+   href="show_bug.cgi?id=73087">73087</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make Travis CI pass PHP 5.3/PostgreSQL tests"
+   href="show_bug.cgi?id=73174">73174</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make Travis CI pass hhvm/MySQL tests"
+   href="show_bug.cgi?id=73175">73175</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make Travis CI pass all tests"
+   href="show_bug.cgi?id=73176">73176</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Milestone: MediaWiki 1.4 (tracking)"
+   href="show_bug.cgi?id=202">202</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Internet Explorer (IE) issues on Windows (tracking)"
+   href="show_bug.cgi?id=640">640</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - User and group rights management (tracking)"
+   href="show_bug.cgi?id=767">767</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Milestone: MediaWiki 1.5 (tracking)"
+   href="show_bug.cgi?id=1002">1002</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Mozilla issues (Gecko, Firefox) (tracking)"
+   href="show_bug.cgi?id=1381">1381</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Template syntax (tracking)"
+   href="show_bug.cgi?id=2376">2376</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Access control (tracking)"
+   href="show_bug.cgi?id=2422">2422</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Special:Disambiguations issues (tracking)"
+   href="show_bug.cgi?id=2814">2814</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - PHP 5.1 compatibility issues (tracking)"
+   href="show_bug.cgi?id=2884">2884</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MySQL 5.0 issues (tracking)"
+   href="show_bug.cgi?id=3738">3738</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Stable Version / Review / Tagging (tracking)"
+   href="show_bug.cgi?id=3741">3741</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - case sensitivity issues (tracking)"
+   href="show_bug.cgi?id=3950">3950</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - facilitate syntax for BiDi editing (tracking)"
+   href="show_bug.cgi?id=4357">4357</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Spam blacklist (tracking)"
+   href="show_bug.cgi?id=4462">4462</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Blocks and block-related issues (tracking)"
+   href="show_bug.cgi?id=4618">4618</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Wrong section from section edit button (tracking)"
+   href="show_bug.cgi?id=4899">4899</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Install more fonts (especially for Unicode) (tracking)"
+   href="show_bug.cgi?id=8898">8898</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Internet Explorer 8 (MSIE8) issues (tracking)"
+   href="show_bug.cgi?id=13361">13361</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - PHP 6 (tracking)"
+   href="show_bug.cgi?id=14504">14504</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Schema change rotation script (tracking)"
+   href="show_bug.cgi?id=16012">16012</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - API XML compliance issues (tracking)"
+   href="show_bug.cgi?id=16106">16106</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RecentChanges IRC related issues (tracking)"
+   href="show_bug.cgi?id=16599">16599</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Write API issues (tracking)"
+   href="show_bug.cgi?id=16633">16633</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Merge new-upload branch (tracking)"
+   href="show_bug.cgi?id=18563">18563</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Milestone: MediaWiki 1.15 (tracking)"
+   href="show_bug.cgi?id=18629">18629</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Deploy LiquidThreads extension when ready (tracking)"
+   href="show_bug.cgi?id=19699">19699</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Set up site service status/uptime/downtime dashboard similar to Google Apps status page"
+   href="show_bug.cgi?id=20083">20083</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - BCP 47 issues (tracking)"
+   href="show_bug.cgi?id=20090">20090</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - New-installer branch (tracking)"
+   href="show_bug.cgi?id=20628">20628</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Migrate subversion to git (tracking)"
+   href="show_bug.cgi?id=22596">22596</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Establish Wikimedia branch office in Germany"
+   href="show_bug.cgi?id=23223">23223</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Some enhancements for the CentralAuth GUI (that sulutil/stalktoy/others have) (tracking)"
+   href="show_bug.cgi?id=23391">23391</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Implement ResourceLoader 1.0 (tracking)"
+   href="show_bug.cgi?id=24415">24415</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - WikiEditor issues (tracking)"
+   href="show_bug.cgi?id=24493">24493</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Pending Changes November 2010 (tracking)"
+   href="show_bug.cgi?id=25293">25293</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - DB repair issues (tracking)"
+   href="show_bug.cgi?id=25762">25762</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Switch CodeReview to use LiquidThreads (tracking)"
+   href="show_bug.cgi?id=26045">26045</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Bugfixes for 2010-12-22 deploy of FlaggedRevs (tracking)"
+   href="show_bug.cgi?id=26334">26334</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - FlaggedRevs/Pending Changes 2011 UI pass (tracking)"
+   href="show_bug.cgi?id=26335">26335</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Deploy updated WMF branch to production (February 2011)"
+   href="show_bug.cgi?id=26439">26439</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Bugs that should be fixed for 1.17 WMF deployment (tracking)"
+   href="show_bug.cgi?id=26611">26611</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Milestone: MediaWiki 1.17 release tarball (tracking)"
+   href="show_bug.cgi?id=26676">26676</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Parser tracking bug"
+   href="show_bug.cgi?id=26858">26858</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - &quot;Write a test!&quot; tracking bug"
+   href="show_bug.cgi?id=26945">26945</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - UploadWizard 1.0 (tracking)"
+   href="show_bug.cgi?id=27260">27260</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Bugs that should be fixed post 1.17 WMF deployment (tracking)"
+   href="show_bug.cgi?id=27339">27339</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Review and deploy TimedMediaHandler extension (timed media handler) to Wikimedia wikis"
+   href="show_bug.cgi?id=27699">27699</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - UploadWizard 1.2 (tracking)"
+   href="show_bug.cgi?id=27801">27801</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Migration to GIT (or some other DVCS) tracking"
+   href="show_bug.cgi?id=27811">27811</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - BookManager (tracking)"
+   href="show_bug.cgi?id=28011">28011</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Deploy Gender Namespaces on all relevant wikis (tracking)"
+   href="show_bug.cgi?id=28052">28052</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installer issues that should be fixed for 1.17"
+   href="show_bug.cgi?id=28179">28179</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Milestone: MediaWiki 1.18 tarball (tracking)"
+   href="show_bug.cgi?id=28425">28425</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Bring Recentchanges to the 21st century (tracking)"
+   href="show_bug.cgi?id=28447">28447</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MediaWiki needs more cute animals (tracking)"
+   href="show_bug.cgi?id=28597">28597</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - RESOLVED HUMOROUS (TRACKING)"
+   href="show_bug.cgi?id=29079">29079</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Milestone: MediaWiki 1.19 (tracking)"
+   href="show_bug.cgi?id=29097">29097</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Milestone: MediaWiki 1.20 (tracking)"
+   href="show_bug.cgi?id=29098">29098</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - FlaggedRev installation requests (tracking)"
+   href="show_bug.cgi?id=29744">29744</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Enable specific extensions on Hindi Wikipedia (tracking)"
+   href="show_bug.cgi?id=29823">29823</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - 1.18 post-deployment actions (tracking)"
+   href="show_bug.cgi?id=29876">29876</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Upgrade the WMF-cluster &gt;= Ubuntu 10.04"
+   href="show_bug.cgi?id=29915">29915</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Turn MobileFrontend on for 100% of production traffic"
+   href="show_bug.cgi?id=30512">30512</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Deprecate Ruby mobile gateway"
+   href="show_bug.cgi?id=30517">30517</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Deprecate Hawhaw mobile gateway"
+   href="show_bug.cgi?id=30518">30518</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Implement backwards navigation in UploadWizard (tracking)"
+   href="show_bug.cgi?id=30687">30687</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MediaWiki 1.19 post WMF deployment actions"
+   href="show_bug.cgi?id=31211">31211</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MediaWiki bugs to be fixed for 1.19wmf1 deployment (tracking)"
+   href="show_bug.cgi?id=31217">31217</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Android App 1.0 release (tracking)"
+   href="show_bug.cgi?id=31447">31447</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Getting the Android app on translatewiki (tracking)"
+   href="show_bug.cgi?id=31467">31467</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Wikipedia Android App 1.1 tracking - current bugs"
+   href="show_bug.cgi?id=31805">31805</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Updating from addOnloadHook to jQuery(document).ready breaks some scripts (tracking)"
+   href="show_bug.cgi?id=31926">31926</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Mobile App Spinner (tracking)"
+   href="show_bug.cgi?id=32139">32139</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - 1.18.0 issues (tracking)"
+   href="show_bug.cgi?id=32711">32711</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - several bugs on deployment test site for 1.19"
+   href="show_bug.cgi?id=33578">33578</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Wikipedia Android App potential features (tracking)"
+   href="show_bug.cgi?id=33855">33855</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Wikipedia Android App 2.0 release (tracking)"
+   href="show_bug.cgi?id=33856">33856</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Notes and general tracker"
+   href="show_bug.cgi?id=33953">33953</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Android app v1.1 tracker - features"
+   href="show_bug.cgi?id=33957">33957</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MediaWiki 1.19 pre WMF deployment actions (tracking)"
+   href="show_bug.cgi?id=33994">33994</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki 1.19 post WMF deployment actions (tracking)"
+   href="show_bug.cgi?id=33996">33996</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Wikipedia Zero (tracking)"
+   href="show_bug.cgi?id=34000">34000</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [beta project] Set up search (tracking)"
+   href="show_bug.cgi?id=34250">34250</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - most ways to get list of users in Global groups broken (tracking)"
+   href="show_bug.cgi?id=34258">34258</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Probable Javascript loading issues (navigation and tabbing issues, multiple browsers)"
+   href="show_bug.cgi?id=34450">34450</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Tracking bug for 1.2 release of Wikipedia App"
+   href="show_bug.cgi?id=35395">35395</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Enable full IPv6 support on Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=35540">35540</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Implementing continuous integration workflow (tracking)"
+   href="show_bug.cgi?id=35584">35584</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Jenkins: Set up linting for php, js, py etc. (tracking)"
+   href="show_bug.cgi?id=35585">35585</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MediaWiki 1.17.4/1.18.3 maintenance release"
+   href="show_bug.cgi?id=35676">35676</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Moving MobileFrontend into core (tracking)"
+   href="show_bug.cgi?id=35919">35919</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor: Does not work in Opera (tracking)"
+   href="show_bug.cgi?id=36000">36000</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Tracking bug for 1.1.2 release for Blackberry Playbook"
+   href="show_bug.cgi?id=36025">36025</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Page Triage 1.0 (tracking)"
+   href="show_bug.cgi?id=36110">36110</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - &quot;Babaco&quot; release of the Usability Initiative (tracking)"
+   href="show_bug.cgi?id=36111">36111</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Config Overhaul"
+   href="show_bug.cgi?id=36370">36370</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Upgrade/reinstall all servers to Ubuntu Precise Pangolin (12.04) (tracking)"
+   href="show_bug.cgi?id=36623">36623</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Upload Wizard release &quot;elvis&quot; (tracking)"
+   href="show_bug.cgi?id=36680">36680</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Tracking bug for Wikipedia App 1.3 release"
+   href="show_bug.cgi?id=36745">36745</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - use scap to deploy on apaches (tracking)"
+   href="show_bug.cgi?id=37078">37078</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - deployment-prep root tracking bug (tracking)"
+   href="show_bug.cgi?id=37079">37079</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - admin tools on beta (tracking)"
+   href="show_bug.cgi?id=37081">37081</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Bugs found by WTA (tracking)"
+   href="show_bug.cgi?id=37139">37139</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - UploadWizard: Wiki Loves Monuments contest issues (tracking)"
+   href="show_bug.cgi?id=37144">37144</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Tracking bug for 1.0beta1 release of WLM app"
+   href="show_bug.cgi?id=37577">37577</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Implement new Wikidata user interface design (tracking)"
+   href="show_bug.cgi?id=37771">37771</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor: Nested lists (tracking bug)"
+   href="show_bug.cgi?id=37854">37854</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Add sources to Wiki Loves Monuments 2012 monuments database (tracking)"
+   href="show_bug.cgi?id=38314">38314</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Tracking bug for incomplete renames"
+   href="show_bug.cgi?id=38402">38402</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Upload Wizard: Allow easier integration of &quot;community tools&quot; (tracking)"
+   href="show_bug.cgi?id=38427">38427</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Wiki Loves Monuments 2012 (tracking)"
+   href="show_bug.cgi?id=38648">38648</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor: New annotation API (tracking)"
+   href="show_bug.cgi?id=38854">38854</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Wikidata accessibility (tracking)"
+   href="show_bug.cgi?id=38967">38967</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Deployment of Wikidata to Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=38975">38975</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - ArticleFeedbackv5: Phase 1.5 (tracking)"
+   href="show_bug.cgi?id=39043">39043</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - ArticleFeedbackv5: Phase 2.0 (tracking)"
+   href="show_bug.cgi?id=39044">39044</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Make EQIAD new primary data-center (tracking)"
+   href="show_bug.cgi?id=39106">39106</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Parsoid: sanitizer issues (tracking)"
+   href="show_bug.cgi?id=39179">39179</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Parsoid: Wikitext escaping (tracking)"
+   href="show_bug.cgi?id=39254">39254</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Unit tests suck"
+   href="show_bug.cgi?id=39263">39263</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor: Selection issues re-write (tracking)"
+   href="show_bug.cgi?id=39315">39315</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Tracking Bug for first release of Wikisource Android App"
+   href="show_bug.cgi?id=39488">39488</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Parsoid: Semantically insignificant whitespace round-tripping (tracking)"
+   href="show_bug.cgi?id=39564">39564</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Parsoid: General round-tripping (tracking)"
+   href="show_bug.cgi?id=39567">39567</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - update the mobile app database"
+   href="show_bug.cgi?id=39772">39772</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Sources adm1 problems (tracker)"
+   href="show_bug.cgi?id=39882">39882</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - AJAX-free editing of Wikidata (tracking)"
+   href="show_bug.cgi?id=39998">39998</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Deploy wikidata.org with the Wikidata repository"
+   href="show_bug.cgi?id=40000">40000</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Wikidata and HTML5"
+   href="show_bug.cgi?id=40051">40051</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Countable content namespaces evaluation (tracking)"
+   href="show_bug.cgi?id=40423">40423</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - deploy Zuul (tracking)"
+   href="show_bug.cgi?id=40681">40681</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - HipHop/HHVM issues (tracking)"
+   href="show_bug.cgi?id=40926">40926</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Automated testing in Jenkins - Tracking"
+   href="show_bug.cgi?id=40933">40933</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - live hack in beta mediawiki-config (tracking)"
+   href="show_bug.cgi?id=41132">41132</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Wikivoyage migration (tracking)"
+   href="show_bug.cgi?id=41184">41184</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [SMW] 1.9.0 bugs (tracking)"
+   href="show_bug.cgi?id=41842">41842</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Selective serialization (tracking)"
+   href="show_bug.cgi?id=41948">41948</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Issues in legacy skins (tracking)"
+   href="show_bug.cgi?id=42081">42081</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Wiki Loves Monuments 2013 (tracking)"
+   href="show_bug.cgi?id=42164">42164</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - WikibaseRepo to be mobile friendly (tracking)"
+   href="show_bug.cgi?id=43065">43065</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Bugs that should be fixed before deploying Echo to en.wiki (tracking)"
+   href="show_bug.cgi?id=43833">43833</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Wikidata deployment on English Wikipedia (tracking)"
+   href="show_bug.cgi?id=44514">44514</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Wikidata phase I deployment on all Wikipedias but en, he, hu, it (tracking)"
+   href="show_bug.cgi?id=44515">44515</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Installations of Scribunto extension (tracking)"
+   href="show_bug.cgi?id=44625">44625</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Update favicons to provide high res variant (tracking)"
+   href="show_bug.cgi?id=45036">45036</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Phase out the Vector extension; merge the good parts into core (tracking)"
+   href="show_bug.cgi?id=45051">45051</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Commons Android App 1.0beta2 tracking bug"
+   href="show_bug.cgi?id=45502">45502</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Wikidata deployment phase 2 on first set of Wikipedias (tracking)"
+   href="show_bug.cgi?id=45600">45600</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - MediaWiki -wmf branch Release Notes - Important Changes (Tracking)"
+   href="show_bug.cgi?id=46034">46034</a> <a class="bz_bug_link 
+          bz_status_VERIFIED  bz_closed"
+   title="VERIFIED FIXED - Add automated browser tests to beta labs (tracking)"
+   href="show_bug.cgi?id=46166">46166</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Move wikibugs and gerrit-wm out of #mediawiki (tracking)"
+   href="show_bug.cgi?id=46322">46322</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Alternative export formats for Parsoid (tracking)"
+   href="show_bug.cgi?id=46517">46517</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - CologneBlue skin issues (tracking)"
+   href="show_bug.cgi?id=46949">46949</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Opera Mini issues due to javascript (tracking bug)"
+   href="show_bug.cgi?id=47572">47572</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Jenkins: Automated testing for various Fundraising-tech components (tracking)"
+   href="show_bug.cgi?id=48269">48269</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Jenkins: Setup Vagrant for some jobs (tracking)"
+   href="show_bug.cgi?id=48407">48407</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - VisualEditor: Pre-beta needs (tracker)"
+   href="show_bug.cgi?id=48426">48426</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - continuous integration monitoring (tracking)"
+   href="show_bug.cgi?id=49459">49459</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Jenkins: migrate all jobs from master to slaves (tracking)"
+   href="show_bug.cgi?id=50228">50228</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor/Parsoid: Beta release to en.wp IP users - blocking issues (tracking)"
+   href="show_bug.cgi?id=50848">50848</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor: Create toolbar icons for bold/italic/underline/superscript/subscript/etc. for scripts/languages as appropriate (tracker)"
+   href="show_bug.cgi?id=51314">51314</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Page Curation Tracking Bug"
+   href="show_bug.cgi?id=53504">53504</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - implement updated appearance to Mediawiki.ui (tracking)"
+   href="show_bug.cgi?id=54360">mediawiki.ui</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Multimedia review'n'deploy bugs (tracking)"
+   href="show_bug.cgi?id=56177">56177</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Deploy MultimediaViewer to every wiki (tracking)"
+   href="show_bug.cgi?id=57203">57203</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Labs bugs that were resolved but are waiting for ops to merge them"
+   href="show_bug.cgi?id=57301">57301</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Improvements to the layout and contents of Special:Preferences (tracking)"
+   href="show_bug.cgi?id=58223">58223</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - User-controlled job throttle for GWToolset (tracking)"
+   href="show_bug.cgi?id=58417">58417</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [tracking] Toolserver: JIRA projects to import"
+   href="show_bug.cgi?id=58821">58821</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [tracking] Pywikibot tracking bugs"
+   href="show_bug.cgi?id=58940">58940</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - VisualEditor: Work correctly in Draft namespace (tracking)"
+   href="show_bug.cgi?id=59885">ve-draftns</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Math at wmf/1.23wmf12 HEAD seems pretty broken"
+   href="show_bug.cgi?id=60997">60997</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Migrate Labs from pmtpa to eqiad data-center (tracking)"
+   href="show_bug.cgi?id=62042">62042</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Flow: new JS and PHP templating (tracking)"
+   href="show_bug.cgi?id=63443">63443</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Wikimedia Hackathon Zürich 2014"
+   href="show_bug.cgi?id=65005">hackathon2014</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Release Math 2.0"
+   href="show_bug.cgi?id=65341">65341</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - TemplateData: Stable version of the GUI editor (tracking)"
+   href="show_bug.cgi?id=65543">td-gui-stable</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MassMessage: Bugs related to contenthandler branch (tracking)"
+   href="show_bug.cgi?id=68599">mm-ch</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MediaWiki should not expose any UI elements which require JavaScript when it is off (tracking)"
+   href="show_bug.cgi?id=69845">69845</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=2007&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=2007">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-04-28 11:35 UTC by <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-19 22:29 UTC 
+      (<a href="show_activity.cgi?id=2007">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>3 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="dragonlordofxanther">dragonlordofxanther</option>
+                <option value="gangleri">gangleri</option>
+                <option value="jforrester">jforrester</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=2007&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-28 11:35:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug tracks all tracking bugs.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-29 19:51:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >change dependency from &quot;blocks&quot; to &quot;depends on&quot;.
+This bug can never be closed. If it would block other tickets, those could never
+be closed, too.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrew Garrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-29 16:38:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding 'tracking' keyword.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">ipatrol</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-03-30 22:12:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Why do we use these tracking bugs? Shouldn't we have some system or add-on to create these keyword trees for us?</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Happy-melon</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-02 13:34:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2007#c3">comment #3</a>)
+<span class="quote">&gt; Why do we use these tracking bugs? Shouldn't we have some system or add-on to
+&gt; create these keyword trees for us?</span >
+
+We have the keyword system, as <a href="show_bug.cgi?id=2007#c2">comment 2</a> notes.  However, the UI for dependencies (<a href="https://bugzilla.wikimedia.org/showdependencytree.cgi?id=2007&amp;hide_resolved=1">https://bugzilla.wikimedia.org/showdependencytree.cgi?id=2007&amp;hide_resolved=1</a>) is much better than the UI for keywords (<a href="https://bugzilla.wikimedia.org/buglist.cgi?keywords=tracking&amp;list_id=131">https://bugzilla.wikimedia.org/buglist.cgi?keywords=tracking&amp;list_id=131</a>).  Plus you can follow a tracking bug by being CC'd onto it, and you get notifications of additions and status changes to all dependent bugs.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">ipatrol</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-02 15:24:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sounds like a feature request then. This current system is awful kludgy. Mabye a revision to the report generator and emailing features could create a much cleaner method.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-02 15:30:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Not sure why you assigned the tracking bug to yourself...</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Happy-melon</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-02 15:37:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2007#c5">comment #5</a>)
+<span class="quote">&gt; Sounds like a feature request then. This current system is awful kludgy. Mabye
+&gt; a revision to the report generator and emailing features could create a much
+&gt; cleaner method.</span >
+
+Bugzilla's bugzilla it thata way (<a href="http://bugzilla.mozilla.org">http://bugzilla.mozilla.org</a>).  In the meantime, this system seems to work just fine.
+
+(In reply to <a href="show_bug.cgi?id=2007#c6">comment #6</a>)
+<span class="quote">&gt; Not sure why you assigned the tracking bug to yourself...</span >
+
+Lol.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2007#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-04 13:32:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Assigning back to <a href="mailto:wikibugs-l&#64;lists.wikimedia.org">wikibugs-l&#64;lists.wikimedia.org</a> so that it's still notified of changes.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=2007&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=2007">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=2007">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=2007">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=2007&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=2007" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=2007&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419359831-9CRsC7a4EauKKG8y62xRC9-lYVZ0Uzzp2ZLREKsKEjE">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

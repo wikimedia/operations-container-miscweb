@@ -1,0 +1,1970 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 800 &ndash; Add &quot;How to cite this article&quot; link</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=800&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=800">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=800">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=800">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 800 – Add \"How to cite this article\" link",  
+                             "show_bug.cgi?id=800" );
+        document.title = "Bug 800 – Add \"How to cite this article\" link";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 800 – Add \"How to cite this article\" link", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki_extensions bz_component_Cite bz_bug_800 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2008-01-20 18:53:54 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2008-01-20 18:53:54">
+  <input type="hidden" name="longdesclength" value="26">
+  <input type="hidden" name="id" value="800">
+  <input type="hidden" name="token" value="1419357871-zBNClBy8YvUOqQzKQoqgWVOkSjMIYiTs1yhUdIntWo8">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=800"><b>Bug&nbsp;800</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Add &quot;How to cite this article&quot; link</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Add &quot;How to cite this article&quot; link
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Add \"How to cite this article\" link', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Cite
+    
+    (<a href="buglist.cgi?component=Cite&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=800">5 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=800#vote_800">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://en.wikipedia.org/wiki/MediaWiki:Cite_text"><span title="http://en.wikipedia.org/wiki/MediaWiki:Cite_text">http://en.wikipedia.org/wiki/MediaWik...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - New feature suggestion: Bibliography"
+   href="show_bug.cgi?id=8356">8356</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=8356">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Short-hand link / URL for referring to specific version"
+   href="show_bug.cgi?id=268">268</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Code quality issues (tracking)"
+   href="show_bug.cgi?id=700">code_quality</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=800&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=800">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-10-29 06:13 UTC by <span class="vcard"><span class="fn">Robert Merkel</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2008-01-20 18:53 UTC 
+      (<a href="show_activity.cgi?id=800">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>6 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="avarab">avarab</option>
+                <option value="bugzillas+padREMOVETHISdu">bugzillas+padREMOVETHISdu</option>
+                <option value="psychonaut">psychonaut</option>
+                <option value="rowan.collins">rowan.collins</option>
+                <option value="sadads">sadads</option>
+                <option value="wiki">wiki</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=800&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Merkel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-29 06:13:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >On the Wikipedia reference desk, we get a lot of questions on how to cite this
+or that Wikipedia article.  My initial thought was to add a link to &quot;citing
+Wikipedia&quot; on one of the toolbars, but then I thought of a better idea:
+
+Why not have a link which brings up a special, machine-generated page describing
+exactly how to cite the particular article concerned in some of the major styles
+- I'd suggest initially the three listed on the &quot;citing Wikipedia&quot; page, as well
+as an entry in bibtex format.
+
+The page would have some of the general background on the existing &quot;citing
+Wikipedia&quot; page, and then the actual text which could be cut and pasted into a
+bibliography in the styles I suggest.  
+
+The only problem, perhaps, is the requirement for the cut and paste to support
+italics.  I don't know how widely this is supported on the various platforms.
+
+I can't imagine that this would be terribly difficult to do and might
+significantly cut down on the reference desk traffic.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-29 14:19:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Formatted copy and paste from browsers shouldn't generally be a problem, and
+besides isn't *our* problem. And if the users pastes and finds formatting
+missing, they can just format it themselves: we haven't got to write their whole
+references section for them, just give them the information they need to put in it.
+
+I actually think this wouldn't be too hard to code: it would just need a Special
+page that pulled appropriate values from the DB, and substituted them into
+special Template-vars in a MediaWiki page (yes, I know MediaWiki pages don't
+normally have named vars, but there's no reason not to) - stuff like name, full
+URL, access date, revision date. Then, a link in the toolbox for every article
+could call this Special page with the name of an article, and Ba-boom!
+insta-citations. </pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Catherine Munro</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 01:03:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c0">comment #0</a>)
+I mentioned this idea on the Village Pump (<a href="http://en.wikipedia.org/wiki/Wikipedia:Village_pump_">http://en.wikipedia.org/wiki/Wikipedia:Village_pump_</a>%
+28proposals%29#.22Citing_Wikipedia.22_link.2C_or_Citation_Box.2C_on_every_page), with some not-very-
+elegant examples; it's gotten some approving discussion there.
+
+A few thoughts:
+Provide all the &quot;puzzle pieces&quot; at the top, labelled appropriately (i.e., &quot;Author: n/a&quot;, &quot;Last 
+revision date: DD MMMM YYYY&quot;, &quot;Access date: DD MMMM YYYY&quot;, etc.) -- that way anyone could copy and 
+arrange the pieces of the puzzle the way their teacher/editor requires.  (Would reduce continuing 
+VP/Help/RefDesk queries from those not familiar with citation styles, too -- &quot;but who is the 
+AUTHOR?  but where is it published?  and why are there two different dates in the citiation?)
+
+Incorporate a way for users or admins to add additional citation formats in the future?
+
+Incorporate version numbers into this, when available?
+
+Pick a format to include on the article's print css, so that articles printed directly from 
+Wikipedia have appropriate automatic citation?
+
+Make date formatting responsive to user preferences, or allow a choice to reload the page with a 
+different format?
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 13:05:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c2">comment #2</a>)
+<span class="quote">&gt; A few thoughts:
+&gt; Provide all the &quot;puzzle pieces&quot; at the top, labelled appropriately (i.e.,</span >
+&quot;Author: n/a&quot;, &quot;Last 
+<span class="quote">&gt; revision date: DD MMMM YYYY&quot;, &quot;Access date: DD MMMM YYYY&quot;, etc.) </span >
+
+Yes, good idea; and easily done: just have the various variables labelled and
+listed above the individual citation styles. e.g.:
+* Article name: {{{name}}}
+* Date accessed: {{{currentdate}}}
+* Date article was last modified: {{{modificationdate}}}
+etc.
+
+<span class="quote">&gt; Incorporate a way for users or admins to add additional citation formats in</span >
+the future?
+
+As I suggested, a MediaWiki: page would be ideal for this, allowing tweaking,
+updating, translating, expanding, or just generally customising the results.
+
+<span class="quote">&gt; Incorporate version numbers into this, when available?</span >
+
+Yes (see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Assign lasting ID to latest revision of articles"
+   href="show_bug.cgi?id=181">bug 181</a> for progress on this); specifically, the citation could include
+a URL to the particular version, as suggested in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Short-hand link / URL for referring to specific version"
+   href="show_bug.cgi?id=268">bug 268</a>.
+ 
+<span class="quote">&gt; Pick a format to include on the article's print css, so that articles printed</span >
+directly from 
+<span class="quote">&gt; Wikipedia have appropriate automatic citation?</span >
+
+The problem is, which citation format would we include there? Perhaps the best
+candidate would be a compact listing of all the variables (in such a way that it
+was clear what each meant, sacrificing compatibility with any real citation in
+favour of brevity and clarity). Of course, this would require adding the
+information to the end of the article text, rather than just having a Special:
+page, but it might be possible to get all the necessary information without any
+database calls that aren't required anyway, I'm not sure. (If it's not, this may
+not be worth putting extra load on the DB for)
+
+<span class="quote">&gt; Make date formatting responsive to user preferences, or allow a choice to</span >
+reload the page with a 
+<span class="quote">&gt; different format?</span >
+
+Out of interest, do citation styles normally specify a date format, or is that
+generally a seperate decision? Either way, I'm inclined to suggest that this is
+a low priority, since if people aren't prepared to edit their own citation
+sections to make them consistent, that's their problem not ours.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Catherine Munro</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 21:07:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; The problem is, which citation format would we include there? Perhaps the best
+&gt; candidate would be a compact listing of all the variables (in such a way that it
+&gt; was clear what each meant, sacrificing compatibility with any real citation in
+&gt; favour of brevity and clarity). Of course, this would require adding the
+&gt; information to the end of the article text, rather than just having a Special:
+&gt; page, but it might be possible to get all the necessary information without any
+&gt; database calls that aren't required anyway, I'm not sure. (If it's not, this may
+&gt; not be worth putting extra load on the DB for)</span >
+
+Well put, and I agree.
+
+There is already a print-only footer box of sorts (visible in Print Preview as well), which 
+says &quot;this page was last modified on X date&quot; and &quot;text available GFDL blah blah...&quot;  I am guessing 
+this is a div which is hidden except during printing; if so it would seem to be generated when the 
+page is loaded.  I agree this ''isn't'' worth extra strain on the system, but if it's not taxing the 
+DB to add more variables to this box, I'd definitely consider it worthwhile.
+
+<span class="quote">&gt; &gt; Make date formatting responsive to user preferences, or allow a
+&gt; &gt; choice to reload the page with a different format?
+&gt; Out of interest, do citation styles normally specify a date format, or is that
+&gt; generally a separate decision? Either way, I'm inclined to suggest that this is
+&gt; a low priority, since if people aren't prepared to edit their own citation
+&gt; sections to make them consistent, that's their problem not ours.</span >
+
+On second thought, I agree -- this is not our problem.  The users have the info they need, in a much 
+more user-friendly format than most sites would provide, and requiring them to rearrange a date or 
+add some italics is not the end of the world -- certainly not worth jumping through programming 
+hoops. If the code to parse date preferences already exists and is trivial to use here, maybe, but a 
+very minimal priority compared to making this available soon. </pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Catherine Munro</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-31 19:46:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Britannica's &quot;cite this article&quot; section (from <a href="http://www.britannica.com/eb/article">http://www.britannica.com/eb/article</a>?
+tocId=9038951#cite )
+
+To cite this page:
+
+MLA style:
+&quot;Halloween.&quot; Encyclopædia Britannica. 2004.  Encyclopædia Britannica Premium Service. 
+19 Oct. 2004 &lt;<a href="http://www.britannica.com/eb/article?tocId=9038951">http://www.britannica.com/eb/article?tocId=9038951</a>&gt;.
+
+APA style:
+Halloween Encyclopædia Britannica. Retrieved October 19, 2004, from Encyclopædia Britannica Premium 
+Service. 
+&lt;<a href="http://www.britannica.com/eb/article?tocId=9038951">http://www.britannica.com/eb/article?tocId=9038951</a>&gt;
+
+Britannica style:
+&quot;Halloween&quot; Encyclopædia Britannica  from Encyclopædia Britannica Premium Service.
+&lt;<a href="http://www.britannica.com/eb/article?tocId=9038951">http://www.britannica.com/eb/article?tocId=9038951</a>&gt;
+[Accessed October 19, 2004].
+
+----------------------------
+
+Encarta says:
+How to cite this article:
+&quot;Halloween,&quot; Microsoft® Encarta® Online Encyclopedia 2004
+<a href="http://encarta.msn.com">http://encarta.msn.com</a> © 1997-2004 Microsoft Corporation. All Rights Reserved. 
+
+-----------------------------
+
+Encyclopedia.com just has a footer with:
+Columbia Encyclopedia, Sixth Edition, Copyright (c) 2004.
+
+-----------------------------
+
+WorldBookOnline.com:
+
+How to cite this article:
+To cite this article, World Book recommends the following format: Bannatyne, Lesley P. &quot;Halloween.&quot; 
+World Book Online Reference Center. 2004. World Book, Inc. 31 Oct. 2004. 
+&lt;<a href="http://www.worldbookonline.com/wb/Article?id=ar243460">http://www.worldbookonline.com/wb/Article?id=ar243460</a>&gt;.  
+
+More at <a href="http://www.worldbookonline.com/wb/Help?id=main#citationexamples">http://www.worldbookonline.com/wb/Help?id=main#citationexamples</a>
+
+
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Catherine Munro</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-24 18:39:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c2">comment #2</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=800#c0">comment #0</a>)
+&gt; &gt; Incorporate version numbers into this, when available?</span >
+
+See <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Make Revision ID available in a variable"
+   href="show_bug.cgi?id=1739">bug 1739</a>.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Fader</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 17:48:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >
+Ideally this could be implemented in mediawiki using existing templates in the
+mediawiki namespace.  To facilitate this, two changes are necessary:
+
+1. additional variables giving date &amp; time info for a given revision
+2. some means of presenting the citation info on pages
+
+These are detailed below:
+
+==1. ADDITIONAL VARIABLES==
+
+A number of variables analogous to {{REVISIONID}} are needed, all pertaining to
+a specific revision.  They are available for the current state of the article,
+and for any revision when viewed via the history mechanism.
+
+{{REVISIONMONTH}} 	
+{{REVISIONMONTHNAME}} 	
+{{REVISIONMONTHNAMEGEN}} 	
+{{REVISIONDAY}} 	
+{{REVISIONDAYNAME}} 	
+{{REVISIONYEAR}} 	
+{{REVISIONTIME}} 	
+
+So, for example, the wiki code to expand to produce an MLA style citation of a
+given wikipedia page would be: 
+
+&quot;{{PAGENAME}}&quot; Wikipedia: The Free Encyclopedia {{REVISIONDAY}}
+{{REVISIONMONTHNAME}} {{REVISIONYEAR}} {{REVISIONTIME}} {{CURRENTMONTHNAME}}
+{{CURRENTDAY}} {{CURRENTYEAR}} {{CURRENTTIME}}
+&lt;{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAMEE}}}}&amp;oldid={{REVISIONID}}&gt;
+
+Producing:
+
+&quot;Plagiarism.&quot; Wikipedia: The Free Encyclopedia. 22 Jul 2004, 10:55 UTC. 10 Aug
+2004 &lt;<a href="http://en.wikipedia.org/wiki/Plagiarism&amp;oldid=433243">http://en.wikipedia.org/wiki/Plagiarism&amp;oldid=433243</a>&gt;.
+
+==2. SHOWING CITATIONS ON PAGES==
+
+===2.1 Showing citations on current pages===
+Ideally use a new template at the page bottom, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mediawiki%3Acitation">mediawiki:citation</a>]]. As a
+stopgap, this info could be shoehorned into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ALastmodified">MediaWiki:Lastmodified</a>]]
+
+===2.2 Showing citations on history (&amp;oldid=xxx) pages===
+Ideally use a new template at the page bottom, [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mediawiki%3Acitation">mediawiki:citation</a>]]. As a
+stopgap, this info could be shoehorned into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ARevisionasof">MediaWiki:Revisionasof</a>]]
+
+===How to show citations===
+With everything described above, citations could be shown using one of the
+following mechanisms (not all, whichever is easiest to implement):
+
+====Inline====
+Shown inline (as britannica does), probably in a very small font.  This isn't
+ideal (for page layout reasons).  
+
+
+====Clickable links====
+It would be better for [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3Acitation">MediaWiki:citation</a>]] to show a list of citation options:
+
+          [MLA] | [APA] | [MHRA] | [Chicago] | [CBE/CSE] | [BibTeX]
+
+I don't know the best way to implement this.  Perhaps options are:
+
+=====Parameterised pages=====
+1. implement parameter passing to pages, so [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3Acitation">MediaWiki:citation</a>]] might read;
+
+  
+[[wikipedia:APA_citation&amp;{{PAGENAME}}&amp;{{REVISIONDAY}}&amp;{{REVISIONMONTHNAME}}&amp;{{REVISIONYEAR}}&amp;{{REVISIONTIME}}&amp;{{CURRENTMONTHNAME}}&amp;{{CURRENTDAY}}&amp;{{CURRENTYEAR}}&amp;{{CURRENTTIME}}&amp;{{NAMESPACE}&amp;{{PAGENAMEE}}&amp;{{REVISIONID}}|MLA]]
+...
+
+and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikipedia%3AAPA_citation">wikipedia:APA_citation</a>]] would read:
+
+&quot;{{1}}&quot; Wikipedia: The Free Encyclopedia {{2}} {{3E}} {{4}} {{5}} {{6}} {{7}}
+{{8}} {{9}} &lt;{{SERVER}}{{localurl:{{10}}:{{11}}}}&amp;oldid={{12}}&gt;
+
+=====Javascript=====
+If parameterised pages is too extreme, perhaps the links in
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3Acitation">MediaWiki:citation</a>]] can be javascript links that put the citation info (again
+picked up from [[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikipedia%3AAPA_citation">wikipedia:APA_citation</a>]] et al) into the system paste buffer.
+
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-27 18:44:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c7">comment #7</a>)
+<span class="quote">&gt; =====Parameterised pages=====
+&gt; 1. implement parameter passing to pages, so [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3Acitation">MediaWiki:citation</a>]] might read;</span >
+
+We already have parameterised pages, in the form of &quot;Special&quot; pages, which
+generate their content at display time. In fact, a Special:Citations page would
+remove the need for all these extra MagicWords, because being a PHP script it
+can pull whatever info it needs from the database. The way I envisage it working
+is as follows:
+
+* one or more links on every page (e.g. at the bottom, in the &quot;toolbox&quot;, etc)
+would link to [[Special:Citation/{{PAGENAME}}]] (or equivalently
+...?title=Special:Citation&amp;target={{PAGENAME}})
+* a MediaWiki message, something like [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ACitations">MediaWiki:Citations</a>]], would contain the
+&quot;outline&quot; of whatever citation styles seem desirable, with the actual
+information in template-variables ({{{revisionmonth}}}, {{{revisionday}}}, etc)
+* Special:Citation would pull metadata about the current revision of the article
+in its &quot;target&quot; parameter, and replace the template-variables in the MediaWiki
+message with that actual data
+
+Additionally:
+* links on old revisions of articles would be to
+...?title=Special:Citation&amp;target={{PAGENAME}}&amp;revision={{REVISIONID}}
+* when requested in this form, Special:Citation would pull the data for that
+revision instead of the current one
+
+If there's exactly one MediaWiki message, people can add whatever instructions,
+extra notes, links to copyright, etc as well as any number of citation styles
+and variations. It really would be nice if we could give the user a &quot;lasting
+link&quot; in with the citation though, so I'm marking <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Short-hand link / URL for referring to specific version"
+   href="show_bug.cgi?id=268">bug 268</a> as a dependency of
+getting this done &quot;properly&quot;.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 00:45:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I wrote a special page extension that adds a link to the sidebar on every page
+showing information on how to cite it, it's not live though due to some issues
+with tidy.
+
+marking this as FIXED in CVS HEAD.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 03:12:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c9">comment #9</a>)
+<span class="quote">&gt; I wrote a special page extension that adds a link to the sidebar on every page
+&gt; showing information on how to cite it, it's not live though due to some issues
+&gt; with tidy.
+&gt; 
+&gt; marking this as FIXED in CVS HEAD.</span >
+
+Disabled tidy on that page as a hack around the problem and deployed it on
+enwiki, will probably be deployed on the others later.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Catherine Munro</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 05:49:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thank you, thank you!!  This looks fantastic!</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 06:49:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Great job ! Very useful.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dariusz Siedlecki</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 11:42:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Would it be possible to turn this on at the Polish Wikipedia? We could really use this - lately many people are asking us can they cite us and how to do it (stupid questions, but... well, this extension should help them
+).
+</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 23:27:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is broken again.  The page can't find Template:REVISIONID and displays it as
+a red link</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 23:29:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c13">comment #13</a>)
+<span class="quote">&gt; Would it be possible to turn this on at the Polish Wikipedia? </span >
+
+It has been turned on at all the wikipedia wikis now.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 23:30:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c14">comment #14</a>)
+<span class="quote">&gt; It is broken again.  The page can't find Template:REVISIONID and displays it as
+&gt; a red link</span >
+
+Do you have an URL that shows this problem? The REVISIONID issue was fixed
+earlier today so this shouldn't be a problem anymore.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-27 23:34:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is working again now.  That was strange....  Possibly a cache problem.
+Also, at the bottom of the page in the footer, it says &quot;About {{Sitename}}&quot; and
+links to Wikipedia:About.  Someone needs to fix the text of the link sometime. 
+It is low priority problem.
+
+Also, this new system looks great :)  Thank you.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-28 00:43:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please allow me to add this further suggest in order to render the citation
+_complete_:
+
+* to add the _copyright_information_ for/of Wikipedia articles _on_ the
+Special:Cite page.
+
+In other words to avoid misunderstandings:
+
+* I suggest to _include_(copy) the bolded lines of page
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Copyrights">http://en.wikipedia.org/wiki/Wikipedia:Copyrights</a>
+
+&quot;Permission is granted to copy, distribute and/or modify this document under the
+terms of the GNU Free Documentation License, Version 1.2 or any later version
+published by the Free Software Foundation; with no Invariant Sections, with no
+Front-Cover Texts, and with no Back-Cover Texts.
+A copy of the license is included in the section entitled &quot;GNU Free
+Documentation License&quot; &lt;link to GFDL&gt;.
+Content on Wikipedia is covered by disclaimers.&quot;
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-28 10:39:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c18">comment #18</a>)
+Copyright is totally irrelivant to citations, citations have to do with saying
+where you got your facts from, and facts are uncopyrightable. Furthermore, even
+if you had a point you could just edit the appropriate pages on the wiki to add
+that link and/or text which makes this the wrong forum for your suggestion.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Watcharakorn Neamlarp</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-28 12:17:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;<a href="http://th.wikipedia.org/wiki/Special:Cite">http://th.wikipedia.org/wiki/Special:Cite</a>&quot; can't use in Thai Wikipedia.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-29 23:07:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c19">comment #19</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=800#c18">comment #18</a>)
+&gt; Copyright is totally irrelivant to citations, citations have to do with saying
+&gt; where you got your facts from, and facts are uncopyrightable. Furthermore, even
+&gt; if you had a point you could just edit the appropriate pages on the wiki to add
+&gt; that link and/or text which makes this the wrong forum for your suggestion.</span >
+
+I don't think regular users can edit pages in the special name space.  There is
+no edit this page link on special pages.
+Also, I don't think a reference to copyrights can hurt.  You could possibly
+include this in the text, but I would definitely include it in the footer like
+every other wikipedia page.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-30 00:11:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c21">comment #21</a>)
+<span class="quote">&gt; I don't think regular users can edit pages in the special name space.  There is
+&gt; no edit this page link on special pages.</span >
+
+Nobody can edit Special pages, full stop - they're PHP code; no wikiness
+involved. Presumably the text on the Special:Cite page is editable through the
+MediaWiki namespace (see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Special%3AAllmessages">Special:Allmessages</a>]]) like the rest of the UI
+(though this is indeed admin only).</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-11-30 01:01:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes it is I found.  See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ACite_text">MediaWiki:Cite_text</a>]]  You were correct, it is admin only.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-06 08:40:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=800#c20">comment #20</a>)
+<span class="quote">&gt; &quot;<a href="http://th.wikipedia.org/wiki/Special:Cite">http://th.wikipedia.org/wiki/Special:Cite</a>&quot; can't use in Thai Wikipedia.</span >
+
+Works for me.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=800#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 16:25:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - New feature suggestion: Bibliography"
+   href="show_bug.cgi?id=8356">Bug 8356</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=800&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=800">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=800">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=800">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=800&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=800" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=800&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357871-WUYs04foF0DI43zvPBxz0BJlEvSqW189Tpq4Zlce3HU">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

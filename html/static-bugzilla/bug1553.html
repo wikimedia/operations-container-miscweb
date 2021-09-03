@@ -1,0 +1,2763 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1553 &ndash; Navigation headings should not be lower-cased in German</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1553&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1553">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1553">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1553">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1553 – Navigation headings should not be lower-cased in German",  
+                             "show_bug.cgi?id=1553" );
+        document.title = "Bug 1553 – Navigation headings should not be lower-cased in German";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1553 – Navigation headings should not be lower-cased in German", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Internationalization bz_bug_1553 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2009-09-18 09:02:39 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2009-09-18 09:02:39">
+  <input type="hidden" name="longdesclength" value="57">
+  <input type="hidden" name="id" value="1553">
+  <input type="hidden" name="token" value="1419359128-K4i3frJHyzZy9SD5Vxg3oaaDVfc9ucGWNzNaRTDzZwk">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1553"><b>Bug&nbsp;1553</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Navigation headings should not be lower-cased in German</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Navigation headings should not be lower-cased in German
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Navigation headings should not be lower-cased in German', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Internationalization
+    
+    (<a href="buglist.cgi?component=Internationalization&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       minor<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=1553">3 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1553#vote_1553">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar items of first level converted to lowercase"
+   href="show_bug.cgi?id=6691">6691</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=6691">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1553&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1553">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-02-17 17:14 UTC by <span class="vcard"><span class="fn">Jens Leinenbach</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2009-09-18 09:02 UTC 
+      (<a href="show_activity.cgi?id=1553">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>8 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="avarab">avarab</option>
+                <option value="ayg">ayg</option>
+                <option value="brion">brion</option>
+                <option value="danny.b">danny.b</option>
+                <option value="n-roeser">n-roeser</option>
+                <option value="rememberthedot">rememberthedot</option>
+                <option value="robert">robert</option>
+                <option value="Wiki.Melancholie">Wiki.Melancholie</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=5656"
+               title="View the content of the attachment">
+          <b>Screen shot of English Wikipedia with current lowercase headings/links</b></a>
+
+          <span class="bz_attach_extra_info">
+              (623.86 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_5656"
+               title="Go to the comment associated with the attachment">2009-01-09 18:30 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5656&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=5657"
+               title="View the content of the attachment">
+          <b>Screen shot of English Wikipedia without text-transform on MonoBook skin</b></a>
+
+          <span class="bz_attach_extra_info">
+              (623.91 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_5657"
+               title="Go to the comment associated with the attachment">2009-01-09 18:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5657&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5661"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Proposed patch v1</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (9.97 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5661"
+               title="Go to the comment associated with the attachment">2009-01-11 01:11 UTC</a>,
+
+            <span class="vcard">rememberthedot
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5661&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=5757"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Proposed patch v2</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (8.05 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5757"
+               title="Go to the comment associated with the attachment">2009-01-31 20:20 UTC</a>,
+
+            <span class="vcard">rememberthedot
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5757&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=5764"
+               title="View the content of the attachment">
+          <b>Proposed patch v3</b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.62 KB,
+                patch)
+
+            <br>
+            <a href="#attach_5764"
+               title="Go to the comment associated with the attachment">2009-02-01 02:31 UTC</a>,
+
+            <span class="vcard">rememberthedot
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=5764&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (2)
+        </span>
+        <a href="attachment.cgi?bugid=1553&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jens Leinenbach</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-17 17:14:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is not a good idea to lowercase the headings of the navigation boxes since
+this is not compatible with other languages e.g. with the German language.
+
+To solve this problem, just comment out every:
+/* text-transform: lowercase; */
+
+within your main.css file of your monobook stylesheet directory.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Antoine &quot;hashar&quot; Musso (WMF)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-09 16:19:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Commited to cvs</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TMg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 13:17:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar items of first level converted to lowercase"
+   href="show_bug.cgi?id=6691">Bug 6691</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TMg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 13:23:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't know why, but this bug is still present in all Wikimedia projects (for example <a href="http://commons.wikimedia.org/skins-1.5/monobook/main.css">http://commons.wikimedia.org/skins-1.5/monobook/main.css</a>). There are 4 instances of &quot;text-transform: lowercase;&quot; which is simply wrong from my point of view. It's not a task of the &quot;main&quot; stylesheet to decide if a specific text should be in lower case. The main.css should be independent from the language.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Leverington</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 13:29:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is done for stylistic effect, to remove it would adversely affect many thousands of installations. To avoid this case change simply add
+
+.portlet h5 {
+text-transform:none;
+}
+
+to your wikis MediaWiki:Monobook.css -- it may be possible to alter this for certain lanaguages in core via the default per-language style sheets which I think works, but it would be irresponsible to change this for all wikis.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TMg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 17:28:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Changing text to lower case is more than a &quot;stylistic effect&quot; in many languages. For example, in the German language many words are _wrong_ in lower case.
+
+Adding something to Monobook.css is a short-sighted workaround. This adds unnecessary byte-wasting code for the only reason to override other unnecessary byte-wasting code. Please remove it. Nothing will break except for a few letters that will go upper case. If any installation requires the lowering stuff, _they_ have to add this to their Monobook.css:
+
+#p-personal ul, #p-cactions li a, .portlet h5, .portlet h6 {
+text-transform: lowercase;
+}</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 17:31:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would be inclined to just go ahead and remove this from the Monobook skin, yeah.  Any objections?</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 20:01:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I object. It's a stylistic effect used by that particular skin, not an inherent value of the UI strings.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 20:05:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So is the best solution to override it in MediaWiki:Monobook.css on a case-by-case basis for those languages known to care about case distinctions like that?  Or is there a better one you have in mind?</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TMg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-31 13:41:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&#64;Brion: As I said, changing text to lower case is _more_ than a plain stylistic effect. The _result_ looks the same as if the strings in the messages files were in lower case. As I said, this is wrong in some languages. The Monobook skin should be independent from the language.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 06:12:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Couldn't we wrap [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation%2Fde">MediaWiki:Navigation/de</a>]] in &lt;span style=&quot;text-transform:none&quot;&gt;? That way uselang=de would work in wikis of any language, and uselang=en would still work properly on German wikis.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 11:45:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Partial solution may be adding of something like
+
+html[lang=&quot;de&quot;] #p-navigation h5
+  {
+  text-transform: none;
+  }
+
+or even
+
+html[lang=&quot;de&quot;] #column-one h5
+  {
+  text-transform: none;
+  }
+
+    (I was too lazy to look for proper selectors, so take it with some tolerance ;-))
+
+to /skins/monobook/main.css
+
+However, IE at least till version 6 (I can't test in newer one ATM) does not support it - that's why it's just partial solution. But I guess better than nothing at least for the beginning.
+
+(In reply to <a href="show_bug.cgi?id=1553#c10">comment #10</a>)
+<span class="quote">&gt; Couldn't we wrap [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation%2Fde">MediaWiki:Navigation/de</a>]] in &lt;span
+&gt; style=&quot;text-transform:none&quot;&gt;? That way uselang=de would work in wikis of any
+&gt; language, and uselang=en would still work properly on German wikis.</span >
+
+That should work. At least on Testwiki it does (I've tried it on /cs version). Probably the best would be to have it in site default (thus in SVN). However it's not guaranteed it will work forever, since unfortunately one group of developers constantly cuts out HTML support in MediaWiki messages which lowers down its usability... :-/
+
+----
+
+This problem isn't only on German sites (but it's most obvious there) - any other site which would like to put some proper name in sidebar's headlines, would have to override styles as well. I was trying to solve that in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar items of first level converted to lowercase"
+   href="show_bug.cgi?id=6691">bug 6691</a> and later on in maillist about 2,5 years ago &lt;<a href="http://lists.wikimedia.org/pipermail/mediawiki-l/2006-July/013749.html">http://lists.wikimedia.org/pipermail/mediawiki-l/2006-July/013749.html</a>&gt;, however, unsuccessfully :-/ (well, yes - that communication wasn't my best one ;-) but I guess I've brought enough reasons there).</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 14:15:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1553#c10">comment #10</a>)
+<span class="quote">&gt; Couldn't we wrap [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation%2Fde">MediaWiki:Navigation/de</a>]] in &lt;span
+&gt; style=&quot;text-transform:none&quot;&gt;? That way uselang=de would work in wikis of any
+&gt; language, and uselang=en would still work properly on German wikis.</span >
+
+That seems entirely reasonable (maybe using a class instead of inline style, but probably doesn't really matter, since the class would be essentially presentational anyway).  Anyone want to do it?</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 19:12:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Implemented in Betawiki.
+
+<span class="quote">&gt; --- <a href="show_bug.cgi?id=1553#c11">Comment #11</a> from Danny B. &lt;<a href="mailto:danny.b&#64;email.cz">danny.b&#64;email.cz</a>&gt;  2008-12-08 11:45:09 UTC ---
+&gt; Partial solution may be adding of something like</span >
+&gt;
+<span class="quote">&gt; html[lang=&quot;de&quot;] #p-navigation h5
+&gt;  {
+&gt;  text-transform: none;
+&gt;  }</span >
+&gt;
+<span class="quote">&gt; or even</span >
+&gt;
+<span class="quote">&gt; html[lang=&quot;de&quot;] #column-one h5
+&gt;  {
+&gt;  text-transform: none;
+&gt;  }</span >
+
+I tried something very similar using :lang, but it only worked if the wiki's language was German. So, it would have worked on the German Wikipedia, but not on the Wikimedia Commons. I was hoping to do something like:
+
+html.uselang-de #p-navigation h5
+
+but MediaWiki does not expose the &quot;uselang&quot; parameter in CSS, so the best thing that I could personally do was add wrappers to the messages via Betawiki.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 19:51:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Never mind, all of the nstab- messages don't support HTML, so this fix doesn't work for them. Knowing that, I think it'd be best to expose the uselang information via CSS, at least for the Monobook skin. Unfortunately, I don't know how to make MediaWiki do that...</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 20:14:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For the record, after creating a minor mess at Betawiki I discovered that [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation">MediaWiki:Navigation</a>]] is the _only_ message that both has this problem and allows HTML in its message.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-08 23:02:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1553#c13">comment #13</a>)
+<span class="quote">&gt; I tried something very similar using :lang, but it only worked if the wiki's
+&gt; language was German. So, it would have worked on the German Wikipedia, but not
+&gt; on the Wikimedia Commons. I was hoping to do something like:
+&gt; 
+&gt; html.uselang-de #p-navigation h5
+&gt; 
+&gt; but MediaWiki does not expose the &quot;uselang&quot; parameter in CSS, so the best thing
+&gt; that I could personally do was add wrappers to the messages via Betawiki.</span >
+
+Keep in mind that it's possible to have a mix of interface languages displayed on a page.  Some messages might be untranslated and fall back to the specified fallback language, and some messages might be forced to the content language on some wikis.  Deciding whether to lowercase on a per-message basis is likely the best idea, if it's feasible.
+
+Personally, I think the best solution might be to get rid of the text-transform rule for all languages.  It's not worth the trouble it causes.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-09 13:18:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1553#c16">comment #16</a>)
+<span class="quote">&gt; Personally, I think the best solution might be to get rid of the text-transform
+&gt; rule for all languages.  It's not worth the trouble it causes.</span >
+
+So why won't we do it? This issue has been around for almost 4 years periodically returning like a boomerang. Many reasons have been given, many examples have been shown in favor of removal while for keeping there is the one and only argument still being repeated round and round: &quot;it's part of the design&quot;. Well, yes, it is. And we have good designs and bad designs as well... ;-) Time has shown that this part of the design wasn't the best approach. And if design lowers accessibility or usability it should be changed. Time for change is now...
+</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-09 14:25:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1553#c17">comment #17</a>)
+<span class="quote">&gt; So why won't we do it?</span >
+
+For my part, <a href="show_bug.cgi?id=1553#c7">comment #7</a>.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TMg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-09 16:59:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As I said in <a href="show_bug.cgi?id=1553#c5">comment #5</a>, changing case is NOT just a stylistic effect. It changes the MEANING of the words in many languages!</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-10 04:38:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have temporarily fixed this bug with a workaround at betawiki:
+<a href="http://translatewiki.net/w/i.php?title=MediaWiki:Navigation/de&amp;diff=894296&amp;oldid=892581">http://translatewiki.net/w/i.php?title=MediaWiki:Navigation/de&amp;diff=894296&amp;oldid=892581</a>
+
+The additional code doesn't weigh much, as the very same code now can be removed from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=de%3AMediaWiki%3AMonobook.css">de:MediaWiki:Monobook.css</a>]] for example.
+
+Note that I do *not* CLOSE this bug, because the actual reason for this bug is that [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]] does not at all get used!
+
+Someone has to find a way to include [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]] into the generated CSS file by software, as currently only the [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css">MediaWiki:Monobook.css</a>]] file content seems to be send to clients.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-10 05:16:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note: Do not &#64;import [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]] in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation%2Fde">MediaWiki:Navigation/de</a>]] (that would break other skins for example)</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-10 06:21:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Fixed that issue with that workaround also for:
+
+* de-formal
+* gsw
+* bar
+* pfl
+* nds
+* lb
+* ksh
+* pdc
+* pdt
+
+ang (and probably others) has a text-tranform:none declaration in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ang%3AMediaWiki%3AMonobook.css">ang:MediaWiki:Monobook.css</a>]], but I skipped that (as only German languages are generally capitalised)</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-10 06:26:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Silly question: Why is .portlet h6 defined, actually?
+There are no H6 portlet headings!?
+Or do some extensions use h6 portlet headings?
+
+If MediaWiki really doesn't have H6 portlet headings by default (what I think), shouldn't
+&quot;.portlet h6 {...}&quot; be removed from
+<a href="http://upload.wikimedia.org/skins/monobook/main.css">http://upload.wikimedia.org/skins/monobook/main.css</a>
+and 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]]?</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-10 10:16:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Forget my last posts, changes have been reverted altogether, broadly.
+<a href="http://translatewiki.net/w/i.php?title=User_talk%3AMelancholie&amp;diff=894502&amp;oldid=379444">http://translatewiki.net/w/i.php?title=User_talk%3AMelancholie&amp;diff=894502&amp;oldid=379444</a></pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">TMg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-10 16:40:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >From my point of view:
+
+Fact: A skin MUST be independent from the language.
+
+Fact: Changing text to lower case is NOT independent from the language.
+
+Conclusion: Remove every occurence of &quot;text-transform: lowercase;&quot; from main.css.
+
+Optional: Change the case of the text in [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation">MediaWiki:Navigation</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AViewsource">MediaWiki:Viewsource</a>]] and so on or add &quot;text-transform: lowercase;&quot; to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fen">MediaWiki:Monobook.css/en</a>]] or do something else, as long as it does not affect all languages.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 04:54:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just to drop a note [to be aware of]:
+As Meta and Commons are *the* major multilingual community wikis, the CSS workaround from above has been placed into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3AMediaWiki%3ANavigation%2Fde">meta:MediaWiki:Navigation/de</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=commons%3AMediaWiki%3ANavigation%2Fde">commons:MediaWiki:Navigation/de</a>]]. Works fine.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 07:01:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Not fine, now Meta is using invalid XHTML: <a href="http://validator.w3.org/check?uri=http%3A%2F%2Fmeta.wikimedia.org%2Fwiki%2FMain_Page%3Fuselang%3Dde&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0">http://validator.w3.org/check?uri=http%3A%2F%2Fmeta.wikimedia.org%2Fwiki%2FMain_Page%3Fuselang%3Dde&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0</a>
+
+I've reverted the addition to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=commons%3AMediaWiki%3ANavigation%2Fde">commons:MediaWiki:Navigation/de</a>]] and requested that it be removed from [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=meta%3AMediaWiki%3ANavigation%2Fde">meta:MediaWiki:Navigation/de</a>]] as well. We need to fix this problem properly in MediaWiki itself, not by invalidating our code with hacks.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 07:43:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that this is only a ridiculous 'nested elements ' error, only shown if a user has specified 'de' as his/her UI language. Is it really necessary to revert this? CSS invalidities do not break anything, in contrast to JS invalidities.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 07:49:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's not a CSS invalidity, it's an XHTML invalidity, and I'm poring over the MediaWiki source code right now trying to figure out where MediaWiki:Navigation is actually called.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 07:53:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Äh, XHTML of course. But my opinion is that visible issues are more important than invisible/un-severe ones. A (soon) proper solution would be the best though.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 09:07:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >XHTML errors can cause tools that parse sites like XML to blow up. We don't want invisible problems suddenly flaring up in odd places.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 18:30:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5656" name="attach_5656" title="Screen shot of English Wikipedia with current lowercase headings/links">attachment 5656</a> <a href="attachment.cgi?id=5656&amp;action=edit" title="Screen shot of English Wikipedia with current lowercase headings/links">[details]</a></span>
+Screen shot of English Wikipedia with current lowercase headings/links
+
+For comparison purposes...</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 18:31:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5657" name="attach_5657" title="Screen shot of English Wikipedia without text-transform on MonoBook skin">attachment 5657</a> <a href="attachment.cgi?id=5657&amp;action=edit" title="Screen shot of English Wikipedia without text-transform on MonoBook skin">[details]</a></span>
+Screen shot of English Wikipedia without text-transform on MonoBook skin
+
+For comparison purposes; English Wikipedia with the text-transforms disabled in the MonoBook skin. It doesn't look much different, and probably wouldn't garner too many complaints. Most people probably wouldn't notice.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 18:35:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wouldn't hurt to float just removing the text-transforms by default.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 18:35:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Float where?</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-09 18:37:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In the community! Tell your friends, tell your mom, tell your blog, whoever. :)</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-10 03:18:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that those words that will be shown capitalized can easily be lowercased again by editing [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AEdit">MediaWiki:Edit</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation">MediaWiki:Navigation</a>]] etc. See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3AWiktionary%3AHauptseite">wikt:de:Wiktionary:Hauptseite</a>]] for example, where all adjectives on top (tabs) are lowercased. Removing 'text-transform:lowercase' and *correcting* the system messages (if desired) seems reasonable.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-10 03:22:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;Wiktionary:Hauptseite&quot; had been a bad example (no adjectives ;-) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3Aexample">wikt:de:example</a>]] is a better one, showing at least &quot;bearbeiten&quot; (if logged out).</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-10 03:26:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; adjectives-&gt;verbs (me fool ;-)</span >
+sorry for spamming, unfortunately it's no wiki</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-10 03:44:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AEdit">MediaWiki:Edit</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation">MediaWiki:Navigation</a>]] etc. affect all skins, so making them lowercase would make the text lowercase even on skins where uppercase text is more appropriate. CSS is the right tool for the job here. I would really like to see a &quot;uselang-de&quot; class (or even a MediaWiki:Monobook.css/de message) that could be used to turn off the transformations if the page is using the German interface.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-10 04:02:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There is a [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]], but it doesn't get used (as only [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css">MediaWiki:Monobook.css</a>]] is used); but maybe .../de could be imported surplus?
+
+See <a href="show_bug.cgi?id=1553#c20">comment #20</a>:
+<span class="quote">&gt; Someone has to find a way to include [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]] into the
+&gt; generated CSS file by software, as currently only the
+&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css">MediaWiki:Monobook.css</a>]] file content seems to be send to clients.</span ></pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-10 08:38:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; --- <a href="show_bug.cgi?id=1553#c41">Comment #41</a> from Melancholie &lt;<a href="mailto:Wiki.Melancholie&#64;web.de">Wiki.Melancholie&#64;web.de</a>&gt;  2009-01-10 04:02:11 UTC ---
+&gt; There is a [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css%2Fde">MediaWiki:Monobook.css/de</a>]], but it doesn't get used (as only
+&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3AMonobook.css">MediaWiki:Monobook.css</a>]] is used); but maybe .../de could be imported
+&gt; surplus?</span >
+
+Not a bad idea, but I don't think that would completely solve the problem...think of what would happen if you wanted to see the English-language interface on a German-language wiki. Monobook would have text-transform:lowercase, then MediaWiki:Monobook.css/de would override it with text-transform:none, and finally MediaWiki:Monobook.css/en wouldn't do anything because it assumes that Monobook's text-transform:lowercase is still in force. Thus, the user interface elements would still be capitalized even in English where decapitalizing them is desirable.
+
+In other words, we would have to add text-transform:lowercase to every single language-specific Monobook.css in order to properly allow multiple user interface languages on a German-language wiki.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-11 00:43:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1553#c40">comment #40</a>)
+<span class="quote">&gt; I would really
+&gt; like to see a &quot;uselang-de&quot; class (or even a MediaWiki:Monobook.css/de message)
+&gt; that could be used to turn off the transformations if the page is using the
+&gt; German interface.</span >
+
+Keep in mind that the interface language is not necessarily used for *all* interface messages.  Look at the navbar on dewiki in English, or the enwiki one with German:
+
+<a href="http://de.wikipedia.org/wiki/Wikipedia:Hauptseite?uselang=en">http://de.wikipedia.org/wiki/Wikipedia:Hauptseite?uselang=en</a>
+<a href="http://en.wikipedia.org/wiki/Wikipedia:Main_Page?uselang=de">http://en.wikipedia.org/wiki/Wikipedia:Main_Page?uselang=de</a>
+
+They're a mix of English and German messages in each case.  You're going to get wrong results by trying to key off interface message: it has to be done on a message-by-message basis to be actually correct.</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-11 01:11:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5661" name="attach_5661" title="Proposed patch v1">attachment 5661</a> <a href="attachment.cgi?id=5661&amp;action=edit" title="Proposed patch v1">[details]</a></span>
+Proposed patch v1
+
+Ah, I see now. You have a good point. Here is a patch I made a few days ago, but was reluctant to post because I wasn't sure it was the best solution. This patch loosens HTML restrictions on the affected German messages and wraps them in &lt;span style=&quot;text-transform:none&quot;&gt; to override Monobook's automatic decapitalization.
+
+Incidentally, having msgHtml return unescaped text and wfMsgHtml return escaped text is quite confusing.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-11 01:28:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Never mind, forget the patch. I just realized that it breaks the Modern skin and there's no way around that.
+
+Perhaps the best thing to do would be to offer a userLang-de class, and just accept that that will turn off decapitalization on all messages no matter the language. That wouldn't be so bad, would it?</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-11 01:31:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >And by &quot;no matter the language&quot; I meant &quot;no matter the content language if the user language is German&quot;.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-31 20:20:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=5757" name="attach_5757" title="Proposed patch v2">attachment 5757</a> <a href="attachment.cgi?id=5757&amp;action=edit" title="Proposed patch v2">[details]</a></span>
+Proposed patch v2
+
+This is a much nicer patch that adds lang=&quot;de&quot; to the affected interface messages, with matching CSS rules to turn off the text-transform. It also cuts a line of redundancy out of Skin.php and patches a security vulnerability where a malicious user could insert arbitrary HTML into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ANavigation">MediaWiki:Navigation</a>]].
+
+lang=&quot;de&quot; is applied no matter whether or not a German message is actually available. This is a bit hacky, but it will prevent ugly mixtures of text-transform:lowercase and text-transform:none.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-01 00:42:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >1) The proposed patch will fail in IE6, which does not support the [attr=val] selector.  If use of advanced selectors were possible, incidentally, :lang() would almost certainly be superior, or at least [lang^=de-] to avoid some of the repetition.
+
+2) I'm not sure it's a good idea to assume that Language::getCode() is valid to put in an HTML lang= attribute.  The latter requires that only RFC1766 codes may be used: does getCode() only output those, or does it also output invalid codes in some cases?
+
+3) You should probably ask Tim or Brion for commit access, if you haven't already.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-01 02:31:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=5764" name="attach_5764" title="Proposed patch v3">attachment 5764</a> <a href="attachment.cgi?id=5764&amp;action=edit" title="Proposed patch v3">[details]</a></span>
+Proposed patch v3
+
+:lang() would be best, but it doesn't work on IE7. [lang|=de] seems most reasonable option to me, the other methods are hackish. IE6 users that can't be bothered to upgrade will just have to suffer with the status quo of no capitalization.
+
+Don't we already use getCode() for &lt;html lang=&quot;xx&quot; xml:lang=&quot;xx&quot;&gt;? If I understand the specifications correctly, MediaWiki's non-deprecated language codes are standards-compliant, even the more unusual ones. <a href="http://www.w3.org/TR/html4/struct/dirlang.html#h-8.1.1">http://www.w3.org/TR/html4/struct/dirlang.html#h-8.1.1</a> even includes the example &quot;en-cockney&quot; as a valid language code.
+
+I haven't asked for commit access; I figured that if the developers thought I should have access, they'd offer it ;-). It would be useful for trivial changes, but even if I had commit access, I'd still have to run stuff like this patch by the other developers to catch problems like the one you mentioned. And I'm still a bit unsure if accessing $wgLang directly is the best idea - maybe the call to getLang() would be more elegant if it were integrated into OutputPage or something.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-01 02:40:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1553#c49">comment #49</a>)
+<span class="quote">&gt; I haven't asked for commit access; I figured that if the developers thought I
+&gt; should have access, they'd offer it ;-).</span >
+
+To the extent that that's how things work, that's what just happened, seeing as I *am* a developer.  You've gotten enough patches accepted that I think you'll be given commit access if you ask.  So ask and make things easier on all of us.
+
+<span class="quote">&gt; It would be useful for trivial
+&gt; changes, but even if I had commit access, I'd still have to run stuff like this
+&gt; patch by the other developers to catch problems like the one you mentioned.</span >
+
+All changes are reviewed.  Developers can comment on mediawiki.org after commit, and if there are problems it will be reverted before going live.  You can still submit stuff for review on Bugzilla if you like, even if you have commit access.</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-17 18:24:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I e-mailed Brion two weeks ago and Tim a week ago asking for commit access. Neither has replied. Would you be willing to commit the patch?</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-17 21:23:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I asked Brion on IRC, he says he's now sent you a reply asking for account details.</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-03 19:16:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >After four e-mails to Brion and one e-mail to Tim, I still have not been given commit access. What do you suggest?</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-03 22:29:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >He says it's on his list and he'll get to it.  You'll have to wait a while longer, I guess, or else be more aggressive in pestering people on IRC.</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-03-05 01:13:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please don't use Bugzilla as a chat forum. :) Commit setups are reached in batches. Patches can be applied by any developer at any time.</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1553#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">rememberthedot
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-04-09 05:28:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Patch committed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/49331" title="revision 49331 in SVN">r49331</a>.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1553&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1553">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1553">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1553">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1553&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1553" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1553&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419359128-_NvTHac34A5HMzcf3PXtIWGgNR21hXa0SV1wM3YXf1E">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

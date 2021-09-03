@@ -1,0 +1,2005 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3665 &ndash; Auto-detect interface language for anonymous users</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3665&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3665">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3665">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3665">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3665 – Auto-detect interface language for anonymous users",  
+                             "show_bug.cgi?id=3665" );
+        document.title = "Bug 3665 – Auto-detect interface language for anonymous users";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3665 – Auto-detect interface language for anonymous users", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_Wikimedia bz_component_Language_setup bz_bug_3665 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 10:35:38 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 10:35:38">
+  <input type="hidden" name="longdesclength" value="31">
+  <input type="hidden" name="id" value="3665">
+  <input type="hidden" name="token" value="1419362359-hQwqmhTOXX0S_mTU3Hbpyhsh8XennG7V9Zf3cpCW7H4">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3665"><b>Bug&nbsp;3665</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Auto-detect interface language for anonymous users</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Auto-detect interface language for anonymous users
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Auto-detect interface language for anonymous users', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Language setup
+    
+    (<a href="buglist.cgi?component=Language%20setup&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3665">12 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3665#vote_3665">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">UniversalLanguageSelector-fixed  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">i18n, patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - dynamic multi-lingual interface (language selected by browser or user)"
+   href="show_bug.cgi?id=7761">7761</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Meta and Commons should respect the language setting of the browser if not changed"
+   href="show_bug.cgi?id=26506">26506</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=7761,26506">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Deploy ULS/UniversalLanguageSelector to all Wikimedia wikis (tracking)"
+   href="show_bug.cgi?id=13097">uls-deployment</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3665&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3665">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-10-09 17:38 UTC by <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 10:35 UTC 
+      (<a href="show_activity.cgi?id=3665">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>13 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="amir.aharoni">amir.aharoni</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="deletesoftware">deletesoftware</option>
+                <option value="dohnp5a1">dohnp5a1</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="robinp.1273">robinp.1273</option>
+                <option value="siebrand">siebrand</option>
+                <option value="srik.lak">srik.lak</option>
+                <option value="wikibugs">wikibugs</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Language on Commons should default to browser language preferences"
+   href="show_bug.cgi?id=1135">1135</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Anonymous users can't pick language on WMF wikis ($wgULSAnonCanChangeLanguage is set to false)"
+   href="show_bug.cgi?id=56464">56464</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=963"
+               title="View the content of the attachment">
+          <b>patch against HEAD for Defines.php, DefaultSettings.php, OutputPage.php, and User.php</b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.44 KB,
+                patch)
+
+            <br>
+            <a href="#attach_963"
+               title="Go to the comment associated with the attachment">2005-10-09 17:39 UTC</a>,
+
+            <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=963&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=3665&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-09 17:38:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I propose to include a feature that auto-detects the inferface language for
+anonymous users. This would be especially helpful for multilingual projects like
+the commons. The language can be set in the user interface, but one needs to
+understand the default language in order to even create an account, or find the
+right setting.
+
+The detection has three modes, controlled by $wgDetectLanguage:
+
+* LANG_USE_CONTENT: use the content language for anonymous users, i.e. dont use
+auto-detection. This is the default, and shows the same behaviour as without
+this patch.
+* LANG_PREFER_CONTENT: use the conten language if present in the Accept-Language
+list. Otherwise, behave like LANG_PREFER_CONTENT
+* LANG_PREFER_CLIENT: use the first language in the Accept-Language list that is
+supported by the wiki.
+
+Caveats:
+* the Accept-Language field is often not configured correctly in the browser. 
+* the Accept-Language field would effect caching - the appropriate changes to
+the Vary: header are done automatically, but this reduces cache efficiency.
+* in order to decide which languages are supported, this relies on
+$wgContLang-&gt;getLanguageNames(). It does not actually check for the files to
+exist, as this would be pretty slow, and the detection is performed for every
+page request.
+* The languages in Accept-Languages are handeled as being given in the order of
+preference. Any weight-modifiers are ignored.
+
+patch to follow in a minute.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-09 17:39:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=963" name="attach_963" title="patch against HEAD for Defines.php, DefaultSettings.php, OutputPage.php, and User.php">attachment 963</a> <a href="attachment.cgi?id=963&amp;action=edit" title="patch against HEAD for Defines.php, DefaultSettings.php, OutputPage.php, and User.php">[details]</a></span>
+patch against HEAD for Defines.php, DefaultSettings.php, OutputPage.php, and User.php</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-10 07:31:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I worry this is too hostile to caching; without aggressive caching of anon views our 
+entire infrastructure will collapse into a little pile of rubble. Adding a Vary on 
+accept-language will splinter things a lot -- even where the same language gets selected 
+there can be big variance in what's in the header.
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-10 11:19:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I agree that this meight be a problem. It meight be quite useful as an option
+for smaller, non-Wikimedia projects, though.
+
+The only Wikimedia project I would suggest to enabled this for is the Commons.
+There, the main traffic is image data anyway, which can be cached independently
+of user language, and even for logged in users. May be worth a try.
+
+Also, it would be interresting to find out how many different Accept-Language
+headers we are actually seeing. Most people never change it by hand, and the
+default setup of the popular browsers doesn't vary too much, I guess.
+
+All this being said: one important point would be to provide a localized
+interface for creating an account to people that do not speak english. Maybe it
+would be enough to have a language selection on the login page, that would be
+used while creating an account. The default choice could be made based on
+Accept-Language. The language selected during account creation should then also
+become the language pre-set for the new account. But that would be a separate
+feature request, I guess.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Arnold</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-26 21:36:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I also think that the main data of Wikimedia Commons caching is not the text (web site) data but the images.
+
+At first Wikimedia Commons has never been prominently cited by the media (AFAIK) despite its central role (and its 
+potential being a serious competitor to traditional stock image archives). Luckily all medias did look at Wikinews 
+from day zero on. :p
+
+The second thing is that Commons has not an intuitive URL like Wikipedia: wikipedia.org vs. commons.wikimedia.org.
+
+Most &quot;outsiders&quot; (people not involved in any Wikimedia wiki) coming to Wikimedia Commons come there via Wikipedia 
+image descriptions or Google images. Both ways are not used by the masses.
+
+So I am quite confident that this patch enabled for Wikimedia Commons only would help us a lot within several fields 
+without harming our caching architecture:
+
+* People coming from local wikis and creating an account will now have the possibility getting (the main page and) 
+account creating pages in their native language if you link special:userlogin in the local project (as long as 
+single site login is not possible). This would help use reducing precudices against Wikimedia Commons a lot (sadly 
+we have to live with these &quot;english only&quot; precudices against Commons currently, although we are working hard 
+supporting many languages in a decent way).
+
+* Outside people that want to reuse Wikimedia Commons get information in their local language, which would help us a 
+lot as people often ask about Wikimedia Commons conditions (and are apparently confused a little bit by the english 
+only interface; despite the problem that Commons help pages weren't the best ones until recently).
+
+* We could reduce the English bias in Commons. Currently we have the problem that people are softly forced into 
+English and thus do not realise that their local language is supported too (you know changing of preferences is not 
+done by the masses even after login...). This leads to the problem that these non-English languages get neglected 
+somewhat. A self strengthening effect supporting mainly English only... Many problems in Commons are caused by the 
+lack of local language support. I personally do currently some work supporting help pages in several languages in a 
+decent way but the more people you get from the beginnings the better is the result (and I also do only speak 
+German, English and French)...
+
+So I think these patches would be a great thing for Wikimedia Commons.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-26 21:45:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The whole point is that if this great thing kills the site, it's not such a
+great thing, is it?</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Arnold</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-28 18:12:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well Rob could you give us some serious figures? I outlined quite detailed and with a rational 
+analysis from my perspective why an negative impact on the servers is not going to happen if this 
+patch is applied to Wikimedia Commons wiki *only*. For sure I could be wrong so in order to get a 
+rational discussion of the issue we need the following figures:
+
+* How many image traffic is caused by anonymous page visits in Wikimedia Commons per month?
+* How many (page) text traffic is caused by anonymous page visits in Wikimedia Commons per month?
+* How many page visit traffic is caused per month by logged in users to Wikimedia Commons?
+
+I'd appreciate if you can afford the time extracting these numbers as I personally do invest quite 
+some time as well providing you decent bug reports in order to reduce your amount of work needed to 
+solve that bug reports.
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-28 18:18:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think the best thing for now would be to add a language selector the to
+account creation page, as described above. The selection could be pre-set based
+on browser preference, but that's not even necessary. The important thing is
+that people joining commons hsould not have to know english to create an
+account. If Commons is internationalized enough yet that it will be useful to
+them without a basic level of english is another question... I at least hope it
+will soon be usable without knowing english.
+
+So, shall I open a separate feature request for that?</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-28 18:33:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c7">comment #7</a>)
+<span class="quote">&gt; So, shall I open a separate feature request for that?</span >
+
+An optional language selector would be cool.
+</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-20 15:23:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Side note: this could be combined with <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - show translated titles per user language, based on interlanguage links (patch included)"
+   href="show_bug.cgi?id=5638">bug 5638</a> to make multilingual projects
+like commons more useful to people not speaking english, even if not logged in. 
+
+Perhaps using the browser's language setting is not a good idea - maybe it would
+be better to offer a drop down manu and a &quot;set language&quot; button that would set a
+cookie.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-30 14:39:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - dynamic multi-lingual interface (language selected by browser or user)"
+   href="show_bug.cgi?id=7761">Bug 7761</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-30 12:45:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Meta and Commons should respect the language setting of the browser if not changed"
+   href="show_bug.cgi?id=26506">Bug 26506</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-30 19:46:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's very dissapointing that nothing was improved anent this bug during six years.
+
+Many people in my surrounding really hate English and would never contribute to a project that appears totally in this language, without an easy and fast way to switch it.
+
+Maybe the browser language settings are sometimes incorrect. Nevertheless, the
+present default setting is incorrect almost always, displaying everything in
+English to everyone. Most users also don't know how to change the language
+settings in Meta or Commons: it is much easier to get to know own browser once
+than particular settings of every web visited.
+
+I suppose the browser setting can be set defaultly to English (often
+incorrect), or to the system or browser localisation language (probably nobody
+uses them in an unintelligible version, so there's no problem). All the possibilities are better than default English always.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-31 14:21:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c12">comment #12</a>)
+<span class="quote">&gt; It's very dissapointing that nothing was improved anent this bug during six
+&gt; years.
+&gt; </span >
+Although I agree with your argument that English always is not necessarily nice, there's a technical reason we haven't done anything in six years, presented in <a href="show_bug.cgi?id=3665#c2">comment #2</a>: Squid caching would suffer severely. The &quot;pile of rubble&quot; part may not be as accurate today as it was in 2005 (we gained some capacity since then), but please understand this is not an easy change at all. Back in 2005 our servers really did rely on every anonymous user seeing the same thing at the same URL for the servers not to melt down; and I'm not so sure Accept-Language detection for anonymous users would be feasible in 2010/2011 either.
+
+<span class="quote">&gt; Many people in my surrounding really hate English and would never contribute to
+&gt; a project that appears totally in this language, without an easy and fast way
+&gt; to switch it.
+&gt; </span >
+&quot;an easy and fast way to switch it&quot; might just be what we *can* do. We could use JavaScript to obtain the user's Accept-Language preferences from the API or something (which wouldn't go through Squid cache, but that's OK: it's just a language list, not an entire wiki page) and use that information to display a link with the native language name (i.e. 'Deutsch' for German, 'Français' for French, etc.) that would then lead to the account creation form in that language or maybe trigger persistent uselang (language selection for anonymous users, basically) if and when we have that.
+
+In fact, I once wrote some proof-of-concept code that obtained the user's Accept-Language settings from the API, stored it in a cookie (to avoid repetitive API requests) and used it to reorder the &quot;In other languages&quot; links in the sidebar. We never ended up using it but it's still lying around somewhere.
+
+tl;dr: Automatically showing wiki pages in the browser language for anonymous users is probably not gonna happen, but a feature offering to switch languages based on the browser language isn't hard to do.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-31 14:31:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If WMF cannot do it, it doesn't mean MediaWiki cannot do it. In fact the LanguageSelector extension does it already. In my opinion it would be nice to pick the automatic language detection code from it to core (disablable for WMF and other cached sites of course).
+
+Lets not mix two issues in this bug.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-02 14:49:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, should I create a new issue, requesting a language switcher for Commons (ideally accessible on every page, not only on the main one), that would trigger persistent uselang, so that the interface language could stay the same even after clicking links?</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-02 15:46:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c15">comment #15</a>)
+<span class="quote">&gt; Well, should I create a new issue, requesting a language switcher for Commons
+&gt; (ideally accessible on every page, not only on the main one), that would
+&gt; trigger persistent uselang, so that the interface language could stay the same
+&gt; even after clicking links?</span >
+
+There already is one, setting “persistent” uselang, used when coming from another Wikimedia project. Try going from e.g. <a href="http://cs.wikipedia.org/wiki/File:Example.jpg">http://cs.wikipedia.org/wiki/File:Example.jpg</a> (not logged in) to the image page on Commons, you should get uselang=cs automatically. See <a href="http://commons.wikimedia.org/wiki/MediaWiki:PersistentUselang.js">http://commons.wikimedia.org/wiki/MediaWiki:PersistentUselang.js</a></pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-02 15:59:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's nice, but we need a language switcher for not logged users, setting such a persistent uselang, on every page (or at least on the main one). Where should it be sorted out? Here or directly somewhere on Commons?</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-22 11:39:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The switcher now exists but is not perfectly permanent, disappears always after searching a string in the search field.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-22 21:24:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c18">comment #18</a>)
+<span class="quote">&gt; The switcher now exists but is not perfectly permanent, disappears always after
+&gt; searching a string in the search field.</span >
+
+Please report any bugs at:
+<a href="http://commons.wikimedia.org/wiki/MediaWiki_talk:AnonymousI18N.js">http://commons.wikimedia.org/wiki/MediaWiki_talk:AnonymousI18N.js</a>
+
+The script can be seen at:
+<a href="http://commons.wikimedia.org/">http://commons.wikimedia.org/</a> (logged out)
+The source is at:
+<a href="http://commons.wikimedia.org/wiki/MediaWiki:AnonymousI18N.js">http://commons.wikimedia.org/wiki/MediaWiki:AnonymousI18N.js</a></pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-22 21:29:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This has been done both from javascript in the front-end (see previous comment).
+
+And in the core/php (server side) in the following extensions:
+<a href="http://www.mediawiki.org/wiki/Extension:LanguageSelector">http://www.mediawiki.org/wiki/Extension:LanguageSelector</a>
+
+Knowing that extension is in use on TranslateWiki and is doing pretty well I'd recommend closing this bug and directing further questions to either that extension or to a new bug (eg. &quot;Fix bug X in Extension:LanguageSelector&quot; or &quot;Merge Extension:LanguageSelector in core (disableable)&quot;).</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-22 22:21:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, I announced it as a new bug: <a href="https://bugzilla.wikimedia.org/show_bug.cgi?id=26876">https://bugzilla.wikimedia.org/show_bug.cgi?id=26876</a>.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-21 09:18:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The switcher exists and its uselang is permanent at Commons, it is nice.
+
+Nonetheless I do not understand why couldn't Commons detect the browser default language and set the interface according to that for non-registered users as well, if the switcher hasn't been used. What's the problem?
+
+* Many users don't have set in their preferences in the browser – as far as I know, the default value is English there, so they will receive the Commons interface in English, the same way as now.
+
+* For users having it set, the interface would be in the preferred language.
+
+For nobody it would be worse, just better for one part of the users. Why not?</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-21 17:14:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c22">comment #22</a>)
+<span class="quote">&gt; The switcher exists and its uselang is permanent at Commons, it is nice.
+&gt; 
+&gt; Nonetheless I do not understand why couldn't Commons detect the browser default
+&gt; language and set the interface according to that for non-registered users as
+&gt; well, if the switcher hasn't been used. What's the problem?
+&gt; 
+&gt; * Many users don't have set in their preferences in the browser – as far as I
+&gt; know, the default value is English there, so they will receive the Commons
+&gt; interface in English, the same way as now.
+&gt; 
+&gt; * For users having it set, the interface would be in the preferred language.
+&gt; 
+&gt; For nobody it would be worse, just better for one part of the users. Why not?</span >
+This could be done for logged-in users, I guess, but it definitely can't be done for anonymous users due to Squid caching. The browser language headers can't be detected client-side, only server-side.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-21 18:01:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Also, many people have their browsers languages misconfigured. Since those settings are hard to find (generally), its often very unclear to the user why they are getting language x vs language y. Any use of browser headers should have clear ways in the interface to change the auto-detected defaults.
+
+As for detecting language client side - you can always do an ajax like <a href="http://en.wikipedia.org/w/api.php?action=query&amp;meta=userinfo&amp;uiprop=acceptlang">http://en.wikipedia.org/w/api.php?action=query&amp;meta=userinfo&amp;uiprop=acceptlang</a></pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-21 20:03:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, they maybe have them misconfigured, but in fact it means &quot;Not configured&quot;, default, in other words they have English there on the first place – so nothing would change for them, as now they have the interface in English as well. For users having the browser configured it would be better: Why to configure the browser language setting, if the webs neglect it?
+
+I really do not understand other thing now. Being not logged in, having the cache renewed and browsing anonymously with Mozilla, with Slovak in the language setting on the first place there, being in Portugal – in Commons there is a Czech notification &quot;Wikimedia Commons is available in Czech&quot;. From where does the site take the language information? I thought it is the language setting, but obviously not, as now I prefere there Slovak, nonetheless nothing changed in Commons, it still offers Czech (but unfortunatelly just offers, it doesn't display the interface in that language).</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-11 12:36:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is unclear whether this bug is about having this feature in MediaWiki (exists in an extension) or in the Wikimedia projects (not done). Assuming the first since this bug is categorized as MediaWiki bug.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dohnp5a1
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-11 16:29:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In my understanding, the bug is about having this feature in Wikimedia Commons.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-07-11 20:08:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c25">comment #25</a>)
+<span class="quote">&gt; I really do not understand other thing now. Being not logged in, having the
+&gt; cache renewed and browsing anonymously with Mozilla, with Slovak in the
+&gt; language setting on the first place there, being in Portugal – in Commons there
+&gt; is a Czech notification &quot;Wikimedia Commons is available in Czech&quot;. From where
+&gt; does the site take the language information? I thought it is the language
+&gt; setting, but obviously not, as now I prefere there Slovak, nonetheless nothing
+&gt; changed in Commons, it still offers Czech (but unfortunatelly just offers, it
+&gt; doesn't display the interface in that language).</span >
+
+Once again, see <a href="http://commons.wikimedia.org/wiki/MediaWiki:AnonymousI18N.js">http://commons.wikimedia.org/wiki/MediaWiki:AnonymousI18N.js</a> and its talk and discuss that script _there_. If you read that page, you would learn the user language should be selected using the following priorities:
+
+1. Cookie (previous user preference)
+2. According to the previous (referring) page (e.g. when you click on a Commons link on the Czech Wiktionary, you’ll get Commons in Czech)
+3. Browser language
+4. Fallback to the default language</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-21 17:12:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The Indic language community is interested in this feature.  I do not have time to summarize it and am not sure I would summarize adequately.  The thread, for anyone who wants to read through it:
+
+<a href="http://lists.wikimedia.org/pipermail/wikimediaindia-l/2011-December/thread.html#5890">http://lists.wikimedia.org/pipermail/wikimediaindia-l/2011-December/thread.html#5890</a>
+
+I've asked them to come here and detail what they want.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3665#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-12-21 22:48:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3665#c29">comment #29</a>)
+<span class="quote">&gt; The Indic language community is interested in this feature.  I do not have time
+&gt; to summarize it and am not sure I would summarize adequately.  The thread, for
+&gt; anyone who wants to read through it:
+&gt; 
+&gt; <a href="http://lists.wikimedia.org/pipermail/wikimediaindia-l/2011-December/thread.html#5890">http://lists.wikimedia.org/pipermail/wikimediaindia-l/2011-December/thread.html#5890</a>
+&gt; 
+&gt; I've asked them to come here and detail what they want.</span >
+
+My impression of the thread is they want a big site banner &quot;View wikipedia in language X&quot; with X being auto-detected via either geo-location or accept-language headers (aka your web browsers lang prefs). That isn't really this bug, otoh doing that is more likely to be implemented then this bug (since it can be done in pure js so low amount of caching issues, and most of the work is already done as we already can get accept-language headers from js ( <a href="http://www.mediawiki.org/w/api.php?action=query&amp;meta=userinfo&amp;uiprop=acceptlang">http://www.mediawiki.org/w/api.php?action=query&amp;meta=userinfo&amp;uiprop=acceptlang</a> ) and geo-location is also already set up for js as a side affect of geo targeted central notices.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3665&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3665">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3665">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3665">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3665&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3665" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3665&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419362359-vQltD_yNxwddR_x_Miv_h0BjKCL1SR-D_SVo9LmEmIU">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

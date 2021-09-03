@@ -1,0 +1,2563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5092 &ndash; MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5092&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5092">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5092">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5092">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5092 – MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect",  
+                             "show_bug.cgi?id=5092" );
+        document.title = "Bug 5092 – MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5092 – MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_Wikimedia bz_component_General_Unknown bz_bug_5092 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-05-07 20:17:11 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-05-07 20:17:11">
+  <input type="hidden" name="longdesclength" value="52">
+  <input type="hidden" name="id" value="5092">
+  <input type="hidden" name="token" value="1419364888-b2OiLQw_ygQp83yMvX2JgEG1ECHv_BSXTpOkfh2bIV0">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5092"><b>Bug&nbsp;5092</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect">MediaWiki namespace pages regularly fall back to an obsolete version, due to ...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=5092">10 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5092#vote_5092">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://de.wiktionary.org/wiki/MediaWiki:Sidebar"><span title="http://de.wiktionary.org/wiki/MediaWiki:Sidebar">http://de.wiktionary.org/wiki/MediaWi...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Navigation menu in being displayed in English at Georgian Wikipedia (ka:)"
+   href="show_bug.cgi?id=5480">5480</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Translated message appears in english on the french Wikipedia pages"
+   href="show_bug.cgi?id=7370">7370</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar go back to default once every day"
+   href="show_bug.cgi?id=12986">12986</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki:Sidebar no longer has any effect on Wikiversity"
+   href="show_bug.cgi?id=13842">13842</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Intermittent caching problem with MediaWiki:Sidebar in kshwiki"
+   href="show_bug.cgi?id=14135">14135</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar cache is missing randomly on zhwiki"
+   href="show_bug.cgi?id=52682">52682</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki:Sidebar not showing customized version on commons"
+   href="show_bug.cgi?id=54326">54326</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=5480,7370,12986,13842,14135,52682,54326">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5092&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5092">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-02-25 22:48 UTC by <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-05-07 20:17 UTC 
+      (<a href="show_activity.cgi?id=5092">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>17 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="Aphaia">Aphaia</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="billinghurstwiki">billinghurstwiki</option>
+                <option value="bugzilla.wikimedia">bugzilla.wikimedia</option>
+                <option value="egil">egil</option>
+                <option value="federicoleva">federicoleva</option>
+                <option value="gangleri">gangleri</option>
+                <option value="guanhao7">guanhao7</option>
+                <option value="huji.huji">huji.huji</option>
+                <option value="jan">jan</option>
+                <option value="liangent">liangent</option>
+                <option value="malafaya">malafaya</option>
+                <option value="mccormack">mccormack</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="trijnstel">trijnstel</option>
+                <option value="wiki.pierroman">wiki.pierroman</option>
+                <option value="wing.philopp">wing.philopp</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MessageCache.php: Could not acquire lock"
+   href="show_bug.cgi?id=43516">43516</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Simple English Wiktionary local system messages ignored: set $wgLanguageCode to en"
+   href="show_bug.cgi?id=44493">44493</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Default sidebar cached after restoring MediaWiki:Sidebar from backup"
+   href="show_bug.cgi?id=16146">16146</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=5092&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-25 22:48:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >At least on alsWP, deWNews and deWikt the message [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]]
+regularly falls back to an totally obsolete version, due to some kind of server
+cache problem. Then many links are obsolete or broken on the left navigation
+sidebar, because of many changes towards the sidebar after the un-customisable
+version of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]] had been enhanced to what we know now.
+
+For forcing the servers to fetch the newest version, you have to edit and save
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]] as a sysop, unfortunately (for those who are reading: You
+do not have to change the page, just click &quot;save&quot; without having changed
+something; that's enough).
+
+Is there a way, that [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]] does not get affected by this server
+cache effect? This fall back is pretty annoying, I would say! --- Best regards,
+Melancholie</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-25 23:32:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The sidebar is cached; the caching is necessary to help performance. Purge any
+pages showing the old version if you come across them, but don't panic; the
+cache eventually expires.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-26 01:26:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The cache shouldn't be reverting to old versions. This may be related to general 
+message cache problems getting frozen in the sidebar cache.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-26 03:09:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, I was writing about very old versions of those sidebars (outdated since
+many months). Maybe it would help when deleting all older revisions of
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]], but deleting almost the whole history actually is not in
+terms of a GNU-FDL wiki ;-)</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-26 20:09:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't know for sure, but at least on alsWP the cache 'flashback' had lead to
+the oldest revisions (&quot;MediaWiki default&quot;) of MediaWiki:Sidebar two or three
+times in the last two months, I think. Maybe the sidebar also falls back to
+other revisions, but everytime I recognised this problem, a &quot;MediaWiki default&quot;
+revision had been fetched, I assume. And especially those are totally outdated
+on some projects ;-)</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-03 15:44:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >OK, right now at least I do have this problem at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=als%3A">als:</a>]] again; but I am not
+sure whether others will also get the old sidebar or not (check the &quot;Aktuelle
+Ereignisse&quot; link for example)</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-28 09:10:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Although I deleted all older revisions of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aals%3AMediaWiki%3A%0ASidebar">:als:MediaWiki:
+Sidebar</a>]] some days ago, the navigation falls back! It seems that 
+some kind of standard sidebar is fetched instead of the current 
+MediaWiki:Sidebar. Or there are still cached versions of the 
+already deleted revisions on the server. Maybe the sidebar even 
+falls back to MessagesGsw.php, is this possible?</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-04 11:06:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Right now it occured once more on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aals%3A">:als:</a>]]. Furthermore a user 
+reported, that the sidebar sometimes even falls back to an English 
+version!
+See [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aals%3AWikipedia%3AStammtisch%23Navigation">:als:Wikipedia:Stammtisch#Navigation</a>]].</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kaveh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-04 22:10:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is also common on the Persian Wikipedia where it frequently falls back to
+the LanguageFA.php version.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-05 13:22:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >BTW: When forcing a reload (Firefox: Ctrl+R) the correct version of the sidebar
+is loaded sometimes (but not always).
+
+A similar effect occurred for monobook.css today on als.WP using Firefox
+1.5.0.1! The current monobook.css was not loaded (but strangely, monobook.js
+was!) and so some CSS stuff was not shown. After a reload the CSS worked out,
+too. Is this related to the sidebar bug?</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-05 13:40:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+Same happened the 26th of March 2004 with
+<a href="http://yi.wikipedia.org/w/index.php?title=MediaWiki:Sidebar&amp;oldid=18693">http://yi.wikipedia.org/w/index.php?title=MediaWiki:Sidebar&amp;oldid=18693</a>
+see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3Auser_talk%3AGangleri%23menu_bar_again_English">yi:user_talk:Gangleri#menu_bar_again_English</a>]]
+
+I did not find the time to ask at #mediawiki about what particular changed
+caused that.
+
+A woraround might be *only* to use LATIN characters as described at
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3AMediaWiki_talk%3ASidebar%23MediaWiki_messages_used_at_the_yi.wikipedia_Sidebar">yi:MediaWiki_talk:Sidebar#MediaWiki_messages_used_at_the_yi.wikipedia_Sidebar</a>]]
+
+Please compare with the actual version of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3AMediaWiki%3ASidebar">yi:MediaWiki:Sidebar</a>]].
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-06 23:31:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Navigation menu in being displayed in English at Georgian Wikipedia (ka:)"
+   href="show_bug.cgi?id=5480">Bug 5480</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-07 01:14:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5092#c10">comment #10</a>)
+
+<span class="quote">&gt; A woraround might be *only* to use LATIN characters as described at
+&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3AMediaWiki_talk%3ASidebar%23MediaWiki_messages_used_at_the_yi.wikipedia_Sidebar">yi:MediaWiki_talk:Sidebar#MediaWiki_messages_used_at_the_yi.wikipedia_Sidebar</a>]]
+&gt; 
+&gt; Please compare with the actual version of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3AMediaWiki%3ASidebar">yi:MediaWiki:Sidebar</a>]].</span >
+
+*note*
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ka%3AMediaWiki%3ASidebar">ka:MediaWiki:Sidebar</a>]] (what <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Navigation menu in being displayed in English at Georgian Wikipedia (ka:)"
+   href="show_bug.cgi?id=5480">bug 5480</a> is about) dit never ever contain Georgian 
+characters. Please forget the &quot;speculation&quot; from <a href="show_bug.cgi?id=5092#c10">comment 10</a>.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-07 01:30:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looking in my browser at the sourcode for [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ka%3AMediaWiki%3ASidebar">ka:MediaWiki:Sidebar</a>]] I couls see:
+&lt;!-- Served by srv19 in 0.09 secs. --&gt;
+There is neither a timestamp nor other information.
+
+*question*
+What (additional comments) would be required to trace such kind of issues as the one 
+fom <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - MediaWiki namespace pages regularly fall back to an obsolete version, due to server cache effect"
+   href="show_bug.cgi?id=5092">bug 5092</a>?</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-08 22:00:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It happens again right now; see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aals%3AHouptsyte">:als:Houptsyte</a>]]!
+Can you see it (compare with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%3Aals%3AMediaWiki%3ASidebar">:als:MediaWiki:Sidebar</a>]])?
+
+Deletion of earlier versions and saving MediaWiki:Sidebar again and again (also with 
+little changes) did not solve this problem. Strange, isn't it?</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-08 22:08:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5092#c14">comment #14</a>)
+<span class="quote">&gt; ...did not solve this problem...</span >
+Just to be articulate: ...did not fix the bug...
+
+Note: If I would edit and save MediaWiki:Sidebar (even without changing something) 
+the correct Sidebar would be shown again (for some hours/days ;-), but I will wait 
+until you had a look on it.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 00:37:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I found something weird by the way:
+When I change the standard sidebar on a new wiki, the first line is shown as removed 
+on the diff view. See <a href="http://als.wikibooks.org/w/index.php?title=MediaWiki">http://als.wikibooks.org/w/index.php?title=MediaWiki</a>:
+Sidebar&amp;curid=1282&amp;diff=3790&amp;oldid=2716 for example.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 08:47:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5092#c16">comment #16</a>)
+<span class="quote">&gt; I found something weird by the way:
+&gt; When I change the standard sidebar on a new wiki, the first line is shown as</span >
+removed ...
+
+But this did not happen at
+<a href="http://als.wikiquote.org/w/index.php?title=MediaWiki%3ASidebar&amp;diff=4570&amp;oldid=3616">http://als.wikiquote.org/w/index.php?title=MediaWiki%3ASidebar&amp;diff=4570&amp;oldid=3616</a>
+
+The timestamps of the &quot;previous&quot; messages both on 'Wikibooks' and 'Wikiquote' is
+identical:
+05:39, 2. Dez 2005 MediaWiki default
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=b%3Aals%3AMediaWiki%3ASidebar">b:als:MediaWiki:Sidebar</a>]] shows for me:
+&lt;!-- Served by humboldt in 0.196 secs. --&gt;
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=q%3Aals%3AMediaWiki%3ASidebar">q:als:MediaWiki:Sidebar</a>]] shows for me:
+&lt;!-- Served by srv64 in 0.053 secs. --&gt;</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-09 16:16:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=5092#c17">comment #17</a>)
+
+Yes, it did not happen at als.wikiquote, because I added an empty line at the top to 
+test if this might work!
+If this maybe (*only maybe*) has something to do with this bug, we will see it when 
+comparing b:als and q:als (if this bug should occur there, too).
+
+Did a developer see <a href="show_bug.cgi?id=5092#c14">comment #14</a> and the effect on w:als? Note: In the meantime 
+MediaWiki:Sidebar has been rolled back by a sysop. This bug becomes really annoying!</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-10 09:19:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >has been reported again at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3Aproject%3ABugs%23005">yi:project:Bugs#005</a>]]</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-11 01:21:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Sidebar cache ignores user settings cache key (secure.wikimedia.org interference)"
+   href="show_bug.cgi?id=5519">Bug 5519</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-11 01:25:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Another weird effect occurred on zh.WP, see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Sidebar cache ignores user settings cache key (secure.wikimedia.org interference)"
+   href="show_bug.cgi?id=5519">bug 5519</a>. I think that is related to
+this bug, as nothing had been changed to MediaWiki:Sidebar there, too.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Angela</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-14 08:00:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The same was reported on Korean Wiktionary yesterday.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-14 19:17:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >BTW: The bug is still there; see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=als%3AHouptsyte">als:Houptsyte</a>]]!</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nux</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-15 21:17:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In case anybody was wondering it's also still there on pl-wiki. It's not so
+anoying since we have a JS backup script, but could be wired for those that
+don't like JS and have it turned off. Anyway you can have a peak in the source
+to check it out [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pl%3A123456">pl:123456</a>]]</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-16 09:10:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For those who might be interested: The mentioned JS script can be found at
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=pl%3AMediaWiki%3AMonobook.js%23sidebarProceduraAwaryjna">pl:MediaWiki:Monobook.js#sidebarProceduraAwaryjna</a>]]!</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nux</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-16 14:42:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've just added some comments in the script. If anyone will be interested in
+using this. Here's the thing you should do:
+
+1. Empty edit on your MediaWiki:Sidebar (this will give you proper sidebar).
+2. View source of the page and look for &quot;p-navigation&quot;.
+3. Copy the code in the div (including header element &lt;h5&gt;).
+4. Paste the code in ''.
+5. Remeber to add \ on end of each line between ''.
+
+The script is not very nice as it uses innerHTML method to insert HTML code, but
+it works and it's short :).</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-19 08:49:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Translated message appears in english on the french Wikipedia pages"
+   href="show_bug.cgi?id=7370">Bug 7370</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jóna Þórunn Ragnarsdóttir</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-11 18:17:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This also happens on is.wiki.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-06 17:56:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It seems to happen on low-memory conditions on my own wiki. Especially annoying if the obsolete version gets into object cache.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-11 13:38:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar go back to default once every day"
+   href="show_bug.cgi?id=12986">Bug 12986</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aphaia</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-17 17:00:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It happens on meta regularly and recently ... since this January or so, not far from the past. The default setting (not localized with [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mediawiki%3ASidebar">mediawiki:Sidebar</a>]]) appears then, we can get back our setting just purging the message, but well, it would be nice to see this bug fixed. Thanks. </pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Huji</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-02-18 23:48:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Today, I read on Persian Wikipedia that this has happened again. In Persian Wikipedia, there has been instances of Sidebar falling back to English version for a short time, and then getting fixed automatically. Just wanted to keep this bug live.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-04 18:31:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This happens on all wikis, again and again (and pretty often again since 2008 &gt; caching)!
+Even on de.wikipedia this has been noticed several times now (see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=w%3Ade%3AWikipedia%3AFragen_zur_Wikipedia%2FArchiv%2F2008%2FWoche_06%23Wer_hat_denn_nun_schon_wieder_an_der_Navigationsleiste_rumgespielt.3F">w:de:Wikipedia:Fragen_zur_Wikipedia/Archiv/2008/Woche_06#Wer_hat_denn_nun_schon_wieder_an_der_Navigationsleiste_rumgespielt.3F</a>]] for example).
+
+On smaller wikis the effect is worst, I guess (traffic/cache reasons?). And especially on smaller wikis it takes longer until a sysop sees it and reacts to it.
+
+Sorry, but this bug is getting very old and *very* annoying!
+
+Please just create individual fallback messages for [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]] (a file like SidebarDeWiktionary.php (acc. to MessagesDe.php)) and *keep them up to date* by a server-side script for example (or BetaWiki?).
+
+Is this bug really that difficult to fix??</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-27 06:11:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As this bug occurs pretty often the last months, I made a JavaScript that will alert (in navigation box) any SysOp to flush the sidebar's cache (empty edit) by one click if the sidebar falls back! Saving is done automatically (with return-to-redirect) and a tally is updated automatically, too (<a href="http://tools.wikimedia.de/~daveross/feedback.php?mode=view&amp;langs=bugzilla&amp;wikis=wikimedia">http://tools.wikimedia.de/~daveross/feedback.php?mode=view&amp;langs=bugzilla&amp;wikis=wikimedia</a>).
+
+* [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3AMediaWiki%3AIf-sidebar-bug.js">wikt:de:MediaWiki:If-sidebar-bug.js</a>]] (included by Monobook.js)
+
+You have to replace the following stuff:
+
+1. &quot;n-verzeichnisse&quot; by any ID that is not in the fallback version
+2. the German text ;-)</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-28 01:22:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I had to make some changes to the script from yesterday ([[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3AMediaWiki%3AIf-sidebar-bug.js">wikt:de:MediaWiki:If-sidebar-bug.js</a>]]), as the array wgUserGroups made problems if being not defined at all for IPs, or if accessed by .indexOf() with IE!
+
+* [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ade%3AMediaWiki%3AIf-sidebar-bug.js">wikt:de:MediaWiki:If-sidebar-bug.js</a>]] (included by Monobook.js; works with FF, Safari, Opera, IE)
+
+Sorry for that!</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-29 20:09:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki:Sidebar no longer has any effect on Wikiversity"
+   href="show_bug.cgi?id=13842">Bug 13842</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-04-29 23:56:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Although the script was interfering with an user script on dewiktionary causing false alerts for one user (what is fixed now) the tally showed me that on [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ais%3A">wikt:is:</a>]] it seems to happen rather often, so I had a look on it. As I visited *any* page but the main page the sidebar was ok. When I visited the Main_Page there, the sidebar was fallen back (but only on the main page, was not logged in)! Only after (?action=)purging the main page, the sidebar was ok. Didn't see this bug happen this way, so long. Was the Main_Page just cached in the wrong moment (implying that a edit of [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]] is not clearing page caches)?</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">James McCormack</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-01 07:46:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Since we started to get this bug on English Wikiversity a couple of weeks ago, it has been recurrent. It's definitely a server cache issue - different users on different sides of the globe get hit by it almost at the same minute. It would seem that if we update [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=MediaWiki%3ASidebar">MediaWiki:Sidebar</a>]], this clears the cache the reinstates the proper version of the sidebar for a day or so - perhaps a few days. But after a while an unknown trigger causes the sidebar to fall back again to the default. This has now happened repeatedly - perhaps 4 to 6 times, perhaps more, in a cycle. It definitely did not happen before about a couple of weeks ago.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-04 23:25:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It seems that this happens the same time every day, see
+<a href="http://tools.wikimedia.de/~daveross/feedback.php?mode=view&amp;langs=bugzilla&amp;wikis=wikimedia">http://tools.wikimedia.de/~daveross/feedback.php?mode=view&amp;langs=bugzilla&amp;wikis=wikimedia</a>
+
+It occurs around 20:00 o'clock UTC.
+
+Is there maybe a periodic server process that could cause this bug?</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-05 23:23:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >By default, the message &amp; sidebar caches each expire after 24 hours... probably some ugly interaction there.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-10 08:13:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Default value for [[fa:MediaWiki:Sitesupport]] is English (should be using MessagesFa.php)"
+   href="show_bug.cgi?id=14061">Bug 14061</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-15 18:01:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Intermittent caching problem with MediaWiki:Sidebar in kshwiki"
+   href="show_bug.cgi?id=14135">Bug 14135</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-15 18:06:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Notes of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Intermittent caching problem with MediaWiki:Sidebar in kshwiki"
+   href="show_bug.cgi?id=14135">bug 14135</a>:
+* MessagesEn.php was used as fallback for sidebar instead of MessagesKsh.php
+* action=purge helped in this case
+* lasted 25 min</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Melancholie</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-13 17:22:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bug seems fixed since 2008-05-22.
+If not really, just reopen this bug again!</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-19 19:19:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki:Sidebar not showing customized version on commons"
+   href="show_bug.cgi?id=54326">Bug 54326</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-19 19:19:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Sidebar cache is missing randomly on zhwiki"
+   href="show_bug.cgi?id=52682">Bug 52682</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-19 19:19:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I doubt this has ever been fixed for real.
+
+(Nikerabbit on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki:Sidebar not showing customized version on commons"
+   href="show_bug.cgi?id=54326#c3">bug 54326 comment #3</a>)
+<span class="quote">&gt; I believe this is a known thing existing for years: when message cache (for
+&gt; MediaWiki namespace) creation takes too long (usually when all caches are
+&gt; empty), MediaWiki will skip it and display the default messages, which will
+&gt; then get cached in the separate sidebar cache.</span ></pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Liangent</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-30 11:37:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="https://zh.wikipedia.org/w/index.php?title=Taeniura_meyeni&amp;action=history">https://zh.wikipedia.org/w/index.php?title=Taeniura_meyeni&amp;action=history</a> - happened in autosummary just now.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-26 12:30:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm told this is happening since yesterday's update on Meta-Wiki for MediaWiki:Ipbreason-dropdown and that purging or deleting (and restoring) didn't help for Billinghurst and Trijnstel (presumably en and nl interface respectively).</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Trijnstel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-02-26 15:11:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Nemo from <a href="show_bug.cgi?id=5092#c49">comment #49</a>)
+<span class="quote">&gt; I'm told this is happening since yesterday's update on Meta-Wiki for
+&gt; MediaWiki:Ipbreason-dropdown and that purging or deleting (and restoring)
+&gt; didn't help for Billinghurst and Trijnstel (presumably en and nl interface
+&gt; respectively).</span >
+
+en interface for me on meta and en-gb for billinghurst
+
+see also <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Meta's block reason drop down is the default MediaWiki:Ipbreason-dropdown rather than the local customised file"
+   href="show_bug.cgi?id=61945">bug 61945</a> and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Blocking dropdown reasons are in user language, not wiki language anymore"
+   href="show_bug.cgi?id=61942">bug 61942</a></pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5092#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nemo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-07 20:17:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Happened for MediaWiki:Sidebar on it.wikiquote for a few days till yesterday; bug it may be <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Translation from translatewiki.net (MediaWiki:View-foreign/nl) don't show"
+   href="show_bug.cgi?id=64230">bug 64230</a> instead.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5092&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5092">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5092">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5092">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5092&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5092" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5092&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419364888-a1hJlRsFCU9yjXf7XV7avxmTWTau4HJ_XfayvyQ4ZJI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

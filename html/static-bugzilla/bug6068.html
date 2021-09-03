@@ -1,0 +1,3721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 6068 &ndash; Change behaviour of MOD and DIV operators</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=6068&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=6068">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=6068">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=6068">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 6068 – Change behaviour of MOD and DIV operators",  
+                             "show_bug.cgi?id=6068" );
+        document.title = "Bug 6068 – Change behaviour of MOD and DIV operators";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 6068 – Change behaviour of MOD and DIV operators", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki_extensions bz_component_ParserFunctions bz_bug_6068 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 10:34:55 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 10:34:55">
+  <input type="hidden" name="longdesclength" value="66">
+  <input type="hidden" name="id" value="6068">
+  <input type="hidden" name="token" value="1419366349-rCf4VK2vv75VGBzErkWZkSTUmYbHnMBw6TRTP4rwiTA">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=6068"><b>Bug&nbsp;6068</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Change behaviour of MOD and DIV operators</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Change behaviour of MOD and DIV operators
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Change behaviour of MOD and DIV operators', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>ParserFunctions
+    
+    (<a href="buglist.cgi?component=ParserFunctions&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       trivial<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=6068">3 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=6068#vote_6068">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://meta.wikimedia.org/wiki/Help:Calculation"><span title="http://meta.wikimedia.org/wiki/Help:Calculation">http://meta.wikimedia.org/wiki/Help:C...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">need-parsertest, patch, patch-reviewed
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Better errorhandling in ExprParser"
+   href="show_bug.cgi?id=7964">7964</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=6068&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=6068">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-05-24 02:49 UTC by <span class="vcard">omniplex
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 10:34 UTC 
+      (<a href="show_activity.cgi?id=6068">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>9 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="aklapper">aklapper</option>
+                <option value="azatoth">azatoth</option>
+                <option value="b">b</option>
+                <option value="bjorsch">bjorsch</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="ori">ori</option>
+                <option value="verdy_p">verdy_p</option>
+                <option value="waldir">waldir</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1972"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Implements trunc operator, and some stylistic changes</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.87 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1972"
+               title="Go to the comment associated with the attachment">2006-06-16 23:02 UTC</a>,
+
+            <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1972&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=1973"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Fixes bug completely</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (3.55 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1973"
+               title="Go to the comment associated with the attachment">2006-06-16 23:12 UTC</a>,
+
+            <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1973&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2682"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">a probable implementation of function needed to resolve the problem</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.70 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2682"
+               title="Go to the comment associated with the attachment">2006-11-12 18:38 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2682&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2684"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">updated patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.67 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2684"
+               title="Go to the comment associated with the attachment">2006-11-12 21:38 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2684&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2688"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">changed div to idiv</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.31 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2688"
+               title="Go to the comment associated with the attachment">2006-11-13 09:33 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2688&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2689"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">The full patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.31 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2689"
+               title="Go to the comment associated with the attachment">2006-11-13 10:47 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2689&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2690"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">The full patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.31 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2690"
+               title="Go to the comment associated with the attachment">2006-11-13 10:47 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2690&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2691"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">full patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.10 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2691"
+               title="Go to the comment associated with the attachment">2006-11-13 16:43 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2691&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a9" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2692"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">extended patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (10.41 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2692"
+               title="Go to the comment associated with the attachment">2006-11-13 18:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2692&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a10" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2722"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">the full patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.51 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2722"
+               title="Go to the comment associated with the attachment">2006-11-17 23:36 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2722&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a11" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2728"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">the full patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.60 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2728"
+               title="Go to the comment associated with the attachment">2006-11-18 13:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2728&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a12" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2729"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">the full ptch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.42 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2729"
+               title="Go to the comment associated with the attachment">2006-11-18 13:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2729&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a13" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2736"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">the patch again</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (7.59 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2736"
+               title="Go to the comment associated with the attachment">2006-11-18 22:51 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2736&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a14" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=2751"
+               title="View the content of the attachment">
+          <b>the full patch</b></a>
+
+          <span class="bz_attach_extra_info">
+              (6.92 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2751"
+               title="Go to the comment associated with the attachment">2006-11-21 13:25 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2751&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (13)
+        </span>
+        <a href="attachment.cgi?bugid=6068&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">omniplex
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-24 02:49:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >MOD and DIV behave different than in any programming language I've heard of.
+
+1: Apparently &quot;x MOD y&quot; is handled like &quot;trunc(x) - trunc(y) * trunc(x / y)&quot;,
+   e.g. &quot;8.9 mod 3 = 2&quot;, &quot;8 mod 3.2 = 2&quot;, &quot;8 mod 2.7 = 0&quot;.
+2: &quot;x DIV y&quot; is a misleading synonym for &quot;x / y&quot;, no integer division.
+3: A desperately needed &quot;trunc&quot; is missing, see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ATemplate%20talk%3AYMD2MJD">m:Template talk:YMD2MJD</a>]].
+
+Proposed &quot;fix&quot; (or rather feature request):
+
+2': Let &quot;x DIV y&quot; return &quot;trunc( x / y )&quot; also known as integer division.
+3': This improved DIV automagically offers &quot;x DIV 1&quot; to get &quot;trunc( x )&quot;.
+1': Let &quot;x MOD y&quot; return &quot;x - y * (x DIV y)&quot; using the improved DIV.
+
+With these two fixes (not counting 2') porting algorithms like Euclid's
+GCD or date + time calculations should be more straight forward.
+
+Using two #ifexpr: plus two #expr: +/-&quot;0.5 round 0&quot; to emulate trunc is
+a royal PITA for formulae needing dozens of signed integer divisions.
+
+The equation x MOD y = x - y * (x DIV y) should be okay, otherwise kill
+DIV, as is it's at best redundant (but more likely harmful).</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-24 09:04:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Last time I checked, <a href="http://meta.wikimedia.org/wiki/Talk:ParserFunctions">http://meta.wikimedia.org/wiki/Talk:ParserFunctions</a> was the
+place where discussion on this extension was taking place.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">omniplex
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-24 22:07:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://meta.wikimedia.org/wiki/Talk:ParserFunctions#MOD_and_DIV">http://meta.wikimedia.org/wiki/Talk:ParserFunctions#MOD_and_DIV</a>
+has a link to <a href="http://meta.wikimedia.org/wiki/Help_talk:Calculation">http://meta.wikimedia.org/wiki/Help_talk:Calculation</a>
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 23:02:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1972" name="attach_1972" title="Implements trunc operator, and some stylistic changes">attachment 1972</a> <a href="attachment.cgi?id=1972&amp;action=edit" title="Implements trunc operator, and some stylistic changes">[details]</a></span>
+Implements trunc operator, and some stylistic changes
+
+Whee, trunc operator added. I didn't address any of the other bug problems.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 23:12:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=1973" name="attach_1973" title="Fixes bug completely">attachment 1973</a> <a href="attachment.cgi?id=1973&amp;action=edit" title="Fixes bug completely">[details]</a></span>
+Fixes bug completely
+
+This patch fixes the bug completely but changes existing behavior (which could
+cause trouble for people).</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 23:16:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All that needs to happen now is patch review and then commit into SVN. Tim
+Starling, I'd like to comment: &quot;What a fantastic piece of code!&quot; Even without
+any documentation whatsoever, I was able to figure out exactly what to do to
+extend it. Kudos to you.
+
+As I commented previously, the second patch may be troublesome because it
+changes behavior. However, Omniplex and Patrick seem to be the only people
+(correct me if I'm wrong) who really use these functions to their full extent,
+so I think we can trust them to go on a wild goose chase to fix the functions.
+
+However, as I've been arguing at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ATalk%3ADate%20and%20time%20computing">m:Talk:Date and time computing</a>]] and as I'll
+argue here, there's is absolutely NO REASON why we should be implementing
+algorithms in wikitext. Please do it in PHP. Really. For performance and
+readability reasons.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">omniplex
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-17 06:02:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Other folks doing interesting stuff with templates:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AAlgorithm">User:Algorithm</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AAzaToth">User:AzaToth</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ACBDunkerson">User:CBDunkerson</a>]],
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AEd_Poor">User:Ed_Poor</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AGangleri">User:Gangleri</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ALigulem">User:Ligulem</a>]],
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3APathoschild">User:Pathoschild</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AVerdy_P">User:Verdy_P</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3AXaosflux">User:Xaosflux</a>]],
+and Locke Cole. Incomplete list, JFTR.
+
+Adapting templates to an improved MOD should be simple,
+but getting rid of the then unnecessary ROUND hacks will
+take some time (some of these hacks introduced hard to
+conditions like &quot;works for day numbers &gt; -700000000001&quot;).
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Edward Z. Yang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-17 15:56:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Which is, in all likelihood, exactly why the behavior change should get added in
+as soon as possible.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-08 20:35:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For modular (cyclic) arithmetic, it would be much simpler if we had the
+following operators:
+* &quot;x '''trunc''' n&quot; : quite similar to &quot;(x + 0.5) round n&quot;, but always truncates
+down (including for negative numbers!) to n decimals ; this avoids testing the
+sign; with it we can compute:
+** &quot;x '''trunc''' 0&quot; equals &quot;floor(x)&quot;
+** &quot;(x+0.5) trunc 0&quot; is the TRUE rounding of x (working also for numbers near
+zero and negative numbers, and rounding of numbers exactly halfway between two
+integers will alwyas be upward, including for negative numbers)
+* &quot;x '''cdiv''' y&quot; : cyclic integer division, result is: &quot;(x/y) trunc 0&quot;, i.e.
+mathematically: floor(x/y)
+* &quot;x '''cmod''' y&quot; : cyclic modulo, result is: &quot;x - (x cdiv y)*y&quot;, i.e.
+mathematically: x - floor(x/y)*y
+Date, calendar and astronomical computing would be much simpler with them and
+more accurate.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-08 20:58:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that I propose the names &quot;cdiv&quot; and &quot;cmod&quot; only to avoid breaking formulas
+already using div and mod. The ''c'' stands for &quot;cyclic&quot;.
+
+Also the proposed &quot;trunc&quot; keeps the same binary syntax as &quot;round&quot;, but is
+specifically designed towards mathematical calculation; that's why it uses a
+consistant truncation towards minus infinite and not towards zero (which would
+break cyclic arithmetic).
+
+&quot;x trunc n&quot; can be computed mathematically as: &quot;floor(x * pow(10, n)) / pow(10, n)&quot;
+For efficiency, we don't necessarily need n to be any real number, and
+implementation where n is first converted to an integer wuold be fine. But in
+PHP programming, we don't need to test that (as this would requiring adding more
+code just to initialize a table of constants for powers of 10 and to check the
+integer range for the value of n, even if it is first converted to an int. So
+let's just just the math function &quot;pow(x, y)&quot; which is built in PHP's math module.
+Note that this builtin pow() function is already accurate for pow(10, 0) and
+already returns 1 exactly, so this won't affect the precision of common
+expressions like:
+  &quot;x trunc 0&quot;
+which will be computed as floor(x*pow(10,0))/pow(10,n) == floor(x*1)/1 == floor(x)
+
+Note also that the value of n may be negative:
+  x trunc -2
+means floor(x/100)*100 i.e. it truncates to the immedialy lower exact hundreds. And
+  (x+50) trunc -2
+means rounding to the nearest exact multiple of 100 (including for negative
+numbers).
+  
+With the trunc operator made available in #expr in MediaWiki, we can also
+compute ceil(x) very simply as:
+  -(-(x)trunc 0)
+because ceil(x) == -floor(-x)
+</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-08 21:23:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note finally that the proposed cdiv and cmod will respect the expected equation:
+x cmod y == x - (x cdiv y)*y
+which is CRITICAL for any computing based on modular arithmetic and for
+astronomical and physical cycles (whose length or period, i.e. the y value, are
+NOT necesarily integers).
+
+Another rounding mode used in financial applications is rounding towards
+infinite of the same sign (it is used notably for the conversion between
+currencies). This mode is near from what &quot;round&quot; currently computes in Wiki;
+this is based on the conversion of floats to integers with a (int) or (long)
+typecast, but this typecast is not completely safe due to the limited value
+range supported by &quot;int&quot; and &quot;long&quot; datatypes. So &quot;round&quot; is bogous for such
+applications.
+
+That's where it is possible to implement a financial rounding operator:
+&quot;x fround n&quot;, computable like this in PHP:
+(x &lt; 0) ? ceil(x*pow(10,n)-0.5)/pow(10,n) : floor(x*pow(10,n)+0.5)/pow(10,n)
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-08 21:36:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that the proposed &quot;fround&quot; is definitely not usable for cyclic computing
+without using tests for the sign (or for the range of the value if x is offseted
+positively to compensate the impact on negative numbers.
+
+&quot;fround&quot; above looks like a better (safer) version of &quot;round&quot; but will be
+different because it does not depend on the way typecasts to ints are
+implemented in the current port of PHP (this depends on the underlying
+architecture!)
+
+Replacing the current implementation of &quot;round&quot; by the one used in &quot;fround&quot;
+above would not affect the compatibility in almost all cases (including for date
+computing which are currently written using Wiki's &quot;round&quot;). The difference
+appears only for very large integers (and explains why date computing still does
+not work with very far years in the future or in the past, but the difference is
+not within the scale of human written history, so this is not dramatic...).
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-12 17:29:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=1973" name="attach_1973" title="Fixes bug completely">attachment 1973</a> <a href="attachment.cgi?id=1973&amp;action=edit" title="Fixes bug completely">[details]</a></span>
+Fixes bug completely
+
+This patch is broken against current SVN</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-12 18:38:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2682" name="attach_2682" title="a probable implementation of function needed to resolve the problem">attachment 2682</a> <a href="attachment.cgi?id=2682&amp;action=edit" title="a probable implementation of function needed to resolve the problem">[details]</a></span>
+a probable implementation of function needed to resolve the problem
+
+Have made an reimplementation of the earlier ideas of a patch. I have added two
+new binary operators, div that is a integer division ({{#expr:74.33 / 4.44}}
+results in 16.740990991, {{#expr:74.33 div 4.44}} gives 16), and fmod that is a
+modulus of floats ({{#expr:74.33 fmod 4.44}} results in 3.29, {{#expr:74.33 mod
+4.44}} gives 2). 
+
+Added three new unary operators, two to accompany the earlier changes, and one
+that I think fits in the expr-handler, those are floor, ceil and abs.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-12 21:38:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2684" name="attach_2684" title="updated patch">attachment 2684</a> <a href="attachment.cgi?id=2684&amp;action=edit" title="updated patch">[details]</a></span>
+updated patch
+
+first of all, forgot to remove two statememnts, that I had used earlier, but
+forgotted to remove. second, I have added sqrt and pow functions, so for
+example {{#expr:sqrt(0.25^-1)}} will result in 2</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 09:33:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2688" name="attach_2688" title="changed div to idiv">attachment 2688</a> <a href="attachment.cgi?id=2688&amp;action=edit" title="changed div to idiv">[details]</a></span>
+changed div to idiv
+
+As requested, changed the modification of div to  an adition of 'idiv' for
+integer division.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 10:47:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2689" name="attach_2689" title="The full patch">attachment 2689</a> <a href="attachment.cgi?id=2689&amp;action=edit" title="The full patch">[details]</a></span>
+The full patch
+
+changed implementation of integer divide to (int)(calc)</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 10:47:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2690" name="attach_2690" title="The full patch">attachment 2690</a> <a href="attachment.cgi?id=2690&amp;action=edit" title="The full patch">[details]</a></span>
+The full patch
+
+changed implementation of integer divide to (int)(calc)</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 16:43:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2691" name="attach_2691" title="full patch">attachment 2691</a> <a href="attachment.cgi?id=2691&amp;action=edit" title="full patch">[details]</a></span>
+full patch
+
+some cleanup, added checks for NaN, and added a workaround to be able to have
+php-style numbers as input (12E07 etc...)</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 18:35:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2692" name="attach_2692" title="extended patch">attachment 2692</a> <a href="attachment.cgi?id=2692&amp;action=edit" title="extended patch">[details]</a></span>
+extended patch
+
+this is the same as the previous patch, but with addition of sin, cos tan,
+sinh, cosh, tanh, acos, asin, atan, log, ln and exp.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 18:52:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >What is the point in implementing all of these in wikitext?</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 18:55:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6068#c20">comment #20</a>)
+<span class="quote">&gt; What is the point in implementing all of these in wikitext?</span >
+
+That's why I called it an extended patch, as it's not clear if the usual wiki
+have any major use of them, but some wikis might have use for them.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 18:57:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hm. Might be worth implementing as another parser function extension, then,
+since the existence of a patch implies a problem that needs to be solved, and
+leaves an issue open where there isn't really one, if you see what I mean.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 19:04:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6068#c22">comment #22</a>)
+<span class="quote">&gt; Hm. Might be worth implementing as another parser function extension, then,
+&gt; since the existence of a patch implies a problem that needs to be solved, and
+&gt; leaves an issue open where there isn't really one, if you see what I mean.</span >
+
+To some extent I can see what you mean, the question that arise, would be if
+it's a &quot;Bad thing&quot; to implement them, and the problem that would arise is that
+the Expr-handler is rather atomic, so the code must then be duplicated.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-14 02:58:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6068#c20">comment #20</a>)
+<span class="quote">&gt; What is the point in implementing all of these in wikitext?</span >
+
+Well, trigonometric functions would be invaluable for anyone using templates to
+dynamically generate triangles of arbitrary dimensions.  ;)  (What sinh, cosh,
+and tanh would be useful for, though, is beyond me, *especially* since you could
+just use exp to generate them all . . .)
+
+But hey, we're just talking switch statements, right?  Why not go ahead and add
+the whole math library?  Shouldn't hurt performance at all, unless some are
+processor-intensive/DOSable (which seems fairly unlikely, although I suppose
+possible).</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-14 08:49:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's not just about performance, though; it's about not changing wikitext into
+something it isn't by adding lots of basically useless macros to it.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-14 09:27:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >One usage for sinusoidal functions could be a unit circle:
+&lt;div style=&quot;position:relative; width: 600px; height: 600px;&quot;&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(0)*200+300}}px; left:
+{{#expr:cos(0)*200+300}}px;&quot;&gt;• 0&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3.141592/6)*200+300}}px;
+left: {{#expr:cos(3.141592/6)*200+300}}px;&quot;&gt;• pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3.141592/4)*200+300}}px;
+left: {{#expr:cos(3.141592/4)*200+300}}px;&quot;&gt;• pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3.141592/3)*200+300}}px;
+left: {{#expr:cos(3.141592/3)*200+300}}px;&quot;&gt;• pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3.141592/2)*200+300}}px;
+left: {{#expr:cos(3.141592/2)*200+300}}px;&quot;&gt;• pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(11*3.141592/6)*200+300}}px;
+left: {{#expr:cos(11*3.141592/6)*200+300}}px;&quot;&gt;• 11*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(7*3.141592/4)*200+300}}px;
+left: {{#expr:cos(7*3.141592/4)*200+300}}px;&quot;&gt;• 7*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(5*3.141592/3)*200+300}}px;
+left: {{#expr:cos(5*3.141592/3)*200+300}}px;&quot;&gt;• 5*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3*3.141592/2)*200+300}}px;
+left: {{#expr:cos(3*3.141592/2)*200+300}}px;&quot;&gt;• 3*pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(4*3.141592/3)*200+300}}px;
+left: {{#expr:cos(4*3.141592/3)*200+300}}px;&quot;&gt;• 4*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(5*3.141592/4)*200+300}}px;
+left: {{#expr:cos(5*3.141592/4)*200+300}}px;&quot;&gt;• 5*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(7*3.141592/6)*200+300}}px;
+left: {{#expr:cos(7*3.141592/6)*200+300}}px;&quot;&gt;• 7*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3.141592)*200+300}}px; left:
+{{#expr:cos(3.141592)*200+300}}px;&quot;&gt;• pi&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(5*3.141592/6)*200+300}}px;
+left: {{#expr:cos(5*3.141592/6)*200+300}}px;&quot;&gt;• 5*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(3*3.141592/4)*200+300}}px;
+left: {{#expr:cos(3*3.141592/4)*200+300}}px;&quot;&gt;• 3*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: {{#expr:sin(2*3.141592/3)*200+300}}px;
+left: {{#expr:cos(2*3.141592/3)*200+300}}px;&quot;&gt;• 2*pi/3&lt;/div&gt;
+&lt;/div&gt;
+
+that will render this code:
+&lt;div style=&quot;position:relative; width: 600px; height: 600px;&quot;&gt;
+&lt;div style=&quot;position:absolute; bottom: 300px; left: 500px;&quot;&gt;• 0&lt;/div&gt;
+
+&lt;div style=&quot;position:absolute; bottom: 399.999981132px; left: 473.20509165px;&quot;&gt;•
+pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 441.421333129px; left:
+441.421379345px;&quot;&gt;• pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 473.205058971px; left:
+400.000037735px;&quot;&gt;• pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 500px; left: 300.000065359px;&quot;&gt;• pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 199.999792457px; left:
+473.204960932px;&quot;&gt;• 11*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 158.578482008px; left:
+441.421194482px;&quot;&gt;• 7*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 126.794810312px; left:
+399.999811325px;&quot;&gt;• 5*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 100px; left: 299.999803923px;&quot;&gt;• 3*pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 126.795006388px; left: 199.99984906px;&quot;&gt;•
+4*pi/3&lt;/div&gt;
+
+&lt;div style=&quot;position:absolute; bottom: 158.578759302px; left:
+158.578528223px;&quot;&gt;• 5*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 200.000132073px; left:
+126.794842991px;&quot;&gt;• 7*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 300.000130718px; left: 100px;&quot;&gt;• pi&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 400.000094338px; left:
+126.794973709px;&quot;&gt;• 5*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 441.421425561px; left:
+158.578713086px;&quot;&gt;• 3*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute; bottom: 473.20512433px; left: 200.00007547px;&quot;&gt;•
+2*pi/3&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-14 17:14:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's what images are for.  Which is kind of the point of *not* adding this stuff.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-17 13:56:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=2692" name="attach_2692" title="extended patch">attachment 2692</a> <a href="attachment.cgi?id=2692&amp;action=edit" title="extended patch">[details]</a></span>
+extended patch
+
+Removing the &quot;extended&quot; patch, as I have created an third party extension
+containing  those functions instead</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-17 23:36:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2722" name="attach_2722" title="the full patch">attachment 2722</a> <a href="attachment.cgi?id=2722&amp;action=edit" title="the full patch">[details]</a></span>
+the full patch
+
+the same patch, but now it dependednt on the patch to the other bug</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-18 13:11:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2728" name="attach_2728" title="the full patch">attachment 2728</a> <a href="attachment.cgi?id=2728&amp;action=edit" title="the full patch">[details]</a></span>
+the full patch
+
+missed the minmax from the other bug, fixed some indent also</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-18 13:13:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2729" name="attach_2729" title="the full ptch">attachment 2729</a> <a href="attachment.cgi?id=2729&amp;action=edit" title="the full ptch">[details]</a></span>
+the full ptch
+
+whoops, the wfMsg should be wfMsgForContent</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-18 22:51:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2736" name="attach_2736" title="the patch again">attachment 2736</a> <a href="attachment.cgi?id=2736&amp;action=edit" title="the patch again">[details]</a></span>
+the patch again
+
+things that where lost before</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-21 13:25:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2751" name="attach_2751" title="the full patch">attachment 2751</a> <a href="attachment.cgi?id=2751&amp;action=edit" title="the full patch">[details]</a></span>
+the full patch
+
+fixed the path to be patchable against reecent svn</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-02 14:09:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tim Starling implied that this wouldn't be fixed as it would introduce a
+floating point instruction to the code</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-12 02:11:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hmmmm... there are ALREADY floatnig point instructions in the code
+Just cnosider {{#expr:1/3}}, it already performs a floatting point division
+using the floatting point operator / of PHP.
+Note that PHP does not declare specifically the floating point variables and
+numbers. They appear are necessary. That's why PHP's div performs a normal
+division : there was historically no way in PHP to get the datatype of a
+variable in PHP (today we can get the datatype of the value stored in a PHP var,
+but we cannot decide which datatype will be used only by PHP programming, unless
+we use some integer trucation functions).
+Really, PHP cannot work without floating point support... That's why real
+numbers are part of PHP's core and not of a separate PHP module.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 01:32:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The last patch for the proposed &quot;idiv&quot; operator is still wrong;
+it performs a (int)(a/b) operation which is limited to the various
+caveats of conversion to (int), which is definitely not the mathematical
+definition, is not cyclic,suffers of the problems near 0,rounds up for
+negative numbers, and has value range limitations;
+If you introduce floor() whynot using it?
+i.e: floor(a/b)
+Well if you provide floor, i'll use it instead of your proposed idiv;
+otherwise i'll still need hacks to handle negative values.
+
+Cyclic calculation is the base of any calendar computation, and this is
+the calendric needs that first focused my attention; currently calendar
+calculation in wikipedia require unnecessarily complex templates to perform
+the correct calculation. But if we have the support for floor(), they will
+be MUCH simpler, and floor() is really the most important thing what we need
+to perform correct rounding, correct date calculation, and anyother type of
+cyclic artithmetic. (All other modifications are not absolutely necessary as
+they are basic inlined operations depending on floor() without needing tests
+and too many instations of the template parameters).
+For example:
+a cdiv b == floor(a/b)
+a cmod b == a-floor(a/b)*b
+
+I proposed to implement floor as a &quot;trunc n&quot; operator like &quot;round n&quot;:
+a trunc n == floor(a*pow(10,n))/pow(10,n)
+
+I am not proposing to implement the pow(x,y) operation, or exponential or
+logarithms so pow(10,n) may be an internal lookup tableworking with n
+as a small positive or negative integer.
+
+However, given that PHP already depends on floating points, any floating
+point library that supports floor(x) also supports exp(x) and pow(x,y),
+and generally implements specially the case pow(10,y) where y is an
+integer, for speed and precision.
+
+Note that I also support the addition of the special &quot;e&quot; operator to allow
+floating point numbers like &quot;2.3e-12&quot; which are already produced simply
+with the current &quot;*&quot; and &quot;/&quot; operators!</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 01:33:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The last patch for the proposed &quot;idiv&quot; operator is still wrong;
+it performs a (int)(a/b) operation which is limited to the various
+caveats of conversion to (int), which is definitely not the mathematical
+definition, is not cyclic,suffers of the problems near 0,rounds up for
+negative numbers, and has value range limitations;
+If you introduce floor() whynot using it?
+i.e: floor(a/b)
+Well if you provide floor, i'll use it instead of your proposed idiv;
+otherwise i'll still need hacks to handle negative values.
+
+Cyclic calculation is the base of any calendar computation, and this is
+the calendric needs that first focused my attention; currently calendar
+calculation in wikipedia require unnecessarily complex templates to perform
+the correct calculation. But if we have the support for floor(), they will
+be MUCH simpler, and floor() is really the most important thing what we need
+to perform correct rounding, correct date calculation, and anyother type of
+cyclic artithmetic. (All other modifications are not absolutely necessary as
+they are basic inlined operations depending on floor() without needing tests
+and too many instations of the template parameters).
+For example:
+a cdiv b == floor(a/b)
+a cmod b == a-floor(a/b)*b
+
+I proposed to implement floor as a &quot;trunc n&quot; operator like &quot;round n&quot;:
+a trunc n == floor(a*pow(10,n))/pow(10,n)
+
+I am not proposing to implement the pow(x,y) operation, or exponential or
+logarithms so pow(10,n) may be an internal lookup tableworking with n
+as a small positive or negative integer.
+
+However, given that PHP already depends on floating points, any floating
+point library that supports floor(x) also supports exp(x) and pow(x,y),
+and generally implements specially the case pow(10,y) where y is an
+integer, for speed and precision.
+
+Note that I also support the addition of the special &quot;e&quot; operator to allow
+floating point numbers like &quot;2.3e-12&quot; which are already produced simply
+with the current &quot;*&quot; and &quot;/&quot; operators!
+
+</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 01:44:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >note that i am not sure we really need trigonometric functions;
+unlike calendar calculation which are needed or genertal maintenance
+of wikipedia, notably to generate links or prepare forms, trigonometry
+finds its application only to compute images, and this is needed only
+for internal SVG support. I can't see any application where trigonometry
+would be needed to create links to other pages depending on parameters:
+if all fits on the same page, this sould be precomputed outside of the
+wiki syntax.
+
+(well I see some exceptions now: astronomic and geodesic calculation for example
+to compute external links to geographic datadepending on longitude/latitude,
+or to compute projections and astronomic positions for computing the islamic
+calendar, or the traditional Chinese calendar; but before that, we need
+some demonstrations with working formulas that can't be written without them)
+</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 01:53:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Pfft, no such thing as something that *needs* trig functions.  After all, a good
+approximation of sin x for reasonable-sized x is x + x*x*x/6 + x*x*x*x*x/120 +
+x*x*x*x*x*x*x/5040 + x*x*x*x*x*x*x*x*x/362880 + x*x*x*x*x*x*x*x*x*x*x/39916800 +
+x*x*x*x*x*x*x*x*x*x*x*x*x/6227020800 +
+x*x*x*x*x*x*x*x*x*x*x*x*x*x*x/1307674368000.  That'll probably get you nearly
+indistinguishable results for within 3π or 4π around the origin.  And if you
+need more precision, you can go on like that.  Who needs an explicit sine
+function?  ;)
+
+<a href="http://en.wikipedia.org/wiki/Image:Taylorsine.svg">http://en.wikipedia.org/wiki/Image:Taylorsine.svg</a></pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 09:37:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I did not ask for trigonometric functions support! Reread!
+I am asking for a way to solve the unnecessarily complex templates used to
+workaround the severe issues in the round and mod operator, and the only urgent
+need is for a correct support of floor(), i.e. not depending on conversion to
+integer with a (int) typecast of PHP; with floor,lots of unnecessarily complex
+formulastrying to workaround with the current &quot;round&quot; operator will be solved
+much more nicely than they are now.
+
+And no, I won't use any form of limited development of sin(x) for small values
+of x like you propose: the operand will be instanciated too many times, causing
+the template to exhaust server memory resources very soon! Your &quot;solution&quot; for a
+problem I did not ask for is extremely bad and won't work reliably as long as
+#expr expressions will not support assignment to temporary work variables to
+avoid multiple instances of the template argument!
+Here I mean: as long as we can't write your limited dev.function as the
+following template, it should never be used!:
+{{#expr:
+   (x:=({{{1}}}))
+  + x*x*x/6
+  + x*x*x*x*x/120
+  + x*x*x*x*x*x*x/5040
+  + x*x*x*x*x*x*x*x*x/362880
+  + x*x*x*x*x*x*x*x*x*x*x/39916800
+  + x*x*x*x*x*x*x*x*x*x*x*x*x/6227020800
+  + x*x*x*x*x*x*x*x*x*x*x*x*x*x*x/1307674368000
+}}
+Note above the syntax using &quot;:=&quot; to assign a computed value to a named variable
+x: that's the only way we can avoid too many instances and substitutions of the
+template parameter, and to solve the extreme memory allocation problem for such
+expression. Without such system, which is extremely simple to implement in PHP
+using an associative array of variable names (we can limit variable names to
+single letters [a-z], or even more to [a-di-km-np-z]!) I will never create such
+expressions with the wiki syntax!
+</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 09:41:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >And your fomula is wrong! you forgot the sign changes! Reread your own reference!</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-22 15:43:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6068#c40">comment #40</a>)
+<span class="quote">&gt; I did not ask for trigonometric functions support! Reread!
+&gt; . . .
+&gt; And no, I won't use any form of limited development of sin(x) for small values
+&gt; of x like you propose: the operand will be instanciated too many times, causing
+&gt; the template to exhaust server memory resources very soon!</span >
+
+I was joking.  Thence the &quot;;)&quot;.  Although I did try it at
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=User%3ASimetrical%2Fsine">User:Simetrical/sine</a>]] to see if it would work, which it did.  And yes, I
+spotted the issue with the signs.  Never mind me.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-24 00:58:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You should really factorize the common factors! It will save lots of instances of ({{{1}}}) in your test 
+template... Yes it will require some parenthesis pairs, but the cost of parenthesis is insignificant face to the 
+memory cost on the server with so many instances of ({{{1}}}). Instead of having 1+3+5+7+9+11+13+15=64 instances, 
+you'll have only 15 instances of the template parameter (one for each degree of the polynomial); remember that if 
+parameter 1 is long, this will save about 75% of the total string length! Factorization is extremely easy given 
+the nature of the constants which are simple factorials growing with the degree. The additional benefit is also a 
+better precision of the result because the smallest elements are added together before being multiplied to the 
+next degree and added to the next (larger) elements. You also save stack space and the final recursion for the 
+evaluation of the complete expression, and will save lots of operations.
+
+Here is the equivalent formula at degree 15:
+{{#expr:
+(1-(1-(1-(1-(1-(1-(1-
+({{{1}}})*({{{1}}})/210)*
+({{{1}}})*({{{1}}})/156)*
+({{{1}}})*({{{1}}})/110)*
+({{{1}}})*({{{1}}})/72)*
+({{{1}}})*({{{1}}})/42)*
+({{{1}}})*({{{1}}})/20)*
+({{{1}}})*({{{1}}})/6)*
+({{{1}}}) round 5}}
+</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tiny_green</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-24 03:20:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >disregarding the trigonometric discussion, I see the need for a working mod and
+floor functions. Integer divisjon is easy to solve with trunc(x/y). I suggest
+using the fix that adds the fmod and floor functions (as in PHP), and leave the
+current mod function as it is (compatible with php)</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-24 04:28:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I do agree: don't change any existing operators as this may break compatibility, possibly requiring lots of editsto 
+verify the various expressions. fmod is not absolutely needed as it can be implemented using floor; the same is true 
+for the true integer division. Let's just have a working floor function, and almost all existing difficulties caused 
+by unnecessarily complex expressions with workaround hacks will disappear.
+
+I also support the addition of the operator &quot;E&quot; (for example 1E-4=0.0001), or extending the syntaxrecognizer so that 
+it will parse numbers in scientific notation without error! The main reason for this addition is the fact that #expr 
+returns numbers in scientific notation like 9.99E-5 (i.e. for all numbers lower than 0.0001 in absolute value after 
+default rounding when formating numbers as strings!). This is THE major cause of templates returning unexpected 
+syntax errors (can't parse &quot;E&quot;!) because the result of #expr (returned by a subtemplate) is often used in other 
+#expr expressions! Because of this limitation, we have to substitute a lot of subtemplates and then replace 
+embedded &quot;{{#expr:...}}&quot; by &quot;(...)&quot; after substitution of subtemplates.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-24 04:44:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For a working sine template (which works with any input value you can see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3ATemplate%3Asin">en:Template:sin</a>]]. This is an example 
+where a working fmod or floor would greatly simplify the expression! The limitation of precision to 4 digits on 
+output is also caused by the absence of support for input numbers like &quot;1E-5&quot; (and the main reason we need a hack to 
+support [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=en%3ATemplate%3AMod">en:Template:Mod</a>]]); this example is also a good case where we need to fully subtitute {{Mod}} to replace 
+{{#expr:...}} by (...) in the substituted expressionto avoid errors on output due to absence of support 
+(otherwise, &quot;{{sin|0.00001}}&quot; would return &quot;1E-5&quot; if we allow 5 digits in output precisionfor this function.
+Look also at how the Mod template requires:
+* 7 instances (!) of its first input parameter instead of just 1
+* 5 instances (!) of the second parameter instead of just 1, and
+* quite complex &quot;#ifexpr:&quot; hacks to workaround the current problems in &quot;mod&quot; and &quot;round&quot; operators.
+Calendar templates also require such complex substitution, and then using unnecessarily complex use of 
+existing &quot;mod&quot; operator. This would be much simpler with the support of floor. The same is true for conversion of 
+geographic coordinates fromdecimal to degrees,minutes,seconds (here also we need a working fmod simply based on 
+floor).</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-24 04:54:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The trigonometric circle works! Type this in English Wikipedia:
+&lt;div style=&quot;position:relative;width:600px;height:600px&quot;&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|0}}*200+300}}px;left:{{#expr:{{cos|0}}*200+300}}px&quot;&gt;• 0&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3.141592/6}}*200+300}}px;left:{{#expr:{{cos|3.141592/6}}*200+300}}
+px&quot;&gt;• pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3.141592/4}}*200+300}}px;left:{{#expr:{{cos|3.141592/4}}*200+300}}
+px&quot;&gt;• pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3.141592/3}}*200+300}}px;left:{{#expr:{{cos|3.141592/3}}*200+300}}
+px&quot;&gt;• pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3.141592/2}}*200+300}}px;left:{{#expr:{{cos|3.141592/2}}*200+300}}
+px&quot;&gt;• pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|11*3.141592/6}}*200+300}}px;left:{{#expr:{{cos|11*3.141592/6}}
+*200+300}}px&quot;&gt;• 11*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|7*3.141592/4}}*200+300}}px;left:{{#expr:{{cos|7*3.141592/4}}
+*200+300}}px&quot;&gt;• 7*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|5*3.141592/3}}*200+300}}px;left:{{#expr:{{cos|5*3.141592/3}}
+*200+300}}px&quot;&gt;• 5*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3*3.141592/2}}*200+300}}px;left:{{#expr:{{cos|3*3.141592/2}}
+*200+300}}px&quot;&gt;• 3*pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|4*3.141592/3}}*200+300}}px;left:{{#expr:{{cos|4*3.141592/3}}
+*200+300}}px&quot;&gt;• 4*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|5*3.141592/4}}*200+300}}px;left:{{#expr:{{cos|5*3.141592/4}}
+*200+300}}px&quot;&gt;• 5*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|7*3.141592/6}}*200+300}}px;left:{{#expr:{{cos|7*3.141592/6}}
+*200+300}}px&quot;&gt;• 7*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3.141592}}*200+300}}px;left:{{#expr:{{cos|3.141592}}*200+300}}
+px&quot;&gt;• pi&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|5*3.141592/6}}*200+300}}px;left:{{#expr:{{cos|5*3.141592/6}}
+*200+300}}px&quot;&gt;• 5*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|3*3.141592/4}}*200+300}}px;left:{{#expr:{{cos|3*3.141592/4}}
+*200+300}}px&quot;&gt;• 3*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:{{#expr:{{sin|2*3.141592/3}}*200+300}}px;left:{{#expr:{{cos|2*3.141592/3}}
+*200+300}}px&quot;&gt;• 2*pi/3&lt;/div&gt;
+&lt;/div&gt;
+
+that will render this code:
+
+&lt;div style=&quot;position:relative;width:600px;height:600px&quot;&gt;
+&lt;div style=&quot;position:absolute;bottom:300px;left:500px&quot;&gt;• 0&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:400px;left:473.2px&quot;&gt;• pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:441.42px;left:441.42px&quot;&gt;• pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:473.2px;left:400px&quot;&gt;• pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:500px;left:300px&quot;&gt;• pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:200px;left:473.2px&quot;&gt;• 11*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:158.58px;left:441.42px&quot;&gt;• 7*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:126.8px;left:400px&quot;&gt;• 5*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:100px;left:300.02px&quot;&gt;• 3*pi/2&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:126.8px;left:200px&quot;&gt;• 4*pi/3&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:158.58px;left:158.58px&quot;&gt;• 5*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:200px;left:126.8px&quot;&gt;• 7*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:300px;left:100px&quot;&gt;• pi&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:400px;left:126.8px&quot;&gt;• 5*pi/6&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:441.42px;left:158.58px&quot;&gt;• 3*pi/4&lt;/div&gt;
+&lt;div style=&quot;position:absolute;bottom:473.2px;left:200px&quot;&gt;• 2*pi/3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-24 04:58:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please can all further discussion on this closed bug be limited to:
+
+* Reasons it should be reopened and fixed
+* What the fixes should be
+* Implementation notes
+
+We do NOT need to know about hacks that will allow us to draw circles in
+wikitext; a demonstration of such abuse of parser functions is more inclined to
+turn us off the whole idea. In addition, to be frank, this is a bug tracker, not
+a mathematical debate forum.
+
+Since there is a hell of a lot of irrelevant discussion here, I would recommend
+that if a clear and concise bug report can be opened, detailing what's needed,
+then one is opened fresh.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-26 14:00:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I already summarized the need, read above. This was just a reply to show that the support for trigonometric 
+functions is not necessary, unlike a correct support for:
+* support of floor() for correct rounding (possible syntax: &quot;x trunc 0&quot;). This cleanly solves the DIV and MOD 
+problem, and as well, the problem of cyclic arithmetic.
+* the E operator (to put an end to expression evaluation errors caused by numbers computed by #expr that are 
+formated in scientific exponential notation, like &quot;9E-5&quot; instead of &quot;0.00009&quot;; for now all that can be done is to 
+avoid rounding the #expr result with more than 4 decimals, using &quot;x round 4&quot; but not &quot;x round 5&quot;). This notation 
+couldbesupported either lexically (accepting input numbers like &quot;1E-5&quot;) or as an operator if the current lexical 
+scanner should not be changed (computing the result of &quot;x E y&quot; as &quot;x*pow(10,y)&quot;)
+* possibly adding optional parameter(s) to #expr to specify the output format: &quot;{{#expr:some expression|f=%.5f}}&quot; to 
+force 5 decimals (rounding already occurs), &quot;{{#expr:some expression|.=,}}&quot; to set the decimal 
+parameter, &quot;#expr:some expression|lang=fa}} to use locale conventions for numbers (including the correct digits for 
+that language)... Note that using #expr-computed expressions in CSS values generally does not work if it is returned 
+in scientific notation. Formatting numbers often requires many reevaluation of the input expression, meaning that 
+there are many instances of the input parameter, and this severaly affects the server performance due to the extra 
+memory space taken by repeated template parameter strings!
+* implement in the server a cache for template parameters, and not substituting them until they are actually used 
+(for example expressions using input parameters in #if and #ifexpr should not be substituted immediately until they 
+are actuelly used in one of the then or else clauses. And substitutions should not require reevaluating the content: 
+the parameter may be another #expr, whose evaluation is already computed and stored in a cache so that you know 
+that &quot;{{{1}}}&quot; will already be completely expanded and precomputed as &quot;12.345&quot;, instead of the effective expression, 
+and this result is then simply reused as is on next instances of &quot;{{{1}}}&quot;.) The current full substitution of all 
+template parameters before the template invokation is actually evaluated is a severe waste of server resources.
+* implement some support for storing intermediate #expr expression results in single-letter variables (except &quot;e&quot; 
+or &quot;E&quot; used for the scientific notation, see above): this reduces a lot the memory requirement, and makes expression 
+much easier to read and debug, and much faster to compute with much less memory and CPU overhead for each instance 
+of common sub-expressions. Note that in order to work, the expression evaluation order (of operands) must remain 
+fully predictive, always from left to right, this guarantees that intermediate assignment work as expected, but 
+unused then or else clauses in #if will not necessarily evaluated, but simply skipped.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-09-30 07:39:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >the INT_DIVIDE operator (idiv) is still wrong in the final patch, as it uses the formula:
+
+$stack[] = (int)($left / $right);
+
+which overflows the too small capacity of ints.
+
+Note that the parameters $left and $right can already be floatting points, so the division results in a floatting point, but the typecast to (int) gets a wrong result. Well, at least we could rewrite the formula using &quot;floor(x/y)&quot; in templates instead of &quot;x idiv y&quot;, and in that case, the way &quot;idiv&quot; works should be either &quot;floor(floor(x)/floor(y))&quot; OR &quot;(int)(x)/(int)(y)&quot;, but NOT the way as it is written that mixes everything. But these two solutions would break existing code that depend on &quot;idiv&quot; to continue getting the result from the division of two floaating points without rounding them down to an integer before the division.
+
+For this reason, it should really be:
+
+$stack[] = floor($left / $right);
+
+However this would even change the behavior of &quot;idiv&quot; if the result of the division is negative, because the typecast to int does not really uses floor, but truncates towards zero. So the effective change should be:
+
+$left = $left / $right;
+$stack[] = ($left &lt; 0) ? ceil($left) : floor($left);
+
+This correction will preserve ALL result values that are already correct with the current implementation (truncating the result of the floatting point division to the nearest integer towards zero), but it will extend the usage of &quot;idiv&quot; to cover a wider range of values than just the native binary integers.
+
+I can't understand that implementers are not thinking about the coherence of numeric operations and datatypes, when they finally implement things the wrong way to solve a floating point problem  : floatting points values are NOT interchangeable with native integer values, and typecasts to (int) is a wellknown source of bugs in many programs, because of lack of experience of developpers !
+
+I've seen such error frequently even in C or C++ where ALL variables types are declared with float (or double), but with a formula using incorrectly a typecast with (int) instead of &quot;floor()&quot;. This same error occurs once again here... When developing a software with global usage, I can assert that this stupid bug is a result of incompetence (i.e. lack of training or experience).
+</pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-09-30 07:39:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >the INT_DIVIDE operator (idiv) is still wrong in the final patch, as it uses the formula:
+
+$stack[] = (int)($left / $right);
+
+which overflows the too small capacity of ints.
+
+Note that the parameters $left and $right can already be floatting points, so the division results in a floatting point, but the typecast to (int) gets a wrong result. Well, at least we could rewrite the formula using &quot;floor(x/y)&quot; in templates instead of &quot;x idiv y&quot;, and in that case, the way &quot;idiv&quot; works should be either &quot;floor(floor(x)/floor(y))&quot; OR &quot;(int)(x)/(int)(y)&quot;, but NOT the way as it is written that mixes everything. But these two solutions would break existing code that depend on &quot;idiv&quot; to continue getting the result from the division of two floaating points without rounding them down to an integer before the division.
+
+For this reason, it should really be:
+
+$stack[] = floor($left / $right);
+
+However this would even change the behavior of &quot;idiv&quot; if the result of the division is negative, because the typecast to int does not really uses floor, but truncates towards zero. So the effective change should be:
+
+$left = $left / $right;
+$stack[] = ($left &lt; 0) ? ceil($left) : floor($left);
+
+This correction will preserve ALL result values that are already correct with the current implementation (truncating the result of the floatting point division to the nearest integer towards zero), but it will extend the usage of &quot;idiv&quot; to cover a wider range of values than just the native binary integers.
+
+I can't understand that implementers are not thinking about the coherence of numeric operations and datatypes, when they finally implement things the wrong way to solve a floating point problem  : floatting points values are NOT interchangeable with native integer values, and typecasts to (int) is a wellknown source of bugs in many programs, because of lack of experience of developpers !
+
+I've seen such error frequently even in C or C++ where ALL variables types are declared with float (or double), but with a formula using incorrectly a typecast with (int) instead of &quot;floor()&quot;. This same error occurs once again here... When developing a software with global usage, I can assert that this stupid bug is a result of incompetence (i.e. lack of training or experience).</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-09-30 07:43:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >the INT_DIVIDE operator (idiv) is still wrong in the final patch, as it uses the formula:
+
+$stack[] = (int)($left / $right);
+
+which overflows the too small capacity of ints.
+
+Note that the parameters $left and $right can already be floatting points, so the division results in a floatting point, but the typecast to (int) gets a wrong result. Well, at least we could rewrite the formula using &quot;floor(x/y)&quot; in templates instead of &quot;x idiv y&quot;, and in that case, the way &quot;idiv&quot; works should be either &quot;floor(floor(x)/floor(y))&quot; OR &quot;(int)(x)/(int)(y)&quot;, but NOT the way as it is written that mixes everything. But these two solutions would break existing code that depend on &quot;idiv&quot; to continue getting the result from the division of two floaating points without rounding them down to an integer before the division.
+
+For this reason, it should really be:
+
+$stack[] = floor($left / $right);
+
+However this would even change the behavior of &quot;idiv&quot; if the result of the division is negative, because the typecast to int does not really uses floor, but truncates towards zero. So the effective change should be:
+
+$result = $left / $right;
+$stack[] = ($result &lt; 0) ? ceil($result) : floor($result);
+
+This correction will preserve ALL result values that are already correct with the current implementation (truncating the result of the floatting point division to the nearest integer towards zero), but it will extend the usage of &quot;idiv&quot; to cover a wider range of values than just the native binary integers.
+
+I can't understand that implementers are not thinking about the coherence of numeric operations and datatypes, when they finally implement things the wrong way to solve a floating point problem  : floatting points values are NOT interchangeable with native integer values, and typecasts to (int) is a wellknown source of bugs in many programs, because of lack of experience of developpers !
+
+I've seen such error frequently even in C or C++ where ALL variables types are declared with float (or double), but with a formula using incorrectly a typecast with (int) instead of &quot;floor()&quot;. This same error occurs once again here... When developing a software with global usage, I can assert that this stupid bug is a result of incompetence (i.e. lack of training or experience).</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-17 02:33:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that I have received several emails from various users (including admins from non MediaWiki sites) confirming that this is a bug: they saw my last comment (sorry if it appears 3 times just above), and ask me if the bug is corrected, or when it will be corrected...
+
+Can you then apply my suggested correction (which tests the sign of the result) at end of the inserted lines at 404-409 of your last published patch ?
+
+Or do we have to live just with the now existing &quot;floor()&quot; function and use it directly in our {{#expr:}} expressions instead of the bogous IDIV operator (note that the floating-point modulo operator is correct, as it uses fmod() to compute the value) ?</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-02 09:30:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Based on <a href="show_bug.cgi?id=6068#c50">comment 50</a> I replace the keyword &quot;patch-need-review&quot; by &quot;patch-reviewed&quot; - the patch needs rework and volunteers are welcome!
+Also moving to &quot;ParserFunctions&quot; component as that's what the patch is for.</pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ori Livneh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-11 11:28:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that <a href="https://gerrit.wikimedia.org/r/#q,I32c9eca6,n,z" title="Gerrit Change-Id: I32c9eca6">I32c9eca6</a> changes the modulo operator so that it handles floating point values properly.</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-12 01:28:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The patch found in I32c9ca6 incorrectly casts its parameters to (float) instead of (double). This means that it reduces their precision when they are double.
+
+Note that the fmod() PHP function takes double parameters (not float parameters), so the cast to (float) is immediately recasted by promotion to (double).
+
+Please use typecasts to (double) directly to keep the precision and avoid roundings.</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ori Livneh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-12 05:49:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="https://gerrit.wikimedia.org/r/38278" title="Gerrit change #38278">Gerrit change #38278</a> casts to double, but I note that parser function aficionados are better served by helping midwife Scribunto (Lua templates) on major wikis.</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-12 21:32:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >One example demontrates the difference:
+
+* {{#expr: 0.9900000001
+   -floor( 0.9900000001  /  0.03 )
+                         *  0.03 }}
+::
+:: This uses PHP's fmod() function but arguments are left as
+:: double, no rounding occurs and precision is kept
+:: Expected value: 1E-10 with 8 digits of precision
+:: The result is:  1.0000000827404E-10
+:: (excellent order of magnitude and precision)
+
+* {{#expr: 0.9900000001 mod 0.03 }}
+::
+:: This uses PHP's fmod() function but arguments are incorrectly
+:: downcasted to float, forcing rounding and loss of precision.
+:: Expected value: 1E-10 with 8 digits of precision
+:: The result is:  4.4408920985006E-16
+:: (bad: 6 orders of magnitude lost, out of precision)
+
+* {{#expr: (2*PI)
+   -floor( (2*PI)  /  (PI/6) )
+                   *  (PI/6) }}
+::
+:: Expected value:    0 with an absolute error not exceeding PI/2*1E-14
+:: Effective result:  0
+:: (excellent, but could be by chance; for other divisors set to (PI/N), where N is an odd prime, the max error of PI/2/N*1E-14 is respected)
+
+* {{#expr: (2*PI) mod (PI/6) }}
+::
+:: Expected value:    0 with an absolute error not exceeding PI/2*1E-14
+:: Effective result:  1.0000003602961E-10
+:: (very bad, the absolute error is too large by a factor of about 1E7)</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sam Reed (reedy)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-27 00:50:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is this fixed now?</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-27 13:22:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No, this is worse now: the tow cases above that were bad in precision no longer display anything, so {{#expr: 0.9900000001 mod 0.03 }} returns now an empty string! This is most probably not a pronlem of the operator itself, but of the number to string conversion, which performs incorrect rounding and removes all digits (not keeping at least a single zero).</pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-27 13:25:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In other words you've got a new regression.
+Tested on Meta, see <a href="http://meta.wikimedia.org/wiki/Template_talk:YMD2MJD#Empty_output_with_denormal_numbers">http://meta.wikimedia.org/wiki/Template_talk:YMD2MJD#Empty_output_with_denormal_numbers</a></pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-27 13:35:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The result is always correct when using PHP's and MEdiawiki's floor(), but not when using PHP's fmod().
+May be it is PHP's fmod() which is bogous, and that returns a NaN double whose output is an empty string. Couldn't you just use PHP's floor() instead to implement the Mediawiki's MOD operator ?
+
+For now I'll stick on using floor() for ALL cyclic computations. MOD is completely broken and unreliable.
+
+Really, you should be more aware of basic rounding modes (towards zero, for the symetry around zero, or towards minus infinity for cyclic uses). The maths' MOD uses floor() for cyclic computations; the financial's MOD uses trunc() for performing roundings). The IEEE scientific MOD uses rounding towards the nearest even number (in order to balance rounding errors).</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brad Jorsch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-12-28 21:54:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A few notes:
+
+PHP doesn't have different-precision floating point types, &quot;float&quot; and &quot;double&quot; are the same. Both are implemented in terms of a C double, which is probably going to be an IEEE 754 64-bit representation.
+
+On my local test wiki, {{#expr: 0.9900000001 mod 0.03 }} returns 1.0000003602961E-10 both before and after change 38278 is applied. Similarly, {{#expr: (2*PI) mod (PI/6) }} returns 4.4408920985006E-16 both with and without change 38278. I don't know what you were doing to get those different results.
+
+As for the situation now, note that the extension has been rolled back on WMF wikis to a version before I32c9ca6 due to many templates explicitly relying on the old integer-casting behavior of 'mod'. So the result of 0.9900000001 mod 0.03 is actually coming out as boolean false due to division by zero, which winds up being displayed as an empty string.
+
+Gerrit change <a href="https://gerrit.wikimedia.org/r/#q,I6114c6e7,n,z" title="Gerrit Change-Id: I6114c6e7">I6114c6e7</a> reverts the behavior of 'mod' while still fixing <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - ParserFunctions: Division by zero in Expr.php"
+   href="show_bug.cgi?id=35866">bug 35866</a>, and at the same time adds a new 'fmod' with the floating-point behavior requested here.</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ori Livneh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-15 16:48:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is proper to implement this using Lua / Scribunto now, I think. Should we close this?</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6068#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MZMcBride</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-16 01:26:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6068#c64">comment #64</a>)
+<span class="quote">&gt; It is proper to implement this using Lua / Scribunto now, I think. Should we
+&gt; close this?</span >
+
+It seems reasonable enough to me to mark this as resolved/fixed now (particularly with Gerrit change <a href="https://gerrit.wikimedia.org/r/#q,I6114c6e7,n,z" title="Gerrit Change-Id: I6114c6e7">I6114c6e7</a> [which introduced fmod] now merged).
+
+I'll go ahead and cautiously mark this as resolved/fixed.
+
+Philippe or anyone else: if you disagree with this resolution, please don't hesitate to re-open this bug report (or file a new bug). I'm not sure if all fo the people commenting here have had a chance to check out Scribunto/Lua, but it's much fancier and more robust than ParserFunctions + #expr. :-)</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=6068&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=6068">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=6068">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=6068">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=6068&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=6068" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=6068&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419366350-lRuI2pegPlslLLCLTwFcs4A-S-oVGQKotZ8853MRHDc">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

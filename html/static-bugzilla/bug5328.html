@@ -1,0 +1,1874 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 5328 &ndash; Migration Database from MySQL 4.0.x to 5.0.x fails</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=5328&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=5328">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=5328">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=5328">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 5328 – Migration Database from MySQL 4.0.x to 5.0.x fails",  
+                             "show_bug.cgi?id=5328" );
+        document.title = "Bug 5328 – Migration Database from MySQL 4.0.x to 5.0.x fails";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 5328 – Migration Database from MySQL 4.0.x to 5.0.x fails", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Installer bz_bug_5328 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 15:38:17 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 15:38:17">
+  <input type="hidden" name="longdesclength" value="5">
+  <input type="hidden" name="id" value="5328">
+  <input type="hidden" name="token" value="1419365238-NnlGiogD1_B1r3n7ewU6O1fQI8CVe9JhYswVUROMQ_c">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=5328"><b>Bug&nbsp;5328</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Migration Database from MySQL 4.0.x to 5.0.x fails</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Migration Database from MySQL 4.0.x to 5.0.x fails
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Migration Database from MySQL 4.0.x to 5.0.x fails', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          INVALID
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Installer
+    
+    (<a href="buglist.cgi?component=Installer&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.5.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">PC
+       Windows Server 2003
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       major<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=5328#vote_5328">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=5328&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=5328">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-03-22 22:32 UTC by <span class="vcard"><span class="fn">Thomas Schweikle</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 15:38 UTC 
+      (<a href="show_activity.cgi?id=5328">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>1 
+          user
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="tps">tps</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=5328&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5328#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Thomas Schweikle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-22 22:32:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have tried to migrate my mediawiki from MySQL 4.0.26 to MySQL
+5.0.19. But this fails at two tables. I can import these to
+MySQL 4.0.26, but not to MySQL 5.0.19:
+
+DROP TABLE IF EXISTS `wiki-adm`.`cur`;
+CREATE TABLE `wiki-adm`.`cur` (
+  `cur_id` INT(8) NOT NULL,
+  `cur_namespace` TINYINT(2) NOT NULL DEFAULT '0',
+  `cur_title` VARCHAR(255) NOT NULL,
+  `cur_text` MEDIUMTEXT NOT NULL,
+  `cur_comment` TINYBLOB NOT NULL,
+  `cur_user` INT(5) NOT NULL DEFAULT '0',
+  `cur_user_text` VARCHAR(255) NOT NULL,
+  `cur_timestamp` VARCHAR(14) NOT NULL,
+  `cur_restrictions` TINYBLOB NOT NULL,
+  `cur_counter` BIGINT(20) NOT NULL DEFAULT '0',
+  `cur_is_redirect` TINYINT(1) NOT NULL DEFAULT '0',
+  `cur_minor_edit` TINYINT(1) NOT NULL DEFAULT '0',
+  `cur_is_new` TINYINT(1) NOT NULL DEFAULT '0',
+  `cur_random` DOUBLE(0, 0) NOT NULL DEFAULT '0',
+  `cur_touched` VARCHAR(14) NOT NULL,
+  `inverse_timestamp` VARCHAR(14) NOT NULL,
+  PRIMARY KEY (`cur_id`),
+  UNIQUE INDEX `name_title` (`cur_namespace`, `cur_title`),
+  INDEX `cur_title` (`cur_title`(20)),
+  INDEX `cur_timestamp` (`cur_timestamp`),
+  INDEX `cur_random` (`cur_random`),
+  INDEX `name_title_timestamp` (`cur_namespace`, `cur_title`,
+`inverse_timestamp`),
+  INDEX `user_timestamp` (`cur_user`, `inverse_timestamp`),
+  INDEX `usertext_timestamp` (`cur_user_text`, `inverse_timestamp`),
+  INDEX `namespace_redirect_timestamp` (`cur_namespace`,
+`cur_is_redirect`, `cur_timestamp`)
+)
+ENGINE = INNODB;
+
+Leads to &quot;Display width out of range for column 'cur_random'
+(max=255)&quot;. In tune the table is only partly created (the column
+&quot;cur_random&quot; is missing). The Table is useless for mediamiki.
+Trying to access this database leads to various errors
+about missing data or incorrect SQL statements (unknown column).
+
+At the moment this makes it impossible to migrate from MySQL 4.0.x to 5.0.x
+whithout breaking the whole existing wiki at my site.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5328#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Thomas Schweikle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-22 23:26:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have tried to export the database to an SQL-file, editing it to make the
+missing tables being created compleately, but without success. I do have
+complete tables now, but some entries are longer than 255 chars.
+
+Here is what is output while importing the exported MySQL 4.0.26 database into
+MySQL 5.0.19:
+
+
+--------------------------------------------------------------------------------
+-- MySQL Migration Toolkit Report                                             --
+--                                                                            --
+-- Title:   Summary Of The Migration Process                                  --
+-- Date:    2006-03-23 00:20                                                  --
+--------------------------------------------------------------------------------
+
+
+1. Schema Migration
+-------------------
+
+  Number of migrated schemata: 1
+
+  Schema Name:            wiki-adm
+  - Tables:               32
+  - Views:                0
+  - Routines:             0
+  - Routine Groups:       0
+  - Synonyms:             0
+  - Structured Types:     0
+  - Sequences:            0
+
+  Details:
+
+  - Tables
+      `wiki-adm`.`archive`
+      --------------------
+      `wiki-adm`.`blobs`
+      ------------------
+      `wiki-adm`.`brokenlinks`
+      ------------------------
+      `wiki-adm`.`categorylinks`
+      --------------------------
+      `wiki-adm`.`cur`
+      ----------------
+          Display width out of range for column 'cur_random' (max = 255)
+
+      `wiki-adm`.`hitcounter`
+      -----------------------
+      `wiki-adm`.`image`
+      ------------------
+      `wiki-adm`.`imagelinks`
+      -----------------------
+      `wiki-adm`.`interwiki`
+      ----------------------
+      `wiki-adm`.`ipblocks`
+      ---------------------
+      `wiki-adm`.`links`
+      ------------------
+      `wiki-adm`.`linkscc`
+      --------------------
+      `wiki-adm`.`logging`
+      --------------------
+      `wiki-adm`.`math`
+      -----------------
+      `wiki-adm`.`objectcache`
+      ------------------------
+      `wiki-adm`.`oldimage`
+      ---------------------
+      `wiki-adm`.`page`
+      -----------------
+          Display width out of range for column 'page_random' (max = 255)
+
+      `wiki-adm`.`pagelinks`
+      ----------------------
+      `wiki-adm`.`querycache`
+      -----------------------
+      `wiki-adm`.`recentchanges`
+      --------------------------
+      `wiki-adm`.`revision`
+      ---------------------
+      `wiki-adm`.`searchindex`
+      ------------------------
+      `wiki-adm`.`site_stats`
+      -----------------------
+      `wiki-adm`.`text`
+      -----------------
+      `wiki-adm`.`trackbacks`
+      -----------------------
+      `wiki-adm`.`transcache`
+      -----------------------
+      `wiki-adm`.`user`
+      -----------------
+      `wiki-adm`.`user_groups`
+      ------------------------
+      `wiki-adm`.`user_newtalk`
+      -------------------------
+      `wiki-adm`.`user_rights`
+      ------------------------
+      `wiki-adm`.`validate`
+      ---------------------
+      `wiki-adm`.`watchlist`
+      ----------------------
+  - Views
+  - Routines
+  - Routine Groups
+  - Synonyms
+  - Structured Types
+  - Sequences
+
+
+2. Data Bulk Transfer
+---------------------
+
+      `wiki-adm`.`archive`
+      --------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`blobs`
+      ------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`brokenlinks`
+      ------------------------
+          16 row(s) transfered.
+
+      `wiki-adm`.`categorylinks`
+      --------------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`cur`
+      ----------------
+          You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near
+'MediaWiki default&quot;, &quot;20050512095726&quot;, &quot;&quot;, 0, &quot;&quot;, &quot;&quot;, &quot;&quot;, 0, &quot;20050512095726&quot;,
+&quot;7' at line 48
+          0 row(s) transfered.
+
+      `wiki-adm`.`hitcounter`
+      -----------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`image`
+      ------------------
+          1 row(s) transfered.
+
+      `wiki-adm`.`imagelinks`
+      -----------------------
+          1 row(s) transfered.
+
+      `wiki-adm`.`interwiki`
+      ----------------------
+          Data truncation: Data too long for column 'iw_prefix' at row 98
+          0 row(s) transfered.
+
+      `wiki-adm`.`ipblocks`
+      ---------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`links`
+      ------------------
+          110 row(s) transfered.
+
+      `wiki-adm`.`linkscc`
+      --------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`logging`
+      --------------------
+          1 row(s) transfered.
+
+      `wiki-adm`.`math`
+      -----------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`objectcache`
+      ------------------------
+          65 row(s) transfered.
+
+      `wiki-adm`.`oldimage`
+      ---------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`page`
+      -----------------
+          Table 'wiki-adm.page' doesn't exist
+          0 row(s) transfered.
+
+      `wiki-adm`.`pagelinks`
+      ----------------------
+          Duplicate entry '999-0-Proxy' for key 1
+          0 row(s) transfered.
+
+      `wiki-adm`.`querycache`
+      -----------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`recentchanges`
+      --------------------------
+          381 row(s) transfered.
+
+      `wiki-adm`.`revision`
+      ---------------------
+          Incorrect integer value: '' for column 'rev_minor_edit' at row 1
+          0 row(s) transfered.
+
+      `wiki-adm`.`searchindex`
+      ------------------------
+          80 row(s) transfered.
+
+      `wiki-adm`.`site_stats`
+      -----------------------
+          1 row(s) transfered.
+
+      `wiki-adm`.`text`
+      -----------------
+          You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near
+'MediaWiki default&quot;, &quot;20050512095726&quot;, 0, &quot;&quot;, &quot;&quot;),
+
+                          (316, 8, &quot;Anonymous&quot;, &quot;Anon' at line 316
+          Data truncation: Data too long for column 'old_text' at row 4
+          0 row(s) transfered.
+
+      `wiki-adm`.`trackbacks`
+      -----------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`transcache`
+      -----------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`user`
+      -----------------
+          4 row(s) transfered.
+
+      `wiki-adm`.`user_groups`
+      ------------------------
+          4 row(s) transfered.
+
+      `wiki-adm`.`user_newtalk`
+      -------------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`user_rights`
+      ------------------------
+          4 row(s) transfered.
+
+      `wiki-adm`.`validate`
+      ---------------------
+          0 row(s) transfered.
+
+      `wiki-adm`.`watchlist`
+      ----------------------
+          0 row(s) transfered.
+
+
+End of report.
+--------------------------------------------------------------------------------
+</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5328#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-23 00:02:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We have no hope of reproducing this without knowing your upgrade procedure 
+and some details of configuration.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5328#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Thomas Schweikle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-03-23 10:07:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >OK. Installation is as follows:
+
+- Windows 2003 Server Enterprise
+- IIS 6.0
+- PHP 4.4.1
+- PEAR 1.4.6
+- Zend Engine 1.3.0
+- Active Perl 5.8.7
+- MySQL 4.0.26
+- MediaWiki 1.5.7
+
+Installation is compleately standard.
+------------------------
+Environment:
+C:\Programme\php4&gt;set
+ALLUSERSPROFILE=C:\Documents and Settings\All Users
+APPDATA=C:\Documents and Settings\Administrator\Application Data
+APR_ICONV_PATH=C:\Programme\Subversion\iconv
+CLIENTNAME=ROSE
+ClusterLog=C:\WINDOWS\Cluster\cluster.log
+CommonProgramFiles=C:\Program Files\Common Files
+COMPUTERNAME=SRV-KA-INT1
+ComSpec=C:\WINDOWS\system32\cmd.exe
+CVSNT=C:\Programme\CVSNT
+CYGWIN=ntsec tty
+FP_NO_HOST_CHECK=NO
+HOMEDRIVE=C:
+HOMEPATH=\Documents and Settings\Administrator
+HTTPS_PROXY=<a href="http://proxy:8080">http://proxy:8080</a>
+HTTP_PROXY=<a href="http://proxy:8080">http://proxy:8080</a>
+JAVA_HOME=C:\Progra~1\Java\jdk1.5.0_06
+LOGONSERVER=\\SRV-KA-INT1
+MIBDIRS=C:\Programme\php4\mibs
+MYSQL_BIN=C:\Programme\MySQL\MySQL Server 5.0\bin
+NUMBER_OF_PROCESSORS=4
+OMPATH=C:\Program Files\Dell\OpenManage\oma\bin;C:\Program Files\Dell\OpenManage
+\LU\bin;C:\Program Files\Dell\OpenManage\oldiags\bin
+OS=Windows_NT
+Path=C:\Program Files\Support Tools\;c:\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WI
+NDOWS\System32\Wbem;C:\Program Files\Dell\OpenManage\oma\bin;C:\Program Files\De
+ll\OpenManage\LU\bin;C:\Program Files\Dell\OpenManage\oldiags\bin;C:\Program Fil
+es\Dell\OpenManage\Array Manager;C:\Program Files\Microsoft SQL Server\80\Tools\
+Binn\;C:\Programme\UPS\WorldShip\WorldShip;C:\Programme\Python23;C:\Programme\Pe
+rl\bin\;C:\Programme\php4;C:\Programme\MySQL\MySQL Server 5.0\bin;C:\Programme\T
+ools\bin;C:\Programme\CVSNT
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.VBS;.pyo;.pyc;.pyw;.py
+
+PHPRC=C:\Programme\php4
+PHP_PEAR_BIN_DIR=C:\Programme\php4
+PHP_PEAR_DATA_DIR=C:\Programme\php4\pear\data
+PHP_PEAR_DOC_DIR=C:\Programme\php4\pear\docs
+PHP_PEAR_INSTALL_DIR=C:\Programme\php4\pear
+PHP_PEAR_PHP_BIN=C:\Programme\php4\cli\php.exe
+PHP_PEAR_SYSCONF_DIR=C:\Programme\php4
+PHP_PEAR_TEST_DIR=C:\Programme\php4\pear\tests
+PMTPMTPMT=&#64;include_path&#64;
+PROCESSOR_ARCHITECTURE=x86
+PROCESSOR_IDENTIFIER=x86 Family 15 Model 3 Stepping 4, GenuineIntel
+PROCESSOR_LEVEL=15
+PROCESSOR_REVISION=0304
+ProgramFiles=C:\Program Files
+PROMPT=$P$G
+SESSIONNAME=RDP-Tcp#16
+SystemDrive=C:
+SystemRoot=C:\WINDOWS
+TEMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\3
+TMP=C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\3
+TMPTMPTMPTMPT=&#64;includ
+USERDNSDOMAIN=WIBU.LOCAL
+USERDOMAIN=WIBU
+USERNAME=administrator
+USERPROFILE=C:\Documents and Settings\Administrator
+windir=C:\WINDOWS
+
+------------------------
+PHP.INI:
+[PHP]
+engine = On
+short_open_tag = On
+asp_tags = Off
+precision    =  12
+y2k_compliance = On
+output_buffering = On
+zlib.output_compression = Off
+implicit_flush = Off
+unserialize_callback_func=
+serialize_precision = 100
+allow_call_time_pass_reference = On
+safe_mode = Off
+safe_mode_gid = Off
+safe_mode_include_dir =								
+safe_mode_exec_dir =
+safe_mode_allowed_env_vars = PHP_
+safe_mode_protected_env_vars = LD_LIBRARY_PATH
+disable_functions =
+disable_classes =
+expose_php = On
+
+max_execution_time = 30
+max_input_time = 60
+memory_limit = 16M
+
+error_reporting = E_ALL &amp; ~E_NOTICE
+error_reporting = E_ALL &amp; ~(E_NOTICE | E_USER_NOTICE | E_WARNING |
+E_COMPILE_WARNING | E_CORE_WARNING | E_USER_WARNING) ; display all errors
+display_errors = On
+display_startup_errors = Off
+log_errors = Off
+log_errors_max_len = 1024
+ignore_repeated_errors = Off
+ignore_repeated_source = Off
+report_memleaks = On
+track_errors = Off
+
+variables_order = &quot;EGPCS&quot;
+register_globals = Off
+register_argc_argv = On
+post_max_size = 8M
+gpc_order = &quot;GPC&quot;
+
+magic_quotes_gpc = On
+magic_quotes_runtime = Off    
+magic_quotes_sybase = Off
+
+auto_prepend_file =
+auto_append_file =
+
+default_mimetype = &quot;text/html&quot;
+default_charset = &quot;iso-8859-1&quot;
+
+include_path=&quot;.;C:\Programme\php4\pear;C:\Programme\jpgraph\src;D:\iis\intranet\includes;C:\Programme\php4\includes;&quot;
+
+doc_root =
+user_dir =
+extension_dir = &quot;C:\Programme\php4\extensions&quot;
+
+enable_dl = Off
+cgi.force_redirect = 0
+fastcgi.impersonate = 1;
+
+file_uploads = On
+upload_tmp_dir = C:\Programme\php4\uploadtemp
+upload_max_filesize = 2M
+
+allow_url_fopen = On
+default_socket_timeout = 60
+
+;extension=php_bz2.dll
+;extension=php_cpdf.dll
+;extension=php_crack.dll
+;extension=php_curl.dll
+;extension=php_db.dll
+;extension=php_dba.dll
+;extension=php_dbase.dll
+;extension=php_dbx.dll
+;extension=php_domxml.dll
+;extension=php_exif.dll
+;extension=php_fdf.dll
+;extension=php_filepro.dll
+extension=php_gd2.dll
+;extension=php_gettext.dll
+;extension=php_hyperwave.dll
+;extension=php_iconv.dll
+;extension=php_ifx.dll
+;extension=php_iisfunc.dll
+;extension=php_imap.dll
+;extension=php_interbase.dll
+;extension=php_java.dll
+;extension=php_ldap.dll
+;extension=php_mbstring.dll
+;extension=php_mcrypt.dll
+;extension=php_mhash.dll
+;extension=php_mime_magic.dll
+;extension=php_ming.dll
+;extension=php_mssql.dll
+;extension=php_msql.dll
+;extension=php_oci8.dll
+;extension=php_openssl.dll
+;extension=php_oracle.dll
+;extension=php_pdf.dll
+;extension=php_pgsql.dll
+;extension=php_printer.dll
+;extension=php_shmop.dll
+extension=php_snmp.dll
+extension=php_sockets.dll
+;extension=php_sybase_ct.dll
+;extension=php_w32api.dll
+;extension=php_xmlrpc.dll
+;extension=php_xslt.dll
+;extension=php_yaz.dll
+extension=php_zip.dll
+
+
+[Syslog]
+define_syslog_variables  = Off
+
+[mail function]
+SMTP = localhost
+smtp_port = 25
+
+;sendmail_from = <a href="mailto:me&#64;example.com">me&#64;example.com</a>
+
+[Java]
+;java.class.path = .\php_java.jar
+;java.home = c:\jdk
+;java.library = c:\jdk\jre\bin\hotspot\jvm.dll 
+;java.library.path = .\
+
+[SQL]
+sql.safe_mode = Off
+
+[ODBC]
+;odbc.default_db    =  Not yet implemented
+;odbc.default_user  =  Not yet implemented
+;odbc.default_pw    =  Not yet implemented
+odbc.allow_persistent = On
+odbc.check_persistent = On
+odbc.max_persistent = -1
+odbc.max_links = -1  
+odbc.defaultlrl = 4096  
+odbc.defaultbinmode = 1  
+
+[MySQL]
+mysql.allow_persistent = On
+mysql.max_persistent = -1
+mysql.max_links = -1
+mysql.default_port =
+mysql.default_socket =
+mysql.default_host =
+mysql.default_user =
+mysql.default_password =
+mysql.connect_timeout = 60
+mysql.trace_mode = Off
+
+[mSQL]
+msql.allow_persistent = On
+msql.max_persistent = -1
+msql.max_links = -1
+
+[PostgresSQL]
+pgsql.allow_persistent = On
+pgsql.auto_reset_persistent = Off 
+pgsql.max_persistent = -1
+pgsql.max_links = -1
+pgsql.ignore_notice = 0
+pgsql.log_notice = 0
+
+[Sybase]
+sybase.allow_persistent = On
+sybase.max_persistent = -1
+sybase.max_links = -1
+sybase.min_error_severity = 10
+sybase.min_message_severity = 10
+sybase.compatability_mode = Off
+
+[Sybase-CT]
+sybct.allow_persistent = On
+sybct.max_persistent = -1
+sybct.max_links = -1
+sybct.min_server_severity = 10
+sybct.min_client_severity = 10
+
+[dbx]
+dbx.colnames_case = &quot;unchanged&quot;
+
+[bcmath]
+bcmath.scale = 0
+
+[browscap]
+;browscap = &quot;c:/Programme/php4/browscap.ini&quot;
+
+[Informix]
+ifx.default_host =
+ifx.default_user =
+ifx.default_password =
+ifx.allow_persistent = On
+ifx.max_persistent = -1
+ifx.max_links = -1
+ifx.textasvarchar = 0
+ifx.byteasvarchar = 0
+ifx.charasvarchar = 0
+ifx.blobinfile = 0
+ifx.nullformat = 0
+
+[Session]
+session.save_handler = files
+;session.save_path = /tmp
+session.use_cookies = 1
+;session.use_only_cookies = 1
+session.name = PHPSESSID
+session.auto_start = 0
+session.cookie_lifetime = 0
+session.cookie_path = /
+session.cookie_domain =
+session.serialize_handler = php
+session.gc_probability = 1
+session.gc_divisor     = 100
+session.gc_maxlifetime = 1440
+session.bug_compat_42 = 1
+session.bug_compat_warn = 1
+session.referer_check =
+session.entropy_length = 0
+session.entropy_file =
+;session.entropy_length = 16
+;session.entropy_file = /dev/urandom
+session.cache_limiter = nocache
+session.cache_expire = 180
+session.use_trans_sid = 0
+url_rewriter.tags = &quot;a=href,area=href,frame=src,input=src,form=,fieldset=&quot;
+
+[MSSQL]
+mssql.allow_persistent = On
+mssql.max_persistent = -1
+mssql.max_links = -1
+mssql.min_error_severity = 10
+mssql.min_message_severity = 10
+mssql.compatability_mode = Off
+;mssql.connect_timeout = 5
+;mssql.timeout = 60
+;mssql.textlimit = 4096
+;mssql.textsize = 4096
+;mssql.batchsize = 0
+;mssql.datetimeconvert = On
+mssql.secure_connection = Off
+;mssql.max_procs = 25
+
+[Assertion]
+;assert.active = On
+;assert.warning = On
+;assert.bail = Off
+;assert.callback = 0
+;assert.quiet_eval = 0
+
+[Ingres II]
+ingres.allow_persistent = On
+ingres.max_persistent = -1
+ingres.max_links = -1
+ingres.default_database =
+ingres.default_user =
+ingres.default_password =
+
+[Verisign Payflow Pro]
+pfpro.defaulthost = &quot;test-payflow.verisign.com&quot;
+pfpro.defaultport = 443
+pfpro.defaulttimeout = 30
+;pfpro.proxyaddress =
+;pfpro.proxyport =
+;pfpro.proxylogon =
+;pfpro.proxypassword =
+
+[Sockets]
+sockets.use_system_read = On
+
+[com]
+;com.typelib_file = 
+;com.allow_dcom = true
+;com.autoregister_typelib = true
+;com.autoregister_casesensitive = false
+;com.autoregister_verbose = true
+
+[Printer]
+;printer.default_printer = &quot;&quot;
+
+[mbstring]
+;mbstring.language = Japanese
+;mbstring.internal_encoding = EUC-JP
+;mbstring.http_input = auto
+;mbstring.http_output = SJIS
+;mbstring.encoding_translation = Off
+;mbstring.detect_order = auto
+;mbstring.substitute_character = none;
+;mbstring.func_overload = 0
+
+[FrontBase]
+;fbsql.allow_persistent = On
+;fbsql.autocommit = On
+;fbsql.default_database = 
+;fbsql.default_database_password =
+;fbsql.default_host =
+;fbsql.default_password =
+;fbsql.default_user = &quot;_SYSTEM&quot;
+;fbsql.generate_warnings = Off
+;fbsql.max_connections = 128
+;fbsql.max_links = 128
+;fbsql.max_persistent = -1
+;fbsql.max_results = 128
+;fbsql.batchSize = 1000
+
+[Crack]
+;crack.default_dictionary = &quot;c:\php\lib\cracklib_dict&quot;
+
+[exif]
+;exif.encode_unicode = ISO-8859-15
+;exif.decode_unicode_motorola = UCS-2BE
+;exif.decode_unicode_intel    = UCS-2LE
+;exif.encode_jis = 
+;exif.decode_jis_motorola = JIS
+;exif.decode_jis_intel    = JIS
+
+------------------------
+LocalSettings.php
+&lt;?php
+
+# This file was automatically generated by the MediaWiki installer.
+# If you make manual changes, please keep track in case you need to
+# recreate them later.
+
+$IP = &quot;D:\\IIS\\wiki-admin&quot;;
+ini_set( &quot;include_path&quot;, &quot;.;$IP;$IP/includes;$IP/languages&quot; );
+require_once( &quot;includes/DefaultSettings.php&quot; );
+
+# If PHP's memory limit is very low, some operations may fail.
+# ini_set( 'memory_limit', '20M' );
+
+if ( $wgCommandLineMode ) {
+	if ( isset( $_SERVER ) &amp;&amp; array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
+		die( &quot;This script must be run from the command line\n&quot; );
+	}
+} elseif ( empty( $wgConfiguring ) ) {
+	## Compress output if the browser supports it
+	if( !ini_get( 'zlib.output_compression' ) ) &#64;ob_start( 'ob_gzhandler' );
+}
+
+$wgSitename         = &quot;WibuAdm&quot;;
+
+$wgScriptPath	      = &quot;&quot;;
+$wgScript           = &quot;$wgScriptPath/index.php&quot;;
+$wgRedirectScript   = &quot;$wgScriptPath/redirect.php&quot;;
+
+## If using PHP as a CGI module, use the ugly URLs
+#$wgArticlePath      = &quot;$wgScript/$1&quot;;
+$wgArticlePath      = &quot;$wgScript?title=$1&quot;;
+
+$wgStylePath        = &quot;$wgScriptPath/skins&quot;;
+$wgStyleDirectory   = &quot;$IP/skins&quot;;
+$wgLogo             = &quot;$wgStylePath/common/images/logo_wibu.gif&quot;;
+
+$wgUploadPath       = &quot;$wgScriptPath/images&quot;;
+$wgUploadDirectory  = &quot;$IP/images&quot;;
+
+$wgEmergencyContact = &quot;administrator&#64;local&quot;;
+$wgPasswordSender	= &quot;administrator&#64;local&quot;;
+
+$wgDBserver         = &quot;localhost:3306&quot;;
+$wgDBname           = &quot;wiki-adm&quot;;
+$wgDBuser           = &quot;wiki-adm&quot;;
+$wgDBpassword       = &quot;********&quot;;
+$wgDBprefix         = &quot;&quot;;
+
+## To allow SQL queries through the wiki's Special:Askaql page,
+## uncomment the next lines. THIS IS VERY INSECURE. If you want
+## to allow semipublic read-only SQL access for your sysops,
+## you should define a MySQL user with limited privileges.
+## See MySQL docs: <a href="http://www.mysql.com/doc/en/GRANT.html">http://www.mysql.com/doc/en/GRANT.html</a>
+#
+# $wgAllowSysopQueries = true;
+# $wgDBsqluser        = &quot;sqluser&quot;;
+# $wgDBsqlpassword    = &quot;sqlpass&quot;;
+
+# If you're on MySQL 3.x, this next line must be FALSE:
+$wgDBmysql4 = $wgEnablePersistentLC = true;
+
+## Shared memory settings
+$wgUseMemCached = false;
+$wgMemCachedServers = array();
+#$wgUseTurckShm = function_exists( 'mmcache_get' ) &amp;&amp; php_sapi_name() == 'apache';
+
+## To enable image uploads, make sure the 'images' directory
+## is writable, then uncomment this:
+$wgDisableUploads		= false;
+$wgUseImageResize		= false;
+# $wgUseImageMagick = true;
+# $wgImageMagickConvertCommand = &quot;/usr/bin/convert&quot;;
+
+## If you have the appropriate support software installed
+## you can enable inline LaTeX equations:
+# $wgUseTeX			= true;
+$wgMathPath         = &quot;{$wgUploadPath}/math&quot;;
+$wgMathDirectory    = &quot;{$wgUploadDirectory}/math&quot;;
+$wgTmpDirectory     = &quot;{$wgUploadDirectory}/tmp&quot;;
+
+$wgLocalInterwiki   = $wgSitename;
+
+$wgLanguageCode = &quot;de&quot;;
+$wgUseLatin1 = false;
+
+
+$wgProxyKey = &quot;171515af7e9439471d5372001ab23ac23a60b3cf49a0564f35bcfc7462ff2119&quot;;
+
+## Default skin: you can change the default skin. Use the internal symbolic
+## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
+# $wgDefaultSkin = 'monobook';
+
+## For attaching licensing metadata to pages, and displaying an
+## appropriate copyright notice / icon. GNU Free Documentation
+## License and Creative Commons licenses are supported so far.
+# $wgEnableCreativeCommonsRdf = true;
+$wgRightsPage = &quot;&quot;; # Set to the title of a wiki page that describes your
+license/copyright
+$wgRightsUrl = &quot;&quot;;
+$wgRightsText = &quot;&quot;;
+$wgRightsIcon = &quot;&quot;;
+# $wgRightsCode = &quot;&quot;; # Not yet used
+
+# Only logged in users are allowed to edit
+$wgWhitelistEdit = true;
+?&gt;
+
+------------------------
+MY.INI (for MySQL 4.0.26)
+[client]
+port=3306
+
+[mysql]
+#default-character-set=utf8
+
+[mysqld]
+port=3306
+basedir=&quot;C:/Programme/MySQL/MySQL Server 4.0/&quot;
+datadir=&quot;D:/MySQL40&quot;
+max_connections=100
+query_cache_size=0
+innodb_data_home_dir=&quot;D:/MySQL40&quot;
+
+[WinMySQLAdmin]
+Server=&quot;C:/Programme/MySQL/MySQL Server 4.0/bin/mysqld-nt.exe&quot;
+
+------------------------
+MY.INI (for MySQL 5.0.19)
+[client]
+port=3308
+
+[mysql]
+default-character-set=utf8
+
+[mysqld]
+port=3308
+basedir=&quot;C:/Programme/MySQL/MySQL Server 5.0/&quot;
+datadir=&quot;D:/MySQL50&quot;
+default-character-set=utf8
+default-storage-engine=INNODB
+sql-mode=&quot;STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&quot;
+max_connections=100
+query_cache_size=0
+innodb_data_home_dir=&quot;D:/MySQL50&quot;
+
+[WinMySQLAdmin]
+Server=&quot;C:/Programme/MySQL/MySQL Server 5.0/bin/mysqld.exe&quot;
+
+------------------------
+Database export:
+mysqldump --port=3306 --protocol=tcp --host=localhost \
+  --add-drop-database --add-drop-table --user=root adm-wiki &gt; adm-wiki.sql
+
+------------------------
+Database import:
+mysql --port=3308 --protocol=tcp --host=localhost \
+  --user=root &lt; adm-wiki.sql
+
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=5328#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-17 12:02:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Some old MySQL or mysqldump problem?
+
+Closing this as INVALID...</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=5328&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=5328">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=5328">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=5328">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=5328&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=5328" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=5328&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419365238-dtqFRBB-0YLHghTNBKy5AqGqr7dHZrBNczKnzgfnLKE">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

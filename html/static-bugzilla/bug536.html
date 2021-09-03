@@ -1,0 +1,1720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 536 &ndash; For pages on watchlist save last seen version number</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=536&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=536">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=536">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=536">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 536 – For pages on watchlist save last seen version number",  
+                             "show_bug.cgi?id=536" );
+        document.title = "Bug 536 – For pages on watchlist save last seen version number";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 536 – For pages on watchlist save last seen version number", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_General_Unknown bz_bug_536 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-03-13 18:06:15 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-03-13 18:06:15">
+  <input type="hidden" name="longdesclength" value="20">
+  <input type="hidden" name="id" value="536">
+  <input type="hidden" name="token" value="1419357468-EeFLUp7neznhwI206E5PiIZE6v4YgeXHeZ2LyQznYOI">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=536"><b>Bug&nbsp;536</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">For pages on watchlist save last seen version number</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>For pages on watchlist save last seen version number
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('For pages on watchlist save last seen version number', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          WONTFIX
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.5.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=536">3 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=536#vote_536">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">T. Gries</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://meta.wikimedia.org/wiki/Email_notification_versions"><span title="http://meta.wikimedia.org/wiki/Email_notification_versions">http://meta.wikimedia.org/wiki/Email_...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Assign lasting ID to latest revision of articles"
+   href="show_bug.cgi?id=181">181</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages"
+   href="show_bug.cgi?id=454">454</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Delete + undelete cycle doesn't preserve old_id"
+   href="show_bug.cgi?id=603">603</a> <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED INVALID - Create a repository for last-visited revisions until they are visited. proposing &quot;LVR&quot; as an acronym for &quot;last-visited-revision&quot;"
+   href="show_bug.cgi?id=804">804</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Indicate whether edits have already been seen on the watchlist and recent changes"
+   href="show_bug.cgi?id=4553">4553</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - ENotif/EConfirm &amp; further enhancements (tracking)"
+   href="show_bug.cgi?id=1932">1932</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Allow watchlist to be sorted by number of edits"
+   href="show_bug.cgi?id=808">808</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=536&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=536">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-20 09:20 UTC by <span class="vcard"><span class="fn">Jens Müller</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-03-13 18:06 UTC 
+      (<a href="show_activity.cgi?id=536">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>6 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="aschulz4587">aschulz4587</option>
+                <option value="brian">brian</option>
+                <option value="bugzillas+padREMOVETHISdu">bugzillas+padREMOVETHISdu</option>
+                <option value="jens">jens</option>
+                <option value="Wiki.Melancholie">Wiki.Melancholie</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=117"
+               title="View the content of the attachment">
+          <b>Enotif 1.33 implements this with a beamy &quot;updated (since my last visit)&quot; marker</b></a>
+
+          <span class="bz_attach_extra_info">
+              (28.53 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_117"
+               title="Go to the comment associated with the attachment">2004-10-30 17:56 UTC</a>,
+
+            <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=117&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=536&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jens Müller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-20 09:20:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would be nice if (at least) for pages on the watch list, MediaWiki would
+store per-user information about what specific version this user last saw.
+
+Update of this information might happen if the user specifically requests it,
+and not every time he visits that page.
+
+This would make possible a new kind of watch list view: sorted by the  number of
+times that page has been updated since the user last inspected it.
+
+There should be a link on that watchlist page which shows the diff between the
+stored version number and the current version that at the same time updates the
+information in the database (see paragraph 2).
+
+This would make the watchlist much more useful.
+
+For privacy reasons, each user should have to explicitly activate that feature,
+because the information which version of a page (and thus, when) he visited is
+sensitive personal information.
+
+This depends on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Assign lasting ID to latest revision of articles"
+   href="show_bug.cgi?id=181">bug #181</a> because the ID of the current version needs to be stored.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 14:13:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This (or at least the &quot;diff to last seen&quot; link) is apparently implemented as
+part of the &quot;ENotif&quot; patch (see <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages"
+   href="show_bug.cgi?id=454">bug 454</a>). Also, note that the privacy issue
+seems to me a non-issue, since the entire watchlist is only visible when logged
+in - i.e. nobody but you can see what you're watching, let alone when you last
+visited it.
+
+[Marking <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages"
+   href="show_bug.cgi?id=454">bug 454</a> as a dependency, since that seems the most appropriate
+relationship available.]</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 17:01:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I only want to suggest and to introduce the abbreviation &quot;LVR&quot; or (lvr) which
+stands for &quot;last visited revision&quot;.
+
+This would facilitate my further program development (enotif =
+<a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=454">http://bugzilla.wikipedia.org/show_bug.cgi?id=454</a> ), in which I can simply(!)
+add a THIRD link in the recent changes, page history and watchlist views
+(currently for WATCHLISTed pages only, as Enotif only keeps track of pages in
+the watchlist of somebody, and of user_talk pages).
+
+A suggested slightly modified RC line could look like this example:
+
+   (diff)(hist)(diff-this-to-lvr) page_title_of_a_watched_page(this revision)
+pageeditor(talk) .......
+
+
+(diff-to-lvr) is self-explaining, isn't it ? It shows a watching user(=you) the
+difference between this revision and your (lvr).
+
+Be reminded, that Enotif &gt; 1.32 mails are already(!) sent out with a direct link
+to the (diff-cur-to-lvr), the difference view between the current (cur) version
+of a page and your (lvr).
+
+So if you are interested in trying this feature, download my Enotif 1.33. This
+nice feature was proposed to me by Chris Phoenix and it was easy to implement.
+
+Tom
+
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 17:53:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I added a link to my two screenshots (RC view and Page History) on one of the
+Enoitf documentation pages
+<a href="http://meta.wikimedia.org/wiki/Email_notification_versions">http://meta.wikimedia.org/wiki/Email_notification_versions</a> , so that you can see
+it without actually installing Enotif now.
+
+The screenshots show in reality, not as a mock-up, the so-called &quot;updated (since
+my last visit)&quot; markers - which tell the watching user what revisions bear new
+contents. Again: these flags are only shown for watch-listed pages.
+
+Thus everyone will understand, that the (lvr) - last visted revision - is just
+the version *before* the updated marker starts provoking you reyes. (The actual
+layout of the marker can be changed - this beamy layout is just a beginning).
+Enotif knows the (lvr) revision and sends you a link with the enotif mail.
+
+Everyone can make use of the updated markers, because these are shown
+*independently* from sending enotif mails to you. For example, you can have all
+enotif mails disabled in your user preferences (you will never get enotif mails
+on page changes), but you will see the updated markers for the not-yet-visited
+revisions of watched pages. Once you visit the current version, the
+corresponding marker is cleared. A further page change of someone else would
+trigger again an(one) Enotif mail to you - but only if you have enotif mail
+enabled - and an &quot;updated&quot; marker is shown again.
+
+If you don't want to see the updated markers at all, you can disable these in
+other user preference option. The markers also work smoothly in the so-called
+Enhanced RC view.
+
+The mechanism and option of Enotif are explained on
+<a href="http://meta.wikipedia.org/Enotif">http://meta.wikipedia.org/Enotif</a> (I repeat myself, pls. apologise).
+Tom
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 17:56:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=117" name="attach_117" title="Enotif 1.33 implements this with a beamy &quot;updated (since my last visit)&quot; marker">attachment 117</a> <a href="attachment.cgi?id=117&amp;action=edit" title="Enotif 1.33 implements this with a beamy &quot;updated (since my last visit)&quot; marker">[details]</a></span>
+Enotif 1.33 implements this with a beamy &quot;updated (since my last visit)&quot; marker
+
+The updated markers of Enotif 1.33 are not only shown in the page history view
+as in the accompanying screenshot, but are also shown on the recent changes
+view and the *watchlist*, as suggested in this bugzilla-536 title.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 18:00:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I took over to implement this. Easy (trivial) with Enotif. Tom</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 18:04:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(is it okay, that I assigned this to me, and that I put <a href="mailto:wikibugs-l&#64;wikipedia.org">wikibugs-l&#64;wikipedia.org</a>
+into the CC ?)</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 22:06:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Introducing an incomprehensible acronym is not a good idea.
+</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-30 23:49:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >You are too pushy for me, when you simply delete another point of view. Please
+tell me and the community a better acronym instead of simply deleting my
+proposal, thanks. We already have (hist) and (diff), so we need a short and
+better name for such links, which are proposed by very kind and friendly
+proposers. What is your proposal, I kindly ask. 
+
+My proposal - now withdrawn - was : (last-visited-revision) or short: (lvr)
+
+Any recent page line could have - according to MY PERSONAL POINT OF VIEW - these
+three links
+
+   (hist) (diff) (lvr)
+
+On any RC page footer, a short explanation would explain even the short-sighted
+users that (lvr) stands for (last-visited-revision)
+If you have any better proposal, I am looking forward to it. Any proposal will
+be better than simply a NO-PROPOSAL by deleting something.
+
+I KINDLY invite all members of the wikibugs-list to come up with a CUTE proposal
+for a shorter name for such links. I fully understand, that I cannot butcher the
+RC view or other view with a personally introduced name. This is also not my
+intention, and I and Jens Müller need all your help.
+
+So repeated again:
+Please all native English speakers and others, please contribute a cute and
+short name for such links
+
+(diff) (hist) (YOUR PROPOSAL)
+
+
+
+
+</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-31 00:01:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >bugzilla536 title addition deleted by the proposer(myself) to avoid any flaming
+here. I need to work with it today.
+
+Again: be courageous and tell me your proposal for a short and concise name for
+links (in Recent Changes View), which unambiguously describe even for dumb users
+a link to the &quot;last seen version number&quot; or how I call it, the &quot;last visited
+revision&quot;. 
+
+   (hist) (diff) (??????) Page_title
+
+I like both names, but we need something SHORT to be put onto the restricted
+area of the recent page view page.
+
+My ad-hoc proposal: (lvr) plus an explanation on every page, that lvr stands for
+&quot;last visited revision&quot;.
+If you have a better one: please let me know.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-31 00:23:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tom, there are several big problems with abbreviations and acronyms.
+
+First, they are confusing for newbies and non-native speakers, to whom the terms may be completely unclear. A little message squirreled 
+away on the page will generally not be read.
+
+Second, there's an internationalization issue: these terms need to be translated for each language the interface is presented in. When new 
+ones are added, this creates a maintenance burden as the terms must be translated into many languages. Every language needs to come up 
+with not only a term, but a legible abbreviation of it; there may be significant variations in the length of the chosen translation which affects 
+the layout of the user interface (see next).
+
+Third, all this has to be fit into the user interface. Especially when page titles, usernames, or comments are very long, this can end up 
+producing a list that's very hard to read, as text haphazardly breaks and wraps. Adding new things to the output makes it progressively worse.
+
+Please don't think that we all hate you personally; rather consider the general problem.
+</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-16 19:49:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All enotif versions &gt; 1.33 have this implemented: a beamy &quot;updated (since my
+last visit)&quot; marker
+
+The updated markers are not only shown in the page history view as in the
+accompanying screenshot, but are also shown on the recent changes view and the
+*watchlist*, as suggested in this bugzilla-536.
+
+I can only repeat, that interested users should check out my new Enotif 2.00 for
+CVS 1.5 see <a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=454">http://bugzilla.wikipedia.org/show_bug.cgi?id=454</a> (use the latest
+tgz file in my latest comment. The diff files do not have all additional update
+files in it, because diff does not store or compare my local files, which were
+not in the CVS)
+
+</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-18 10:52:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >( implementation detail for interested readers:
+because there are no &quot;sticky version&quot; numbers yet which survive delete/undelete
+cycles - see other bugzillas - its implemented indirectly via the
+wl_notificationtimestamp in table watchlist, which stores the **time**, when a
+user has got a notification email for a page change of another user. The version
+of a page exactly before that timestamp is the &quot;last visited revsion (lvr)&quot; of
+that page, for this watching user. )</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-19 08:10:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >-- this is fixed using a timestamp (not using a sticky version number). COuld be
+regarded as closed -&gt; close.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-12-19 15:26:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I reopened this. 
+
+There was a recent comment to <a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=603">http://bugzilla.wikipedia.org/show_bug.cgi?id=603</a>
+(delete/undelete cycle doesn't preserce old_id) which bug I have overlooked when
+closing the 536.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-25 01:40:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I am currently working and have almost finished the implementation of a direct
+link to the
+
+   (diff-to-last-visited-revision)  short: diff-to-lvr
+
+of watched pages. This is just another valuable exploit of my ENotif patch
+<a href="http://bugzilla.wikipedia.org/show_bug.cgi?id=454">http://bugzilla.wikipedia.org/show_bug.cgi?id=454</a> ; it requires a new column
+wl_lastvisitedrevision (lvr) in the database table watchlist. I have already
+written the necessary conditional database updating code for the updaters.inc
+module.
+
+Implementation detail: the lvr is already retrieved during page views of watched
+pages and since now stored together with the ENotif timestamp in the new
+separate database column.
+
+People who are interested in this patch can ask me for the diff of my patch.
+
+The new (diff-to-lvr) links are only shown for one's watched pages, because only
+watched pages have entries in table watchlist to cache the &quot;old_id&quot;. Old_ids
+currently do not survive delete/undelete cycles, but this will change at some
+later time; the patch is working fine as long as the old_id is not changed,
+which is the case if no delete/undelete cycles are performed.
+
+As with ENotif, only &quot;alien&quot; changes influence these links; if there is an
+&quot;updated (since my last visit)&quot; marker, than a (diff-to-lvr) makes sense and is
+shown; otherwise none of the latter are shown. It means for a watching user:
+there are no unknown changes on this watched page. 
+
+The patch works independently from the user options of enabling or disabling the
+ENotif mails to be sent. With other words, you might choose never to receive
+ENotif mails but you see the &quot;updated&quot; markers and (diff-to-lvr) links on
+not-yet-visited pages you are watching.
+
+(Lengthy, but hopefully clear explanation.)
+
+Wikinaut Tom</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">T. Gries</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-26 00:34:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Implementation of this enhancement needs one additional field in table watchlist.
+
+ALTER TABLE /*$wgDBprefix*/watchlist ADD (wl_lastvisitedrevision int(10)
+unsigned NOT NULL default '0');
+
+The patch is short and will be published including the updaters.inc script soon.
+A third link is shown - in addition to (diff) (hist) links on Recent Changes
+views - for those pages, which are _watched_. This third link brings you
+directly to the difference view of the diff(current ./. your last visited revision).
+
+It was a long-felt need of many users.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-03-23 01:12:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=536#c1">comment #1</a>)
+<span class="quote">&gt; This (or at least the &quot;diff to last seen&quot; link) is apparently implemented aspart of the &quot;ENotif&quot; patch (see bug </span >
+454). Also, note that the privacy issueseems to me a non-issue, since the entire watchlist is only visible when 
+loggedin - i.e. nobody but you can see what you're watching, let alone when you lastvisited it.[Marking <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED FIXED - E-mail notification (EN) for page changes of watch-listed pages, user_talk page, and for new pages"
+   href="show_bug.cgi?id=454">bug 454</a> as a 
+dependency, since that seems the most appropriaterelationship available.]
+
+I think there are plenty of people who will not think that this is a non-issue. The issue we normally look at is not 
+who is *supposed* to have access to this information (security could be better - using HTTPS, for example), but 
+rather whether another person or organisation is collecting the information.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Jason Drake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-06 01:10:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=536#c17">comment #17</a>)
+
+This is probably the wrong place to discuss this, but just to clear up the previous comment, which was a little confusing...
+
+What I meant was: I think there are plenty of people who will think that collecting personal information *is* an issue, even if no humans are supposed to have access to that information. I also mentioned that it would be better to use HTTPS (to be fair, they do have a secure server, but I'm suggesting that certain pages be secure by default without having to manually type in an address starting with &quot;https&quot;).
+
+There's also the issue not mentioned before, which is that developers do have access to personal information.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=536#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-17 22:19:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Assumes that rev_id is in order. Due to merges/imports, timestamps are better.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=536&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=536">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=536">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=536">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=536&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=536" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=536&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357468-6q6-KJ0HpaUJkyuJXtTZr3QtYkVphc-SQqres6h_PrI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

@@ -1,0 +1,2728 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4295 &ndash; Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4295&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4295">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4295">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4295">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4295 – Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer",  
+                             "show_bug.cgi?id=4295" );
+        document.title = "Bug 4295 – Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4295 – Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_4295 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2012-02-22 12:35:15 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2012-02-22 12:35:15">
+  <input type="hidden" name="longdesclength" value="43">
+  <input type="hidden" name="id" value="4295">
+  <input type="hidden" name="token" value="1419363373-ibkGOE5Sj6ey9hGMOUDnF68D_7Q6HTV4eJWE-H-qlkM">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4295"><b>Bug&nbsp;4295</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer">Article categorisation links unclickable when viewing categories with true Bi...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">PC
+       Windows XP
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=4295">2 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4295#vote_4295">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks"><span title="http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks">http://ar.wikipedia.org/w/index.php?o...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">testme
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Internet Explorer (IE) issues on Windows (tracking)"
+   href="show_bug.cgi?id=640">640</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - links are not properly rendered in a BiDi category list"
+   href="show_bug.cgi?id=3922">3922</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4295&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4295">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-12-16 06:15 UTC by <span class="vcard"><span class="fn">rami</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2012-02-22 12:35 UTC 
+      (<a href="show_activity.cgi?id=4295">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>5 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="gangleri">gangleri</option>
+                <option value="jon.mader">jon.mader</option>
+                <option value="niklas.laxstrom">niklas.laxstrom</option>
+                <option value="rami">rami</option>
+                <option value="siebrand">siebrand</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">Internet Explorer</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_image_jpeg">
+        <td valign="top">
+            <a href="attachment.cgi?id=1204"
+               title="View the content of the attachment">
+          <b>screen dump for bug 04295</b></a>
+
+          <span class="bz_attach_extra_info">
+              (61.18 KB,
+                image/jpeg)
+
+            <br>
+            <a href="#attach_1204"
+               title="Go to the comment associated with the attachment">2005-12-17 00:37 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1204&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_image_jpeg">
+        <td valign="top">
+            <a href="attachment.cgi?id=1205"
+               title="View the content of the attachment">
+          <b>second screen dump for bug 04295 - sample at a LTR wiki</b></a>
+
+          <span class="bz_attach_extra_info">
+              (34.73 KB,
+                image/jpeg)
+
+            <br>
+            <a href="#attach_1205"
+               title="Go to the comment associated with the attachment">2005-12-17 01:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1205&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=1213"
+               title="View the content of the attachment">
+          <b>Screenshot for IE with Arabic support</b></a>
+
+          <span class="bz_attach_extra_info">
+              (217.44 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_1213"
+               title="Go to the comment associated with the attachment">2005-12-19 13:07 UTC</a>,
+
+            <span class="vcard"><span class="fn">Hicham MAGED</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1213&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_image_png">
+        <td valign="top">
+            <a href="attachment.cgi?id=1216"
+               title="View the content of the attachment">
+          <b>Second Screenshot for IE with Arabic support</b></a>
+
+          <span class="bz_attach_extra_info">
+              (208.17 KB,
+                image/png)
+
+            <br>
+            <a href="#attach_1216"
+               title="Go to the comment associated with the attachment">2005-12-19 21:18 UTC</a>,
+
+            <span class="vcard"><span class="fn">Hicham MAGED</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1216&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_html">
+        <td valign="top">
+            <a href="attachment.cgi?id=1232"
+               title="View the content of the attachment">
+          <b>html without class=&quot;new&quot;</b></a>
+
+          <span class="bz_attach_extra_info">
+              (1.12 KB,
+                text/html)
+
+            <br>
+            <a href="#attach_1232"
+               title="Go to the comment associated with the attachment">2005-12-24 13:13 UTC</a>,
+
+            <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1232&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=4295&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">rami</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 06:15:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In Arabic wikipedia pages. Once a Category in a page includes a numbers, all 
+Categories in that page will not be accessible. This problem prevents us from 
+putting birth and death dates Categories. And is a major problem in the years 
+articles. 
+
+examples (any pages with numbers in Categories):
+
+<a href="http://ar.wikipedia.org/wiki/%D8%A5%D8%B3%D8%AD%D9%82_%D9%86%D9%8A%D9%88%D8%AA%D9%86">http://ar.wikipedia.org/wiki/%D8%A5%D8%B3%D8%AD%D9%82_%D9%86%D9%8A%D9%88%D8%AA%D9%86</a>
+
+<a href="http://ar.wikipedia.org/wiki/%D8%A3%D9%84%D9%8A%D8%B3%D8%A7%D9%86%D8%AF%D8%B1%D9%88_">http://ar.wikipedia.org/wiki/%D8%A3%D9%84%D9%8A%D8%B3%D8%A7%D9%86%D8%AF%D8%B1%D9%88_</a>%
+D8%B3%D9%83%D8%A7%D8%B1%D9%84%D8%A7%D8%AA%D9%8A
+
+<a href="http://ar.wikipedia.org/wiki/%D8%AC%D9%8A%D9%88%D8%B3%D9%8A%D8%A8%D9%8A_%D9%81%D9%8A">http://ar.wikipedia.org/wiki/%D8%AC%D9%8A%D9%88%D8%B3%D9%8A%D8%A8%D9%8A_%D9%81%D9%8A</a>%
+D8%B1%D8%AF%D9%8A
+
+This problem was found on systems with Windows XP ( all versions ) using Internet 
+Explorer. 
+
+FireFox did not suffer from this problem on Windows XP.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 07:18:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Could you explain what you mean by, &quot;not accessible&quot; - what happens when you try
+to load the category page under IE? Do subcategories not get displayed; does
+nothing render - what is the symptom that prompted you to file the bug?</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">rami</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 07:44:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c1">comment #1</a>)
+<span class="quote">&gt; Could you explain what you mean by, &quot;not accessible&quot; - what happens when you </span >
+tryto load the category page under IE? Do subcategories not get displayed; 
+doesnothing render - what is the symptom that prompted you to file the bug?
+
+The categories are rendered on the screen, but you can not click the link, it is 
+as there were no links there. Just the text.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">rami</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 07:56:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >please note. The problem is ont in the category page it is in the article pages, 
+at the category section.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 08:03:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >will need to leave - small summary:
+
+CONFIRM: I can not click on the links at
+<a href="http://ar.wikipedia.org/wiki/%D8%A3%D9%84%D9%8A%D8%B3%D8%A7%D9%86%D8%AF%D8%B1%D9%88_">http://ar.wikipedia.org/wiki/%D8%A3%D9%84%D9%8A%D8%B3%D8%A7%D9%86%D8%AF%D8%B1%D9%88_</a>%
+D8%B3%D9%83%D8%A7%D8%B1%D9%84%D8%A7%D8%AA%D9%8A with IE but I can wift FF.
+
+not able to click on links:
+compare with
+<a href="http://landfill.bugzilla.org/bugzilla-tip/show_bug.cgi?id=3242">http://landfill.bugzilla.org/bugzilla-tip/show_bug.cgi?id=3242</a>
+<a href="http://yi.wiktionary.org/wiki/%D7%91%D7%99%D7%9C%D7%93:Redirect_arrow_rtl_without_text.png">http://yi.wiktionary.org/wiki/%D7%91%D7%99%D7%9C%D7%93:Redirect_arrow_rtl_without_text.png</a>
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 08:04:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Confirmed. Checking the source under IE, it appears that these are sent as
+links, but the browser isn't rendering them as links, so to speak - clicking on
+them doesn't work.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">rami</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 15:51:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I already checked the html source; I couldn't see any thing out of order there. 
+So should we remove all numbers for now or leave them? We are thinking of a 
+template solution that will handle the categories, remove the numbers now and 
+add them later when thing are fixed, most of the articles with this problem have 
+a box template within(for the photos, dates and so), and the categories, can be 
+set in that templates, with the dates taken from the data already in the box. 
+But is it worth it, I mean the effort to change, if things are to be solved 
+soon, then there is no need. And how would that affect the servers 
+load!!!!!!!!!!!</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-16 16:11:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, the HTML comes out as being a link, and the browser should be rendering it,
+and indeed, Firefox does. IE seems to stumble and doesn't bother acknowledging
+the link, which is rather a large bug on Microsoft's part...</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 00:35:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hallo!
+
+shortened url (using <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - restructure the code to evaluate ?title=foo&amp;oldid=nnnn ; allow ?oldid=nnnn without title"
+   href="show_bug.cgi?id=3957">bug 3957</a>) to
+<a href="http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks</a>
+
+changed summary from
+Arabic wikipedia. Major Categories problem
+to
+BiDi: unable to click on some category links using IE
+
+*workarounds* for rami's url
+1) <a href="http://ar.wikipedia.org/w/index.php?oldid=124686#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124686#catlinks</a>
+2) <a href="http://ar.wikipedia.org/w/index.php?oldid=124742#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124742#catlinks</a>
+3) <a href="http://ar.wikipedia.org/w/index.php?oldid=124743#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124743#catlinks</a>
+
+testcases at
+<a href="http://ar.wikipedia.org/w/index.php?title=user:Gangleri/tests/bugzilla/04295&amp;action=history">http://ar.wikipedia.org/w/index.php?title=user:Gangleri/tests/bugzilla/04295&amp;action=history</a>
+
+There are many odd things:
+1) see the category &quot;Bugzilla/04295&quot; at
+<a href="http://ar.wikipedia.org/w/index.php?oldid=124603#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124603#catlinks</a>
+1a) if you use IE and move the mouse over *Bugzilla/042* will not allow you to
+see / select the link but if you move the mouse over *95* you can select that link
+1b) please tray to mark &quot;Bugzilla/04295&quot; with the mouse
+screen dump will follow with the next attachment
+
+I did not analyse all the issues. This problem might relate to the fix of
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - links are not properly rendered in a BiDi category list"
+   href="show_bug.cgi?id=3922">bug 3922</a>: links are not properly rendered in a BiDi category list
+and how the BiDi algorithm in IE renders that page.
+I have seen already somthing what I would call &quot;internal browser optimisation of
+the BiDi algorithm&quot; which fails in FF.
+
+Please tray to identify if there is a related bug report in the IE bug tracking
+system and add a link in a comment for this bug.
+
+*about the workaround*
+If the category links do not render properly you may add stepwise categories as
+&quot;dummy1&quot;, &quot;dummy2&quot;, ... &quot;dummyn&quot; until it is possible to click on the &quot;relevant&quot;
+links on your page. Don't ask me why this works. It look odd but it might be a
+start.
+The &quot;unable to click on category links using IE&quot; problem should not mather if
+the category exists or not.
+
+changing product to Mediawiki
+other sites are affected as well as
+<a href="http://www.dh-br.net/wiki/index.php?title=user:Gangleri/tests/bugzilla/04295&amp;oldid=1284">http://www.dh-br.net/wiki/index.php?title=user:Gangleri/tests/bugzilla/04295&amp;oldid=1284</a>
+
+changing component to &quot;Page rendering&quot; (it should not be specific to &quot;Categories&quot;)
+As this bug report describes an issue related to IE it might be marked as
+INVALID. However as soon as we know a workaround this can be implemented in
+MediaWiki.
+
+*todos*
+rami please make a test using &quot;real&quot; arabic numbers not 0, 1, ... 9. How will
+this work?
+
+Best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 00:37:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1204" name="attach_1204" title="screen dump for bug 04295">attachment 1204</a> <a href="attachment.cgi?id=1204&amp;action=edit" title="screen dump for bug 04295">[details]</a></span>
+screen dump for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer"
+   href="show_bug.cgi?id=4295">bug 04295</a></pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 01:21:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1205" name="attach_1205" title="second screen dump for bug 04295 - sample at a LTR wiki">attachment 1205</a> <a href="attachment.cgi?id=1205&amp;action=edit" title="second screen dump for bug 04295 - sample at a LTR wiki">[details]</a></span>
+second screen dump for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer"
+   href="show_bug.cgi?id=4295">bug 04295</a> - sample at a LTR wiki
+
+Please see
+<a href="http://test.leuksman.com/index.php?oldid=10686#catlinks">http://test.leuksman.com/index.php?oldid=10686#catlinks</a>
+
+a) see the space inside the category links
+   compare with <a href="http://de.wikipedia.org/wiki/Albert_Einstein#catlinks">http://de.wikipedia.org/wiki/Albert_Einstein#catlinks</a>
+b) you can click on the arabic letters
+c) you can not click on the numbers</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 01:38:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >sourcecode from: <a href="http://test.leuksman.com/index.php?oldid=10686#catlinks">http://test.leuksman.com/index.php?oldid=10686#catlinks</a>
+
+&lt;div id=&quot;catlinks&quot;&gt;&lt;p class='catlinks'&gt;&lt;a
+href=&quot;/index.php?title=Special:Categories&amp;amp;article=%D8%A5%D8%B3%D8%AD%D9%82_%D9%86%D9%8A%D9%88%D8%AA%D9%86&quot;
+title=&quot;Special:Categories&quot;&gt;Categories&lt;/a&gt;: &lt;span dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D8%B1%D9%8A%D8%A7%D8%B6%D9%8A%D8%A7%D8%AA%D9%8A%D9%88%D9%86&quot;
+class=&quot;new&quot; title=&quot;Category:رياضياتيون&quot;&gt;رياضياتيون&lt;/a&gt;&lt;/span&gt; | &lt;span
+dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A6%D9%8A%D9%88%D9%86&quot;
+class=&quot;new&quot; title=&quot;Category:فيزيائيون&quot;&gt;فيزيائيون&lt;/a&gt;&lt;/span&gt; | &lt;span dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D9%88%D9%86&quot;
+class=&quot;new&quot; title=&quot;Category:إنجليزيون&quot;&gt;إنجليزيون&lt;/a&gt;&lt;/span&gt; | &lt;span dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D9%85%D9%88%D8%A7%D9%84%D9%8A%D8%AF_1642&quot; class=&quot;new&quot;
+title=&quot;Category:مواليد 1642&quot;&gt;مواليد 1642&lt;/a&gt;&lt;/span&gt; | &lt;span dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D9%88%D9%81%D9%8A%D8%A7%D8%AA_1727&quot; class=&quot;new&quot;
+title=&quot;Category:وفيات 1727&quot;&gt;وفيات 1727&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+
+what does not render properly in IE:
+&lt;span dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D9%85%D9%88%D8%A7%D9%84%D9%8A%D8%AF_1642&quot; class=&quot;new&quot;
+title=&quot;Category:مواليد 1642&quot;&gt;مواليد 1642&lt;/a&gt;&lt;/span&gt; | &lt;span dir='ltr'&gt;&lt;a
+href=&quot;/edit/Category:%D9%88%D9%81%D9%8A%D8%A7%D8%AA_1727&quot; class=&quot;new&quot;
+title=&quot;Category:وفيات 1727&quot;&gt;وفيات 1727&lt;/a&gt;&lt;/span&gt;
+
+Brion please tray to generate at FiverAlpha the following:
+
+&lt;a href=&quot;/edit/Category:%D9%85%D9%88%D8%A7%D9%84%D9%8A%D8%AF_1642&quot; class=&quot;new&quot;
+title=&quot;Category:
+&lt;span dir='ltr'&gt;
+مواليد 1642
+&lt;/span&gt;&quot;&gt;
+&lt;span dir='ltr'&gt;
+مواليد 1642
+&lt;/span&gt;
+&lt;/a&gt; | &lt;a href=&quot;/edit/Category:%D9%88%D9%81%D9%8A%D8%A7%D8%AA_1727&quot; class=&quot;new&quot;
+title=&quot;Category:
+&lt;span dir='ltr'&gt;
+وفيات 1727
+&lt;/span&gt;&quot;&gt;
+&lt;span dir='ltr'&gt;
+وفيات 1727
+&lt;/span&gt;
+&lt;/a&gt;
+
+Thanks in advance!</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 02:00:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c8">comment #8</a>)
+<span class="quote">&gt; Hallo!
+&gt; 
+&gt; shortened url (using <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - restructure the code to evaluate ?title=foo&amp;oldid=nnnn ; allow ?oldid=nnnn without title"
+   href="show_bug.cgi?id=3957">bug 3957</a>) to
+&gt; <a href="http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks</a></span >
+
+Why bother? It was fine as it was, and we could see from the URL that the page
+had distinct properties such as RTL and/or what I term &quot;exotic&quot; characters in
+the title.
+
+As it stands, a simple and more or less diagnosed and explored bug is now a
+total mess.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 02:26:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c12">comment #12</a>)
+
+<span class="quote">&gt; Why bother? It was fine as it was, and we could see from the URL that the page
+&gt; had distinct properties such as RTL and/or what I term &quot;exotic&quot; characters in
+&gt; the title.
+&gt; 
+&gt; As it stands, a simple and more or less diagnosed and explored bug is now a
+&gt; total mess.</span >
+
+Regarding the second and third url from <a href="show_bug.cgi?id=4295#c1">comment 1</a>: For me that url is not
+clickable because of the page rendering in MediaZill (wrap areounds).
+Referencing with &quot;shortened url&quot; inside comments makes live easier because you
+can click on them. Long url's are unclickable also in the emails spread with
+&quot;bugzilla-daemon at mail.wikimedia.org&quot;.
+
+I agree that removing title in the URL is not necessary. However it is necessary
+to reference with &quot;oldid&quot; because the page can change. Please note that the
+generated email &quot;[<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Article categorisation links unclickable when viewing categories with true BiDi names in Internet Explorer"
+   href="show_bug.cgi?id=4295">Bug 4295</a>]  New: Arabic wikipedia. Major Categories problem&quot;
+does not contain the URL. (That configuration should be changed.) Using &quot;shorted
+url's&quot; from the begining (when opening a bug / request) allows you / all to
+click this url directly in bugzilla-daemon emails.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 02:40:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c13">comment #13</a>)
+
+All excellent points. Concedo.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-17 20:41:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bug confirmed still present in IE7 as of Windows Vista beta build 5321.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hicham MAGED</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 13:07:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1213" name="attach_1213" title="Screenshot for IE with Arabic support">attachment 1213</a> <a href="attachment.cgi?id=1213&amp;action=edit" title="Screenshot for IE with Arabic support">[details]</a></span>
+Screenshot for IE with Arabic support</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hicham MAGED</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 13:15:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hello Everybody
+
+1st of all, I'd known about this bug from the Arabic Wikipedia. Well, I'm just a
+normal PC user without any experiences in programming or this stuff, however I
+don't have this problem in my PC. I think this bug is related either to IE
+without Arabic support, or to something else, like not applying a special IE
+patch - like Service Pack 2 for example. I can'd determine which is which.
+
+I'd uploaded an attachement (Screenshot for IE with Arabic support) and it shows
+that everything is running smoothly; either for &quot;cliking the links&quot; or the
+&quot;numbers&quot;. I'm running WindowsXP and have IE with SP2.
+
+I hope this information and this screenshot might be useful for the developers.
+All my best wishis
+
+Salam,
+Hicham</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 13:58:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Actually, your screenshot doesn't show anything that doesn't come up when I view
+the page in IE either. The problem is that IE seems to render the links as links
+(blue, underline etc.) but won't let you _click_ on the damn things.
+
+If you can confirm, however, that IE with Arabic support installed doesn't have
+this problem, do post back, as installing that support might be the workaround
+the original users need.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 18:58:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c16">comment #16</a>)
+<span class="quote">&gt; Created an attachment (id=1213) [edit]
+&gt; Screenshot for IE with Arabic support</span >
+
+Hallo Achmed!
+
+The url from your screenshot is the recent revision. I fixed that revision
+adding the red links.
+Can you click both on the blue category links *and* the red links? Can you click
+on the links *at* <a href="http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks">http://ar.wikipedia.org/w/index.php?oldid=124517#catlinks</a> ?
+
+I do not know what &quot;IE with Arabic support&quot; is. I use XP SP 2. In my
+&quot;systempanel&quot; &gt; &quot;regional an language options&quot; I activated both &quot;install files
+for languages with complex characters and characters with right to left writing
+(including Thai)&quot; and &quot;install files for languages from East Asia&quot;. I installed
+all Arabic languages in IE and activated Arabic fonts. (My user interface is
+German and my translation is probably not what you will see on your computer.)
+
+The error is still there. IE Version 6.0.2900.2180.xpsp_xp2_gdr.050301-1519
+
+Please note that the numbers have LTR direction. The problematic categories
+contain both RTL *and* LTR characters. These categories will fail also at 
+<a href="http://test.leuksman.com/index.php?oldid=10686#catlinks">http://test.leuksman.com/index.php?oldid=10686#catlinks</a>
+
+See also
+<a href="http://test.leuksman.com/index.php?oldid=10717#catlinks">http://test.leuksman.com/index.php?oldid=10717#catlinks</a> where 4 dummy links have
+been added. Use IE and &quot;scan&quot; &quot;Dummy4&quot; with the mouse. I see the &quot;title&quot; while
+moving the mouse over any character of &quot;Dummy4&quot; but at I can click only on &quot;Du&quot;.
+
+(In reply to <a href="show_bug.cgi?id=4295#c13">comment #13</a>)
+Our task is to find a workaround. In the fix from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - links are not properly rendered in a BiDi category list"
+   href="show_bug.cgi?id=3922">bug 3922</a> we embeded the
+category links according to the direction of the content language. The test from
+<a href="show_bug.cgi?id=4295#c13">comment 13</a> would be to see what happens if we embed both the &quot;title&quot; *and* the
+Category:page according to the direction of the content language. Good luck!</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hicham MAGED</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 21:18:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1216" name="attach_1216" title="Second Screenshot for IE with Arabic support">attachment 1216</a> <a href="attachment.cgi?id=1216&amp;action=edit" title="Second Screenshot for IE with Arabic support">[details]</a></span>
+Second Screenshot for IE with Arabic support
+
+Salam Everybody
+Salam Rob Church
+
+Well, I'd uploaded new a version for tje screenshot (Second Screenshot with IE
+Arabic support). It's clear that the blue normal links - as shown in the
+screenshot - are clickable, however the &quot;Dummy1 ~ Dummy4&quot; are not clickable at
+all, as if they are not extist. IE seems to teat them - the red Dummy links as
+if they are part of a background image, that's the nearest example i can tell.
+
+Actualy I didn't notice that I'd not hover on the links on the first
+screenshot. Anyway, as i told before, I'm running WindowsXP + SP2.
+
+I hope this's usefull for all of you.
+
+Salam,
+Hicham</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-19 21:52:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Salam Hicham
+
+Thanks for the screenshot and the detailed information. It helped a lot.
+Now I added 5 links. You will see that you can click with IE on the links
+&quot;Dummy1 ~ Dummy4&quot; now, you will not be able to cklick at &quot;Du&quot; from &quot;Dummy5&quot; but
+only at &quot;ummy5&quot;
+You will not be able to click on &quot;Dummy6 ~ Dummy9&quot;. This is the bug. It does not
+depend on the color.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-20 00:01:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please note that all category links from the articles in the categories
+consisting of with years and Hebrew characters are broken also. You may find
+some of them at:
+<a href="http://he.wikipedia.org/wiki/special:Allpages/%D7%90%D7%9C%D7%91%D7%95%D7%9E%D7%99?namespace=14">http://he.wikipedia.org/wiki/special:Allpages/%D7%90%D7%9C%D7%91%D7%95%D7%9E%D7%99?namespace=14</a>
+see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3AThe_Piper_at_the_Gates_of_Dawn">he:The_Piper_at_the_Gates_of_Dawn</a>]]
+<a href="http://he.wikipedia.org/wiki/special:Allpages/%D7%90%D7%A0%D7%A9%D7%99_%D7%94%D7%9E%D7%90%D7%94_%D7%94?namespace=14">http://he.wikipedia.org/wiki/special:Allpages/%D7%90%D7%A0%D7%A9%D7%99_%D7%94%D7%9E%D7%90%D7%94_%D7%94?namespace=14</a>
+see [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3A%D7%98%D7%99%D7%98%D7%95%D7%A1_%D7%9C%D7%99%D7%95%D7%95%D7%99%D7%95%D7%A1">he:טיטוס_ליוויוס</a>]]
+
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=he%3Acategory%3AUser_en-1">he:category:User_en-1</a>]] is not affected because all characters are LTR.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hicham MAGED</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-21 03:03:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reply to #22
+
+Salam Reinhardt
+Yes, that's totaly right. Dummy1~Dummy5 are clickable, while Dummy6~Dummy9 are
+not. Anyway, I'm not using the IE with Wikipedia as I depend on Firefox, so i
+didn't notice this bug untill it was told in AR Wiki.
+
+PS: Don't worry, I know it's not a colour issue, the colours are something
+related to Wikipedia's system to refere if the article is found in the database
+or not. :)
+
+Wishing you all the best in fixing such bug.
+
+Salam,
+Hicham</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-21 13:32:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >removing: &quot;blocks <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RTL/bidirectional issues (tracking)"
+   href="show_bug.cgi?id=745">bug 745</a>&quot;
+this dependency is already an indirect dependency trough
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - links are not properly rendered in a BiDi category list"
+   href="show_bug.cgi?id=3922">bug 3922</a>: links are not properly rendered in a BiDi category list
+
+</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">rami</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-23 10:47:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As expected, same problem now with the categs in the user in the Babylone categs, 
+etc en1 en2 and so on.
+
+FireFox has problems now with the links, in the pictures, if the Picture name is 
+in LTR then it will not link (the upload.wikimedia.org link) , check:
+<a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Mozart_2.jpg">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Mozart_2.jpg</a>
+<a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Beethoven_Symphony_No_09.gif">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Beethoven_Symphony_No_09.gif</a>
+<a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Long_hammadi.jpg">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Long_hammadi.jpg</a>
+
+while, if the names are rtl then the are ok:
+
+<a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%AD%D8%B3%D9%8A%D9%86_">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%AD%D8%B3%D9%8A%D9%86_</a>%
+D9%83%D8%A7%D9%85%D9%84.JPG
+<a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D9%81%D8%A4%D8%A7%D8%AF_">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D9%81%D8%A4%D8%A7%D8%AF_</a>%
+D8%A7%D9%84%D8%A3%D9%88%D9%84.JPG
+<a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%B9%D8%A8%D8%A7%D8%B3_">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%B9%D8%A8%D8%A7%D8%B3_</a>%
+D8%A7%D9%84%D8%A3%D9%88%D9%84.JPG</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">rami</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-23 10:49:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just to make things clear: I am talking about the link under the picture</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-24 01:18:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c25">comment #25</a>)
+
+<span class="quote">&gt; FireFox has problems now with the links, in the pictures, if the Picture name is 
+&gt; in LTR then it will not link (the upload.wikimedia.org link) , check:
+&gt; <a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Mozart_2.jpg">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Mozart_2.jpg</a>
+&gt; <a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Beethoven_Symphony_No_09.gif">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Beethoven_Symphony_No_09.gif</a>
+&gt; <a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Long_hammadi.jpg">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:Long_hammadi.jpg</a>
+&gt; 
+&gt; while, if the names are rtl then the are ok:
+&gt; 
+&gt; <a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%AD%D8%B3%D9%8A%D9%86_">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%AD%D8%B3%D9%8A%D9%86_</a>%
+&gt; D9%83%D8%A7%D9%85%D9%84.JPG
+&gt; <a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D9%81%D8%A4%D8%A7%D8%AF_">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D9%81%D8%A4%D8%A7%D8%AF_</a>%
+&gt; D8%A7%D9%84%D8%A3%D9%88%D9%84.JPG
+&gt; <a href="http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%B9%D8%A8%D8%A7%D8%B3_">http://ar.wikipedia.org/wiki/%D8%B5%D9%88%D8%B1%D8%A9:%D8%B9%D8%A8%D8%A7%D8%B3_</a>%
+&gt; D8%A7%D9%84%D8%A3%D9%88%D9%84.JPG</span >
+
+The links to the images with Arabic names can be found at:
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ar%3Auser%3AGangleri%2Ftests%2Fbugzilla%2F04295">ar:user:Gangleri/tests/bugzilla/04295</a>]] section bugzilla:04295#c25
+
+Dear Rami!
+
+Thanks for reporting this problem. However we need to get the individual bugs
+appart.
+
+I am chasing the bug you mentioned which is related as many others to how
+&quot;non-textual entities such as images are treated as neutral characters&quot;.
+It will be necessary to open a whole branch of bugs under <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - RTL/bidirectional issues (tracking)"
+   href="show_bug.cgi?id=745">bug 745</a> related also
+to &quot;non-textual entities&quot; covering images, bullets,  checkboxes, editboxes,
+floating objects etc. I will work on that branch next week.
+
+In order to start I reported the particular you mentioned at:
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=179393#c11">https://bugzilla.mozilla.org/show_bug.cgi?id=179393#c11</a> and #12
+== [Bug Bugzilla 179393] - images between two input fields are displayed in the
+wrong order
+This was a wrong place.
+
+see
+<a href="https://bugzilla.mozilla.org/attachment.cgi?id=206193">https://bugzilla.mozilla.org/attachment.cgi?id=206193</a> for
+<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=178991#c17">https://bugzilla.mozilla.org/show_bug.cgi?id=178991#c17</a>
+== [Bug  Bugzilla 178991] BiDi: Unclickable links if near neutral characters
+e.g. parentheses, bullets
+
+changing the summary again because:
+a) This bug should only cover the category links. The links under the images are
+not of category type.
+b) The article categorisation works fine if *only* RTL characters are included
+in the category names ( <a href="http://test.leuksman.com/index.php?oldid=10812">http://test.leuksman.com/index.php?oldid=10812</a> ).
+c) It is a BiDi issue.
+
+new summary
+Article categorisation links unclickable when viewing categories with true BiDi
+names in Internet Explorer
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-24 11:01:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c27">comment #27</a>)
+
+<span class="quote">&gt; Dear Rami!
+&gt; 
+&gt; Thanks for reporting this problem. However we need to get the individual bugs
+&gt; appart.</span >
+
+Please see
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Render external protocols defined in $wgUrlProtocols in the same manner"
+   href="show_bug.cgi?id=4378">bug 4378</a>: Render external protocols defined in $wgUrlProtocols in the same manner
+
+It will not fix the bug in Firefox but it would allow to use a workaround.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-24 11:19:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >adding &quot;patch&quot; altough the part from <a href="show_bug.cgi?id=4295#c11">comment #11</a> is *not* php code:
+
+<span class="quote">&gt; Brion please tray to generate at FiverAlpha the following:
+&gt; 
+&gt; &lt;a href=&quot;/edit/Category:%D9%85%D9%88%D8%A7%D9%84%D9%8A%D8%AF_1642&quot; class=&quot;new&quot;
+&gt; title=&quot;Category:
+&gt; &lt;span dir='ltr'&gt;
+&gt; مواليد 1642
+&gt; &lt;/span&gt;&quot;&gt;
+&gt; &lt;span dir='ltr'&gt;
+&gt; مواليد 1642
+&gt; &lt;/span&gt;
+&gt; &lt;/a&gt; | &lt;a href=&quot;/edit/Category:%D9%88%D9%81%D9%8A%D8%A7%D8%AA_1727&quot; class=&quot;new&quot;
+&gt; title=&quot;Category:
+&gt; &lt;span dir='ltr'&gt;
+&gt; وفيات 1727
+&gt; &lt;/span&gt;&quot;&gt;
+&gt; &lt;span dir='ltr'&gt;
+&gt; وفيات 1727
+&gt; &lt;/span&gt;
+&gt; &lt;/a&gt;</span ></pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-24 13:13:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1232" name="attach_1232" title="html without class=&quot;new&quot;">attachment 1232</a> <a href="attachment.cgi?id=1232&amp;action=edit" title="html without class=&quot;new&quot;">[details]</a></span>
+html without class=&quot;new&quot;
+
+It seams that pure HTML code works properly both in Firefox and IE.
+
+Then the bug must relate to *class=&quot;new&quot;* or must be outside the code used in
+the attachment.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-24 13:42:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c30">comment #30</a>)
+<span class="quote">&gt; Then the bug must relate to *class=&quot;new&quot;* or must be outside the code used in
+&gt; the attachment.</span >
+
+class=&quot;new&quot; works fine for all category links inside &lt;li&gt; ... &lt;/li&gt; at
+<a href="http://ar.wikipedia.org/w/index.php?title=special:Categories&amp;limit=50&amp;offset=3500">http://ar.wikipedia.org/w/index.php?title=special:Categories&amp;limit=50&amp;offset=3500</a>
+&lt;li&gt;&lt;a
+href=&quot;/w/index.php?title=%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%B9%D9%82%D8%AF_1160&amp;amp;action=edit&quot;
+class=&quot;new&quot; title=&quot;تصنيف:عقد 1160&quot;&gt;عقد 1160&lt;/a&gt; (عدد الارتباطات 10)&lt;/li&gt;
+
+also at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikipedia%3Aar%3Aspecial%3AMostlinkedcategories">wikipedia:ar:special:Mostlinkedcategories</a>]],
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikipedia%3Aar%3Aspecial%3AUnusedcategories">wikipedia:ar:special:Unusedcategories</a>]] and
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikipedia%3Aar%3Aspecial%3AWantedcategories">wikipedia:ar:special:Wantedcategories</a>]]. No BiDi example found at
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikipedia%3Aar%3Aspecial%3AUncategorizedcategories">wikipedia:ar:special:Uncategorizedcategories</a>]].</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">mimouni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-19 22:36:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >probléme is only for the skin monobook</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">mimouni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-28 23:27:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >تم حل المشكل.
+
+this bug is resoulved/
+from the ميدياويكي:Monobook.css, this/
+#catlinks { 
+  float:left;
+ }
+visite any pages to see...</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-29 11:17:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c33">comment #33</a>)
+<span class="quote">&gt; تم حل المشكل.
+&gt; this bug is resoulved/
+&gt; from the ميدياويكي:Monobook.css, this/
+&gt; #catlinks {
+&gt; float:left;
+&gt; }</span >
+
+visite any pages to see...
+
+Dear mimouni!
+
+Thank you for the workaround! I have seen [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ar%3AMediaWiki%3AMonobook.css">ar:MediaWiki:Monobook.css</a>]]. You are 
+using there &quot;float:right;&quot; *not* &quot;float:left;&quot;.
+
+I have seen today the same bug also at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ayi%3Acategory%3A%D7%95%D7%95">wikt:yi:category:וו</a>]] and have added your 
+workaround
+
+#catlinks { 
+  float:right;
+}
+both to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ayi%3AMediaWiki%3AMonobook.css">wikt:yi:MediaWiki:Monobook.css</a>]] and [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3AMediaWiki%3AMonobook.css">yi:MediaWiki:Monobook.css</a>]].
+
+However if you compare
+<a href="http://meta.wikimedia.org/wiki/BiDi_workgroup#catlinks">http://meta.wikimedia.org/wiki/BiDi_workgroup#catlinks</a>
+and
+<a href="http://yi.wiktionary.org/wiki/category:%D7%95%D7%95#catlinks">http://yi.wiktionary.org/wiki/category:%D7%95%D7%95#catlinks</a>
+
+you will see that catlinks will cover 100% of the width at meta while it will 
+cover only a part at WIKT:YI.
+
+I used Windows 2000 and IE Version:6.0.2800.1106; SP1.
+
+best regards reinhardt [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">mimouni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-31 10:58:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4295#c34">comment #34</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=4295#c33">comment #33</a>)&gt; تم حل المشكل.&gt; this bug is </span >
+resoulved/&gt; from the ميدياويكي:Monobook.css, this/&gt; 
+#catlinks {&gt; float:left;&gt; }visite any pages to 
+see...Dear mimouni!Thank you for the workaround! I have 
+seen [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=ar%3AMediaWiki%3AMonobook.css">ar:MediaWiki:Monobook.css</a>]]. You are using 
+there &quot;float:right;&quot; *not* &quot;float:left;&quot;.I have seen 
+today the same bug also at [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ayi%3Acategory%3A%D7%95%D7%95">wikt:yi:category:וו</a>]] and 
+have added your workaround#catlinks { float:right;}both 
+to [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=wikt%3Ayi%3AMediaWiki%3AMonobook.css">wikt:yi:MediaWiki:Monobook.css</a>]] and 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=yi%3AMediaWiki%3AMonobook.css">yi:MediaWiki:Monobook.css</a>]].However if you 
+comparehttp://meta.wikimedia.org/wiki/BiDi_workgroup#cat
+linksandhttp://yi.wiktionary.org/wiki/category:%D7%95%
+D7%95#catlinksyou will see that catlinks will cover 
+100% of the width at meta while it will cover only a 
+part at WIKT:YI.I used Windows 2000 and IE 
+Version:6.0.2800.1106; SP1.best regards reinhardt 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=user%3Agangleri">user:gangleri</a>]]
+
+j ai changer le code
+ #catlinks {
+ float:left;
+ }
+en:
+
+#catlinks {
+ width:100%;
+ }
+
+et le probléme de positionement, corriger.
+</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-08 03:01:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Merci mimouni!
+</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-12 17:55:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please take a look at
+<a href="http://yi.wikipedia.org/wiki/user:%D6%BE">http://yi.wikipedia.org/wiki/user:%D6%BE</a>
+
+'catlinks' is floating in the middle of the page; 'catlinks' should not use 100%
+of the width; it should align with the content.</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">mimouni</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-18 09:54:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >dans monobok.css vous utiliser dans le 
+secteure 'catlinks':
+#catlinks {
+  float:right;
+}
+et
+#catlinks {
+width:100%;
+}
+
+il faut utiliser seulement:
+#catlinks {
+width:100%;
+}
+
+(In reply to <a href="show_bug.cgi?id=4295#c37">comment #37</a>)
+<span class="quote">&gt; Please take a look </span >
+athttp://yi.wikipedia.org/wiki/user:%D6%BE'catlinks' is 
+floating in the middle of the page; 'catlinks' should 
+not use 100%of the width; it should align with the 
+content.
+
+</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">lɛʁi לערי ריינהארט</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-18 23:04:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks mimouni! This helped at
+<a href="http://yi.wikipedia.org/wiki/user:%D6%BE">http://yi.wikipedia.org/wiki/user:%D6%BE</a> .</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-04 11:04:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Update Web browser.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Siebrand Mazeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-06-04 11:35:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Adding testme. Please test with Internet Explorer 8 and note the result here.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4295#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niklas Laxström</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-07-15 14:24:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Works for me in IE8.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4295&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4295">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4295">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4295">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4295&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4295" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4295&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419363373-ayr_xGPVnbSW3z2XU8jHXbbNDlcJzNDmPXDTRVxeNVI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

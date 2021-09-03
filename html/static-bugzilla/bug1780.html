@@ -1,0 +1,2589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1780 &ndash; Can't upload file with non-ASCII name (eg cyrillic) on Windows host</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1780&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1780">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1780">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1780">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1780 – Can\'t upload file with non-ASCII name (eg cyrillic) on Windows host",  
+                             "show_bug.cgi?id=1780" );
+        document.title = "Bug 1780 – Can\'t upload file with non-ASCII name (eg cyrillic) on Windows host";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1780 – Can\'t upload file with non-ASCII name (eg cyrillic) on Windows host", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_Uploading bz_bug_1780 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-10-07 17:48:49 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-10-07 17:48:49">
+  <input type="hidden" name="longdesclength" value="48">
+  <input type="hidden" name="id" value="1780">
+  <input type="hidden" name="token" value="1419359474-wmFUfnRU9mcIYEwPBrkCFo01xwO2hlgdnxmX8Pjt03I">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1780"><b>Bug&nbsp;1780</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Can't upload file with non-ASCII name (eg cyrillic) on Windows host</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Can't upload file with non-ASCII name (eg cyrillic) on Windows host
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Can\'t upload file with non-ASCII name (eg cyrillic) on Windows host', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Uploading
+    
+    (<a href="buglist.cgi?component=Uploading&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.20.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">PC
+       Windows XP
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=1780">4 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1780#vote_1780">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://meta.wikimedia.org/wiki/Image:Bug_1780_non_ascii_%C3%A4%C3%B6%C3%BC%C3%9F.png"><span title="http://meta.wikimedia.org/wiki/Image:Bug_1780_non_ascii_%C3%A4%C3%B6%C3%BC%C3%9F.png">http://meta.wikimedia.org/wiki/Image:...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">i18n, patch, patch-reviewed
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Image upload with file name containing the German letter &quot;ß&quot; fails"
+   href="show_bug.cgi?id=3724">3724</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Uploading files named with no-alphabet language"
+   href="show_bug.cgi?id=11758">11758</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Images with Non-ASCII characters don't work with Windows Server"
+   href="show_bug.cgi?id=14924">14924</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload: can't save file names with special characters to ntfs filesystem"
+   href="show_bug.cgi?id=15863">15863</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Can't upload file with Chinese File name on Windows 8.1 + Xampp 1.8.3.4"
+   href="show_bug.cgi?id=68268">68268</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=3724,11758,14924,15863,68268">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rework file uploads for better caching, mirroring"
+   href="show_bug.cgi?id=3829">3829</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1780&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1780">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-03-30 08:36 UTC by <span class="vcard"><span class="fn">Ivan</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-10-07 17:48 UTC 
+      (<a href="show_activity.cgi?id=1780">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>20 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="aholle">aholle</option>
+                <option value="angelsbelle">angelsbelle</option>
+                <option value="aschulz4587">aschulz4587</option>
+                <option value="Bryan.TongMinh">Bryan.TongMinh</option>
+                <option value="codemonk">codemonk</option>
+                <option value="dgiim">dgiim</option>
+                <option value="dj.bauch">dj.bauch</option>
+                <option value="donpaolo">donpaolo</option>
+                <option value="fran">fran</option>
+                <option value="gpaumier">gpaumier</option>
+                <option value="hartman.wiki">hartman.wiki</option>
+                <option value="hippytrail">hippytrail</option>
+                <option value="innocentkiller">innocentkiller</option>
+                <option value="jayvdb">jayvdb</option>
+                <option value="juandevojnikov">juandevojnikov</option>
+                <option value="mah">mah</option>
+                <option value="maxsem.wiki">maxsem.wiki</option>
+                <option value="orbartal">orbartal</option>
+                <option value="steven">steven</option>
+                <option value="yakoff">yakoff</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a href="https://bugs.php.net/bug.php?id=33350">https://bugs.php.net/bug.php?id=33350</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=4734"
+               title="View the content of the attachment">
+          <b>A basic configurable workaround for this bug</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.83 KB,
+                patch)
+
+            <br>
+            <a href="#attach_4734"
+               title="Go to the comment associated with the attachment">2008-03-20 16:31 UTC</a>,
+
+            <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=4734&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_application_pdf">
+        <td valign="top">
+            <a href="attachment.cgi?id=12167"
+               title="View the content of the attachment">
+          <b>How to upload file with non-ASCII name on Windows host</b></a>
+
+          <span class="bz_attach_extra_info">
+              (345.00 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_12167"
+               title="Go to the comment associated with the attachment">2013-04-24 11:34 UTC</a>,
+
+            <span class="vcard"><span class="fn">orbartal</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=12167&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_application_pdf">
+        <td valign="top">
+            <a href="attachment.cgi?id=12168"
+               title="View the content of the attachment">
+          <b>enable upload file with non-ASCII name on Windows host</b></a>
+
+          <span class="bz_attach_extra_info">
+              (345.00 KB,
+                application/pdf)
+
+            <br>
+            <a href="#attach_12168"
+               title="Go to the comment associated with the attachment">2013-04-24 11:36 UTC</a>,
+
+            <span class="vcard"><span class="fn">orbartal</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=12168&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=1780&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ivan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 08:36:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Im runing mediawiki under Apache2 &amp; Windows 2k. And I cant upload file with
+russian name. File name becomes wrong when MD saves it to disk, so link on the
+file becomes wrong -&gt; 404. I think the solution it to convert Cyrilic file name
+into translit (<a href="http://en.wikipedia.org/wiki/Cyr">http://en.wikipedia.org/wiki/Cyr</a>), but Im not very good PHP
+programmer.
+
+sorry for my english.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 08:39:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >May be a similar issue to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Can't upload non-ASCII filenames on Mac-hosted Latin-1 wiki"
+   href="show_bug.cgi?id=362">bug 362</a>; the OS and filesystem expects certain formatting different from what it's getting (in this case, UTF-8).</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ivan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 14:21:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Similar, but not the same. File was create, but with wrond name. 
+Should be : Вера.jpg
+But it is : ??????????.jpg (I cant past real name, couse it contains wrong
+characters)</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-30 16:35:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >can you provide a link to your wiki that we could use for testing?</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ivan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-31 04:47:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >limp.iceberg-m.ru:81/wiki/</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-17 07:14:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Image upload with file name containing the German letter &quot;ß&quot; fails"
+   href="show_bug.cgi?id=3724">Bug 3724</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gunter Schmidt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-26 23:38:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have the same bug with V.1.6.5.
+
+Try to upload any image with the name: Bug_1780_non_ascii_äöüß.png (hope you can read this on your system)
+
+I tried to show you on mediawiki, but the bug is not there!
+<a href="http://meta.wikimedia.org/wiki/Image:Bug_1780_non_ascii_%C3%A4%C3%B6%C3%BC%C3%9F.png">http://meta.wikimedia.org/wiki/Image:Bug_1780_non_ascii_%C3%A4%C3%B6%C3%BC%C3%9F.png</a>
+
+Maybe 1.7 works differently?</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-26 23:49:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's because our site doesn't run on Windows servers.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Iaroslav Vassiliev</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-27 17:15:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The problem persists in MediaWiki 1.8 on Windows XP. Generally everything works
+fine on Windows, except this bug, that is very disturbing. Is it possible to do
+something around it, or is it a fatal incompatibility forever?</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Iaroslav Vassiliev</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-29 00:49:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've got a temporary solution (at least, for my MediaWiki 1.8.2 on Windows XP), though it is far from perfection and involves iconv function.
+
+Firstly,
+In SpecialUpload.php file, in processUpload() function, right before closing the last &quot;if( $this-&gt;saveUploadedFile(...&quot; block, update the source code as follows:
+
+...
+  } else {
+    $wgOut-&gt;showFileNotFoundError( $this-&gt;mUploadSaveName );
+  }
+  rename( $this-&gt;mSavedFile, iconv ('UTF-8', 'CP1251', $this-&gt;mSavedFile) ); # NEW	}
+...
+
+Secondly,
+In Image.php file, in reallyRenderThumb() function, in the middle of &quot;elseif ( $wgUseImageMagick ) {...&quot; block, update the source code as follows:
+
+...
+wfDebug(&quot;reallyRenderThumb: running ImageMagick: $cmd\n&quot;);
+if (file_exists(iconv('UTF-8', 'CP1251', $thumbPath)) == false)	# NEW
+  rmdir( substr_replace($thumbPath, '', strrpos($thumbPath, &quot;/&quot;)));	# NEW
+mkdir( substr_replace( iconv('UTF-8', 'CP1251', $thumbPath), '',	# NEW
+  strrpos(iconv('UTF-8', 'CP1251', $thumbPath), &quot;/&quot;)));	# NEW
+$cmd = iconv ('UTF-8', 'CP1251', $cmd);	# NEW
+wfProfileIn( 'convert' );
+...
+
+If you use something other than ImageMagick for image processing, you should transfer the second code fragment to appropriate block and adapt it to that program, if required.
+
+IMPORTANT: If your Windows uses some other code page than Windows-1251, than in code above you should change 'CP1251' to your code page identifier. And DO NOT use this code on non-Windows machines.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-10-27 21:06:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Uploading files named with no-alphabet language"
+   href="show_bug.cgi?id=11758">Bug 11758</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mormegil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-20 16:31:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=4734" name="attach_4734" title="A basic configurable workaround for this bug">attachment 4734</a> <a href="attachment.cgi?id=4734&amp;action=edit" title="A basic configurable workaround for this bug">[details]</a></span>
+A basic configurable workaround for this bug
+
+The patch adds a global configuration variable $wgLocalFilesystemCharsetOverride that can be set to the charset of the local file system (e.g. 'CP1250'), and all names of the uploaded files are converted to this charset (using iconv) when talking with the filesystem. However, this works correctly only when the destination filename contains only characters from this charset, so this is not a perfect solution.
+
+But the support for file uploads on Windows (and other OSes) is limited in many other ways (there is no filename syntax checking other than stripping path components, which is far from being sufficient on Windows), anyway.
+
+The correct solution to this might depend on the mysterious image backend rewrite. ;-)</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-20 21:00:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yeah, this would still break with other chars, or if iconv() isn't present... the generated URLs might be wrong, too; depends what charset the web server is going to be expecting!</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Max Semenik</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-25 18:30:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Images with Non-ASCII characters don't work with Windows Server"
+   href="show_bug.cgi?id=14924">Bug 14924</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-25 20:24:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1780#c13">comment #13</a>)
+<span class="quote">&gt; *** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Images with Non-ASCII characters don't work with Windows Server"
+   href="show_bug.cgi?id=14924">Bug 14924</a> has been marked as a duplicate of this bug. ***
+&gt; </span >
+Thanks for redirecting me from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Images with Non-ASCII characters don't work with Windows Server"
+   href="show_bug.cgi?id=14924">bug 14924</a>. The patch attachment for this bug, with code page set to CP1250 in LocalSettings.php seems to fix most of the problems I've been seeing with images on IIS6/SQL Server/Windows 2003/Mediawiki 1.13 -- including the one I identified in my bug submission and several others, such as the recent POTD Image:CT of brain of Mikael Häggström large.png and Image:Bandeira do Município do Rio de Janeiro.png. It does not, however fix all of them. For example:
+Image:Ostredok, Veľká Fatra (SVK) - NW slope.jpg (<a href="http:.../index.php?title=Image:Ostredok%2C_Ve%C4%BEk%C3%A1_Fatra_%28SVK%29_-_NW_slope.jpg">http:.../index.php?title=Image:Ostredok%2C_Ve%C4%BEk%C3%A1_Fatra_%28SVK%29_-_NW_slope.jpg</a>) image still does not show up.
+Image:Hors d'œuvre (Bosnian).jpg (Image:Hors_d%27%C5%93uvre_%28Bosnian%29.jpg) causes iconv to complain [function.iconv]: Detected an illegal character in input string in W:\Inetpub\wwwroot\mediawiki\includes\filerepo\File.php on line 68</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-06 17:58:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload: can't save file names with special characters to ntfs filesystem"
+   href="show_bug.cgi?id=15863">Bug 15863</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-06 18:12:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >DJ, CP1250 is for Central Europe and doesn't include the &quot;œ&quot; character, hence the failure.
+
+&quot;Ostredok, Veľká Fatra (SVK) - NW slope.jpg&quot; presumably ought to work, but it's hard to debug without an instance to check... However...
+
+My suspicions:
+
+1) It's possibly safest to just create UTF-8 URLs -- that is, don't try to encode the generated URLs to the locale charset. IIS is probably smart enough to detect UTF-8 and load the files correctly (the filesystem stores filenames as UTF-16 Unicode.)
+
+2) Suddenly I'm not sure whether you actually want the &quot;ANSI&quot; codepage or the &quot;OEM&quot; codepage for filesystem storage. *shudder*
+
+Ugh.
+
+The best thing would probably just be to have a switch to encode filenames in some nice ASCII-safe hex encoding, rather than mess around with charsets.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Fran Rogers</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-06 21:25:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The problem is in PHP's handling, or lack thereof, of Unicode. NTFS uses UTF-16 internally, as Brion pointed out; the problem is that the Win32 API provides separate wchar_t oriented versions of stdio functions (like _wfopen()) for working with Unicode filenames, while the traditional char versions (like fopen()) translate the current legacy 8-bit code page into the corresponding Unicode representation for backwards compatibility. Unfortunately, PHP's innards are completely eight-bit, and has no knowledge of wchar_t stdio, so it's limited to characters in the current code page. :/ Using setlocale() to change the code page to UTF-8 might work, but setlocale() looks very brittle and ugly.
+
+Indeed, mangling Unicode characters to ASCII in a predictable way is probably the best/only way to work around it.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-06 21:37:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >dumpHtml uses a fun hack that shells out to a VBScript to rename files to a Unicode destination... That's probably not the nicest way to do it in active use. ;)
+
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/DumpHTML/rename-hack.vbs?view=markup">http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/DumpHTML/rename-hack.vbs?view=markup</a>
+
+Even if we used such a hack to *create* files, we couldn't *manipulate* them again without doing really weird crap like looking up the 8.3 version of the file path. So ASCII mangling is definitely going to be the safest thing.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">D J Bauch</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-06 22:03:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Brion, et. al.,
+Thanks for your attention. I'm hoping that the official mechanism does change to one that's more compatible with Windows. In the mean time, I've switched from CP1250 to 'ISO-8859-1//TRANSLIT' as the character set that gives me the best results. Most images work now, but not all. This also doesn't fix problems with filenames that have '%' in the name. Sometimes that appears to be used to indicate the degree of transparency of some icons on Wikipedia, and I've had no luck getting those to display.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 14:58:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Upload form doesn't work with non-Latin filenames in IE"
+   href="show_bug.cgi?id=23028">Bug 23028</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Derk-Jan Hartman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-11-09 20:23:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Apparently PHP 6 will have full unicode support:
+
+<a href="http://bugs.php.net/bug.php?id=46990">http://bugs.php.net/bug.php?id=46990</a>
+
+I can't believe that something like PHP still has bugs like this. I ran into it today trying to help a user understand why his images were not working, and first we suspected it was just instantcommons, but eventually tracked it down to this issue.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-14 13:53:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >PHP6 is dead, so who knows when this will be fixed.
+
+In the meantime, I'd suggest adding a warning to Special:Upload when wfIsWindows() and you try to upload a file with unicode in the name.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-15 12:38:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I forbid uploading non-ascii files on Windows in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/88165" title="revision 88165 in SVN">r88165</a>.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Paolo Benvenuto</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-15 17:07:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Well, this isn't a fix, it's a limitation...</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-15 17:56:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's a fix in the sense that it is no longer possible to upload a file which then can't be viewed anymore. A proper fix would be to make PHP use wide character functions.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-15 20:13:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reopening -- doesn't seem to fix it, just makes some of your pages platform-dependent.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-16 07:32:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1780#c26">comment #26</a>)
+<span class="quote">&gt; Reopening -- doesn't seem to fix it, just makes some of your pages
+&gt; platform-dependent.</span >
+
+A way to fix this would be to make filenames on disk no longer map to titles. We have a bug open for that somewhere.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-10 03:06:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thank you for the patch, Mormegil.
+(In reply to <a href="show_bug.cgi?id=1780#c12">comment #12</a>)
+Adding the &quot;reviewed&quot; keyword.  Also adding the internationalization keyword so the internationalisation/localisation team knows to look at this bug.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-10 03:18:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Not really an i18n bug, it's an issue with filerepo.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-01 21:34:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is now finally fixable with the filebackend!
+
+I'm thinking about writing a custom backend which implements [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=quoted-printable">quoted-printable</a>]] encoding. Any opinions on the encoding to use? It's a pity that the filebackend implements a listFiles method, otherwise we could have simply used a one-way hashing function.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-02 00:24:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1780#c30">comment #30</a>)
+<span class="quote">&gt; This is now finally fixable with the filebackend!
+&gt; 
+&gt; I'm thinking about writing a custom backend which implements
+&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=quoted-printable">quoted-printable</a>]] encoding. Any opinions on the encoding to use? It's a
+&gt; pity
+&gt; that the filebackend implements a listFiles method, otherwise we could have
+&gt; simply used a one-way hashing function.</span >
+
+Why not add that to FSFileBackend in the form of configurable escape/unescape functions? The default ones could just pass throw the raw input. One issue with any encoding scheme is handling URLs correctly, so users get file/thumbnail urls that actually are mapped to the encoded file names. I suppose a redirection module could be used. img_auth and thumb_handler would cover some of the obvious cases, though they don't handle RANGE requests. Another option would be a redirector module which would redirect requests to the encoded URL. CDN caching would be slightly trickier in any case.
+
+It's hard to resist saying &quot;just use Linux&quot; though...
+
+That said, it would be nice if FilRepo stored files based on hash and used a redirection or service layer to make readable URLs to files anyway. It would solve a lot of problems like weird race conditions, the poor performance and lack of atomicity for file moves/deletes/undeletes and re-uploads (especially for large files or if there are many versions), and issues like this bug as well (what characters a system allows). That's another story though...</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">orbartal</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-24 11:27:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >How to fix the bug in Hebrew  (and in  any other language that windows support)
+
+1.	In windows OS change the language for non-Unicode to your local MediaWiki language. E.g. the language of the files names you wish to upload. Usually it is the same as $wgLanguageCode language.  See how on this link. 
+2.	Windows NTFS file system uses special encoding, not ascii or utf8. Check the appropriate encoding for your language. For Hebrew I used windows-1255.
+3.	Edit the MediaWiki core code, and add these 4 changes. Note to use your language and not windows-1255. I used windows-1255 for Hebrew, but you might need something else. 
+a.	Remove (or put as a comment) the test added by Bryan Tong Minh that prevent from uploading files with non ascii name in windows. Later we shell fix the bug, so that filter is no longer required. 
+See details: <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/88165">https://www.mediawiki.org/wiki/Special:Code/MediaWiki/88165</a> 
+MediaWiki/includes/upload/UploadBase.php line 756. 
+b.	Go to the source code file in 
+MediaWiki/includes/filebackend/ FSFileBackend.php. And in class FileBackendStore, in function FileBackendStore :: doStoreInternal in line 206, add the following lines:
+
+if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') 
+{
+$charSetArr = array(&quot;ASCII&quot;, &quot;JIS&quot;, &quot;EUC-JP&quot;, &quot;UTF-8&quot;, &quot;UTF-16&quot;,&quot;windows-1251&quot;, 
+&quot;ISO-8859-1&quot;, &quot;GBK&quot;);
+		if (mb_detect_encoding($dest, $charSetArr) ==&quot;UTF-8&quot;)
+		{
+				$dest = iconv(&quot;UTF-8&quot;, &quot;windows-1255&quot;,  $dest);
+		}	
+	}
+Just before the command that copies the file to the path:
+$ok = copy( $params['src'], $dest );
+
+Now you can upload files and images in Hebrew. But you can’t view them as thumbnail. Two more similar code fix are required for this task to complete. 
+
+c.	Go to the source code file in MediaWiki\includes\filerepo\file\File.php. And in class File, in function File:: transform in line 623, add the following lines:
+if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') 
+{
+$charSetArr = array(&quot;ASCII&quot;, &quot;JIS&quot;, &quot;EUC-JP&quot;, &quot;UTF-8&quot;, &quot;UTF-16&quot;,&quot;windows-1251&quot;,
+ &quot;ISO-8859-1&quot;, &quot;GBK&quot;);
+if (mb_detect_encoding($thumbPath, $charSetArr) ==&quot;UTF-8&quot;)
+{
+		$thumbPath = iconv(&quot;UTF-8&quot;, &quot;windows-1255&quot;,  $thumbPath);
+}	
+}
+Right after the command returns the full path to the folder of the thumbnail file: 
+$thumbPath = $this-&gt;getThumbPath( $thumbName ); // final thumb path
+d.	Go to the source code file in  MediaWiki\includes\media\Bitmap.php. And in class BitmapHandler, in function BitmapHandler::transformGd in line 548, add the following lines:
+if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') 
+{
+$charSetArr = array(&quot;ASCII&quot;, &quot;JIS&quot;, &quot;EUC-JP&quot;, &quot;UTF-8&quot;, &quot;UTF-16&quot;,&quot;windows-1251&quot;, 
+&quot;ISO-8859-1&quot;, &quot;GBK&quot;);
+if (mb_detect_encoding($params['srcPath'], $charSetArr) ==&quot;UTF-8&quot;)
+{
+			$params['srcPath'] = iconv(&quot;UTF-8&quot;, &quot;windows-1255&quot;,  $params['srcPath']);
+}	
+}
+Right before the command that test if the file exists in that location: 
+ if ( !file_exists( $params['srcPath'] ) )</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">orbartal</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-24 11:34:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=12167" name="attach_12167" title="How to upload file with non-ASCII name on Windows host">attachment 12167</a> <a href="attachment.cgi?id=12167&amp;action=edit" title="How to upload file with non-ASCII name on Windows host">[details]</a></span>
+How to upload file with non-ASCII name on Windows host
+
+How to enable upload file with non-ASCII name on Windows host with just 3 simple changes to the wiki server.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">orbartal</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-04-24 11:36:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=12168" name="attach_12168" title="enable upload file with non-ASCII name on Windows host">attachment 12168</a> <a href="attachment.cgi?id=12168&amp;action=edit" title="enable upload file with non-ASCII name on Windows host">[details]</a></span>
+enable upload file with non-ASCII name on Windows host
+
+How to enable upload file with non-ASCII name on Windows host with just 3 simple changes to the wiki server.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-09 21:38:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1780#c31">comment #31</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=1780#c30">comment #30</a>)
+&gt; &gt; This is now finally fixable with the filebackend!
+&gt; &gt; 
+&gt; &gt; I'm thinking about writing a custom backend which implements
+&gt; &gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=quoted-printable">quoted-printable</a>]] encoding. Any opinions on the encoding to use? It's a
+&gt; &gt; pity
+&gt; &gt; that the filebackend implements a listFiles method, otherwise we could have
+&gt; &gt; simply used a one-way hashing function.
+&gt; 
+&gt; Why not add that to FSFileBackend in the form of configurable escape/unescape
+&gt; functions? The default ones could just pass throw the raw input. One issue
+&gt; with
+&gt; any encoding scheme is handling URLs correctly, so users get file/thumbnail
+&gt; urls that actually are mapped to the encoded file names. I suppose a
+&gt; redirection module could be used. img_auth and thumb_handler would cover some
+&gt; of the obvious cases, though they don't handle RANGE requests. Another option
+&gt; would be a redirector module which would redirect requests to the encoded
+&gt; URL.
+&gt; CDN caching would be slightly trickier in any case.
+&gt; 
+&gt; It's hard to resist saying &quot;just use Linux&quot; though...
+&gt; 
+&gt; That said, it would be nice if FilRepo stored files based on hash and used a
+&gt; redirection or service layer to make readable URLs to files anyway. It would
+&gt; solve a lot of problems like weird race conditions, the poor performance and
+&gt; lack of atomicity for file moves/deletes/undeletes and re-uploads (especially
+&gt; for large files or if there are many versions), and issues like this bug as
+&gt; well (what characters a system allows). That's another story though...</span >
+
+I would not add a complicated redirector, but just modify File::getUrl() to apply the encoding. I can't really find out though if there currently is any interaction between filerepo and filebackend regarding the file url.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-12 17:53:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So I found an old upstream bug from 2005 on the low-level API problem here:
+<a href="https://bugs.php.net/bug.php?id=33350">https://bugs.php.net/bug.php?id=33350</a>
+
+Added a comment that this is still a live issue. :)</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-09-12 18:05:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Alternatively to hacking filebackend, we could wrap the FileSystemObject using PHPs COM extension. If somebody really wants to put effort into this ;)</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-12 22:28:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 125573 had a related patch set uploaded by Aaron Schulz:
+[WIP] Added path encoding to FileBackendStore for Windows support
+
+<a href="https://gerrit.wikimedia.org/r/125573">https://gerrit.wikimedia.org/r/125573</a></pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-08 20:59:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 132298 had a related patch set uploaded by Aaron Schulz:
+Added better path encoding to FileBackend for Windows
+
+<a href="https://gerrit.wikimedia.org/r/132298">https://gerrit.wikimedia.org/r/132298</a></pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-05-08 21:01:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 125573 abandoned by Aaron Schulz:
+Added path encoding to FileBackendStore for Windows support
+
+Reason:
+Mostly not needed since given the SHA1 storage name patch, which also handles the same problem and more
+
+<a href="https://gerrit.wikimedia.org/r/125573">https://gerrit.wikimedia.org/r/125573</a></pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-07-19 15:18:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Can't upload file with Chinese File name on Windows 8.1 + Xampp 1.8.3.4"
+   href="show_bug.cgi?id=68268">Bug 68268</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dgiim
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-05 12:26:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I am using mediawiki in Korean environment. 
+
+When will completely fix this? 
+
+I have resolved to hack Upload problem. 
+
+But I can not see the thumbnail. 
+
+Help me.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">orbartal</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-05 16:39:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Try using the in the pdf file: &quot;How to fix the bug in Hebrew&quot;. It works for all languages, not just for Hebrew. And it fixes the thumbnail bug as well. Tell me if it works. And if it’s not, I will try to help you solved it.</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">dgiim
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-06 05:11:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >First of all, thank you give a quick get attention. orbartal. 
+
+
+
+I've had to change a thumbnail below to display the file.php. 
+
+... 
+$ thumbPath = $ this-&gt; getThumbPath ($ thumbName); // Final thumb path 
+// CP949 is a windows charset system for hangul, a korean character. 
+$ thumbPath = iconv (&quot;UTF-8&quot;, &quot;CP949&quot;, $ thumbPath); 
+... 
+
+
+Also, I've had to change as follows bitmap.php. 
+
+... 
+$ params ['srcPath'] = iconv (&quot;UTF-8&quot;, &quot;CP949&quot;, $ params ['srcPath']); 
+if (! file_exists ($ params ['srcPath'])) {
+... 
+
+
+Currently, it is well Hangul file upload. However, no thumbnail is displayed. Instead, in the following locations, are displayed in the thumbnail spot an error: 'filemissing' 
+
+
+Please help me! 
+
+
+[More] 
+
+- MediaWiki Version: 1.23.3 
+- System: Windows 7 (hangul) 
+
+
+
+Thank you.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Mark Vandenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-07 03:29:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Gerrit Notification Bot from <a href="show_bug.cgi?id=1780#c40">comment #40</a>)
+<span class="quote">&gt; Change 125573 abandoned by Aaron Schulz:
+&gt; Added path encoding to FileBackendStore for Windows support
+&gt; 
+&gt; Reason:
+&gt; Mostly not needed since given the SHA1 storage name patch, which also
+&gt; handles the same problem and more
+&gt; 
+&gt; <a href="https://gerrit.wikimedia.org/r/125573">https://gerrit.wikimedia.org/r/125573</a></span >
+
+That patch has been abandoned, but I have asked on the changeset whether the patch might still be useful for older versions of MediaWiki which have this bug.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-07 17:12:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 125573 restored by Aaron Schulz:
+Added path encoding to FileBackendStore for Windows support
+
+Reason:
+Rebasing (then closing again)
+
+<a href="https://gerrit.wikimedia.org/r/125573">https://gerrit.wikimedia.org/r/125573</a></pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1780#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-10-07 17:48:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 125573 abandoned by Aaron Schulz:
+Added path encoding to FileBackendStore for Windows support
+
+<a href="https://gerrit.wikimedia.org/r/125573">https://gerrit.wikimedia.org/r/125573</a></pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1780&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1780">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1780">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1780">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1780&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1780" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1780&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419359475-qQriYsiq_vxAfNQAexb3JOFNwo3vTeuNYM2oH2rEwEQ">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

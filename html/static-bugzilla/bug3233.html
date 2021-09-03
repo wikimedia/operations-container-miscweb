@@ -1,0 +1,1898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3233 &ndash; Send a cookie with each block?</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3233&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3233">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3233">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3233">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3233 – Send a cookie with each block?",  
+                             "show_bug.cgi?id=3233" );
+        document.title = "Bug 3233 – Send a cookie with each block?";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3233 – Send a cookie with each block?", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_General_Unknown bz_bug_3233 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-19 05:12:05 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-19 05:12:05">
+  <input type="hidden" name="longdesclength" value="28">
+  <input type="hidden" name="id" value="3233">
+  <input type="hidden" name="token" value="1419361690-CGSFfVQ-tJx2Xm80tbDISzEuYzXkmUOs6-XcFtkUU1M">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3233"><b>Bug&nbsp;3233</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Send a cookie with each block?</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Send a cookie with each block?
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Send a cookie with each block?', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=3233">6 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3233#vote_3233">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3233&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3233">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-08-23 00:09 UTC by <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-19 05:12 UTC 
+      (<a href="show_activity.cgi?id=3233">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>14 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="agarrett">agarrett</option>
+                <option value="b">b</option>
+                <option value="cirt.wik">cirt.wik</option>
+                <option value="elian">elian</option>
+                <option value="gtisza">gtisza</option>
+                <option value="J.delanoywiki">J.delanoywiki</option>
+                <option value="j.erm.y07">j.erm.y07</option>
+                <option value="jforrester">jforrester</option>
+                <option value="krinklemail">krinklemail</option>
+                <option value="mediawiki-bugs">mediawiki-bugs</option>
+                <option value="mflaschen">mflaschen</option>
+                <option value="seewolf">seewolf</option>
+                <option value="sr.ribeiro">sr.ribeiro</option>
+                <option value="tylerromeo">tylerromeo</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=829"
+               title="View the content of the attachment">
+          <b>Attempt to incorporate cookie blocks into autoblocker</b></a>
+
+          <span class="bz_attach_extra_info">
+              (52.02 KB,
+                patch)
+
+            <br>
+            <a href="#attach_829"
+               title="Go to the comment associated with the attachment">2005-08-25 02:50 UTC</a>,
+
+            <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=829&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=3233&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-23 00:09:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would like to propose an extension of the autoblocker.  The goal is to limit an attacker's 
+ability to continue their bad behavior by obtaining a new IP address (i.e. by redialing an ISP 
+or resetting a DSL connection).
+
+Whenever someone logs into a mediawiki wiki from an account that has been blocked, in addition 
+to autoblocking their IP address, send their browser a cookie identifying the block in 
+question.  Then every time someone tries to edit anonymously or create a new account, look for 
+this cookie and if it exists, see whether the block it references is still active and if so 
+block the new IP as well.
+
+Such cookies would need to be temporary (just as auto-blocks are temporary (is it 24 hours?)) 
+to avoid catching good people on public computers.
+
+Of course, some black hats would be able to find ways around such cookies (its not all that 
+hard), but I would be willing to wager that most of the people engaged in juvenile vandalism 
+are not all that computer savvy.
+
+Two possible conflicts come to my mind.  One, if someone is blocked for having an 
+inappropriate username, it is not obvious that we would necessarily want their IP blocked from 
+creating a new account.  (How is this handled in the present autoblocker?)  Though for most 
+inappropriate usernames, being forced to sit down for 24 hours might not be a bad thing.
+
+The other possible conflict is when a user has multiple accounts.  If a sockpuppet account is 
+blocked, should that necessarily impose a short block on the other accounts as well?  Maybe 
+so.  This could be avoided by only checking for the cookie when someone is acting anonymously, 
+or we could just decide that a block on one should lead to a short block of all (is this the 
+effect of the current autoblocker?).
+
+Anyway, anything to slow down returning persistent vandals is in my mind a good thing.
+
+-DF</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Filip Maljkovic [Dungodung]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-23 00:15:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that's a really good idea and the 2 problems could be solved by a simple
+checkbox - i.e. the sysop can choose if the cookie should be sent or not (in
+case of bad name and sockpuppeting). Or am I missing something?</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-23 18:41:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3233#c1">comment #1</a>)
+<span class="quote">&gt; I think that's a really good idea and the 2 problems could be solved by a simplecheckbox -</span >
+ i.e. the sysop can choose if the cookie should be sent or not (incase of bad name and 
+sockpuppeting). Or am I missing something?
+
+That sounds like a fine solution to me.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-25 02:50:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=829" name="attach_829" title="Attempt to incorporate cookie blocks into autoblocker">attachment 829</a> <a href="attachment.cgi?id=829&amp;action=edit" title="Attempt to incorporate cookie blocks into autoblocker">[details]</a></span>
+Attempt to incorporate cookie blocks into autoblocker
+
+If you want something done, sometimes you have to do it yourself...  So I
+decided to try.
+
+The attached file is a modified version of User.php from the most recent 1.5
+version.  It adds a field mLastIP to user and utilizes corresponding session
+and cookie variables.  I have added a section to the blocking code that checks
+mLastIP against $wgIP and if they are different then tests whether mLastIP is
+presently blocked.  If so, it proceeds to block $wgIP with the same expiration
+time.
+
+Looking at the code, this seemed the easiest way to get what I was after.  All
+blocks and autoblocks still work the same as they always have, just a cookie
+keeps track of the last IP address the server recieved from the user and if it
+changes it will then apply the same block to the new IP address.
+
+Or at least that is the intention anyway.  I don't have anywhere that I can
+practically install MediaWiki so I am working blind on this without anyway to
+test or debug my changes.  Perhaps some nice developer would like to try this
+out, see if it working, and fix any bugs?
+
+One thing that maybe should be changed before this goes live...  Right now the
+reason for the new block is simply copied from the old block.  I didn't want to
+use the autoblocker message as that could quickly become tangled nested
+nonsense if someone jumped through several IPs.  This means there is nothing
+identifying an IP change block as an autoblock, which could confuse admins.  On
+the other hand, I'm not entirely sure I want the block reason to explain that
+someone's IP was tracked either.  Thoughts on this?
+
+Anyway, I hope this proves useful, though if someone has a reason why this is
+somehow a horribly bad idea, please speak up.  As I said before, it won't catch
+everyone, and it is pretty easy to turn off cookies, but if it slows down the
+juvenile vandalism even a little I'll be happy.
+
+-DF</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrew Garrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-24 12:40:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is there any interest in this, or should it be closed as WONTFIX?</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Harald Krichel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-23 12:45:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Of course there is a very strong interest in this.
+We have much more vandals than vandals who even know to change their IP. We could track and ban daily vandals for maybe a month or more. And we could separate student's and teacher's computers which may have the same IP.
+
+Maybe we could set flash cookies for the more sophisticated vandals. I esteem that far more than 50% of our vandals could not handle either standard or flash cookies. 
+
+who is using aFurthermore we could reduce the collateral damage of the hardblocking/autoblocking feature when blocking a vandal who is using a mandatory proxy.
+
+</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tisza Gergő</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-23 13:58:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[<a href="https://developer.mozilla.org/en/DOM/Storage">https://developer.mozilla.org/en/DOM/Storage</a> DOM storage] / [<a href="http://msdn.microsoft.com/en-us/library/ms531424.aspx">http://msdn.microsoft.com/en-us/library/ms531424.aspx</a> userData] is another tricky tracking method that most vandals probably aren't aware of. But even the most basic cookie-based blocking would be very useful for vandals accessing the net through quickly changing dynamic adresses or large proxies.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Cirt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-24 23:55:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This really is a very very good idea and should be implemented.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">J.delanoy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-02-25 00:13:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Speaking as someone who primarily fights vandalism, I would be extremely grateful if this bug were acted on. It is tedious and frankly annoying to have to deal with people who only have to reset their router or switch proxies to continue their spree. </pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 22:01:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="https://gerrit.wikimedia.org/r/48029">https://gerrit.wikimedia.org/r/48029</a></pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MZMcBride</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:16:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When this bug was filed (in 2005), Web browsers didn't commonly have an &quot;incognito&quot; or &quot;private browsing&quot; mode. Given that this cookie feature is intended to target users who are capable of changing their IP address (i.e., users with some degree of technical competence/clue), I feel it's reasonable to assume these same bad users are equally capable of using their Web browser's incognito mode or disabling JavaScript or clearing their cookies as a means of bypassing this cookie.
+
+I'm inclined to support marking this bug as resolved/wontfix, but I'd like to hear what others think.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew Flaschen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:18:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm concerned about this, particularly with the cookie duration used in Tyler's Gerrit.
+
+First of all, this will obviously have ramifications on shared computers, particularly in libraries in schools, where there's a lot of vandalism but also where some constructive people do their only editing.  That alone gives me pause.
+
+Robert suggested 24 hours, which would definitely mitigate this.  However, the proposed implementation (<a href="https://gerrit.wikimedia.org/r/#/c/48029/3/includes/User.php">https://gerrit.wikimedia.org/r/#/c/48029/3/includes/User.php</a>) uses the default cookie expiration (since setCookie with duration 0 uses that).
+
+The default default (<a href="https://www.mediawiki.org/wiki/Manual:$wgCookieExpiration">https://www.mediawiki.org/wiki/Manual:$wgCookieExpiration</a>) is now 180 days, which is an entirely different matter from a day.
+
+I also think if we do this, it should be controlled by two separate wg config variables:
+
+1. Whether to do it at all, defaulting false.
+2. (Ignored if 1 is false) Duration, defaulting to 24 hours or something else very short like that.
+
+MZMcBride is also right that it's now much easier to clear your cookies and local storage (private browsing/incognito is relatively well publicized), so we might be mostly targetting the good guys.
+
+I realize there are some casual vandals (ignorant of cookies) who randomly get assigned IPs (e.g. through a bad proxy) and keep on rolling.  But I'm skeptical it's a worthwhile tradeoff.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:21:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3233#c10">comment #10</a>)
+<span class="quote">&gt; When this bug was filed (in 2005), Web browsers didn't commonly have an
+&gt; &quot;incognito&quot; or &quot;private browsing&quot; mode. Given that this cookie feature is
+&gt; intended to target users who are capable of changing their IP address (i.e.,
+&gt; users with some degree of technical competence/clue), I feel it's reasonable
+&gt; to
+&gt; assume these same bad users are equally capable of using their Web browser's
+&gt; incognito mode or disabling JavaScript or clearing their cookies as a means
+&gt; of
+&gt; bypassing this cookie.
+&gt; 
+&gt; I'm inclined to support marking this bug as resolved/wontfix, but I'd like to
+&gt; hear what others think.</span >
+
+It should be noted, though, that incognito mode does not ignore cookies, it simply deletes them upon going out of incognito mode. So if a user logs into a blocked account incognito, but doesn't open a new window when switching IPs, the cookie will still be there.
+
+(In reply to <a href="show_bug.cgi?id=3233#c11">comment #11</a>)
+<span class="quote">&gt; I'm concerned about this, particularly with the cookie duration used in
+&gt; Tyler's
+&gt; Gerrit.
+&gt; 
+&gt; First of all, this will obviously have ramifications on shared computers,
+&gt; particularly in libraries in schools, where there's a lot of vandalism but
+&gt; also
+&gt; where some constructive people do their only editing.  That alone gives me
+&gt; pause.
+&gt; 
+&gt; Robert suggested 24 hours, which would definitely mitigate this.  However,
+&gt; the
+&gt; proposed implementation
+&gt; (<a href="https://gerrit.wikimedia.org/r/#/c/48029/3/includes/User.php">https://gerrit.wikimedia.org/r/#/c/48029/3/includes/User.php</a>) uses the
+&gt; default
+&gt; cookie expiration (since setCookie with duration 0 uses that).
+&gt; 
+&gt; The default default
+&gt; (<a href="https://www.mediawiki.org/wiki/Manual:$wgCookieExpiration">https://www.mediawiki.org/wiki/Manual:$wgCookieExpiration</a>)
+&gt; is now 180 days, which is an entirely different matter from a day.</span >
+
+The cookie should last however long the block lasts. That's how autoblocks work even outside of this case. It's the autoblock that needs to be short (and it is short), not the cookie expiration.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew Flaschen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:30:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; The cookie should last however long the block lasts. That's how autoblocks work
+&gt; even outside of this case. It's the autoblock that needs to be short (and it is 
+&gt; short), not the cookie expiration.</span >
+
+However, if I understand correctly, you're effectively broadening the scope of the autoblock, so it seems reasonable to consider a different cookie duration than $wgAutoblockExpiry.
+
+If someone vandalizes from a shared computer that occasionally changes external IP, before the block would only be tied to the shared IP (unless someone tried to log in).  Now, it is broader, since it is tied to *both* the shared browser and the shared IP.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:33:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3233#c13">comment #13</a>)
+<span class="quote">&gt; However, if I understand correctly, you're effectively broadening the scope
+&gt; of
+&gt; the autoblock, so it seems reasonable to consider a different cookie duration
+&gt; than $wgAutoblockExpiry.
+&gt; 
+&gt; If someone vandalizes from a shared computer that occasionally changes
+&gt; external
+&gt; IP, before the block would only be tied to the shared IP (unless someone
+&gt; tried
+&gt; to log in).  Now, it is broader, since it is tied to *both* the shared
+&gt; browser
+&gt; and the shared IP.</span >
+
+Yeah, but that's existing functionality. When a user is blocked with autoblock, whenever they login, the new IP they login from is also autoblocked. The only difference between what we have now and this patch is that if the blocked user tries to edit anonymously they'll also trigger the autoblock (since right now the only way of telling if a blocked user tries to edit is if they log in under their blocked account).</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:34:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3233#c13">comment #13</a>)
+<span class="quote">&gt; However, if I understand correctly, you're effectively broadening the scope
+&gt; of
+&gt; the autoblock, so it seems reasonable to consider a different cookie duration
+&gt; than $wgAutoblockExpiry.
+&gt; 
+&gt; If someone vandalizes from a shared computer that occasionally changes
+&gt; external
+&gt; IP, before the block would only be tied to the shared IP (unless someone
+&gt; tried
+&gt; to log in).  Now, it is broader, since it is tied to *both* the shared
+&gt; browser
+&gt; and the shared IP.</span >
+
+Yeah, but that's existing functionality. When a user is blocked with autoblock, whenever they login, the new IP they login from is also autoblocked. The only difference between what we have now and this patch is that if the blocked user tries to edit anonymously they'll also trigger the autoblock (since right now the only way of telling if a blocked user tries to edit is if they log in under their blocked account).</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:39:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;MZMcBride is also right that it's now much easier to clear your cookies and
+&gt;local storage (private browsing/incognito is relatively well publicized), so we
+&gt;might be mostly targetting the good guys.</span >
+
+No kidding, but was it ever hard? All browsers had a single button &quot;clear my cookies&quot; since the dark ages (aka pre IE 6), they're just a little more prominent now.
+
+from <a href="show_bug.cgi?id=3233#c1">comment 1</a>
+<span class="quote">&gt;Of course, some black hats...</span >
+
+If that's all it takes to be a black hat...
+
+-----
+
+<span class="quote">&gt;First of all, this will obviously have ramifications on shared computers,
+&gt;particularly in libraries in schools, where there's a lot of vandalism but also
+&gt;where some constructive people do their only editing.  That alone gives me
+&gt;pause.</span >
+
+You think blocking someone with a cookie is going to have more fallout than blocking their IP? In the case of a school (that's probably behind a nat) the IP block might block the entire school. Worrying about this sort of thing is a social, not a technical issue. If the admins think it is worth the loss of potential editors, they will block the user with autoblock on. If they don't, they won't block the user with autoblock on. The ability to screw over shared computers already exists in software ;)
+
+I agree that a long lasting cookie is undesirable, but if this was implemented as:
+*24 hour cookie (at most)
+*Only enabled when autoblock is on (which is not all blocks)
+The fallout on innocent users (relative to the previous fallout) would be almost 0 as far as I can tell. The effectiveness might be questionable, but I doubt it would hurt anything.
+
+Keep in mind that while clearing cookies has become easier, it has become even easier to change your ip. Simply change which neighbour you're stealing wifi from.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew Flaschen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:43:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt;&gt; Yeah, but that's existing functionality. When a user is blocked with autoblock,
+&gt;&gt; whenever they login, the new IP they login from is also autoblocked. The only 
+&gt;&gt; difference between what we have now and this patch is that if the blocked user 
+&gt;&gt; tries to edit anonymously they'll also trigger the autoblock (since right now
+&gt;&gt; the only way of telling if a blocked user tries to edit is if they log in under
+&gt;&gt; their blocked account).&quot;</span >
+
+That's not the only difference.  If someone edited from a shared browser that someone else used to vandalize on a different IP (with a current autoblock), before they got lucky.  Now, they're still blocked for $wgAutoblockExpiry</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:46:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3233#c17">comment #17</a>)
+<span class="quote">&gt; That's not the only difference.  If someone edited from a shared browser that
+&gt; someone else used to vandalize on a different IP (with a current autoblock),
+&gt; before they got lucky.  Now, they're still blocked for $wgAutoblockExpiry</span >
+
+The case you're making is one where a shared browser (which implies a shared computer) is able to change its IP address, which IMO is not a very likely case.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matthew Flaschen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:48:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's not the most likely case, but it happens.  Institutional proxies can have multiple exit nodes, or be reassigned between them.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-07 23:55:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >OK, but the likelihood of the case is important. Right now there are numerous cases where autoblocks accidentally block innocent editors (such as the very simple case of a blocked user logging on using a shared computer and causing everybody else who uses that computer to be blocked). Like was said before, it's more of a social issue, i.e., is the blocking user willing to risk accidentally blocking good users.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-08 02:36:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class=""><a href="attachment.cgi?id=829" name="attach_829" title="Attempt to incorporate cookie blocks into autoblocker">attachment 829</a> <a href="attachment.cgi?id=829&amp;action=edit" title="Attempt to incorporate cookie blocks into autoblocker">[details]</a></span>
+Attempt to incorporate cookie blocks into autoblocker
+
+Altering attachment properties to indicate that this is a patch.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-08 19:01:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&#64;Krinkle You made the attachment a patch, but it's actually not a patch, just a copy of User.php with changes made. :P</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Krinkle</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-12 11:26:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please provide a patch, then.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tyler Romeo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-02-12 14:26:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3233#c23">comment #23</a>)
+<span class="quote">&gt; Please provide a patch, then.</span >
+
+(In reply to <a href="show_bug.cgi?id=3233#c9">comment #9</a>)
+<span class="quote">&gt; <a href="https://gerrit.wikimedia.org/r/48029">https://gerrit.wikimedia.org/r/48029</a></span ></pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">James Forrester</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-03-05 23:24:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >[Comment also on the code, but it applies to the bug more widely.]
+
+I'm concerned that this adds still further to the (not short) list of cookies that MediaWiki in general, and WIkimedia's cluster in particular, can/will add. Has this gone through legal to approve it - e.g. are there issues with the privacy policy/Terms of Use?</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-18 13:38:16 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 48029 abandoned by Krinkle:
+Send a cookie with autoblocks to prevent vandalism.
+
+<a href="https://gerrit.wikimedia.org/r/48029">https://gerrit.wikimedia.org/r/48029</a></pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3233#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerrit Notification Bot</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-11-19 05:12:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Change 48029 restored by Parent5446:
+Send a cookie with autoblocks to prevent vandalism.
+
+Reason:
+Why was this abandoned?
+
+<a href="https://gerrit.wikimedia.org/r/48029">https://gerrit.wikimedia.org/r/48029</a></pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3233&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3233">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3233">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3233">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3233&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3233" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3233&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419361690-AdlWORbwT0xPGvW5Mlkh9ZAHZWMmpdzD8BZNbLhoG-I">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

@@ -1,0 +1,2703 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 423 &ndash; A reference system that support BibTeX databases</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=423&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=423">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=423">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=423">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 423 – A reference system that support BibTeX databases",  
+                             "show_bug.cgi?id=423" );
+        document.title = "Bug 423 – A reference system that support BibTeX databases";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 423 – A reference system that support BibTeX databases", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki_extensions bz_component_Cite bz_bug_423 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-04-15 23:56:31 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-04-15 23:56:31">
+  <input type="hidden" name="longdesclength" value="37">
+  <input type="hidden" name="id" value="423">
+  <input type="hidden" name="token" value="1419357143-A3gP-4DdcDd5cmdJ1QDu5B539xZgTmrwhUgSMv_4mMo">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=423"><b>Bug&nbsp;423</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">A reference system that support BibTeX databases</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>A reference system that support BibTeX databases
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('A reference system that support BibTeX databases', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Cite
+    
+    (<a href="buglist.cgi?component=Cite&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=423">3 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=423#vote_423">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=423&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=423">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-08 14:30 UTC by <span class="vcard"><span class="fn">Mads Hansen</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-04-15 23:56 UTC 
+      (<a href="show_activity.cgi?id=423">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>8 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="at.light">at.light</option>
+                <option value="azatoth">azatoth</option>
+                <option value="Beetstra.wiki">Beetstra.wiki</option>
+                <option value="dereckson">dereckson</option>
+                <option value="jforrester">jforrester</option>
+                <option value="john">john</option>
+                <option value="kosikfl">kosikfl</option>
+                <option value="qgil">qgil</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2639"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">new extension, 'copy' of cite.php, with bibtex enhancement</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (52.23 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2639"
+               title="Go to the comment associated with the attachment">2006-11-05 18:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2639&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2640"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">new extension, 'copy' of cite.php, with bibtex enhancement</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (52.23 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2640"
+               title="Go to the comment associated with the attachment">2006-11-05 18:53 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2640&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2641"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Functionality as a patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (14.13 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2641"
+               title="Go to the comment associated with the attachment">2006-11-05 20:05 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2641&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2647"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (56.16 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2647"
+               title="Go to the comment associated with the attachment">2006-11-05 23:01 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2647&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2648"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (51.70 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2648"
+               title="Go to the comment associated with the attachment">2006-11-06 00:10 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2648&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2649"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Addition of BibTeX functionality, and a new working variety of ref</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (58.00 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2649"
+               title="Go to the comment associated with the attachment">2006-11-07 00:03 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2649&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2656"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">code cleanup and removal of some errors in bibtex functionality</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (60.05 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2656"
+               title="Go to the comment associated with the attachment">2006-11-07 23:10 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2656&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2661"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (22.88 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2661"
+               title="Go to the comment associated with the attachment">2006-11-08 12:28 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2661&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a9" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2662"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (22.84 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2662"
+               title="Go to the comment associated with the attachment">2006-11-08 14:15 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2662&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a10" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2664"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX and BibRef functionality for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (28.02 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2664"
+               title="Go to the comment associated with the attachment">2006-11-09 17:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2664&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a11" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2668"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (27.58 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2668"
+               title="Go to the comment associated with the attachment">2006-11-09 23:46 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2668&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a12" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2671"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (27.46 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2671"
+               title="Go to the comment associated with the attachment">2006-11-10 15:18 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2671&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a13" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2677"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (31.96 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2677"
+               title="Go to the comment associated with the attachment">2006-11-11 18:21 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2677&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a14" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2679"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (33.53 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2679"
+               title="Go to the comment associated with the attachment">2006-11-12 14:30 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2679&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a15" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2681"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (34.58 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2681"
+               title="Go to the comment associated with the attachment">2006-11-12 18:32 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2681&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a16" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2685"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (36.73 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2685"
+               title="Go to the comment associated with the attachment">2006-11-12 23:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2685&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a17" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2746"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (40.26 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2746"
+               title="Go to the comment associated with the attachment">2006-11-20 13:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2746&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a18" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2747"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (40.24 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2747"
+               title="Go to the comment associated with the attachment">2006-11-20 13:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2747&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a19" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2748"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">BibTeX functionality patch for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (65.81 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2748"
+               title="Go to the comment associated with the attachment">2006-11-20 14:10 UTC</a>,
+
+            <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2748&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a20" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2877"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Bibtex and footnote functionality for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (63.55 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2877"
+               title="Go to the comment associated with the attachment">2006-12-16 14:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2877&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a21" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2879"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">small adaption of last patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (63.74 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2879"
+               title="Go to the comment associated with the attachment">2006-12-16 15:14 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2879&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a22" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=2888"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Bibtex and footnote functionality for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (63.27 KB,
+                patch)
+
+            <br>
+            <a href="#attach_2888"
+               title="Go to the comment associated with the attachment">2006-12-16 20:57 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2888&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a23" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3065"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Bibtex and footnote functionality for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (64.89 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3065"
+               title="Go to the comment associated with the attachment">2007-01-13 14:40 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3065&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a24" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3066"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Bibtex and footnote functionality for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (64.93 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3066"
+               title="Go to the comment associated with the attachment">2007-01-13 15:03 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3066&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a25" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=3067"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Bibtex and footnote functionality for cite.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (64.89 KB,
+                patch)
+
+            <br>
+            <a href="#attach_3067"
+               title="Go to the comment associated with the attachment">2007-01-13 18:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=3067&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (25)
+        </span>
+        <a href="attachment.cgi?bugid=423&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mads Hansen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-08 14:30:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A system that would allow the easy (automated) creation of 
+refernces (to books or webpages) along with bibliography, 
+with support for BiBTeX databases would be awesome.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gregory Marton</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-07 14:29:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm glad I'm not the first to think of this.  In reality, what I think I would
+want is this:   (and I'm willing to help)
+
+* articles in a special format that has a bib entry on top, and with pdf-link,
+ps-link, doc-link, etc. BibTeX fields to show where the original document can be
+found.  Of course these really are just articles, and can be edited as usual.
+
+* a new bib: namespace that will link to articles and if it finds bib
+information, then it formats &quot;[bib:key]&quot; by default as &quot;&lt;u&gt;title&lt;/u&gt;.
+&lt;i&gt;authors&lt;/i&gt; publication-short-name year (link-to-pdf) (link-to-other-format)
+(link-to-yet-another-format)&quot; or some user-specified format.
+
+* Special Page to view just the BibTex parts of all the bib articles at once
+(for copy-paste to a .bib file)
+
+* Buttons on bib pages to open a new browser window and find the article on
+Google Scholar, CiteSeer, etc.
+
+* Special Page to import from Google Scholar, CiteSeer, etc. 
+
+
+
+I'm totally willing to put in some time to making this happen, but I am new to
+MediaWiki, and to php, and don't even know what mailing lists I should be asking
+questions on.  (I've installed php-mode.el and have started digging around.  a
+bit.) Help?
+
+Thanks,
+Grem
+</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gregory Marton</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-07 14:41:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >And as I'm thinking about it, also a separate [cite:foo] namespace that would be
+formatted as (Author YEAR), and link to the full [bib:foo] at the bottom, where
+those would be accumulated and displayed in alphabetical order by author, as
+usual at the bottom of articles.  
+
+I totally see this as a public scholarly discourse medium of the future: Want a
+good argument against creationism being taught in schools?  Want a scholarly
+history avec bibliography of France?  Want a scholarly introduction to the
+relevant literature on Natural Language Question Answering?  Check it on this
+wiki page, and track its changes, and have largish groups contribute to it.   
+
+This is happening now, except for the ability to cite sources cleanly.  This
+relates to <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Add &quot;How to cite this article&quot; link"
+   href="show_bug.cgi?id=800">Bug 800</a> in that we could pioneer a bibtex entry format (including
+datestamp) for wiki pages. 
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mads Hansen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-24 22:43:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks for your imput. My ambition is to create a site with social science
+research and a system that make refernces as painless as possible would be very
+usefull.
+
+
+- Mads</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-05 18:53:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2639" name="attach_2639" title="new extension, 'copy' of cite.php, with bibtex enhancement">attachment 2639</a> <a href="attachment.cgi?id=2639&amp;action=edit" title="new extension, 'copy' of cite.php, with bibtex enhancement">[details]</a></span>
+new extension, 'copy' of cite.php, with bibtex enhancement
+
+This is a working version of a bibtex enhancement of the cite.php.  It is
+ABSOLUTELY not a perfect system, but before patching on, I think I should make
+this one visible to the public, and maybe allow it for further discussion. 
+Things to be done:
+
+* Error handling (hardly anything at the moment)
+* Maybe move code into cite.php, so not a standalone extension, or make this an
+extension of the cite class from cite.php?
+* Discuss how to format references that are loaded from a bibtex format
+* Security checks
+* Performance checks (this thing may be very slow)
+(and maybe more).
+* Other formats (RIS-files?)</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-05 18:53:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2640" name="attach_2640" title="new extension, 'copy' of cite.php, with bibtex enhancement">attachment 2640</a> <a href="attachment.cgi?id=2640&amp;action=edit" title="new extension, 'copy' of cite.php, with bibtex enhancement">[details]</a></span>
+new extension, 'copy' of cite.php, with bibtex enhancement
+
+This is a working version of a bibtex enhancement of the cite.php.  It is
+ABSOLUTELY not a perfect system, but before patching on, I think I should make
+this one visible to the public, and maybe allow it for further discussion. 
+Things to be done:
+
+* Error handling (hardly anything at the moment)
+* Maybe move code into cite.php, so not a standalone extension, or make this an
+extension of the cite class from cite.php?
+* Discuss how to format references that are loaded from a bibtex format
+* Security checks
+* Performance checks (this thing may be very slow)
+(and maybe more).
+* Other formats (RIS-files?)</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-05 18:59:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For those who want to see a working copy, see <a href="http://chemistry.poolspares.com/wiki/Text">http://chemistry.poolspares.com/wiki/Text</a></pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-05 20:05:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2641" name="attach_2641" title="Functionality as a patch for cite.php">attachment 2641</a> <a href="attachment.cgi?id=2641&amp;action=edit" title="Functionality as a patch for cite.php">[details]</a></span>
+Functionality as a patch for cite.php
+
+Should be the same as the other patch, but patched into cite.php</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-05 23:01:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2647" name="attach_2647" title="BibTeX functionality patch for cite.php">attachment 2647</a> <a href="attachment.cgi?id=2647&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+New version of patch, some enhancement in comparison with the previous version:
+
+- Error handling
+- formatting references slightly adapted
+- removed quite some php-errors
+- extended working of biblio tag
+- security improved (should be ok now, system similar to cite.php
+
+Still need to be done:
++ other formats (but that is not important for the working)
++ internationalisation
+
+IMPORTANT: This patch needs a performance test.  It might be that with large
+&quot;external&quot; BibTeX pages, mediawiki performance is affected.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-06 00:10:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2648" name="attach_2648" title="BibTeX patch for cite.php">attachment 2648</a> <a href="attachment.cgi?id=2648&amp;action=edit" title="BibTeX patch for cite.php">[details]</a></span>
+BibTeX patch for cite.php
+
+Internationalisation added.  For further info, see <a href="show_bug.cgi?id=423#c8">comment #8</a></pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phil Boswell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-06 14:36:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think that this is a fabulous idea, but in the wrong place.
+
+Rather than spatchcocking it into [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=m%3ACite%2FCite.php">m:Cite/Cite.php</a>]] and subverting the &lt;ref&gt; tags, I 
+feel that it would be better to create a new independent set of tags which could work 
+orthogonally with &lt;ref&gt; and &lt;references/&gt;.
+
+There are still people who prefer not to work with &lt;ref&gt; who would be very interested 
+in these BibTeX tags: surely it would make more sense to make them independent.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-07 00:03:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2649" name="attach_2649" title="Addition of BibTeX functionality, and a new working variety of ref">attachment 2649</a> <a href="attachment.cgi?id=2649&amp;action=edit" title="Addition of BibTeX functionality, and a new working variety of ref">[details]</a></span>
+Addition of BibTeX functionality, and a new working variety of ref
+
+1) Further tweak of BibTeX
+2) Added an 'other way around' functionality.  &lt;bibtex store&gt; or &lt;biblio store&gt;
+creates a table of references, which can be used in the text to create an
+inline reference with a new tag &lt;bibref&gt;.
+
+Still needs:
+* Performance checking
+* Code clean up
+* Security check (though I think it is OK)
+* optimisation of the output-code (functions parseBibTeX and parseBibRef (are
+now generating a template call, while the template may not exist).</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-07 23:10:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2656" name="attach_2656" title="code cleanup and removal of some errors in bibtex functionality">attachment 2656</a> <a href="attachment.cgi?id=2656&amp;action=edit" title="code cleanup and removal of some errors in bibtex functionality">[details]</a></span>
+code cleanup and removal of some errors in bibtex functionality
+
+Upgraded version.  Former comments still true.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-08 12:28:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2661" name="attach_2661" title="BibTeX functionality patch for cite.php">attachment 2661</a> <a href="attachment.cgi?id=2661&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+Almost the same as the previous, without annoying whitespace patching and with
+repair of some small errors.  For comments, see earlier patches</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-08 14:15:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2662" name="attach_2662" title="BibTeX patch for cite.php">attachment 2662</a> <a href="attachment.cgi?id=2662&amp;action=edit" title="BibTeX patch for cite.php">[details]</a></span>
+BibTeX patch for cite.php
+
+One major error in 2661, resolved.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-09 17:11:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2664" name="attach_2664" title="BibTeX and BibRef functionality for cite.php">attachment 2664</a> <a href="attachment.cgi?id=2664&amp;action=edit" title="BibTeX and BibRef functionality for cite.php">[details]</a></span>
+BibTeX and BibRef functionality for cite.php
+
+Added format, removed some errors.  Ready for a review (escpecially
+performance).</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-09 23:46:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2668" name="attach_2668" title="BibTeX patch for cite.php">attachment 2668</a> <a href="attachment.cgi?id=2668&amp;action=edit" title="BibTeX patch for cite.php">[details]</a></span>
+BibTeX patch for cite.php
+
+Adapted the i18n with newer reference formatting.  For further comments see my
+earlier additions.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-10 15:18:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2671" name="attach_2671" title="BibTeX functionality patch for cite.php">attachment 2671</a> <a href="attachment.cgi?id=2671&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+Changed some things in the files after recommendations from Brion, and removed
+a bug.	For rest see comments above.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-11 18:21:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2677" name="attach_2677" title="BibTeX functionality patch for cite.php">attachment 2677</a> <a href="attachment.cgi?id=2677&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+Removed some small errors, better internationalisation (BibliographyReader now
+does his own), rest similar to above.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-12 14:30:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2679" name="attach_2679" title="BibTeX functionality patch for cite.php">attachment 2679</a> <a href="attachment.cgi?id=2679&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+Added error messages for empty inputs, made error messages more informative,
+BibTeX fields from other page are now loaded only from within the tagset (see
+<a href="http://chemistry.poolspares.com">http://chemistry.poolspares.com</a>, lower half of main page).  Further comments as
+above.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-12 18:32:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2681" name="attach_2681" title="BibTeX functionality patch for cite.php">attachment 2681</a> <a href="attachment.cgi?id=2681&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+newer version, some minor glitches removed, code cleanup, and bibref now reads
+bibtex fields as well.	Further comments, see above</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-12 23:11:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2685" name="attach_2685" title="BibTeX functionality patch for cite.php">attachment 2685</a> <a href="attachment.cgi?id=2685&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+More errors gone, see comments above</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-20 13:04:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2746" name="attach_2746" title="BibTeX functionality patch for cite.php">attachment 2746</a> <a href="attachment.cgi?id=2746&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+Cleaning up using exceptions</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-20 13:11:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2747" name="attach_2747" title="BibTeX functionality patch for cite.php">attachment 2747</a> <a href="attachment.cgi?id=2747&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+removed wrongly str_replace, wfMsg takes parameter. also changed wfMsg to
+wfMsgForContent.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carl Fürstenberg</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-20 14:10:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2748" name="attach_2748" title="BibTeX functionality patch for cite.php">attachment 2748</a> <a href="attachment.cgi?id=2748&amp;action=edit" title="BibTeX functionality patch for cite.php">[details]</a></span>
+BibTeX functionality patch for cite.php
+
+Moved around the code a bit, introduce private and public functions/variables.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 14:19:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2877" name="attach_2877" title="Bibtex and footnote functionality for cite.php">attachment 2877</a> <a href="attachment.cgi?id=2877&amp;action=edit" title="Bibtex and footnote functionality for cite.php">[details]</a></span>
+Bibtex and footnote functionality for cite.php
+
+Moved the code around, and generalised the use of the code (numbering can now
+be adapted to users preference).
+
+This allows for using the same cite-mechanism for footnotes (which are
+different from the references).  &lt;references/&gt; gets used at the bottom of the
+document (as usual, the functionality for bibtex is only available for the
+ref/references tagset), &lt;footnotes/&gt; can be used on a per-section basis, for
+separate comments.  The contents for the footnotes gets reset every time when
+&lt;footnotes/&gt; gets called.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 15:14:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2879" name="attach_2879" title="small adaption of last patch">attachment 2879</a> <a href="attachment.cgi?id=2879&amp;action=edit" title="small adaption of last patch">[details]</a></span>
+small adaption of last patch
+
+Changed generator for tags, now independent of array-size (for custom tags)</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 20:57:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=2888" name="attach_2888" title="Bibtex and footnote functionality for cite.php">attachment 2888</a> <a href="attachment.cgi?id=2888&amp;action=edit" title="Bibtex and footnote functionality for cite.php">[details]</a></span>
+Bibtex and footnote functionality for cite.php
+
+Removed 4 bugs and 1 error (found while writing a manual at
+<a href="http://chemistry.poolspares.com/wiki/CiteManual">http://chemistry.poolspares.com/wiki/CiteManual</a>).</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-13 14:40:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3065" name="attach_3065" title="Bibtex and footnote functionality for cite.php">attachment 3065</a> <a href="attachment.cgi?id=3065&amp;action=edit" title="Bibtex and footnote functionality for cite.php">[details]</a></span>
+Bibtex and footnote functionality for cite.php
+
+(updated patch, old patch conflicted with patch in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Footnotes content should appear in a tooltip (add ReferenceTooltips to Cite as default/option)"
+   href="show_bug.cgi?id=7908">bug 7908</a>)</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-13 15:03:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3066" name="attach_3066" title="Bibtex and footnote functionality for cite.php">attachment 3066</a> <a href="attachment.cgi?id=3066&amp;action=edit" title="Bibtex and footnote functionality for cite.php">[details]</a></span>
+Bibtex and footnote functionality for cite.php
+
+(resolving patch conflict with 19203)</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-13 18:04:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=3067" name="attach_3067" title="Bibtex and footnote functionality for cite.php">attachment 3067</a> <a href="attachment.cgi?id=3067&amp;action=edit" title="Bibtex and footnote functionality for cite.php">[details]</a></span>
+Bibtex and footnote functionality for cite.php
+
+(remove conflict)</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dirk Beetstra</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-20 13:58:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Disregard last patch, contains a serious design-flaw (cite.php may loose it's capability of counting 
+consistently).</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">p858snake</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-30 00:10:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*Bulk BZ Change: +Patch to open bugs with patches attached that are missing the keyword*</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-05-28 03:15:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I really wish the patch worked :(</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dereckson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-06-10 20:13:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Unassigning this bug, as there is no assignee.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Quim Gil</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-15 23:53:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >James, when you say &quot;in the future, I would like VisualEditor to autofill references automatically&quot; (or something similar), are you considering the approach proposed here as a possibility?
+
+In other words, is there a future for this old request in our plans?</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=423#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">James Forrester</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2014-04-15 23:56:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to Quim Gil from <a href="show_bug.cgi?id=423#c35">comment #35</a>)
+<span class="quote">&gt; James, when you say &quot;in the future, I would like VisualEditor to autofill
+&gt; references automatically&quot; (or something similar), are you considering the
+&gt; approach proposed here as a possibility?
+&gt; 
+&gt; In other words, is there a future for this old request in our plans?</span >
+
+Not as written, though I imagine export to BibTeX format would be a fairly trivial enhancement onto such a system.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=423&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=423">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=423">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=423">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=423&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=423" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=423&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357143-WuxMUCF1pvvIPyNOSkYs3YA65ASa0zEjeuToTcZ5O6s">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

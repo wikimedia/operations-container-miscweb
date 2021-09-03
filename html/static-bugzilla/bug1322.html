@@ -1,0 +1,2640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1322 &ndash; &quot;1071: Specified key was too long&quot; (MySQL error) during installation</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1322&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1322">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1322">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1322">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1322 – \"1071: Specified key was too long\" (MySQL error) during installation",  
+                             "show_bug.cgi?id=1322" );
+        document.title = "Bug 1322 – \"1071: Specified key was too long\" (MySQL error) during installation";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1322 – \"1071: Specified key was too long\" (MySQL error) during installation", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Installer bz_bug_1322 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2008-10-10 18:01:26 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2008-10-10 18:01:26">
+  <input type="hidden" name="longdesclength" value="45">
+  <input type="hidden" name="id" value="1322">
+  <input type="hidden" name="token" value="1419358773-mxkrI2_aZs3RThxiGetasfijmcuT-xTp_Dx_ez2WvUA">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1322"><b>Bug&nbsp;1322</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">&quot;1071: Specified key was too long&quot; (MySQL error) during installation</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>&quot;1071: Specified key was too long&quot; (MySQL error) during installation
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('\"1071: Specified key was too long\" (MySQL error) during installation', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Installer
+    
+    (<a href="buglist.cgi?component=Installer&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">PC
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       normal<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=1322">6 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1322#vote_1322">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation fails with mySQL error 1071 while creating table categorylinks"
+   href="show_bug.cgi?id=1655">1655</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation: Table-Creation fails with MySQL 4.1"
+   href="show_bug.cgi?id=1967">1967</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation: Table-Creation fails with MySQL 4.1"
+   href="show_bug.cgi?id=1968">1968</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - utf8 charset causes max key length exceeded"
+   href="show_bug.cgi?id=2023">2023</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - DateBase"
+   href="show_bug.cgi?id=2417">2417</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unspecified default charset in CREATE DATABASE can cause install to fail"
+   href="show_bug.cgi?id=2907">2907</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation crashes with MySQL error code &quot;Specified key was too long. Max key length is 500 (localhost)&quot;"
+   href="show_bug.cgi?id=6269">6269</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - error when updating database"
+   href="show_bug.cgi?id=15931">15931</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=1655,1967,1968,2023,2417,2907,6269,15931">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MySQL 5.0 issues (tracking)"
+   href="show_bug.cgi?id=3738">3738</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1322&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1322">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-01-13 03:14 UTC by <span class="vcard"><span class="fn">Schnee</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2008-10-10 18:01 UTC 
+      (<a href="show_activity.cgi?id=1322">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>11 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="alex">alex</option>
+                <option value="bertrand.grondin">bertrand.grondin</option>
+                <option value="bugzilla.wikimedia.org">bugzilla.wikimedia.org</option>
+                <option value="carltonb">carltonb</option>
+                <option value="hlai2openssh">hlai2openssh</option>
+                <option value="ibytenl">ibytenl</option>
+                <option value="ich">ich</option>
+                <option value="jakob.grimstveit">jakob.grimstveit</option>
+                <option value="jakob">jakob</option>
+                <option value="lqs">lqs</option>
+                <option value="songchang2000">songchang2000</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=2478"
+               title="View the content of the attachment">
+          <b>patch (job table)</b></a>
+
+          <span class="bz_attach_extra_info">
+              (876 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_2478"
+               title="Go to the comment associated with the attachment">2006-10-07 18:49 UTC</a>,
+
+            <span class="vcard"><span class="fn">Dan Li</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=2478&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=1322&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Schnee</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-13 03:14:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi,
+
+I just tried installing mediawiki 1.4beta4 for the first time for testing
+purposes (on Windows XP SP 2 / Apache 2.0.52 / PHP 5.0.3 / MySQL 4.1.8), and got
+the following error message (a few linebreaks were added for clarity). FYI, I'm
+filing this as &quot;Version: unspecified&quot;, since 1.4beta4 is not yet available for
+selection. (shame shame! ;))
+
+--- Cut here ---
+
+Checking environment...
+
+    * PHP 5.0.3: ok
+    * PHP server API is apache2handler; ok, using pretty URLs (index.php/Page_Title)
+    * Have XML / Latin1-UTF-8 conversion support.
+    * PHP is configured with no memory_limit.
+    * Have zlib support; enabling output compression.
+    * Turck MMCache not installed, can't use object caching functions
+    * Found GD graphics library built-in, image thumbnailing will be enabled if
+you enable uploads.
+    * Installation directory: C:\Programme\Apache
+Group\Apache2\htdocs\mediawiki-1.4beta4
+    * Script URI path: /mediawiki-1.4beta4
+    * Warning: $wgProxyKey is insecure
+    * Connected as root (automatic)
+    * Connected to database... 4.1.8-nt; enabling MySQL 4 enhancements
+    * Warning: $wgProxyKey is insecure
+    * Created database wikidb
+    * Creating tables...A database error has occurred 
+Query: CREATE TABLE mw_categorylinks ( cl_from int(8) unsigned NOT NULL default
+'0', cl_to varchar(255) binary NOT NULL default '', cl_sortkey varchar(255)
+binary NOT NULL default '', cl_timestamp timestamp NOT NULL, UNIQUE KEY
+cl_from(cl_from,cl_to), KEY cl_sortkey(cl_to,cl_sortkey(128)), KEY
+cl_timestamp(cl_to,cl_timestamp) ) 
+Function: Error: 1071 Specified key was too long; max key length is 1024 bytes
+(localhost) 
+Backtrace: Database.php line 345 calls wfDebugDieBacktrace() 
+Database.php line 297 calls Database::reportQueryError() 
+install-utils.inc line 118 calls Database::query() 
+index.php line 516 calls dbsource() 
+
+--- Cut here ---
+
+Any ideas? Maybe it's something I did, but if that's the case, buggered if I
+know what it is.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-13 03:28:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Use MySQL 4.0 if possible; 4.1 is not fully backwards compatible.
+
+If you must use 4.1 (and your PHP installation is properly configured for 
+it!) then make sure the database is created with latin-1 as the default 
+character set, not UTF-8. MySQL 4.1's character set support will 
+otherwise do strange things, including complaining about keys being too 
+long.
+
+Also you may experience data corrupting with MySQL 4.1 when doing 
+backups and restores with mysqldump unless you are careful to match 
+the latin-1 charset setting, as the automatic conversion between &quot;latin
+-1&quot; and utf-8 is lossy to the utf-8 and binary data which is stored in 
+some fields.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Schnee</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-13 03:41:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thanks a bunch, I'll try that. (MySQL is configured to use a default charset of
+UTF-8 indeed.) Is this a bug in MySQL that should be reported, BTW, or is it
+just MediaWiki that's not entirely compatible with MySQL here? It sure sounds
+like the former's the case, given the strange and apparently unrelated error
+message.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-13 03:51:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I believe the index maximum length limits are in bytes; having fields 
+marked as Unicode probably makes them eat up more bytes for a given 
+character length, and one of the indexes which fits at 8 bits per 
+'character' doesn't fit at 16 (or 32 or however they store it).
+
+At some point we'll want to make some changes to how fields are laid 
+out and used to make better use of MySQL 4.1 and higher's Unicode 
+support, but we need to maintain compatibility with the widely-used 
+older versions too. Historically it's been necessary to let MySQL think it's 
+working in 8-bit latin-1 and just shove UTF-8-encoded data in there.
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-03-08 05:53:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation fails with mySQL error 1071 while creating table categorylinks"
+   href="show_bug.cgi?id=1655">Bug 1655</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-24 19:44:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation: Table-Creation fails with MySQL 4.1"
+   href="show_bug.cgi?id=1968">Bug 1968</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-24 19:44:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation: Table-Creation fails with MySQL 4.1"
+   href="show_bug.cgi?id=1967">Bug 1967</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Keppler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-04-30 12:42:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - utf8 charset causes max key length exceeded"
+   href="show_bug.cgi?id=2023">Bug 2023</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">G Zavala</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-02 15:58:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Had the same problem with 1.5alpha1 released 2005-05-03 on MySql 3.23.58. Fixed
+by changing cl_to and cl_sortkey to varchar(250) in the source. Will this have
+any adverse effects?</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dmytro Mykhaylov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-09 17:40:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See the following MySQL bug:
+<a href="http://bugs.mysql.com/bug.php?id=4541">http://bugs.mysql.com/bug.php?id=4541</a></pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Carlton Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-10 00:24:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes, do these keys really have to be so long?  Has anyone profiled the performance gains or 
+losses, or whether the values ever approach that length?
+
+Long keys can make selects faster, but they can make inserts a LOT slower.   I suggest 
+looking at whether the keys really need to be this wide.   In my installation, no value even 
+comes close to using the maximum length of this index.  </pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dmytro Mykhaylov</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-10 13:23:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I can say nothing about whether such long key is a req.
+But I can add my quick resolution for this problem (so far looks like it works):
+
+CREATE TABLE `mw_categorylinks` (
+  `cl_from` int(8) unsigned NOT NULL default '0',
+  `cl_to` varchar(255) character set utf8 collate utf8_bin NOT NULL default '',
+  `cl_sortkey` varchar(255) character set utf8 collate utf8_bin NOT NULL default '',
+  `cl_timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update
+CURRENT_TIMESTAMP,
+  UNIQUE KEY `cl_from` (`cl_from`,`cl_to`),
+  KEY `cl_sortkey` (`cl_to`,`cl_sortkey`(78)),
+  KEY `cl_timestamp` (`cl_to`,`cl_timestamp`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+The idea is to use shorter key length (`cl_sortkey`(78)).
+As a result composite key total size is &lt;= 333.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-12 14:11:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Changed table definition in CVS HEAD for 1.5; cl_sortkey is now limited to 86 characters 
+rather than 255, so the key length fits within the 1024-byte limit when utf8 is selected. 
+It also should stay within the 500 byte limit on MySQL 3.x.
+
+(Incidentally, that it's 3 bytes per character indicates a serious bug in MySQL; it 
+apparently doesn't support full UTF-8 but only a partial subset. Depending on how it's 
+implemented this could introduce data corruption for text containing characters outside 
+the BMP.)
+
+Since the index now covers the entire field, the actual sorting also no longer triggers a 
+filesort (according to EXPLAIN).
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-15 16:40:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - DateBase"
+   href="show_bug.cgi?id=2417">Bug 2417</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zhen Lin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-26 12:57:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >cl_sortkey is still too long for me - 78 is the upper limit on my server's
+installation of MySQL 4.1, for some reason. I doubt this helps, but may as well:
+$ mysql -V
+mysql  Ver 14.7 Distrib 4.1.8, for pc-linux (i686)</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-19 23:15:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unspecified default charset in CREATE DATABASE can cause install to fail"
+   href="show_bug.cgi?id=2907">Bug 2907</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Henry Cocozzoli</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-12 16:53:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug is NOT fixed in 1.6.3.
+
+Please include all of the lines below when reporting installation problems.
+
+PHP 4.3.4 installed 
+PHP server API is apache2handler; ok, using pretty URLs (index.php/Page_Title) 
+Have XML / Latin1-UTF-8 conversion support. 
+PHP's memory_limit is 8M. If this is too low, installation may fail! Attempting to raise limit 
+to 20M... ok. 
+Have zlib support; enabling output compression. 
+Neither Turck MMCache nor eAccelerator are installed, can't use object caching functions 
+Found GNU diff3: /usr/bin/diff3. 
+Found GD graphics library built-in, image thumbnailing will be enabled if you enable uploads. 
+Installation directory: /srv/www/htdocs/wiki 
+Script URI path: /wiki 
+Environment checked. You can install MediaWiki. 
+Generating configuration file...
+
+Database type: mysql 
+PHP is linked with old MySQL client libraries. If you are using a MySQL 4.1 server and have 
+problems connecting to the database, see <a href="http://dev.mysql.com/doc/mysql/en/old-client.html">http://dev.mysql.com/doc/mysql/en/old-client.html</a> for 
+help. 
+Attempting to connect to database server as root...success. 
+Connected to 4.0.18 
+Database wikidb exists 
+There are already MediaWiki tables in this database. Checking if updates are needed... 
+Granting user permissions... 
+...hitcounter table already exists.
+...querycache table already exists.
+...objectcache table already exists.
+...categorylinks table already exists.
+...logging table already exists.
+...validate table already exists.
+...user_newtalk table already exists.
+...transcache table already exists.
+...trackbacks table already exists.
+...externallinks table already exists.
+Creating job table...Query &quot;CREATE TABLE `job` (
+ job_id int(9) unsigned NOT NULL auto_increment,
+ job_cmd varchar(255) NOT NULL default '',
+ job_namespace int NOT NULL,
+ job_title varchar(255) binary NOT NULL,
+ job_params blob NOT NULL default '',
+ PRIMARY KEY job_id (job_id),
+ KEY (job_cmd, job_namespace, job_title)
+ ) ENGINE=InnoDB
+&quot; failed with error code &quot;Specified key was too long. Max key length is 500 (localhost)&quot;.
+ 
+</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Thomas NOEL</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-04-13 14:38:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I propose this patch :
+
+--- tables.sql.orig     2006-04-13 08:00:16.000000000 -0400
++++ tables.sql  2006-04-13 10:30:22.000000000 -0400
+&#64;&#64; -924,5 +924,5 &#64;&#64;
+   job_params blob NOT NULL default '',
+
+   PRIMARY KEY job_id (job_id),
+-  KEY (job_cmd, job_namespace, job_title)
++  KEY (job_cmd(160), job_namespace, job_title(160))
+ ) TYPE=InnoDB;</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jakob Breivik Grimstveit</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-05 11:37:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >FYI: #17 works for me. Hopes this doesn't fsck up the database later on :-)</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Martin Rohrbach</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 07:14:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >FWIW: #17 only fixes the problem for new installations. I encountered it on an upgrade from 1.5.4 to 1.6.5 and 
+applied the patch to maintenance/archives/patch-job.sql which does the same trick.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jakob Breivik Grimstveit</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 08:58:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thank you, Martin Rohrbach - that was indeed the procedure I had to perform in
+order to make it work in my place. My situation is thus the same as #19, and it
+worked nicely. Two big wikis are now running nicely on this solution.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">chris r</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-09 09:07:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe someone will find this usefull, (Sergei Golubchik = MySQL Dev)
+<a href="http://bugs.mysql.com/bug.php?id=2130">http://bugs.mysql.com/bug.php?id=2130</a></pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Lars Grobe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-16 23:10:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I just found this after upgrading to 1.6.5 where the problem still persists (for job_title and job_cmd). I set both 
+to 250 instead 255 (max_key is 500 here) and added a default latin1 to the patch-job.sql file. Still, as a 
+general question, how dangerous is playing with these field lengths? Did I break my database? What with the 
+next upgrade scripts? I am not an sql-expert at all... TIA+CU Lars.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-10 19:01:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Installation crashes with MySQL error code &quot;Specified key was too long. Max key length is 500 (localhost)&quot;"
+   href="show_bug.cgi?id=6269">Bug 6269</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alex</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-11 11:37:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >#17 worked fine with 1.6.7, too. Thanks a lot, Thomas. Sorry for creating
+duplicate 6269.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hugh Prior</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-26 15:17:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have just done a clean install of 1.6.7, hit this bug, applied suggestion #17.
+ Can't this #17 patch be applied to the source code to stop everyone else
+hitting this problem?</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hugh Prior</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-26 15:18:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have just done a clean install of 1.6.7, hit this bug, applied suggestion #17.
+ Can't this #17 patch be applied to the source code to stop everyone else
+hitting this problem?</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Julian Taverner</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-28 00:09:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just tried installing 1.6.7 &amp; ran into the same error for the table 'job' on
+Windows Server 2003 Standard Edition with Apache 2.0.55 &amp; MySQL 5.0.15-nt, found
+the following worked (as specified above #17, with the ENGINE=InnoDB added);
+
+CREATE TABLE `job` (
+job_id int(9) unsigned NOT NULL auto_increment,
+job_cmd varchar(255) NOT NULL default '',
+job_namespace int NOT NULL,
+job_title varchar(255) binary NOT NULL,
+job_params blob NOT NULL default '',
+PRIMARY KEY job_id (job_id),
+KEY (job_cmd(160), job_namespace, job_title(160))
+) ENGINE=InnoDB;
+
+</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Stefan Dobner</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-07-14 09:39:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I had the same problem and did the workaround mentioned in
+<a href="http://bugzilla.wikimedia.org/show_bug.cgi?id=1322#c19">http://bugzilla.wikimedia.org/show_bug.cgi?id=1322#c19</a> . This helped executing
+the update script successfully. Everything works fine, except doing rollbacks.
+Then it shows the following error: &quot;1196: Warning: Some non-transactional
+changed tables couldn't be rolled back&quot; did anyone experience the same problem?
+any solutions?</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">tom sparks</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-12 03:11:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >MediaWiki 1.7.1 Installation
+Don't forget security updates! Keep an eye on the low-traffic release
+announcements mailing list. 
+Checking environment...
+Please include all of the lines below when reporting installation problems.
+
+PHP 5.1.4 installed 
+Found database drivers for: MySQL 
+PHP server API is apache2handler; ok, using pretty URLs (index.php/Page_Title) 
+Have XML / Latin1-UTF-8 conversion support. 
+PHP is configured with no memory_limit. 
+Have zlib support; enabling output compression. 
+Neither Turck MMCache nor eAccelerator nor APC are installed, can't use object
+caching functions 
+GNU diff3 not found.
+Found GD graphics library built-in, image thumbnailing will be enabled if you
+enable uploads. 
+Installation directory: C:\xampplite\htdocs\wiki 
+Script URI path: /wiki 
+Environment checked. You can install MediaWiki. 
+Warning: $wgSecretKey key is insecure, generated with mt_rand(). Consider
+changing it manually. 
+Generating configuration file...
+
+Database type: MySQL 
+Loading class: DatabaseMysql
+Attempting to connect to database server as root...success. 
+Connected to 5.0.21-community 
+Database wikidb exists 
+There are already MediaWiki tables in this database. Checking if updates are
+needed... 
+...hitcounter table already exists.
+...querycache table already exists.
+...objectcache table already exists.
+Creating categorylinks table...Query &quot;CREATE TABLE `categorylinks` (
+ cl_from int(8) unsigned NOT NULL default '0',
+ cl_to varchar(255) binary NOT NULL default '',
+ cl_sortkey varchar(86) binary NOT NULL default '',
+ cl_timestamp timestamp NOT NULL,
+ UNIQUE KEY cl_from(cl_from,cl_to),
+ KEY cl_sortkey(cl_to,cl_sortkey),
+ KEY cl_timestamp(cl_to,cl_timestamp)
+ ) TYPE=InnoDB
+&quot; failed with error code &quot;Specified key was too long; max key length is 1000
+bytes (localhost)&quot;.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Niki W. Waibel</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-07 14:50:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >this seems crazy. happens to me with mediawiki-1.7.1, php-5.1.6, mysql-4.1.21:
+===
+Creating tables... using MySQL 5 table defs...Query &quot;CREATE TABLE
+`mw_karate_job` ( job_id int(9) unsigned NOT NULL auto_increment, job_cmd
+varchar(255) NOT NULL default '', job_namespace int NOT NULL, job_title
+varchar(255) binary NOT NULL, job_params blob NOT NULL default '', PRIMARY KEY
+job_id (job_id), KEY (job_cmd, job_namespace, job_title) ) TYPE=InnoDB, DEFAULT
+CHARSET=utf8 &quot; failed with error code &quot;Specified key was too long; max key
+length is 1024 bytes (localhost)&quot;.
+===
+going to try #17...
+
+pls fix this, such things really should not happen!</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-07 18:49:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=2478" name="attach_2478" title="patch (job table)">attachment 2478</a> <a href="attachment.cgi?id=2478&amp;action=edit" title="patch (job table)">[details]</a></span>
+patch (job table)
+
+Patch changes index for job.job_cmd to only use the first 66 characters
+(floor((1000-9*4-3*255)/3)) of job_cmd. Shouldn't be a big deal, as names for
+job queue commands will probably stay under 66 chars anyways.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Steve Hay</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-07 21:27:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1322#c31">comment #31</a>)
+<span class="quote">&gt; Created an attachment (id=2478) [edit]
+&gt; patch (job table)
+&gt; 
+&gt; Patch changes index for job.job_cmd to only use the first 66 characters
+&gt; (floor((1000-9*4-3*255)/3)) of job_cmd. Shouldn't be a big deal, as names for
+&gt; job queue commands will probably stay under 66 chars anyways.</span >
+
+I applied this patch and it had no effect.
+
+I did find this workaround which seems to help:
+
+Modify maintenance/archives/patch-job.sql, add the following lines:
+
+DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci
+
+after the “) TYPE=xxxxDB” line.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-07 21:48:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1322#c32">comment #32</a>)
+<span class="quote">&gt; I applied this patch and it had no effect.</span >
+
+Meaning? Where does the install script hang?</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-09 06:37:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >By the way, I've successfully tested the patch on 1.8-svn, php 5.1.6, MySQL
+4.1.21-standard.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andrew Garrett</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 12:11:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Decreasing priority and severity.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-13 12:20:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It's not a trivial bug. It doesn't have a particularly high priority, but it's
+not trivial.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-11-14 02:45:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Severity = how bad the bug is for those who experience it, priority = whether
+we're actually do anything about it.
+
+<a href="http://bugzilla.wikimedia.org/page.cgi?id=fields.html#bug_severity">http://bugzilla.wikimedia.org/page.cgi?id=fields.html#bug_severity</a></pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Hsing-Tsu</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-05-22 05:51:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Tried new install of mediawiki 1.10.0 and encountered the same errors with UTF-8 database. Used the workarounds in <a href="show_bug.cgi?id=1322#c11">comment #11</a>, <a href="show_bug.cgi?id=1322#c12">comment #12</a>, and <a href="show_bug.cgi?id=1322#c17">comment #17</a>, here are all changes I made to maintenance/tables.sql to get the tables created:
+
+
+464c464
+&lt;   -- needs cut to be smaller than 1024 bytes (at 3 bytes per char).
+---
+<span class="quote">&gt;   -- needs cut to be smaller than 1000 bytes (at 3 bytes per char).</span >
+467c467
+&lt;   cl_sortkey varchar(86) binary NOT NULL default '',
+---
+<span class="quote">&gt;   cl_sortkey varchar(78) binary NOT NULL default '',</span >
+<a href="https://gerrit.wikimedia.org/r/#q,1061c1061,n,z" title="Git commit 1061c1061">1061c1061</a>
+&lt;   KEY (job_cmd, job_namespace, job_title)
+---
+<span class="quote">&gt;   KEY (job_cmd(160), job_namespace, job_title(160))</span >
+<a href="https://gerrit.wikimedia.org/r/#q,1124c1124,n,z" title="Git commit 1124c1124">1124c1124</a>
+&lt;   pr_level varchar(255) NOT NULL,
+---
+<span class="quote">&gt;   pr_level varchar(78) NOT NULL,</span >
+
+</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jakob Breivik Grimstveit</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 11:10:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I get a similar problem for 10.0, but the patch above does not seem to work for me (a different table which fails);
+
+Creating page_restrictions table...Query &quot;CREATE TABLE `wikit_page_restrictions` (
+ pr_page int(8) NOT NULL,
+ pr_type varchar(255) NOT NULL,
+ pr_level varchar(255) NOT NULL,
+ pr_cascade tinyint(4) NOT NULL,
+ pr_user int(8) NULL,
+ pr_expiry char(14) binary NULL,
+ PRIMARY KEY pr_pagetype (pr_page,pr_type),
+ KEY pr_page (pr_page),
+ KEY pr_typelevel (pr_type,pr_level),
+ KEY pr_level (pr_level),
+ KEY pr_cascade (pr_cascade)
+ ) TYPE=InnoDB
+&quot; failed with error code &quot;Specified key was too long. Max key length is 500 (localhost)&quot;.
+</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 17:15:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wasn't this fixed by Tim in trunk (for the 1000-byte limit anyway)?</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 17:38:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looks like it. In trunk, it's pr_type varbinary(60) NOT NULL and pr_level varbinary(60) NOT NULL.</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 18:00:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >These fixes should at some point be backported to 1.10.1, I think, unless it's decided it's not worth it when 1.11 comes out so soon, which seems reasonable.  Until then, users of 1.10.0 should be able to apply <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/23239" title="revision 23239 in SVN">r23239</a> and <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/23247" title="revision 23247 in SVN">r23247</a> to their local installations (they may not apply completely cleanly).
+
+Fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/23239" title="revision 23239 in SVN">r23239</a>, <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/23247" title="revision 23247 in SVN">r23247</a> by Tim Starling.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gene Wood</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-09 03:06:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This still occurs in the following scenario :
+
+php-5.0.3-1
+MySQL-server-4.0.20-0
+
+Upgrading from MediaWiki 1.10.1 to 1.12.0
+
+
+Content-type: text/html
+X-Powered-By: PHP/5.0.3
+
+MediaWiki 1.12.0 Updater
+
+Going to run database updates for wikidb
+Depending on the size of your database this may take a while!
+Abort with control-c in the next five seconds...0
+...have ipb_id field in ipblocks table.
+...have ipb_expiry field in ipblocks table.
+...already have interwiki table
+...indexes seem up to <a href="https://gerrit.wikimedia.org/r/#q,20031107,n,z" title="Git commit 20031107">20031107</a> standards
+...hitcounter table already exists.
+...have rc_type field in recentchanges table.
+...have user_real_name field in user table.
+...querycache table already exists.
+...objectcache table already exists.
+...categorylinks table already exists.
+Already have pagelinks; skipping old links table updates.
+...have rc_ip field in recentchanges table.
+...image primary key already set.
+...have rc_id field in recentchanges table.
+...have rc_patrolled field in recentchanges table.
+...logging table already exists.
+...have user_token field in user table.
+The watchlist table is already set up for email notification.
+...watchlist talk page rows already present
+...user table does not contain old email authentication field.
+...page table already exists.
+...have log_params field in logging table.
+Logging table has correct title encoding.
+...have ar_rev_id field in archive table.
+...have page_len field in page table.
+revision timestamp indexes already up to 2005-03-13
+...rev_text_id already in place.
+...have rev_deleted field in revision table.
+...have img_width field in image table.
+...have img_metadata field in image table.
+...have user_email_token field in user table.
+...have ar_text_id field in archive table.
+...page_namespace is already a full int (int(11)).
+...ar_namespace is already a full int (int(11)).
+...rc_namespace is already a full int (int(11)).
+...wl_namespace is already a full int (int(11)).
+...qc_namespace is already a full int (int(11)).
+...log_namespace is already a full int (int(11)).
+...have img_media_type field in image table.
+...already have pagelinks table.
+No img_type field in image table; Good.
+Already have unique user_name index.
+...user_groups table already exists.
+...user_groups is in current format.
+...have ss_total_pages field in site_stats table.
+...user_newtalk table already exists.
+...transcache table already exists.
+...have iw_trans field in interwiki table.
+...trackbacks table already exists.
+...wl_notificationtimestamp is already nullable.
+...timestamp key on logging already exists.
+...have ipb_range_start field in ipblocks table.
+Setting page_random to a random value on rows where it equals 0...changed 0 rows
+...have user_registration field in user table.
+...templatelinks table already exists
+...externallinks table already exists.
+...job table already exists.
+...have ss_images field in site_stats table.
+...langlinks table already exists.
+...querycache_info table already exists.
+...filearchive table already exists.
+...have ipb_anon_only field in ipblocks table.
+Checking for additional recent changes indices...
+...index `rc_ns_usertext` seems ok.
+...index `rc_user_text` seems ok.
+...have user_newpass_time field in user table.
+...redirect table already exists.
+...querycachetwo table already exists.
+...have ipb_enable_autoblock field in ipblocks table.
+Checking for backlinking indices...
+Checking if pagelinks index pl_namespace includes field pl_from...
+...index pl_namespace on table pagelinks seems to be ok
+Checking if templatelinks index tl_namespace includes field tl_from...
+...index tl_namespace on table templatelinks seems to be ok
+Checking if imagelinks index il_to includes field il_from...
+...index il_to on table imagelinks seems to be ok
+...have rc_old_len field in recentchanges table.
+...have user_editcount field in user table.
+...page_restrictions table already exists.
+...have log_id field in logging table.
+...have rev_parent_id field in revision table.
+...have pr_id field in page_restrictions table.
+...have rev_len field in revision table.
+...have rc_deleted field in recentchanges table.
+...have log_deleted field in logging table.
+...have ar_deleted field in archive table.
+...have ipb_deleted field in ipblocks table.
+...have fa_deleted field in filearchive table.
+...have ar_len field in archive table.
+Adding ipb_block_email field to table ipblocks...ok
+Checking for categorylinks indices...
+Checking if categorylinks index cl_sortkey includes field cl_from...
+...index cl_sortkey on table categorylinks has no field cl_from; adding
+Query &quot;ALTER TABLE `categorylinks`
+ DROP INDEX cl_sortkey,
+ ADD INDEX cl_sortkey(cl_to, cl_sortkey, cl_from)
+&quot; failed with error code &quot;Specified key was too long. Max key length is 500 (localhost)&quot;.
+
+
+
+Here is the fix I had to apply to get this to work :
+
+I modified the file :
+/var/www/html/wiki/maintenance/archives/patch-categorylinksindex.sql
+
+and changed the line :
+
+   ADD INDEX cl_sortkey(cl_to, cl_sortkey, cl_from);
+
+to
+
+   ADD INDEX cl_sortkey(cl_to(160), cl_sortkey(160), cl_from);
+
+after which point, re-running the upgrade completed successuflly
+</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1322#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bertrand GRONDIN</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-10 18:01:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - error when updating database"
+   href="show_bug.cgi?id=15931">Bug 15931</a> has been marked as a duplicate of this bug. ***</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1322&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1322">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1322">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1322">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1322&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1322" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1322&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419358773-uRH5XxxG4cYbBb2KW0VHyufk-wemUJywbrI99qvVZ3E">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

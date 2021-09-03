@@ -1,0 +1,2098 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 1411 &ndash; An extension to create list of most recent articles in 1-3 categories.</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=1411&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=1411">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=1411">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=1411">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 1411 – An extension to create list of most recent articles in 1-3 categories.",  
+                             "show_bug.cgi?id=1411" );
+        document.title = "Bug 1411 – An extension to create list of most recent articles in 1-3 categories.";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 1411 – An extension to create list of most recent articles in 1-3 categories.", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki_extensions bz_component_Extensions_requests bz_bug_1411 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2008-07-30 03:25:42 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2008-07-30 03:25:42">
+  <input type="hidden" name="longdesclength" value="21">
+  <input type="hidden" name="id" value="1411">
+  <input type="hidden" name="token" value="1419358909-u-NJ6ynu8FYYC1XFSXZo6pEClN4dBnB7Sg85FytXjvE">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=1411"><b>Bug&nbsp;1411</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">An extension to create list of most recent articles in 1-3 categories.</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>An extension to create list of most recent articles in 1-3 categories.
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('An extension to create list of most recent articles in 1-3 categories.', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki extensions</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki%20extensions">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Extensions requests
+    
+    (<a href="buglist.cgi?component=Extensions%20requests&product=MediaWiki%20extensions&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=1411">11 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=1411#vote_1411">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://www.ilya.us/wiki/index.php?title=DynamicPageList_extension"><span title="http://www.ilya.us/wiki/index.php?title=DynamicPageList_extension">http://www.ilya.us/wiki/index.php?tit...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=1411&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=1411">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-01-26 20:49 UTC by <span class="vcard"><span class="fn">Amgine</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2008-07-30 03:25 UTC 
+      (<a href="show_activity.cgi?id=1411">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>2 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="innocentkiller">innocentkiller</option>
+                <option value="mediazilla">mediazilla</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=230"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">The extension, updated 1-jan-05.</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.45 KB,
+                patch)
+
+            <br>
+            <a href="#attach_230"
+               title="Go to the comment associated with the attachment">2005-01-27 03:22 UTC</a>,
+
+            <span class="vcard"><span class="fn">Amgine</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=230&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=259"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Cleaned up, simplified, renamed to avoid conflict</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.48 KB,
+                patch)
+
+            <br>
+            <a href="#attach_259"
+               title="Go to the comment associated with the attachment">2005-02-04 17:43 UTC</a>,
+
+            <span class="vcard"><span class="fn">Amgine</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=259&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=267"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Updated with Amgine's optimizations merged in</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.54 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_267"
+               title="Go to the comment associated with the attachment">2005-02-06 01:04 UTC</a>,
+
+            <span class="vcard"><span class="fn">IlyaHaykinson</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=267&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=275"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Updated with some fixes</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.97 KB,
+                patch)
+
+            <br>
+            <a href="#attach_275"
+               title="Go to the comment associated with the attachment">2005-02-09 01:30 UTC</a>,
+
+            <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=275&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=277"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Moved variables to LocalSettings.php</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.21 KB,
+                patch)
+
+            <br>
+            <a href="#attach_277"
+               title="Go to the comment associated with the attachment">2005-02-09 05:11 UTC</a>,
+
+            <span class="vcard"><span class="fn">Amgine</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=277&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a6" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=278"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Correct version - with the changes implemented and not just doodling...</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (5.25 KB,
+                patch)
+
+            <br>
+            <a href="#attach_278"
+               title="Go to the comment associated with the attachment">2005-02-09 05:20 UTC</a>,
+
+            <span class="vcard"><span class="fn">Amgine</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=278&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a7" class="bz_contenttype_text_plain">
+        <td valign="top">
+            <a href="attachment.cgi?id=1128"
+               title="View the content of the attachment">
+          <b>version 2.0</b></a>
+
+          <span class="bz_attach_extra_info">
+              (16.92 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_1128"
+               title="Go to the comment associated with the attachment">2005-12-02 21:35 UTC</a>,
+
+            <span class="vcard"><span class="fn">Amgine</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1128&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a8" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=1129"
+               title="View the content of the attachment">
+          <b>Diff version 1.9, 2.0</b></a>
+
+          <span class="bz_attach_extra_info">
+              (32.17 KB,
+                patch)
+
+            <br>
+            <a href="#attach_1129"
+               title="Go to the comment associated with the attachment">2005-12-02 22:14 UTC</a>,
+
+            <span class="vcard"><span class="fn">Amgine</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=1129&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (6)
+        </span>
+        <a href="attachment.cgi?bugid=1411&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-26 20:49:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >An extension to sort articles for the most recent n articles which are in
+category x [AND category y [AND category z]].
+
+The extension is vital to automate the main page of Wikinews, to allow
+contributors to concentrate on producing articles rather than maintaining a very
+rapidly aging news list. It can allow the most current versions of articles to
+appear while they are news. Additional applications exist for Wikipedias.
+
+This version has been tested on small-scale installations of mediawiki, 1.4b3
+and 1.4b5.
+
+Source:
+
+&lt;pre&gt;
+&lt;?php
+/*
+
+ Contributors:  n:User:Amgine, n:User:IlyaHaykinson
+
+ To install:    add following to LocalSettings.php
+   include(&quot;extensions/dynamicpagelist.php&quot;);
+
+*/
+
+$wgExtensionFunctions[] = &quot;wfDynamicPageList&quot;;
+
+function wfDynamicPageList() {
+    global $wgParser;
+
+    $wgParser-&gt;setHook( &quot;DynamicPageList&quot;, &quot;DynamicPageList&quot; );
+}
+
+# The callback function for converting the input text to HTML output           
+                                      
+function DynamicPageList( $input ) {
+    global $wgScriptPath, $wgServer, $wgUser;
+
+    $aParams = array();
+
+    $sTok = strtok($input, &quot;\n&quot;);
+    while ($sTok)
+    {
+      $aParams[] = $sTok;
+      $sTok = strtok(&quot;\n&quot;);
+    }
+
+    foreach($aParams as $sParam)
+    {
+      $aParam = explode(&quot;=&quot;, $sParam);
+      $sType = $aParam[0];
+      $sArg = $aParam[1];
+      if ($sType == 'category')
+      {
+        $sCatName = preg_replace('/[\\\\_\\s]/S','_',$sArg);
+        $sCatName = str_replace('\'','\\\'',$sCatName);
+        $aCategories[] = $sCatName;
+      }
+      else if ('count' == $sType)
+      {
+        $iCount = (1 * $sArg);
+      }
+    }
+
+    $iCatCount = count($aCategories);
+    if ($iCatCount &lt; 1)
+      return &quot;!!too few categories!!&quot;;
+    if ($iCatCount &gt; 3)
+      return &quot;!!too many categories!!&quot;;
+    if ($iCount &lt; 1)
+      $iCount = 1;
+    if ($iCount &gt; 50)
+      $iCount = 50;
+
+    $sSql = 'SELECT cur_namespace, cur_title FROM cur';
+    for ($i = 0; $i &lt; $iCatCount; $i++) {
+      $sSql .= ', categorylinks AS c' . ($i+1);
+    }
+
+    $sSql .= ' WHERE 1=1 ';
+
+    for ($i = 0; $i &lt; $iCatCount; $i++) {
+      if ($i &gt; 0)
+        $sSql .= ' AND c1.cl_from = c'.($i+1).'.cl_from';
+      $sSql .= ' AND c'.($i+1).'.cl_to = \''.$aCategories[$i].'\'';
+    }
+
+    $sSql .= ' AND cur_id = c1.cl_from ORDER BY cur_timestamp DESC LIMIT 0,' .
+$iCount;
+
+    //$output .= $sSql . &quot;&lt;br /&gt;&quot;;                                             
+                                      
+
+    # process the query                                                        
+                                      
+    $res = wfQuery($sSql, DB_READ);
+
+    $sk =&amp; $wgUser-&gt;getSkin();
+
+    $output .= &quot;&lt;ul&gt;\n&quot;;
+
+    # process results of query                                                 
+                                      
+    while ($row = wfFetchObject( $res ) ) {
+        $title = Title::makeTitle( $row-&gt;cur_namespace, $row-&gt;cur_title);
+        $output .= '&lt;li&gt;' . $sk-&gt;makeLinkObj($title) . '&lt;/li&gt;' . &quot;\n&quot;;
+    }
+    $output .= &quot;&lt;/ul&gt;\n&quot;;
+
+    return $output;
+}
+?&gt;
+&lt;/pre&gt;</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-27 03:22:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=230" name="attach_230" title="The extension, updated 1-jan-05.">attachment 230</a> <a href="attachment.cgi?id=230&amp;action=edit" title="The extension, updated 1-jan-05.">[details]</a></span>
+The extension, updated 1-jan-05.
+
+The extension has been tested on Mediawiki 1.4b3 and 1.4b5</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-27 05:52:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think this line
+
+  $sCatName = preg_replace('/[\\\\_\\s]/S','_',$sArg);
+
+would break in UTF8 wikis. PHP considers e.g. 0xA0 as whitespace, but 0xA0 is
+also the second byte
+of the cyrillic character P. Do you really need &quot;any whitespace&quot; here, or just
+&quot;blank&quot;?</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">IlyaHaykinson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-27 08:14:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1411#c2">comment #2</a>)
+<span class="quote">&gt; I think this line
+&gt; 
+&gt;   $sCatName = preg_replace('/[\\\\_\\s]/S','_',$sArg);
+&gt; 
+&gt; would break in UTF8 wikis. PHP considers e.g. 0xA0 as whitespace, but 0xA0 is
+&gt; also the second byte
+&gt; of the cyrillic character P. Do you really need &quot;any whitespace&quot; here, or just
+&gt; &quot;blank&quot;?</span >
+
+Good point. Both preg_replace lines are now instead:
+
+        $title = Title::makeTitle('',$sArg);
+        $sCatName = wfStrencode($title-&gt;getDbKey(), DB_READ);
+
+updated version at <a href="http://www.ilya.us/wiki/index.php?title=DynamicPageList_extension">http://www.ilya.us/wiki/index.php?title=DynamicPageList_extension</a></pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">JeLuF</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-01-27 10:51:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Some more remarks:
+
+  if ($sType == 'category')
+   ...
+  else if ('count' == $sType)
+
+Could you use MagicWord's for these? Some languages prefer to use localized
+versions of those tags, e.g. when categories aren't named &quot;Category&quot;  (Perhaps
+we should extend the extension framework to allow localized versions of tags, too??)
+
+  return &quot;!!too few categories!!&quot;;
+
+Use wfMsg for any output strings, so that the messages can be translated.
+
+  if ($iCatCount &gt; 3)
+
+I don't like that hardcoded limit. I'm not sure we need a limit, will benchmark
+this tonight. If we need it, it should be an option.
+
+PS: I changed the severity to &quot;enhancement&quot;, since this is a new feature.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">IlyaHaykinson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-01 20:26:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=1411#c4">comment #4</a>)
+<span class="quote">&gt; Some more remarks:
+&gt; 
+&gt;   if ($sType == 'category')
+&gt;    ...
+&gt;   else if ('count' == $sType)
+&gt; 
+&gt; Could you use MagicWord's for these? Some languages prefer to use localized
+&gt; versions of those tags, e.g. when categories aren't named &quot;Category&quot;  (Perhaps
+&gt; we should extend the extension framework to allow localized versions of tags,</span >
+too??)
+
+I disagree for three reasons. 
+
+1. The current magic word architecture isn't meant for extensions as much as
+pages and the Parser.
+2. &quot;category&quot; and &quot;count&quot; are internal commands for the extension only. the
+namespace for category can still be localize in the wiki (i.e. category=blah
+will map to the category named blah no matter what the namespace is)
+3. Other extensions (i.e. easytimeline, which is deployed on Wikipedia) also do
+not localize their internal commands.
+
+<span class="quote">&gt;   return &quot;!!too few categories!!&quot;;
+&gt; 
+&gt; Use wfMsg for any output strings, so that the messages can be translated.
+&gt; </span >
+
+Done.
+
+<span class="quote">&gt;   if ($iCatCount &gt; 3)
+&gt; 
+&gt; I don't like that hardcoded limit. I'm not sure we need a limit, will benchmark
+&gt; this tonight. If we need it, it should be an option.</span >
+
+Done. Now uses parameters near the top of the function. I still think it's
+better to have a limit, otherwise we run the risk of DOS via queries with
+immense amounts of joins.
+
+I've updated the code on the web site. I urge those with proper powers to please
+deploy this asap if there are no more objections.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">IlyaHaykinson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-01 20:27:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=230" name="attach_230" title="The extension, updated 1-jan-05.">attachment 230</a> <a href="attachment.cgi?id=230&amp;action=edit" title="The extension, updated 1-jan-05.">[details]</a></span>
+The extension, updated 1-jan-05.
+
+&lt;?php
+/*									        
+
+ Purpose:	outputs a bulleted list of most recent			        
+		items residing in a category, or a union		        
+		of several categories.					        
+
+ Contributors:	n:User:Amgine, n:User:IlyaHaykinson			        
+
+ To install:	add following to LocalSettings.php			        
+   include(&quot;extensions/dynamicpagelist.php&quot;);				        
+
+*/
+
+$wgExtensionFunctions[] = &quot;wfDynamicPageList&quot;;
+
+
+function wfDynamicPageList() {
+    global $wgParser, $wgMessageCache;
+
+    $wgMessageCache-&gt;addMessages( array(
+					'dynamicpagelist_toomanycats' =&gt;
+'DynamicPageList: Too many categories!',
+					'dynamicpagelist_toofewcats' =&gt;
+'DynamicPageList: Too few categories!'
+					)
+				  );
+
+    $wgParser-&gt;setHook( &quot;DynamicPageList&quot;, &quot;DynamicPageList&quot; );
+}
+
+// The callback function for converting the input text to HTML output	        
+function DynamicPageList( $input ) {
+    global $wgScriptPath, $wgServer, $wgUser;
+
+    // parameters							        
+
+    //minimum and maximum number of category unions			        
+    $iMinCategories = 1;
+    $iMaxCategories = 3;
+
+    //minimum and maximum number of results allowed.			        
+    $iMinResultCount = 1;
+    $iMaxResultCount = 50;
+
+    //whether unlimited results are allowed (when count is ommitted)	        
+    $bAllowUnlimitedResults = true;
+
+    // end params							        
+
+
+    $aParams = array();
+    $bCountSet = false;
+
+    $sTok = strtok($input, &quot;\n&quot;);
+    while ($sTok)
+    {
+      $aParams[] = $sTok;
+      $sTok = strtok(&quot;\n&quot;);
+    }
+
+    foreach($aParams as $sParam)
+    {
+      $aParam = explode(&quot;=&quot;, $sParam);
+      $sType = $aParam[0];
+      $sArg = $aParam[1];
+      if ($sType == 'category')
+      {
+	$title = Title::makeTitle('',$sArg);
+	$sCatName = wfStrencode($title-&gt;getDbKey(), DB_READ);
+	$aCategories[] = $sCatName;
+      }
+      else if ('count' == $sType)
+      {
+	//ensure that $iCount is a number;				        
+	$iCount = (1 * $sArg);
+	$bCountSet = true;
+      }
+    }
+
+    $iCatCount = count($aCategories);
+    if ($iCatCount &lt; $iMinCategories)
+      return wfMsg( 'dynamicpagelist_toofewcats' ); // &quot;!!too few
+categories!!&quot;;					    
+    if ($iCatCount &gt; $iMaxCategories)
+      return wfMsg( 'dynamicpagelist_toomanycats' ); // &quot;!!too many
+categories!!&quot;;					  
+
+    if (true == $bCountSet)
+    {
+      if ($iCount &lt; $iMinResultCount)
+	$iCount = $iMinResultCount;
+      if ($iCount &gt; $iMaxResultCount)
+	$iCount = $iMaxResultCount;
+    }
+    else
+    {
+      if (false == $bAllowUnlimitedResults)
+      {
+	$iCount = $iMaxResultCount;
+	$bCountSet = true;
+      }
+    }
+
+
+    //build the SQL query						        
+
+    $sSql = 'SELECT cur_namespace, cur_title FROM cur';
+    for ($i = 0; $i &lt; $iCatCount; $i++) {
+      $sSql .= ', categorylinks AS c' . ($i+1);
+    }
+
+    $sSql .= ' WHERE 1=1 ';
+
+    for ($i = 0; $i &lt; $iCatCount; $i++) {
+      if ($i &gt; 0)
+	$sSql .= ' AND c1.cl_from = c'.($i+1).'.cl_from';
+      $sSql .= ' AND c'.($i+1).'.cl_to = \''.$aCategories[$i].'\'';
+    }
+
+    $sSql .= ' AND cur_id = c1.cl_from ORDER BY cur_timestamp DESC';
+
+    if (true == $bCountSet)
+    {
+      $sSql .= ' LIMIT 0,' . $iCount;
+    }
+
+    //DEBUG: output SQL query						        
+    //$output .= $sSql . &quot;&lt;br /&gt;&quot;;					        
+
+    // process the query						        
+    $res = wfQuery($sSql, DB_READ);
+
+    $sk =&amp; $wgUser-&gt;getSkin();
+
+    //start unordered list						        
+    $output .= &quot;&lt;ul&gt;\n&quot;;
+
+    //process results of query, outputing equivalent of &lt;li&gt;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Article">Article</a>]]&lt;/li&gt;
+for each result 			 
+    while ($row = wfFetchObject( $res ) ) {
+	$title = Title::makeTitle( $row-&gt;cur_namespace, $row-&gt;cur_title);
+	$output .= '&lt;li&gt;' . $sk-&gt;makeLinkObj($title) . '&lt;/li&gt;' . &quot;\n&quot;;
+    }
+
+    //end unordered list						        
+    $output .= &quot;&lt;/ul&gt;\n&quot;;
+
+    return $output;
+}
+?&gt;</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-02 07:10:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please don't paste large amounts of code into comments. It's hard to read,
+clutters up the page, and doesn't get formatted correctly. Use the 'Create
+attachment' link.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-04 17:43:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=259" name="attach_259" title="Cleaned up, simplified, renamed to avoid conflict">attachment 259</a> <a href="attachment.cgi?id=259&amp;action=edit" title="Cleaned up, simplified, renamed to avoid conflict">[details]</a></span>
+Cleaned up, simplified, renamed to avoid conflict
+
+This is a rewrite to simplify and speed up the previous version. The extension
+is renamed as a kluge so I could compare it with the previous on my test
+installation.
+
+This version includes:
+
+configurable maximum category searches (may be configured for unlimited,
+default 3)
+configurable maximum return articles (may be configured to allow unlimited,
+default 5)</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">IlyaHaykinson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-06 01:04:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=267" name="attach_267" title="Updated with Amgine's optimizations merged in">attachment 267</a> <a href="attachment.cgi?id=267&amp;action=edit" title="Updated with Amgine's optimizations merged in">[details]</a></span>
+Updated with Amgine's optimizations merged in
+
+Incorporated Amgine's optimizations. Kept greater configurability (min/max
+categories, min/max results, and unlimited categories and results are all
+parameters).</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-09 01:30:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=275" name="attach_275" title="Updated with some fixes">attachment 275</a> <a href="attachment.cgi?id=275&amp;action=edit" title="Updated with some fixes">[details]</a></span>
+Updated with some fixes
+
+I've made a few fixes:
+
+* If a line doesn't contain a &quot;=&quot;, avoid triggering a notice error for unset
+variables in $aParam[1]
+* Title::makeTitle is not safe for user-provided data as it does no sanitizing;
+use Title::newFromText. (This also will allow people to write 'Category:Foo'
+and get the expected thing.)
+* If invalid, $title will be null and the getDbKey() call can fail, so skip the
+line.
+* Avoid encoding the dbkey so early, it makes the code harder to follow.
+* Use IntVal instead of 1 * $sArg. (Note that multiplication will allow float
+values; this may be harmless here but is not really what we meant.)
+* Fixed some tabs -- when using spaces for indentation, try to avoid mixing
+tabs as the tab size may not be the same for all editors and it uglifies the
+code.
+* Extensions return raw HTML; avoid returning a raw message as this allows
+careless or rogue sysops or hijacked sysop accounts to break the wiki (invalid
+HTML) or create security risks (JavaScript exploits etc). Use
+htmlspecialchars() to force plaintext, or run the message through the wiki
+parser. (Used htmlspecialchars for now.)
+* Use booleans as booleans rather than false == and true ==, for readability
+and consistency.
+* Switched database calls to the new OO functions.
+* In MediaWiki 1.4 tables may have a configurable prefix; get the canonical
+name with $dbr-&gt;tableName().
+* For readability, move the 'cur_id=cl.cl_from' clause to the top and eliminate
+the 1=1 clause.
+* LIMIT N,N is a MySQL-ism. Since no offset is needed, just use LIMIT N for
+portability (use $dbr-&gt;limitResults() if needed).
+* If there are no results, the &lt;ul&gt;&lt;/ul&gt; produced doesn't validate (a list must
+contain at least one item). Return an error message instead.
+* Initialize $output before using it, or a notice is thrown when error
+reporting is put up high.
+* Use $sk-&gt;makeKnownLinkObj() instead of $sk-&gt;makeLinkObj(). We know the pages
+exist, so we can avoid hitting the database again to check.
+
+You might also consider making the configuration options settable from
+LocalSettings.php, so the extension code doesn't have to be altered.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-09 05:11:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=277" name="attach_277" title="Moved variables to LocalSettings.php">attachment 277</a> <a href="attachment.cgi?id=277&amp;action=edit" title="Moved variables to LocalSettings.php">[details]</a></span>
+Moved variables to LocalSettings.php
+
+Moves configuration variables to LocalSettings.php</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-09 05:20:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=278" name="attach_278" title="Correct version - with the changes implemented and not just doodling...">attachment 278</a> <a href="attachment.cgi?id=278&amp;action=edit" title="Correct version - with the changes implemented and not just doodling...">[details]</a></span>
+Correct version - with the changes implemented and not just doodling...
+
+Correctly implemented the parameter variables.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jamesday</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-02-09 21:51:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Not good enough on the database side. Try explain select for a set of three
+categories. You'll find that the explain has the magic words &quot;using filesort&quot;.
+That translates as &quot;every record in the category will be retrieved, I'll sort
+them, then I'll return the number matching the limit&quot;. That is, it scales very
+badly. 
+
+To avoid this there are several approaches you can use. First, most important,
+is to arrange to have the key matching the order by. If you get records from,
+say, recent changes, you can eliminate records not matching the category pretty
+quickly and recent changes is usually very well cached, so it's not too painful
+to scan back in tiemstamp order to find matching entries. Getting distinct hits
+might be an issue - need to see what makes the limit effective.
+
+Next, try a union with each select in the union subject to the limit and a final
+overall limit. Because of the way MySQL before version 5 handles indexes this
+can be substantially faster when a multipart index is used and you're using
+different values of the leading key parts. </pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Ævar Arnfjörð Bjarmason</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-10 18:24:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comments (note that I've only read the code, not executed it):
+
+* You're using extension input as paramaters, don't, write it for 1.5 where we
+have them in the arguments (like &lt;DynamicPageList category=&quot;foo&quot;
+count=&quot;5&quot;&gt;&lt;/DynamicPageList&gt;
+* It'll only work with the 1.4 schema
+* if there's no row returned at line 158 the output will be &lt;ul&gt;\n&lt;/ul&gt; which is
+invalid XHTML</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-02 21:35:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1128" name="attach_1128" title="version 2.0">attachment 1128</a> <a href="attachment.cgi?id=1128&amp;action=edit" title="version 2.0">[details]</a></span>
+version 2.0
+
+* Add unset cache
+* break out parameter parsing, query build, output build
+* Add category OR
+* Add namespace OR
+* expand error handling
+
+Most new content adapated from DPL2 by w:de:Benutzer:Unendlich (Fabian)</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-02 21:42:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class=""><a href="attachment.cgi?id=1128" name="attach_1128" title="version 2.0">attachment 1128</a> <a href="attachment.cgi?id=1128&amp;action=edit" title="version 2.0">[details]</a></span>
+version 2.0
+
+&lt;grumble&gt;</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Amgine</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-02 22:14:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=1129" name="attach_1129" title="Diff version 1.9, 2.0">attachment 1129</a> <a href="attachment.cgi?id=1129&amp;action=edit" title="Diff version 1.9, 2.0">[details]</a></span>
+Diff version 1.9, 2.0
+
+Diff as per IRC suggestion</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-03 02:01:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Latest attachment is very awkwardly written; use an object instead of passing 
+this associative array.
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-09 23:21:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Wasn't this long ago enabled on Wikinews?</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=1411#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-30 03:25:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Long-since incorporated to the features of DPL.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=1411&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=1411">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=1411">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=1411">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=1411&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=1411" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=1411&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419358909-yvQGrraLboOvNnZZI39Gfe_ZiTDSnCbKvzlBTezJqxI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

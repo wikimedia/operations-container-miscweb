@@ -1,0 +1,1107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 8525 &ndash; Localization of csWikiquote project namespace</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=8525&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=8525">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=8525">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=8525">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 8525 – Localization of csWikiquote project namespace",  
+                             "show_bug.cgi?id=8525" );
+        document.title = "Bug 8525 – Localization of csWikiquote project namespace";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 8525 – Localization of csWikiquote project namespace", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_Wikimedia bz_component_Language_setup bz_bug_8525 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2007-01-08 01:56:08 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2007-01-08 01:56:08">
+  <input type="hidden" name="longdesclength" value="3">
+  <input type="hidden" name="id" value="8525">
+  <input type="hidden" name="token" value="1419370027-8cAJODUNCrLaEgIF1guOzGEeYcRozbvK3QCxYalcwv4">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=8525"><b>Bug&nbsp;8525</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Localization of csWikiquote project namespace</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Localization of csWikiquote project namespace
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Localization of csWikiquote project namespace', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Language setup
+    
+    (<a href="buglist.cgi?component=Language%20setup&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       normal<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=8525#vote_8525">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=8525&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=8525">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2007-01-08 01:37 UTC by <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2007-01-08 01:56 UTC 
+      (<a href="show_activity.cgi?id=8525">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>0 
+          users
+        <div id="cc_edit_area">
+          <br>
+        </div>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=8525&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8525#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-08 01:37:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please set:
+
+Canonical / Main / Alias
+Project / Wikicitáty / Wikiquote
+Project talk / Wikicitáty diskuse / Wikiquote talk
+
+Thanks</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8525#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Danny B.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-08 01:38:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Oups, small mistake
+
+the alias for talk should be &quot;Wikiquote diskuse&quot;
+
+Sorry</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8525#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-08 01:56:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Checking namespace 4: &quot;Wikicitáty&quot;
+... 48 conflicts detected:
+... 933 (0,&quot;Wikicitáty:Co_Wikicitáty_nejsou&quot;) -&gt; (4,&quot;Co_Wikicitáty_nejsou&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3ACo%20Wikicit%C3%A1ty%20nejsou">Wikicitáty:Co Wikicitáty nejsou</a>]]
+... resolving on page... ok.
+... 1821 (0,&quot;Wikicitáty:Editujte_s_odvahou&quot;) -&gt; (4,&quot;Editujte_s_odvahou&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AEditujte%20s%20odvahou">Wikicitáty:Editujte s odvahou</a>]]
+... resolving on page... ok.
+... 2582 (0,&quot;Wikicitáty:FAQ&quot;) -&gt; (4,&quot;FAQ&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AFAQ">Wikicitáty:FAQ</a>]]
+...  *** cannot resolve automatically; page exists with ID 2583 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AFAQ%2Fmoved">Wikicitáty:FAQ/moved</a>]] ***
+... resolving on page... ok.
+... 2592 (0,&quot;Wikicitáty:GNU_FDL&quot;) -&gt; (4,&quot;GNU_FDL&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AGNU%20FDL">Wikicitáty:GNU FDL</a>]]
+... resolving on page... ok.
+... 2593 (0,&quot;Wikicitáty:GNU_Free_Documentation_Licence&quot;) -&gt;
+(4,&quot;GNU_Free_Documentation_Licence&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AGNU%20Free%20Documentation%20Licence">Wikicitáty:GNU Free Documentation Licence</a>]]
+... resolving on page... ok.
+... 2362 (0,&quot;Wikicitáty:GNU_Free_Documentation_License&quot;) -&gt;
+(4,&quot;GNU_Free_Documentation_License&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AGNU%20Free%20Documentation%20License">Wikicitáty:GNU Free Documentation License</a>]]
+... resolving on page... ok.
+... 2516 (0,&quot;Wikicitáty:Jak_se_přihlásit&quot;) -&gt; (4,&quot;Jak_se_přihlásit&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AJak%20se%20p%C5%99ihl%C3%A1sit">Wikicitáty:Jak se přihlásit</a>]]
+... resolving on page... ok.
+... 2530 (0,&quot;Wikicitáty:Kronika&quot;) -&gt; (4,&quot;Kronika&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AKronika">Wikicitáty:Kronika</a>]]
+... resolving on page... ok.
+... 2532 (0,&quot;Wikicitáty:Kronika_českých_Wikicitátů&quot;) -&gt;
+(4,&quot;Kronika_českých_Wikicitátů&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AKronika%20%C4%8Desk%C3%BDch%20Wikicit%C3%A1t%C5%AF">Wikicitáty:Kronika českých Wikicitátů</a>]]
+... resolving on page... ok.
+... 2558 (0,&quot;Wikicitáty:Manifest&quot;) -&gt; (4,&quot;Manifest&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AManifest">Wikicitáty:Manifest</a>]]
+... resolving on page... ok.
+... 2556 (0,&quot;Wikicitáty:Manifest_Wikicitátů&quot;) -&gt; (4,&quot;Manifest_Wikicitátů&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AManifest%20Wikicit%C3%A1t%C5%AF">Wikicitáty:Manifest Wikicitátů</a>]]
+... resolving on page... ok.
+... 1819 (0,&quot;Wikicitáty:Nápověda&quot;) -&gt; (4,&quot;Nápověda&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AN%C3%A1pov%C4%9Bda">Wikicitáty:Nápověda</a>]]
+... resolving on page... ok.
+... 1070 (0,&quot;Wikicitáty:Pod_lípou&quot;) -&gt; (4,&quot;Pod_lípou&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APod%20l%C3%ADpou">Wikicitáty:Pod lípou</a>]]
+... resolving on page... ok.
+... 990 (0,&quot;Wikicitáty:Portál_Wikicitátů&quot;) -&gt; (4,&quot;Portál_Wikicitátů&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APort%C3%A1l%20Wikicit%C3%A1t%C5%AF">Wikicitáty:Portál Wikicitátů</a>]]
+...  *** cannot resolve automatically; page exists with ID 1118 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APort%C3%A1l%20Wikicit%C3%A1t%C5%AF%2Fmoved">Wikicitáty:Portál Wikicitátů/moved</a>]] ***
+... resolving on page... ok.
+... 1731 (0,&quot;Wikicitáty:Porušení_práv&quot;) -&gt; (4,&quot;Porušení_práv&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APoru%C5%A1en%C3%AD%20pr%C3%A1v">Wikicitáty:Porušení práv</a>]]
+... resolving on page... ok.
+... 2069 (0,&quot;Wikicitáty:Požadované_články&quot;) -&gt; (4,&quot;Požadované_články&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APo%C5%BEadovan%C3%A9%20%C4%8Dl%C3%A1nky">Wikicitáty:Požadované články</a>]]
+... resolving on page... ok.
+... 2438 (0,&quot;Wikicitáty:Pravidla_Wikicitátů&quot;) -&gt; (4,&quot;Pravidla_Wikicitátů&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APravidla%20Wikicit%C3%A1t%C5%AF">Wikicitáty:Pravidla Wikicitátů</a>]]
+...  *** cannot resolve automatically; page exists with ID 2526 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APravidla%20Wikicit%C3%A1t%C5%AF%2Fmoved">Wikicitáty:Pravidla Wikicitátů/moved</a>]] ***
+... resolving on page... ok.
+... 2557 (0,&quot;Wikicitáty:Pravidla_Wikicitátů/Původní_návrh&quot;) -&gt;
+(4,&quot;Pravidla_Wikicitátů/Původní_návrh&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APravidla%20Wikicit%C3%A1t%C5%AF%2FP%C5%AFvodn%C3%AD%0An%C3%A1vrh">Wikicitáty:Pravidla Wikicitátů/Původní
+návrh</a>]]
+... resolving on page... ok.
+... 1177 (0,&quot;Wikicitáty:Průvodce&quot;) -&gt; (4,&quot;Průvodce&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce">Wikicitáty:Průvodce</a>]]
+... resolving on page... ok.
+... 1184 (0,&quot;Wikicitáty:Průvodce/Diskuse&quot;) -&gt; (4,&quot;Průvodce/Diskuse&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%2FDiskuse">Wikicitáty:Průvodce/Diskuse</a>]]
+... resolving on page... ok.
+... 1180 (0,&quot;Wikicitáty:Průvodce/Editování&quot;) -&gt; (4,&quot;Průvodce/Editování&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%2FEditov%C3%A1n%C3%AD">Wikicitáty:Průvodce/Editování</a>]]
+... resolving on page... ok.
+... 1182 (0,&quot;Wikicitáty:Průvodce/Formátování&quot;) -&gt; (4,&quot;Průvodce/Formátování&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%2FForm%C3%A1tov%C3%A1n%C3%AD">Wikicitáty:Průvodce/Formátování</a>]]
+... resolving on page... ok.
+... 1183 (0,&quot;Wikicitáty:Průvodce/Odkazy&quot;) -&gt; (4,&quot;Průvodce/Odkazy&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%2FOdkazy">Wikicitáty:Průvodce/Odkazy</a>]]
+... resolving on page... ok.
+... 1721 (0,&quot;Wikicitáty:Průvodce/Pamatujte&quot;) -&gt; (4,&quot;Průvodce/Pamatujte&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%2FPamatujte">Wikicitáty:Průvodce/Pamatujte</a>]]
+... resolving on page... ok.
+... 2520 (0,&quot;Wikicitáty:Průvodce_(diskuse)&quot;) -&gt; (4,&quot;Průvodce_(diskuse)&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%20%28diskuse%29">Wikicitáty:Průvodce (diskuse)</a>]]
+... resolving on page... ok.
+... 2517 (0,&quot;Wikicitáty:Průvodce_(editování)&quot;) -&gt; (4,&quot;Průvodce_(editování)&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%20%28editov%C3%A1n%C3%AD%29">Wikicitáty:Průvodce (editování)</a>]]
+... resolving on page... ok.
+... 2518 (0,&quot;Wikicitáty:Průvodce_(formátování)&quot;) -&gt; (4,&quot;Průvodce_(formátování)&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%20%28form%C3%A1tov%C3%A1n%C3%AD%29">Wikicitáty:Průvodce (formátování)</a>]]
+... resolving on page... ok.
+... 2519 (0,&quot;Wikicitáty:Průvodce_(odkazy)&quot;) -&gt; (4,&quot;Průvodce_(odkazy)&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%20%28odkazy%29">Wikicitáty:Průvodce (odkazy)</a>]]
+... resolving on page... ok.
+... 2521 (0,&quot;Wikicitáty:Průvodce_(pamatujte)&quot;) -&gt; (4,&quot;Průvodce_(pamatujte)&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3APr%C5%AFvodce%20%28pamatujte%29">Wikicitáty:Průvodce (pamatujte)</a>]]
+... resolving on page... ok.
+... 1181 (0,&quot;Wikicitáty:Pískoviště&quot;) -&gt; (4,&quot;Pískoviště&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AP%C3%ADskovi%C5%A1t%C4%9B">Wikicitáty:Pískoviště</a>]]
+...  *** cannot resolve automatically; page exists with ID 1718 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AP%C3%ADskovi%C5%A1t%C4%9B%2Fmoved">Wikicitáty:Pískoviště/moved</a>]] ***
+... resolving on page... ok.
+... 1172 (0,&quot;Wikicitáty:Rady_a_informace&quot;) -&gt; (4,&quot;Rady_a_informace&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3ARady%20a%20informace">Wikicitáty:Rady a informace</a>]]
+... resolving on page... ok.
+... 1006 (0,&quot;Wikicitáty:Správci&quot;) -&gt; (4,&quot;Správci&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3ASpr%C3%A1vci">Wikicitáty:Správci</a>]]
+...  *** cannot resolve automatically; page exists with ID 2377 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3ASpr%C3%A1vci%2Fmoved">Wikicitáty:Správci/moved</a>]] ***
+... resolving on page... ok.
+... 2071 (0,&quot;Wikicitáty:Užitečné_informace&quot;) -&gt; (4,&quot;Užitečné_informace&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AU%C5%BEite%C4%8Dn%C3%A9%20informace">Wikicitáty:Užitečné informace</a>]]
+... resolving on page... ok.
+... 1728 (0,&quot;Wikicitáty:Vyloučení_odpovědnosti&quot;) -&gt; (4,&quot;Vyloučení_odpovědnosti&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AVylou%C4%8Den%C3%AD%20odpov%C4%9Bdnosti">Wikicitáty:Vyloučení odpovědnosti</a>]]
+...  *** cannot resolve automatically; page exists with ID 2591 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AVylou%C4%8Den%C3%AD%20odpov%C4%9Bdnosti%2Fmoved">Wikicitáty:Vyloučení odpovědnosti/moved</a>]] ***
+... resolving on page... ok.
+... 2102 (0,&quot;Wikicitáty:Vzory/Lidé&quot;) -&gt; (4,&quot;Vzory/Lidé&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AVzory%2FLid%C3%A9">Wikicitáty:Vzory/Lidé</a>]]
+... resolving on page... ok.
+... 2105 (0,&quot;Wikicitáty:Vzory/Seriály&quot;) -&gt; (4,&quot;Vzory/Seriály&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AVzory%2FSeri%C3%A1ly">Wikicitáty:Vzory/Seriály</a>]]
+... resolving on page... ok.
+... 2104 (0,&quot;Wikicitáty:Vzory/Témata&quot;) -&gt; (4,&quot;Vzory/Témata&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AVzory%2FT%C3%A9mata">Wikicitáty:Vzory/Témata</a>]]
+... resolving on page... ok.
+... 932 (0,&quot;Wikicitáty:Vítejte&quot;) -&gt; (4,&quot;Vítejte&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AV%C3%ADtejte">Wikicitáty:Vítejte</a>]]
+... resolving on page... ok.
+... 1175 (0,&quot;Wikicitáty:Vítejte_ve_Wikicitátech&quot;) -&gt;
+(4,&quot;Vítejte_ve_Wikicitátech&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AV%C3%ADtejte%20ve%20Wikicit%C3%A1tech">Wikicitáty:Vítejte ve Wikicitátech</a>]]
+... resolving on page... ok.
+... 1173 (0,&quot;Wikicitáty:Wikietiketa&quot;) -&gt; (4,&quot;Wikietiketa&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AWikietiketa">Wikicitáty:Wikietiketa</a>]]
+... resolving on page... ok.
+... 1189 (0,&quot;Wikicitáty:Wikipedisté&quot;) -&gt; (4,&quot;Wikipedisté&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3AWikipedist%C3%A9">Wikicitáty:Wikipedisté</a>]]
+... resolving on page... ok.
+... 934 (0,&quot;Wikicitáty:Úvod&quot;) -&gt; (4,&quot;Úvod&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C3%9Avod">Wikicitáty:Úvod</a>]]
+...  *** cannot resolve automatically; page exists with ID 2360 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C3%9Avod%2Fmoved">Wikicitáty:Úvod/moved</a>]] ***
+... resolving on page... ok.
+... 1191 (0,&quot;Wikicitáty:Často_kladené_otázky&quot;) -&gt; (4,&quot;Často_kladené_otázky&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C4%8Casto%20kladen%C3%A9%20ot%C3%A1zky">Wikicitáty:Často kladené otázky</a>]]
+... resolving on page... ok.
+... 2070 (0,&quot;Wikicitáty:Články_k_úpravě&quot;) -&gt; (4,&quot;Články_k_úpravě&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C4%8Cl%C3%A1nky%20k%20%C3%BAprav%C4%9B">Wikicitáty:Články k úpravě</a>]]
+... resolving on page... ok.
+... 1032 (0,&quot;Wikicitáty:Šablony&quot;) -&gt; (4,&quot;Šablony&quot;) [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C5%A0ablony">Wikicitáty:Šablony</a>]]
+...  *** cannot resolve automatically; page exists with ID 1160 ***
+...  *** using suffixed form [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C5%A0ablony%2Fmoved">Wikicitáty:Šablony/moved</a>]] ***
+... resolving on page... ok.
+... 2357 (0,&quot;Wikicitáty:Šablony/Lidé&quot;) -&gt; (4,&quot;Šablony/Lidé&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C5%A0ablony%2FLid%C3%A9">Wikicitáty:Šablony/Lidé</a>]]
+... resolving on page... ok.
+... 2392 (0,&quot;Wikicitáty:Šablony/Seriály&quot;) -&gt; (4,&quot;Šablony/Seriály&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C5%A0ablony%2FSeri%C3%A1ly">Wikicitáty:Šablony/Seriály</a>]]
+... resolving on page... ok.
+... 2403 (0,&quot;Wikicitáty:Šablony/Témata&quot;) -&gt; (4,&quot;Šablony/Témata&quot;)
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Wikicit%C3%A1ty%3A%C5%A0ablony%2FT%C3%A9mata">Wikicitáty:Šablony/Témata</a>]]
+... resolving on page... ok.
+Checking namespace 5: &quot;Wikicitáty_diskuse&quot;
+... no conflicts detected!
+</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=8525&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=8525">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=8525">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=8525">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=8525&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=8525" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=8525&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419370027-nusflWpzK0Apu9It_H8ZMF3N3EI2hgX18dNO2RgQ7qw">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

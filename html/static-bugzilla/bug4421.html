@@ -1,0 +1,3964 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 4421 &ndash; Image file extension should not be part of the name</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=4421&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=4421">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=4421">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=4421">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 4421 – Image file extension should not be part of the name",  
+                             "show_bug.cgi?id=4421" );
+        document.title = "Bug 4421 – Image file extension should not be part of the name";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 4421 – Image file extension should not be part of the name", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_NEW bz_product_MediaWiki bz_component_File_management bz_bug_4421 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-17 10:35:34 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-17 10:35:34">
+  <input type="hidden" name="longdesclength" value="82">
+  <input type="hidden" name="id" value="4421">
+  <input type="hidden" name="token" value="1419363562-gzTZpgPPd8vCKXhiApl4mI5pHLSZ6yySqwp69rU2gUY">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=4421"><b>Bug&nbsp;4421</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Image file extension should not be part of the name</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Image file extension should not be part of the name
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Image file extension should not be part of the name', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">NEW
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>File management
+    
+    (<a href="buglist.cgi?component=File%20management&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Low
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=4421">26 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=4421#vote_4421">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://www.mediawiki.org/wiki/Requests_for_comment/Extensionless_files"><span title="http://www.mediawiki.org/wiki/Requests_for_comment/Extensionless_files">http://www.mediawiki.org/wiki/Request...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - The file format should be specified by the uploader, not by the extension in the server"
+   href="show_bug.cgi?id=4878">4878</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki to handle caps/no-caps image extension natively ?"
+   href="show_bug.cgi?id=6337">6337</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Filename extensions of uploaded files"
+   href="show_bug.cgi?id=6451">6451</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Add configuration option to mask file extensions for image description pages"
+   href="show_bug.cgi?id=19874">19874</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload new versions of files with different file type"
+   href="show_bug.cgi?id=20971">20971</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=4878,6337,6451,19874,20971">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=4421&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=4421">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-12-29 19:55 UTC by <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-17 10:35 UTC 
+      (<a href="show_activity.cgi?id=4421">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>29 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="agostini.19">agostini.19</option>
+                <option value="b">b</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="Bryan.TongMinh">Bryan.TongMinh</option>
+                <option value="cohesion">cohesion</option>
+                <option value="deletesoftware">deletesoftware</option>
+                <option value="gpaumier">gpaumier</option>
+                <option value="he7d3r+bugs">he7d3r+bugs</option>
+                <option value="innocentkiller">innocentkiller</option>
+                <option value="jd">jd</option>
+                <option value="john">john</option>
+                <option value="johnnymrninja">johnnymrninja</option>
+                <option value="kosikfl">kosikfl</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="mike.lifeguard+bugs">mike.lifeguard+bugs</option>
+                <option value="neilk">neilk</option>
+                <option value="number24602">number24602</option>
+                <option value="olivier.beaton">olivier.beaton</option>
+                <option value="rd232">rd232</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="robinp.1273">robinp.1273</option>
+                <option value="robla">robla</option>
+                <option value="rohde">rohde</option>
+                <option value="svenmanguard">svenmanguard</option>
+                <option value="t.henke">t.henke</option>
+                <option value="to.aru.shiroi.neko">to.aru.shiroi.neko</option>
+                <option value="tstarling">tstarling</option>
+                <option value="ui2t5v002">ui2t5v002</option>
+                <option value="wikipedia">wikipedia</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - File extensions for the same file type should not allow variations of a file name (File:X.jpg, File:X.jpeg, File:X.JPG should all refer to the same file)"
+   href="show_bug.cgi?id=32660">32660</a>
+          </li>
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Make it possible to upload in a different image format while preserving file history"
+   href="show_bug.cgi?id=23255">23255</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=6680"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Incomplete attempt to allow image moves to arbitrary names</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (8.31 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6680"
+               title="Go to the comment associated with the attachment">2009-10-19 06:25 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6680&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=6859"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">v2 patch - handles upload, still buggy</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (18.39 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6859"
+               title="Go to the comment associated with the attachment">2009-12-06 06:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6859&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a3" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=6885"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">bug4421-robla-v3-svn59811.patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (29.70 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6885"
+               title="Go to the comment associated with the attachment">2009-12-15 18:26 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6885&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a4" class="bz_contenttype_text_plain bz_patch bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=6926"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">bug4421-robla-v4all-svn60601.patch</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (41.37 KB,
+                patch)
+
+            <br>
+            <a href="#attach_6926"
+               title="Go to the comment associated with the attachment">2010-01-04 23:41 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6926&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a5" class="bz_contenttype_application_gzip">
+        <td valign="top">
+            <a href="attachment.cgi?id=6927"
+               title="View the content of the attachment">
+          <b>bug4421-robla-v4staged-svn60601.tar.gz</b></a>
+
+          <span class="bz_attach_extra_info">
+              (22.03 KB,
+                application/gzip)
+
+            <br>
+            <a href="#attach_6927"
+               title="Go to the comment associated with the attachment">2010-01-04 23:45 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6927&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (4)
+        </span>
+        <a href="attachment.cgi?bugid=4421&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-12-29 19:55:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Currently all images include an extension that specifies the format of the image (such as .jpg, .png, .gif, .svg, etc.) Ideally the 
+image name should not include this information, since it doesn't matter to those who *use* the image whether it's a JPEG or a 
+PNG. For example, it would be much better to be able to say [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AMap%20of%20Europe">Image:Map of Europe</a>]] than to have to say [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AMap%20of%20%0AEurope.png">Image:Map of 
+Europe.png</a>]]. The author of the article shouldn't have to know (or care) what format the image is in.
+
+Additionally, since images currently can't be moved or renamed (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Cannot rename/move images and other media files."
+   href="show_bug.cgi?id=709">bug 709</a>), if a new version of the image is uploaded which is 
+in a different format, it must be uploaded under a different image name. Then all the pages that use the image have to be 
+changed, and the history of the old image is lost. This is a lot of unnecessary hassle.
+
+Fixing this can also standardize lower-case image extensions, so that we don't have images named Bleck.PNG or Mleko.JPG.
+
+The only major problem I see with fixing this is in the conversion process, when something has to be done about images 
+whose names are the same except for the extension.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-01 06:15:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is probally a really stupid idea, but... Whats wrong with just making the
+extention meaningless. that way a png can be loaded over a gif. the format would
+be different, the actual file would be foo.gif.png (for old browsers that listen
+to extentions more then mime types), but the link would still be
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=image%3Afoo.gif">image:foo.gif</a>]] . You could upload something without an extention as well like
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=image%3Abob">image:bob</a>]] the file on the server would still be
+upload.wikimedia.org/.../bob.png . on the image description page you could tell
+what the image really is by the &quot;(4KB, MIME type: image/png)&quot; line. Just a
+stupid, flawed idea I thought i'd throw out.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-01 20:40:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's more or less what I was thinking, except that if the extension is meaningless there's no reason to have it at all (and in fact 
+there would be a pretty good reason not to have it). But the implementation would be like what you described. Suppose we upload 
+an image with the name &quot;Snark&quot;. Then we can refer to it in an article as [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3ASnark">Image:Snark</a>]]. If it's a PNG, the actual URL will be http://
+upload.wikimedia.org/.../Snark.png perhaps, or if it's a JPEG it might be <a href="http://upload.wikimedia.org/.../Snark.jpg">http://upload.wikimedia.org/.../Snark.jpg</a>.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-01 20:44:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If you really want to be idealistic, read <a href="http://www.w3.org/Provider/Style/URI">http://www.w3.org/Provider/Style/URI</a> (&quot;Cool URIs don't change&quot;), where Tim Berners-Lee 
+makes some pretty good points against including the file type in the URL at all (so no .png extensions). But that would probably be 
+a lot of work for very little benefit, and it might even confuse some browsers to have a URL of a PNG image that didn't end in .png.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Haugeland</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-01 21:31:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I furiously disagree with this line of reasoning.  The encoding (not format) of
+an image is in fact a critical part of the information an end-user needs to deal
+with the image; the WMF exploit currently in the wild is an excellent example of
+why.  Furthermore, it's common practice to keep files with overlapping names but
+for the extensions, and the method currently in use is several years entrenched;
+this would require a massive amount of upkeep work for essentially no
+significant gain.  My personal wiki holds more than 800 images; the result for
+Wikipedia would be nothing short of a disaster.
+
+Old engineers know one thing above all else: don't change anything unless
+there's a good reason.  Why do you want to strip the extension?  What good does
+it do you, for the several kinds of spoofing attacks it may end up enabling? 
+Since when do wiki readers get bothered if the name of a file which they never
+see has the same kind of extension that essentially every other modern platform
+in existence has?
+
+If this was being proposed at the beginning of a project, I'd pan it as silly. 
+Since this is being done several years into content provision, I call it
+outright counterproductive, and arguably dangerous.
+
+Red flag.  Do *not* do this until there's a damned good argument made.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-02 23:32:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Okay, well, the main reason I proposed it is that it basically prevents a replacement image in a different format from being 
+uploaded. If there's a JPEG image, and I want to replace it with a PNG, I have to upload it as a new image, replace all uses of the old 
+JPEG with the new PNG, delete the old JPEG, and I lose all the history of the old image. Maybe if <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Cannot rename/move images and other media files."
+   href="show_bug.cgi?id=709">bug 709</a> is fixed correctly, this 
+problem will go away.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-02 23:34:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This could also maybe be addressed by simply not *requiring* extensions. Any wikis that are currently set up could then choose to 
+continue to use extensions if they wish, or slowly migrate their images to non-extensioned names.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brian Kell</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-02 23:41:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Also, I don't understand what kind of spoofing attacks it would enable. The actual URL of the image could still end with the correct 
+extension; the only thing that would be changed is the image name that's displayed at the top of the image description page, and 
+the name used to include the image in an article.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Derrick Coetzee</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-03 21:31:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I fervently support this proposal. I have a list on Commons of thousands of PNGs that need to be 
+converted to SVGs. The work that it will take to update all the references is monumental. 
+Effective image renaming would also solve the problem, but the W3 is right that image URLs that 
+don't change are really a better idea - it just exposes implementation in an unnecessary way, even 
+if it is unconventional to do otherwise.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Cary Bass</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-20 16:03:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I support this proposal.  </pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Nick Perkins</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-01-23 12:30:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Supported</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-02-05 18:22:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_CLOSED  bz_closed"
+   title="CLOSED DUPLICATE - The file format should be specified by the uploader, not by the extension in the server"
+   href="show_bug.cgi?id=4878">Bug 4878</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Titoxd</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-29 21:49:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >If anything, the extensions should be case insensitive. Trying [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AFoo.png">Image:Foo.png</a>]]
+when the actual file name is [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3AFoo.PNG">Image:Foo.PNG</a>]] is frustrating, and there's no
+real loss from that conversion, IMO.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-16 23:37:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - MediaWiki to handle caps/no-caps image extension natively ?"
+   href="show_bug.cgi?id=6337">Bug 6337</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-26 22:30:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Filename extensions of uploaded files"
+   href="show_bug.cgi?id=6451">Bug 6451</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">とある白い猫</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-27 03:15:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Coppied from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Filename extensions of uploaded files"
+   href="show_bug.cgi?id=6451">bug #6451</a>
+----------------------------------------------------------------------
+I feel it would be logical and prudent for any person uploading to to give it a
+uneque description.
+
+Multiple files with identical filenames with identical extensions are
+problematic (example: Example.png and Example.pNg). Mediawiki currently allows
+the upload of files with identical filenames and extension with only diference
+being case diference.
+
+I see no use of having Example.png and its diferent variants (case diferences)
+aside from inflicting confusion. I was also informed that there had been issues
+of Wikia logos being the wrong case.
+
+There is the matter of existing images requiring a rename... but that can be
+dealt with later. Firtly we should prevent any newer images with wierd cases.</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michal Zlatkovsky</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-27 13:22:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I support this - at least the case-insensitiveness to prevent name
+conflicts/confusion when inserting wikilinks would be good.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tristan Miller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-21 00:54:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I support this; metadata shouldn't be part of the filename.  This would also
+make it easier to replace images with a different format without having to
+change all links to them.  (Currently users uploading images in inappropriate
+formats is a big problem on Wikipedia and Commons, as evidenced by the number of
+{{badJPEG}} and {{SVG}}-tagged images.)</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Duncan Harris</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-06 13:37:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is silly.  [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=image%3Afoo.jpg">image:foo.jpg</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=image%3Afoo.jpeg">image:foo.jpeg</a>]] are different. 
+Implementing this would create a new bug where if there are multiple files with
+the same name.  It's not backwards compatible and would cause more trouble than
+it's worth.
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Judson (enwiki:cohesion)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-06 16:53:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't think anyone is suggesting we strip the existing filenames off. That may
+happen but it would have to be a manual process. And there is a problem. When a
+png is used on over 100 pages across 12 wikis on the commons and it changes to a
+better svg how do you update it? The toolserver is down remember. So, currently
+you edit the links for maybe an hour, and miss the ones on english, which
+(hopefully) someone notices and fixes themselves.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rotem Liss</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-06 17:05:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This bug only suggests to remove the *requirement* to add the image extension as
+a part of the name, and maybe remove this extension from new files by default -
+not to rename the current files. If <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Cannot rename/move images and other media files."
+   href="show_bug.cgi?id=709">Bug 709</a> will be fixed, we will be able to
+rename images manually, but images will not be automatically renamed, and there
+will be no new problem. Reopening.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">とある白い猫</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-08 15:11:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Respond to &quot;Duncan Harris&quot; Tell me ONE good reason why we want confusing
+filenames/extensions such as foo.jpg and foo.jpeg. We do not want files with
+names like Paris.jpg Paris.jPg Paris.jpeg The intention is to make itso it is
+not backwards compatible since the point is resolving the problem not forking it.
+
+As you point out the two files in question are different and both of them should
+have had been given a more descriptive filename to avoid a conflict in the first
+place. The upload should not have been allowed and given an error to pick a
+better name.
+
+There was a check to see how many images were conflicting and the number was a
+thousand something some time ago. All of those 1000+ images need to be renamed
+to something that is actually descriptive.
+
+The point is to separate the image description page and the actual image
+allowing moves and other manipulations. It is a complete waste of system
+resources and peoples time to move images as we are doing now. </pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andreas Praefcke</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-26 09:53:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I strongly support this request. The &quot;image description pages&quot; have
+fundamentally wrong URLs. For example, I use a little add-on in firefox that
+pops up as soon as I want to surf to a pdf-File, asking me whether to do with
+that file (save, view). It works just fine everywhere but in commons, where a
+non-PDF-file has pdf as its ending: the description page. If you want to link to
+the Commons from outside Wikimedia (say, from a blog), people see a URL ending
+in JPG and might try direct download (&quot;right-klick&quot; and &quot;save as&quot;). Thus, they
+will download a description page. This whole behaviour of Commons is different
+from what users would rightly expect from the URL.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Omegatron</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-08 03:27:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I furiously agree with this proposal.  The encoding of an image is completely irrelevant to the way it is used in an article and the way the image's description page is accessed.  The only place it is important is when fed to an end-user, where the extension would, of course, still be used.  For the title of the image description page and inclusion in articles, the extension should not be present at all.
+
+This is a perfect example of the problems it would help solve:
+
+<a href="http://commons.wikimedia.org/wiki/Commons_talk:Deletion_requests/Superseded">http://commons.wikimedia.org/wiki/Commons_talk:Deletion_requests/Superseded</a>
+
+If a PNG image is updated by uploading another PNG image with the same name, the older version is kept in the &quot;image history&quot; on the image description page for licensing and  practical reasons.  (Sometimes the replacement is inferior and is reverted back to the old version, for instance.)  If an SVG image is uploaded to replace the PNG, however, it must exist at a new name, breaking the link to the old, and inspiring people to delete the old PNG so that it will not continue to be used.  Images in the &quot;image history&quot; cannot be used in articles, but images that exist at other names still can be.
+
+&quot;I support this; metadata shouldn't be part of the filename.&quot;
+
+It shouldn't even *be* a &quot;filename&quot;.  It should be an &quot;image title&quot;.
+
+&quot;This is silly.  [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=image%3Afoo.jpg">image:foo.jpg</a>]], [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=image%3Afoo.jpeg">image:foo.jpeg</a>]] are different.&quot;
+
+That's why we need <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Cannot rename/move images and other media files."
+   href="show_bug.cgi?id=709">Bug 709</a> (Cannot rename/move images and other media files.)  In the meantime, the .jpeg will continue to be part of the image's title to keep them distinct.  But in the future, it should be possible to rename, redirect, and merge images just like articles.  Then bots can strip the extensions from image titles that don't conflict, and flag the rest for human disambiguation.
+
+&quot;I strongly support this request. The &quot;image description pages&quot; have fundamentally wrong URLs.&quot;
+
+Another good reason.  The image description page has a URL that looks like an image, but is actually a web page.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-08 03:42:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We should store the MIME type as we do now, discard the image extension on upload (or at least remove it by default), and generate an extension automatically for actual media links and thumbnails based on the stored MIME type.  I can't imagine any code depending on images ending with a suffix, given that they're namespaced and all, so I don't think this would be excessively difficult to fix, either.
+
+Existing images should stay where they are until we have image redirects, at which point they can be mass-moved to extensionless forms (with conflicts being ignored and left for manual cleanup).  In the meantime, people who are deleting images merely for being obsolete under the assumption that they aren't being used on non-Wikimedia parts of the Internet should be smacked.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-22 22:42:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Add configuration option to mask file extensions for image description pages"
+   href="show_bug.cgi?id=19874">Bug 19874</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-04 20:57:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Clarified summary, added dep for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload new versions of files with different file type"
+   href="show_bug.cgi?id=20971">bug 20971</a>.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-18 05:47:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I started looking at this problem to see if I could work up the first baby step
+patch toward allowing arbitrary file names, which is to allow moving an image
+to an arbitrary location.
+
+I first just tried removing checkExtensionCompatibility from 
+Title::isValidMoveOperation().  That mostly seems to work, but the hitch comes 
+when you try to reference the bare image URL, because that's served directly 
+from the webserver, which typically relies on the file extension to get the 
+media type.  So, regardless of how MediaWiki refers to the file, it still needs 
+to be stuffed onto disk with a valid extension intact unless you're hosting on
+some ninja psychic webserver that just knows what the media type of the file is
+(or perhaps one that's cracking open files to see what's in them).
+
+The strategy I cooked up next was to modify FileRepo::getNameFromTitle().  Here
+was the plan:
+*  Check if the media type from the database matches up with the media type
+derived from the file name from the title
+*  If they match, do nothing different
+*  If they don't match, tack on the extension to the filename based on the media
+type
+
+I'm not even remotely sure if getNameFromTitle is the right place to insert this
+sort of thing (I suspect it isn't, actually).   I was looking for a place where 
+I could muck with the file name without also mucking with other uses of the name.
+It seems safer to go elsewhere, like File::getRel and File::getUrlRel.  I may 
+play around more with this once I get unstuck.
+
+The wall I hit was figuring out the right way to pull the MIME type out of the 
+database, because I think I accidently engaged in a mutually recursive death 
+spiral calling LocalFile::GetMimeType() from there.  If anyone has any tips on
+the right way to pull the mime type for a given Title out, that'd be most 
+helpful.
+
+I may putter around with this a bit more this weekend.  This isn't a problem I'm
+planning to bulldog until it's fixed, but it's something I'll post a patch to if
+I manage to muddle my way into something that seems to work.
+
+One hacky workaround that could work ok is to allow arbitrary file names in the 
+upload screen, but instead of rejecting the upload if the name doesn't match a 
+valid MIME type, simply tack the extension onto the end, then put a redirect from
+the given name to the extended name.  That's probably a little too hacky to have
+the fully desired effect, but it does at least make it a little easier to refer to
+the file in an extension-agnostic manner.
+</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-18 09:41:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c27">comment #27</a>)
+&lt;snip&gt;
+
+<span class="quote">&gt; I'm not even remotely sure if getNameFromTitle is the right place to insert
+&gt; this
+&gt; sort of thing (I suspect it isn't, actually).   I was looking for a place where 
+&gt; I could muck with the file name without also mucking with other uses of the
+&gt; name.
+&gt; It seems safer to go elsewhere, like File::getRel and File::getUrlRel.  I may 
+&gt; play around more with this once I get unstuck.</span >
+
+I agree getNameFromTitle is bad.  I'd suggest it would be better to add a new accessor File::getNameOnDisk as an alternative to File::getName, and then change the URL constructors to use the former rather than the latter. 
+
+<span class="quote">&gt; The wall I hit was figuring out the right way to pull the MIME type out of the 
+&gt; database, because I think I accidently engaged in a mutually recursive death 
+&gt; spiral calling LocalFile::GetMimeType() from there.  If anyone has any tips on
+&gt; the right way to pull the mime type for a given Title out, that'd be most 
+&gt; helpful.</span >
+
+&lt;snip&gt;
+
+Assuming your goal was to use MIME type to determine the appropriate extension, then that won't work.  Because we have allowed capitalization variations, e.g. Foo.JPG != Foo.jpg != Foo.jpeg, there is no way to uniquely determine what the extension should be from the type.  Almost certainly we will need to add an extension field to the Image and Oldimage tables and simply look up the extension.  An advantage of this is that one could set all existing files to have a null extension, meaning that nothing needs to be added to the file name as already exists.</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-18 16:18:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c27">comment #27</a>)
+<span class="quote">&gt; I first just tried removing checkExtensionCompatibility from 
+&gt; Title::isValidMoveOperation().  That mostly seems to work, but the hitch comes 
+&gt; when you try to reference the bare image URL, because that's served directly 
+&gt; from the webserver, which typically relies on the file extension to get the 
+&gt; media type.  So, regardless of how MediaWiki refers to the file, it still needs 
+&gt; to be stuffed onto disk with a valid extension intact unless you're hosting on
+&gt; some ninja psychic webserver that just knows what the media type of the file is
+&gt; (or perhaps one that's cracking open files to see what's in them).</span >
+
+The simplest way to handle this from our perspective is to just give all the on-disk files a name ending in, say, .png.  This will typically cause an incorrect Content-Type to be served -- except for PNG files, of course -- but browsers will display the pictures fine anyway, as long as it's served as some recognized image type.  See &lt;<a href="http://tools.ietf.org/html/draft-abarth-mime-sniff-03">http://tools.ietf.org/html/draft-abarth-mime-sniff-03</a>&gt;.  In fact, it should work fine in many cases even if a non-image MIME type is served.
+
+Arguably, relying on this MIME type sniffing is incorrect and confusing.  But it's a possibility, for simplicity's sake.  It's certainly reliable.
+</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-18 17:51:44 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c29">comment #29</a>)
+<span class="quote">&gt; The simplest way to handle this from our perspective is to just give all the
+&gt; on-disk files a name ending in, say, .png.  This will typically cause an
+&gt; incorrect Content-Type to be served -- except for PNG files, of course -- but
+&gt; browsers will display the pictures fine anyway, as long as it's served as some
+&gt; recognized image type.  See
+&gt; &lt;<a href="http://tools.ietf.org/html/draft-abarth-mime-sniff-03">http://tools.ietf.org/html/draft-abarth-mime-sniff-03</a>&gt;.  In fact, it should
+&gt; work fine in many cases even if a non-image MIME type is served.
+&gt; 
+&gt; Arguably, relying on this MIME type sniffing is incorrect and confusing.  But
+&gt; it's a possibility, for simplicity's sake.  It's certainly reliable.</span >
+
+Though I haven't tested it systematically, I'll assume that some fraction of browsers will happily process some fraction of file types without extensions.  However this feels like a terrible hack, and I worry that not enough browsers would process enough file types.
+
+In particular, if we want our approach to work for Mediawiki installs in general, then we can't simply assume that we are only talking about image files.  Does it work for PDFs, for Word Documents, for spreadsheets, etc.?  Also if the file has a .png extension and a person saves it to their local hard drive, then I strongly suspect that Windows users will have a hard time reading the file in most apps without manually changing the extension (not sure about Mac / Linux).
+
+I think it makes much more sense to provide the user with an appropriate extension, even if that information is unnecessary in some cases.
+
+</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-18 18:18:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c30">comment #30</a>)
+<span class="quote">&gt; Though I haven't tested it systematically, I'll assume that some fraction of
+&gt; browsers will happily process some fraction of file types without extensions. 
+&gt; However this feels like a terrible hack, and I worry that not enough browsers
+&gt; would process enough file types.
+&gt; 
+&gt; In particular, if we want our approach to work for Mediawiki installs in
+&gt; general, then we can't simply assume that we are only talking about image
+&gt; files.  Does it work for PDFs, for Word Documents, for spreadsheets, etc.? 
+&gt; Also if the file has a .png extension and a person saves it to their local hard
+&gt; drive, then I strongly suspect that Windows users will have a hard time reading
+&gt; the file in most apps without manually changing the extension (not sure about
+&gt; Mac / Linux).
+&gt; 
+&gt; I think it makes much more sense to provide the user with an appropriate
+&gt; extension, even if that information is unnecessary in some cases.</span >
+
+Reasonable points, especially about things like PDFs and saving files locally.  I retract the suggestion.</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-19 06:25:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=6680" name="attach_6680" title="Incomplete attempt to allow image moves to arbitrary names">attachment 6680</a> <a href="attachment.cgi?id=6680&amp;action=edit" title="Incomplete attempt to allow image moves to arbitrary names">[details]</a></span>
+Incomplete attempt to allow image moves to arbitrary names
+
+Patch attached for an initial incomplete implementation.  It seems to work with my very limited testing.  Note: I added a new config setting ($wgCheckFileExtensions) which needs to be set to &quot;false&quot; in order to use this (default is &quot;true&quot;).
+
+In reply to <a href="show_bug.cgi?id=4421#c28">comment #28</a> (great feedback, btw):
+<span class="quote">&gt; I agree getNameFromTitle is bad.  I'd suggest it would be better to add a new
+&gt; accessor File::getNameOnDisk as an alternative to File::getName, and then
+&gt; change the URL constructors to use the former rather than the latter. </span >
+
+Okee doke.  I added File::getFilename, and changed a few calls to point to that.  I had to add a corresponding FileRepo::getFilenameFromTitle.
+
+<span class="quote">&gt; Assuming your goal was to use MIME type to determine the appropriate extension,
+&gt; then that won't work.  Because we have allowed capitalization variations, e.g.
+&gt; Foo.JPG != Foo.jpg != Foo.jpeg, there is no way to uniquely determine what the
+&gt; extension should be from the type.</span >
+
+It's possible, and the attached patch does it in a pretty reasonable way (adding a new &quot;getPreferredExtensionForType&quot; that leverages some existing normalization code).
+
+However, I concur that this isn't the best solution.  The problem with it is that an innocent reconfiguration could render the files inaccessible.
+
+<span class="quote">&gt; Almost certainly we will need to add an
+&gt; extension field to the Image and Oldimage tables and simply look up the
+&gt; extension.  An advantage of this is that one could set all existing files to
+&gt; have a null extension, meaning that nothing needs to be added to the file name
+&gt; as already exists.</span >
+
+I ran out of time before I could implement this, but that would seem to be the next logical step in all of this.  I still think we'll need the logic for generating an extension from a MIME type, in the event that the initial uploaded file name doesn't match the MIME type we'll need to get an extension from somewhere.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-12-06 06:19:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=6859" name="attach_6859" title="v2 patch - handles upload, still buggy">attachment 6859</a> <a href="attachment.cgi?id=6859&amp;action=edit" title="v2 patch - handles upload, still buggy">[details]</a></span>
+v2 patch - handles upload, still buggy
+
+New version of a patch.  Still some testing, known bugs and cleanup to do, but looking for last minute feedback before I finish this off.  The big change is that there's a new field in the image table (img_file_ext) along with corresponding changes in oldimage and filearchive.  It appears as though the check on upload was already mostly coded, and there was even a $wgCheckFileExtensions variable that I didn't notice in my first version (looks like its an antique, too)
+
+Known bug: uploading an image without an extension will cause the DB to end up in incorrect state.
+
+Here's my test plan:
+* Image renaming:
+**  Upload Foo.jpg
+**  Rename Foo.jpg to Foo
+**  Rename Foo to Foo.jpeg
+**  Rename Foo.jpeg to Foo.gif
+**  Upload Bar (GIF file)
+**  Rename Bar to Bar.gif
+*  Set $wgSaveDeletedFiles=true
+*  Set $wgFileStore['deleted']['directory'] to valid directory
+*  Delete, then undelete an image
+*  Upload a new version of an image
+** With no extension
+** with proper extension
+* Change configuration of default extension from &quot;jpg&quot; to &quot;jpeg&quot;.  Deal with images from before transition
+*  Install MW 1.15, set wgCheckFileExtensions=false, upload images (with/without matching extensions) then upgrade to new version and check images
+*  Fresh install of MediaWiki uploading both images with/without matching extension in title</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-12-15 18:26:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=6885" name="attach_6885" title="bug4421-robla-v3-svn59811.patch">attachment 6885</a> <a href="attachment.cgi?id=6885&amp;action=edit" title="bug4421-robla-v3-svn59811.patch">[details]</a></span>
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image file extension should not be part of the name"
+   href="show_bug.cgi?id=4421">bug4421</a>-robla-v3-svn59811.patch
+
+It's mostly working, though working through all of the edge cases is a bit of a game of whack-a-mole.  Most of the complexity comes from needing to store the files on the filesystem with appropriate file extensions, since these get served directly from the filesystem from Apache.  Thus, there's a lot of convoluted logic for tacking on the file extension in the appropriate spots.
+
+An example of something that isn't working that I need advice on is this:  with my modified version, it's possible to upload a jpeg to a location without an extension, then upload a png to that same location.  The problem comes in LocalFile::publish().  Here's the call it makes from that function:
+$status = $this-&gt;repo-&gt;publish( $srcPath, $dstRel, $archiveRel, $flags );
+
+This causes two things to happen:
+1.  copy $dstRel to $archiveRel
+2.  copy $srcPath to $dstRel.  
+
+The problem here is with uploading a png over the top of a jpg.  For example, if the title name is &quot;File:Foo&quot;, then the filename for the first version of the file will be &quot;Foo.jpg&quot;, and the replacement will be &quot;Foo.png&quot;.  So, if we pass &quot;Foo.jpg&quot; to $dstRel, then step 1 works, but step 2 fails.  If we pass &quot;Foo.png&quot;, then the opposite problem occurs.
+
+Thoughts on dealing with this problem?  It would seem that modifying FileRepo::publish() (or adding a new method with more parameters) seems like the only solution here.</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-04 23:41:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=6926" name="attach_6926" title="bug4421-robla-v4all-svn60601.patch">attachment 6926</a> <a href="attachment.cgi?id=6926&amp;action=edit" title="bug4421-robla-v4all-svn60601.patch">[details]</a></span>
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image file extension should not be part of the name"
+   href="show_bug.cgi?id=4421">bug4421</a>-robla-v4all-svn60601.patch
+
+Yet another version of the patch.  Still needs testing, but otherwise I think this one is ready for primetime.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-04 23:45:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=6927" name="attach_6927" title="bug4421-robla-v4staged-svn60601.tar.gz">attachment 6927</a> <a href="attachment.cgi?id=6927&amp;action=edit" title="bug4421-robla-v4staged-svn60601.tar.gz">[details]</a></span>
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image file extension should not be part of the name"
+   href="show_bug.cgi?id=4421">bug4421</a>-robla-v4staged-svn60601.tar.gz
+
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image file extension should not be part of the name"
+   href="show_bug.cgi?id=4421">bug4421</a>-robla-v4staged-svn60601.tar.gz is a tarball containing the same patch as <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image file extension should not be part of the name"
+   href="show_bug.cgi?id=4421">bug4421</a>-robla-v4all-svn60601.patch, only broken up into several stages worth of patches.  I broke it up both in hopes that it might be easier to digest in smaller parts, and as a way to review my own code.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-05 02:08:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've now tested this as much as I'm going to now.  Anyone care to try this out?</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-05 17:04:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Such a major change to the file repo code needs a review by Tim for security, scalability, etc.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tim Starling</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-06 03:40:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm not really interested in making major changes to the trunk at the moment, due to the need to stabilise for a 1.16 release branch. But feel free to commit it to a development branch.</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-06 11:41:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c39">comment #39</a>)
+<span class="quote">&gt; I'm not really interested in making major changes to the trunk at the moment,
+&gt; due to the need to stabilise for a 1.16 release branch. But feel free to commit
+&gt; it to a development branch.
+&gt; </span >
+
+Granted, and I certainly don't suggest trying to get this in before 1.16 branches and releases, just a general note that I'd like a thorough review before this does (eventually) go into trunk :)</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-07 07:43:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The individual patches are checked into a branch now:
+<a href="http://www.mediawiki.org/w/index.php?title=Special:Code/MediaWiki/path&amp;path=/branches/extensionless-files/">http://www.mediawiki.org/w/index.php?title=Special:Code/MediaWiki/path&amp;path=/branches/extensionless-files/</a>
+
+I checked in the important patches (stage 1 through stage 3) first, then the optional ones after that (and then the one file I forgot to add...oops).  svn revs 60770-60773 and 60779 are the important ones, svn revs 60774-60778 are minutia that can evaluated independently.
+</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mattia</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-03-28 13:05:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I am the owner of the <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload new versions of files with different file type"
+   href="show_bug.cgi?id=20971">bug 20971</a>, which is closely linked to this. Could someone kindly inform me about the progress here? Thank you</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-03-28 18:46:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi Mattia, the code is still sitting in the extensionless-files branch.  I can conceivably take a crack at bringing it up-to-date with the trunk and merging it in.  However, it won't make it into 1.16, and it requires a database upgrade, so it probably needs more review than its gotten so far.
+
+If you're eager to accelerate progress on this, my recommendation would be to raise this on the mediawiki-l mailing list, making a case for why this is needed sooner rather than later.
+
+In the meantime, I'll work on getting the easier portions of this patch incorporated into trunk, so as to hopefully make it easier to incorporate the rest when the time comes.</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-03-28 18:55:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c43">comment #43</a>)
+<span class="quote">&gt; If you're eager to accelerate progress on this, my recommendation would be to
+&gt; raise this on the mediawiki-l mailing list, making a case for why this is
+&gt; needed sooner rather than later.
+&gt; </span >
+wikitech-l would probably be more appropriate.</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MZMcBride</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-03-31 21:57:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm not so sure about this.
+
+Personally, my scripts often rely on the assumption that image.img_name is the same as page.page_title when page_namespace = 6. I use this assumption to generate reports of files without file description pages, file description pages without files, and comparing enwiki_p.page.page_title to commonswiki_p.image.img_name. I imagine there are other scripts on the Toolserver and elsewhere that rely on a similar assumption. This change would likely break these scripts.
+
+I'm also concerned about naming conflicts. In <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload new versions of files with different file type"
+   href="show_bug.cgi?id=20971">bug 20971</a>#c4, Brion suggests that only non-conflicted image names would be stripped. Deliberate inconsistency here doesn't seem like an ideal situation for editors or anyone else. Though I suppose page text will be inconsistent for the rest of time if this change is implemented anyway.
+
+On an emotional level, stripping the file extensions feels wrong. A JPG simply isn't the same as a GIF or a PNG or an SVG. Even users who are only adding the file inclusion code to pages need to understand and appreciate that.</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">reisio</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-03-31 22:44:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Your concerns are, IMO, trivial compared to the troubles we have from including extensions thus far.
+
+You're right that JPEG, GIF, PNG, &amp; SVG simply are not the same, which is just another reason why they don't need filename extensions anywhere, and certainly not at their File:Name locales.</pre>
+    </div><div id="c47" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c47">Comment 47</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike.lifeguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-03-31 22:52:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c45">comment #45</a>)
+<span class="quote">&gt; stripping the file extensions feels wrong. A JPG simply
+&gt; isn't the same as a GIF or a PNG or an SVG. Even users who are only adding the
+&gt; file inclusion code to pages need to understand and appreciate that.</span >
+
+I agree completely here. We often upload different formats of the same image for differing purposes, and change only the file extension. The reason for that is it *does* matter which one you use!
+
+(In reply to <a href="show_bug.cgi?id=4421#c5">comment #5</a>)
+<span class="quote">&gt; Okay, well, the main reason I proposed it is that it basically prevents a
+&gt; replacement image in a different format from being uploaded.</span >
+
+That's a good thing. The replacement image with a different format is a different image. Any good Commoner knows that an image of a given format can never be superseded by an image in another format on that basis alone. This is a feature, not a bug.</pre>
+    </div><div id="c48" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c48">Comment 48</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-01 19:07:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't think any of the objections from <a href="show_bug.cgi?id=4421#c45">comment 45</a> or <a href="show_bug.cgi?id=4421#c47">comment 47</a> are very compelling.  But I'm wondering what happens with non-image files.  Should it be impossible to tell videos from images from PDFs based on the names?  You would have no idea from looking at the wikitext source whether [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3AFoo">File:Foo</a>]] is including image or video or audio or maybe something else entirely.</pre>
+    </div><div id="c49" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c49">Comment 49</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mike.lifeguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-01 19:20:04 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c46">comment #46</a>)
+<span class="quote">&gt; the troubles we have from including extensions thus far.</span >
+
+Remind me what those troubles are? I cannot think of a single one, while I can think of contraindications.</pre>
+    </div><div id="c50" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c50">Comment 50</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 01:28:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Design doc posted here:
+<a href="http://www.mediawiki.org/wiki/Requests_for_comment/Extensionless_files">http://www.mediawiki.org/wiki/Requests_for_comment/Extensionless_files</a></pre>
+    </div><div id="c51" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c51">Comment 51</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 02:15:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&quot;The file extension is stored in a new 'img_file_ext' field in the 'image' table (and similar fields to oldimage and filearchive). This field defaults to null. When it is set to null, the file name and the page title are the same.&quot;
+
+Could we instead just key off the MIME type here?  That seems simpler and less redundant.  What would img_file_ext='gif' but img_minor_mime='jpeg' mean?  That's denormalized.</pre>
+    </div><div id="c52" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c52">Comment 52</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 02:28:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi Aryeh: the reason I chose to store the file extension in addition to MIME is that both img_file_ext='jpg' or 'jpeg' are both valid values when img_minor_mime is 'jpeg'.  While one might be able to infer what the extension would be based on the preferred extension given the MIME type, it's potentially a booby trap for devs and sysadmins down the road, who might unintentionally corrupt a wiki by changing the preferred file extension from one to the other.  What may seem like a harmless switch from &quot;jpg&quot; to &quot;jpeg&quot; as the preferred extension would suddenly cause a lot of existing images, archive images, and thumbnails to break.  By storing this in the DB, changing the preferred extension in the configuration/code is safe, with only future updates taking on the new preferred extension.</pre>
+    </div><div id="c53" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c53">Comment 53</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 03:10:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c48">comment #48</a>)
+<span class="quote">&gt; I don't think any of the objections from <a href="show_bug.cgi?id=4421#c45">comment 45</a> or <a href="show_bug.cgi?id=4421#c47">comment 47</a> are very
+&gt; compelling. </span >
+
+I disagree, I think they are rather convincing, and I pretty much agree with everything Mike.lifeguard and MZMcBride have said.
+
+<span class="quote">&gt; But I'm wondering what happens with non-image files.  Should it be
+&gt; impossible to tell videos from images from PDFs based on the names?  You would
+&gt; have no idea from looking at the wikitext source whether [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3AFoo">File:Foo</a>]] is
+&gt; including image or video or audio or maybe something else entirely.</span >
+
+I think that's a rather compelling argument against it right there.
+
+(In reply to <a href="show_bug.cgi?id=4421#c46">comment #46</a>) 
+<span class="quote">&gt; You're right that JPEG, GIF, PNG, &amp; SVG simply are not the same, which is just
+&gt; another reason why they don't need filename extensions anywhere, and certainly
+&gt; not at their File:Name locales.</span >
+
+That doesn't make any sense. I want to know what type of media I'm using. The extension helps convey that.
+
+I do see the annoyances of JPG vs jpg, but that could very be fixed by normalizing extensions to lowercase on upload, regardless of what happens here. I'm still not convinced of the overall usefulness of this though.</pre>
+    </div><div id="c54" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c54">Comment 54</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 03:46:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; But I'm wondering what happens with non-image files.  Should it be
+&gt; impossible to tell videos from images from PDFs based on the names?  You would
+&gt; have no idea from looking at the wikitext source whether [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3AFoo">File:Foo</a>]] is
+&gt; including image or video or audio or maybe something else entirely.</span >
+
+How does one know the difference between a GIF and an animated GIF based on file extension?  How does one know the difference between a Flash file (.swf) that just has static vector art versus video?  How does one know the difference between a static .svg and one that includes a &lt;video&gt; element?
+
+The arguments in the &quot;URI Opacity&quot; section of the W3C's Architecture group apply to this conversation too:
+<a href="http://www.w3.org/TR/webarch/#uri-opacity">http://www.w3.org/TR/webarch/#uri-opacity</a></pre>
+    </div><div id="c55" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c55">Comment 55</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 12:19:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c54">comment #54</a>)
+<span class="quote">&gt; How does one know the difference between a GIF and an animated GIF based on
+&gt; file extension?  How does one know the difference between a Flash file (.swf)
+&gt; that just has static vector art versus video?  How does one know the difference
+&gt; between a static .svg and one that includes a &lt;video&gt; element?
+&gt; </span >
+Sure, a file's extension is not a magic bullet that unambiguously tells you everything you want to know about a file. But it *helps* a great deal.</pre>
+    </div><div id="c56" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c56">Comment 56</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">reisio</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 14:45:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Helps with what?  Realizing you have to upload a replacement image to another name because this bug isn't closed?  For what other reason would it matter what format the file is? (even though you'd be able to tell regardless)</pre>
+    </div><div id="c57" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c57">Comment 57</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">NuclearWarfare</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 15:02:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >So what would this do for cases like <a href="http://commons.wikimedia.org/wiki/File:Banana.JPG">http://commons.wikimedia.org/wiki/File:Banana.JPG</a> and <a href="http://commons.wikimedia.org/wiki/File:Banana.png">http://commons.wikimedia.org/wiki/File:Banana.png</a>? The two are of completely different images.</pre>
+    </div><div id="c58" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c58">Comment 58</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 15:25:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; So what would this do for cases like
+&gt; <a href="http://commons.wikimedia.org/wiki/File:Banana.JPG">http://commons.wikimedia.org/wiki/File:Banana.JPG</a> and
+&gt; <a href="http://commons.wikimedia.org/wiki/File:Banana.png">http://commons.wikimedia.org/wiki/File:Banana.png</a>? The two are of completely
+&gt; different images.</span >
+
+Since they have two different page titles, they'd be treated as two different images.  For that matter, <a href="http://commons.wikimedia.org/wiki/File:Banana.jpeg">http://commons.wikimedia.org/wiki/File:Banana.jpeg</a> and <a href="http://commons.wikimedia.org/wiki/File:Banana.jpg">http://commons.wikimedia.org/wiki/File:Banana.jpg</a> would still be treated as two different images.
+
+The only thing this feature does (if enabled) is *allow* for the creation of &quot;<a href="http://commons.wikimedia.org/wiki/File:Banana">http://commons.wikimedia.org/wiki/File:Banana</a>&quot;, and decouple the MIME type from the page title extension.  It does not automatically strip off the extension from existing page titles or create automatic redirects of any sort.
+
+The parenthetical &quot;(if enabled)&quot; bit is important here, too.  There's nothing forcing anyone (including Wikimedia Foundation) to actually use this feature just by virtue of MediaWiki supporting the functionality.</pre>
+    </div><div id="c59" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c59">Comment 59</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 15:37:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c56">comment #56</a>)
+<span class="quote">&gt; Helps with what?  Realizing you have to upload a replacement image to another
+&gt; name because this bug isn't closed?  For what other reason would it matter what
+&gt; format the file is? (even though you'd be able to tell regardless)</span >
+
+You still haven't explained how we're supposed to know what [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3AName">File:Name</a>]] is when looking at the syntax.
+
+(In reply to <a href="show_bug.cgi?id=4421#c58">comment #58</a>)
+<span class="quote">&gt; The only thing this feature does (if enabled) is *allow* for the creation of
+&gt; &quot;<a href="http://commons.wikimedia.org/wiki/File:Banana">http://commons.wikimedia.org/wiki/File:Banana</a>&quot;, and decouple the MIME type
+&gt; from the page title extension.  It does not automatically strip off the
+&gt; extension from existing page titles or create automatic redirects of any sort.
+&gt; </span >
+
+The question is not &quot;will it break existing images,&quot; it's that when you strip the extension, the name becomes meaningless. If I'm trying to include a picture of a Banana, I want a JPG or PNG, not a MPG. What type of media am I using here [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3ABanana">File:Banana</a>]]? By keeping the extension, it's not (as) ambiguous. Like Roan said above, it's not a magic bullet, but it certainly helps.
+
+<span class="quote">&gt; The parenthetical &quot;(if enabled)&quot; bit is important here, too.  There's nothing
+&gt; forcing anyone (including Wikimedia Foundation) to actually use this feature
+&gt; just by virtue of MediaWiki supporting the functionality.</span >
+
+Yes, but if it's not a good feature (which we seem to disagree on), we shouldn't support it at all. If we implemented every idea someone had, we'd have a lot less WONTFIXes. I think the outstanding questions need answering, before this moves forward any more.</pre>
+    </div><div id="c60" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c60">Comment 60</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 16:00:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; You still haven't explained how we're supposed to know what [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3AName">File:Name</a>]] is
+&gt; when looking at the syntax.</span >
+
+You're not, as explained here:
+<a href="http://www.w3.org/TR/webarch/#uri-opacity">http://www.w3.org/TR/webarch/#uri-opacity</a></pre>
+    </div><div id="c61" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c61">Comment 61</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 16:06:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c60">comment #60</a>)
+<span class="quote">&gt; &gt; You still haven't explained how we're supposed to know what [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=File%3AName">File:Name</a>]] is
+&gt; &gt; when looking at the syntax.
+&gt; 
+&gt; You're not, as explained here:
+&gt; <a href="http://www.w3.org/TR/webarch/#uri-opacity">http://www.w3.org/TR/webarch/#uri-opacity</a></span >
+
+Agent's aren't supposed to infer anything. From the spec:
+
+<span class="quote">&gt; The example URI used in the travel scenario (&quot;<a href="http://weather.example.com">http://weather.example.com</a>
+&gt; /oaxaca&quot;) suggests to a human reader that the identified resource has something &gt; to do with the weather in Oaxaca.</span >
+
+Of course it's not guaranteed to be correct (as the spec goes on to say), but it certainly does help. This is about human readability, not whether the file extension really matters.</pre>
+    </div><div id="c62" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c62">Comment 62</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 16:21:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; Of course it's not guaranteed to be correct (as the spec goes on to say), but
+&gt; it certainly does help. This is about human readability, not whether the file
+&gt; extension really matters.</span >
+
+If that's the primary concern, then the right thing to do is to set up &quot;Image:&quot;, &quot;Audio:&quot; and &quot;Video:&quot; namespaces to distinguish between different file types, rather than lumping them all in to &quot;File:&quot;.  Expecting non-technical users to understand that &quot;.svg&quot; usually means a vector diagram hardly serves the goal of readability.</pre>
+    </div><div id="c63" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c63">Comment 63</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">MZMcBride</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 16:30:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c62">comment #62</a>)
+<span class="quote">&gt; &gt; Of course it's not guaranteed to be correct (as the spec goes on to say), but
+&gt; &gt; it certainly does help. This is about human readability, not whether the file
+&gt; &gt; extension really matters.
+&gt; 
+&gt; If that's the primary concern, then the right thing to do is to set up
+&gt; &quot;Image:&quot;, &quot;Audio:&quot; and &quot;Video:&quot; namespaces to distinguish between different
+&gt; file types, rather than lumping them all in to &quot;File:&quot;.  Expecting
+&gt; non-technical users to understand that &quot;.svg&quot; usually means a vector diagram
+&gt; hardly serves the goal of readability.</span >
+
+There may be a case for adding &quot;Audio&quot; and &quot;Video&quot; prefixes as aliases for &quot;File&quot;, though it would probably cause conflicts with a fair number of installations that have already created separate namespaces with these prefixes.
+
+Implementing this feature (extensionless files) as a configurable option with the default off might be an option, though the required schema changes make it unlikely that many people would utilize it, I think.
+
+In general, it seems like removing the extensions causes far more problems than it solves.</pre>
+    </div><div id="c64" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c64">Comment 64</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 17:20:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Okay, so:
+
+1) Problem with the current system: Cannot upload a new version of a file in a different format while preserving history.
+2) Problem with the current system (not mentioned for a while): Google apparently doesn't index image pages properly on non-Wikimedia MW installs, because it assumes anything ending in .png/.jpeg/etc. is an image page, not an HTML page.
+3) Problem with the proposed system: Files are possible that have no extension, or a completely misleading extension, so it's not clear what general type of file they are (although sometimes this is unclear anyway).
+
+There are several possible solutions I can think of.  The status quo solves (3) but not (1) or (2).  The proposal solves (1) and (2) but not (3).  I don't see any reason why we wouldn't want to allow the proposed changes as an option; some wiki admins will surely prefer the option, although others may not.  It could be disabled by default.
+
+Another possibility is to require extensions as now, but allow upload of a new file to an existing filename of a different type.  This would automatically rename the file to the new appropriate extension, and would only work if that's possible.  Reverting to an earlier file of a different type would also change the name.  This solves (1) and (3) but not (2).  It would be a bit messy, but I think strictly better than the status quo.
+
+(In reply to <a href="show_bug.cgi?id=4421#c52">comment #52</a>)
+<span class="quote">&gt; Hi Aryeh: the reason I chose to store the file extension in addition to MIME is
+&gt; that both img_file_ext='jpg' or 'jpeg' are both valid values when
+&gt; img_minor_mime is 'jpeg'.  While one might be able to infer what the extension
+&gt; would be based on the preferred extension given the MIME type, it's potentially
+&gt; a booby trap for devs and sysadmins down the road, who might unintentionally
+&gt; corrupt a wiki by changing the preferred file extension from one to the other. 
+&gt; What may seem like a harmless switch from &quot;jpg&quot; to &quot;jpeg&quot; as the preferred
+&gt; extension would suddenly cause a lot of existing images, archive images, and
+&gt; thumbnails to break.  By storing this in the DB, changing the preferred
+&gt; extension in the configuration/code is safe, with only future updates taking on
+&gt; the new preferred extension.</span >
+
+Why not just hardcode &quot;jpg&quot; as the preferred version, and never change it?  That seems a lot simpler and less error-prone than keeping track of it.</pre>
+    </div><div id="c65" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c65">Comment 65</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 19:43:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; Why not just hardcode &quot;jpg&quot; as the preferred version, and never change it? 
+&gt; That seems a lot simpler and less error-prone than keeping track of it</span >
+
+There would need to be all sorts of red flags and warnings around the part of the configuration/code that specifies that mapping, and if there's ever a legitimate need to remap any extension, fixing it becomes pretty fragile.  The current mapping of image/jpeg-&gt;&quot;.jpeg&quot; as preferred extension is in the mime.types file, which looks roughly compatible with the Apache mime.types file.  Someone may naively copy an Apache file over and screw up their wiki if the ordering isn't the same.
+
+Mind you, it's not just JPEG that has multiple choices for filename, it's most media types.  Changing it on an existing wiki seems like it'd really screw things up, and it's pretty easy to imagine someone trying it.
+
+That said, I'm not dug in on this approach.  I can definitely see the benefit of not touching the database; in fact, it was my original strategy.  Part of the reason why I went with the database approach was the recommendation in <a href="show_bug.cgi?id=4421#c28">comment #28</a>, the wisdom of which was borne out after I spent a fair amount of time trying to make the no-database-changes approach work.  I understand the code better now, so I'd probably be more successful if I tried again - though I'm a little nervous I might just rediscover another reason why the database change was needed.  As I recall, I think what tipped me over was taking a good look at how mime.types are configured.
+
+Regardless, the job of trying a different approach would be made easier by getting some variant of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/60772" title="revision 60772 in SVN">r60772</a> checked in (as well as some of the other fixes and tweaks on that branch), since I'm a little worried that there's more code that's being checked in that glibly assumes article title==filename.  The sooner those bits are checked in, the easier it would be to maintain a branch that implements the actual feature.</pre>
+    </div><div id="c66" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c66">Comment 66</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 19:53:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c65">comment #65</a>)
+<span class="quote">&gt; There would need to be all sorts of red flags and warnings around the part of
+&gt; the configuration/code that specifies that mapping, and if there's ever a
+&gt; legitimate need to remap any extension, fixing it becomes pretty fragile.</span >
+
+Hardcode it, not configurable.  Add a comment if you're worried, saying &quot;Do not change this or else existing files will become inaccessible&quot;.  Even if you think developers will ignore the comment *and* no one else will notice in code review or testing, which seems excessively pessimistic, it will still be noticed immediately upon deployment, and fixed with minimal damage.
+
+If an end-user modifies the source code without knowing what they're doing, on the other hand, they deserve whatever happens to them.  There are much more destructive things they can do to their wiki.
+
+<span class="quote">&gt; Mind you, it's not just JPEG that has multiple choices for filename, it's most
+&gt; media types.  Changing it on an existing wiki seems like it'd really screw
+&gt; things up, and it's pretty easy to imagine someone trying it.</span >
+
+It's extremely hard for me to see why anyone would decide they prefer .jpeg to .jpg (or vice versa) so much that they'd look through the source code, find the code that has the mapping, *and* ignore the comment warning them not to change it.  Even if they do something so pathologically stupid, it will be caught quickly and isn't that hard to fix manually.
+
+<span class="quote">&gt; Regardless, the job of trying a different approach would be made easier by
+&gt; getting some variant of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/60772" title="revision 60772 in SVN">r60772</a> checked in (as well as some of the other fixes
+&gt; and tweaks on that branch), since I'm a little worried that there's more code
+&gt; that's being checked in that glibly assumes article title==filename.  The
+&gt; sooner those bits are checked in, the easier it would be to maintain a branch
+&gt; that implements the actual feature.</span >
+
+No objection to checking in a preliminary version, but it wouldn't make any sense to do a schema change only to decide we actually don't need it.</pre>
+    </div><div id="c67" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c67">Comment 67</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Robert Rohde</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 20:17:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c64">comment #64</a>)
+
+<span class="quote">&gt; 2) Problem with the current system (not mentioned for a while): Google
+&gt; apparently doesn't index image pages properly on non-Wikimedia MW installs,
+&gt; because it assumes anything ending in .png/.jpeg/etc. is an image page, not an
+&gt; HTML page.</span >
+
+I wrote [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=mw%3AExtension%3AFilePageMasking">mw:Extension:FilePageMasking</a>]] which transparently rewrites &quot;.xxx&quot; to &quot;_xxx&quot; for image description pages.  This solves the Google problem by masking out the extension.</pre>
+    </div><div id="c68" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c68">Comment 68</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Lanphier (RobLa)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 20:42:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; It's extremely hard for me to see why anyone would decide they prefer .jpeg to
+&gt; .jpg (or vice versa) so much that they'd look through the source code, find the
+&gt; code that has the mapping, *and* ignore the comment warning them not to change
+&gt; it.  Even if they do something so pathologically stupid, it will be caught
+&gt; quickly and isn't that hard to fix manually.</span >
+
+I think you may be missing my point, and I also think you need to take a closer look at how things are currently done.
+
+Look here:
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/MimeMagic.php?view=markup">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/MimeMagic.php?view=markup</a>
+(38 mime types, 9 with multiple file extensions)
+
+...and here:
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup</a>
+(137 mime types, 36 with multiple file extensions)
+
+...and here:
+<a href="https://svn.apache.org/repos/asf/httpd/httpd/branches/2.2.x/docs/conf/mime.types">https://svn.apache.org/repos/asf/httpd/httpd/branches/2.2.x/docs/conf/mime.types</a>
+(629 mime types, 86 with multiple file extensions)
+
+All current and future media types with multiple choices for file extension would need to be hardcoded to specify the immutable preferred version.  Granted, not all or even most of these really matter, but even accounting for that, it still leaves a lot of management headache ensuring things stay &quot;right&quot;.
+
+<span class="quote">&gt; No objection to checking in a preliminary version, but it wouldn't make any
+&gt; sense to do a schema change only to decide we actually don't need it.</span >
+
+<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/60772" title="revision 60772 in SVN">r60772</a> isn't a preliminary version.  It's a necessary portion of a complete final version that would be needed regardless of whether storing extensions in the database or using hardcoded extensions is the choice (or any other scheme, for that matter).  There are no database changes in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/60772" title="revision 60772 in SVN">r60772</a>.</pre>
+    </div><div id="c69" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c69">Comment 69</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-02 21:09:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c68">comment #68</a>)
+<span class="quote">&gt; I think you may be missing my point, and I also think you need to take a closer
+&gt; look at how things are currently done.
+&gt; 
+&gt; Look here:
+&gt; <a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/MimeMagic.php?view=markup">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/MimeMagic.php?view=markup</a>
+&gt; (38 mime types, 9 with multiple file extensions)
+&gt; 
+&gt; ...and here:
+&gt; <a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup</a>
+&gt; (137 mime types, 36 with multiple file extensions)
+&gt; 
+&gt; ...and here:
+&gt; <a href="https://svn.apache.org/repos/asf/httpd/httpd/branches/2.2.x/docs/conf/mime.types">https://svn.apache.org/repos/asf/httpd/httpd/branches/2.2.x/docs/conf/mime.types</a>
+&gt; (629 mime types, 86 with multiple file extensions)
+&gt; 
+&gt; All current and future media types with multiple choices for file extension
+&gt; would need to be hardcoded to specify the immutable preferred version. 
+&gt; Granted, not all or even most of these really matter, but even accounting for
+&gt; that, it still leaves a lot of management headache ensuring things stay
+&gt; &quot;right&quot;.</span >
+
+Hmm.  You might be right, but denormalizing to this extent still doesn't seem like the best solution to me.  If anything had to be in the database, we should be able to have a single 1:1 table mapping (img_major_mime, img_minor_mime) -&gt; extension, not the same extension duplicated in millions of image rows.
+
+<span class="quote">&gt; <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/60772" title="revision 60772 in SVN">r60772</a> isn't a preliminary version.  It's a necessary portion of a complete
+&gt; final version that would be needed regardless of whether storing extensions in
+&gt; the database or using hardcoded extensions is the choice (or any other scheme,
+&gt; for that matter).  There are no database changes in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/60772" title="revision 60772 in SVN">r60772</a>.</span >
+
+No objection from me, then.  It's true that I haven't looked closely at this -- I just don't have the time right now, so I only read the RFC.</pre>
+    </div><div id="c70" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c70">Comment 70</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bryan Tong Minh</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-02-06 19:30:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/81601" title="revision 81601 in SVN">r81601</a> thumbnailing of files without extension should work. Of course you can't upload files without extension, so this not useful currently, but a step in the proper direction.</pre>
+    </div><div id="c71" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c71">Comment 71</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sven Manguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-06-01 00:57:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Sorry to bring up ancient history, but I was told this is the bug to do it at. Please see <a href="http://en.wikipedia.org/wiki/Wikipedia:Village_pump_%28proposals%29#Several_changes_to_file_naming">http://en.wikipedia.org/wiki/Wikipedia:Village_pump_%28proposals%29#Several_changes_to_file_naming</a> - a proposal I put forth (not knowing about this) to fix certain consistent issues with file naming. Most reliant there are points #2 and #3, as I have been told that the first one is impossible. As it stands, the three points are:
+
+1.  Case sensitivity in image names: As it stands, three separate users could upload three separate images of three separate subjects called File:TestImage.jpg, File:TeStImAgE.jpg, and File:Testimage.jpg. There is no reason why file names should be case sensitive.
+
+2.  Multiple filetype extensions for the same filetype: As it stands, two separate users could upload two separate images of two separate subjects as File:TestImage.jpg and File:TestImage.jpeg. There is no reason for this.
+
+3.  Case sensitivity in filetype extensions: As it stands, and as I have seen at least twice recently, two separate images can be uploaded as File:TestImage.jpg and File:TestImage.JPG. This has the potential to cause even more problems that the above situations. There is no reason why filetype extensions should be case sensitive.
+
+If we can handle #2 and #3 that would be wonderful.</pre>
+    </div><div id="c72" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c72">Comment 72</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">reisio</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-06-01 03:06:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c71">comment #71</a>)
+<span class="quote">&gt; Sorry to bring up ancient history…</span >
+
+Closing this bug would effectively nullify 2 &amp; 3.
+
+1 isn't relevant to this bug.  (It could be done, but shouldn't be, IMO.  Like it or not we have given upper and lower case letters distinction from one another in this world.  We need not limit our files thus.)</pre>
+    </div><div id="c73" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c73">Comment 73</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sven Manguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-06-06 22:02:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Alright. If we can, at the very least, knock off 2 and 3, that'd be an improvement. Any word from any devs? Can this be put into motion? There's a ton of support at the thread linked in 71.</pre>
+    </div><div id="c74" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c74">Comment 74</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-06-06 22:34:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We know there's tons of support for this, and we all want to see it happen too.  It hasn't happened yet because it will take a bunch of work that has yet to be done.</pre>
+    </div><div id="c75" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c75">Comment 75</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Neil Kandalgaonkar</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-06-06 23:54:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have a proposal here for eliminating the file ending and also ending most of the other restrictions on filenames for Commons and uploads in MediaWiki generally.
+
+However, I am now spending all my time on other things for the foreseeable future. Maybe someone else will find those ideas useful.
+
+<a href="http://www.mediawiki.org/wiki/User:NeilK/Multimedia2011/Titles">http://www.mediawiki.org/wiki/User:NeilK/Multimedia2011/Titles</a></pre>
+    </div><div id="c76" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c76">Comment 76</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mattia</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-18 21:07:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Upload new versions of files with different file type"
+   href="show_bug.cgi?id=20971">Bug 20971</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c77" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c77">Comment 77</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sven Manguard</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-18 21:23:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Okay, you know what, I've had enough of this nonsense. Will someone with more knowledge of Bugzilla split my proposal, (<a href="show_bug.cgi?id=4421#c71">Comment 71</a>), off from this?
+
+There are two proposals on this page. One is to remove filetype extensions entirely, and has gotten a whole lot of shrieks of horror over the past five years. The other is my proposal, which really shouldn't have been placed here. I did what I was told to, but my proposal is entirely different from the one made in 2006.</pre>
+    </div><div id="c78" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c78">Comment 78</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">John Du Hart</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-08-31 23:22:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c77">comment #77</a>)
+<span class="quote">&gt; Okay, you know what, I've had enough of this nonsense. Will someone with more
+&gt; knowledge of Bugzilla split my proposal, (<a href="show_bug.cgi?id=4421#c71">Comment 71</a>), off from this?
+&gt; 
+&gt; There are two proposals on this page. One is to remove filetype extensions
+&gt; entirely, and has gotten a whole lot of shrieks of horror over the past five
+&gt; years. The other is my proposal, which really shouldn't have been placed here.
+&gt; I did what I was told to, but my proposal is entirely different from the one
+&gt; made in 2006.</span >
+
+Why don't you do it yourself (In fact, there's probably already a bug submitted for that. Search for it)</pre>
+    </div><div id="c79" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c79">Comment 79</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rd232</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-11-26 16:34:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=4421#c77">comment #77</a>)
+<span class="quote">&gt; Okay, you know what, I've had enough of this nonsense. Will someone with more
+&gt; knowledge of Bugzilla split my proposal, (<a href="show_bug.cgi?id=4421#c71">Comment 71</a>), off from this?
+&gt; 
+&gt; There are two proposals on this page. One is to remove filetype extensions
+&gt; entirely, and has gotten a whole lot of shrieks of horror over the past five
+&gt; years. The other is my proposal, which really shouldn't have been placed here.
+&gt; I did what I was told to, but my proposal is entirely different from the one
+&gt; made in 2006.</span >
+
+Split done for your points 2 and 3. Point 1 is probably more controversial and if you want to pursue it, should be separate. 
+
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - File extensions for the same file type should not allow variations of a file name (File:X.jpg, File:X.jpeg, File:X.JPG should all refer to the same file)"
+   href="show_bug.cgi?id=32660">Bug 32660</a> - File extensions for the same file type should not allow variations of a file name (File:X.jpg, File:X.jpeg, File:X.JPG should all refer to the same file)</pre>
+    </div><div id="c80" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c80">Comment 80</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Sumana Harihareswara</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-01-10 22:09:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Comment on <span class="bz_obsolete"><a href="attachment.cgi?id=6926" name="attach_6926" title="bug4421-robla-v4all-svn60601.patch">attachment 6926</a> <a href="attachment.cgi?id=6926&amp;action=edit" title="bug4421-robla-v4all-svn60601.patch">[details]</a></span>
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Image file extension should not be part of the name"
+   href="show_bug.cgi?id=4421">bug4421</a>-robla-v4all-svn60601.patch
+
+Patch no longer applies cleanly to trunk per Rusty Burchfield's automated testing <a href="https://docs.google.com/spreadsheet/ccc?key=0Ah_71HHl7qa7dGtvSms3TGpHQU9NU2Y1VmNzUEUteWc">https://docs.google.com/spreadsheet/ccc?key=0Ah_71HHl7qa7dGtvSms3TGpHQU9NU2Y1VmNzUEUteWc</a> .</pre>
+    </div><div id="c81" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=4421#c81">Comment 81</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">johnnymrninja
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2012-09-24 16:47:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - File extensions for the same file type should not allow variations of a file name (File:X.jpg, File:X.jpeg, File:X.JPG should all refer to the same file)"
+   href="show_bug.cgi?id=32660">Bug 32660</a> was broken off of here, and I'm breaking another bug off of that, <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - File extensions should be automatically decided by MIME type at upload"
+   href="show_bug.cgi?id=40479">Bug 40479</a> &quot;File extensions should be automatically decided by MIME type at upload&quot;. It won't fix this bug, but it would be a step in the right direction.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=4421&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=4421">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=4421">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=4421">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=4421&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=4421" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=4421&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419363563-ktUqBa3z-yCBS4qkNQBCB0mhIXBoD5QB10S5fp4hwJQ">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

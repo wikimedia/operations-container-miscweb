@@ -1,0 +1,2223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 2585 &ndash; Server should return a 404 HTTP status code if the page does not exist</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=2585&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=2585">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=2585">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=2585">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 2585 – Server should return a 404 HTTP status code if the page does not exist",  
+                             "show_bug.cgi?id=2585" );
+        document.title = "Bug 2585 – Server should return a 404 HTTP status code if the page does not exist";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 2585 – Server should return a 404 HTTP status code if the page does not exist", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_General_Unknown bz_bug_2585 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-01-16 00:48:50 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-01-16 00:48:50">
+  <input type="hidden" name="longdesclength" value="37">
+  <input type="hidden" name="id" value="2585">
+  <input type="hidden" name="token" value="1419360719-bYnP1rm5dYopAShI982BM7FSwMGMIGr2o3LyNx1hfVg">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=2585"><b>Bug&nbsp;2585</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Server should return a 404 HTTP status code if the page does not exist</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Server should return a 404 HTTP status code if the page does not exist
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Server should return a 404 HTTP status code if the page does not exist', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>General/Unknown
+    
+    (<a href="buglist.cgi?component=General%2FUnknown&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.16.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       enhancement<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=2585">9 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=2585#vote_2585">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - 404 not sent in File namespace"
+   href="show_bug.cgi?id=26282">26282</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=26282">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=2585&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=2585">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-06-28 19:13 UTC by <span class="vcard"><span class="fn">Théo</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-01-16 00:48 UTC 
+      (<a href="show_activity.cgi?id=2585">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>19 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="2005">2005</option>
+                <option value="ayg">ayg</option>
+                <option value="b">b</option>
+                <option value="bawolff+wn">bawolff+wn</option>
+                <option value="brion">brion</option>
+                <option value="bugs">bugs</option>
+                <option value="bugzilla+org.wikimedia">bugzilla+org.wikimedia</option>
+                <option value="elliotgoodrich">elliotgoodrich</option>
+                <option value="herd">herd</option>
+                <option value="jidanni">jidanni</option>
+                <option value="liangent">liangent</option>
+                <option value="manfredfr">manfredfr</option>
+                <option value="mapeditor">mapeditor</option>
+                <option value="Platonides">Platonides</option>
+                <option value="psychonaut">psychonaut</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="stephen.bain">stephen.bain</option>
+                <option value="W">W</option>
+                <option value="wikimedia.bugzilla">wikimedia.bugzilla</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=790"
+               title="View the content of the attachment">
+          <b>trivial hack to output 404 responses for pages (and Special pages) that don't exist</b></a>
+
+          <span class="bz_attach_extra_info">
+              (2.43 KB,
+                patch)
+
+            <br>
+            <a href="#attach_790"
+               title="Go to the comment associated with the attachment">2005-08-15 18:52 UTC</a>,
+
+            <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=790&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=7970"
+               title="View the content of the attachment">
+          <b>Trivial patch to return 404 in the File namespace</b></a>
+
+          <span class="bz_attach_extra_info">
+              (318 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_7970"
+               title="Go to the comment associated with the attachment">2011-01-11 09:17 UTC</a>,
+
+            <span class="vcard">wikimedia.bugzilla
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=7970&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=2585&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Théo</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-28 19:13:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Mediawiki does not use HTTP1.1 Status code. The lisft is here :
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html</a> .
+Mediawiki can use that to help some users.
+When the page doesn't exist, Mediwiki returns code 200 : OK. When a special page
+is not found, Mediawiki returns code 200, and when the page contains a redirect,
+it's 200 too.
+It is not very good.
+And it's easy to add this feature ...
+A simple php function can do it !
+We have to define error code to return. There are the choice !
+(a 404 error code can be return when a special page isn't found)
+
+Scuse me foor my poor english :(</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-06-28 19:24:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(Changed summary to indicate that it does _not_ do this presently)</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gregory Szorc</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-07-11 15:18:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This enhancement would benefit search engines as well.
+
+Using the PHP header($s) function, the following values of $s should be used when specific conditions are met:
+
+Page Not Found:  $s = &quot;HTTP/1.1 404 Not Found&quot;
+
+Page is a redirect: $s = &quot;HTTP/1.1 301 Moved Permanently&quot;
+   or $s = &quot;HTTP/1.1 307 Temporary Redirect&quot; 
+
+For the 404 error, page content can be outputted normally.  This status code will prevent spiders from indexing pages that do not exist.
+
+The redirect case takes a little more work.  Ideally, the 301 or 307 header should be followed by a Location header.  The client will then submit a second HTTP GET request.  However, if 
+we still want to display the &quot;Redirected from&quot; message on a page, we will have to use some $_SESSION magic before the header(&quot;Location: foo&quot;) call.  The Location header output should 
+be immediately followed by a die() or similar function call to stop script execution.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-12 21:36:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Using 3xx codes for redirects is normally considered unsuitable for redirects,
+because it requires both extra effort to display the page correctly (special
+session or parameter handling; not to mention how caching would work) and extra
+server load to display *anything* (the server has to process two requests
+instead of one). 
+
+A 404 response for non-existent pages / Special pages would however be very
+useful for those writing automated tools which interact with MediaWiki only by HTTP.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-15 18:52:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=790" name="attach_790" title="trivial hack to output 404 responses for pages (and Special pages) that don't exist">attachment 790</a> <a href="attachment.cgi?id=790&amp;action=edit" title="trivial hack to output 404 responses for pages (and Special pages) that don't exist">[details]</a></span>
+trivial hack to output 404 responses for pages (and Special pages) that don't exist
+
+This is a very quick hack (which seems to work for me) which returns HTTP 404
+if the request is for a non-existent page or a non-existent Special: page. 
+
+Unfortunately, MediaWiki still does all the parsing and everything when you do
+a HEAD request (it just gets thrown away), so it's probably still &quot;cheaper&quot; to
+use Special:Export. Ideally, a HEAD request would result in a kind of &quot;null
+view&quot; where nothing much was done, but I'm not sure at what level to insert
+that to ensure that some meaningful headers are still generated.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-15 22:10:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See also <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Special:Export return 404 on non-existant pages"
+   href="show_bug.cgi?id=3161">bug 3161</a>, which deals with returning a 404 from Special:Export.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-17 00:30:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Note that we _need_ to do all the work, as HTTP requires that all the headers on
+a HEAD request match those that would be sent with a GET. That means things like
+Content-length need to match...
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-17 01:23:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >&amp;action=raw can be used to get a 404, although IE6SP1 &amp; Firefox 1.06 try to
+download the result.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gregory Szorc</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-17 01:29:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >With regard to <a href="show_bug.cgi?id=2585#c7">comment #7</a>, even though a 404 is served, it doesn't mean you
+can't serve content.  You could have a fully functional web site serving out
+pages with 404 codes all day long and your browser wouldn't care.  Search
+engines DO care.  They won't index pages sent with a 404 (or at least they
+shouldn't).  Look at the 404 error of any web site sometime.  View the source. 
+There is HTML there and it doesn't come from your browser.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-10-24 02:44:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Several users have reported being persistently unable to access nonexistent
+pages, including edit pages. leading to inability to create new pages to access
+user pages of new users and IP addresses.
+
+I haven't been able to reproduce the problems locally; it may be specific to
+certain versions or due to odd settings or local proxies that misbehave.
+
+Reverting changes to index.php and Article.php which produce 404 response codes,
+and reopening bug.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gregory Szorc</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-01 18:06:20 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I have made the following changes to MediaWiki 1.6.3:
+
+Line 751 of Article.php has the following:
+
+#Set status code to 404 if article doesn't exist
+if ($this-&gt;mTitle-&gt;getArticleID() === 0) $wgOut-&gt;setStatusCode(404);</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Keul</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-21 15:56:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; Several users have reported being persistently unable to access nonexistent pages, including edit pages</span >
+Several scientists have reported being persistently unable to access last pi digits including binary and decimal digits of this one.
+
+When you use text editor, it warn you that file does not exist and ask to create before editing.
+wikimedia does not warn googlebot and users that file is 404 before editing.
+
+I think the big problem is the creation of articles
+- wikipedia.org/AntarticRabbits should return 404 (with what you want in, maybe creation of article, as long as there's 404 errorcode)
+- wikipedia.org/CreateArticle:AntarticRabbits with CreateArticle the page NAME, and AntarticRabbits the PARAMETER witch is the name of the article you wants to create should return code 200
+
+Google should reference wikipedia.org/CreateArticle but not wikipedia.org/CreateArticle:* because it is an infinite possibility parameter, including article names that doesn't exists.
+I think robots.txt could handle this
+All red link linking to unexisting articles should link to wikipedia.org/CreateArticle:name_of_article.
+
+Advantages:
+- 404 error code for articles that doesn't exists.
+- users can create articles with a logical URI/link
+- google can suppress immediately articles from his database if article was removed by moderator
+
+Inconvenients:
+- none</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-21 21:18:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2585#c11">comment #11</a>)
+<span class="quote">&gt; Inconveniences:
+&gt; - none</span >
+
+Oh yes there are. You're making new page creation overly complicated just to facilitate something silly as 404s (which I think shouldn't happen at all: technically, you're requesting /w/index.php?title=Name_of_article and a 404 would mean index.php doesn't exist, which it does). The whole CreateArticle: thing is crazy: you're introducing a special namespace-like keyword in front of the title which will require a whole new framework to be parsed, and you're making it impossible for people to have a CreateArticle namespace (not that it's a common namespace name, but it's a principal thing). What is the reason for having separate pages that return 404 and 200 anyway? Is there a problem with returning 404 and a page? There shouldn't be, as long as the page HTML is &gt;512 bytes.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roan Kattouw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-21 21:19:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Oh and as for Google, there's always $wgOut-&gt;setRobotpolicy( &quot;noindex,follow&quot; ); which is already used for nonexistent special pages.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Stephen Bain</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-17 10:26:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Another possibility would be setting 410 for deleted pages. Arguably this is more important for the timely updating of search engine caches, and I doubt there would be the same problems with badly-configured clients or proxies.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 01:38:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2585#c12">comment #12</a>)
+<span class="quote">&gt; technically, you're requesting /w/index.php?title=Name_of_article and a 404
+&gt; would mean index.php doesn't exist, which it does</span >
+
+Errors apply to URLs; URLs include query strings. They do not apply only to parts of URLs.
+
+<span class="quote">&gt; Is there a problem with returning 404 and a page? There shouldn't be, as
+&gt; long as the page HTML is &gt;512 bytes.</span >
+
+When we instituted this (<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/11307" title="revision 11307 in SVN">r11307</a>) we did in fact have problems -- we got many complaints from contributors who received error pages in their browser. Unfortunately I was never able to reproduce it so we didn't get enough data to really debug it.
+
+One possibility is that there were proxies which filtered the data.
+
+Another is that some of the browsers didn't obey the expected size limit (eg a lower limit than expected).
+
+Another is that we had pages legitimately below the limit and failed to pad them... but this seems like it should be unlikely given the size of the pages.
+
+
+
+(In reply to <a href="show_bug.cgi?id=2585#c14">comment #14</a>)
+<span class="quote">&gt; Another possibility would be setting 410 for deleted pages. Arguably this is
+&gt; more important for the timely updating of search engine caches, and I doubt
+&gt; there would be the same problems with badly-configured clients or proxies.</span >
+
+410 sounds like it might be more appropriate for deleted pages than general non-existent pages, and definitely not appropriate for edit pages.
+</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Tristan Miller</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-12-18 19:32:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Server should return a 410 HTTP status code for deleted pages"
+   href="show_bug.cgi?id=12345">Bug 12345</a> for the 410 issue.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-01-30 01:16:02 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Whatever you do, remember that &quot;categories with no content, but with
+members&quot; should still return 200, and not 404. See also
+<a href="http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/36416">http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/36416</a>
+and <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - allow stopping needless editing of categories"
+   href="show_bug.cgi?id=7897">Bug 7897</a>: My <a href="http://radioscanningtw.jidanni.org/">http://radioscanningtw.jidanni.org/</a> and
+<a href="http://taizhongbus.jidanni.org/">http://taizhongbus.jidanni.org/</a> are wikis with many purposefully
+&quot;empty&quot; category pages with lots of radio frequency and bus stop
+category members.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-05-04 03:14:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Regarding using the API to check as a workaround,
+In <a href="http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/37879">http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/37879</a>
+&quot;RK&quot; == Roan Kattouw says
+
+RK&gt; First, save up a list of articles you wanna check.
+
+Several lists in fact are needed, one for each wikimedia site that one
+wants to check.
+
+RK&gt; When you've got a couple hundred of them (or have run out of
+RK&gt; articles to check), issue an API request like:
+
+RK&gt; <a href="http://en.wikipedia.org/w/api.php?action=query&amp;titles=Dog|WP:WAX|Jidanni|Talk:|Indian_elephant">http://en.wikipedia.org/w/api.php?action=query&amp;titles=Dog|WP:WAX|Jidanni|Talk:|Indian_elephant</a>
+
+RK&gt; It returns some basic data (namespace and existence) for every
+RK&gt; article...
+
+And then one needs to parse that all again too...
+
+All because MediaWiki is so special a Web 2.0 new technology that old
+fashioned 404s are for squares.
+
+Brion&gt; As noted there we had problems when originally implementing it,
+Brion&gt; which may or may not be legit or continuing, and we haven't got 'round to
+Brion&gt; reimplementing it.
+
+OK, glad to know that 404s are not old fashioned, and best wishes for
+a soon implementation.
+</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-06-16 01:10:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >One almost wishes there was a User Preference:
+Give me real [X] 404's, and [X] 302's !</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Juliano F. Ravasi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-11 20:38:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Something that must be taken in consideration: The specification says that if the &quot;resource&quot; doesn't exist, the server returns 404 (or 410). But what is a &quot;resource&quot;? The specification is not clear about what is to be considered a resource: the full URL or only the absolute path (without the query).
+
+The relevance of this is the question: when not using short URLs, is it possible for a user agent to interpret a 404 for &quot;/w/index.php?title=Page_name&quot; to be that &quot;/w/index.php&quot; is not found? In this case, that would be wrong and possibly bring a lot of problems.
+
+This feature must be configurable, and default to disabled. If the above concern holds true, users should only enable this feature after configuring short URLs, so that MW only returns 404 errors for addresses that are, canonically unique for their respective &quot;resources&quot;.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-11 21:00:05 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2585#c20">comment #20</a>)
+<span class="quote">&gt; Something that must be taken in consideration: The specification says that if
+&gt; the &quot;resource&quot; doesn't exist, the server returns 404 (or 410). But what is a
+&gt; &quot;resource&quot;? The specification is not clear about what is to be considered a
+&gt; resource: the full URL or only the absolute path (without the query).</span >
+
+RFC 2616 is very clear: 404 means &quot;The server has not found anything matching the Request-URI.&quot;  The Request-URI includes the query string, if one was provided, as indicated in section 5.1.2.  Besides, any other behavior would make absolutely no sense.  This is a non-issue.
+
+Note for reference: the old revisions dealing with this are <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/11307" title="revision 11307 in SVN">r11307</a> (adding feature) and <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/11474" title="revision 11474 in SVN">r11474</a> (reverting).</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Juliano F. Ravasi</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-11 23:22:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2585#c21">comment #21</a>)
+<span class="quote">&gt; RFC 2616 is very clear: 404 means &quot;The server has not found anything matching
+&gt; the Request-URI.&quot;  The Request-URI includes the query string, if one was
+&gt; provided, as indicated in section 5.1.2.  Besides, any other behavior would
+&gt; make absolutely no sense.  This is a non-issue.</span >
+
+Check section 3.2.2 of the same RFC and you will see where it lies the ambiguity. Quoting:
+
+   3.2.2 http URL
+
+   (...)
+   http_URL = &quot;http:&quot; &quot;//&quot; host [ &quot;:&quot; port ] [ abs_path [ &quot;?&quot; query ]]
+
+   If the port is empty or not given, port 80 is assumed. The semantics
+   are that the identified resource is located at the server listening
+   for TCP connections on that port of that host, and the Request-URI
+   for the resource is abs_path (section 5.1.2).
+
+Emphasis on &quot;the Request-URI for the resource is abs_path&quot;. Note that in this paragraph, it is clear that the resource doesn't include the query string. In this sense, '/w/index.php' alone is to be considered the resource, the query string is a message passed to the resource. Then, later in 5.1.2:
+
+   5.1.2 Request-URI
+
+   (...)
+   The most common form of Request-URI is that used to identify a
+   resource on an origin server or gateway. In this case the absolute
+   path of the URI MUST be transmitted (see section 3.2.1, abs_path) as
+   the Request-URI, (...)
+
+Note how it says that the Request-URI identifies the resource, referring to the abs_path, and forgets to mention the query string.
+
+The description of 404 mentions &quot;anything matching the Request-URI&quot;, but isn't this referring to the resource as per definition in section 3.2.2? Note the description of status codes 200, 202, 203, 206, 300, 301, 302, 303, 305, 307, 401, 405, 406, 407, 409, 410, 412, 415 and 416 (section 10.2.1 onwards) all mention &quot;resource&quot; specifically, in a sense that seems to be the definition used in section 3.2.2, that is, until abs_path, not including the query string. The description of 404 only mentions &quot;resource&quot; when pointing to 410.
+
+Not that I see a lot of problem here... Just to note that the RFC is open to some interpretation that is different than the common sense, if there is one.</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-11 23:53:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Other parts of the RFC make it clear that they include the query string as part of the Request-URI, e.g.,
+
+5.1 Request-Line
+
+   The Request-Line begins with a method token, followed by the
+   Request-URI and the protocol version, and ending with CRLF. The
+   elements are separated by SP characters. No CR or LF is allowed
+   except in the final CRLF sequence.
+
+        Request-Line   = Method SP Request-URI SP HTTP-Version CRLF
+
+which by your logic forbids query strings in the Request-Line.  The reference to abs_path either was not meant to be precise or is erroneous.  There's no other possible interpretation here that's remotely sane.  Also see, for instance,
+
+   The server is refusing to service the request because the Request-URI
+   is longer than the server is willing to interpret. This rare
+   condition is only likely to occur when a client has improperly
+   converted a POST request to a GET request with long query
+   information
+
+i.e., the query information is part of the Request-URI (otherwise it couldn't lengthen it).
+
+Saying Request-URI can't include a query string more or less means that query strings don't exist in HTTP, since pretty much nothing in the standard would then distinguish between Request-URIs that differ only in their query strings.  Your interpretation is not possible.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Josef</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-04 20:06:06 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >When considering Mediawiki as a service, e.g. in automated workflows, it would surely be helpful to be able to distinguish between existing and non-existing pages. For this purpose, there is no alternative to a 404 code to <a href="http://de.wikipedia.org/wiki//Hétérogénéité">http://de.wikipedia.org/wiki//Hétérogénéité</a> and similar non-existing pages. This matches the REST thought paradigm where users can then POST to have the page created.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-22 23:40:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reimplemented this in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/44919" title="revision 44919 in SVN">r44919</a>.
+
+This is less expansive than the old 2005 implementation (<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/11307" title="revision 11307 in SVN">r11307</a>), hitting only page views (won't affect action=edit) and doesn't attempt to cover error conditions either (many of which should probably return a different code).
+
+Pages which exist in the DB or return true for Title::isAlwaysKnown() such as file pages for existing files, as well as category pages that exist, are treated as existing by returning true for Article::hasViewableContent().</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Splarka</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-12-27 02:54:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Observations:
+
+It is very annoying to have must-revalidate along with 404, as the browser cannot cache the page even with forward/backward navigation. This isn't terribly critical, but form elements are also reinitilized in most browsers in such a case. If the MediaWiki:Noarticletext has custom forms they get erased (and even the search box). This should probably become a separate bug entry (suppress must-revalidate on 404s?).
+
+The fringe cases of ISP-hijacked, browser-overridden, seems /mostly/ harmless, since content without a page (populated missing categories, shared media without local descriptions) which can be accessed via easy means (such as via Search [GO]) are not given 404. However, one case where they are, but still GOable, is any page starting with the User: prefix (whether the user exists or not, whether the page is a base page or user subpage). Example: <a href="http://meta.wikimedia.org/w/index.php?search=User%3AIamgoingto404ville/foo&amp;go=Go">http://meta.wikimedia.org/w/index.php?search=User%3AIamgoingto404ville/foo&amp;go=Go</a> 302s to a 404 which should never happen. This should probably become a separate bug entry (never 302 to a 404?).</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-05-13 00:07:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >In <a href="https://issues.apache.org/bugzilla/show_bug.cgi?id=47186">https://issues.apache.org/bugzilla/show_bug.cgi?id=47186</a> there you are on one hand returning
+  'badtitletext'=&gt; 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
+and at the same time a cheery 200 OK. Are you sure you want to do that?</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">mac.med02
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-02 18:52:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - Mark redlinks with rel=&quot;nofollow&quot;"
+   href="show_bug.cgi?id=6545">Bug 6545</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Manfred Krüger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-17 18:09:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://en.wikipedia.org/wiki/File:TestIt.jpg">http://en.wikipedia.org/wiki/File:TestIt.jpg</a> still yields status 200, so for files it doesn't work.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-19 23:57:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Looks fine on a regular page; may be something funky about image pages.
+
+ImagePage::hasViewableContent() correctly returns false here, so we've probably got something shortcutting and the skip doesn't end up going right. The check &amp; 404 are in Article::showMissingArticle(), which gets called from Article:view()... in a scary scary scary loop that I don't understand at first glance. :)
+</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dan Jacobson</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-11-15 02:28:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >As of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/59081" title="revision 59081 in SVN">r59081</a> for regular pages it still breaks if one appends a %25E9 to the URL:
+$ GET -PSd <a href="http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE">http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE</a>
+GET <a href="http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE">http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE</a> --&gt; 404 Not Found
+$ GET -PSd <a href="http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE%25E9">http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE%25E9</a>
+GET <a href="http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE%25E9">http://taizhongbus.jidanni.org/index.php?title=NOSUCHPAGE%25E9</a> --&gt; 200 OK</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-11-15 15:19:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=2585#c31">comment #31</a>)
+<span class="quote">&gt; As of <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/59081" title="revision 59081 in SVN">r59081</a> for regular pages it still breaks if one appends a %25E9 to the
+&gt; URL:</span >
+
+&quot;The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title. It may contain one or more characters which cannot be used in titles.&quot;
+Not providing a 404 on such case doesn't look like a bug.
+OTOH 200 might not be the best status code either, so perhaps give out a 400?
+</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Alexandre Emsenhuber [IAlex]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-12-08 18:21:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - 404 not sent in File namespace"
+   href="show_bug.cgi?id=26282">Bug 26282</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">wikimedia.bugzilla
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-11 09:17:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=7970" name="attach_7970" title="Trivial patch to return 404 in the File namespace">attachment 7970</a> <a href="attachment.cgi?id=7970&amp;action=edit" title="Trivial patch to return 404 in the File namespace">[details]</a></span>
+Trivial patch to return 404 in the File namespace</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Roger W Haworth</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-14 17:56:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Deleted or never-existed categories should return HTTP 404. I have raised this request as a separate bug: <a href="https://bugzilla.wikimedia.org/show_bug.cgi?id=26729">https://bugzilla.wikimedia.org/show_bug.cgi?id=26729</a></pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=2585#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Bawolff (Brian Wolff)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-01-16 00:48:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >image page issue fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/80407" title="revision 80407 in SVN">r80407</a>.
+
+Category page issue (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Deleted or never-existed categories to return HTTP 404 Not Found"
+   href="show_bug.cgi?id=26729">bug 26729</a>) in previous comment fixed in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/80406" title="revision 80406 in SVN">r80406</a>
+
+
+In regards to <a href="show_bug.cgi?id=2585#c31">Comment 31</a>, i agree with Platonides, 404 is not the appropriate response code in that situation.
+
+
+ marking as fixed. If i missed anything (this bug is long, and hard to keep track of why it was re-opened) please re-open.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=2585&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=2585">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=2585">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=2585">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=2585&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=2585" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=2585&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419360720-TE3LMp-Tn6UAPjk5uIXk96NLnOxNw7FJbP1E9lvHSEU">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

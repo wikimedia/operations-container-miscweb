@@ -1,0 +1,1644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 3083 &ndash; GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=3083&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=3083">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=3083">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=3083">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 3083 – GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly",  
+                             "show_bug.cgi?id=3083" );
+        document.title = "Bug 3083 – GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 3083 – GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_File_management bz_bug_3083 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2010-05-15 15:33:05 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2010-05-15 15:33:05">
+  <input type="hidden" name="longdesclength" value="18">
+  <input type="hidden" name="id" value="3083">
+  <input type="hidden" name="token" value="1419361462-dHGMt9aZzwRuHEMfak41RJOZbXezpDam-bK1zCcy3Rs">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=3083"><b>Bug&nbsp;3083</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly">GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME ...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('GIFs, when resized (as thumbnail), turn into PNGs, but without changing MIME type and extension accordingly', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>File management
+    
+    (<a href="buglist.cgi?component=File%20management&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.4.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       minor<span id="votes_container">
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=3083#vote_3083">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=3083&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=3083">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2005-08-09 09:57 UTC by <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2010-05-15 15:33 UTC 
+      (<a href="show_activity.cgi?id=3083">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>2 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="Platonides">Platonides</option>
+                <option value="wikibugs-l">wikibugs-l</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_tr_obsolete bz_default_hidden">
+        <td valign="top">
+            <a href="attachment.cgi?id=773"
+               title="View the content of the attachment">
+          <b><span class="bz_obsolete">Proposed (UNTESTED) change to Image.php from current HEAD</span></b></a>
+
+          <span class="bz_attach_extra_info">
+              (52.28 KB,
+                text/plain)
+
+            <br>
+            <a href="#attach_773"
+               title="Go to the comment associated with the attachment">2005-08-11 09:20 UTC</a>,
+
+            <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=773&amp;action=edit">Details</a>
+        </td>
+      </tr>
+      <tr id="a2" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=775"
+               title="View the content of the attachment">
+          <b>For the 1.5 branch! Generates PNG thumbnails GIF/XBM/WBMP, uses truecolor where reasonable to improve quality of downsampled images, adjusts extension to '.png' where required</b></a>
+
+          <span class="bz_attach_extra_info">
+              (4.46 KB,
+                patch)
+
+            <br>
+            <a href="#attach_775"
+               title="Go to the comment associated with the attachment">2005-08-12 09:19 UTC</a>,
+
+            <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=775&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+            <a href="#a0" onclick="return toggle_display(this);">Show
+              Obsolete</a> (1)
+        </span>
+        <a href="attachment.cgi?bugid=3083&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-09 09:57:17 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Situation: a GIF image is uploaded to a MediaWiki wiki, image name is (for 
+example) &quot;spaceship.gif&quot;. No problem so far. The wiki doesn't use ImageMagick, 
+btw.
+
+The image is then placed in an articel as a thumbnail, like this: 
+[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Image%3Aspaceship.gif">Image:spaceship.gif</a>|thumb|left|300px|Picture of a spaceship]]. What happens 
+is that the image gets resized to a width of 300 pixel. The resulting thumbnail 
+image then carries the filename &quot;300px-spaceship.gif&quot;.
+
+However, the image &quot;300px-spaceship.gif&quot; is in PNG format, not a GIF! Yet, it 
+still carries the &quot;.gif&quot; extension, and is served by the web server 
+with &quot;Content-Type: image/gif&quot;. No problem...most of the time. Most browser 
+manage to figure out that this &quot;GIF&quot; is, in reality, a PNG (I guess by looking 
+inside), and manage to display it, most of the time.
+
+The problem may become apparent when saving the article as an HTML page to the 
+local hard disk for offline browsing. Suddenly, it seems that the PNG-which-is-
+disguised-as-a-GIF cannot be displayed as successful any more.
+
+Verified with MSIE6 as browser, when the page was saved with MSIE6 (problem 
+appears).
+Verified with MSIE6 as browser, when the page was saved with httrack-3.40-ALPHA-
+5 (problem appears).
+
+Firefox 1.0 works, with page saved with MSIE6 and page saved with httrack-3.40-
+ALPHA-5.
+
+Okay, now it's easy to blame everything on Microsoft ;-)
+However, the current behavior still relies on the generous tolerance of the 
+viewer software and is not really according to the specs. As far as I can tell.
+
+Possible options to fix it:
+1. When a GIF gets transformed, rename the extension to &quot;.png&quot;. May cause 
+problems if there are already two images whose names only differ in the 
+extension.
+2. When a GIF gets transformed, attach an additional &quot;.png&quot;. Will result in 
+something like &quot;spaceship.gif.png&quot;. Looks sorta stupid, but works more reliable 
+that option 1, I guess.
+3. When a GIF gets uploaded, immediately transform it into a PNG. Will break 
+animated GIFs, and may also cause problems with the GIFs which already present. 
+No good.
+4. Disallow GIFs alltogether. Will be regarded as a real stupid idea by many. 
+Same problems as option 3, too.
+5. Never transform GIFs. Resizing will have to occur on the client side, 
+traffic may increase. If this option is implemented, it should be possible to 
+turn it off in LocalSettings.php.
+6. Transform GIFs to GIFs, not PNGs. Only problem is the incompatability with 
+the &quot;Burn All GIFs&quot; movement (which is kind of obsolete anyway now, as the &quot;GIF 
+patent&quot; wasn't extented). Might be of advantage, if a &quot;Burn All PNGs&quot; movement 
+appears (in case a Submaraine Patent surfaces which is relevant to PNGs (not 
+really a joke - one reason why JPEG2000 isn't that popular is said to be the 
+possibility of potetntial Submarine Patents there, too...).
+
+Holy shit! This was meant to be a bug report and not a political rant!</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-10 09:08:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Option 6 is apparently out of the question, unless ImageMagick is installed on 
+the machine. The GD library which is used by PHP's image function doesn't 
+support GIF any more.
+
+Option 5 looks easy. One might think that &quot;$wgUseImageResize = false&quot; should do 
+the trick...but it doesn't. First of all, only GIFs are the problem, and the 
+performance of PNG and JPG images would suffer that way as well...and second: it 
+doesn't work anyway (width &amp; height are omitted from the image tag most of the 
+time). Option 5 is sort of stupid anyway, I think.
+
+Option 2...now that's an easy one. Really. All I have to do is to patch one 
+function in includes/Image.php:
+
+function thumbName( $width, $shared=false ) {
+	global $wgUseLatin1,$wgSharedLatin1;
+	$thumb = $width.&quot;px-&quot;.$this-&gt;name;
+	if( $this-&gt;extension == 'svg' ) {
+		# Rasterize SVG vector images to PNG
+		$thumb .= '.png';
+	}
+	##### The following 3 lines are new: #####
+	if( $this-&gt;extension == 'gif' ) {
+		$thumb .= '.png';
+	}
+	if( $shared &amp;&amp; $wgUseLatin1 &amp;&amp; !$wgSharedLatin1) { 
+		$thumb=utf8_encode($thumb); 
+	} 
+	return $thumb;
+}
+
+However, I am not sure if this works with sites which use ImageMagick, and I 
+cannot test this currently, unfortunately :-(
+
+The patch of option 2 is currently running at <a href="http://www.c64-wiki.de">http://www.c64-wiki.de</a> (without 
+ImageMagick, I told ya!), and it seems to work.
+</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-10 09:21:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Disadvantage of my above patch for option 2: all thumbnails for GIFs get 
+regenerated with new file names. The old files will need removal as they are not 
+needed any more.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 07:26:37 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Image types &quot;WBMP for WML&quot; and &quot;XBM&quot; also seem to suffer from this bug, so they 
+should be addressed as well.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 08:48:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It may make sense to transform all non-JPEG thumbnails to PNG, for convenience 
+and consistency between variants. This should be done for ImageMagick-generated 
+thumbs as well; when non-standard types are added, we'd still like thumbs to be 
+in a nice format.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 09:20:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class="bz_obsolete"><a href="attachment.cgi?id=773" name="attach_773" title="Proposed (UNTESTED) change to Image.php from current HEAD">attachment 773</a> <a href="attachment.cgi?id=773&amp;action=edit" title="Proposed (UNTESTED) change to Image.php from current HEAD">[details]</a></span>
+Proposed (UNTESTED) change to Image.php from current HEAD
+
+Since the change in the thumbnail naming scheme is incompatible with the old
+scheme (requiring all affected thumbnails to be regenerated), this fix has to
+be activated by setting &quot;$wgRectifyThumbnailExtensions = true;&quot; somewhere in
+LocalSettings.php (or whatever). My proposal is that it's set to &quot;true&quot; for new
+installations and kept at &quot;false&quot; for existing installations.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 09:54:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Klaus, can you post a diff instead of a full file? This is easier to read and 
+keep track of. (cvs diff -u includes/Image.php)
+
+I don't think this is particularly an incompatible change so the option is 
+probably unnecessary; the existing thumbnail files are still there, and if the 
+page gets rerendered the new files will be created automatically. It should be a 
+completely transparent process.
+</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 18:57:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I fetched the recent 1.5 version from CVS to check things out. However, the bug 
+seems to be already fixed there, using &quot;option 6&quot; (the image type is kept during 
+resize). Apparently, recent GD library versions do support writing of GIFs 
+(although this can be disabled, if someone chooses to).
+
+&quot;If it ain't broken, don't fix fit.&quot;
+
+The change in behavior seems to appear with Image.php V1.106 (included in 
+REL1.5beta4), in action against <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Thumbnails not working with GD"
+   href="show_bug.cgi?id=2780">Bug 2780</a>, changed by Brion Vibber (as far as I 
+tracked things down in CVS).
+
+Proposed action: do nothing for the 1.5 branch, ignore bug in the 1.4.x branch 
+(it's pretts obscure anyway, and we all expect 1.4 to be deprectated Real Soon 
+Now(tm), right?).
+
+I have a tested fix for 1.4.7, though, so if anyone thinks it would be worth the 
+effort, tell me! Otherwise, let's regard this bug as &quot;closed, works in 1.5&quot;.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 19:09:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I think we have to consider several things:
+
+a) keeping the file type makes only sense for file types that are supported by
+the browser. XBM, WBMP, SVG etc should always be returned to the browser as PNG.
+GIF, JPEG and PNG are the only formats we can expect browsers to support.
+
+b) when scaling a (large) GIF, the result may look ugly when we keep GIF as the
+file format. The reson for this is that GIF supports only 256 colors, which does
+not allow for full interpolation during resize. The resulting PNG would look
+much nicer.
+
+c) I see no reason for sicking to GIFs, but the PNG could be set to indexed 256
+color mode. This would result in smaller files, but it would also not solve the
+problem mentioned in b). 
+
+For transparent GIFs, conversion to PNG may be a problem for MS-IE users,
+because its PNG support is incomplete/broken. But we have this problem with all
+transparent PNGs, of which there are many.
+
+But anyway... isn't this already done for animated GIFs? The seem to be scaled
+as GIFs, even though the results are often buggy.
+
+And whil i'm at it: a &quot;convert on upload&quot; feature would be extremely helpful,
+especially for MP3-&gt;OGG, etc. But this would put considerable load on the
+servers, I fear.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-11 19:59:57 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=3083#c8">comment #8</a>)
+<span class="quote">&gt; I think we have to consider several things:a) keeping the file type makes only </span >
+sense for file types that are supported bythe browser. XBM, WBMP, SVG etc should 
+always be returned to the browser as PNG.
+
+As far as I have seen in the current Image.php, only SVG gets rendered (as PNG), 
+while XBM and WBMP retain their filetype when getting thumbnailed. Well, that's 
+what the source code says, I haven't tried that on the test machine. 
+
+<span class="quote">&gt; GIF, JPEG and PNG are the only formats we can expect browsers to support.</span >
+
+So we may have found another bug?
+
+<span class="quote">&gt; And whil i'm at it: a &quot;convert on upload&quot; feature would be extremely helpful,</span >
+especially for MP3-&gt;OGG, etc.
+
+Anything with &quot;mp3 technology&quot; isn't free, we'd need a license from Thompson 
+Multimedia. These licenses aren't free, so for a decoder which was developed by 
+third party: US$ 0.75 per unit or US$ 50 000.00 one-time paid-up, Minimum 
+Royalties US$ 15 000.00 per calendar year. This license does not cover the right 
+to distribute, broadcast and/or stream mp3 / mp3PRO encoded data. Source: 
+<a href="http://www.mp3licensing.com/royalty/software.html">http://www.mp3licensing.com/royalty/software.html</a>
+
+Royalities for serving mp3s are only applicable for commercial (revenue-
+generating) use, so the average Wiki won't be required to pay the $2000/year for 
+the distribution license.
+
+However, with all these patent/license issues, mp3 seems like a dead end to me 
+anyway (when used in a typical Wiki). Sigh.
+
+FLAC would be cool (FLAC = Free Lossless Audio Codec), but about noone knows it. 
+Eats up more memory and bandwidth than OGG, of course. Well, I guess that's all 
+stuff for the not-so-near future. We should we aware of the possible future 
+options, of course, in order to avoid stupid design decisions which might turn 
+out to be obstacles for future requirements. But right now we should concentrate 
+on getting a rock solid image/thumbnail support in MediaWiki 1.5 :-)</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-12 07:17:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Okay, I will look for issues conerning thumbnailing of palletized graphic 
+formats. Some thumbnails do indeed look awful when downsampled at 256 
+colors...some look even worse. This is contrary to the intention of using such 
+losslessly compressing image file formats as GIF, where clarity should be fully 
+ratained (otherwiese, everything could get transformed to JPEG when thumbnailed).</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-12 09:19:26 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=775" name="attach_775" title="For the 1.5 branch! Generates PNG thumbnails GIF/XBM/WBMP, uses truecolor where reasonable to improve quality of downsampled images, adjusts extension to '.png' where required">attachment 775</a> <a href="attachment.cgi?id=775&amp;action=edit" title="For the 1.5 branch! Generates PNG thumbnails GIF/XBM/WBMP, uses truecolor where reasonable to improve quality of downsampled images, adjusts extension to '.png' where required">[details]</a></span>
+For the 1.5 branch! Generates PNG thumbnails GIF/XBM/WBMP, uses truecolor where reasonable to improve quality of downsampled images, adjusts extension to '.png' where required
+
+After considering thge input from Brion and Daniel, I now propose a change in
+the thumbnail generation scheme. For GIFs, XBM and XBMP images, thumbnails are
+now generated in PNG format (extension of the filename gets adjusted
+accordingly). For GIFs and PNGs, thumbnails get &quot;promoted&quot; to truecolor, as
+downsampled 256 color images typically contain more color than the source
+image.
+
+The patch is tested and it works for me (with &quot;GD library 2.0.28 compatible&quot;,
+ImageMagick not tested).
+
+The patch is, as already mentioned, for the MediaWiki 1.5 branch.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Zigger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-12 15:56:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(Please add <a href="mailto:wikibugs-l&#64;wikipedia.org">wikibugs-l&#64;wikipedia.org</a> to the CC list when assigning a bug.)</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">peter green</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-15 20:56:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >the problem with upconverting to truecolor when scaling is that in many cases
+the extra colors add little visiblly to the image and yet bloat the filesize
+considerablly.
+
+it always seems a bit of a kick in the teeth to choose a sensible color depth
+for your upload and then have the scaling system spit out a bloated truecolor
+image anyway.
+
+</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Klaus Stock</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-08-15 21:43:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The problem with the currently used approaches is that the thumbnails may end up 
+with *much* less content than the original picture. In extreme cases, the 
+thumbnail may even come out blank (unicolor). Resizing with interpolation is an 
+option which usually results in the use of more colors, but often gives a much 
+better preview of the original content.
+
+I agree that nothing beats manual control when it comes to quality vs. size. 
+However, most of the time thumbnails are generated automatically (for example, 
+in automatically or semi-automatically generated image galleries or image 
+pages), so the primary goal should be to get reasonable thumbnails without the 
+need for user intervenation.
+
+Well, at least the patch should get smarter, if my proposed approach is taken at 
+all.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">brianna.laugher
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-29 11:32:11 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Is this problem why this image doesn't display?
+<a href="http://commons.wikimedia.org/wiki/Image:World_War_2.gif">http://commons.wikimedia.org/wiki/Image:World_War_2.gif</a></pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-05-29 21:08:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No, it just uses too much memory.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=3083#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-08 18:24:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The bug is prior to the rewrite to the image handling system.
+Currently, gif images are thumbnailedto gif images, e.g. <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Glagolica.gif/200px-Glagolica.gif">http://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Glagolica.gif/200px-Glagolica.gif</a>
+When changing formats, a double extension is used, e.g. <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Pachycondyla.harpax.larvae.-.wheeler.svg/585px-Pachycondyla.harpax.larvae.-.wheeler.svg.png">http://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Pachycondyla.harpax.larvae.-.wheeler.svg/585px-Pachycondyla.harpax.larvae.-.wheeler.svg.png</a></pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=3083&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=3083">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=3083">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=3083">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=3083&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=3083" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=3083&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419361462-Dp3wv9APA1Dr39UawUBOJmou_1JIJ7HlImOb0WCjfuM">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

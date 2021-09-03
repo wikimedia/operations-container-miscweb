@@ -1,0 +1,1466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 542 &ndash; Link text shouldn't be duplicated in title attributes</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=542&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=542">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=542">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=542">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 542 – Link text shouldn\'t be duplicated in title attributes",  
+                             "show_bug.cgi?id=542" );
+        document.title = "Bug 542 – Link text shouldn\'t be duplicated in title attributes";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 542 – Link text shouldn\'t be duplicated in title attributes", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_Parser bz_bug_542 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2011-04-27 22:29:28 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2011-04-27 22:29:28">
+  <input type="hidden" name="longdesclength" value="10">
+  <input type="hidden" name="id" value="542">
+  <input type="hidden" name="token" value="1419357478-fgS2DphGK2gEHSPnVGhXcD-TRMcuamIagOr_SjUyKJc">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=542"><b>Bug&nbsp;542</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Link text shouldn't be duplicated in title attributes</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Link text shouldn't be duplicated in title attributes
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Link text shouldn\'t be duplicated in title attributes', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          WONTFIX
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Parser
+    
+    (<a href="buglist.cgi?component=Parser&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Lowest
+       minor<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=542">2 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=542#vote_542">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">accessibility, patch, patch-need-review
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - title attribute from links (tooltip) should be set using wiki syntax"
+   href="show_bug.cgi?id=22294">22294</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=22294">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Title attribute is missing for some internal links"
+   href="show_bug.cgi?id=28182">28182</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Markup accessibility issues (tracking)"
+   href="show_bug.cgi?id=367">367</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Link text still duplicated in title attributes in case of stub link"
+   href="show_bug.cgi?id=27527">27527</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=542&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=542">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2004-09-20 21:18 UTC by <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2011-04-27 22:29 UTC 
+      (<a href="show_activity.cgi?id=542">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>6 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="erlercw">erlercw</option>
+                <option value="jchang641+bugzilla">jchang641+bugzilla</option>
+                <option value="mah">mah</option>
+                <option value="Platonides">Platonides</option>
+                <option value="sorin.sbarnea">sorin.sbarnea</option>
+                <option value="suruena">suruena</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+      <tr id="a1" class="bz_contenttype_text_plain bz_patch">
+        <td valign="top">
+            <a href="attachment.cgi?id=6404"
+               title="View the content of the attachment">
+          <b>patch to suppress link titles </b></a>
+
+          <span class="bz_attach_extra_info">
+              (619 bytes,
+                patch)
+
+            <br>
+            <a href="#attach_6404"
+               title="Go to the comment associated with the attachment">2009-07-30 00:45 UTC</a>,
+
+            <span class="vcard"><span class="fn">Jonathan Chang</span>
+</span>
+          </span>
+        </td>
+
+
+        <td valign="top">
+          <a href="attachment.cgi?id=6404&amp;action=edit">Details</a>
+        </td>
+      </tr>
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <span class="bz_attach_view_hide">
+        </span>
+        <a href="attachment.cgi?bugid=542&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-09-20 21:18:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Links should only have a title attribute when the link text is different from the link 
+destination's page title.  This affects usability and accessibility.
+
+Currently, users ignore the title tool-tips, because every single link has a title attribute, and 
+most of them are duplicating the link text.  This effect is probably exacerbated for assistive 
+technologies, many of which read slower than the average.
+
+If this wasn't the case, authors could rely more on this feature to convey useful information.
+
+The check for differences should be case-insensitive, and consider plural or possessive links, 
+e.g. [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Link">Link</a>]]s or [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=link">link</a>]]'s.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 17:55:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I don't understand why having more title attributes makes anything less useful.
+If I hover my mouse over a link and no text comes up, this may be because it has
+no title attribute, or it may be because my browser hasn't picked up that I'm
+&quot;hovering&quot; (perhaps I'm jittering my mouse about too much...). When every link
+has a title attribute, I know I can hover my mouse over a link and see where
+that link points, whether or not that is different from the text of the link.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 21:48:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=542#c1">comment #1</a>)
+<span class="quote">&gt; I don't understand why having more title attributes makes anything less useful.</span >
+
+People ignore redundant information.  If the majority of titles duplicate the link text, no one 
+will read any of them.  Then in the few cases where there is useful information in a title, it 
+won't be used.  Clarity is improved by *reducing information to the minimum that is 
+necessary.*  Redundant and superfluous information obscures.
+
+People using assistive technologies (e.g. audible page readers or screen magnifyers for the 
+visually impaired), or even people on alternative platforms (like tiny cellphone screens), may 
+experience web pages very slowly and with difficulty.  Redundant information can exacerbate 
+their difficulties.
+
+The HTML spec says that the title attribute &quot;... offers advisory information about the element 
+for which it is set.&quot;  It's meant to be *additional* information.
+
+<span class="quote">&gt; If I hover my mouse over a link and no text comes up, this may be because it has
+&gt; no title attribute, or it may be because my browser hasn't picked up that I'm
+&gt; &quot;hovering&quot; (perhaps I'm jittering my mouse about too much...). </span >
+
+Are you suggesting that all links on the Internet should have title attributes added, not to add 
+advisory information to the link, but to provide visual feedback about your mouse movement?  
+If in normal use the titles aren't displayed, I suggest you file a bug report with the people who 
+produce your software, and adjust to the way it works or switch to a browser that works better 
+for you.  Incidentally, the browser I'm using right now displays title tool-tips even when I'm 
+twitching my mouse pointer wildly, as long as it stays within the bounds of the linked text on 
+the screen for about a second.
+
+<span class="quote">&gt; When every link
+&gt; has a title attribute, I know I can hover my mouse over a link and see where
+&gt; that link points, whether or not that is different from the text of the link.</span >
+
+It's true that when WP authors use piped links poorly, it can obscure the destination of a link: 
+this is an authoring issue.  It's addressed by good recommendations in the style guides, and by 
+improving confusing link text when you see it.  Using technology to layer redundant 
+information on most links doesn't clarify, it obscures.
+
+To cite an oversimplified example, the style guide advises not to link the words &quot;click here&quot;.  
+The solution isn't to add title text to &quot;click here&quot; (which the current technology would helpfully 
+render as &quot;click here&quot;).  The solution is to write better text.
+</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rowan Collins [IMSoP]</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-03 22:23:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=542#c2">comment #2</a>)
+<span class="quote">&gt; People using assistive technologies (e.g. audible page readers or screen</span >
+magnifyers for the 
+<span class="quote">&gt; visually impaired), or even people on alternative platforms (like tiny</span >
+cellphone screens), may 
+<span class="quote">&gt; experience web pages very slowly and with difficulty.  Redundant information</span >
+can exacerbate 
+<span class="quote">&gt; their difficulties.</span >
+
+I wasn't aware that the title attribute was intended to be interpretted by
+screen readers, and I very much doubt it would be displayed by cellphone
+software. That it might add redundant information to the *source*, in terms of a
+few more bytes to download, is possible, but that doesn't seem to be what you
+are claiming here.
+
+In fact, here's a quote from the spec
+[<a href="http://www.w3.org/TR/REC-html40/struct/global.html#h-7.4.3">http://www.w3.org/TR/REC-html40/struct/global.html#h-7.4.3</a>]:
+&quot;For instance, visual browsers frequently display the title as a &quot;tool tip&quot; (a
+short message that appears when the pointing device pauses over an object).
+Audio user agents may speak the title information in a similar context.&quot;
+By &quot;similar context&quot; I interpret it to mean that it will be read out when
+whatever kind of pointer mechanism is used is shifted to that location. 
+ 
+<span class="quote">&gt; The HTML spec says that the title attribute &quot;... offers advisory information</span >
+about the element 
+<span class="quote">&gt; for which it is set.&quot;  It's meant to be *additional* information.</span >
+
+Arguably, &quot;this link is not a piped link&quot; *is* information; personally, I use it
+this way. The extra tooltips don't seem redundant to me, they just seem
+consistent: I know that the text of a link doesn't neccessarily reflect its
+target; if I want to know its target, I look at the tooltip, ignoring the text.
+And the example in the spec looks to me very redundant by your definition: it
+varies by two words from the content of the A element, but in a completely
+arbitrary way. I think consistently using the title attribute to describe the
+title of the linked article is a perfectly valid and useful application of it.
+
+<span class="quote">&gt; Are you suggesting that all links on the Internet should have title attributes</span >
+added, not to add 
+<span class="quote">&gt; advisory information to the link, but to provide visual feedback about your</span >
+mouse movement?  
+
+No, but nowhere does the spec imply to me that a title attributes should be
+selective and inconsistent in order to not be redundant w.r.t. the data enclosed
+by the element they are attached to. Lots of things are often redundant in HTML,
+because they allow you to distinguish between different uses of what is often
+the same information: in our case, most of our link texts happen to be the same
+as the article name they link to, but not necessarily. Our link *titles*,
+however, consistently contain the name of the target article: extra information. 
+
+<span class="quote">&gt; It's true that when WP authors use piped links poorly, it can obscure the</span >
+destination of a link: 
+<span class="quote">&gt; this is an authoring issue.  It's addressed by good recommendations in the</span >
+style guides, and by 
+<span class="quote">&gt; improving confusing link text when you see it.  Using technology to layer</span >
+redundant 
+<span class="quote">&gt; information on most links doesn't clarify, it obscures.</span >
+
+This isn't about correct/incorrect piped link use, it's about the very existence
+of piped links. In fact, when copyediting, it can sometimes be useful to go
+through and see exactly where each link *does* point, to see whether it is the
+most appropriate. 
+
+<span class="quote">&gt; Incidentally, the browser I'm using right now displays title tool-tips even</span >
+when I'm 
+<span class="quote">&gt; twitching my mouse pointer wildly, as long as it stays within the bounds of</span >
+the linked text on 
+<span class="quote">&gt; the screen for about a second.</span >
+
+So, with your proposal, in order to confirm that a link is not piped, you'd have
+to judge mentally that you had hovered over the link for &quot;about a second&quot;, i.e.
+long enough for the browser to have shown a tooltip if it was going to. Surely
+far more reliable to wait until the tooltip appears, and then read it?
+
+<span class="quote">&gt; To cite an oversimplified example, the style guide advises not to link the</span >
+words &quot;click here&quot;.  
+<span class="quote">&gt; The solution isn't to add title text to &quot;click here&quot; (which the current</span >
+technology would helpfully 
+<span class="quote">&gt; render as &quot;click here&quot;). </span >
+
+Actually, this is a bad example: that would have a title attribute matching the
+actual destination, with or without your proposed change. Unless, of course, it
+was a link to the article [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=click%20here">click here</a>]]. 
+</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Michael Zajac</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2004-10-04 18:07:54 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=542#c3">comment #3</a>)
+<span class="quote">&gt; I wasn't aware that...
+&gt; ...and I very much doubt...</span >
+
+Alt, title and longdesc attributes are accessibility features specifically aimed at non-visual browsers, among 
+others.
+
+In fact the Jaws screen reader can read alt, title, longdesc attributes, and onMouseOver function arguments.  
+Opera for cell phones supports title attributes and displays destination URL in a tool-tip.  But other similar 
+browsers probably have different feature sets.  
+
+Don't assume a feature set for a class of browsers, because there will always be one somewhere that works 
+differently, or it will be released next week.  This certainly doesn't justify ignoring accessibility features.
+
+
+<span class="quote">&gt; Audio user agents may speak the title information in a similar
+&gt; context.&quot; By &quot;similar context&quot; I interpret it to mean that it will be
+&gt; read out when whatever kind of pointer mechanism is used is shifted
+&gt; to that location. </span >
+
+There's no pointer.  Screen readers, braille readers, and to some degree handhelds are &quot;serial devices&quot;.  They 
+read everything in order, and scanning and skipping are very limited.  Redundant information makes this 
+slow process even slower.
+
+Interestingly, the designers of Jaws made it ignore title text when it is identical to link text.  They decided 
+redundant information is harmful.  But don't assume that other browsers do this too.
+
+
+<span class="quote">&gt; And the example in the spec looks to me very redundant by your
+&gt; definition: it varies by two words from the content of the A element,
+&gt; but in a completely arbitrary way.</span >
+
+I'll give the W3 spec the benefit of the doubt, and assume that this was meant only as an example of 
+technique and not of good authoring style.  Would anyone write this way?
+
+
+<span class="quote">&gt; No, but nowhere does the spec imply to me that a title attributes
+&gt; should be selective and inconsistent in order to not be redundant </span >
+
+The spec neither supports nor refutes anything of the sort.  It deals very much with technical detail and very 
+little with web site authoring strategies.  Redundant copy is harmful.
+
+
+<span class="quote">&gt; w.r.t. the data enclosed by the element they are attached to. Lots of
+&gt; things are often redundant in HTML, because they allow you to
+&gt; distinguish between different uses of what is often the same
+&gt; information: </span >
+
+Examples of &quot;lots of things&quot; might help me understand this.
+
+
+<span class="quote">&gt; in our case, most of our link texts happen to be the same as the
+&gt; article name they link to, but not necessarily. Our link *titles*,
+&gt; however, consistently contain the name of the target article: extra
+&gt; information. </span >
+
+Users don't inherently know this!  
+
+They just know that the first dozen tool-tips they saw on Wikipedia carried no new information, and so they 
+stopped reading them altogether.  Or they know that their screen reader annoyingly read all the links twice, 
+so they turned off title-reading for the site (just because Jaws ignores redundant titles, don't assume that all 
+screen readers do).
+
+I did a quick un-scientific test: clicked &quot;Random page&quot; and Wikipedia offered me [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=Elizebeth_Friedman">Elizebeth_Friedman</a>]].  I 
+manually counted title tags in the content area of the page.  Of 34 links, 30 were identical to the linked text, 
+four were different:  
+
+  Title &quot;October 31&quot; for text &quot;10-31&quot; (twice, in a date: [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=1980">1980</a>]]-[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=10-31">10-31</a>]])
+  &quot;Greek language&quot; for &quot;Greek&quot;
+  &quot;German language&quot; for &quot;German&quot;
+
+88% of the titles were perfectly redundant, and only the two language links added some information that I 
+found useful -- that's a 1:17 signal-to-noise ratio!  After reading this page, do you think a new Wikipedia 
+user will ever pay attention to a title tag on the site?
+
+
+<span class="quote">&gt; So, with your proposal, in order to confirm that a link is not piped,
+&gt; you'd have to judge mentally that you had hovered over the link for
+&gt; &quot;about a second&quot;, i.e. long enough for the browser to have shown a
+&gt; tooltip if it was going to. </span >
+
+In a visual browser, yes, essentially -- what's wrong with that?  In MSIE5/Mac tool-tips appeared unreliably, 
+but in Firefox and Safari they work great.  Some people use them and some don't, but you can't design a site 
+assuming that they're broken a particular way for everyone.
+
+But that's not the how web surfing works.  Think of it from an average user's point of view, not as an 
+experienced Wikipedian or computer developer:
+
+The average user doesn't have to confirm anything.  He reads linked text, then moves his pointer over it, 
+then clicks and goes to the expected destination.  But if the task is *interrupted* by a tool-tip popping up, 
+then the user is alerted that the destination is different from what was expected.
+
+
+<span class="quote">&gt; Surely far more reliable to wait until the tooltip appears, and then
+&gt; read it?</span >
+
+Stop calling me Shirley.  I suppose it might be measurably more reliable in some browsers, or not -- but 
+who does this?  It requires stopping the flow at every single link, reading a tool-tip, then comparing it to the 
+link text.  This slows the user down and distracts him from what he's reading.  After 16 redundant titles in a 
+row, any waiting for tool-tips is [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=history">history</a>]] anyway.
+
+I suspect some users never wait for tool-tips, some develop a rhythm that allows them to flow smoothly but 
+catch tool-tips when they appear, and perhaps some will stop the flow over every interesting link or even 
+every link on the page.
+
+
+<span class="quote">&gt; Actually, this is a bad example: that would have a title attribute
+&gt; matching the actual destination, with or without your proposed
+&gt; change. Unless, of course, it was a link to the article [[click
+&gt; here]]. </span >
+
+True; I chose a bad example.  My point still stands: in many well-written piped links the destination will be 
+self-evident from the text and context, and users can just click.  The title is fall-back information, flagging 
+piped links and making their destination explicit.  Having redundant titles on all other links dilutes this 
+functionality like a can of no-name cola in my scotch.
+</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2005-05-15 05:05:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - External link alt title text is the URL, rather than the link title."
+   href="show_bug.cgi?id=2147">Bug 2147</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jonathan Chang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-07-30 00:45:58 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Created <span class=""><a href="attachment.cgi?id=6404" name="attach_6404" title="patch to suppress link titles">attachment 6404</a> <a href="attachment.cgi?id=6404&amp;action=edit" title="patch to suppress link titles">[details]</a></span>
+patch to suppress link titles 
+
+Removes the title attribute if it matches the link text. Checks $wgCapitalLinks for case handling. Does not &quot;consider plural or possessive links,&quot; mostly because I don't see a need for it to.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Chad H.</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-01-28 00:31:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - title attribute from links (tooltip) should be set using wiki syntax"
+   href="show_bug.cgi?id=22294">Bug 22294</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-11-05 19:11:15 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/76127" title="revision 76127 in SVN">r76127</a></pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=542#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-27 22:29:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reverted in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/87030" title="revision 87030 in SVN">r87030</a> per <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Title attribute is missing for some internal links"
+   href="show_bug.cgi?id=28182">bug 28182</a></pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=542&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=542">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=542">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=542">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=542&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=542" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=542&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419357478-Wrrl-bvKbs0naco5934kO5s2jxrqZcYiGwab_cU3ZzY">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

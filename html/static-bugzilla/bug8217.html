@@ -1,0 +1,2317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 8217 &ndash; Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -&gt; nan, zh-yue -&gt; yue, zh-classical -&gt; lzh) (tracking)</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=8217&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=8217">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=8217">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=8217">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 8217 – Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -\x3e nan, zh-yue -\x3e yue, zh-classical -\x3e lzh) (tracking)",  
+                             "show_bug.cgi?id=8217" );
+        document.title = "Bug 8217 – Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -\x3e nan, zh-yue -\x3e yue, zh-classical -\x3e lzh) (tracking)";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 8217 – Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -\x3e nan, zh-yue -\x3e yue, zh-classical -\x3e lzh) (tracking)", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_REOPENED bz_product_Wikimedia bz_component_Language_setup bz_bug_8217 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-09-08 06:10:33 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-09-08 06:10:33">
+  <input type="hidden" name="longdesclength" value="44">
+  <input type="hidden" name="id" value="8217">
+  <input type="hidden" name="token" value="1419369566-bAgOPooC4Em67QhpiFUCvEZaPaZnVf0BWsgMH_THkaY">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=8217"><b>Bug&nbsp;8217</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -&gt; nan, zh-yue -&gt; yue, zh-classical -&gt; lzh) (tracking)</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td><span title="Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -&gt; nan, zh-yue -&gt; yue, zh-classical -&gt; lzh) (tracking)">Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -&gt; nan,...
+        </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Wikipedias with zh-* language codes waiting to be renamed (zh-min-nan -\x3e nan, zh-yue -\x3e yue, zh-classical -\x3e lzh) (tracking)', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">REOPENED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >Wikimedia</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=Wikimedia">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>Language setup
+    
+    (<a href="buglist.cgi?component=Language%20setup&product=Wikimedia&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>unspecified
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>Normal
+       major<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=8217">14 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=8217#vote_8217">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://zh-min-nan.wikipedia.org/wiki/Th%C3%A2u-ia%CC%8Dh"><span title="http://zh-min-nan.wikipedia.org/wiki/Th%C3%A2u-ia%CC%8Dh">http://zh-min-nan.wikipedia.org/wiki/...
+        </span></a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">ops, tracking
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Please add ISO code interwikis for non-standard language codes"
+   href="show_bug.cgi?id=21915">21915</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-yue -&gt; yue"
+   href="show_bug.cgi?id=28441">28441</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-min-nan -&gt; nan"
+   href="show_bug.cgi?id=28442">28442</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-classical -&gt; lzh"
+   href="show_bug.cgi?id=28443">28443</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Incorrect localised texts in Names.php (zho series)"
+   href="show_bug.cgi?id=8599">8599</a> 
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Tracking bug (tracking)"
+   href="show_bug.cgi?id=2007">tracking</a> <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting to be renamed (tracking)"
+   href="show_bug.cgi?id=19986">wikis-to-rename</a> 
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=8217&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=8217">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-12-11 10:33 UTC by <span class="vcard"><span class="fn">Phokgôan Chio̍h</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-09-08 06:10 UTC 
+      (<a href="show_activity.cgi?id=8217">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>28 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="28481k">28481k</option>
+                <option value="541329866">541329866</option>
+                <option value="aklapper">aklapper</option>
+                <option value="bknliem">bknliem</option>
+                <option value="bugs">bugs</option>
+                <option value="conrad.irwin">conrad.irwin</option>
+                <option value="deryckchan">deryckchan</option>
+                <option value="Gerard.meijssen">Gerard.meijssen</option>
+                <option value="HenrySYLi">HenrySYLi</option>
+                <option value="hillgentleman">hillgentleman</option>
+                <option value="hippytrail">hippytrail</option>
+                <option value="itsminecookies">itsminecookies</option>
+                <option value="jhsoby">jhsoby</option>
+                <option value="k">k</option>
+                <option value="kennymouse">kennymouse</option>
+                <option value="klneast">klneast</option>
+                <option value="liangent">liangent</option>
+                <option value="lilydjwg">lilydjwg</option>
+                <option value="mah">mah</option>
+                <option value="malafaya">malafaya</option>
+                <option value="meno25mail">meno25mail</option>
+                <option value="millosh">millosh</option>
+                <option value="mlleepeter">mlleepeter</option>
+                <option value="RLUllmann">RLUllmann</option>
+                <option value="roan.kattouw">roan.kattouw</option>
+                <option value="stevenliuyi">stevenliuyi</option>
+                <option value="verdy_p">verdy_p</option>
+                <option value="waldir">waldir</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ><ul class="bug_urls">
+          <li><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Update non-standard language codes in the projects"
+   href="show_bug.cgi?id=20547">20547</a>
+          </li></ul></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=8217&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phokgôan Chio̍h</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-11 10:33:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear Administrator,
+
+I have an account in Taiwanese/Holo Wikipedia
+(<a href="http://zh-min-nan.wikipedia.org/wiki/Th%C3%A2u-ia%CC%8Dh">http://zh-min-nan.wikipedia.org/wiki/Th%C3%A2u-ia%CC%8Dh</a>) and I'm a sysop of
+Taiwanese Wikisource. Formerly we've used the code &quot;zh-min-nan&quot;, but now we're
+in the ISO 639-3 (<a href="http://www.sil.org/iso639-3/codes.asp?order=639_3&amp;letter=n">http://www.sil.org/iso639-3/codes.asp?order=639_3&amp;letter=n</a>)
+list, using its code &quot;nan&quot;. We want to have our code more formally and briefly
+and change it in to the new one, but we don't know how. Can you help us or tell
+us what to do? I've asked User:Angela and User:Tim_Starling in Meta-Wiki, and
+Angela suggest me to report here. Please help us! Thanks very much!</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Leon Weber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-11 16:17:39 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I changed Names.php in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/18260" title="revision 18260 in SVN">r18260</a>, someone needs to updates the subdomain, though.</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-11 20:20:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That will break display of existing links, please revert.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phokgôan Chio̍h</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-13 08:32:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8217#c1">comment #1</a>)
+<span class="quote">&gt; I changed Names.php in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/18260" title="revision 18260 in SVN">r18260</a>, someone needs to updates the subdomain, though.</span >
+
+Thanks! I saw the result you changed... But I found out that interwiki links
+still didn't change (have to use &quot;zh-min-nan:&quot; instead of &quot;nan:&quot;); and the
+website didn't change, too. What's the effect of changing &quot;Names.php&quot; in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/18260" title="revision 18260 in SVN">r18260</a>?</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-13 15:37:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The effect was minimal; quite a few things have to be changed at once to do
+this, and it needs to be co-ordinated with the system admin team, too.</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shinjiman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-16 07:43:43 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There's are the same case as the Cantonese language, &quot;zh-yue&quot;, which is not
+specified in any of ISO639 codes, the correct code for Cantonese language code
+should be named as &quot;yue&quot;, which is specified in ISO639-3
+(<a href="http://www.sil.org/iso639-3/codes.asp?order=639_3&amp;letter=y">http://www.sil.org/iso639-3/codes.asp?order=639_3&amp;letter=y</a>). Please add the
+names.php for the &quot;yue&quot; language.
+
+However, to implement the changes for the existing Wikimedia projects, we need
+to having the change of the shell to change the value of the $wpContLangCode (?)
+into &quot;nan&quot; and &quot;yue&quot; respectively, and also we need some bots to have the
+interlanguage links in the Wikimedia projects which fix up from the language
+codes from &quot;zh-min-nan&quot; to &quot;nan&quot; and from &quot;zh-yue&quot; to &quot;yue&quot;.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">a-giau</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-19 05:49:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Bots are outside the scope of Bugzilla (I think).  We need to contact bot
+authors (mainly pywikipediabot), unless there's a master interwiki list somewhere.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-12-19 11:55:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We can leave old interwiki stuff in the database to do near-seamless redirects;
+that isn't a problem. What is a problem is that there are multiple configuration
+and server-setup issues which need to be changed more or less at the same time
+for this to work, hence, a quick hack in Names.php was nowhere near sufficient
+to make it all happen.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Phokgôan Chio̍h</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-31 18:54:48 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear Administrators,
+
+May I ask what the situation is recently? Because I found out that the link of
+&quot;nan.wikipedia.org&quot; still doesn't work; and it has been more than 2 months since
+last comment. If there are any difficulties, please tell us! Thank you. :)</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">David Augusto Villa</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-06 07:01:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This would be useful across many other projects as well, the English 
+Wiktionary for certain.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-16 16:02:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've set up a redirect for nan.wikipedia.org for the moment.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Shinjiman</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-04-17 01:39:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The 'yue' in Names.php was added in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/21200" title="revision 21200 in SVN">r21200</a>. It's also need to set up for the 
+subdomain, too.</pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Henry Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-24 14:42:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Dear administrator,
+
+  Please move Cantonese Wikipedia from zh-yue to yue.  The name has been prepared.  It has been 2 months after last comment.
+</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">sl</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-26 12:30:18 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >All non ISO-639-1 or ISO-639-3 codes should be changed right away, leaving redirects are enough.</pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">hillgentleman
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-08-18 07:41:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Please in the very least set up a redirect for yue.wikipedia.org , as was done for nan.wikipedia.   It has been causing some discomfort when we set up interwiki links.</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Micke Nordin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 10:20:46 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I dont know if this: <a href="http://sv.wikipedia.org/w/index.php?title=Wikipedia&amp;oldid=6273453#Externa_l.C3.A4nkar">http://sv.wikipedia.org/w/index.php?title=Wikipedia&amp;oldid=6273453#Externa_l.C3.A4nkar</a> is related to this. We hade some problems with the iw links for among others yi: and zh-yue: probalby related to these languages being written from right to left (somehow this caused the &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%22%20and%20%22">&quot; and &quot;</a>]]&quot; taggs to be impossible to put at the right place). When I tried to fix this I managed to fix the link for yi: but not for  zh-yue: as you can see from the link, even though the page obviously exsists. 
+
+/Micke</pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Jon Harald Søby</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-03-28 12:32:38 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8217#c15">comment #15</a>)
+<span class="quote">&gt; I dont know if this:
+&gt; <a href="http://sv.wikipedia.org/w/index.php?title=Wikipedia&amp;oldid=6273453#Externa_l.C3.A4nkar">http://sv.wikipedia.org/w/index.php?title=Wikipedia&amp;oldid=6273453#Externa_l.C3.A4nkar</a>
+&gt; is related to this. We hade some problems with the iw links for among others
+&gt; yi: and zh-yue: probalby related to these languages being written from right to
+&gt; left (somehow this caused the &quot;[[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=%22%20and%20%22">&quot; and &quot;</a>]]&quot; taggs to be impossible to put at
+&gt; the right place). When I tried to fix this I managed to fix the link for yi:
+&gt; but not for  zh-yue: as you can see from the link, even though the page
+&gt; obviously exsists. 
+&gt; 
+&gt; /Micke
+&gt; </span >
+
+No, that’s related. that was just caused by the RTL starting bracket looking exactly like the LTR ending bracket. Computers see the difference, humans don’t. I fixed the interwiki link.</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dylan Wong</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-06 13:36:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >There's are the same case as the Classical Chinese (Named as Old Chinese in ISO639-3), &quot;zh-classical&quot;, which is not
+specified in any of ISO639 codes, the correct code for Cantonese language code
+should be named as &quot;och&quot;, which is specified in ISO639-3
+(<a href="http://www.sil.org/iso639-3/codes.asp?order=639_3&amp;letter=o">http://www.sil.org/iso639-3/codes.asp?order=639_3&amp;letter=o</a>). Please add the
+names.php for the &quot;och&quot; language.
+
+However, to implement the changes for the existing Wikimedia projects, we need
+to having the change of the shell to change the value of the $wpContLangCode (?)
+into &quot;nan&quot;, &quot;och&quot; and &quot;yue&quot; respectively, and also we need some bots to have the
+interlanguage links in the Wikimedia projects which fix up from the language
+codes from &quot;zh-min-nan&quot; to &quot;nan&quot;, from &quot;zh-classical&quot; to &quot;och&quot; and from &quot;zh-yue&quot; to &quot;yue&quot;.</pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Henry Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-07-22 06:30:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It is nearly two years for this request, from zh-yue to yue.  No action is taken at all. It should not be that hard to change the correct code.  It requires to change some variables only.
+
+Simply make old host name become a re-direction to new host name.  It reduced the broken interwiki links to zero.
+
+For correcting interwiki link, change English and Chinese Wikipedia articles first.  The change of interwiki links in other projects usually fixed by other bots with reference to English or Chinese one.</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Kenny Pang</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-01 18:41:34 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >upgraded priority due to ISO code issue.</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">sl</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-08-02 15:29:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Apart from “zh-yue” → “yue” and “zh-min-nan” → “nan”, “roa-rup” should be changed to “rup” too.</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Dylan Wong</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-01-21 04:50:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><a href="http://www.sil.org/iso639-3/chg_detail.asp?id=2008-089&amp;lang=zho">http://www.sil.org/iso639-3/chg_detail.asp?id=2008-089&amp;lang=zho</a>
+
+<a href="http://www.sil.org/iso639-3/cr_files/2008-089_lzh.pdf">http://www.sil.org/iso639-3/cr_files/2008-089_lzh.pdf</a>
+
+The exactly ISO 639-3 code of Literary Chinese (Classical Chinese) is lzh, please make a redirect as lzh.wikipedia.org to zh-classical.wikipedia.org, thanks!</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Conrad Irwin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-10-09 22:04:09 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would be nice if (as a first step) we could enable nan:, cmn:, yue: as inter-language prefixes on all wikis (synonyms for zh-min-nan:, zh: and zh-yue:)
+
+This would allow for much simplification for interwiki link handling (particularly on en.wikt, but presumably elsewhere too)</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Conrad Irwin</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2009-12-15 19:21:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >See <a href="http://en.wiktionary.org/wiki/Template:wikimedia_language">http://en.wiktionary.org/wiki/Template:wikimedia_language</a> 
+
+|nan=zh-min-nan
+|vro=fiu-vro
+|cmn=zh
+|och=zh-classical (thoguh maybe lzh, I'm not sure)
+|yue=zh-yue
+|rup=roa-rup
+
+What is involved in adding pseudo interwiki prefixes? As far as I can tell it just needs entries in the interwiki table, the interwiki bots and anything that already does can continue using the old codes indefinitely.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-14 13:02:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Transition on server just requires keeping a CNAME alias for the compatibility fo the old domain name prefix and the newer ISO 639-3 domani name prefix (creating the new domain on the DNS server, and then changing the old name to become this alias).
+However, some maintenance is also needed in the PHP code for the list of interwikis (the old name should still be kept for some unestimated time). There should not exist a rupture in cross-site links on Internet and in search engines.
+
+When this is done, this will help simplifying lots of language-related templates, and the benefit will also be a better presentation, and simplification for users of these languages.
+
+Valid and standard ISO 639 codes are definitely the way to go, as Wikimedia sites (notably Wikipedia and Wiktionary) are THE platform of choice for the demonstration of ISO 639 usefulness. The rule was already applied in MediaWiki's Incubator, and this is fine.</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Casey Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2010-04-17 00:33:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(Cleaning up the wiki rename bugs.)
+
+Just to recap, this bug deal with:
+* zh-yue -&gt; yue
+* zh-min-nan -&gt; nan
+* zh-classical -&gt; lzh
+
+And that's it.  We have different bugs for other language codes (see the tracking bug).</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-04 22:33:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We need to see consensus from the respective wikis for this to happen.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-04 22:36:25 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Closing this particular bug under &quot;one issue, one bug&quot; rule.  Each wiki should get consensus separately and open separate bugs.</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Casey Brown</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-04 22:50:53 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >That's kind of adding insult to injury, don't you think?  This bug has been open since 2006 and they've been patiently waiting, and now we're just going to close it because of some rule that might not have even been around when this bug was filed?  If it's that big of an issue for you, create separate bugs yourself and then link to them from here.  Though that might not be the best idea, since these are all the same kind of change (if you can do one, you can do the others, it's not like &quot;Rob can do this, Roan can do this, but that requires Tim's input&quot;) and this has a lot of history/discussion.
+
+If consensus doesn't exist on the respective wikis (which I'm not sure it doesn't), I'm not even sure it's necessary.  A wiki doesn't get to choose its language code, or what its URL, so why would we require consensus to change it?</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 15:11:12 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8217#c28">comment #28</a>)
+<span class="quote">&gt; That's kind of adding insult to injury, don't you think?  This bug has been
+&gt; open since 2006 and they've been patiently waiting, and now we're just going to
+&gt; close it because of some rule that might not have even been around when this
+&gt; bug was filed?</span >
+
+Thanks for pointing out how one might see this...  I wasn't sure anyone was still interested in this but wanted to point out how to deal with this.
+
+<span class="quote">&gt; it's not like &quot;Rob can do this, Roan can do this, but that
+&gt; requires Tim's input&quot;) and this has a lot of history/discussion.</span >
+
+But if consensus is needed then that there it isn't likely to appear simultaneously.  So then three different bugs would be needed.
+
+I've asked Ops for verification that consensus is needed.  I think it is when you're creating a new URL for an old Wiki.  If it is, then I'll open three new bugs.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 15:40:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8217#c28">comment #28</a>)
+<span class="quote">&gt; If consensus doesn't exist on the respective wikis (which I'm not sure it
+&gt; doesn't), I'm not even sure it's necessary.  A wiki doesn't get to choose its
+&gt; language code, or what its URL, so why would we require consensus to change it?</span >
+
+See <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Change no.wikipedia.org to nb.wikipedia.org"
+   href="show_bug.cgi?id=17047">Bug #17047</a> and your comment on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Renaming the Aramaic (arc) Wikipedia to the Syriac (syc) Wikipedia"
+   href="show_bug.cgi?id=26725">Bug #26725</a>, as well as the bug this one blocks, <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting to be renamed (tracking)"
+   href="show_bug.cgi?id=19986">Bug #19986</a>.
+
+Community consensus is needed.  Since this involves 3 different wikis, that's three different bugs: <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-yue -&gt; yue"
+   href="show_bug.cgi?id=28441">Bug #28441</a>, <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-min-nan -&gt; nan"
+   href="show_bug.cgi?id=28442">Bug #28442</a>, <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-classical -&gt; lzh"
+   href="show_bug.cgi?id=28443">Bug #28443</a>.  Admins can use <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting to be renamed (tracking)"
+   href="show_bug.cgi?id=19986">Bug #19986</a> for seeing which ones are ready to be done when they are prepared to do big batches of them.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 15:50:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This should not be closed. At least the original request was perfectly valid. Yes we can creater 3 distinct bugs, but this bug should remain open as a tracking bug depending on these 3 separate bugs. By closing this one, you are unlinking the 3 separate bugs also from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Minor, watch checkboxes are reset following an edit conflict"
+   href="show_bug.cgi?id=19886">Bug #19886</a> tracking the wikis that are ready to perform the change (concensus reached, templates checked for compatibility to help the transition, documentation on other wikis, contacts taken for managing interwikis, bot owners informed...)
+To help the transition, there should exist for some time an equivalence from the new code to the old one, to help build the transition mechanisms, and check/update  templates, then reversing the link from old to new code, keeping it for some time (probably long, to avoid breaking external links from the web and maintaining the stability of searches : this requires at least one year)</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 16:02:31 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" ><span class="quote">&gt; By closing this one, you are unlinking the 3 separate bugs also from Bug
+&gt; #19886 tracking the wikis that are ready to perform the change</span >
+
+I made each of the bugs depend on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Minor, watch checkboxes are reset following an edit conflict"
+   href="show_bug.cgi?id=19886">Bug #19886</a> so I don't think that is an issue.  Furthermore, each bug links back here, as well.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Mark A. Hershberger</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 16:03:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >
+<span class="quote">&gt; I made each of the bugs depend on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - Minor, watch checkboxes are reset following an edit conflict"
+   href="show_bug.cgi?id=19886">Bug #19886</a> so I don't think that is an issue.</span >
+
+Oops, I meant <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting to be renamed (tracking)"
+   href="show_bug.cgi?id=19986">Bug #19986</a></pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Philippe Verdy</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2011-04-06 18:22:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Yes but now, you cannot mark as resolved a bug that depends on the three unresolved issues. This is an incorrect state for this bug that should remain open and shown in that state in each separate bug that are blocking this one. And You should have never marked this bug as invalid, when it was perfectly valid since long before you started splitting it...</pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">mlleepeter</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-17 15:45:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The domain name (url) &quot;zh-min-nan.wxxxxxxxxx.org&quot; should be changed into &quot;nan.wxxxxxxxxx.org&quot; too. Thanks.</pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-18 09:01:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >mlleepeter: Different problem, that's <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Rename zh-min-nan -&gt; nan"
+   href="show_bug.cgi?id=28442">bug 28442</a>. See &quot;Depends on&quot; list.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Deryck Chan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-01-23 00:42:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just saying: zh-yue.wikipedia.org -&gt; yue.wikipedia.org has had community consensus since 2007: <a href="https://zh-yue.wikipedia.org/wiki/Wikipedia:AN#.E5.9F.9F.E5.90.8D">https://zh-yue.wikipedia.org/wiki/Wikipedia:AN#.E5.9F.9F.E5.90.8D</a>
+
+A technical discussion in 2011, which arose from a bug (<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - zh-yue.wikipedia should use English namespace names as well as Wikipedia/Wikipedia_talk for NS_PROJECT[_TALK]"
+   href="show_bug.cgi?id=30392">bug 30392</a>) that turned out to be unrelated, affirmed the consensus that we're waiting to be renamed to yue.wikipedia.org : <a href="https://zh-yue.wikipedia.org/wiki/Wikipedia:VPT#Wikipedia_talk">https://zh-yue.wikipedia.org/wiki/Wikipedia:VPT#Wikipedia_talk</a>:
+
+SPQRobin posted in 2012 that wgLanguageCode is going to change from zh-yue to yue. Again, there were no objections. I personally replied to SPQRobin in affirmation.
+
+In short, I can't agree with Casey Brown (2011-04-04) more. We've been sitting there in yuewiki since 2007 with a consensus, then Mark jumps in in 2011 to say &quot;we need a consensus&quot;. We've been waiting with a consensus for almost six years. (Wikipedia is only 12 years old!)</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Henry Li</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-01 06:46:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >What is the status of this bug?  It could not be hard to solve this bug as it is only configuration matter, just changing the code form zh-nan to nan and from zh-yue to yue. There is long consensus on the changes.
+
+No one takes action on this bug for many many years!!!  We cannot sit here with no progress at all.  Please let me know if there are any issues I can help.</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-02 10:10:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is not suddenly &quot;immediate priority&quot;. See <a href="https://www.mediawiki.org/wiki/Bugzilla/Fields#Priority">https://www.mediawiki.org/wiki/Bugzilla/Fields#Priority</a></pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Gerard Meijssen</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-02 10:42:36 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >How do you identify utter frustration ?
+
+How do you identify that it seems that the people who could to this just do not care?
+
+It is why people add &quot;immediate priority&quot;. While you are technically right, you are not.
+Thanks,
+    GerardM</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Deryck Chan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-02 10:45:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This is getting ridiculous. This bug requires only simple configuration changes and has been blocking the development of multiple Wikipedias for 7 years. Now it's reverted back to Normal priority which means the devs are telling us it'll take more than another bloody year to take action. May I ask what is the blocking issue?</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Andre Klapper</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-02 11:52:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Deryck Chan: First of all no dev told you it takes a year (if somebody did, link to it).
+Furthermore, immediate priority is reserved for bugs that require someone to drop what they're currently doing and address this problem really soon (2 or 3 days). This is obviously not the case here. 
+Please do not repeatedly reset priority as a sign of protest or frustration, otherwise your Bugzilla account might be disabled.
+
+I'll set the priority here to normal again, as that reflects current plans. 
+It's not that nobody cares, it's that there are specific technical problems with renaming which are explained in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wikis waiting to be renamed (tracking)"
+   href="show_bug.cgi?id=19986">bug 19986</a>. That's the blocking issue.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=8217#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Deryck Chan</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2013-12-02 12:16:52 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=8217#c42">comment #42</a>)
+<span class="quote">&gt; Deryck Chan: First of all no dev told you it takes a year (if somebody did,
+&gt; link to it).</span >
+
+The link you shared, <a href="https://www.mediawiki.org/wiki/Bugzilla/Fields#Priority">https://www.mediawiki.org/wiki/Bugzilla/Fields#Priority</a> .
+
+high 	[...] Depending on teams &amp; manpower this can take between one and six months.
+normal 	[...] would be good to get fixed somewhere in the future. [...]
+
+These two rows combined implies that &quot;normal&quot; will take more than six months to get around to it.</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=8217&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=8217">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=8217">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=8217">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=8217&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=8217" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=8217&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419369566-q8dqXR8tzCNrZmFOUpH0PlU-ediurAKpHwl-sLgcPoE">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

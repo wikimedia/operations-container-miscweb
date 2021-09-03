@@ -1,0 +1,2474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <title>Bug 6464 &ndash; Logged on as someone else.</title>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="Top" href="https://old-bugzilla.wikimedia.org/">
+
+  
+
+
+  
+    <link rel="Show" title="Dependency Tree"
+          href="showdependencytree.cgi?id=6464&amp;hide_resolved=1">
+      <link rel="Show" title="Dependency Graph"
+            href="showdependencygraph.cgi?id=6464">
+
+      <link rel="Show" title="Bug Activity"
+            href="show_activity.cgi?id=6464">
+      <link rel="Show" title="Printer-Friendly Version"
+            href="show_bug.cgi?format=multiple&amp;id=6464">
+
+
+
+    
+    <link href="skins/standard/global.css?1389015166"
+          rel="alternate stylesheet" 
+          title="Classic"><link href="js/yui/assets/skins/sam/autocomplete.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="js/yui/assets/skins/sam/calendar.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/global.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="skins/standard/show_bug.css?1389015166" rel="stylesheet"
+        type="text/css" ><link href="extensions/Voting/web/style.css?1389015166" rel="stylesheet"
+        type="text/css" ><!--[if lte IE 7]>
+      
+
+
+  <link href="skins/standard/IE-fixes.css?1389015166" rel="stylesheet"
+        type="text/css" >
+<![endif]-->
+
+    <link href="skins/contrib/Wikimedia/global.css?1402013050" rel="stylesheet"
+        type="text/css" title="Wikimedia"><link href="skins/contrib/Wikimedia/show_bug.css?1402441020" rel="stylesheet"
+        type="text/css" title="Wikimedia">
+
+      <link rel="stylesheet" href="skins/contrib/Wikimedia/vector.css?1403109885" media="screen"
+            title="Wikimedia" />
+
+
+    
+
+    
+
+    
+<script type="text/javascript" src="js/yui/yahoo-dom-event/yahoo-dom-event.js?1389015166"></script><script type="text/javascript" src="js/yui/cookie/cookie-min.js?1389015166"></script><script type="text/javascript" src="js/yui/datasource/datasource-min.js?1389015166"></script><script type="text/javascript" src="js/yui/connection/connection-min.js?1389015166"></script><script type="text/javascript" src="js/yui/json/json-min.js?1389015166"></script><script type="text/javascript" src="js/yui/autocomplete/autocomplete-min.js?1389015166"></script><script type="text/javascript" src="js/yui/calendar/calendar-min.js?1389015166"></script><script type="text/javascript" src="js/global.js?1389015166"></script>
+
+    <script type="text/javascript">
+    <!--
+        YAHOO.namespace('bugzilla');
+        YAHOO.util.Event.addListener = function (el, sType, fn, obj, overrideContext) {
+               if ( ("onpagehide" in window || YAHOO.env.ua.gecko) && sType === "unload") { sType = "pagehide"; };
+               var capture = ((sType == "focusin" || sType == "focusout") && !YAHOO.env.ua.ie) ? true : false;
+               return this._addListener(el, this._getType(sType), fn, obj, overrideContext, capture);
+         };
+        if ( "onpagehide" in window || YAHOO.env.ua.gecko) {
+            YAHOO.util.Event._simpleRemove(window, "unload", 
+                                           YAHOO.util.Event._unload);
+        }
+        
+        function unhide_language_selector() { 
+            YAHOO.util.Dom.removeClass(
+                'lang_links_container', 'bz_default_hidden'
+            ); 
+        } 
+        YAHOO.util.Event.onDOMReady(unhide_language_selector);
+
+        
+        var BUGZILLA = {
+            param: {
+                cookiepath: '\/',
+                maxusermatches: 15
+            },
+            constant: {
+                COMMENT_COLS: 80
+            },
+            string: {
+                
+
+                attach_desc_required:
+                    'You must enter a Description for this attachment.',
+                component_required:
+                    'You must select a Component for this bug.',
+                description_required:
+                    'You must enter a Description for this bug.',
+                short_desc_required:
+                    'You must enter a Summary for this bug.',
+                version_required:
+                    'You must select a Version for this bug.'
+            }
+        };
+
+    if (history && history.replaceState) {
+      if(!document.location.href.match(/show_bug\.cgi/)) {
+        history.replaceState( null, 
+                             "Bug 6464 – Logged on as someone else.",  
+                             "show_bug.cgi?id=6464" );
+        document.title = "Bug 6464 – Logged on as someone else.";
+      }
+      if (document.location.href.match(/show_bug\.cgi\?.*list_id=/)) {
+        var href = document.location.href;
+        href = href.replace(/[\?&]+list_id=(\d+|cookie)/, '');
+        history.replaceState(null, "Bug 6464 – Logged on as someone else.", href);
+      }
+    }
+    YAHOO.util.Event.onDOMReady(function() {
+      initDirtyFieldTracking();
+    });
+    // -->
+    </script>
+<script type="text/javascript" src="js/util.js?1389015166"></script><script type="text/javascript" src="js/field.js?1389015166"></script>
+
+    
+
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Bugzilla" href="./search_plugin.cgi">
+    <link rel="shortcut icon" href="images/favicon.ico" >
+  </head>
+
+
+
+  <body onload=""
+        class="old-bugzilla-wikimedia-org bz_bug bz_status_RESOLVED bz_product_MediaWiki bz_component_User_login_and_signup bz_bug_6464 yui-skin-sam">
+
+
+
+<!-- If custom Wikimedia skin -->
+   <div id="page-base" class="noprint"></div>
+                <div id="head-base" class="noprint"></div>
+                <!-- content -->
+                <div id="content-container" >
+                        <a id="top"></a>
+                        <!-- bodyContent -->
+                        <div id="bodyContent">
+      <p class="header_addl_info">Last modified: 2014-11-18 18:07:16 UTC</p>
+
+ <!-- If custom Wikimedia skin -->
+<h1>Wikimedia Bugzilla is closed!</h1><div id="message" style="text-align: center; color: black">Wikimedia has <a href="https://www.mediawiki.org/wiki/Phabricator/versus_Bugzilla">migrated from Bugzilla to Phabricator</a>. Bug reports should be created and updated in <a href="https://phabricator.wikimedia.org">Wikimedia Phabricator</a> instead. Please <a href="https://www.mediawiki.org/wiki/Phabricator/Help#Creating_your_account">create an account in Phabricator and add your Bugzilla email address</a> to it.<br>Wikimedia Bugzilla is read-only. If you try to edit or create any bug report in Bugzilla you will be shown an intentional error message.<br>In order to access the Phabricator task corresponding to a Bugzilla report, just remove "static-" from its URL.<br>You could still run searches in Bugzilla or access your <a href="https://old-bugzilla.wikimedia.org/page.cgi?id=voting%2Fuser.html">list of votes</a> but bug reports will obviously not be up-to-date in Bugzilla.</div>
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+<script type="text/javascript">
+<!--
+
+//-->
+</script>
+
+<form name="changeform" id="changeform" method="post" action="process_bug.cgi">
+
+  <input type="hidden" name="delta_ts" value="2014-11-18 18:07:16">
+  <input type="hidden" name="longdesclength" value="47">
+  <input type="hidden" name="id" value="6464">
+  <input type="hidden" name="token" value="1419366946-qwzWcdq8HY7ZkBW-CNyQuiY0Hd6opt93osZ1CizEbOM">
+<div class="bz_alias_short_desc_container edit_form">
+     <a href="show_bug.cgi?id=6464"><b>Bug&nbsp;6464</b></a> -<span id="summary_alias_container" class="bz_default_hidden"> 
+      <span id="short_desc_nonedit_display">Logged on as someone else.</span>
+     </span>
+  
+       
+    <div id="summary_alias_input">
+      <table id="summary"> 
+        <tr>
+            <td colspan="2">
+          </td>
+        </tr>
+        
+        <tr><th class="field_label "
+    id="field_label_short_desc">
+
+    <label for="short_desc" accesskey="s">
+
+  <a 
+      title="The bug summary is a short sentence which succinctly describes what the bug is about."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#short_desc"
+  >Summary:</a>
+</label>
+</th>
+          <td>Logged on as someone else.
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    hideAliasAndSummary('Logged on as someone else.', '');
+  </script>
+  <table class="edit_form">
+    <tr>
+      
+      <td id="bz_show_bug_column_1" class="bz_show_bug_column">     
+        <table>
+          <tr>
+    <th class="field_label">
+      <a href="page.cgi?id=fields.html#bug_status">Status</a>:
+    </th>
+    <td id="bz_field_status">
+      <span id="static_bug_status">RESOLVED
+          FIXED
+      </span>
+    </td>
+  </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_product">
+
+
+  <a 
+      title="Bugs are categorised into Products and Components."
+      class="field_help_link"
+      href="describecomponents.cgi"
+  >Product:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_product" >MediaWiki</td>
+    </tr>
+
+    
+    <tr class="bz_default_hidden"><th class="field_label "
+    id="field_label_classification">
+
+
+  <a 
+      title="Bugs are categorised into Classifications, Products and Components. classifications is the top-level categorisation."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#classification"
+  >Classification:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_classification" >Unclassified</td>
+    </tr>
+        
+    
+    
+    <tr>
+    
+    <td class="field_label">
+      <label for="component">
+        <a href="describecomponents.cgi?product=MediaWiki">
+        Component:</a>
+      </label>
+    </td>
+    
+    <td>User login and signup
+    
+    (<a href="buglist.cgi?component=User%20login%20and%20signup&product=MediaWiki&resolution=---"
+      target="new_window">Other open bugs</a>)
+    
+    </td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_version">
+
+    <label for="version">
+
+  <a 
+      title="The version field defines the version of the software the bug was found in."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#version"
+  >Version:</a>
+</label>
+</th>
+        <td>1.8.x
+  </td>
+    </tr>
+        
+    
+        
+    <tr><th class="field_label "
+    id="field_label_rep_platform">
+
+    <label for="rep_platform" accesskey="h">
+
+  <a 
+      title="The hardware platform the bug was observed on. Note: When searching, selecting the option &quot;All&quot; only finds bugs whose value for this field is literally the word &quot;All&quot;."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#rep_platform"
+  >Hardware:</a>
+</label>
+</th>
+      <td class="field_value">All
+       All
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          
+          <tr>
+      <th class="field_label">
+        <label for="priority" accesskey="i">
+          <a href="page.cgi?id=fields.html#importance"><u>I</u>mportance</a></label>:
+      </th>
+      <td>High
+       critical<span id="votes_container">
+      with
+      <a href="page.cgi?id=voting/bug.html&amp;bug_id=6464">7 
+            votes</a>
+    (<a href="page.cgi?id=voting/user.html&amp;bug_id=6464#vote_6464">vote</a>)
+  </span>
+      </td>
+    </tr>
+
+      <tr>
+        <th class="field_label">
+          <label for="target_milestone">
+            <a href="page.cgi?id=fields.html#target_milestone">
+            Target&nbsp;Milestone</a></label>:
+        </th><td>---
+  </td>
+      </tr>            
+          
+          <tr>
+      <th class="field_label">
+        <a href="page.cgi?id=fields.html#assigned_to">Assigned To</a>:
+      </th>
+      <td><span class="vcard"><span class="fn">Nobody - You can work on this!</span>
+</span>
+      </td>
+    </tr>
+
+    <script type="text/javascript">
+      assignToDefaultOnChange(['product', 'component'],
+        'wikibugs-l\x40lists.wikimedia.org',
+        '');
+    </script>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+          <tr><th class="field_label "
+    id="field_label_bug_file_loc">
+
+    <label for="bug_file_loc" accesskey="u">
+
+  <a 
+      title="Bugs can have a URL associated with them - for example, a pointer to a web site where the problem is seen."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#bug_file_loc"
+  >URL:</a>
+</label>
+</th>
+    <td>
+      <span id="bz_url_input_area">
+          <a href="http://startrek.acalltoduty.com/wiki/">http://startrek.acalltoduty.com/wiki/</a>
+      </span>
+    </td>
+  </tr>
+  
+    <tr><th class="field_label "
+    id="field_label_status_whiteboard">
+
+    <label for="status_whiteboard" accesskey="w">
+
+  <a 
+      title="Each bug has a free-form single line text entry box for adding tags and status information."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#status_whiteboard"
+  >Whiteboard:</a>
+</label>
+</th><td colspan="2">  
+  </td>
+    </tr>
+  
+    <tr>
+      <th class="field_label">
+        <label for="keywords" accesskey="k">
+          <a href="describekeywords.cgi"><u>K</u>eywords</a></label>:
+      </th>
+      <td class="field_value" colspan="2">
+      </td>
+    </tr>
+          <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+
+          <tr>
+    <th class="field_label">
+      <label for="duplicates">Duplicates</label>:
+    </th>
+    <td class="field_value" colspan="2">
+      <span id="duplicates"><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969">6969</a> <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Users getting logged in as someone else"
+   href="show_bug.cgi?id=7103">7103</a> 
+      </span>
+      (<a href="buglist.cgi?bug_id=6969,7103">view as bug list</a>)
+    </td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_dependson">
+
+
+  <a 
+      title="The bugs listed here must be resolved before this bug can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#dependson"
+  >Depends on:</a>
+
+</th>
+
+  <td>
+    <span id="dependson_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr><th class="field_label "
+    id="field_label_blocked">
+
+
+  <a 
+      title="This bug must be resolved before the bugs listed in this field can be resolved."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#blocked"
+  >Blocks:</a>
+
+</th>
+
+  <td>
+    <span id="blocked_input_area">
+    </span>
+    
+  </td>
+  </tr>
+  
+  <tr>
+    <th>&nbsp;</th>
+  
+    <td colspan="2" align="left" id="show_dependency_tree_or_graph">
+      Show dependency <a href="showdependencytree.cgi?id=6464&amp;hide_resolved=1">tree</a>
+  
+        /&nbsp;<a href="showdependencygraph.cgi?id=6464">graph</a>
+    </td>
+  </tr>
+          
+        </table>
+      </td>
+      <td>
+        <div class="bz_column_spacer">&nbsp;</div>
+      </td>
+      
+      <td id="bz_show_bug_column_2" class="bz_show_bug_column">
+        <table cellpadding="3" cellspacing="1">
+        <tr>
+    <th class="field_label">
+      Reported:
+    </th>
+    <td>2006-06-27 14:02 UTC by <span class="vcard"><span class="fn">Locutus</span>
+</span>
+    </td>
+  </tr>
+  
+  <tr>
+    <th class="field_label">
+      Modified:
+    </th>
+    <td>2014-11-18 18:07 UTC 
+      (<a href="show_activity.cgi?id=6464">History</a>)
+    </td>
+  
+  </tr>
+         <tr>
+      <th class="field_label">
+        <label for="newcc" accesskey="a">CC List:</label>
+      </th>
+      <td>12 
+          users
+          <span id="cc_edit_area_showhide_container" class="bz_default_hidden">
+            (<a href="#" id="cc_edit_area_showhide">show</a>)
+          </span>
+        <div id="cc_edit_area">
+          <br>
+            <select id="cc" multiple="multiple" size="5">
+                <option value="aschulz4587">aschulz4587</option>
+                <option value="daniel.kinzler">daniel.kinzler</option>
+                <option value="dejan.papez">dejan.papez</option>
+                <option value="fearow00">fearow00</option>
+                <option value="gtisza">gtisza</option>
+                <option value="mattj">mattj</option>
+                <option value="MediaWiki">MediaWiki</option>
+                <option value="peter">peter</option>
+                <option value="Platonides">Platonides</option>
+                <option value="scotteaux">scotteaux</option>
+                <option value="waldir">waldir</option>
+                <option value="wikipedista">wikipedista</option>
+            </select>
+        </div>
+          <script type="text/javascript">
+            hideEditableField( 'cc_edit_area_showhide_container', 
+                               'cc_edit_area', 
+                               'cc_edit_area_showhide', 
+                               '', 
+                               '');  
+          </script>
+      </td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+<tr><th class="field_label "
+    id="field_label_see_also">
+
+
+  <a 
+      title="This allows you to refer to bugs in other installations. You can enter a URL to a bug in the 'Add Bug URLs' field to note that that bug is related to this one. You can enter multiple URLs at once by separating them with a comma. You should normally use this field to refer to bugs in other installations. For bugs in this installation, it is better to use the Depends on and Blocks fields."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#see_also"
+  >See Also:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_see_also" ></td>
+    </tr> 
+         <tr><th class="field_label "
+    id="field_label_cf_browser">
+
+
+  <a 
+      title="Please set this if the described problem seems to happen only in a specific web browser."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_browser"
+  >Web browser:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_browser"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label "
+    id="field_label_cf_platform">
+
+
+  <a 
+      title="The Mobile Platform the described problem was experienced on."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_platform"
+  >Mobile Platform:</a>
+
+</th>
+  <td class="field_value "
+      id="field_container_cf_platform"  colspan="2">---</td>
+    </tr>
+    <tr><th class="field_label  bz_hidden_field"
+    id="field_label_cf_hugglebeta">
+
+
+  <a 
+      title="A custom Drop Down field in this installation of Bugzilla."
+      class="field_help_link"
+      href="page.cgi?id=fields.html#cf_hugglebeta"
+  >Assignee Huggle Beta Tester:</a>
+
+</th>
+  <td class="field_value  bz_hidden_field"
+      id="field_container_cf_hugglebeta"  colspan="2">---</td>
+    </tr>
+         <tr>
+    <td colspan="2" class="bz_section_spacer"></td>
+  </tr>
+         
+                
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+          <hr id="bz_top_half_spacer">
+      </td>
+    </tr>
+  </table>
+
+  <table id="bz_big_form_parts" cellspacing="0" cellpadding="0"><tr>
+  <td>
+
+    
+<script type="text/javascript">
+<!--
+function toggle_display(link) {
+    var table = document.getElementById("attachment_table");
+    var view_all = document.getElementById("view_all");
+    var hide_obsolete_url_parameter = "&hide_obsolete=1";
+    // Store current height for scrolling later
+    var originalHeight = table.offsetHeight;
+    var rows = YAHOO.util.Dom.getElementsByClassName(
+        'bz_tr_obsolete', 'tr', table);
+
+    for (var i = 0; i < rows.length; i++) {
+        bz_toggleClass(rows[i], 'bz_default_hidden');
+    }
+
+    if (YAHOO.util.Dom.hasClass(rows[0], 'bz_default_hidden')) {
+        link.innerHTML = "Show Obsolete";
+        view_all.href = view_all.href + hide_obsolete_url_parameter 
+    }
+    else {
+        link.innerHTML = "Hide Obsolete";
+        view_all.href = view_all.href.replace(hide_obsolete_url_parameter,"");
+    }
+
+    var newHeight = table.offsetHeight;
+    // This scrolling makes the window appear to not move at all.
+    window.scrollBy(0, newHeight - originalHeight);
+
+    return false;
+}
+//-->
+</script>
+
+<br>
+<table id="attachment_table" cellspacing="0" cellpadding="4">
+  <tr id="a0">
+    <th colspan="2" align="left">
+      Attachments
+    </th>
+  </tr>
+
+
+
+  <tr class="bz_attach_footer">
+    <td colspan="2">
+        <a href="attachment.cgi?bugid=6464&amp;action=enter">Add an attachment</a>
+        (proposed patch, testcase, etc.)
+    </td>
+  </tr>
+</table>
+<br>
+
+  </td>
+  <td>
+  </td>
+  </tr></table>
+
+  
+  <div id="comments"><script src="js/comments.js?1389015166" type="text/javascript">
+</script>
+
+<script type="text/javascript">
+<!--
+  /* Adds the reply text to the `comment' textarea */
+  function replyToComment(id, real_id, name) {
+      var prefix = "(In reply to " + name + " from comment #" + id + ")\n";
+      var replytext = "";
+        /* pre id="comment_name_N" */
+        var text_elem = document.getElementById('comment_text_'+id);
+        var text = getText(text_elem);
+        replytext = prefix + wrapReplyText(text);
+
+
+      /* <textarea id="comment"> */
+      var textarea = document.getElementById('comment');
+      if (textarea.value != replytext) {
+          textarea.value += replytext;
+      }
+
+      textarea.focus();
+  } 
+//-->
+</script>
+
+
+
+
+<!-- This auto-sizes the comments and positions the collapse/expand links 
+     to the right. -->
+<table class="bz_comment_table" cellpadding="0" cellspacing="0"><tr>
+<td>
+<div id="c0" class="bz_comment bz_first_comment">
+
+      <div class="bz_first_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c0">Description</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-27 14:02:56 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >First of all, I'll leave the severity and priority fields unchanged because I
+didn't take the time review this Bugzilla policy, however this bug should at
+least be considered critical though as of now I'm still unable to repeatedly
+reproduce it.
+
+Every now and then on the above installation of Mediawiki (1.6.7 straight of the
+box) I've found myself logged in as someone else as seen in the following screen
+shots:
+
+<a href="http://img483.imageshack.us/img483/6339/umm3ez.jpg">http://img483.imageshack.us/img483/6339/umm3ez.jpg</a>
+<a href="http://img163.imageshack.us/img163/5152/umm24jw.jpg">http://img163.imageshack.us/img163/5152/umm24jw.jpg</a>
+
+These encourages happen in what appears to be a random fashion and as of now
+cannot be repeatedly reproduced, at least by me. From the brief discussion we
+had on the Wiki it appears only me and another user are effected.
+
+This seems to happen only when I'm logged already in and seems to stick across
+multiple pages and will only return to normal if I log off again. I'm able to do
+changes on his account and post as him. (Keep in mind that when I lop on again,
+I'm back at my normal account)
+
+One thing I should mention is that the wiki seems to have a cache problem, how
+genuine this problem is though I'm not sure. (As seen below)
+
+<a href="http://img509.imageshack.us/img509/1787/umm39bt.jpg">http://img509.imageshack.us/img509/1787/umm39bt.jpg</a>
+
+So far I've ignored this message and everything as been working as it should.
+
+The user I'm logged on as reports that he finds himself logged in as me as well.
+For now I'm not sure if this effected anyone else due to the fact that it isn't
+a very active wiki, and most people won't even notice should they'll have the
+same problem though you'll have to remember that myself and the other user only
+get logged in as each other and not as someone else.
+
+Keep in mind that this happened when I returned to the wiki after a period of
+time and during normal operation on the board. Though I don't remember if it was
+after a long pause or not.
+
+I have cookies enabled and the &quot;remember me&quot; option turned on.
+
+If you need any more information then please contact me.
+
+P.S. I apologize if I'm posting a duplicate, I wasn't able to find a similar bug.</pre>
+    </div><div id="c1" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c1">Comment 1</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-27 15:25:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Probably a bad caching proxy. Are the two of you on the same 
+ISP / school / work web proxy perhaps?
+</pre>
+    </div><div id="c2" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c2">Comment 2</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-27 16:48:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >No, different countries.</pre>
+    </div><div id="c3" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c3">Comment 3</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-06-28 01:00:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Same person just reported that he was just logged in as someone else beside me,
+I should mention that the site I'm talking about was a 1.5.x mediwiki upgraded
+to 1.6.7. 
+
+I'm trying to find out if more users are effected by this on the wiki.</pre>
+    </div><div id="c4" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c4">Comment 4</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-10 19:46:55 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969">Bug 6969</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c5" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c5">Comment 5</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-10 19:50:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Some possibly useful datapoints from the other bug:
+
+(<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969#c2">bug 6969 comment #2</a>)
+<span class="quote">&gt; [[<a href="https://en.wikipedia.org/w/index.php?title=Special:Search&go=Go&search=hu%3AUser%3AVince">hu:User:Vince</a>]] reported the same on huwiki a couple of hours ago. The links
+&gt; to the preferences and watchlist were missing from the personal toolbar,
+&gt; everything else was there. He remained logged in as another user after following
+&gt; a link. I'll try to get more details.</span >
+
+The bug reporter from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969">bug 6969</a> gave dewiki as the link, so apparently that's two
+or more independent occurrences on at least two different WMF sites.</pre>
+    </div><div id="c6" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c6">Comment 6</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-11 14:48:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Might as well mention that we're still getting the same bug though it seems to
+occur more frequently now.
+
+Though I did notice a pattern, it seems the user gets logged in as someone else
+when the other user logs in at the same time the user issued a request from the
+server.
+
+As I said, it sounds like a cache problem to me.</pre>
+    </div><div id="c7" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c7">Comment 7</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-11 14:58:32 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I copy my comment from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969">bug 6969</a>:
+
+(In reply to <a href="show_bug.cgi?id=6464#c1">comment #1</a>)
+<span class="quote">&gt; did you just see a page with anotehr user's name on it, or where you
+&gt; actually able to edit using the identity of this user? When navigating the wiki
+&gt; at random, do you stay logged in as &quot;the other user&quot;?
+&gt; 
+&gt; In case this happens again, please record the following, if you can: the IP
+&gt; address you got for the wiki site, the HTML page itself, the HTTP response
+&gt; headers and any cookies you have for the wiki's site. </span >
+
+If the log in as the foreign user is persistent during navigation (as indicated
+by teh reported of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969">bug 6969</a>), or even allows editing as that user (don't know if
+it does), then it's *not* a caching issue but a *serious* bug. I would be
+especiall interested to know what the user name cookie looks like when this happens.</pre>
+    </div><div id="c8" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c8">Comment 8</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-12 00:16:19 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6464#c7">comment #7</a>)
+<span class="quote">&gt; If the log in as the foreign user is persistent during navigation (as indicated
+&gt; by teh reported of <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Unintentional log-in as foreign user"
+   href="show_bug.cgi?id=6969">bug 6969</a>), or even allows editing as that user (don't know if
+&gt; it does), then it's *not* a caching issue but a *serious* bug. I would be
+&gt; especiall interested to know what the user name cookie looks like when this</span >
+happens.
+
+Then I can tell how it works here, sometimes you're able to post as that foreign
+user, from personal experience I was able to alter the foreign user watch list,
+change his personal configuration and I believe that if I tried I would have
+been able to change his password.
+
+Keep in mind that our users complained that they were sometimes logged in as the
+admin user.
+
+Again, I can confirm you that it only happened when that same user was accessing
+the site at the same time.
+
+Keep in mind that sometimes when you're logged in as someone else all it takes
+is to refresh the page to return to your own user session.
+
+I'll try giving you the information you requested as soon as possible.</pre>
+    </div><div id="c9" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c9">Comment 9</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-19 13:51:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >The relevant function appears to be User::loadFromSession - there, the user
+id/name from cookie and session could be compared, and if they mismatch, this
+should be logged and the session terminated. I'd hope that could give us some
+way to track down the problem - in case it's not purely caching.
+
+I'm a bit scared to touch that code, though - I don't fully understand the
+implications.</pre>
+    </div><div id="c10" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c10">Comment 10</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Rob Church</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-19 16:17:10 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I'm inclined to agree that we need to start logging this. If people are being
+logged on as others, and the session is persisting, then that's a critical
+security flaw and we need to find it and fix it, fast.</pre>
+    </div><div id="c11" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c11">Comment 11</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-20 21:17:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >For reference, two threads on the dewiki pump:
+
+<a href="http://de.wikipedia.org/w/index.php?title=Wikipedia:Fragen_zur_Wikipedia&amp;oldid=20433833#Bearbeitung_nicht_von_mir">http://de.wikipedia.org/w/index.php?title=Wikipedia:Fragen_zur_Wikipedia&amp;oldid=20433833#Bearbeitung_nicht_von_mir</a>
+
+<a href="http://de.wikipedia.org/w/index.php?title=Wikipedia:Fragen_zur_Wikipedia&amp;oldid=20433833#Ohne_Account_eingeloggt.3F">http://de.wikipedia.org/w/index.php?title=Wikipedia:Fragen_zur_Wikipedia&amp;oldid=20433833#Ohne_Account_eingeloggt.3F</a></pre>
+    </div><div id="c12" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c12">Comment 12</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Schwalbe</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-21 08:11:21 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >A similar thing happened to me on de: at about 21 Aug 09:30 (CEST). See
+<a href="http://de.wikipedia.org/wiki/Wikipedia_Diskussion:Administratoren/Notizen#Sicherheitsl.C3.BCcke.3F">http://de.wikipedia.org/wiki/Wikipedia_Diskussion:Administratoren/Notizen#Sicherheitsl.C3.BCcke.3F</a>
+(with screenshot) for details. I was not able to edit with this account but do
+not use the &quot;remember me&quot; option. I never saw the cache problem message
+mentioned above.</pre>
+    </div><div id="c13" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c13">Comment 13</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">bdk</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-22 21:26:24 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just for the case the reporter's location may be of interest to narrow the problem down: 
+There was another report on 8th of august by a german IP (Mac user), see:
+<a href="http://www.mediawiki.org/w/index.php?title=Project:Support_desk&amp;oldid=37786#Automatically_logged_in_as_an_unknown_user">http://www.mediawiki.org/w/index.php?title=Project:Support_desk&amp;oldid=37786#Automatically_logged_in_as_an_unknown_user</a>
+
+----
+Addition to #12 (permanent link):
+<a href="http://de.wikipedia.org/w/index.php?title=Wikipedia_Diskussion:Administratoren/Notizen&amp;oldid=20518732#Sicherheitsl.C3.BCcke.3F">http://de.wikipedia.org/w/index.php?title=Wikipedia_Diskussion:Administratoren/Notizen&amp;oldid=20518732#Sicherheitsl.C3.BCcke.3F</a></pre>
+    </div><div id="c14" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c14">Comment 14</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-23 18:59:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Users getting logged in as someone else"
+   href="show_bug.cgi?id=7103">Bug 7103</a> has been marked as a duplicate of this bug. ***</pre>
+    </div><div id="c15" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c15">Comment 15</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 12:27:33 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Suggestion from Nick Jenkins on Wikitech-l
+&lt;<a href="http://mail.wikipedia.org/pipermail/wikitech-l/2006-August/038270.html">http://mail.wikipedia.org/pipermail/wikitech-l/2006-August/038270.html</a>&gt;:
+
+<span class="quote">&gt; I've seen the same general type of problem (PHP app that confuses users with no
+&gt; immediately obvious explanation) happen exactly twice in a period of 6 years on
+&gt; some of my (non-MediaWiki) apps.</span >
+&gt;
+<span class="quote">&gt; I'm not 100% sure why, and it's so rare that it's _extremely_ hard to be sure,
+&gt; but my working theory is that by pure random fluke two session_id strings or
+&gt; two session file names/keys have clashed, resulting in user identity getting
+&gt; confused.
+&gt; 
+&gt; I recall reading an article in PHP|Architect around a year ago about how you 
+&gt; could store the first parts of the user's IP address + the usual session_id
+&gt; stuff to lessen the chance of something like this (not eliminate it however,
+&gt; since you could still have a large proxy supporting many users, or an
+&gt; especially active subnet, and potentially have the same thing) + other various
+&gt; tricks to switch the session_id if it looks like someone is trying to spoof it
+&gt; or if there's an accidental clash.</span >
+&gt;
+<span class="quote">&gt; As a disclaimer, I have only very superficially scanned some of MediaWiki's
+&gt; session handling code (so it could already have these guards, I honestly don't
+&gt; know), but *maybe* it's something like this? That's my first thought, anyway.</span >
+&gt;
+<span class="quote">&gt; Certainly the number of WP users is much higher, so the chances of clashes
+&gt; happening presumably are correspondingly greater too. (i.e. on a long enough
+&gt; time-scale, and with enough permutations, the statistically improbable becomes
+&gt; probable).</span ></pre>
+    </div><div id="c16" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c16">Comment 16</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-24 16:02:47 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >But Timwi gives good reasons for why that can't be the case:
+&lt;<a href="http://mail.wikipedia.org/pipermail/wikitech-l/2006-August/038302.html">http://mail.wikipedia.org/pipermail/wikitech-l/2006-August/038302.html</a>&gt;</pre>
+    </div><div id="c17" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c17">Comment 17</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 21:49:08 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Reported at es: Village Pump. User Satesclop appearing logged as Ketamino.
+Cookies were disabled. He then brwosed to RecentChanges and &quot;the odd thing&quot;
+disappeared:
+
+<a href="http://es.wikipedia.org/wiki/Wikipedia:Caf%C3%A9/Portal/Archivo/T%C3%A9cnica/2006/08#Algo_incre.C3.ADble">http://es.wikipedia.org/wiki/Wikipedia:Caf%C3%A9/Portal/Archivo/T%C3%A9cnica/2006/08#Algo_incre.C3.ADble</a></pre>
+    </div><div id="c18" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c18">Comment 18</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Daniel Kinzler</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-27 22:16:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Uh, with cookies disabled, login wouldn't be possible at all...</pre>
+    </div><div id="c19" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c19">Comment 19</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-28 21:07:13 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >His words: &quot;Not only it, but i also had cookies disabled&quot;. I guess he meant he
+hadn't 'Remember me' feature enabled... :?</pre>
+    </div><div id="c20" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c20">Comment 20</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-08-29 11:29:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >This may be related to the Squid 2.6 ETag issue. If so, new cases _ought_ not to
+show up since yesterday.
+</pre>
+    </div><div id="c21" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c21">Comment 21</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-04 20:26:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Not sure if this helps anyone but the cookies remain the same even when you're
+logged in as someone else, they still point towards your original user even
+while you're logged in as someone else. Tested with IE6, 1.6.7. The other user
+details persist even while switching pages, and attempting to access the user
+configuration page. I'll try to reproduce it with a more sane browser if I'll
+get the same problem again.
+
+(Keep in mind, I'm talking about a local installation and /not/ the official
+wikipedia servers.</pre>
+    </div><div id="c22" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c22">Comment 22</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-05 13:03:42 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Then it's an intermal wiki problem, not related to the Squids (i assume you're
+only using mysql, php, mediawiki &amp; a browser to loaclhost, without more advanced
+cahcing systems, right?).</pre>
+    </div><div id="c23" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c23">Comment 23</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-05 18:16:51 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >MediaWiki: 1.6.7
+PHP: 4.3.8 (apache2handler)
+MySQL: 4.1.11 
+
+I'm not sure about the latter though, we're talking about a mediawiki
+installation that is accessible though the link I posted above.</pre>
+    </div><div id="c24" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c24">Comment 24</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Travis D</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-09-18 14:16:07 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We are also experiencing this bug at wikiHow, using MW 1.6.7. 
+
+It does not appear to be a problem related to caching since the affected users
+can actually edit pages under the username they appear to be logged in as. So
+far, only 2 people can reproduce the problem.
+</pre>
+    </div><div id="c25" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c25">Comment 25</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Thomas Goldammer</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-23 11:47:50 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe the same reason: On de.wikipedia, a user denies to have edited an article. He occurs in the history of the 
+article, but on Special:Contributions the article does not occur. I guess, another user was logged in as him and 
+edited there without noticing that he did that not as himself. Probably the database added the edits to the 
+contributions of the one who really did the edits, but saved the wrong account in the history. Grtx.</pre>
+    </div><div id="c26" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c26">Comment 26</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-24 12:24:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Thomas: if that's true, please email details directly to me IMMEDIATELY.</pre>
+    </div><div id="c27" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c27">Comment 27</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-28 18:20:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Maybe I didn't mention this before but people are able to edit articles and
+change the user settings while logged as someone else. In fact the sessions
+remains persistent until you log off.
+
+The problem seems more consistent when using IE 6, at least from my personal
+experience. There was a time I was able to reproduce it every time I visited the
+Wiki. Perhaps when another used was preforming an action on the Wiki at the same
+time?</pre>
+    </div><div id="c28" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c28">Comment 28</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-28 21:00:27 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Locutus: please upgrade to 1.8.2, flush any proxy caches, and see if the issue persists.
+I have a theory that this issue may have been caused by something which has been changed,
+but since we cannot reproduce it we have no way to know without testing.
+</pre>
+    </div><div id="c29" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c29">Comment 29</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Travis D</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-29 14:19:29 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hey Brion,
+
+Is this something I could make a patch for to test out on 1.6.7? I could put it
+in place, and ask anyone who experiences the problem again to let me know - our
+users seem to run into it reliably. Upgrading is a huge process for us
+unfortunately, and takes a few weeks to do.
+
+Thanks.</pre>
+    </div><div id="c30" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c30">Comment 30</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-29 17:30:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Here's the changes on trunk:
+<a href="http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/RawPage.php?<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/1" title="revision 1 in SVN">r1</a>=16475&amp;<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/2" title="revision 2 in SVN">r2</a>=16649&amp;view=patch">http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/RawPage.php?<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/1" title="revision 1 in SVN">r1</a>=16475&amp;<a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/2" title="revision 2 in SVN">r2</a>=16649&amp;view=patch</a>
+
+I haven't tested it on 1.6 but it does appear to apply cleanly.</pre>
+    </div><div id="c31" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c31">Comment 31</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Travis D</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-30 16:23:49 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Hi Brion,
+
+Thanks. This patch seems to only affect situations where action=raw, correct?
+Our users are having this problem just viewing pages normally, and can actually
+edit articles while logged in as other users. I don't think anyone views the raw
+version of our pages at all, logged in or not logged in. 
+
+</pre>
+    </div><div id="c32" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c32">Comment 32</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Locutus</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-30 19:32:00 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >We can't update to 1.8.*, we don't have access to PHP5.</pre>
+    </div><div id="c33" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c33">Comment 33</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2006-10-31 12:18:45 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Travis, I'm aware of what the patch changes, which is exactly why I recommend it to you.
+If you like I can explain this in detail offline.
+
+Locutus: PHP 5 is available for free under an open source license, and is already present
+on countless thousands of hosting providers as well as anywhere you choose to install it.
+If you choose to stick with older, buggier software that's your choice.</pre>
+    </div><div id="c34" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c34">Comment 34</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aryeh Gregor (not reading bugmail, please e-mail directly)</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-01-31 04:08:14 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >New sighting on the Japanese Wikipedia:
+<a href="http://lists.wikimedia.org/pipermail/wikitech-l/2007-January/029303.html">http://lists.wikimedia.org/pipermail/wikitech-l/2007-January/029303.html</a></pre>
+    </div><div id="c35" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c35">Comment 35</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard">wiki_tomos
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-05 09:53:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >More instances are reported on Japanese Wikipedia. 
+
+<a href="http://ja.wikipedia.org/wiki/User:Trashwriter">http://ja.wikipedia.org/wiki/User:Trashwriter</a> reported that 
+account mix-up happened to him again. 
+
+The following edit was attributed to user:Gwkaakun, though 
+it was his own.
+
+<a href="http://ja.wikipedia.org/w/index.php?title=Wikipedia:%E5%89%8A%E9%99%A4%E4%BE%9D%E9%A0%BC/%E9%A7%90%E8%BB%8A%E5%A0%B4%E7%B6%9C%E5%90%88%E7%A0%94%E7%A9%B6%E6%89%80&amp;diff=10376487&amp;oldid=10374004">http://ja.wikipedia.org/w/index.php?title=Wikipedia:%E5%89%8A%E9%99%A4%E4%BE%9D%E9%A0%BC/%E9%A7%90%E8%BB%8A%E5%A0%B4%E7%B6%9C%E5%90%88%E7%A0%94%E7%A9%B6%E6%89%80&amp;diff=10376487&amp;oldid=10374004</a>
+
+Trashwriter also reports that there are more than 10 edits in his 
+contribution records that are not his own. 
+
+Also, <a href="http://ja.wikipedia.org/wiki/User:%CE%A3%EF%BC%96%EF%BC%94">http://ja.wikipedia.org/wiki/User:%CE%A3%EF%BC%96%EF%BC%94</a>
+(I will call him Sigma64 hereafter) reported that he experienced 
+this glitch four times in the past 2 days. 
+
+He said one image was posted under his username, but it is done by 
+someone else. He considers this problematic, though he 
+does not mind to be attributed for edits on regular articles. 
+
+He requested the image to be deleted. 
+
+He said that he was once logged on as User:Annet152. User:Annet152, 
+when asked by User:Sigma64, said that he, too, was affected by the glitch. 
+
+User:Sigma64 thought User:Annet152 was the one who posted the image 
+to Wikipedia, but User:Annet152 said he did not do that. 
+
+
+---- 
+
+User:Trashwriter reported his environment when the bug took effect:
+-Windows XP 
+-IE7.0.5730.11
+-ISP: airH&quot; with no proxy. 
+
+I think airH&quot; is a mobile internet service that typically routes packets 
+from a computer (or other device) to a mobile phone, which in turn send it 
+to the mobile phone company offering the service, and then to an ISP's 
+dual-up service that the user is subscribed to. 
+
+He saved a copy of cookie when the bug took effect, as requested by a developer. 
+He wants to know how to send it, and to whom. </pre>
+    </div><div id="c36" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c36">Comment 36</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-02-05 22:48:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I made some more tweaks in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/19795" title="revision 19795 in SVN">r19795</a> which may or may not affect this issue;
+said issue also may or may not be related to some temporary squid problems
+we had a week or so ago, which may or may not be completely resolved and
+may or may not have left some bad cached entries which may or may not
+still have some effect.
+
+Live code hasn't been updated yet, so give it some time.</pre>
+    </div><div id="c37" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c37">Comment 37</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Scott Gunther</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-04 13:40:41 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I would like to report a possible case of someone being logged in as me.
+
+My username on the english wikidpedia is &quot;Scotteaux&quot; and on March 19 there was a contribution made with my username to &quot;Private university.&quot;  I am certain that I did not make this change. I only access wikipedia from home and so I can't imagine how anyone would have been able to have access to my account.
+</pre>
+    </div><div id="c38" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c38">Comment 38</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-28 04:23:35 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >I've been reading through the code, and this definately sounds like session collisions - I met this problem on a previous PHP application I was running. A simple way to fix should be to store the client's IP in a session variable, then in  User::loadFromSession compare the session IP to the clients IP. Another option would be to salt the session key with the IP - however then you still have a chance of collision. This would also increase security, however it would mess up users whos IP changes while on the internet - as far as I know, this would be very hard to do under TCP/IP, and should not happen
+
+-Matt
+
+</pre>
+    </div><div id="c39" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c39">Comment 39</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Brion Vibber</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-06-28 13:23:23 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Roaming IPs are not uncommon with AOL, which uses a very ugly proxy system.</pre>
+    </div><div id="c40" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c40">Comment 40</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-22 23:53:59 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >What about storing a &quot;session key&quot; in the user table, generated from something like this:
+
+$sesskey = md5($_REQUEST['REMOTE_ADDR']) . md5($user-&gt;name . $user-&gt;id);
+
+NOTE: I couldnt remember the exact feilds for name and id, but those seem accurate enough.
+Store it in a cookie, then on pageload, compare the session key of the cookie to the one in the DB. If its incorrect, log the user out. The key would be updated in the DB on login. The only problem with this is the user cannot be logged in from two IP addresses at once - this is added security anyway, so no problem. The key may have to have more information to make it harder for collisions, but should be fine.</pre>
+    </div><div id="c41" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c41">Comment 41</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Platonides</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-07-23 10:19:22 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would also conflict with the 'Remember me' option, failing to keep the used logged if it changes ips since first login (ie. a period of days).</pre>
+    </div><div id="c42" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c42">Comment 42</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Voyagerfan5761 / dgw</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2007-09-21 15:27:30 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Just as a general comment, IP salting would be rather frustrating, since I often change locations in the span of a day with the same computer. Having to log back into the software would definitely disrupt routine, in my case.</pre>
+    </div><div id="c43" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c43">Comment 43</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-13 05:32:01 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >It would help a lot if loadFromSession() matched the user name to the ID</pre>
+    </div><div id="c44" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c44">Comment 44</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Matt Johnston</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-13 08:43:40 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Doesn't it do so on line 846?</pre>
+    </div><div id="c45" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c45">Comment 45</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-13 14:19:03 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >(In reply to <a href="show_bug.cgi?id=6464#c44">comment #44</a>)
+<span class="quote">&gt; Doesn't it do so on line 846?
+&gt; </span >
+
+I mean checking the cookie username to the session username value</pre>
+    </div><div id="c46" class="bz_comment">
+
+      <div class="bz_comment_head">
+
+
+
+        <span class="bz_comment_number">
+          <a 
+             href="show_bug.cgi?id=6464#c46">Comment 46</a>
+        </span>
+
+        <span class="bz_comment_user">
+          <span class="vcard"><span class="fn">Aaron Schulz</span>
+</span>
+        </span>
+
+        <span class="bz_comment_user_images">
+        </span>
+
+        <span class="bz_comment_time">
+          2008-10-13 18:42:28 UTC
+        </span>
+      </div>
+
+
+
+<pre class="bz_comment_text" >Cookie user ID checked in <a href="https://www.mediawiki.org/wiki/Special:Code/MediaWiki/42040" title="revision 42040 in SVN">r42040</a> to limit accidents like the above</pre>
+    </div>
+
+
+  
+
+</td>
+<td>
+</td>
+</tr></table>
+  </div>
+
+    <hr><div id="add_comment" class="bz_section_additional_comments">
+      <table>
+        <tr>
+          <td>
+            <fieldset>
+              <legend>Note</legend>
+              You need to
+              <a href="show_bug.cgi?id=6464&amp;GoAheadAndLogIn=1">log in</a>
+              before you can comment on or make changes to this bug.
+            </fieldset>
+          </td>
+        </tr> 
+      </table>
+  </div>        
+
+</form>
+
+<hr>
+<ul class="related_actions">
+    <li><a href="show_bug.cgi?format=multiple&amp;id=6464">Format For Printing</a></li>
+    <li>&nbsp;-&nbsp;<a href="show_bug.cgi?ctype=xml&amp;id=6464">XML</a></li>
+    <li>&nbsp;-&nbsp;<a href="enter_bug.cgi?cloned_bug_id=6464">Clone This Bug</a></li>
+    
+    <li>&nbsp;-&nbsp;<a href="#">Top of page </a></li>
+    </ul>        
+
+
+<div class="navigation">
+  
+  <i><font color="#777777">First</font></i>
+  <i><font color="#777777">Last</font></i>
+  <i><font color="#777777">Prev</font></i>
+  <i><font color="#777777">Next</font></i>
+  &nbsp;&nbsp;
+  <i><font color="#777777">This bug is not in your last
+    search results.</font></i>
+</div>
+
+<br>
+<div class="visualClear"></div>
+			</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- /search -->
+			<div id="p-search">
+				<h5><label for="searchInput">Search</label></h5>
+				<form id="searchform" action="buglist.cgi" method="get"
+				 onsubmit="if (this.quicksearch.value == '')
+				 { alert('Please enter one or more search terms first.');
+				 return false; } return true;">
+					<input type='hidden' name="title" value="Special:Search"/>
+					<div id="simpleSearch">
+						<input id="searchInput" name="quicksearch" type="text" title="Search Bugzilla [alt-f]" accesskey="f" value="" />
+						<button id="searchButton" type='submit' name='button' title="Search Bugzilla for this text">&nbsp;</button>
+					</div>
+				</form>
+			</div>
+			<!-- /search -->
+			<!-- personal -->
+			<div id="p-personal" class="">
+				<h5>Personal tools</h5>
+				<ul >
+							<li id="new_account_container">
+								<a href="createaccount.cgi">New&nbsp;Account</a>
+							</li>
+						<li id="mini_login_container">
+  <span class="separator">| </span>
+  <a id="login_link" href="show_bug.cgi?id=6464&amp;GoAheadAndLogIn=1"
+     onclick="return show_mini_login_form('')">Log In</a>
+
+  
+  <form action="show_bug.cgi?id=6464" method="POST" 
+        class="mini_login bz_default_hidden"
+        id="mini_login"
+        onsubmit="return check_mini_login_fields( '' );"
+  >
+    <input id="Bugzilla_login" 
+           class="bz_login"
+           name="Bugzilla_login"
+           title="Login"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input class="bz_password" 
+           id="Bugzilla_password" 
+           name="Bugzilla_password"
+           type="password"
+           title="Password"
+    >
+    <input class="bz_password bz_default_hidden bz_mini_login_help" type="text" 
+           id="Bugzilla_password_dummy" value="password"
+           title="Password"
+           onfocus="mini_login_on_focus('')"
+    >
+    <input type="hidden" name="Bugzilla_login_token"
+           value="">
+    <input type="submit" name="GoAheadAndLogIn" value="Log in"
+            id="log_in">
+    <script type="text/javascript">
+      mini_login_constants = {
+          "login" : "email address",
+          "warning" : "You must set the login and password before logging in."
+      };
+      
+      if (YAHOO.env.ua.gecko || YAHOO.env.ua.ie || YAHOO.env.ua.opera) {
+          YAHOO.util.Event.onDOMReady(function() {
+              init_mini_login_form('');
+          });
+      }
+      else {
+          YAHOO.util.Event.on(window, 'load', function () {
+              window.setTimeout(function() {
+                  init_mini_login_form('');
+              }, 200);
+          });
+    }
+    </script>
+    <a href="#" onclick="return hide_mini_login_form('')">[x]</a>
+  </form>
+</li>
+<li id="forgot_container">
+  <span class="separator">| </span>
+  <a id="forgot_link" href="show_bug.cgi?id=6464&amp;GoAheadAndLogIn=1#forgot"
+     onclick="return show_forgot_form('')">Forgot Password</a>
+  <form action="token.cgi" method="post" id="forgot_form"
+        class="mini_forgot bz_default_hidden">
+    <label for="login">Login:</label>
+    <input type="text" name="loginname" size="20" id="login">
+    <input id="forgot_button" value="Reset Password" 
+           type="submit">
+    <input type="hidden" name="a" value="reqpw">
+    <input type="hidden" id="token" name="token" value="1419366946-SBc3JFyS354wMECyl5lcPeFu2V8iPAXzdvwZa2tq7PI">
+    <a href="#" onclick="return hide_forgot_form('')">[x]</a>
+  </form>
+</li>
+
+				</ul>
+			</div>
+			<!-- /personal -->
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+			<div id="panel" class="noprint">
+				<!-- logo -->
+				<div id="p-logo"><a style="background-image: url(skins/contrib/Wikimedia/images/bugzilla-logo.png);" href="./"  title="Visit the main page"></a></div>
+				<!-- /logo -->
+				<!-- navigation -->
+				<div class="portal">
+					<h5>Navigation</h5>
+					<div class="body">
+						<ul><li><a href="query.cgi?format=specific">Search bugs</a></li>
+			<li><a href="query.cgi?format=advanced">Advanced search</a></li>
+			<li><a href="describecomponents.cgi">Browse projects</a></li>
+			<li><a href="enter_bug.cgi">Enter a new bug</a></li>
+                        <li>
+                                <a href="docs/en/html/bug_page.html" target="_blank">Help</a>
+                        </li>	
+						</ul>
+					</div>
+				</div>
+				<!-- /navigation -->
+				<!-- interaction -->
+				<!-- /interaction -->
+				<!-- toolbox -->
+				<div class="portal">
+					<h5>Links</h5>
+					<div class="body">
+						<ul><li><a href="report.cgi">Reports</a></li>
+			<li><a href="weekly-bug-summary.cgi?tops=10&days=7">Weekly Summary</a></li>
+				<li>
+						<a href="request.cgi">Requests</a>
+				</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /toolbox -->
+			</div>
+		<!-- /panel -->		
+
+		<!-- footer -->
+		<div id="footer" >
+			<ul id="footer-info">
+				<li>Bugzilla version 4.4.5</li>
+			</ul>
+
+			<ul id="footer-places">
+				<li><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Bug_management/Bugzilla_etiquette" title="Bug management/Bugzilla etiquette">Bugzilla etiquette</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:About" title="Project:About">About MediaWiki.org</a></li>
+				<li><a href="https://www.mediawiki.org/wiki/Project:General_disclaimer" title="Project:General disclaimer">Disclaimers</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-icon-poweredby"><a href="http://www.bugzilla.org/"><img src="skins/contrib/Wikimedia/images/bugzilla-badge.png" height="31" width="88" alt="Powered by Bugzilla" /></a></li>
+			</ul>
+			<div style="clear:both"></div>
+		<div class="outro"></div>
+		</div>
+		<!-- /footer -->
+	</body>
+</html>

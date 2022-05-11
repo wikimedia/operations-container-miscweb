@@ -8,22 +8,11 @@ apt:
     - curl
     - w3m
 
+entrypoint: [./entrypoint.sh]
+
 variants:
   test:
-    copies:
-      - from: local
-        source: test/html
-        destination: html
-      - from: local
-        source: test/httpd.conf
-        destination: ./apache2.conf
-      - from: local
-        source: test/static-bugzilla.conf
-        destination: ./static-bugzilla.conf
-      - from: local
-        source: ./entrypoint.sh
-        destination: ./entrypoint.sh
-    entrypoint: [./entrypoint.sh]
+    copies: [local]
   production:
     copies:
       - from: local
@@ -38,7 +27,6 @@ variants:
       - from: local
         source: ./entrypoint.sh
         destination: ./entrypoint.sh
-    entrypoint: [./entrypoint.sh]
   fifteenwp:
     copies:
       - from: local
@@ -53,4 +41,3 @@ variants:
       - from: local
         source: ./entrypoint.sh
         destination: ./entrypoint.sh
-    entrypoint: [./entrypoint.sh]

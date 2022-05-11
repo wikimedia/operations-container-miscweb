@@ -21,27 +21,6 @@ variants:
         source: test/static-bugzilla.conf
         destination: ./static-bugzilla.conf
       - from: local
-        source: test/15-wikipedia.conf
-        destination: ./15-wikipedia.conf
-      - from: local
-        source: ./entrypoint.sh
-        destination: ./entrypoint.sh
-    entrypoint: [./entrypoint.sh]
-  staging:
-    copies:
-      - from: local
-        source: html
-        destination: html
-      - from: local
-        source: staging/httpd.conf
-        destination: ./apache2.conf
-      - from: local
-        source: staging/static-bugzilla.conf
-        destination: ./static-bugzilla.conf
-      - from: local
-        source: staging/15-wikipedia.conf
-        destination: ./15-wikipedia.conf
-      - from: local
         source: ./entrypoint.sh
         destination: ./entrypoint.sh
     entrypoint: [./entrypoint.sh]
@@ -57,7 +36,19 @@ variants:
         source: production/static-bugzilla.conf
         destination: ./static-bugzilla.conf
       - from: local
-        source: production/15-wikipedia.conf
+        source: ./entrypoint.sh
+        destination: ./entrypoint.sh
+    entrypoint: [./entrypoint.sh]
+  fifteenwp:
+    copies:
+      - from: local
+        source: test/html
+        destination: html
+      - from: local
+        source: test/httpd.conf
+        destination: ./apache2.conf
+      - from: local
+        source: test/15-wikipedia.conf
         destination: ./15-wikipedia.conf
       - from: local
         source: ./entrypoint.sh

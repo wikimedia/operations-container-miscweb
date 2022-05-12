@@ -8,8 +8,13 @@ pipelines:
   publish:
     blubberfile: blubber.yaml
     stages:
-      - name: production
-        build: production
+      - name: staticbz
+        build: staticbz
         publish:
           image:
-            tags: [production]
+            tags: [staticbz]
+      - name: fifteenwp
+        build: fifteenwp
+        publish:
+          image:
+            tags: [fifteenwp]
